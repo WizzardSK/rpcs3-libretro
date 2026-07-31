@@ -1774,6 +1774,13 @@ bool retro_load_game(const struct retro_game_info* game)
     g_cfg.misc.show_rpcn_popups.set(false);
 
 
+    // The block above hardcodes settings that also have core options behind them
+    // (PPU/SPU decoder, SPU loop detection, LLVM precompilation, multithreaded
+    // RSX, ...). It runs after the early libretro_apply_core_options() call, so
+    // without re-applying them here the user's choices are silently discarded -
+    // e.g. "LLVM Precompilation: disabled" still precompiled every module.
+    libretro_apply_core_options();
+
     // Save config so BootGame() loads the correct settings when it reloads config.yml
     // Note: RPCS3 loads config from fs::get_config_dir(true) which adds "config/" subdirectory
     const std::string config_path = fs::get_config_dir(true) + "config.yml";
