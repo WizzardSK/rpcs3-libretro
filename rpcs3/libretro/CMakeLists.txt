@@ -95,6 +95,10 @@ target_compile_definitions(rpcs3_libretro PRIVATE
 # Hide symbols by default (expose only libretro API)
 if(NOT MSVC)
     target_compile_options(rpcs3_libretro PRIVATE -fvisibility=hidden)
+    # The core sources use try/catch and the C-style casts of the libretro API,
+    # both of which the global rpcs3 flags forbid (-fno-exceptions,
+    # -Werror=old-style-cast). Relax them for this target only.
+    target_compile_options(rpcs3_libretro PRIVATE -fexceptions -Wno-error=old-style-cast)
 else()
     # Enable standard-conforming preprocessor for __VA_OPT__ support
     target_compile_options(rpcs3_libretro PRIVATE /Zc:preprocessor)

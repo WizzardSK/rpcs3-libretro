@@ -47,7 +47,7 @@ public:
     void Play() override;
     void Pause() override;
 
-    bool Initialized() const { return m_initialized; }
+    bool Initialized() override { return m_initialized; }
 
     // Called by libretro_audio_process to get audio data (non-blocking)
     // Handles float->s16 conversion internally if needed

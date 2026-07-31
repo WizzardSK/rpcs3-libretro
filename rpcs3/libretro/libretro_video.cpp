@@ -438,7 +438,7 @@ uintptr_t libretro_get_current_framebuffer()
 void* libretro_get_proc_address(const char* sym)
 {
     if (s_get_proc_address)
-        return s_get_proc_address(sym);
+        return reinterpret_cast<void*>(s_get_proc_address(sym));
     return nullptr;
 }
 
