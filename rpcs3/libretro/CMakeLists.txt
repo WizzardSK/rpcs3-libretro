@@ -55,8 +55,13 @@ if(NOT WIN32)
 endif()
 
 # OpenGL
-find_package(OpenGL REQUIRED)
+find_package(OpenGL REQUIRED OPTIONAL_COMPONENTS EGL)
 target_link_libraries(rpcs3_libretro PRIVATE OpenGL::GL)
+
+# EGL: needed to create RSX contexts that share the frontend's GL objects
+if(UNIX AND NOT APPLE AND TARGET OpenGL::EGL)
+    target_link_libraries(rpcs3_libretro PRIVATE OpenGL::EGL)
+endif()
 
 # Platform-specific libraries
 if(WIN32)

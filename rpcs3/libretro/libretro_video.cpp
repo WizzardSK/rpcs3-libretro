@@ -36,6 +36,24 @@ static std::vector<HGLRC> s_available_contexts;  // Pre-created shared contexts 
 static std::mutex s_context_pool_mutex;
 #endif
 
+#if defined(__unix__) && !defined(__APPLE__)
+#include <EGL/egl.h>
+
+// RetroArch's GL context is only ever current on the frontend's video thread,
+// but RSX (and the shader compiler threads) draw on their own threads. Capture
+// the frontend's EGL state in context_reset and create contexts that share its
+// objects, mirroring what the WGL path above does on Windows. Without this the
+// RSX thread has no current context at all, glGetIntegerv(GL_NUM_EXTENSIONS)
+// returns 0, and gl::capabilities::initialize() reports every extension as
+// unsupported.
+static EGLDisplay s_egl_display = EGL_NO_DISPLAY;
+static EGLContext s_egl_main_context = EGL_NO_CONTEXT;
+static EGLConfig s_egl_config = nullptr;
+static bool s_egl_have_config = false;
+static std::vector<EGLContext> s_shared_egl_contexts;
+static std::mutex s_egl_context_mutex;
+#endif
+
 LOG_CHANNEL(libretro_video_log, "LibretroVideo");
 
 static retro_hw_get_current_framebuffer_t s_get_current_framebuffer = nullptr;
@@ -388,7 +406,38 @@ static void libretro_gl_init()
     // Pre-create shared contexts for RSX thread and shader compiler threads
     precreate_shared_contexts(10);
 #else
-    // On Unix, fall back to RPCS3's normal init (uses GLEW)
+    // Runs on RetroArch's video thread from context_reset, i.e. the one place
+    // where the frontend's context is guaranteed to be current: grab the EGL
+    // handles the RSX thread will need to create shared contexts later.
+    s_egl_display = eglGetCurrentDisplay();
+    s_egl_main_context = eglGetCurrentContext();
+
+    if (s_egl_display != EGL_NO_DISPLAY && s_egl_main_context != EGL_NO_CONTEXT)
+    {
+        EGLint config_id = 0;
+        if (eglQueryContext(s_egl_display, s_egl_main_context, EGL_CONFIG_ID, &config_id))
+        {
+            const EGLint cfg_attribs[] = { EGL_CONFIG_ID, config_id, EGL_NONE };
+            EGLint num_configs = 0;
+            if (eglChooseConfig(s_egl_display, cfg_attribs, &s_egl_config, 1, &num_configs) && num_configs == 1)
+            {
+                s_egl_have_config = true;
+            }
+        }
+
+        if (!s_egl_have_config)
+        {
+            libretro_video_log.error("EGL: could not resolve the frontend's config; RSX will have no shared context.");
+        }
+    }
+    else
+    {
+        libretro_video_log.error("EGL: no current display/context on the video thread (display=%p, context=%p).",
+            s_egl_display, s_egl_main_context);
+    }
+
+    // A context is current on this thread, so GLEW can resolve its entry points
+    // here; the pointers it fills in are global and usable from the RSX thread.
     gl::init();
 #endif
 }
@@ -500,7 +549,18 @@ void LibretroGSFrame::delete_context(draw_context_t ctx)
         }
     }
 #else
-    (void)ctx;
+    if (!ctx || ctx == reinterpret_cast<draw_context_t>(1) || s_egl_display == EGL_NO_DISPLAY)
+        return;
+
+    EGLContext egl_ctx = reinterpret_cast<EGLContext>(ctx);
+
+    std::lock_guard<std::mutex> lock(s_egl_context_mutex);
+    if (auto it = std::find(s_shared_egl_contexts.begin(), s_shared_egl_contexts.end(), egl_ctx);
+        it != s_shared_egl_contexts.end())
+    {
+        eglDestroyContext(s_egl_display, egl_ctx);
+        s_shared_egl_contexts.erase(it);
+    }
 #endif
 }
 
@@ -552,6 +612,30 @@ draw_context_t LibretroGSFrame::make_context()
 
     return nullptr;
 #else
+    if (s_egl_display != EGL_NO_DISPLAY && s_egl_main_context != EGL_NO_CONTEXT && s_egl_have_config)
+    {
+        eglBindAPI(EGL_OPENGL_API);
+
+        const EGLint attribs[] = {
+            EGL_CONTEXT_MAJOR_VERSION, 4,
+            EGL_CONTEXT_MINOR_VERSION, 3,
+            EGL_CONTEXT_OPENGL_PROFILE_MASK, EGL_CONTEXT_OPENGL_CORE_PROFILE_BIT,
+            EGL_NONE
+        };
+
+        if (EGLContext ctx = eglCreateContext(s_egl_display, s_egl_config, s_egl_main_context, attribs);
+            ctx != EGL_NO_CONTEXT)
+        {
+            std::lock_guard<std::mutex> lock(s_egl_context_mutex);
+            s_shared_egl_contexts.push_back(ctx);
+            m_context = reinterpret_cast<draw_context_t>(ctx);
+            return m_context;
+        }
+
+        libretro_video_log.error("EGL: eglCreateContext failed (0x%x); falling back to a context-less RSX thread.",
+            eglGetError());
+    }
+
     m_context = reinterpret_cast<draw_context_t>(1);
     return m_context;
 #endif
@@ -566,7 +650,17 @@ void LibretroGSFrame::set_current(draw_context_t ctx)
         wglMakeCurrent(s_main_hdc, hglrc);
     }
 #else
-    (void)ctx;
+    // The dummy handle from the fallback path is not a real context.
+    if (!ctx || ctx == reinterpret_cast<draw_context_t>(1) || s_egl_display == EGL_NO_DISPLAY)
+        return;
+
+    eglBindAPI(EGL_OPENGL_API);
+
+    // Surfaceless: RSX renders into FBOs and the frontend does the presenting.
+    if (!eglMakeCurrent(s_egl_display, EGL_NO_SURFACE, EGL_NO_SURFACE, reinterpret_cast<EGLContext>(ctx)))
+    {
+        libretro_video_log.error("EGL: eglMakeCurrent failed (0x%x).", eglGetError());
+    }
 #endif
 }
 
