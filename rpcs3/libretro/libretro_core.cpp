@@ -1972,6 +1972,15 @@ void retro_run(void)
     if (!game_loaded)
         return;
 
+    // The guest can end the emulation on its own (_sys_process_exit, e.g. the
+    // ScummVM launcher's Quit). Nothing told the frontend so far, so RetroArch
+    // kept spinning on the last frame of a dead emulator. Ask it to unload.
+    if (Emu.IsStopped() && !pending_game_boot)
+    {
+        environ_cb(RETRO_ENVIRONMENT_SHUTDOWN, nullptr);
+        return;
+    }
+
     static u64 s_run_counter = 0;
     s_run_counter++;
 
