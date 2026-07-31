@@ -51,6 +51,9 @@ static EGLContext s_egl_main_context = EGL_NO_CONTEXT;
 static EGLConfig s_egl_config = nullptr;
 static bool s_egl_have_config = false;
 static std::vector<EGLContext> s_shared_egl_contexts;
+// Contexts retired by delete_context(). They are destroyed later, from
+// context_destroy() - see the comment there.
+static std::vector<EGLContext> s_retired_egl_contexts;
 static std::mutex s_egl_context_mutex;
 #endif
 
@@ -475,6 +478,28 @@ void libretro_video_deinit()
     std::lock_guard<std::mutex> lock(s_video_mutex);
     s_get_current_framebuffer = nullptr;
     s_get_proc_address = nullptr;
+
+#if defined(__unix__) && !defined(__APPLE__)
+    // Now that the frontend is dropping the context, it is safe to destroy the
+    // shared contexts retired by delete_context() (see the note there).
+    std::lock_guard<std::mutex> egl_lock(s_egl_context_mutex);
+
+    if (s_egl_display != EGL_NO_DISPLAY)
+    {
+        for (EGLContext ctx : s_retired_egl_contexts)
+            eglDestroyContext(s_egl_display, ctx);
+
+        for (EGLContext ctx : s_shared_egl_contexts)
+            eglDestroyContext(s_egl_display, ctx);
+    }
+
+    s_retired_egl_contexts.clear();
+    s_shared_egl_contexts.clear();
+    s_egl_display = EGL_NO_DISPLAY;
+    s_egl_main_context = EGL_NO_CONTEXT;
+    s_egl_have_config = false;
+    s_gl_initialized = false;
+#endif
 }
 
 uintptr_t libretro_get_current_framebuffer()
@@ -554,12 +579,18 @@ void LibretroGSFrame::delete_context(draw_context_t ctx)
 
     EGLContext egl_ctx = reinterpret_cast<EGLContext>(ctx);
 
+    // Do NOT eglDestroyContext() here. This runs on the RSX thread while
+    // Emu.Stop() is tearing the emulator down, and destroying the context from
+    // under that thread wedges the shutdown: every emulation thread is gone but
+    // the join never completes, leaving RetroArch on a frozen frame. Retire the
+    // context instead and destroy it in context_destroy(), which the frontend
+    // calls on its own thread once the context is really going away.
     std::lock_guard<std::mutex> lock(s_egl_context_mutex);
     if (auto it = std::find(s_shared_egl_contexts.begin(), s_shared_egl_contexts.end(), egl_ctx);
         it != s_shared_egl_contexts.end())
     {
-        eglDestroyContext(s_egl_display, egl_ctx);
         s_shared_egl_contexts.erase(it);
+        s_retired_egl_contexts.push_back(egl_ctx);
     }
 #endif
 }
