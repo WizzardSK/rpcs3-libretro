@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
     inputs:
       release:
-        description: 'Publish the cores as a prerelease'
+        description: 'Publish the cores as a release'
         type: boolean
         default: true
 
@@ -226,7 +226,7 @@ jobs:
           compression-level: 0
 
   Release:
-    name: Publish prerelease
+    name: Publish release
     # Windows and Android are allowed to fail, and a continue-on-error job
     # still counts as met here, so waiting on them only means their artifacts
     # join the release when those builds do work.
@@ -266,7 +266,6 @@ jobs:
           # A re-run of the same commit replaces the release rather than failing.
           gh release delete "$TAG" --yes --cleanup-tag 2>/dev/null || true
           gh release create "$TAG" artifacts/* \
-            --prerelease \
             --target "$GITHUB_SHA" \
             --title "libretro core test build ($SHORT)" \
             --notes-file notes.md
