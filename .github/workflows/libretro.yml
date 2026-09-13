@@ -101,12 +101,15 @@ jobs:
         with:
           fetch-depth: 0
 
+      # Everything except LLVM, which comes from the runner image. OpenCV has
+      # to come along: it cannot be switched off, 3rdparty/CMakeLists.txt adds
+      # it unconditionally, and there is no system copy on a Windows runner.
       - name: Fetch the submodules the build uses
         shell: bash
         run: |
           git config --global --add safe.directory '*'
           git submodule -q update --init --depth 1 \
-            $(awk '/path/ && !/llvm/ && !/opencv/ { print $3 }' .gitmodules)
+            $(awk '/path/ && !/llvm/ { print $3 }' .gitmodules)
 
       - name: Locate LLVM
         shell: bash
@@ -142,9 +145,14 @@ jobs:
             -DLLVM_DIR="$LLVM_DIR" \
             -DUSE_NATIVE_INSTRUCTIONS=OFF \
             -DUSE_PRECOMPILED_HEADERS=OFF \
-            -DUSE_SYSTEM_FFMPEG=OFF \
             -DUSE_DISCORD_RPC=OFF \
-            -DUSE_LTO=OFF
+            -DUSE_LTO=OFF \
+            -DUSE_SYSTEM_CURL=OFF \
+            -DUSE_SYSTEM_OPENCV=OFF \
+            -DUSE_SYSTEM_SDL=OFF \
+            -DUSE_SYSTEM_ZLIB=OFF \
+            -DUSE_SYSTEM_OPENAL=OFF \
+            -DUSE_SYSTEM_FFMPEG=OFF
 
       - name: Build
         shell: bash
