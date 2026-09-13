@@ -41,13 +41,15 @@
 // Windows core build - does not.
 namespace rpcs3_llvm_compat
 {
-	template <typename... Args>
-	inline auto get_intrinsic_declaration(Args&&... args)
+	// Spelled out rather than forwarded: every call site passes the type list
+	// as a braced initializer, and a braced list cannot be deduced into a
+	// template parameter pack.
+	inline llvm::Function* get_intrinsic_declaration(llvm::Module* module, llvm::Intrinsic::ID id, llvm::ArrayRef<llvm::Type*> types = {})
 	{
 #if LLVM_VERSION_MAJOR >= 20
-		return llvm::Intrinsic::getOrInsertDeclaration(std::forward<Args>(args)...);
+		return llvm::Intrinsic::getOrInsertDeclaration(module, id, types);
 #else
-		return llvm::Intrinsic::getDeclaration(std::forward<Args>(args)...);
+		return llvm::Intrinsic::getDeclaration(module, id, types);
 #endif
 	}
 }
