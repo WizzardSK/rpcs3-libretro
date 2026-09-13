@@ -21,7 +21,15 @@
 #include "Emu/Io/Null/NullMouseHandler.h"
 #include "Emu/Io/KeyboardHandler.h"
 #include "Emu/Io/MouseHandler.h"
+// The OpenGL renderer, where there is one to have. On Android there is no
+// desktop GL and these headers reach for GL/glew.h, so the software path uses
+// Vulkan instead - see g_libretro_software_present.
+#ifndef ANDROID
 #include "Emu/RSX/GL/GLGSRender.h"
+#endif
+#ifdef HAVE_VULKAN
+#include "Emu/RSX/VK/VKGSRender.h"
+#endif
 #include "Emu/RSX/Null/NullGSRender.h"
 #include "Emu/IdManager.h"
 #include "Emu/VFS.h"
@@ -2177,9 +2185,18 @@ static void init_emu_callbacks()
         case video_renderer::null:
             g_fxo->init<rsx::thread, named_thread<NullGSRender>>(ar);
             break;
+#ifndef ANDROID
         case video_renderer::opengl:
             g_fxo->init<rsx::thread, named_thread<GLGSRender>>(ar);
             break;
+#endif
+#ifdef HAVE_VULKAN
+        // Missing until now, so asking for Vulkan quietly got the null
+        // renderer and no picture at all.
+        case video_renderer::vulkan:
+            g_fxo->init<rsx::thread, named_thread<VKGSRender>>(ar);
+            break;
+#endif
         default:
             g_fxo->init<rsx::thread, named_thread<NullGSRender>>(ar);
             break;
