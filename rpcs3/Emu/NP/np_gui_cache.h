@@ -1,15 +1,32 @@
 #pragma once
 
 #include <map>
+#include <cstring>
 #include "Utilities/mutex.h"
 #include "Emu/Cell/Modules/sceNp.h"
+
+// These two are used as map keys and neither type has an operator<, so the
+// ordering lives in std::less. That is enough for libstdc++, but libc++ also
+// instantiates std::less<void> over the key while building its tree, and that
+// one needs the operator itself - a Windows clang64 build stops on exactly
+// that. Define the operators and let both specialisations use them, so there
+// is one ordering rather than two that could drift apart.
+inline bool operator<(const SceNpRoomId& a, const SceNpRoomId& b)
+{
+	return std::memcmp(a.opt, b.opt, sizeof(a.opt)) < 0;
+}
+
+inline bool operator<(const SceNpId& a, const SceNpId& b)
+{
+	return std::memcmp(a.handle.data, b.handle.data, sizeof(a.handle.data)) < 0;
+}
 
 template <>
 struct std::less<SceNpRoomId>
 {
 	bool operator()(const SceNpRoomId& a, const SceNpRoomId& b) const
 	{
-		return (std::memcmp(a.opt, b.opt, sizeof(a.opt)) < 0);
+		return a < b;
 	}
 };
 
@@ -18,7 +35,7 @@ struct std::less<SceNpId>
 {
 	bool operator()(const SceNpId& a, const SceNpId& b) const
 	{
-		return (std::memcmp(a.handle.data, b.handle.data, sizeof(a.handle.data)) < 0);
+		return a < b;
 	}
 };
 

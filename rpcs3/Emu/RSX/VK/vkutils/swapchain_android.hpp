@@ -13,11 +13,15 @@ namespace vk
 	{
 		VkSurfaceKHR result = VK_NULL_HANDLE;
 
-		VkWin32SurfaceCreateInfoKHR createInfo = {};
+		// Was a copy of the Win32 version: the Win32 create-info struct with an
+		// Android sType, and this->m_instance inside a free function. None of it
+		// had ever been compiled - nothing builds this header - so it only
+		// surfaced once an Android build got this far.
+		VkAndroidSurfaceCreateInfoKHR createInfo = {};
 		createInfo.sType = VK_STRUCTURE_TYPE_ANDROID_SURFACE_CREATE_INFO_KHR;
 		createInfo.window = std::get<ANativeWindow *>(window_handle);
 
-		CHECK_RESULT(vkCreateAndroidSurfaceKHR(this->m_instance, &createInfo, nullptr, &result));
+		CHECK_RESULT(vkCreateAndroidSurfaceKHR(vk_instance, &createInfo, nullptr, &result));
 		return result;
 	}
 #endif
