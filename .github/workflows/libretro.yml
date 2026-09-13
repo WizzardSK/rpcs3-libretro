@@ -250,6 +250,19 @@ jobs:
           mkdir -p artifacts
           find build -name 'rpcs3_libretro.so' -exec cp {} artifacts/rpcs3_libretro_android_arm64.so \;
           ls -la artifacts
+          # A gigabyte of it is debug information. The NDK toolchain file puts
+          # -g in the flags for every build type and nothing takes it back out,
+          # so the first Android core to link came out at 1027 MB next to 54 MB
+          # for the same thing on Linux aarch64 - which is not a file anyone is
+          # going to put on a phone. Strip it, and print both sizes so a core
+          # that starts arriving unstripped again says so in the log.
+          NDK="${ANDROID_NDK_LATEST_HOME:-$ANDROID_NDK_HOME}"
+          STRIP="$NDK/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-strip"
+          if [ ! -x "$STRIP" ]; then STRIP="$(command -v llvm-strip || command -v strip)"; fi
+          echo "before: $(stat -c %s artifacts/rpcs3_libretro_android_arm64.so) bytes"
+          "$STRIP" --strip-unneeded artifacts/rpcs3_libretro_android_arm64.so
+          echo "after:  $(stat -c %s artifacts/rpcs3_libretro_android_arm64.so) bytes"
+          ls -la artifacts
 
       - name: Upload artifacts
         uses: actions/upload-artifact@main
