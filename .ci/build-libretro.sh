@@ -5,6 +5,12 @@
 # /opt/llvm - with the GUI switched off and the core copied out at the end.
 # LLVM is linked statically, so the core is a single file with nothing to
 # place beside it.
+#
+# Wayland is disabled deliberately. With it found, rpcs3/Emu links OpenGL::EGL,
+# an imported target created by a find_package down in 3rdparty/ and therefore
+# visible only in that directory - the generate step then fails with "target
+# was not found". The core has no use for Wayland anyway: the frontend hands it
+# the context.
 
 cd rpcs3 || exit 1
 
@@ -45,6 +51,7 @@ cmake ..                                               \
     -DUSE_SYSTEM_OPENCV=ON                             \
     -DUSE_DISCORD_RPC=OFF                              \
     -DOpenGL_GL_PREFERENCE=LEGACY                      \
+    -DCMAKE_DISABLE_FIND_PACKAGE_Wayland=ON            \
     -DLLVM_DIR=/opt/llvm/lib/cmake/llvm                \
     -DSTATIC_LINK_LLVM=ON                              \
     -G Ninja
