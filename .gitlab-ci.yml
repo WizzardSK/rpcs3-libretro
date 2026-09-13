@@ -1,0 +1,57 @@
+# DESCRIPTION: GitLab CI/CD for libRetro (NOT FOR GitLab-proper)
+
+# Only linux-x64 for now, deliberately. RPCS3 needs LLVM 19.1 or newer and a
+# recent C++ toolchain, and the build is long enough that adding platforms
+# before this one is known to pass would just be guessing at several at once.
+# The GitHub Actions workflow in .github/workflows/libretro.yml is the path
+# that is actually exercised; this is the buildbot equivalent.
+
+##############################################################################
+################################# BOILERPLATE ################################
+##############################################################################
+
+.core-defs:
+  variables:
+    # Not recursive: the LLVM submodule is enormous and is not wanted - the
+    # build uses the system LLVM instead (BUILD_LLVM=OFF below).
+    GIT_SUBMODULE_STRATEGY: none
+    CORENAME: rpcs3
+    CORE_ARGS: >-
+      -DBUILD_LIBRETRO_CORE_ONLY=ON
+      -DBUILD_LLVM=OFF
+      -DSTATIC_LINK_LLVM=ON
+      -DUSE_NATIVE_INSTRUCTIONS=OFF
+      -DUSE_PRECOMPILED_HEADERS=OFF
+      -DUSE_SYSTEM_CURL=ON
+      -DUSE_SDL=ON
+      -DUSE_SYSTEM_SDL=ON
+      -DUSE_SYSTEM_FFMPEG=OFF
+      -DUSE_SYSTEM_OPENCV=ON
+      -DUSE_DISCORD_RPC=OFF
+      -DUSE_LTO=OFF
+      -DOpenGL_GL_PREFERENCE=LEGACY
+  before_script:
+    - git config --global --add safe.directory '*'
+    # Everything except the ones the build does not use, LLVM above all.
+    - git submodule -q update --init --depth 1
+      $(awk '/path/ && !/llvm/ && !/opencv/ && !/libsdl-org/ && !/curl/ && !/zlib/ { print $3 }' .gitmodules)
+
+# Inclusion templates, required for the build to work
+include:
+  # Linux
+  - project: 'libretro-infrastructure/ci-templates'
+    file: '/linux-cmake.yml'
+
+stages:
+  - build-prepare
+  - build-shared
+
+##############################################################################
+#################################### STAGES ##################################
+##############################################################################
+
+# Linux 64-bit
+libretro-build-linux-x64:
+  extends:
+    - .libretro-linux-cmake-x86_64
+    - .core-defs

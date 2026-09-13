@@ -1,0 +1,129 @@
+name: Build libretro core
+
+defaults:
+  run:
+    shell: bash
+
+# Test builds only, started by hand. The core is nowhere near ready to be
+# published on every push, and a full RPCS3 build is not something to spend a
+# runner on unless someone asked for it.
+on:
+  workflow_dispatch:
+    inputs:
+      release:
+        description: 'Publish the cores as a prerelease'
+        type: boolean
+        default: true
+
+concurrency:
+  group: ${{ github.ref }}-libretro
+  cancel-in-progress: true
+
+env:
+  BUILD_ARTIFACTSTAGINGDIRECTORY: ${{ github.workspace }}/artifacts/
+
+jobs:
+  Build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-24.04
+            arch: x86_64
+            docker_img: "rpcs3/rpcs3-ci-jammy:1.7"
+          - os: ubuntu-24.04-arm
+            arch: aarch64
+            docker_img: "rpcs3/rpcs3-ci-jammy-aarch64:1.7"
+    name: libretro core ${{ matrix.arch }}
+    runs-on: ${{ matrix.os }}
+    env:
+      CCACHE_DIR: ${{ github.workspace }}/ccache
+      ARTDIR: "/root/artifacts"
+      COMPILER: clang
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@main
+        with:
+          fetch-depth: 0
+
+      - name: Restore build Ccache
+        uses: actions/cache/restore@main
+        id: restore-build-ccache
+        with:
+          path: ${{ env.CCACHE_DIR }}
+          key: ${{ runner.os }}-libretro-ccache-${{ runner.arch }}-${{ github.run_id }}
+          restore-keys: ${{ runner.os }}-libretro-ccache-${{ runner.arch }}-
+
+      - name: Docker setup and build
+        run: |
+          mkdir -p "${{ env.BUILD_ARTIFACTSTAGINGDIRECTORY }}" "${{ env.CCACHE_DIR }}"
+          docker pull --quiet ${{ matrix.docker_img }}
+          docker run \
+            -v $PWD:/rpcs3 \
+            --env-file .ci/docker.env \
+            -v ${{ env.CCACHE_DIR }}:/root/.ccache \
+            -v ${{ env.BUILD_ARTIFACTSTAGINGDIRECTORY }}:${{ env.ARTDIR }} \
+            ${{ matrix.docker_img }} \
+            /rpcs3/.ci/build-libretro.sh
+
+      - name: Name the core after the architecture it is for
+        run: |
+          cd "${{ env.BUILD_ARTIFACTSTAGINGDIRECTORY }}"
+          mv rpcs3_libretro.so rpcs3_libretro_linux_${{ matrix.arch }}.so
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@main
+        with:
+          name: rpcs3_libretro-linux-${{ matrix.arch }}
+          path: ${{ env.BUILD_ARTIFACTSTAGINGDIRECTORY }}/*.so
+          compression-level: 0
+
+      - name: Save build Ccache
+        if: always()
+        uses: actions/cache/save@main
+        with:
+          path: ${{ env.CCACHE_DIR }}
+          key: ${{ steps.restore-build-ccache.outputs.cache-primary-key }}
+
+  Release:
+    name: Publish prerelease
+    needs: Build
+    if: inputs.release
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@main
+        with:
+          fetch-depth: 0
+
+      - name: Download the cores
+        uses: actions/download-artifact@main
+        with:
+          path: artifacts
+          merge-multiple: true
+
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ls -la artifacts
+          SHORT=$(git rev-parse --short=8 HEAD)
+          TAG="libretro-test-$SHORT"
+          {
+            echo "Test build of the RPCS3 libretro core. Not a release, and not expected to be useful for playing anything yet."
+            echo
+            echo "Built from the \`libretro\` branch with \`BUILD_LIBRETRO_CORE_ONLY=ON\`, in the same containers upstream RPCS3 uses for its Linux builds. LLVM is linked statically, so each core is a single file with nothing to place beside it - drop one into RetroArch's \`cores\` directory."
+            echo
+            echo "These are glibc builds and will not load into a musl frontend."
+            echo
+            echo "Commit: $SHORT"
+          } > notes.md
+          # A re-run of the same commit replaces the release rather than failing.
+          gh release delete "$TAG" --yes --cleanup-tag 2>/dev/null || true
+          gh release create "$TAG" artifacts/*.so \
+            --prerelease \
+            --target "$GITHUB_SHA" \
+            --title "libretro core test build ($SHORT)" \
+            --notes-file notes.md
