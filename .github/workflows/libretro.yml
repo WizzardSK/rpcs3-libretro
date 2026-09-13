@@ -111,15 +111,31 @@ jobs:
       - name: Locate LLVM
         shell: bash
         run: |
+          # A Windows path, not the MSYS one bash prints: CMake takes "C:/..."
+          # and does not know what to do with "/c/...".
           for d in "/c/Program Files/LLVM" "$LLVM_PATH"; do
-            if [ -d "$d/lib/cmake/llvm" ]; then echo "LLVM_DIR=$d/lib/cmake/llvm" >> "$GITHUB_ENV"; break; fi
+            if [ -d "$d/lib/cmake/llvm" ]; then
+              echo "LLVM_DIR=$(cygpath -m "$d")/lib/cmake/llvm" >> "$GITHUB_ENV"
+              break
+            fi
           done
+          echo "what is installed:"
+          "/c/Program Files (x86)/Microsoft Visual Studio/Installer/vswhere.exe" -latest -products '*' -property displayName || true
           cat "$GITHUB_ENV"
+
+      # Naming a Visual Studio generator means naming its version, and the
+      # image moves on; the first attempt asked for 2022 on a runner that no
+      # longer has it. Putting MSVC in the environment and building with Ninja
+      # sidesteps the question.
+      - name: Set up MSVC
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
 
       - name: Configure
         shell: bash
         run: |
-          cmake -S . -B build -G "Visual Studio 17 2022" -A x64 \
+          cmake -S . -B build -G Ninja \
             -DBUILD_LIBRETRO_CORE_ONLY=ON \
             -DBUILD_LLVM=OFF \
             -DSTATIC_LINK_LLVM=ON \
