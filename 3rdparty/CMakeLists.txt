@@ -341,8 +341,25 @@ endif()
 # GLEW
 add_library(3rdparty_glew INTERFACE)
 if(NOT MSVC AND NOT ANDROID)
+	# A libretro core is dropped into a frontend on a machine nobody here
+	# chose, so it must not go out needing libGLEW.so.2.2 by soname -
+	# distributions disagree about that one, and the core then fails to load
+	# with nothing but a dynamic linker error to go on. Setting
+	# GLEW_USE_STATIC_LIBS is not enough on its own: FindGLEW honours it only
+	# in some versions and quietly hands back the shared target in the rest,
+	# which is what happened to the first build that went out. So look the
+	# archive up directly and say in the configure log which one was taken.
+	set(GLEW_USE_STATIC_LIBS ON)
 	find_package(GLEW REQUIRED)
-	target_link_libraries(3rdparty_glew INTERFACE GLEW::GLEW)
+	find_library(GLEW_STATIC_ARCHIVE NAMES libGLEW.a libglew.a)
+	if(GLEW_STATIC_ARCHIVE)
+		message(STATUS "GLEW: linking statically against ${GLEW_STATIC_ARCHIVE}")
+		target_link_libraries(3rdparty_glew INTERFACE ${GLEW_STATIC_ARCHIVE})
+		target_compile_definitions(3rdparty_glew INTERFACE GLEW_STATIC)
+	else()
+		message(STATUS "GLEW: no static archive found, linking the shared library")
+		target_link_libraries(3rdparty_glew INTERFACE GLEW::GLEW)
+	endif()
 endif()
 
 

@@ -71,6 +71,21 @@ jobs:
           cd "${{ env.BUILD_ARTIFACTSTAGINGDIRECTORY }}"
           mv rpcs3_libretro.so rpcs3_libretro_linux_${{ matrix.arch }}.so
 
+      # A core is loaded by a frontend on a machine nobody here picked, so what
+      # it needs by soname decides whether it loads at all. The first build to
+      # go out wanted libGLEW.so.2.2 and would not load on a distribution that
+      # ships a different one, and nothing in the build said so - it only turned
+      # up when someone tried it. List them here, and fail on the ones that are
+      # ours to carry rather than the system's to provide.
+      - name: Report what the core needs at load time
+        run: |
+          cd "${{ env.BUILD_ARTIFACTSTAGINGDIRECTORY }}"
+          readelf -d rpcs3_libretro_linux_${{ matrix.arch }}.so | grep NEEDED
+          if readelf -d rpcs3_libretro_linux_${{ matrix.arch }}.so | grep -qE 'NEEDED.*(libGLEW|libopencv)'; then
+            echo "::error::the core still needs a library the build image provided but a user's system will not"
+            exit 1
+          fi
+
       - name: Upload artifacts
         uses: actions/upload-artifact@main
         with:
