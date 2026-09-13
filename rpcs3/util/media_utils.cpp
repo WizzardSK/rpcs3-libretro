@@ -342,12 +342,37 @@ namespace utils
 		return ch_layout_buf.data();
 	}
 
+	// ffmpeg 7.1 removed AVCodec::sample_fmts, ::supported_samplerates and
+	// ::ch_layouts in favour of avcodec_get_supported_config. The prebuilt
+	// ffmpeg this project downloads still predates that; a system one - MSYS2's
+	// on the Windows core build, say - does not. Both have to compile, so ask
+	// through these and let the version decide.
+#if LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(61, 13, 100)
+	template <typename T>
+	static const T* codec_supported_config(const AVCodec* codec, AVCodecConfig config)
+	{
+		const void* values = nullptr;
+		int count = 0;
+		if (avcodec_get_supported_config(nullptr, codec, config, 0, &values, &count) < 0)
+			return nullptr;
+		return static_cast<const T*>(values);
+	}
+
+	static const AVSampleFormat* codec_sample_fmts(const AVCodec* codec) { return codec_supported_config<AVSampleFormat>(codec, AV_CODEC_CONFIG_SAMPLE_FORMAT); }
+	static const int* codec_sample_rates(const AVCodec* codec) { return codec_supported_config<int>(codec, AV_CODEC_CONFIG_SAMPLE_RATE); }
+	static const AVChannelLayout* codec_ch_layouts(const AVCodec* codec) { return codec_supported_config<AVChannelLayout>(codec, AV_CODEC_CONFIG_CHANNEL_LAYOUT); }
+#else
+	static const AVSampleFormat* codec_sample_fmts(const AVCodec* codec) { return codec->sample_fmts; }
+	static const int* codec_sample_rates(const AVCodec* codec) { return codec->supported_samplerates; }
+	static const AVChannelLayout* codec_ch_layouts(const AVCodec* codec) { return codec->ch_layouts; }
+#endif
+
 	// check that a given sample format is supported by the encoder
 	static bool check_sample_fmt(const AVCodec* codec, enum AVSampleFormat sample_fmt)
 	{
 		if (!codec) return false;
 
-		for (const AVSampleFormat* p = codec->sample_fmts; p && *p != AV_SAMPLE_FMT_NONE; p++)
+		for (const AVSampleFormat* p = codec_sample_fmts(codec); p && *p != AV_SAMPLE_FMT_NONE; p++)
 		{
 			if (*p == sample_fmt)
 			{
@@ -360,11 +385,15 @@ namespace utils
 	// just pick the highest supported samplerate
 	static int select_sample_rate(const AVCodec* codec)
 	{
-		if (!codec || !codec->supported_samplerates)
+		if (!codec)
+			return 48000;
+
+		const int* supported_samplerates = codec_sample_rates(codec);
+		if (!supported_samplerates)
 			return 48000;
 
 		int best_samplerate = 0;
-		for (const int* samplerate = codec->supported_samplerates; samplerate && *samplerate != 0; samplerate++)
+		for (const int* samplerate = supported_samplerates; samplerate && *samplerate != 0; samplerate++)
 		{
 			if (!best_samplerate || abs(48000 - *samplerate) < abs(48000 - best_samplerate))
 			{
@@ -400,7 +429,7 @@ namespace utils
 		const AVChannelLayout preferred_ch_layout = get_preferred_channel_layout(channels);
 		const AVChannelLayout* found_ch_layout = nullptr;
 
-		for (const AVChannelLayout* ch_layout = codec->ch_layouts;
+		for (const AVChannelLayout* ch_layout = codec_ch_layouts(codec);
 			 ch_layout && memcmp(ch_layout, &empty_ch_layout, sizeof(AVChannelLayout)) != 0;
 			 ch_layout++)
 		{

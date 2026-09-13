@@ -290,7 +290,12 @@ set_property(TARGET ${FAUDIO_TARGET} PROPERTY FOLDER "3rdparty/")
 
 
 # FFMPEG
-if(NOT ANDROID)
+# The alias further down is created unconditionally, so skipping this block
+# outright leaves "3rdparty::ffmpeg" pointing at a target that was never made
+# and configuration fails - Android has never been configured through here.
+# A system ffmpeg is something the caller has had to provide deliberately, so
+# when there is one, let Android take the same path as everyone else.
+if(NOT ANDROID OR USE_SYSTEM_FFMPEG)
 	add_library(3rdparty_ffmpeg INTERFACE)
 
 	# Select the version of ffmpeg to use, default is builtin
