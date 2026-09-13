@@ -1,10 +1,14 @@
 # DESCRIPTION: GitLab CI/CD for libRetro (NOT FOR GitLab-proper)
 
-# Only linux-x64 for now, deliberately. RPCS3 needs LLVM 19.1 or newer and a
-# recent C++ toolchain, and the build is long enough that adding platforms
-# before this one is known to pass would just be guessing at several at once.
-# The GitHub Actions workflow in .github/workflows/libretro.yml is the path
-# that is actually exercised; this is the buildbot equivalent.
+# Linux only, and deliberately so. Both architectures here are the ones the
+# GitHub workflow already builds, so they are not a guess; everything else
+# would be. Windows is out because upstream RPCS3 is MSVC-only and does not
+# build under the buildbot's mingw, and macOS, Android and the consoles have
+# never had the libretro port pointed at them at all. They can be added once
+# someone has seen them work rather than before.
+#
+# RPCS3 also needs LLVM 19.1 or newer present in the image: the submodule is
+# skipped below, since building it here would dwarf the core.
 
 ##############################################################################
 ################################# BOILERPLATE ################################
@@ -54,4 +58,10 @@ stages:
 libretro-build-linux-x64:
   extends:
     - .libretro-linux-cmake-x86_64
+    - .core-defs
+
+# Linux 64-bit (ARM)
+libretro-build-linux-aarch64:
+  extends:
+    - .libretro-linux-cmake-aarch64
     - .core-defs
