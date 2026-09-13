@@ -85,9 +85,75 @@ jobs:
           path: ${{ env.CCACHE_DIR }}
           key: ${{ steps.restore-build-ccache.outputs.cache-primary-key }}
 
+  Windows:
+    # Experimental, and allowed to fail: nothing has ever built this core on
+    # Windows. The port is written with MSVC in mind - rpcs3/libretro has both
+    # a WIN32 branch for the .dll suffix and an if(NOT MSVC) one for the GCC
+    # flags - but it is not in rpcs3.sln, which is how upstream builds Windows,
+    # so CMake with the MSVC generator is the only way in. LLVM comes from the
+    # runner image rather than the submodule, which would dwarf the core.
+    name: libretro core windows-x64 (experimental)
+    runs-on: windows-2025
+    continue-on-error: true
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@main
+        with:
+          fetch-depth: 0
+
+      - name: Fetch the submodules the build uses
+        shell: bash
+        run: |
+          git config --global --add safe.directory '*'
+          git submodule -q update --init --depth 1 \
+            $(awk '/path/ && !/llvm/ && !/opencv/ { print $3 }' .gitmodules)
+
+      - name: Locate LLVM
+        shell: bash
+        run: |
+          for d in "/c/Program Files/LLVM" "$LLVM_PATH"; do
+            if [ -d "$d/lib/cmake/llvm" ]; then echo "LLVM_DIR=$d/lib/cmake/llvm" >> "$GITHUB_ENV"; break; fi
+          done
+          cat "$GITHUB_ENV"
+
+      - name: Configure
+        shell: bash
+        run: |
+          cmake -S . -B build -G "Visual Studio 17 2022" -A x64 \
+            -DBUILD_LIBRETRO_CORE_ONLY=ON \
+            -DBUILD_LLVM=OFF \
+            -DSTATIC_LINK_LLVM=ON \
+            -DLLVM_DIR="$LLVM_DIR" \
+            -DUSE_NATIVE_INSTRUCTIONS=OFF \
+            -DUSE_PRECOMPILED_HEADERS=OFF \
+            -DUSE_SYSTEM_FFMPEG=OFF \
+            -DUSE_DISCORD_RPC=OFF \
+            -DUSE_LTO=OFF
+
+      - name: Build
+        shell: bash
+        run: cmake --build build --config Release --target rpcs3_libretro
+
+      - name: Collect
+        shell: bash
+        run: |
+          mkdir -p artifacts
+          find build -name 'rpcs3_libretro.dll' -exec cp {} artifacts/rpcs3_libretro_windows_x86_64.dll \;
+          ls -la artifacts
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@main
+        with:
+          name: rpcs3_libretro-windows-x86_64
+          path: artifacts/*.dll
+          compression-level: 0
+
   Release:
     name: Publish prerelease
-    needs: Build
+    # Windows is allowed to fail, and a continue-on-error job still counts as
+    # met here, so waiting on it only means its .dll joins the release when it
+    # does work.
+    needs: [Build, Windows]
     if: inputs.release
     runs-on: ubuntu-24.04
     permissions:
@@ -122,7 +188,7 @@ jobs:
           } > notes.md
           # A re-run of the same commit replaces the release rather than failing.
           gh release delete "$TAG" --yes --cleanup-tag 2>/dev/null || true
-          gh release create "$TAG" artifacts/*.so \
+          gh release create "$TAG" artifacts/* \
             --prerelease \
             --target "$GITHUB_SHA" \
             --title "libretro core test build ($SHORT)" \
