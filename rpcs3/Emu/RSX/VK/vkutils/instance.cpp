@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "instance.h"
+#include "Emu/RSX/GSFrameBase.h"
 
 namespace vk
 {
@@ -265,6 +266,39 @@ namespace vk
 
 	swapchain_base* instance::create_swapchain(display_handle_t window_handle, vk::physical_device& dev)
 	{
+		// A libretro frontend that gave the core no hardware context also gave
+		// it no surface, and make_WSI_surface below would be handed a window
+		// handle that is not one. Nothing is presented in that mode anyway -
+		// the finished frame leaves through GSFrameBase::present_frame - so
+		// take the headless swapchain and skip the surface entirely.
+		if (g_libretro_software_present)
+		{
+			rsx_log.notice("Vulkan: no surface to present to, using the headless swapchain");
+
+			// Same choice the surface path makes below, minus the present
+			// queue, which is the one thing there is no use for here.
+			u32 graphics_queue_idx = umax;
+			u32 transfer_queue_idx = umax;
+			for (u32 i = 0, queues = dev.get_queue_count(); i < queues; ++i)
+			{
+				const auto flags = dev.get_queue_properties(i).queueFlags;
+				if (graphics_queue_idx == umax && (flags & (VK_QUEUE_GRAPHICS_BIT | VK_QUEUE_COMPUTE_BIT)) == (VK_QUEUE_GRAPHICS_BIT | VK_QUEUE_COMPUTE_BIT))
+					graphics_queue_idx = i;
+				else if (transfer_queue_idx == umax && (flags & (VK_QUEUE_COMPUTE_BIT | VK_QUEUE_TRANSFER_BIT)) == (VK_QUEUE_COMPUTE_BIT | VK_QUEUE_TRANSFER_BIT))
+					transfer_queue_idx = i;
+			}
+
+			if (graphics_queue_idx == umax)
+			{
+				rsx_log.fatal("Failed to find a suitable graphics queue");
+				return nullptr;
+			}
+
+			auto swapchain = new swapchain_LIBRETRO(dev, graphics_queue_idx, graphics_queue_idx, transfer_queue_idx);
+			swapchain->create(window_handle);
+			return swapchain;
+		}
+
 		WSI_config surface_config
 		{
 			.supports_automatic_wm_reports = true

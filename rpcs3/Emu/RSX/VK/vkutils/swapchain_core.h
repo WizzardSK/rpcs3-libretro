@@ -162,6 +162,51 @@ namespace vk
 		void init_swapchain_images(render_device& dev, u32 preferred_count) override;
 	};
 
+	// The swapchain for a frontend that gives us no surface to present to.
+	// native_swapchain_base does the work already - it allocates images backed
+	// by host-visible memory and transfers each finished frame into them - but
+	// leaves creation and presentation to whoever needs them, throwing "not
+	// implemented yet" in the meantime. This is that implementation: there is
+	// nothing to create, and presenting happens elsewhere, in the readback in
+	// VKPresent that hands the pixels to GSFrameBase::present_frame.
+	class swapchain_LIBRETRO : public native_swapchain_base
+	{
+	public:
+		using native_swapchain_base::native_swapchain_base;
+
+		bool init() override
+		{
+			if (!m_width || !m_height)
+			{
+				rsx_log.error("Libretro swapchain asked for a %dx%d surface", m_width, m_height);
+				return false;
+			}
+
+			// Two is enough to keep one in flight while the other is read.
+			init_swapchain_images(dev, 2);
+			return true;
+		}
+
+		void create(display_handle_t&) override
+		{
+			// No window to attach to.
+		}
+
+		void destroy(bool /*full*/ = true) override
+		{
+			swapchain_images.clear();
+		}
+
+		VkResult present(VkSemaphore /*semaphore*/, u32 index) override
+		{
+			// The frame has already left through present_frame; all that
+			// remains is to put the image back in circulation, which is what
+			// acquire_next_swapchain_image looks at.
+			swapchain_images[index].first = false;
+			return VK_SUCCESS;
+		}
+	};
+
 	class swapchain_WSI : public WSI_swapchain_base
 	{
 		VkSurfaceKHR m_surface = VK_NULL_HANDLE;
