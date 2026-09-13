@@ -696,7 +696,8 @@ void VKGSRender::flip(const rsx::display_flip_info_t& info)
 
 		const bool user_asked_for_screenshot = g_user_asked_for_screenshot.exchange(false);
 
-		if (user_asked_for_screenshot || (g_recording_mode != recording_mode::stopped && m_frame->can_consume_frame()))
+		if (user_asked_for_screenshot ||
+			((g_recording_mode != recording_mode::stopped || g_libretro_software_present) && m_frame->can_consume_frame()))
 		{
 			const usz sshot_size = buffer_height * buffer_width * 4;
 

@@ -1,9 +1,17 @@
 # RPCS3 Libretro Core CMakeLists.txt
 
 # Build as a shared library
+# libretro_video.cpp is the OpenGL video unit; libretro_video_sw.cpp answers the
+# same interface without it, for platforms that have no desktop GL.
+if(ANDROID)
+    set(LIBRETRO_VIDEO_SRC libretro_video_sw.cpp)
+else()
+    set(LIBRETRO_VIDEO_SRC libretro_video.cpp)
+endif()
+
 add_library(rpcs3_libretro SHARED
     libretro_core.cpp
-    libretro_video.cpp
+    ${LIBRETRO_VIDEO_SRC}
     libretro_audio.cpp
     libretro_input.cpp
     libretro_pad_handler.cpp
@@ -49,18 +57,22 @@ target_link_libraries(rpcs3_libretro PRIVATE
     3rdparty::fusion
 )
 
-# GLEW for OpenGL extension loading
-if(NOT WIN32)
-    target_link_libraries(rpcs3_libretro PRIVATE 3rdparty::glew)
-endif()
+# OpenGL, and everything that goes with it. Not on Android: there is no desktop
+# GL there, only GLES, and this port's video path is written against GL 4.3. It
+# renders with Vulkan into system memory instead - see g_libretro_software_present.
+if(NOT ANDROID)
+    # GLEW for OpenGL extension loading
+    if(NOT WIN32)
+        target_link_libraries(rpcs3_libretro PRIVATE 3rdparty::glew)
+    endif()
 
-# OpenGL
-find_package(OpenGL REQUIRED OPTIONAL_COMPONENTS EGL)
-target_link_libraries(rpcs3_libretro PRIVATE OpenGL::GL)
+    find_package(OpenGL REQUIRED OPTIONAL_COMPONENTS EGL)
+    target_link_libraries(rpcs3_libretro PRIVATE OpenGL::GL)
 
-# EGL: needed to create RSX contexts that share the frontend's GL objects
-if(UNIX AND NOT APPLE AND TARGET OpenGL::EGL)
-    target_link_libraries(rpcs3_libretro PRIVATE OpenGL::EGL)
+    # EGL: needed to create RSX contexts that share the frontend's GL objects
+    if(UNIX AND NOT APPLE AND TARGET OpenGL::EGL)
+        target_link_libraries(rpcs3_libretro PRIVATE OpenGL::EGL)
+    endif()
 endif()
 
 # Platform-specific libraries

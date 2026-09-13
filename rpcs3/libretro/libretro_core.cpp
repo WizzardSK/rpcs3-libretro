@@ -66,6 +66,16 @@ retro_log_printf_t log_cb = nullptr;
 // Hardware render callback for OpenGL
 static retro_hw_render_callback hw_render;
 
+// No hardware context: the renderer finishes each frame into system memory and
+// retro_run hands those pixels to the frontend. Android has no desktop OpenGL
+// for this port to ask for, so there it is the only way to draw anything at
+// all; everywhere else the hardware path is better and this stays off.
+#ifdef ANDROID
+bool g_libretro_software_present = true;
+#else
+bool g_libretro_software_present = false;
+#endif
+
 // Core state
 static bool core_initialized = false;
 static bool game_loaded = false;
@@ -1456,10 +1466,21 @@ void retro_init(void)
     // Set up callbacks
     init_emu_callbacks();
 
-    // Set up hardware rendering (OpenGL context)
-    if (!setup_hw_render())
+    // Set up hardware rendering (OpenGL context). Skipped without one: there is
+    // no context to reset, so the boot below must not wait for one either.
+    if (!g_libretro_software_present && !setup_hw_render())
     {
 
+    }
+
+    // Only the software path cares: with a hardware context the frontend takes
+    // the image from the GPU and this is ignored. XRGB8888 is B,G,R,X in
+    // memory, which is the VK_FORMAT_B8G8R8A8_UNORM the renderer hands over.
+    if (g_libretro_software_present)
+    {
+        enum retro_pixel_format fmt = RETRO_PIXEL_FORMAT_XRGB8888;
+        if (!environ_cb(RETRO_ENVIRONMENT_SET_PIXEL_FORMAT, &fmt) && log_cb)
+            log_cb(RETRO_LOG_ERROR, "RPCS3: frontend refused XRGB8888, there is nothing else to draw with\n");
     }
 
     core_initialized = true;
@@ -1721,9 +1742,13 @@ bool retro_load_game(const struct retro_game_info* game)
         }
     }
 
-    // Use OpenGL renderer - game boot will be deferred until context_reset() when GL context is ready
-
-    g_cfg.video.renderer.set(video_renderer::opengl);
+    // OpenGL when there is a context to draw into, and the boot then waits for
+    // context_reset(). Without one it has to be Vulkan: RPCS3's Vulkan backend
+    // can finish a frame into memory, which is what the software path reads.
+    if (g_libretro_software_present)
+        g_cfg.video.renderer.set(video_renderer::vulkan);
+    else
+        g_cfg.video.renderer.set(video_renderer::opengl);
 
     // Configure PPU decoder - use LLVM for best performance
     g_cfg.core.ppu_decoder.set(ppu_decoder_type::llvm);
@@ -1786,8 +1811,10 @@ bool retro_load_game(const struct retro_game_info* game)
     const std::string config_path = fs::get_config_dir(true) + "config.yml";
     g_cfg.save(config_path);
 
-    // For null renderer, boot immediately. For OpenGL, defer until context_reset()
-    if (g_cfg.video.renderer.get() == video_renderer::null)
+    // For null renderer, boot immediately. For OpenGL, defer until
+    // context_reset(). The software path has no context coming, so it boots
+    // here as well or it would wait forever.
+    if (g_cfg.video.renderer.get() == video_renderer::null || g_libretro_software_present)
     {
 
         if (!do_boot_game())
@@ -2013,6 +2040,19 @@ void retro_run(void)
 
     // Process audio
     libretro_audio_process(audio_batch_cb);
+
+    // Without a hardware context there is no GL state to tidy and nothing to
+    // blit: the renderer has already put the finished frame in memory.
+    if (g_libretro_software_present)
+    {
+        const void* pixels = nullptr;
+        u32 sw_width = 0, sw_height = 0, sw_pitch = 0;
+        if (libretro_take_software_frame(&pixels, &sw_width, &sw_height, &sw_pitch))
+            video_cb(pixels, sw_width, sw_height, sw_pitch);
+        else
+            video_cb(NULL, 1280, 720, 0);
+        return;
+    }
 
     // Clean up GL state before returning control to frontend
     // Per libretro docs: cores must unbind all GL resources before video_cb

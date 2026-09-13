@@ -5,6 +5,15 @@
 
 #include "display.h"
 
+// Set by the libretro core when it has no hardware context to render into and
+// wants finished frames handed back as pixels instead. present_frame() already
+// exists for recording and screenshots and does exactly that; this lets the
+// renderers take that path every frame without pretending a recording is in
+// progress. It costs a readback per frame, which is the price of a frontend
+// that cannot be given a GPU image - on Android, where there is no desktop
+// OpenGL for the port to ask for, it is that or nothing.
+extern bool g_libretro_software_present;
+
 class GSFrameBase
 {
 public:

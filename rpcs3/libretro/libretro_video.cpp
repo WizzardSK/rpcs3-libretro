@@ -775,14 +775,55 @@ bool LibretroGSFrame::can_consume_frame() const
     return true;
 }
 
+// The most recent frame handed over by the renderer, when the core is running
+// without a hardware context. Written on the RSX thread, read in retro_run, so
+// it is swapped under a lock rather than copied.
+namespace
+{
+    std::mutex s_sw_frame_mutex;
+    std::vector<u8> s_sw_frame;
+    u32 s_sw_frame_pitch = 0;
+    u32 s_sw_frame_width = 0;
+    u32 s_sw_frame_height = 0;
+    bool s_sw_frame_is_new = false;
+}
+
 void LibretroGSFrame::present_frame(std::vector<u8>&& data, u32 pitch, u32 width, u32 height, bool is_bgra) const
 {
-    // Software rendering path - not used with OpenGL HW rendering
-    (void)data;
-    (void)pitch;
-    (void)width;
-    (void)height;
-    (void)is_bgra;
+    // XRGB8888 in libretro terms is B,G,R,X in memory, which is what
+    // VK_FORMAT_B8G8R8A8_UNORM already gives us. Anything else would need
+    // swizzling, and rather than do it wrong quietly, drop the frame and say so
+    // once - the renderer is not configured the way this path expects.
+    if (!is_bgra)
+    {
+        static bool warned = false;
+        if (!warned)
+        {
+            warned = true;
+            rsx_log.error("libretro: software present got a non-BGRA frame, dropping it");
+        }
+        return;
+    }
+
+    std::lock_guard lock(s_sw_frame_mutex);
+    s_sw_frame = std::move(data);
+    s_sw_frame_pitch = pitch;
+    s_sw_frame_width = width;
+    s_sw_frame_height = height;
+    s_sw_frame_is_new = true;
+}
+
+bool libretro_take_software_frame(const void** data, u32* width, u32* height, u32* pitch)
+{
+    std::lock_guard lock(s_sw_frame_mutex);
+    if (!s_sw_frame_is_new || s_sw_frame.empty())
+        return false;
+    s_sw_frame_is_new = false;
+    *data = s_sw_frame.data();
+    *width = s_sw_frame_width;
+    *height = s_sw_frame_height;
+    *pitch = s_sw_frame_pitch;
+    return true;
 }
 
 void LibretroGSFrame::take_screenshot(std::vector<u8>&& sshot_data, u32 sshot_width, u32 sshot_height, bool is_bgra)

@@ -60,6 +60,11 @@ void libretro_ensure_render_size(int width, int height);
 // Called from retro_run on RetroArch's main thread before video_cb
 void libretro_blit_to_frontend();
 
+// Software present path: hands out the last frame the renderer produced, if
+// one has arrived since the previous call. The pointer stays valid until the
+// next frame replaces it, which is long enough for video_cb.
+bool libretro_take_software_frame(const void** data, u32* width, u32* height, u32* pitch);
+
 // LibretroGSFrame - GSFrameBase implementation for libretro
 class LibretroGSFrame : public GSFrameBase
 {
