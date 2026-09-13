@@ -144,12 +144,13 @@ jobs:
     # principle - 3rdparty/llvm/CMakeLists.txt has an if(ANDROID) branch that
     # builds LLVM for AArch64 with an Android triple - but cross-building LLVM
     # is far larger than the core it serves and does not belong in a test run.
-    # So this takes the other door RPCS3 leaves open, WITH_LLVM=OFF, which
-    # drops the PPU and SPU recompilers and leaves the interpreters.
+    # LLVM is built from the submodule here, for AArch64 only - the branch for
+    # that is already in 3rdparty/llvm/CMakeLists.txt. Skipping it was the plan
+    # and did not survive contact: the AArch64 CPU backend uses llvm:: types
+    # whether or not WITH_LLVM is set, so there is no arm64 build without it.
     #
-    # That makes this a build test, not something anyone should expect to play
-    # on: interpreted PS3 emulation on a phone is not going to be playable.
-    # What it answers is whether the core compiles for Android at all.
+    # What this answers is whether the core compiles for Android at all. Even
+    # when it does, nobody should expect to play on it.
     name: libretro core android-arm64 (experimental)
     runs-on: ubuntu-24.04
     continue-on-error: true
@@ -159,15 +160,16 @@ jobs:
         with:
           fetch-depth: 0
 
-      # Everything except LLVM, which WITH_LLVM=OFF below makes unnecessary.
-      # OpenCV in particular has to come along: it cannot be switched off -
-      # 3rdparty/CMakeLists.txt adds it unconditionally - and there is no
-      # system copy in an Android sysroot to fall back on.
+      # Everything, LLVM included. It cannot be left out after all: the AArch64
+      # CPU backend is compiled for every arm64 target and uses llvm:: types
+      # without asking whether WITH_LLVM is on, so an arm64 build without LLVM
+      # does not compile. Nothing ships a prebuilt LLVM for Android either, so
+      # it gets built here - the long pole in this job by a wide margin.
       - name: Fetch the submodules the build uses
         run: |
           git config --global --add safe.directory '*'
           git submodule -q update --init --depth 1 \
-            $(awk '/path/ && !/llvm/ { print $3 }' .gitmodules)
+            $(awk '/path/ { print $3 }' .gitmodules)
 
       # RPCS3 cannot be built without ffmpeg - the option only chooses between
       # the system copy and a prebuilt one - and the prebuilts it downloads are
@@ -208,7 +210,8 @@ jobs:
             -DANDROID_STL=c++_static \
             -DCMAKE_BUILD_TYPE=Release \
             -DBUILD_LIBRETRO_CORE_ONLY=ON \
-            -DWITH_LLVM=OFF \
+            -DWITH_LLVM=ON \
+            -DBUILD_LLVM=ON \
             -DUSE_NATIVE_INSTRUCTIONS=OFF \
             -DUSE_PRECOMPILED_HEADERS=OFF \
             -DUSE_SDL=OFF \

@@ -35,6 +35,23 @@
 #endif
 #include "llvm/IR/InlineAsm.h"
 
+// LLVM 20 renamed Intrinsic::getDeclaration to getOrInsertDeclaration, which is
+// what the name meant all along. Both have to work: the prebuilt LLVM this
+// project uses on Linux predates the change and a system one - MSYS2's, on the
+// Windows core build - does not.
+namespace rpcs3_llvm_compat
+{
+	template <typename... Args>
+	inline auto get_intrinsic_declaration(Args&&... args)
+	{
+#if LLVM_VERSION_MAJOR >= 20
+		return llvm::Intrinsic::getOrInsertDeclaration(std::forward<Args>(args)...);
+#else
+		return llvm::Intrinsic::getDeclaration(std::forward<Args>(args)...);
+#endif
+	}
+}
+
 #ifdef _MSC_VER
 #pragma warning(pop)
 #else
@@ -1149,7 +1166,7 @@ struct llvm_fshl
 	static llvm::Function* get_fshl(llvm::IRBuilder<>* ir)
 	{
 		const auto _module = ir->GetInsertBlock()->getParent()->getParent();
-		return llvm::Intrinsic::getDeclaration(_module, llvm::Intrinsic::fshl, {llvm_value_t<T>::get_type(ir->getContext())});
+		return rpcs3_llvm_compat::get_intrinsic_declaration(_module, llvm::Intrinsic::fshl, {llvm_value_t<T>::get_type(ir->getContext())});
 	}
 
 	static llvm::Value* fold(llvm::IRBuilder<>* ir, llvm::Value* v1, llvm::Value* v2, llvm::Value* v3)
@@ -1221,7 +1238,7 @@ struct llvm_fshr
 	static llvm::Function* get_fshr(llvm::IRBuilder<>* ir)
 	{
 		const auto _module = ir->GetInsertBlock()->getParent()->getParent();
-		return llvm::Intrinsic::getDeclaration(_module, llvm::Intrinsic::fshr, {llvm_value_t<T>::get_type(ir->getContext())});
+		return rpcs3_llvm_compat::get_intrinsic_declaration(_module, llvm::Intrinsic::fshr, {llvm_value_t<T>::get_type(ir->getContext())});
 	}
 
 	static llvm::Value* fold(llvm::IRBuilder<>* ir, llvm::Value* v1, llvm::Value* v2, llvm::Value* v3)
@@ -2220,7 +2237,7 @@ struct llvm_add_sat
 	static llvm::Function* get_add_sat(llvm::IRBuilder<>* ir)
 	{
 		const auto _module = ir->GetInsertBlock()->getParent()->getParent();
-		return llvm::Intrinsic::getDeclaration(_module, intr, {llvm_value_t<T>::get_type(ir->getContext())});
+		return rpcs3_llvm_compat::get_intrinsic_declaration(_module, intr, {llvm_value_t<T>::get_type(ir->getContext())});
 	}
 
 	llvm::Value* eval(llvm::IRBuilder<>* ir) const
@@ -2303,7 +2320,7 @@ struct llvm_sub_sat
 	static llvm::Function* get_sub_sat(llvm::IRBuilder<>* ir)
 	{
 		const auto _module = ir->GetInsertBlock()->getParent()->getParent();
-		return llvm::Intrinsic::getDeclaration(_module, intr, {llvm_value_t<T>::get_type(ir->getContext())});
+		return rpcs3_llvm_compat::get_intrinsic_declaration(_module, intr, {llvm_value_t<T>::get_type(ir->getContext())});
 	}
 
 	llvm::Value* eval(llvm::IRBuilder<>* ir) const
@@ -3592,7 +3609,7 @@ public:
 	llvm::Function* get_intrinsic(llvm::Intrinsic::ID id)
 	{
 		const auto _module = m_ir->GetInsertBlock()->getParent()->getParent();
-		return llvm::Intrinsic::getDeclaration(_module, id, {get_type<Types>()...});
+		return rpcs3_llvm_compat::get_intrinsic_declaration(_module, id, {get_type<Types>()...});
 	}
 
 	template <typename T1, typename T2>
