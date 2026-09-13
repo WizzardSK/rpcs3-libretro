@@ -86,84 +86,51 @@ jobs:
           key: ${{ steps.restore-build-ccache.outputs.cache-primary-key }}
 
   Windows:
-    # Experimental, and allowed to fail: nothing has ever built this core on
-    # Windows. The port is written with MSVC in mind - rpcs3/libretro has both
-    # a WIN32 branch for the .dll suffix and an if(NOT MSVC) one for the GCC
-    # flags - but it is not in rpcs3.sln, which is how upstream builds Windows,
-    # so CMake with the MSVC generator is the only way in. LLVM comes from the
-    # runner image rather than the submodule, which would dwarf the core.
+    # Experimental, and allowed to fail. Built under MSYS2's clang64 rather
+    # than MSVC: the core exists only as a CMake target, so rpcs3.sln - the way
+    # upstream builds Windows - is no use, and CMake with MSVC gets no further
+    # because the LLVM on the runner image is the client distribution, with no
+    # CMake package and no static libraries for find_package(LLVM) to find.
+    # clang64 ships all of that as packages, which is the same environment
+    # .ci/build-windows-clang.sh already uses for the application.
     name: libretro core windows-x64 (experimental)
     runs-on: windows-2025
     continue-on-error: true
+    defaults:
+      run:
+        shell: msys2 {0}
     steps:
       - name: Checkout repository
         uses: actions/checkout@main
         with:
           fetch-depth: 0
 
-      # Everything except LLVM, which comes from the runner image. OpenCV has
-      # to come along: it cannot be switched off, 3rdparty/CMakeLists.txt adds
-      # it unconditionally, and there is no system copy on a Windows runner.
-      - name: Fetch the submodules the build uses
-        shell: bash
-        run: |
-          git config --global --add safe.directory '*'
-          git submodule -q update --init --depth 1 \
-            $(awk '/path/ && !/llvm/ { print $3 }' .gitmodules)
-
-      - name: Locate LLVM
-        shell: bash
-        run: |
-          # A Windows path, not the MSYS one bash prints: CMake takes "C:/..."
-          # and does not know what to do with "/c/...".
-          for d in "/c/Program Files/LLVM" "$LLVM_PATH"; do
-            if [ -d "$d/lib/cmake/llvm" ]; then
-              echo "LLVM_DIR=$(cygpath -m "$d")/lib/cmake/llvm" >> "$GITHUB_ENV"
-              break
-            fi
-          done
-          echo "what is installed:"
-          "/c/Program Files (x86)/Microsoft Visual Studio/Installer/vswhere.exe" -latest -products '*' -property displayName || true
-          cat "$GITHUB_ENV"
-
-      # Naming a Visual Studio generator means naming its version, and the
-      # image moves on; the first attempt asked for 2022 on a runner that no
-      # longer has it. Putting MSVC in the environment and building with Ninja
-      # sidesteps the question.
-      - name: Set up MSVC
-        uses: ilammy/msvc-dev-cmd@v1
+      - name: Setup msys2
+        uses: msys2/setup-msys2@v2
         with:
-          arch: x64
-
-      - name: Configure
-        shell: bash
-        run: |
-          cmake -S . -B build -G Ninja \
-            -DBUILD_LIBRETRO_CORE_ONLY=ON \
-            -DBUILD_LLVM=OFF \
-            -DSTATIC_LINK_LLVM=ON \
-            -DLLVM_DIR="$LLVM_DIR" \
-            -DUSE_NATIVE_INSTRUCTIONS=OFF \
-            -DUSE_PRECOMPILED_HEADERS=OFF \
-            -DUSE_DISCORD_RPC=OFF \
-            -DUSE_LTO=OFF \
-            -DUSE_SYSTEM_CURL=OFF \
-            -DUSE_SYSTEM_OPENCV=OFF \
-            -DUSE_SYSTEM_SDL=OFF \
-            -DUSE_SYSTEM_ZLIB=OFF \
-            -DUSE_SYSTEM_OPENAL=OFF \
-            -DUSE_SYSTEM_FFMPEG=OFF
+          msystem: clang64
+          update: true
+          cache: true
+          install: |
+            mingw-w64-clang-x86_64-clang
+            mingw-w64-clang-x86_64-ccache
+            mingw-w64-clang-x86_64-cmake
+            mingw-w64-clang-x86_64-lld
+            mingw-w64-clang-x86_64-ninja
+            mingw-w64-clang-x86_64-llvm
+            mingw-w64-clang-x86_64-ffmpeg
+            mingw-w64-clang-x86_64-opencv
+            mingw-w64-clang-x86_64-glew
+            mingw-w64-clang-x86_64-vulkan
+            mingw-w64-clang-x86_64-vulkan-headers
+            mingw-w64-clang-x86_64-vulkan-loader
+            base-devel
+            curl
+            git
+            p7zip
 
       - name: Build
-        shell: bash
-        run: cmake --build build --config Release --target rpcs3_libretro
-
-      - name: Collect
-        shell: bash
-        run: |
-          mkdir -p artifacts
-          find build -name 'rpcs3_libretro.dll' -exec cp {} artifacts/rpcs3_libretro_windows_x86_64.dll \;
-          ls -la artifacts
+        run: .ci/build-windows-clang-libretro.sh
 
       - name: Upload artifacts
         uses: actions/upload-artifact@main
@@ -202,7 +169,35 @@ jobs:
           git submodule -q update --init --depth 1 \
             $(awk '/path/ && !/llvm/ { print $3 }' .gitmodules)
 
+      # RPCS3 cannot be built without ffmpeg - the option only chooses between
+      # the system copy and a prebuilt one - and the prebuilts it downloads are
+      # named ffmpeg-windows, ffmpeg-macos and ffmpeg-linux. Android counts as
+      # UNIX, so it would fetch a glibc Linux build and fail to link against
+      # it. Cross-building one is the only way through.
+      - name: Cross-build ffmpeg for Android
+        run: |
+          NDK="${ANDROID_NDK_LATEST_HOME:-$ANDROID_NDK_HOME}"
+          TC="$NDK/toolchains/llvm/prebuilt/linux-x86_64/bin"
+          PREFIX="$PWD/ffmpeg-android"
+          git clone --quiet --depth 1 -b release/7.1 https://github.com/FFmpeg/FFmpeg.git ffmpeg-src
+          cd ffmpeg-src
+          ./configure \
+            --prefix="$PREFIX" \
+            --target-os=android --arch=aarch64 --enable-cross-compile \
+            --cc="$TC/aarch64-linux-android30-clang" \
+            --cxx="$TC/aarch64-linux-android30-clang++" \
+            --ar="$TC/llvm-ar" --ranlib="$TC/llvm-ranlib" \
+            --nm="$TC/llvm-nm" --strip="$TC/llvm-strip" \
+            --enable-static --disable-shared --enable-pic \
+            --disable-programs --disable-doc --disable-avdevice --disable-network
+          make -j"$(nproc)"
+          make install
+          echo "FFMPEG_PREFIX=$PREFIX" >> "$GITHUB_ENV"
+          ls "$PREFIX/lib/pkgconfig"
+
       - name: Configure
+        env:
+          PKG_CONFIG_LIBDIR: ${{ github.workspace }}/ffmpeg-android/lib/pkgconfig
         run: |
           NDK="${ANDROID_NDK_LATEST_HOME:-$ANDROID_NDK_HOME}"
           echo "using NDK at $NDK"
@@ -224,7 +219,10 @@ jobs:
             -DUSE_SYSTEM_SDL=OFF \
             -DUSE_SYSTEM_ZLIB=OFF \
             -DUSE_SYSTEM_OPENAL=OFF \
-            -DUSE_SYSTEM_FFMPEG=OFF
+            -DUSE_SYSTEM_FFMPEG=ON \
+            -DCMAKE_PREFIX_PATH="$FFMPEG_PREFIX" \
+            -DCMAKE_FIND_ROOT_PATH_MODE_INCLUDE=BOTH \
+            -DCMAKE_FIND_ROOT_PATH_MODE_LIBRARY=BOTH
 
       - name: Build
         run: cmake --build build --target rpcs3_libretro
