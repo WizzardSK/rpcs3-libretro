@@ -3,7 +3,16 @@
 #include "Utilities/Thread.h"
 #include "Utilities/mutex.h"
 
+#ifndef WITHOUT_OPENAL
 #include "alc.h"
+#else
+// Built without OpenAL - Android has no copy of it and 3rdparty/CMakeLists.txt
+// defines WITHOUT_OPENAL there instead. Everything that calls into OpenAL is
+// already behind that switch; the one thing left outside it is a device
+// pointer that is then never dereferenced, so an incomplete type is enough to
+// keep the declarations valid.
+struct ALCdevice;
+#endif
 
 // Error Codes
 enum CellMicInError : u32
