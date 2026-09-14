@@ -92,6 +92,49 @@ namespace gl
 
 #undef CHECK_EXTENSION_SUPPORT
 
+		// Ask the version as well as the list, because the list is not the
+		// whole answer in a core profile. An extension that has been promoted
+		// into core is no longer required to be advertised by name, and Mesa
+		// does not advertise several of these in a core profile - which is the
+		// only kind RetroArch's glcore driver ever creates. The standalone
+		// build never meets this: Qt gives it a compatibility profile, where
+		// the legacy names are all still there.
+		//
+		// What that looked like from the other end was a 4.6 context on an
+		// RX 6600 being told its GPU could not do direct state access, which
+		// has been core since 4.5. The Intel workaround further down already
+		// does exactly this for texture buffers, for the same reason - it is
+		// not an Intel problem.
+		int ctx_major = 0;
+		int ctx_minor = 0;
+		glGetIntegerv(GL_MAJOR_VERSION, &ctx_major);
+		glGetIntegerv(GL_MINOR_VERSION, &ctx_minor);
+		const int ctx_version = ctx_major * 100 + ctx_minor;
+		const auto core_since = [ctx_version](int major, int minor)
+		{
+			return ctx_version >= (major * 100 + minor);
+		};
+
+		// GL 3.1, 4.4 and 4.5 respectively. Only these three: they are the ones
+		// this backend refuses to start without, and every entry here is a
+		// claim about what a version guarantees rather than about what a driver
+		// happens to say.
+		if (!ARB_texture_buffer_object_supported && core_since(3, 1))
+		{
+			ARB_texture_buffer_object_supported = true;
+			rsx_log.success("[CAPS] Using core texture buffer objects (GL %d.%d)", ctx_major, ctx_minor);
+		}
+		if (!ARB_buffer_storage_supported && core_since(4, 4))
+		{
+			ARB_buffer_storage_supported = true;
+			rsx_log.success("[CAPS] Using core buffer storage (GL %d.%d)", ctx_major, ctx_minor);
+		}
+		if (!ARB_direct_state_access_supported && core_since(4, 5))
+		{
+			ARB_direct_state_access_supported = true;
+			rsx_log.success("[CAPS] Using core direct state access (GL %d.%d)", ctx_major, ctx_minor);
+		}
+
 		// Set GLSL version
 		glsl_version = version_info(reinterpret_cast<const char*>(glGetString(GL_SHADING_LANGUAGE_VERSION)));
 
