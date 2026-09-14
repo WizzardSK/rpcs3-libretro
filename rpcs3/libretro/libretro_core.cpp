@@ -1563,13 +1563,24 @@ static void context_destroy()
 
 static bool setup_hw_render()
 {
-    // Request OpenGL Core profile context
-    // version_major/minor specifies MINIMUM required version - RetroArch will provide
-    // the highest available context that meets this minimum requirement.
-    // RPCS3's OpenGL backend requires 4.3+ for compute shaders and modern features.
+    // The version here is the one the frontend asks the driver for, not a
+    // floor it is allowed to exceed - RetroArch passes it straight to
+    // glXCreateContextAttribs and logs "Creating context for requested version
+    // 4.3". The comment that used to be here said the opposite, and that cost
+    // someone an evening: asking for 4.3 gets exactly 4.3, and Mesa then does
+    // not advertise the extensions that were promoted into core after it.
+    // Buffer storage went into 4.4 and direct state access into 4.5, so a 4.3
+    // context on a card that can do 4.6 reports neither, and RPCS3 refuses to
+    // start with "GL_ARB_direct_state_access ... is required but not supported
+    // by your GPU" on hardware that supports it perfectly well. Reported on a
+    // Radeon RX 6600.
+    //
+    // So ask high and step down. 4.5 is the real floor for what the GL backend
+    // checks for; below that it will refuse whatever we do, and the lower
+    // entries are only there so the failure comes from RPCS3's own capability
+    // check, which names what is missing, rather than from a context that was
+    // never created.
     hw_render.context_type = RETRO_HW_CONTEXT_OPENGL_CORE;
-    hw_render.version_major = 4;
-    hw_render.version_minor = 3;
     hw_render.context_reset = context_reset;
     hw_render.context_destroy = context_destroy;
     hw_render.depth = true;
@@ -1578,23 +1589,19 @@ static bool setup_hw_render()
     hw_render.cache_context = true;
     hw_render.debug_context = false;
 
-
-    if (environ_cb(RETRO_ENVIRONMENT_SET_HW_RENDER, &hw_render))
+    static const struct { unsigned major, minor; } kCoreVersions[] = {
+        {4, 6}, {4, 5}, {4, 4}, {4, 3}, {3, 3},
+    };
+    for (const auto& v : kCoreVersions)
     {
-
-        return true;
-    }
-
-    // Fallback: try OpenGL Core 3.3 (may lack some features but could work on older systems)
-
-
-    hw_render.version_major = 3;
-    hw_render.version_minor = 3;
-
-    if (environ_cb(RETRO_ENVIRONMENT_SET_HW_RENDER, &hw_render))
-    {
-
-        return true;
+        hw_render.version_major = v.major;
+        hw_render.version_minor = v.minor;
+        if (environ_cb(RETRO_ENVIRONMENT_SET_HW_RENDER, &hw_render))
+        {
+            if (log_cb)
+                log_cb(RETRO_LOG_INFO, "RPCS3: OpenGL core %u.%u context requested\n", v.major, v.minor);
+            return true;
+        }
     }
 
     // Final fallback: try legacy OpenGL compatibility context

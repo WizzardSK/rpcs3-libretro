@@ -299,7 +299,13 @@ jobs:
         run: |
           ls -la artifacts
           SHORT=$(git rev-parse --short=8 HEAD)
-          TAG="libretro-test-$SHORT"
+          # One release, always the newest. A tag per commit left a row of stale
+          # test builds behind, each with a gigabyte of cores nobody wanted any
+          # more, and no way to tell at a glance which was current. A fixed tag
+          # also means the download link in the thread keeps working instead of
+          # pointing at whatever was newest the day it was posted. The commit is
+          # in the title and the notes.
+          TAG="libretro-latest"
           {
             echo "Test build of the RPCS3 libretro core. Not a release, and not expected to be useful for playing anything yet."
             echo
@@ -309,9 +315,15 @@ jobs:
             echo
             echo "Commit: $SHORT"
           } > notes.md
-          # A re-run of the same commit replaces the release rather than failing.
+          # Replace rather than add to: the tag moves to this commit and the
+          # old assets go with the old release.
           gh release delete "$TAG" --yes --cleanup-tag 2>/dev/null || true
           gh release create "$TAG" artifacts/* \
             --target "$GITHUB_SHA" \
             --title "libretro core test build ($SHORT)" \
             --notes-file notes.md
+          # Anything left over from when this published a tag per commit.
+          for old in $(gh release list --limit 50 --json tagName --jq '.[].tagName' | grep '^libretro-test-' || true); do
+            echo "removing superseded release $old"
+            gh release delete "$old" --yes --cleanup-tag || true
+          done
