@@ -12,6 +12,20 @@
 #include <thread>
 #include <functional>
 
+// The versions to ask for when building the RSX thread's own context, highest
+// first. Not one hardcoded version: this is the context RPCS3's capability
+// check reads its extension list from, and an extension promoted into core is
+// no longer required to be advertised by name. A 4.3 context on Mesa therefore
+// reports no direct state access at all - which reached a user as
+// "GL_ARB_direct_state_access ... is required but not supported by your GPU" on
+// a Radeon RX 6600. 4.5 is the real floor for this backend; the entry below it
+// is there so that a refusal comes from RPCS3's own check, which names what is
+// missing, rather than from a context that was never created.
+struct shared_context_version { int major, minor; };
+static constexpr shared_context_version kSharedContextVersions[] = {
+    {4, 6}, {4, 5}, {4, 4}, {4, 3},
+};
+
 #ifdef _WIN32
 #include <Windows.h>
 #include <GL/gl.h>
@@ -38,14 +52,30 @@ static std::mutex s_context_pool_mutex;
 
 #if defined(__unix__) && !defined(__APPLE__)
 #include <EGL/egl.h>
+#include <GL/glx.h>
 
 // RetroArch's GL context is only ever current on the frontend's video thread,
 // but RSX (and the shader compiler threads) draw on their own threads. Capture
-// the frontend's EGL state in context_reset and create contexts that share its
+// the frontend's state in context_reset and create contexts that share its
 // objects, mirroring what the WGL path above does on Windows. Without this the
 // RSX thread has no current context at all, glGetIntegerv(GL_NUM_EXTENSIONS)
 // returns 0, and gl::capabilities::initialize() reports every extension as
-// unsupported.
+// unsupported - which reaches the user as "GL_ARB_texture_buffer_object is
+// required but not supported by your GPU" on a GPU that supports it.
+//
+// Two window systems, because the frontend picks one and the core does not get
+// a say. RetroArch on Wayland gives us an EGL context; on X11 it gives us a GLX
+// one, and then eglGetCurrentContext has nothing to report - the case this file
+// used to fall out of into a context-less RSX thread. Whichever one answers is
+// the one used; they are never both live.
+enum class shared_context_backend
+{
+    none,
+    egl,
+    glx,
+};
+static shared_context_backend s_context_backend = shared_context_backend::none;
+
 static EGLDisplay s_egl_display = EGL_NO_DISPLAY;
 static EGLContext s_egl_main_context = EGL_NO_CONTEXT;
 static EGLConfig s_egl_config = nullptr;
@@ -55,6 +85,40 @@ static std::vector<EGLContext> s_shared_egl_contexts;
 // context_destroy() - see the comment there.
 static std::vector<EGLContext> s_retired_egl_contexts;
 static std::mutex s_egl_context_mutex;
+
+using glXCreateContextAttribsARB_t = GLXContext (*)(Display*, GLXFBConfig, GLXContext, Bool, const int*);
+static glXCreateContextAttribsARB_t s_glXCreateContextAttribsARB = nullptr;
+
+static Display* s_glx_display = nullptr;
+static GLXContext s_glx_main_context = nullptr;
+static GLXFBConfig s_glx_fbconfig = nullptr;
+static bool s_glx_have_config = false;
+// GLX has no surfaceless make-current, so every context needs a drawable of its
+// own: the frontend's window belongs to the video thread, and a drawable may be
+// current to one thread at a time - which also rules out one shared pbuffer,
+// because RSX is not the only thread that asks for a context (the pipe compiler
+// takes one per thread). A 1x1 pbuffer each costs nothing; RSX renders into
+// FBOs and never draws to it.
+struct glx_thread_context
+{
+    GLXContext ctx = nullptr;
+    GLXPbuffer pbuffer = 0;
+};
+static std::vector<glx_thread_context> s_shared_glx_contexts;
+static std::vector<glx_thread_context> s_retired_glx_contexts;
+static std::mutex s_glx_context_mutex;
+
+// GLX reports context creation failures through the X error handler rather than
+// through a return value, so a failed glXCreateContextAttribsARB can come back
+// non-null and kill the process later. Install a handler for the length of the
+// call and ask the server what it thought.
+static bool s_glx_error_flag = false;
+static int glx_error_handler(Display*, XErrorEvent*)
+{
+    s_glx_error_flag = true;
+    return 0;
+}
+
 #endif
 
 LOG_CHANNEL(libretro_video_log, "LibretroVideo");
@@ -354,14 +418,21 @@ static void precreate_shared_contexts(int count)
 
     for (int i = 0; i < count; i++)
     {
-        int attribs[] = {
-            WGL_CONTEXT_MAJOR_VERSION_ARB, 4,
-            WGL_CONTEXT_MINOR_VERSION_ARB, 3,
-            WGL_CONTEXT_PROFILE_MASK_ARB, WGL_CONTEXT_CORE_PROFILE_BIT_ARB,
-            0
-        };
+        HGLRC shared_ctx = nullptr;
+        for (const auto& v : kSharedContextVersions)
+        {
+            int attribs[] = {
+                WGL_CONTEXT_MAJOR_VERSION_ARB, v.major,
+                WGL_CONTEXT_MINOR_VERSION_ARB, v.minor,
+                WGL_CONTEXT_PROFILE_MASK_ARB, WGL_CONTEXT_CORE_PROFILE_BIT_ARB,
+                0
+            };
 
-        HGLRC shared_ctx = wglCreateContextAttribsARB_ptr(s_main_hdc, s_main_hglrc, attribs);
+            shared_ctx = wglCreateContextAttribsARB_ptr(s_main_hdc, s_main_hglrc, attribs);
+            if (shared_ctx)
+                break;
+        }
+
         if (shared_ctx)
         {
             std::lock_guard<std::mutex> lock(s_context_pool_mutex);
@@ -373,6 +444,92 @@ static void precreate_shared_contexts(int count)
     wglMakeCurrent(s_main_hdc, s_main_hglrc);
 #endif
 }
+
+#if defined(__unix__) && !defined(__APPLE__)
+// Runs on: RetroArch's video thread, from context_reset, with the frontend's
+// GLX context current. The X11 half of what the EGL block below does.
+static void libretro_glx_init()
+{
+    s_glx_display = glXGetCurrentDisplay();
+    s_glx_main_context = glXGetCurrentContext();
+
+    if (!s_glx_display || !s_glx_main_context)
+    {
+        libretro_video_log.error("GLX: no current display/context on the video thread either; RSX will have no "
+                                 "shared context and every GL capability will read as unsupported.");
+        return;
+    }
+
+    s_glXCreateContextAttribsARB = reinterpret_cast<glXCreateContextAttribsARB_t>(
+        glXGetProcAddressARB(reinterpret_cast<const GLubyte*>("glXCreateContextAttribsARB")));
+    if (!s_glXCreateContextAttribsARB)
+    {
+        libretro_video_log.error("GLX: GLX_ARB_create_context is missing; a core profile context cannot be asked for.");
+        return;
+    }
+
+    int screen = DefaultScreen(s_glx_display);
+    int screen_of_context = 0;
+    if (glXQueryContext(s_glx_display, s_glx_main_context, GLX_SCREEN, &screen_of_context) == Success)
+        screen = screen_of_context;
+
+    // The frontend's own config first, so the shared context matches the one
+    // its objects were made on. It is only usable here if it can back a
+    // pbuffer, which a window config does not have to.
+    int fbconfig_id = 0;
+    if (glXQueryContext(s_glx_display, s_glx_main_context, GLX_FBCONFIG_ID, &fbconfig_id) == Success && fbconfig_id)
+    {
+        const int cfg_attribs[] = { GLX_FBCONFIG_ID, fbconfig_id, None };
+        int num_configs = 0;
+        if (GLXFBConfig* cfgs = glXChooseFBConfig(s_glx_display, screen, cfg_attribs, &num_configs); cfgs)
+        {
+            if (num_configs > 0)
+            {
+                int drawable_type = 0;
+                glXGetFBConfigAttrib(s_glx_display, cfgs[0], GLX_DRAWABLE_TYPE, &drawable_type);
+                if (drawable_type & GLX_PBUFFER_BIT)
+                {
+                    s_glx_fbconfig = cfgs[0];
+                    s_glx_have_config = true;
+                }
+            }
+            XFree(cfgs);
+        }
+    }
+
+    if (!s_glx_have_config)
+    {
+        // Any pbuffer-capable RGBA config on the same screen will do. Sharing
+        // objects between contexts of different configs is allowed; they only
+        // have to be the same renderer, which on one screen they are.
+        const int cfg_attribs[] = {
+            GLX_RENDER_TYPE, GLX_RGBA_BIT,
+            GLX_DRAWABLE_TYPE, GLX_PBUFFER_BIT,
+            None
+        };
+        int num_configs = 0;
+        if (GLXFBConfig* cfgs = glXChooseFBConfig(s_glx_display, screen, cfg_attribs, &num_configs); cfgs)
+        {
+            if (num_configs > 0)
+            {
+                s_glx_fbconfig = cfgs[0];
+                s_glx_have_config = true;
+            }
+            XFree(cfgs);
+        }
+    }
+
+    if (!s_glx_have_config)
+    {
+        libretro_video_log.error("GLX: no pbuffer-capable framebuffer config; RSX will have no shared context.");
+        return;
+    }
+
+    s_context_backend = shared_context_backend::glx;
+    libretro_video_log.notice("GLX: sharing with the frontend's context (display=%p, context=%p).",
+        s_glx_display, s_glx_main_context);
+}
+#endif
 
 // Initialize OpenGL function pointers using libretro's get_proc_address callback
 static void libretro_gl_init()
@@ -410,7 +567,7 @@ static void libretro_gl_init()
     precreate_shared_contexts(10);
 #else
     // Runs on RetroArch's video thread from context_reset, i.e. the one place
-    // where the frontend's context is guaranteed to be current: grab the EGL
+    // where the frontend's context is guaranteed to be current: grab the
     // handles the RSX thread will need to create shared contexts later.
     s_egl_display = eglGetCurrentDisplay();
     s_egl_main_context = eglGetCurrentContext();
@@ -425,6 +582,7 @@ static void libretro_gl_init()
             if (eglChooseConfig(s_egl_display, cfg_attribs, &s_egl_config, 1, &num_configs) && num_configs == 1)
             {
                 s_egl_have_config = true;
+                s_context_backend = shared_context_backend::egl;
             }
         }
 
@@ -435,8 +593,10 @@ static void libretro_gl_init()
     }
     else
     {
-        libretro_video_log.error("EGL: no current display/context on the video thread (display=%p, context=%p).",
-            s_egl_display, s_egl_main_context);
+        // Not an error yet: an X11 frontend has a GLX context, and EGL is
+        // supposed to say nothing about it.
+        libretro_video_log.notice("EGL: nothing current on the video thread; trying GLX.");
+        libretro_glx_init();
     }
 
     // A context is current on this thread, so GLEW can resolve its entry points
@@ -498,6 +658,35 @@ void libretro_video_deinit()
     s_egl_display = EGL_NO_DISPLAY;
     s_egl_main_context = EGL_NO_CONTEXT;
     s_egl_have_config = false;
+
+    {
+        std::lock_guard<std::mutex> glx_lock(s_glx_context_mutex);
+        if (s_glx_display)
+        {
+            const auto destroy = [](const glx_thread_context& entry)
+            {
+                if (entry.pbuffer)
+                    glXDestroyPbuffer(s_glx_display, entry.pbuffer);
+                if (entry.ctx)
+                    glXDestroyContext(s_glx_display, entry.ctx);
+            };
+
+            for (const auto& entry : s_retired_glx_contexts)
+                destroy(entry);
+
+            for (const auto& entry : s_shared_glx_contexts)
+                destroy(entry);
+        }
+
+        s_retired_glx_contexts.clear();
+        s_shared_glx_contexts.clear();
+        s_glx_display = nullptr;
+        s_glx_main_context = nullptr;
+        s_glx_fbconfig = nullptr;
+        s_glx_have_config = false;
+    }
+
+    s_context_backend = shared_context_backend::none;
     s_gl_initialized = false;
 #endif
 }
@@ -574,7 +763,25 @@ void LibretroGSFrame::delete_context(draw_context_t ctx)
         }
     }
 #else
-    if (!ctx || ctx == reinterpret_cast<draw_context_t>(1) || s_egl_display == EGL_NO_DISPLAY)
+    if (!ctx || ctx == reinterpret_cast<draw_context_t>(1))
+        return;
+
+    if (s_context_backend == shared_context_backend::glx)
+    {
+        // Retired rather than destroyed, for the reason spelled out below.
+        std::lock_guard<std::mutex> lock(s_glx_context_mutex);
+        GLXContext glx_ctx = reinterpret_cast<GLXContext>(ctx);
+        const auto it = std::find_if(s_shared_glx_contexts.begin(), s_shared_glx_contexts.end(),
+            [glx_ctx](const glx_thread_context& entry) { return entry.ctx == glx_ctx; });
+        if (it != s_shared_glx_contexts.end())
+        {
+            s_retired_glx_contexts.push_back(*it);
+            s_shared_glx_contexts.erase(it);
+        }
+        return;
+    }
+
+    if (s_egl_display == EGL_NO_DISPLAY)
         return;
 
     EGLContext egl_ctx = reinterpret_cast<EGLContext>(ctx);
@@ -618,16 +825,21 @@ draw_context_t LibretroGSFrame::make_context()
 
     if (wglCreateContextAttribsARB_ptr)
     {
-        int attribs[] = {
-            WGL_CONTEXT_MAJOR_VERSION_ARB, 4,
-            WGL_CONTEXT_MINOR_VERSION_ARB, 3,
-            WGL_CONTEXT_PROFILE_MASK_ARB, WGL_CONTEXT_CORE_PROFILE_BIT_ARB,
-            0
-        };
+        for (const auto& v : kSharedContextVersions)
+        {
+            int attribs[] = {
+                WGL_CONTEXT_MAJOR_VERSION_ARB, v.major,
+                WGL_CONTEXT_MINOR_VERSION_ARB, v.minor,
+                WGL_CONTEXT_PROFILE_MASK_ARB, WGL_CONTEXT_CORE_PROFILE_BIT_ARB,
+                0
+            };
 
-        shared_context = wglCreateContextAttribsARB_ptr(s_main_hdc, s_main_hglrc, attribs);
-        if (!shared_context)
-            shared_context = wglCreateContextAttribsARB_ptr(s_main_hdc, nullptr, attribs);
+            shared_context = wglCreateContextAttribsARB_ptr(s_main_hdc, s_main_hglrc, attribs);
+            if (!shared_context)
+                shared_context = wglCreateContextAttribsARB_ptr(s_main_hdc, nullptr, attribs);
+            if (shared_context)
+                break;
+        }
     }
 
     if (!shared_context)
@@ -643,28 +855,89 @@ draw_context_t LibretroGSFrame::make_context()
 
     return nullptr;
 #else
-    if (s_egl_display != EGL_NO_DISPLAY && s_egl_main_context != EGL_NO_CONTEXT && s_egl_have_config)
+    if (s_context_backend == shared_context_backend::egl && s_egl_have_config)
     {
         eglBindAPI(EGL_OPENGL_API);
 
-        const EGLint attribs[] = {
-            EGL_CONTEXT_MAJOR_VERSION, 4,
-            EGL_CONTEXT_MINOR_VERSION, 3,
-            EGL_CONTEXT_OPENGL_PROFILE_MASK, EGL_CONTEXT_OPENGL_CORE_PROFILE_BIT,
-            EGL_NONE
-        };
-
-        if (EGLContext ctx = eglCreateContext(s_egl_display, s_egl_config, s_egl_main_context, attribs);
-            ctx != EGL_NO_CONTEXT)
+        // Highest first: this context reads the extension list RPCS3's
+        // capability check is built from, so asking for 4.3 here hides direct
+        // state access no matter what the frontend's own context is.
+        for (const auto& v : kSharedContextVersions)
         {
-            std::lock_guard<std::mutex> lock(s_egl_context_mutex);
-            s_shared_egl_contexts.push_back(ctx);
-            m_context = reinterpret_cast<draw_context_t>(ctx);
-            return m_context;
+            const EGLint attribs[] = {
+                EGL_CONTEXT_MAJOR_VERSION, v.major,
+                EGL_CONTEXT_MINOR_VERSION, v.minor,
+                EGL_CONTEXT_OPENGL_PROFILE_MASK, EGL_CONTEXT_OPENGL_CORE_PROFILE_BIT,
+                EGL_NONE
+            };
+
+            if (EGLContext ctx = eglCreateContext(s_egl_display, s_egl_config, s_egl_main_context, attribs);
+                ctx != EGL_NO_CONTEXT)
+            {
+                libretro_video_log.notice("EGL: RSX context created at GL %d.%d.", v.major, v.minor);
+                std::lock_guard<std::mutex> lock(s_egl_context_mutex);
+                s_shared_egl_contexts.push_back(ctx);
+                m_context = reinterpret_cast<draw_context_t>(ctx);
+                return m_context;
+            }
         }
 
-        libretro_video_log.error("EGL: eglCreateContext failed (0x%x); falling back to a context-less RSX thread.",
-            eglGetError());
+        libretro_video_log.error("EGL: eglCreateContext failed for every version (0x%x); falling back to a "
+                                 "context-less RSX thread.", eglGetError());
+    }
+    else if (s_context_backend == shared_context_backend::glx && s_glx_have_config)
+    {
+        // Held across the whole thing, not just the bookkeeping: the X error
+        // handler is process-wide, and this is called from the RSX thread and
+        // from every pipe compiler thread. Two of them swapping the handler at
+        // once would lose the answer to "did the server accept this context".
+        std::lock_guard<std::mutex> lock(s_glx_context_mutex);
+
+        for (const auto& v : kSharedContextVersions)
+        {
+            const int attribs[] = {
+                GLX_CONTEXT_MAJOR_VERSION_ARB, v.major,
+                GLX_CONTEXT_MINOR_VERSION_ARB, v.minor,
+                GLX_CONTEXT_PROFILE_MASK_ARB, GLX_CONTEXT_CORE_PROFILE_BIT_ARB,
+                None
+            };
+
+            s_glx_error_flag = false;
+            XErrorHandler old_handler = XSetErrorHandler(glx_error_handler);
+            GLXContext ctx = s_glXCreateContextAttribsARB(s_glx_display, s_glx_fbconfig, s_glx_main_context,
+                True, attribs);
+            XSync(s_glx_display, False);
+            XSetErrorHandler(old_handler);
+
+            if (ctx && !s_glx_error_flag)
+            {
+                const int pbuffer_attribs[] = { GLX_PBUFFER_WIDTH, 1, GLX_PBUFFER_HEIGHT, 1, None };
+                s_glx_error_flag = false;
+                old_handler = XSetErrorHandler(glx_error_handler);
+                GLXPbuffer pbuffer = glXCreatePbuffer(s_glx_display, s_glx_fbconfig, pbuffer_attribs);
+                XSync(s_glx_display, False);
+                XSetErrorHandler(old_handler);
+
+                if (!pbuffer || s_glx_error_flag)
+                {
+                    libretro_video_log.error("GLX: the context was created but its 1x1 pbuffer was not; there is "
+                                             "nothing to make it current on.");
+                    glXDestroyContext(s_glx_display, ctx);
+                    break;
+                }
+
+                libretro_video_log.notice("GLX: context created at GL %d.%d.", v.major, v.minor);
+                s_shared_glx_contexts.push_back({ ctx, pbuffer });
+                m_context = reinterpret_cast<draw_context_t>(ctx);
+                return m_context;
+            }
+
+            if (ctx)
+                glXDestroyContext(s_glx_display, ctx);
+        }
+
+        libretro_video_log.error("GLX: could not create a shared context at any version; falling back to a "
+                                 "context-less RSX thread.");
     }
 
     m_context = reinterpret_cast<draw_context_t>(1);
@@ -682,7 +955,42 @@ void LibretroGSFrame::set_current(draw_context_t ctx)
     }
 #else
     // The dummy handle from the fallback path is not a real context.
-    if (!ctx || ctx == reinterpret_cast<draw_context_t>(1) || s_egl_display == EGL_NO_DISPLAY)
+    if (!ctx || ctx == reinterpret_cast<draw_context_t>(1))
+        return;
+
+    if (s_context_backend == shared_context_backend::glx)
+    {
+        GLXContext glx_ctx = reinterpret_cast<GLXContext>(ctx);
+        GLXPbuffer pbuffer = 0;
+        {
+            std::lock_guard<std::mutex> lock(s_glx_context_mutex);
+            for (const auto& entry : s_shared_glx_contexts)
+            {
+                if (entry.ctx == glx_ctx)
+                {
+                    pbuffer = entry.pbuffer;
+                    break;
+                }
+            }
+        }
+
+        if (!pbuffer)
+        {
+            libretro_video_log.error("GLX: no drawable for this context; it was never created here.");
+            return;
+        }
+
+        // Current on this context's own 1x1 pbuffer rather than the frontend's
+        // window, which belongs to the video thread. RSX draws into FBOs, so
+        // what the drawable is never matters.
+        if (!glXMakeContextCurrent(s_glx_display, pbuffer, pbuffer, glx_ctx))
+        {
+            libretro_video_log.error("GLX: glXMakeContextCurrent failed.");
+        }
+        return;
+    }
+
+    if (s_egl_display == EGL_NO_DISPLAY)
         return;
 
     eglBindAPI(EGL_OPENGL_API);
