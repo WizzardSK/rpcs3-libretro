@@ -86,8 +86,72 @@ static std::vector<EGLContext> s_shared_egl_contexts;
 static std::vector<EGLContext> s_retired_egl_contexts;
 static std::mutex s_egl_context_mutex;
 
+// Every GLX 1.3 entry point has to be called through a pointer of our own, and
+// this is not defensiveness - it is the only way that works here. This file
+// includes RPCS3's OpenGL.h, which is GLEW, and GLEW's glxew.h #defines the
+// whole GLX 1.3 API to its own function pointers (glXGetCurrentDisplay becomes
+// GLXEW_GET_FUN(__glewXGetCurrentDisplay), and so on). Those pointers are null
+// until glxewInit() has run, and nothing in this core runs it - so the call
+// that looks like glXGetCurrentDisplay() is a jump to address 0. That is
+// exactly the crash the first GLX build produced: "Segfault executing location
+// 0000000000000000", on the frontend's thread, in context_reset.
+//
+// The GLX 1.2 functions are real symbols and can be called by name; anything
+// 1.3 or newer goes through here, resolved with glXGetProcAddressARB, which is
+// itself a real symbol and works before any context is current.
 using glXCreateContextAttribsARB_t = GLXContext (*)(Display*, GLXFBConfig, GLXContext, Bool, const int*);
+using glXGetCurrentDisplay_t = Display* (*)();
+using glXQueryContext_t = int (*)(Display*, GLXContext, int, int*);
+using glXChooseFBConfig_t = GLXFBConfig* (*)(Display*, int, const int*, int*);
+using glXGetFBConfigAttrib_t = int (*)(Display*, GLXFBConfig, int, int*);
+using glXCreatePbuffer_t = GLXPbuffer (*)(Display*, GLXFBConfig, const int*);
+using glXDestroyPbuffer_t = void (*)(Display*, GLXPbuffer);
+using glXMakeContextCurrent_t = Bool (*)(Display*, GLXDrawable, GLXDrawable, GLXContext);
+
 static glXCreateContextAttribsARB_t s_glXCreateContextAttribsARB = nullptr;
+static glXGetCurrentDisplay_t s_glXGetCurrentDisplay = nullptr;
+static glXQueryContext_t s_glXQueryContext = nullptr;
+static glXChooseFBConfig_t s_glXChooseFBConfig = nullptr;
+static glXGetFBConfigAttrib_t s_glXGetFBConfigAttrib = nullptr;
+static glXCreatePbuffer_t s_glXCreatePbuffer = nullptr;
+static glXDestroyPbuffer_t s_glXDestroyPbuffer = nullptr;
+static glXMakeContextCurrent_t s_glXMakeContextCurrent = nullptr;
+
+#endif
+
+LOG_CHANNEL(libretro_video_log, "LibretroVideo");
+
+#if defined(__unix__) && !defined(__APPLE__)
+template <typename T>
+static bool glx_resolve(T& fn, const char* name)
+{
+	fn = reinterpret_cast<T>(glXGetProcAddressARB(reinterpret_cast<const GLubyte*>(name)));
+	if (!fn)
+		libretro_video_log.error("GLX: %s is missing from this GLX implementation.", name);
+	return fn != nullptr;
+}
+
+// Resolves the set once. Everything here is GLX 1.3, which has been the
+// baseline since 1998 - a failure means something is very wrong with the GLX
+// on this machine, and the caller falls back to a context-less RSX thread with
+// the reason in the log rather than jumping through a null pointer.
+static bool glx_resolve_entry_points()
+{
+	static int s_resolved = -1;
+	if (s_resolved >= 0)
+		return s_resolved != 0;
+
+	bool ok = true;
+	ok &= glx_resolve(s_glXGetCurrentDisplay, "glXGetCurrentDisplay");
+	ok &= glx_resolve(s_glXQueryContext, "glXQueryContext");
+	ok &= glx_resolve(s_glXChooseFBConfig, "glXChooseFBConfig");
+	ok &= glx_resolve(s_glXGetFBConfigAttrib, "glXGetFBConfigAttrib");
+	ok &= glx_resolve(s_glXCreatePbuffer, "glXCreatePbuffer");
+	ok &= glx_resolve(s_glXDestroyPbuffer, "glXDestroyPbuffer");
+	ok &= glx_resolve(s_glXMakeContextCurrent, "glXMakeContextCurrent");
+	s_resolved = ok ? 1 : 0;
+	return ok;
+}
 
 static Display* s_glx_display = nullptr;
 static GLXContext s_glx_main_context = nullptr;
@@ -120,8 +184,6 @@ static int glx_error_handler(Display*, XErrorEvent*)
 }
 
 #endif
-
-LOG_CHANNEL(libretro_video_log, "LibretroVideo");
 
 static retro_hw_get_current_framebuffer_t s_get_current_framebuffer = nullptr;
 static retro_hw_get_proc_address_t s_get_proc_address = nullptr;
@@ -450,7 +512,10 @@ static void precreate_shared_contexts(int count)
 // GLX context current. The X11 half of what the EGL block below does.
 static void libretro_glx_init()
 {
-    s_glx_display = glXGetCurrentDisplay();
+    if (!glx_resolve_entry_points())
+        return;
+
+    s_glx_display = s_glXGetCurrentDisplay();
     s_glx_main_context = glXGetCurrentContext();
 
     if (!s_glx_display || !s_glx_main_context)
@@ -470,23 +535,23 @@ static void libretro_glx_init()
 
     int screen = DefaultScreen(s_glx_display);
     int screen_of_context = 0;
-    if (glXQueryContext(s_glx_display, s_glx_main_context, GLX_SCREEN, &screen_of_context) == Success)
+    if (s_glXQueryContext(s_glx_display, s_glx_main_context, GLX_SCREEN, &screen_of_context) == Success)
         screen = screen_of_context;
 
     // The frontend's own config first, so the shared context matches the one
     // its objects were made on. It is only usable here if it can back a
     // pbuffer, which a window config does not have to.
     int fbconfig_id = 0;
-    if (glXQueryContext(s_glx_display, s_glx_main_context, GLX_FBCONFIG_ID, &fbconfig_id) == Success && fbconfig_id)
+    if (s_glXQueryContext(s_glx_display, s_glx_main_context, GLX_FBCONFIG_ID, &fbconfig_id) == Success && fbconfig_id)
     {
         const int cfg_attribs[] = { GLX_FBCONFIG_ID, fbconfig_id, None };
         int num_configs = 0;
-        if (GLXFBConfig* cfgs = glXChooseFBConfig(s_glx_display, screen, cfg_attribs, &num_configs); cfgs)
+        if (GLXFBConfig* cfgs = s_glXChooseFBConfig(s_glx_display, screen, cfg_attribs, &num_configs); cfgs)
         {
             if (num_configs > 0)
             {
                 int drawable_type = 0;
-                glXGetFBConfigAttrib(s_glx_display, cfgs[0], GLX_DRAWABLE_TYPE, &drawable_type);
+                s_glXGetFBConfigAttrib(s_glx_display, cfgs[0], GLX_DRAWABLE_TYPE, &drawable_type);
                 if (drawable_type & GLX_PBUFFER_BIT)
                 {
                     s_glx_fbconfig = cfgs[0];
@@ -508,7 +573,7 @@ static void libretro_glx_init()
             None
         };
         int num_configs = 0;
-        if (GLXFBConfig* cfgs = glXChooseFBConfig(s_glx_display, screen, cfg_attribs, &num_configs); cfgs)
+        if (GLXFBConfig* cfgs = s_glXChooseFBConfig(s_glx_display, screen, cfg_attribs, &num_configs); cfgs)
         {
             if (num_configs > 0)
             {
@@ -665,8 +730,8 @@ void libretro_video_deinit()
         {
             const auto destroy = [](const glx_thread_context& entry)
             {
-                if (entry.pbuffer)
-                    glXDestroyPbuffer(s_glx_display, entry.pbuffer);
+                if (entry.pbuffer && s_glXDestroyPbuffer)
+                    s_glXDestroyPbuffer(s_glx_display, entry.pbuffer);
                 if (entry.ctx)
                     glXDestroyContext(s_glx_display, entry.ctx);
             };
@@ -914,7 +979,7 @@ draw_context_t LibretroGSFrame::make_context()
                 const int pbuffer_attribs[] = { GLX_PBUFFER_WIDTH, 1, GLX_PBUFFER_HEIGHT, 1, None };
                 s_glx_error_flag = false;
                 old_handler = XSetErrorHandler(glx_error_handler);
-                GLXPbuffer pbuffer = glXCreatePbuffer(s_glx_display, s_glx_fbconfig, pbuffer_attribs);
+                GLXPbuffer pbuffer = s_glXCreatePbuffer(s_glx_display, s_glx_fbconfig, pbuffer_attribs);
                 XSync(s_glx_display, False);
                 XSetErrorHandler(old_handler);
 
@@ -983,7 +1048,7 @@ void LibretroGSFrame::set_current(draw_context_t ctx)
         // Current on this context's own 1x1 pbuffer rather than the frontend's
         // window, which belongs to the video thread. RSX draws into FBOs, so
         // what the drawable is never matters.
-        if (!glXMakeContextCurrent(s_glx_display, pbuffer, pbuffer, glx_ctx))
+        if (!s_glXMakeContextCurrent(s_glx_display, pbuffer, pbuffer, glx_ctx))
         {
             libretro_video_log.error("GLX: glXMakeContextCurrent failed.");
         }
