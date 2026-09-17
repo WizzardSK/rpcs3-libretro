@@ -42,6 +42,13 @@ fi
 
 export LINKER_FLAG="-fuse-ld=${LINKER}"
 
+# Input and audio come from the frontend, so the handlers that would bring their
+# own do not belong here - and each of them is a library the core would then
+# name in NEEDED. libSDL3, libopenal and libevdev are all absent from the
+# freedesktop runtime the RetroArch flatpak is built on, which is why a core
+# that links them does not load there at all (reported on Bazzite). SDL goes
+# with USE_SDL, FAudio with it (FAudio needs SDL3), libevdev with USE_LIBEVDEV,
+# and OpenAL through BUILD_LIBRETRO_CORE_ONLY in 3rdparty/CMakeLists.txt.
 cmake ..                                               \
     -DCMAKE_BUILD_TYPE=Release                         \
     -DBUILD_LIBRETRO_CORE_ONLY=ON                      \
@@ -51,8 +58,9 @@ cmake ..                                               \
     -DCMAKE_MODULE_LINKER_FLAGS="${LINKER_FLAG}"       \
     -DCMAKE_SHARED_LINKER_FLAGS="${LINKER_FLAG}"       \
     -DUSE_SYSTEM_CURL=ON                               \
-    -DUSE_SDL=ON                                       \
-    -DUSE_SYSTEM_SDL=ON                                \
+    -DUSE_SDL=OFF                                      \
+    -DUSE_FAUDIO=OFF                                   \
+    -DUSE_LIBEVDEV=OFF                                 \
     -DUSE_SYSTEM_FFMPEG=OFF                            \
     -DUSE_SYSTEM_OPENCV=ON                             \
     -DUSE_DISCORD_RPC=OFF                              \

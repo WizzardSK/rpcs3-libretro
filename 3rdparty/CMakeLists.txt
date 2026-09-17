@@ -107,6 +107,10 @@ add_subdirectory(yaml-cpp)
 
 # OpenGL
 
+# GLU is not linked: there is not a single glu* call in the tree, and on a
+# libretro core it is one more NEEDED entry a frontend's sandbox has to provide.
+# That one is real - the RetroArch flatpak's runtime does not carry libGLU, so a
+# core that names it does not load there at all.
 if (NOT ANDROID)
 	find_package(OpenGL REQUIRED OPTIONAL_COMPONENTS EGL)
 
@@ -120,9 +124,9 @@ if (NOT ANDROID)
 			target_link_libraries(3rdparty_opengl INTERFACE dxgi.lib d2d1.lib dwrite.lib)
 		endif()
 	elseif(APPLE)
-		target_link_libraries(3rdparty_opengl INTERFACE OpenGL::GL OpenGL::GLU)
+		target_link_libraries(3rdparty_opengl INTERFACE OpenGL::GL)
 	else()
-		target_link_libraries(3rdparty_opengl INTERFACE OpenGL::GL OpenGL::GLU OpenGL::GLX)
+		target_link_libraries(3rdparty_opengl INTERFACE OpenGL::GL OpenGL::GLX)
 	endif()
 else()
 	add_library(3rdparty_opengl INTERFACE)
@@ -244,7 +248,11 @@ if(USE_SDL)
 endif()
 
 # OpenAL
-if (NOT ANDROID)
+# OpenAL is the PS3 microphone backend (cellMic) and nothing else. A libretro
+# core has no business opening a capture device - the frontend owns audio - and
+# linking libopenal costs a NEEDED entry that a flatpak RetroArch cannot satisfy,
+# so the core takes the same WITHOUT_OPENAL path Android already takes.
+if (NOT ANDROID AND NOT BUILD_LIBRETRO_CORE_ONLY)
 	add_subdirectory(OpenAL EXCLUDE_FROM_ALL)
 else()
 	add_library(3rdparty_openal INTERFACE)
