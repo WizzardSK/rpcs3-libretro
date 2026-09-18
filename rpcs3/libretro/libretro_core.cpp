@@ -1671,12 +1671,22 @@ bool retro_load_game(const struct retro_game_info* game)
         // Update game_path to the installed EBOOT.BIN for booting
         game_path = installed_eboot;
     }
-    // Check if this is an ISO file - RPCS3 does NOT support raw ISOs
+    // An ISO, which the emulator cannot boot: a PS3 disc image is encrypted,
+    // and RPCS3 works from a decrypted disc folder or an installed title, not
+    // from the image. That was already true here - the load simply returned
+    // false and said nothing, so the frontend reported "failed to load content"
+    // and the reason was left to be guessed at, usually as a slow or unreadable
+    // file. Say it instead, in the log and on screen.
     else if (game_path.size() >= 4 &&
              (game_path.substr(game_path.size() - 4) == ".iso" ||
               game_path.substr(game_path.size() - 4) == ".ISO"))
     {
-
+        if (log_cb)
+            log_cb(RETRO_LOG_ERROR,
+                "RPCS3: %s is a disc image, and a PS3 disc image is encrypted. Dump the disc to a folder "
+                "(PS3_GAME/USRDIR/EBOOT.BIN) or install the title, and load that instead.\n",
+                game_path.c_str());
+        libretro_show_message("PS3 disc images cannot be booted - load the dumped game folder or EBOOT.BIN", 500);
         return false;
     }
     // Check if EBOOT.BIN was passed directly - need to find parent game folder
