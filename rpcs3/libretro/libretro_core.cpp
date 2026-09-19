@@ -46,6 +46,7 @@
 #include "libretro_firmware.h"
 #include "libretro_pad_handler.h"
 #include "libretro_vfs.h"
+#include "Loader/ISO.h"
 
 #include <clocale>
 #include <chrono>
@@ -1671,23 +1672,34 @@ bool retro_load_game(const struct retro_game_info* game)
         // Update game_path to the installed EBOOT.BIN for booting
         game_path = installed_eboot;
     }
-    // An ISO, which the emulator cannot boot: a PS3 disc image is encrypted,
-    // and RPCS3 works from a decrypted disc folder or an installed title, not
-    // from the image. That was already true here - the load simply returned
-    // false and said nothing, so the frontend reported "failed to load content"
-    // and the reason was left to be guessed at, usually as a slow or unreadable
-    // file. Say it instead, in the log and on screen.
-    else if (game_path.size() >= 4 &&
-             (game_path.substr(game_path.size() - 4) == ".iso" ||
-              game_path.substr(game_path.size() - 4) == ".ISO"))
+    // A disc image. The ISO reader serves the volume inside it as an fs::
+    // virtual device, so the boot path is taken from there and everything
+    // below reads the image through the device. An encrypted image needs its
+    // redump key in data/redump/ - the reader looks for it and says so when it
+    // is missing.
+    else if (is_iso_file(game_path))
     {
+        load_iso(game_path);
+
+        const std::string disc_root = iso_device::virtual_device_name + "/";
+        const std::string eboot = disc_root + "PS3_GAME/USRDIR/EBOOT.BIN";
+
+        if (!fs::is_file(eboot))
+        {
+            if (log_cb)
+                log_cb(RETRO_LOG_ERROR,
+                    "RPCS3: %s could not be opened as a PS3 disc: no PS3_GAME/USRDIR/EBOOT.BIN in the volume. "
+                    "An encrypted image needs its .dkey in data/redump/.\n",
+                    game_path.c_str());
+            libretro_show_message("This disc image could not be opened - an encrypted one needs its redump key", 500);
+            unload_iso();
+            return false;
+        }
+
         if (log_cb)
-            log_cb(RETRO_LOG_ERROR,
-                "RPCS3: %s is a disc image, and a PS3 disc image is encrypted. Dump the disc to a folder "
-                "(PS3_GAME/USRDIR/EBOOT.BIN) or install the title, and load that instead.\n",
-                game_path.c_str());
-        libretro_show_message("PS3 disc images cannot be booted - load the dumped game folder or EBOOT.BIN", 500);
-        return false;
+            log_cb(RETRO_LOG_INFO, "RPCS3: booting the disc image as %s\n", eboot.c_str());
+
+        game_path = eboot;
     }
     // Check if EBOOT.BIN was passed directly - need to find parent game folder
     else if (game_path.size() >= 9)
@@ -2015,6 +2027,9 @@ void retro_unload_game(void)
         Emu.GracefulShutdown(false, false);
         game_loaded = false;
         game_path.clear();
+
+        // Drops the disc device, and with it the handle on the image.
+        unload_iso();
     }
 
 }

@@ -159,6 +159,11 @@ namespace rpcs3::utils
 		return g_cfg_vfs.get(g_cfg_vfs.dev_hdd0, get_emu_dir());
 	}
 
+	std::string get_redump_key_dir()
+	{
+		return fs::get_config_dir() + "data/redump/";
+	}
+
 	std::string get_hdd1_dir()
 	{
 		return g_cfg_vfs.get(g_cfg_vfs.dev_hdd1, get_emu_dir());

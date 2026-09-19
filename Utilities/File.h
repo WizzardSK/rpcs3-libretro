@@ -155,7 +155,7 @@ namespace fs
 	// Virtual device
 	struct device_base
 	{
-		const std::string fs_prefix;
+		std::string fs_prefix;
 
 		device_base();
 		virtual ~device_base();
@@ -213,6 +213,12 @@ namespace fs
 	// Get filesystem information
 	bool statfs(const std::string& path, device_stat& info);
 
+	// Check whether the path points at a raw optical device
+	bool is_optical_raw_device(const std::string& path);
+
+	// Check whether the path is an optical drive, and give back the raw device for it
+	bool get_optical_raw_device(const std::string& path, std::string* raw_device = nullptr);
+
 	// Delete empty directory
 	bool remove_dir(const std::string& path);
 
@@ -252,6 +258,9 @@ namespace fs
 		file() = default;
 
 		// Open file with specified mode
+		// Adopt an already-open file, which is how an ISO's file becomes an fs::file
+		file(std::unique_ptr<file_base>&& ptr) : m_file(std::move(ptr)) {}
+
 		explicit file(const std::string& path, bs_t<open_mode> mode = ::fs::read);
 
 		static file from_native_handle(native_handle handle);
@@ -678,6 +687,7 @@ namespace fs
 		notempty,
 		readonly,
 		isdir,
+		notdir,
 		toolong,
 		nospace,
 		xdev,

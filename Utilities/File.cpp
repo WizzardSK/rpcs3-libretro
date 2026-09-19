@@ -168,6 +168,7 @@ static fs::error to_error(int e)
 	case EINVAL: return fs::error::inval;
 	case EACCES: return fs::error::acces;
 	case ENOTEMPTY: return fs::error::notempty;
+	case ENOTDIR: return fs::error::notdir;
 	case EROFS: return fs::error::readonly;
 	case EISDIR: return fs::error::isdir;
 	case ENOSPC: return fs::error::nospace;
@@ -1076,6 +1077,32 @@ bool fs::is_symlink(const std::string& path)
 	}
 
 	return true;
+}
+
+bool fs::is_optical_raw_device([[maybe_unused]] const std::string& path)
+{
+#ifdef _WIN32
+	if (path.starts_with("\\\\.\\"))
+	{
+		return true;
+	}
+#endif
+	return false;
+}
+
+bool fs::get_optical_raw_device(const std::string& path, std::string* raw_device)
+{
+	if (fs::is_optical_raw_device(path))
+	{
+		if (raw_device)
+		{
+			*raw_device = path;
+		}
+
+		return true;
+	}
+
+	return false;
 }
 
 bool fs::statfs(const std::string& path, fs::device_stat& info)
@@ -2804,6 +2831,7 @@ void fmt_class_string<fs::error>::format(std::string& out, u64 arg)
 		case fs::error::notempty: return "Not empty";
 		case fs::error::readonly: return "Read only";
 		case fs::error::isdir: return "Is a directory";
+		case fs::error::notdir: return "Not a directory";
 		case fs::error::toolong: return "Path too long";
 		case fs::error::nospace: return "Not enough space on the device";
 		case fs::error::xdev: return "Device mismatch";
