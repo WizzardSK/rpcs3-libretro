@@ -2004,15 +2004,21 @@ game_boot_result Emulator::Load(const std::string& title_id, bool is_disc_patch,
 			{
 				sys_log.notice("Found INSDIR: %s", ins_dir);
 
+				usz entry_count = 0;
+
 				for (auto&& entry : fs::dir{ins_dir})
 				{
 					const std::string pkg_file = ins_dir + entry.name;
+
+					entry_count++;
 
 					if (!entry.is_directory && entry.name.ends_with(".PKG"))
 					{
 						pkgs.push_back(pkg_file);
 					}
 				}
+
+				sys_log.notice("INSDIR: %d entries, %d package(s)", entry_count, pkgs.size());
 			}
 
 			if (!lock_file && !pkg_dir.empty())
@@ -2074,6 +2080,8 @@ game_boot_result Emulator::Load(const std::string& title_id, bool is_disc_patch,
 				// Do it after installation to prevent false positives when RPCS3 closed in the middle of the operation
 				lock_file.open(lock_file_path, fs::read + fs::create + fs::excl);
 			}
+
+			sys_log.notice("Disc package check done (%d package(s))", pkgs.size());
 		}
 
 		// Check firmware version
@@ -2130,6 +2138,12 @@ game_boot_result Emulator::Load(const std::string& title_id, bool is_disc_patch,
 			};
 		}
 
+		// Everything from the INSDIR scan to here logs only when something goes
+		// wrong, which leaves a long silent stretch in a boot that stops inside
+		// it - and reading the executable out of a disc image is the expensive
+		// part of it. Say where we are.
+		sys_log.notice("Opening executable: %s", elf_path);
+
 		fs::file elf_file(elf_path);
 
 		if (!elf_file)
@@ -2164,7 +2178,9 @@ game_boot_result Emulator::Load(const std::string& title_id, bool is_disc_patch,
 		{
 			// Decrypt SELF
 			had_been_decrypted = true;
+			sys_log.notice("Decrypting SELF: %s (%d bytes)", elf_path, elf_file.size());
 			elf_file = decrypt_self(elf_file, klic.empty() ? nullptr : reinterpret_cast<u8*>(&klic[0]), &g_ps3_process_info.self_info);
+			sys_log.notice("SELF decrypted");
 		}
 		else
 		{

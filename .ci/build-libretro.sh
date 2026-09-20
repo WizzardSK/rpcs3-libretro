@@ -78,6 +78,12 @@ test -f "$CORE"
 
 mkdir -p "$ARTDIR"
 cp "$CORE" "$ARTDIR/"
-# So the release says what it is without anyone having to open it.
-"${STRIP_BINARY:-strip}" --strip-unneeded "$ARTDIR/rpcs3_libretro.so" || true
+# Stripped, so the release is a download rather than a debug build. A tester
+# chasing a hang needs the opposite - a backtrace off a stripped core is 26
+# frames of "?? ()" - so KEEP_SYMBOLS=1 leaves the symbol table in.
+if [ "${KEEP_SYMBOLS:-0}" = "1" ]; then
+    echo "KEEP_SYMBOLS=1: leaving the symbol table in the core"
+else
+    "${STRIP_BINARY:-strip}" --strip-unneeded "$ARTDIR/rpcs3_libretro.so" || true
+fi
 ls -la "$ARTDIR"

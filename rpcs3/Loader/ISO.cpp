@@ -1006,6 +1006,17 @@ iso_archive::iso_archive(const std::string& path)
 	{
 		const auto descriptor_start = iso_file.pos();
 
+		// Nothing here stops at the end of the image: a read past it returns
+		// zero bytes and leaves the byte below at whatever it was, and the seek
+		// at the bottom succeeds, so an image whose descriptor set is not
+		// terminated - truncated, or not the ISO it claims to be - spun this
+		// loop forever at 100% on whichever thread asked to open it.
+		if (descriptor_start + ISO_SECTOR_SIZE > iso_file.size())
+		{
+			iso_log.error("iso_archive: Volume descriptors run past the end of '%s' with no terminator", m_path);
+			break;
+		}
+
 		descriptor_type = iso_file.read<u8>();
 
 		// 1 = primary vol descriptor, 2 = joliet SVD

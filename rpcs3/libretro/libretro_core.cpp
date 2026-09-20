@@ -2204,6 +2204,23 @@ static void init_emu_callbacks()
         }
     };
 
+    callbacks.on_install_pkgs = [](const std::vector<std::string>& pkgs) -> bool
+    {
+        // A disc that carries packages in PS3_GAME/INSDIR asks the frontend to
+        // install them before the game runs. There is no package installer here
+        // and no UI to run one in, so the boot goes on without them - which is
+        // what the disc itself does when the data is already installed, and is
+        // in any case better than what this was until now: an unset
+        // std::function, i.e. a bad_function_call the moment a disc had one.
+        for (const std::string& pkg : pkgs)
+        {
+            if (log_cb)
+                log_cb(RETRO_LOG_WARN, "RPCS3: skipping package %s - this core has no installer\n", pkg.c_str());
+        }
+
+        return true;
+    };
+
     callbacks.try_to_quit = [](bool force_quit, std::function<void()> on_exit) -> bool
     {
         if (force_quit && on_exit)

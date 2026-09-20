@@ -14,6 +14,10 @@ on:
         description: 'Publish the cores as a release'
         type: boolean
         default: true
+      keep_symbols:
+        description: 'Leave the symbol table in the core (for backtraces)'
+        type: boolean
+        default: false
 
 concurrency:
   group: ${{ github.ref }}-libretro
@@ -40,6 +44,9 @@ jobs:
       CCACHE_DIR: ${{ github.workspace }}/ccache
       ARTDIR: "/root/artifacts"
       COMPILER: clang
+      # Passed into the container through .ci/docker.env; the build script
+      # skips its strip when this is 1, so gdb has names to walk.
+      KEEP_SYMBOLS: ${{ inputs.keep_symbols && '1' || '0' }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@main
