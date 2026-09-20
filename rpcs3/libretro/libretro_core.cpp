@@ -847,9 +847,9 @@ void retro_set_environment(retro_environment_t cb)
         // ==================== GPU OPTIONS ====================
         {
             "rpcs3_renderer", "Renderer", NULL,
-            "Graphics renderer. OpenGL is recommended for libretro.",
+            "OpenGL draws into the frontend's context. Vulkan has none to draw into here, so it finishes each frame into memory and the frontend takes the pixels - slower, but it is the one that works where OpenGL is missing or broken.",
             NULL, "gpu",
-            { {"opengl", "OpenGL"}, {"null", "Null (No Video)"}, {NULL, NULL} },
+            { {"opengl", "OpenGL"}, {"vulkan", "Vulkan (through memory)"}, {"null", "Null (No Video)"}, {NULL, NULL} },
             "opengl"
         },
         {
@@ -1248,7 +1248,7 @@ void retro_set_environment(retro_environment_t cb)
             { "rpcs3_ppu_decoder", "PPU Decoder; llvm|interpreter" },
             { "rpcs3_spu_decoder", "SPU Decoder; llvm|asmjit|interpreter" },
             { "rpcs3_spu_block_size", "SPU Block Size; safe|mega|giga" },
-            { "rpcs3_renderer", "Renderer; opengl|null" },
+            { "rpcs3_renderer", "Renderer; opengl|vulkan|null" },
             { "rpcs3_resolution_scale", "Resolution Scale; 25|30|35|40|45|50|55|60|65|70|75|80|85|90|95|100|105|110|115|120|125|130|135|140|145|150|175|200|250|300" },
             { "rpcs3_frame_limit", "Frame Limit; auto|off|30|50|60|120|144|240" },
             { "rpcs3_shader_mode", "Shader Mode; async|async_recompiler|sync" },
@@ -1480,9 +1480,29 @@ void retro_init(void)
 
     // Set up hardware rendering (OpenGL context). Skipped without one: there is
     // no context to reset, so the boot below must not wait for one either.
+    //
+    // The renderer option decides whether one is asked for. OpenGL draws into
+    // the frontend's context; Vulkan has none to draw into here, so it finishes
+    // each frame into memory and retro_run hands the pixels over - the same
+    // path Android and the Apple embedded systems already take.
+#ifdef HAVE_VULKAN
+    if (get_option_value("rpcs3_renderer", "opengl") == "vulkan")
+        g_libretro_software_present = true;
+#else
+    if (get_option_value("rpcs3_renderer", "opengl") == "vulkan" && log_cb)
+        log_cb(RETRO_LOG_WARN, "RPCS3: this core was built without Vulkan - using OpenGL\n");
+#endif
+
     if (!g_libretro_software_present && !setup_hw_render())
     {
+        // Every context this asked for was refused. Carrying on as if one had
+        // been given is how a frontend with no OpenGL ends up with a core that
+        // waits forever for a reset that never comes; take the path that needs
+        // no context instead.
+        if (log_cb)
+            log_cb(RETRO_LOG_WARN, "RPCS3: the frontend gave no OpenGL context - drawing through memory instead\n");
 
+        g_libretro_software_present = true;
     }
 
     // Only the software path cares: with a hardware context the frontend takes
@@ -1785,7 +1805,11 @@ bool retro_load_game(const struct retro_game_info* game)
     // OpenGL when there is a context to draw into, and the boot then waits for
     // context_reset(). Without one it has to be Vulkan: RPCS3's Vulkan backend
     // can finish a frame into memory, which is what the software path reads.
-    if (g_libretro_software_present)
+    // Null is the option saying not to draw at all, which is worth having when
+    // the question is whether the emulator runs rather than what it looks like.
+    if (get_option_value("rpcs3_renderer", "opengl") == "null")
+        g_cfg.video.renderer.set(video_renderer::null);
+    else if (g_libretro_software_present)
         g_cfg.video.renderer.set(video_renderer::vulkan);
     else
         g_cfg.video.renderer.set(video_renderer::opengl);
