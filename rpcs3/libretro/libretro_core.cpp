@@ -1345,10 +1345,13 @@ void retro_get_system_info(struct retro_system_info* info)
     info->library_name = "RPCS3";
     info->library_version = "0.0.1";
     info->valid_extensions = "bin|self|elf|pkg|iso";
-    // VFS support: Allow both fullpath (native) and VFS-based loading
-    // RPCS3 still works best with full paths for directory structures,
-    // but VFS enables loading from archives and virtual filesystems
-    info->need_fullpath = false;
+    // The path, never the bytes. retro_load_game() reads game->path and hands
+    // it to RPCS3, which opens the file itself - it never looks at game->data.
+    // With need_fullpath false the frontend loads the whole file into memory
+    // first and that buffer is then dropped unread, which on a disc image is
+    // the size of the image: a 20 GB ISO showed up as 20 GB of private memory
+    // in RetroArch, read off the user's NAS for nothing.
+    info->need_fullpath = true;
     info->block_extract = false;
 }
 
