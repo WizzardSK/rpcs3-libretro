@@ -2134,19 +2134,51 @@ void retro_run(void)
     // Check if RSX has rendered a new frame since our last presentation
     const bool has_new_frame = libretro_has_new_frame();
 
+    // What the blit actually wrote. libretro_blit_to_frontend() copies the
+    // shared texture at its own size, so telling the frontend a fixed 1280x720
+    // is right only while the texture happens to be that - and when it is not,
+    // the frontend reads a rectangle that is not the one we drew: too small
+    // crops the image, too large leaves whatever was in the rest of the FBO,
+    // which is black.
+    const unsigned frame_width = static_cast<unsigned>(libretro_get_shared_texture_width());
+    const unsigned frame_height = static_cast<unsigned>(libretro_get_shared_texture_height());
+
+    // The frontend sized its window from retro_get_system_av_info(); if the
+    // emulator is drawing something else now, say so, or it keeps scaling to
+    // the old shape.
+    static unsigned s_last_reported_width = 0;
+    static unsigned s_last_reported_height = 0;
+
+    if (frame_width != s_last_reported_width || frame_height != s_last_reported_height)
+    {
+        s_last_reported_width = frame_width;
+        s_last_reported_height = frame_height;
+
+        struct retro_game_geometry geom = {};
+        geom.base_width = frame_width;
+        geom.base_height = frame_height;
+        geom.max_width = 3840;
+        geom.max_height = 2160;
+        geom.aspect_ratio = 16.0f / 9.0f;
+        environ_cb(RETRO_ENVIRONMENT_SET_GEOMETRY, &geom);
+
+        if (log_cb)
+            log_cb(RETRO_LOG_INFO, "RPCS3: presenting %ux%u\n", frame_width, frame_height);
+    }
+
     if (has_new_frame)
     {
         // New frame available - blit from RSX's shared texture to RetroArch's FBO, then present
         // CRITICAL: FBOs are NOT shared between GL contexts, so RSX renders to a shared texture,
         // and we blit that texture to RetroArch's actual FBO here on the main thread.
         libretro_blit_to_frontend();
-        video_cb(RETRO_HW_FRAME_BUFFER_VALID, 1280, 720, 0);
+        video_cb(RETRO_HW_FRAME_BUFFER_VALID, frame_width, frame_height, 0);
         libretro_mark_frame_presented();
     }
     else
     {
         // No new frame - tell RetroArch to reuse the previous frame (frame duping)
-        video_cb(NULL, 1280, 720, 0);
+        video_cb(NULL, frame_width, frame_height, 0);
     }
 }
 
