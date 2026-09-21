@@ -6,6 +6,8 @@
 #include "libretro.h"
 #include "libretro_core.h"
 
+#include <cstdlib>
+
 #include "Emu/System.h"
 #include "Emu/system_config.h"
 #include "Emu/Cell/Modules/cellMsgDialog.h"
@@ -448,12 +450,23 @@ static void libretro_apply_core_options()
 
     // Shader Mode
     std::string shader_mode = get_option_value("rpcs3_shader_mode", "async");
-    if (shader_mode == "async")
-        g_cfg.video.shadermode.set(shader_mode::async_recompiler);
-    else if (shader_mode == "async_recompiler")
+    if (shader_mode == "async_interpreter")
+        g_cfg.video.shadermode.set(shader_mode::async_with_interpreter);
+    else if (shader_mode == "interpreter")
+        g_cfg.video.shadermode.set(shader_mode::interpreter_only);
+    else if (shader_mode == "async" || shader_mode == "async_recompiler")
         g_cfg.video.shadermode.set(shader_mode::async_recompiler);
     else
         g_cfg.video.shadermode.set(shader_mode::recompiler);
+
+    // Shader compiler threads. 0 lets RPCS3 pick from the CPU it sees; a fixed
+    // count is here because that guess is made for a desktop where the emulator
+    // owns the machine, and inside a frontend it does not.
+    std::string shader_threads = get_option_value("rpcs3_shader_compiler_threads", "auto");
+    if (shader_threads == "auto")
+        g_cfg.video.shader_compiler_threads_count.set(0);
+    else
+        g_cfg.video.shader_compiler_threads_count.set(std::atoi(shader_threads.c_str()));
 
     // Anisotropic Filter
     std::string aniso = get_option_value("rpcs3_anisotropic_filter", "auto");
@@ -868,10 +881,17 @@ void retro_set_environment(retro_environment_t cb)
         },
         {
             "rpcs3_shader_mode", "Shader Mode", NULL,
-            "Shader compilation mode. Async recommended.",
+            "How shaders are compiled. Async compiles in the background but the frame that first needs a pipeline waits for it, which is what a long freeze on a new scene usually is. Async with Shader Interpreter draws that frame through the interpreter instead and swaps in the compiled shader when it is ready: no freeze, lower speed while it catches up.",
             NULL, "gpu",
-            { {"async", "Async (Recommended)"}, {"async_recompiler", "Async with Recompiler"}, {"sync", "Synchronous"}, {NULL, NULL} },
+            { {"async", "Async (Recommended)"}, {"async_interpreter", "Async with Shader Interpreter (no stalls)"}, {"async_recompiler", "Async with Recompiler"}, {"interpreter", "Shader Interpreter only"}, {"sync", "Synchronous"}, {NULL, NULL} },
             "async"
+        },
+        {
+            "rpcs3_shader_compiler_threads", "Shader Compiler Threads", NULL,
+            "How many threads compile shaders. Auto lets RPCS3 decide from the CPU it sees.",
+            NULL, "gpu",
+            { {"auto", "Auto"}, {"1", "1"}, {"2", "2"}, {"3", "3"}, {"4", "4"}, {"6", "6"}, {"8", "8"}, {NULL, NULL} },
+            "auto"
         },
         {
             "rpcs3_anisotropic_filter", "Anisotropic Filtering", NULL,
@@ -1251,7 +1271,8 @@ void retro_set_environment(retro_environment_t cb)
             { "rpcs3_renderer", "Renderer; opengl|vulkan|null" },
             { "rpcs3_resolution_scale", "Resolution Scale; 25|30|35|40|45|50|55|60|65|70|75|80|85|90|95|100|105|110|115|120|125|130|135|140|145|150|175|200|250|300" },
             { "rpcs3_frame_limit", "Frame Limit; auto|off|30|50|60|120|144|240" },
-            { "rpcs3_shader_mode", "Shader Mode; async|async_recompiler|sync" },
+            { "rpcs3_shader_mode", "Shader Mode; async|async_interpreter|async_recompiler|interpreter|sync" },
+            { "rpcs3_shader_compiler_threads", "Shader Compiler Threads; auto|1|2|3|4|6|8" },
             { "rpcs3_anisotropic_filter", "Anisotropic Filter; auto|1|2|4|8|16" },
             { "rpcs3_msaa", "Anti-Aliasing; disabled|2|4|8|16" },
             { "rpcs3_write_color_buffers", "Write Color Buffers; disabled|enabled" },
