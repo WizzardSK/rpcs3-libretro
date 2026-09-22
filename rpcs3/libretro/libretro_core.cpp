@@ -1543,6 +1543,28 @@ void retro_init(void)
 
 }
 
+// Emulator::Kill does not tear down on the calling thread - it hands the work to
+// a thread of its own, which stops the PPU, SPU and RSX threads, unmounts the
+// VFS and only then marks the state fully stopped. Anything that pulls the
+// ground out from under that (dropping the disc device, cleaning up globals)
+// has to wait for it. Bounded, because a core that hangs the frontend on unload
+// is worse than one that lets go early, and the timeout is worth saying out loud.
+static void wait_for_emulation_stop(const char* what)
+{
+    constexpr int kStopWaitMs = 5000;
+    int waited = 0;
+    while (!Emu.IsStopped(true) && waited < kStopWaitMs)
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(1));
+        waited++;
+    }
+    if (!Emu.IsStopped(true))
+        log_cb(RETRO_LOG_WARN, "RPCS3: emulation did not finish stopping in %d ms; %s anyway\n",
+            kStopWaitMs, what);
+    else if (waited > 0)
+        log_cb(RETRO_LOG_INFO, "RPCS3: emulation stopped after %d ms\n", waited);
+}
+
 void retro_deinit(void)
 {
     if (!core_initialized)
@@ -1555,6 +1577,9 @@ void retro_deinit(void)
     if (game_loaded)
     {
         Emu.GracefulShutdown(false, false);
+        // Same order as retro_unload_game: CleanUp tears down global state the
+        // stopping threads are still standing on.
+        wait_for_emulation_stop("cleaning up");
     }
 
     Emulator::CleanUp();
@@ -2087,21 +2112,7 @@ void retro_unload_game(void)
         // So wait for the stop to complete. Bounded, because a core that hangs
         // the frontend on unload is worse than one that lets go early, and the
         // timeout is worth saying out loud if it is ever hit.
-        {
-            constexpr int kStopWaitMs = 5000;
-            int waited = 0;
-            while (!Emu.IsStopped(true) && waited < kStopWaitMs)
-            {
-                std::this_thread::sleep_for(std::chrono::milliseconds(1));
-                waited++;
-            }
-            if (!Emu.IsStopped(true))
-                log_cb(RETRO_LOG_WARN,
-                    "RPCS3: emulation did not finish stopping in %d ms; unloading the disc anyway\n",
-                    kStopWaitMs);
-            else if (waited > 0)
-                log_cb(RETRO_LOG_INFO, "RPCS3: emulation stopped after %d ms\n", waited);
-        }
+        wait_for_emulation_stop("unloading the disc");
 
         // Drops the disc device, and with it the handle on the image.
         unload_iso();
