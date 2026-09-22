@@ -2076,6 +2076,33 @@ void retro_unload_game(void)
         game_loaded = false;
         game_path.clear();
 
+        // The teardown does not finish on this thread: Emulator::Kill hands it
+        // to a thread of its own ("Emulation Join Thread"), which stops the PPU,
+        // SPU and RSX threads, unmounts the VFS and only then marks the state
+        // fully stopped. Dropping the disc device before that pulls the ISO out
+        // from under threads that are still shutting down - ozzfreak's log ends
+        // exactly there, "Unloading ISO" from this thread and then the join
+        // thread reported as too sleepy, waiting on something that never comes.
+        //
+        // So wait for the stop to complete. Bounded, because a core that hangs
+        // the frontend on unload is worse than one that lets go early, and the
+        // timeout is worth saying out loud if it is ever hit.
+        {
+            constexpr int kStopWaitMs = 5000;
+            int waited = 0;
+            while (!Emu.IsStopped(true) && waited < kStopWaitMs)
+            {
+                std::this_thread::sleep_for(std::chrono::milliseconds(1));
+                waited++;
+            }
+            if (!Emu.IsStopped(true))
+                log_cb(RETRO_LOG_WARN,
+                    "RPCS3: emulation did not finish stopping in %d ms; unloading the disc anyway\n",
+                    kStopWaitMs);
+            else if (waited > 0)
+                log_cb(RETRO_LOG_INFO, "RPCS3: emulation stopped after %d ms\n", waited);
+        }
+
         // Drops the disc device, and with it the handle on the image.
         unload_iso();
     }
