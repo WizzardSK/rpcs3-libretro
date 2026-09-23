@@ -4,6 +4,7 @@
 #include <cstring>
 #include <cstdarg>
 #include <atomic>
+#include <mutex>
 
 #ifdef _WIN32
 #include <io.h>
@@ -407,12 +408,20 @@ namespace libretro_vfs
 		struct retro_vfs_file_handle* m_handle;
 		std::string m_path;
 		mutable uint64_t m_pos;
+		// fs::append: every write goes to the end, as O_APPEND does natively.
+		const bool m_append;
+		// The frontend's handle has one position shared by seek, read and
+		// write, while fs::file is used from several threads at once (the SPU
+		// cache is appended to by every SPU worker); each operation takes the
+		// lock so that its seek and its read or write stay together.
+		std::mutex m_mutex;
 
 	public:
-		vfs_file_base(struct retro_vfs_file_handle* handle, const std::string& path)
+		vfs_file_base(struct retro_vfs_file_handle* handle, const std::string& path, bool append)
 			: m_handle(handle)
 			, m_path(path)
 			, m_pos(0)
+			, m_append(append)
 		{
 		}
 
@@ -447,6 +456,7 @@ namespace libretro_vfs
 
 		bool trunc(u64 length) override
 		{
+			std::lock_guard lock(m_mutex);
 			if (m_handle && s_vfs_interface && s_vfs_interface->truncate)
 			{
 				return s_vfs_interface->truncate(m_handle, length) >= 0;
@@ -458,6 +468,8 @@ namespace libretro_vfs
 		{
 			if (!m_handle || !s_vfs_interface || !s_vfs_interface->read)
 				return 0;
+
+			std::lock_guard lock(m_mutex);
 
 			// Seek to current position first
 			if (s_vfs_interface->seek)
@@ -479,6 +491,8 @@ namespace libretro_vfs
 			if (!m_handle || !s_vfs_interface || !s_vfs_interface->read)
 				return 0;
 
+			std::lock_guard lock(m_mutex);
+
 			// Seek to offset
 			if (s_vfs_interface->seek)
 			{
@@ -498,8 +512,18 @@ namespace libretro_vfs
 			if (!m_handle || !s_vfs_interface || !s_vfs_interface->write)
 				return 0;
 
-			// Seek to current position first
-			if (s_vfs_interface->seek)
+			std::lock_guard lock(m_mutex);
+
+			// Seek to current position first (the end in append mode; the
+			// frontend's size() is the size at open, so ask tell() instead)
+			if (m_append && s_vfs_interface->seek && s_vfs_interface->tell)
+			{
+				s_vfs_interface->seek(m_handle, 0, RETRO_VFS_SEEK_POSITION_END);
+				const int64_t end = s_vfs_interface->tell(m_handle);
+				if (end >= 0)
+					m_pos = static_cast<u64>(end);
+			}
+			else if (s_vfs_interface->seek)
 			{
 				s_vfs_interface->seek(m_handle, m_pos, RETRO_VFS_SEEK_POSITION_START);
 			}
@@ -517,6 +541,8 @@ namespace libretro_vfs
 		{
 			if (!m_handle || !s_vfs_interface || !s_vfs_interface->seek)
 				return m_pos;
+
+			std::lock_guard lock(m_mutex);
 
 			int vfs_whence;
 			switch (whence)
@@ -541,11 +567,11 @@ namespace libretro_vfs
 					m_pos = static_cast<u64>(static_cast<int64_t>(m_pos) + offset);
 					break;
 				case fs::seek_end:
-					if (s_vfs_interface->size)
+					if (s_vfs_interface->tell)
 					{
-						int64_t file_size = s_vfs_interface->size(m_handle);
-						if (file_size >= 0)
-							m_pos = static_cast<u64>(file_size + offset);
+						const int64_t end = s_vfs_interface->tell(m_handle);
+						if (end >= 0)
+							m_pos = static_cast<u64>(end);
 					}
 					break;
 				}
@@ -555,7 +581,22 @@ namespace libretro_vfs
 
 		u64 size() override
 		{
-			if (!m_handle || !s_vfs_interface || !s_vfs_interface->size)
+			if (!m_handle || !s_vfs_interface)
+				return 0;
+
+			// The frontend's size() stays at the size the file had when it
+			// was opened; the end is where writes since then have moved it.
+			// Every read and write seeks first, so moving the handle is fine.
+			if (s_vfs_interface->seek && s_vfs_interface->tell)
+			{
+				std::lock_guard lock(m_mutex);
+				s_vfs_interface->seek(m_handle, 0, RETRO_VFS_SEEK_POSITION_END);
+				const int64_t end = s_vfs_interface->tell(m_handle);
+				if (end >= 0)
+					return static_cast<u64>(end);
+			}
+
+			if (!s_vfs_interface->size)
 				return 0;
 
 			int64_t result = s_vfs_interface->size(m_handle);
@@ -583,6 +624,6 @@ namespace libretro_vfs
 			return nullptr;
 
 		s_vfs_open_count++;
-		return std::make_unique<vfs_file_base>(handle, path);
+		return std::make_unique<vfs_file_base>(handle, path, (mode & VFS_MODE_APPEND) != 0);
 	}
 }

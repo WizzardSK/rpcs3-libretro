@@ -622,7 +622,9 @@ std::deque<spu_program> spu_cache::get()
 
 	m_file.seek(0);
 
-	// TODO: signal truncated or otherwise broken file
+	// End of the last entry read whole
+	u64 good_end = 0;
+
 	while (true)
 	{
 		struct block_info_t
@@ -653,6 +655,8 @@ std::deque<spu_program> spu_cache::get()
 			break;
 		}
 
+		good_end = m_file.pos();
+
 		if (!size || !func[0])
 		{
 			// Skip old format Giga entries
@@ -671,6 +675,15 @@ std::deque<spu_program> spu_cache::get()
 		res.lower_bound = addr;
 		res.data = std::move(func);
 		result.emplace_front(std::move(res));
+	}
+
+	// A broken or cut-off entry ends the reading, and everything appended
+	// after it would never be read again; drop the tail so that new entries
+	// land where the next boot finds them.
+	if (const u64 file_size = m_file.size(); file_size > good_end)
+	{
+		spu_log.warning("SPU cache: dropping %u unreadable bytes after offset %u", file_size - good_end, good_end);
+		m_file.trunc(good_end);
 	}
 
 	return result;
