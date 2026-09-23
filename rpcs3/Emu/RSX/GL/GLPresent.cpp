@@ -499,6 +499,28 @@ void GLGSRender::flip(const rsx::display_flip_info_t& info)
 				width, height,
 				aspect_ratio.x1, aspect_ratio.y1, aspect_ratio.x2, aspect_ratio.y2);
 		}
+
+		// The surface a title flips can be larger than the buffer it shows -
+		// GT5 draws its 1280x720 frame into a 2048x1080 render target. Upstream
+		// takes only the buffer's area of it through the upscaler's source
+		// rectangle; the video output pass used here always samples the whole
+		// texture, which put the frame in a corner of the picture and black
+		// around it. So take the buffer's area out first.
+		if (image_to_flip->width() > buffer_width || image_to_flip->height() > buffer_height)
+		{
+			const u32 crop_width = std::min<u32>(image_to_flip->width(), buffer_width);
+			const u32 crop_height = std::min<u32>(image_to_flip->height(), buffer_height);
+			static std::unique_ptr<gl::texture> s_crop_tex;
+			if (!s_crop_tex || s_crop_tex->width() != crop_width || s_crop_tex->height() != crop_height ||
+				s_crop_tex->get_internal_format() != image_to_flip->get_internal_format())
+			{
+				s_crop_tex = std::make_unique<gl::texture>(GL_TEXTURE_2D, crop_width, crop_height, 1, 1, 1,
+					static_cast<GLenum>(image_to_flip->get_internal_format()), image_to_flip->format_class());
+			}
+			static const position3u crop_offset{};
+			gl::g_hw_blitter->copy_image(cmd, image_to_flip, s_crop_tex.get(), 0, 0, crop_offset, crop_offset, { crop_width, crop_height, 1 });
+			image_to_flip = s_crop_tex.get();
+		}
 #endif
 		const bool user_asked_for_screenshot = g_user_asked_for_screenshot.exchange(false);
 
