@@ -111,6 +111,17 @@ mkdir -p artifacts
 find build -name 'rpcs3_libretro.dll' -exec cp {} artifacts/rpcs3_libretro_windows_x86_64.dll \;
 ls -la artifacts
 
+# Strip, as the Linux and Android cores are: unstripped, the DLL carried the
+# debug information of everything now linked into it and came to 200 MB.
+# KEEP_SYMBOLS=1 leaves it for a debugger, as it does on Linux.
+if [ "${KEEP_SYMBOLS:-0}" = "1" ]; then
+    echo "KEEP_SYMBOLS=1: leaving the symbols in the DLL"
+else
+    echo "before: $(stat -c %s artifacts/rpcs3_libretro_windows_x86_64.dll) bytes"
+    llvm-strip --strip-unneeded artifacts/rpcs3_libretro_windows_x86_64.dll
+    echo "after:  $(stat -c %s artifacts/rpcs3_libretro_windows_x86_64.dll) bytes"
+fi
+
 # Fail here rather than on a tester's machine: anything the DLL imports beyond
 # Windows itself, the Vulkan loader and OpenGL is a DLL nobody will have.
 llvm-objdump -p artifacts/rpcs3_libretro_windows_x86_64.dll | awk '/DLL Name:/ { print $3 }' | sort -u > imports.txt

@@ -118,6 +118,8 @@ jobs:
     name: libretro core windows-x64 (experimental)
     runs-on: windows-2025
     continue-on-error: true
+    env:
+      KEEP_SYMBOLS: ${{ inputs.keep_symbols && '1' || '0' }}
     defaults:
       run:
         shell: msys2 {0}
@@ -306,6 +308,10 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          # The core info file goes with the cores, so a frontend that has no
+          # entry for rpcs3 in its core info database can still name the core
+          # and its firmware (NNshi).
+          cp rpcs3/libretro/rpcs3_libretro.info artifacts/
           ls -la artifacts
           SHORT=$(git rev-parse --short=8 HEAD)
           # One release, always the newest. A tag per commit left a row of stale
