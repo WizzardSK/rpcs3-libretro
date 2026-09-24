@@ -19,6 +19,16 @@
 
 using namespace std::literals::string_literals;
 
+#ifdef LIBRETRO_CORE
+// Set by the core to <system>/rpcs3/ as soon as the frontend has named its
+// system directory. RPCS3 otherwise keeps its config and caches next to the
+// executable on Windows - which in a core is retroarch.exe, so config/, cache/,
+// patches/ and the rest landed in RetroArch's own folder (NNshi) - and under
+// ~/.config and ~/.cache elsewhere. Checked on every call rather than cached,
+// so a call made before the core knows the directory does not pin the old one.
+std::string g_libretro_config_dir;
+#endif
+
 #ifdef ANDROID
 std::string g_android_executable_dir;
 std::string g_android_config_dir;
@@ -2124,6 +2134,22 @@ std::string fs::get_executable_dir()
 
 const std::string& fs::get_config_dir([[maybe_unused]] bool get_config_subdirectory)
 {
+#ifdef LIBRETRO_CORE
+	if (!g_libretro_config_dir.empty())
+	{
+#ifdef _WIN32
+		// Same layout as the executable-relative one: config.yml and vfs.yml in
+		// a config/ subdirectory of it.
+		if (get_config_subdirectory)
+		{
+			// Only reached once the directory is set, and it never changes after.
+			static const std::string subdir = g_libretro_config_dir + "config/";
+			return subdir;
+		}
+#endif
+		return g_libretro_config_dir;
+	}
+#endif
 #ifdef ANDROID
 	return g_android_config_dir;
 #else
@@ -2221,6 +2247,11 @@ const std::string& fs::get_config_dir([[maybe_unused]] bool get_config_subdirect
 
 const std::string& fs::get_cache_dir()
 {
+#ifdef LIBRETRO_CORE
+	// One directory for both, as RPCS3 already does on Windows.
+	if (!g_libretro_config_dir.empty())
+		return g_libretro_config_dir;
+#endif
 #ifdef ANDROID
 	return g_android_cache_dir;
 #else
@@ -2263,6 +2294,13 @@ const std::string& fs::get_cache_dir()
 
 const std::string& fs::get_log_dir()
 {
+#ifdef LIBRETRO_CORE
+	if (!g_libretro_config_dir.empty())
+	{
+		static const std::string dir = g_libretro_config_dir + "log/";
+		return dir;
+	}
+#endif
 #ifdef _WIN32
 	static const std::string s_dir = fs::get_config_dir() + "log/";
 	return s_dir;

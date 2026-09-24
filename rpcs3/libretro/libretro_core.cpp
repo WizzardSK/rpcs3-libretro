@@ -1408,6 +1408,15 @@ void retro_init(void)
         system_dir = sys_dir;
     }
 
+    // RPCS3's config and cache directories go under <system>/rpcs3/ too, before
+    // anything below asks for them (see g_libretro_config_dir in File.cpp).
+    if (!system_dir.empty())
+    {
+        extern std::string g_libretro_config_dir;
+        g_libretro_config_dir = system_dir + "/rpcs3/";
+        fs::create_path(g_libretro_config_dir);
+    }
+
     // Get save directory
     const char* sav_dir = nullptr;
     if (environ_cb(RETRO_ENVIRONMENT_GET_SAVE_DIRECTORY, &sav_dir) && sav_dir)
