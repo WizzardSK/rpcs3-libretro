@@ -63,6 +63,61 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 #endif
+#ifdef __linux__
+#include <sys/prctl.h>
+#endif
+
+// The timer settings standalone RPCS3 makes at startup, in rpcs3.cpp - which
+// is not part of the core, so until now nothing made them. On Windows the
+// timer then ran at its 15.6 ms default, every sleep in the emulator lasted at
+// least that long, and games crawled at a third of their speed while the
+// emulator's threads spent most of their time waiting (NNshi: 30 fps games at
+// about 10, audio padded with silence). Standalone asks for the finest
+// resolution the system offers, 0.5 ms; the core does the same for as long as
+// it is loaded and puts the old one back after.
+#ifdef _WIN32
+LOG_CHANNEL(sys_log, "SYS");
+
+typedef LONG(NTAPI* lr_NtQueryTimerResolution_t)(PULONG, PULONG, PULONG);
+typedef LONG(NTAPI* lr_NtSetTimerResolution_t)(ULONG, BOOLEAN, PULONG);
+static bool s_timer_resolution_set = false;
+static ULONG s_timer_resolution = 0;
+
+static void lrcore_raise_timer_resolution()
+{
+    HMODULE ntdll = GetModuleHandleW(L"ntdll.dll");
+    if (!ntdll)
+        return;
+    const auto query = reinterpret_cast<lr_NtQueryTimerResolution_t>(GetProcAddress(ntdll, "NtQueryTimerResolution"));
+    const auto set = reinterpret_cast<lr_NtSetTimerResolution_t>(GetProcAddress(ntdll, "NtSetTimerResolution"));
+    ULONG min_res = 0, max_res = 0, cur_res = 0;
+    if (!query || !set || query(&min_res, &max_res, &cur_res) != 0)
+        return;
+    ULONG new_res = 0;
+    if (set(max_res, TRUE, &new_res) == 0)
+    {
+        s_timer_resolution_set = true;
+        s_timer_resolution = max_res;
+        sys_log.notice("New timer resolution: %d us (old=%d us, min=%d us, max=%d us)", new_res / 10, cur_res / 10, min_res / 10, max_res / 10);
+    }
+    else
+    {
+        sys_log.error("Failed to set timer resolution!");
+    }
+}
+
+static void lrcore_restore_timer_resolution()
+{
+    if (!s_timer_resolution_set)
+        return;
+    HMODULE ntdll = GetModuleHandleW(L"ntdll.dll");
+    const auto set = ntdll ? reinterpret_cast<lr_NtSetTimerResolution_t>(GetProcAddress(ntdll, "NtSetTimerResolution")) : nullptr;
+    ULONG cur_res = 0;
+    if (set)
+        set(s_timer_resolution, FALSE, &cur_res);
+    s_timer_resolution_set = false;
+}
+#endif
 
 
 // Libretro callbacks
@@ -1399,6 +1454,12 @@ void retro_init(void)
 
 #ifdef _WIN32
     lrcore_install_crash_handler();
+    lrcore_raise_timer_resolution();
+#endif
+#ifdef __linux__
+    // Standalone's other startup setting: 1 us timer slack instead of the
+    // default 50, for this thread and every thread it starts.
+    prctl(PR_SET_TIMERSLACK, 1, 0, 0, 0);
 #endif
 
     // Get system directory first
@@ -1599,6 +1660,7 @@ void retro_deinit(void)
 
 #ifdef _WIN32
     lrcore_uninstall_crash_handler();
+    lrcore_restore_timer_resolution();
 #endif
 
 
