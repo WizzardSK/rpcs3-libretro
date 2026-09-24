@@ -2326,6 +2326,18 @@ static void init_emu_callbacks()
             *wake_up = true;
             wake_up->notify_one();
         }
+
+        // Emulator::Kill ends its "Emulation Join Thread" by handing the last
+        // reference to that thread over in this functor, for the main thread to
+        // destroy once the thread is done. Standalone runs it on the Qt main
+        // thread. Here it runs on the caller - which is that thread - so
+        // destroying the functor joined the thread from itself, a wait that
+        // never ends: "Emulation Join Thread is too sleepy" doubling in the log,
+        // an unload that gave up after its timeout, and a crash on the next
+        // load (NNshi, ozzfreak). Let the thread return first, and destroy the
+        // functor on one that is not it.
+        if (thread_ctrl::get_name() == "Emulation Join Thread")
+            std::thread([f = std::move(func)]() mutable { f = nullptr; }).detach();
     };
 
     callbacks.on_install_pkgs = [](const std::vector<std::string>& pkgs) -> bool
