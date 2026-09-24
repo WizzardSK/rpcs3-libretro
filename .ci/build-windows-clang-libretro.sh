@@ -46,8 +46,17 @@ if [ ! -f "$FFMPEG_PREFIX/lib/libavcodec.a" ]; then
         make install
     )
 fi
-FFMPEG_LIBS="$(PKG_CONFIG_LIBDIR="$FFMPEG_PREFIX/lib/pkgconfig" pkg-config --static --libs \
-    libavformat libavcodec libswscale libswresample libavutil | tr ' ' ';')"
+# PKG_CONFIG_PATH is emptied because MSYS2 sets it to clang64's own
+# pkgconfig directory, which would win with that ffmpeg and its whole
+# dependency tree; and the directory is given in MSYS form, as pkgconf
+# splits a search path on ':' and would cut "D:/..." in two.
+FFMPEG_LIBS="$(PKG_CONFIG_PATH= PKG_CONFIG_LIBDIR="$(cygpath -u "$FFMPEG_PREFIX")/lib/pkgconfig" \
+    pkg-config --static --libs libavformat libavcodec libswscale libswresample libavutil | tr ' ' ';')"
+echo "static ffmpeg: $FFMPEG_LIBS"
+case "$FFMPEG_LIBS" in
+    *ffmpeg-static*) ;;
+    *) echo "pkg-config did not return the static ffmpeg built above"; exit 1 ;;
+esac
 
 # zlib and zstd come in through LLVM's CMake package, and libc++ and libunwind
 # through the compiler driver, each as clang64's import library. Neither lets
