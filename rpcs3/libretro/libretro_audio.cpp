@@ -19,26 +19,27 @@ void libretro_audio_process(retro_audio_sample_batch_t audio_batch_cb)
     if (!audio_batch_cb || !s_audio_backend)
         return;
 
-    // Per libretro docs: push ~1/fps seconds of audio per retro_run()
-    // At 48kHz/60fps = 800 frames per video frame
-    // Push in smaller chunks to reduce latency and stutter
-    // Process multiple batches to drain available audio
+    // One video frame's worth of audio per retro_run: 48000 / 60 = 800 frames,
+    // the rate retro_get_system_av_info reports. This used to hand over up to
+    // 2048 frames every run, and the ring always had that much - RPCS3 pads an
+    // underrun with silence - so with audio sync on, RetroArch waited until
+    // 2048 frames had played before the next retro_run: 48000 / 2048 = 23.4
+    // runs a second, the 23.5-24 fps NNshi saw in every game. With audio sync
+    // off it ran at 60 and played the audio two and a half times too fast.
+    static constexpr size_t FRAMES_PER_RUN = 48000 / 60;
     static constexpr size_t FRAMES_PER_BATCH = 512;
-    static constexpr int MAX_BATCHES = 4;  // Up to ~2048 frames per retro_run
     alignas(16) int16_t buffer[FRAMES_PER_BATCH * 2]; // 16-byte aligned for SIMD
 
-    for (int batch = 0; batch < MAX_BATCHES; batch++)
+    size_t remaining = FRAMES_PER_RUN;
+    while (remaining > 0)
     {
-        size_t frames = s_audio_backend->GetSamples(buffer, FRAMES_PER_BATCH);
+        const size_t want = std::min(remaining, FRAMES_PER_BATCH);
+        const size_t frames = s_audio_backend->GetSamples(buffer, want);
         if (frames > 0)
-        {
             audio_batch_cb(buffer, frames);
-        }
-        if (frames < FRAMES_PER_BATCH)
-        {
-            // No more data available
-            break;
-        }
+        if (frames < want)
+            break; // nothing more to give this run
+        remaining -= frames;
     }
 }
 
@@ -146,8 +147,11 @@ size_t LibretroAudioBackend::GetSamples(int16_t* buffer, size_t max_frames)
         const size_t pull_bytes = PULL_FRAMES * bytes_per_frame;
         alignas(16) u8 temp_buffer[PULL_FRAMES * 2 * sizeof(float)];
 
-        // Pull until buffer is reasonably full or no more data
-        for (int pulls = 0; pulls < 4; pulls++)
+        // Pull only what this call is about to hand out. The callback always
+        // delivers - it pads with silence - so filling the whole ring put up to
+        // half a second of audio between the game and the speakers.
+        const size_t wanted_bytes = max_frames * bytes_per_frame;
+        for (int pulls = 0; pulls < 4 && m_ring_size < wanted_bytes; pulls++)
         {
             const size_t free_space = m_ring_buffer_bytes.size() - m_ring_size;
             if (free_space < pull_bytes)
