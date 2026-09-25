@@ -2319,11 +2319,32 @@ void retro_run(void)
     }
 }
 
+// A reset is an unload and a load of the same game, done the way those are
+// done. Emu.Restart() did it behind the core's back instead: the stop and the
+// reload ran on the Emulation Join Thread while retro_run carried on, the
+// pause watchdog kept pausing and resuming a machine that was being torn down,
+// and between the stop completing and Load() claiming the state, retro_run
+// could see a stopped emulator and ask the frontend to shut down. A reload
+// that failed left it stopped with nothing said.
 void retro_reset(void)
 {
-    if (game_loaded)
+    if (!game_loaded)
+        return;
+
+    stop_pause_watchdog();
+
+    Emu.GracefulShutdown(false, false);
+    wait_for_emulation_stop("restarting");
+
+    // game_path is still what the load booted - for a disc image, its EBOOT
+    // inside the image, which stays mounted: only retro_unload_game drops it.
+    if (!do_boot_game())
     {
-        Emu.Restart();
+        if (log_cb)
+            log_cb(RETRO_LOG_ERROR, "RPCS3: the game did not boot again after a reset\n");
+        libretro_show_message("The game could not be restarted", 300);
+        game_loaded = false;
+        environ_cb(RETRO_ENVIRONMENT_SHUTDOWN, nullptr);
     }
 }
 
