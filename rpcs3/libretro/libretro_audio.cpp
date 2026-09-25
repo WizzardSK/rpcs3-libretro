@@ -19,18 +19,38 @@ void libretro_audio_process(retro_audio_sample_batch_t audio_batch_cb)
     if (!audio_batch_cb || !s_audio_backend)
         return;
 
-    // One video frame's worth of audio per retro_run: 48000 / 60 = 800 frames,
-    // the rate retro_get_system_av_info reports. This used to hand over up to
-    // 2048 frames every run, and the ring always had that much - RPCS3 pads an
-    // underrun with silence - so with audio sync on, RetroArch waited until
-    // 2048 frames had played before the next retro_run: 48000 / 2048 = 23.4
-    // runs a second, the 23.5-24 fps NNshi saw in every game. With audio sync
-    // off it ran at 60 and played the audio two and a half times too fast.
-    static constexpr size_t FRAMES_PER_RUN = 48000 / 60;
+    // As much audio as has played in real time since the last retro_run.
+    //
+    // Handing over 2048 frames every run made audio sync hold RetroArch to
+    // 48000 / 2048 = 23.4 runs a second - the 24 fps NNshi saw in every game.
+    // A fixed 800 frames (48000 / 60) fixed that but is still wrong: RPCS3 is
+    // clocked by real time, not by retro_run. Whenever the frontend ran more
+    // than 60 times a second it drained cellAudio's ring faster than real
+    // time, and with buffering on cellAudio answers a draining ring by
+    // shortening its period - down to half - so the game's music ran ahead of
+    // its pictures (Project Diva, 5-10 % fast). A sound card drains the ring
+    // at a steady 48 kHz whatever the frame rate; this does the same.
+    static constexpr double SAMPLE_RATE = 48000.0;
+    // A run after a pause or a long stall would otherwise ask for everything
+    // it missed. The emulator was paused too, so there is nothing to catch up.
+    static constexpr double MAX_FRAMES_PER_RUN = SAMPLE_RATE / 10;
     static constexpr size_t FRAMES_PER_BATCH = 512;
     alignas(16) int16_t buffer[FRAMES_PER_BATCH * 2]; // 16-byte aligned for SIMD
 
-    size_t remaining = FRAMES_PER_RUN;
+    static std::chrono::steady_clock::time_point s_last_run;
+    static double s_owed = 0.0; // fractional frames carried to the next run
+
+    const auto now = std::chrono::steady_clock::now();
+    if (s_last_run == std::chrono::steady_clock::time_point{})
+        s_last_run = now - std::chrono::microseconds(1'000'000 / 60);
+    s_owed += std::chrono::duration<double>(now - s_last_run).count() * SAMPLE_RATE;
+    s_last_run = now;
+    s_owed = std::min(s_owed, MAX_FRAMES_PER_RUN);
+
+    const size_t due = static_cast<size_t>(s_owed);
+    s_owed -= static_cast<double>(due);
+
+    size_t remaining = due;
     while (remaining > 0)
     {
         const size_t want = std::min(remaining, FRAMES_PER_BATCH);
