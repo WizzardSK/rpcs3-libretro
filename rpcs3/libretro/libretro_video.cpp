@@ -1159,6 +1159,12 @@ namespace
     u32 s_sw_frame_width = 0;
     u32 s_sw_frame_height = 0;
     bool s_sw_frame_is_new = false;
+
+    // The frame retro_run last handed to the frontend. The frontend reads it
+    // after the lock is gone - and again, from its frame cache, whenever it
+    // redraws a duplicated or paused frame - so it must stay alive until the
+    // next take, not only until the renderer delivers another one.
+    std::vector<u8> s_sw_frame_shown;
 }
 
 void LibretroGSFrame::present_frame(std::vector<u8>&& data, u32 pitch, u32 width, u32 height, bool is_bgra) const
@@ -1192,7 +1198,11 @@ bool libretro_take_software_frame(const void** data, u32* width, u32* height, u3
     if (!s_sw_frame_is_new || s_sw_frame.empty())
         return false;
     s_sw_frame_is_new = false;
-    *data = s_sw_frame.data();
+    // Swapped out rather than pointed into: present_frame() replaces
+    // s_sw_frame on the RSX thread, which would free the pixels while the
+    // frontend is still copying them.
+    s_sw_frame_shown.swap(s_sw_frame);
+    *data = s_sw_frame_shown.data();
     *width = s_sw_frame_width;
     *height = s_sw_frame_height;
     *pitch = s_sw_frame_pitch;

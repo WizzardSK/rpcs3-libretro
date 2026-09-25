@@ -2061,11 +2061,14 @@ static bool do_boot_game()
     }
     catch (const std::exception& e)
     {
+        if (log_cb)
+            log_cb(RETRO_LOG_ERROR, "RPCS3: booting %s threw: %s\n", game_path.c_str(), e.what());
         return false;
     }
     catch (...)
     {
-
+        if (log_cb)
+            log_cb(RETRO_LOG_ERROR, "RPCS3: booting %s threw an unknown exception\n", game_path.c_str());
         return false;
     }
 
@@ -2092,6 +2095,10 @@ static bool do_boot_game()
         case game_boot_result::currently_restricted: error_str = "currently_restricted"; break;
         default: break;
         }
+        // Without this the frontend only says the content failed to load, and
+        // the reason is nowhere - rpcs3_detailed.log does not always have it.
+        if (log_cb)
+            log_cb(RETRO_LOG_ERROR, "RPCS3: booting %s failed: %s\n", game_path.c_str(), error_str);
         return false;
     }
 
