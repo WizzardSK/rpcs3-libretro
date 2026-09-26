@@ -444,7 +444,10 @@ VKGSRender::VKGSRender(utils::serial* ar) noexcept : GSRender(ar)
 		using T = std::decay_t<decltype(p)>;
 		if constexpr (std::is_same_v<T, std::pair<Display*, Window>>)
 		{
-			m_display_handle = p.first; XFlush(m_display_handle);
+			// The libretro frame has no window and hands back an empty
+			// handle, whose Display* is null - XFlush would dereference it.
+			m_display_handle = p.first;
+			if (m_display_handle) XFlush(m_display_handle);
 		}
 	}, display);
 #endif
