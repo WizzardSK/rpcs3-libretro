@@ -349,6 +349,26 @@ void logs::listener::add(logs::listener* _new)
 	}
 }
 
+void logs::listener::remove(logs::listener* old)
+{
+	listener* lis = get_logger();
+
+	std::lock_guard lock(g_mutex);
+
+	// Unlink it from the list add() built
+	while (listener* next = lis->m_next)
+	{
+		if (next == old)
+		{
+			lis->m_next.release(next->m_next.load());
+			next->m_next.release(nullptr);
+			return;
+		}
+
+		lis = next;
+	}
+}
+
 void logs::listener::broadcast(const logs::stored_message& msg) const
 {
 	for (auto lis = m_next.load(); lis; lis = lis->m_next)

@@ -90,6 +90,10 @@ namespace logs
 		// Add new listener
 		static void add(listener*);
 
+		// Remove a listener added with add(). The caller must make sure nothing
+		// is logging at the time (a libretro core tearing its logging down).
+		static void remove(listener*);
+
 		// Special purpose
 		void broadcast(const stored_message&) const;
 

@@ -752,6 +752,13 @@ namespace
     libretro_log_listener g_libretro_logs;
 }
 
+// The log listeners retro_init installs. They are taken out again in
+// retro_deinit: the file logger owns the "Log Writer" thread, and a thread
+// left running into a frontend's FreeLibrary wakes up in code that is no
+// longer mapped - on Windows, about a second after closing content.
+static bool s_logs_hooked = false;
+static std::unique_ptr<logs::listener> s_file_logger;
+
 static std::string find_firmware_pup()
 {
     if (system_dir.empty())
@@ -996,8 +1003,6 @@ void retro_init(void)
     }
 
     // Forward RPCS3 internal logs (including firmware installer logs) to libretro logger
-    static bool s_logs_hooked = false;
-    static std::unique_ptr<logs::listener> s_file_logger;
     if (!s_logs_hooked)
     {
         logs::listener::add(&g_libretro_logs);
@@ -1165,6 +1170,20 @@ void retro_deinit(void)
     Emulator::CleanUp();
     core_initialized = false;
     game_loaded = false;
+
+    // Last, once nothing is logging any more: unlink both listeners, and let
+    // the file logger flush and join its writer thread here rather than in a
+    // static destructor inside FreeLibrary (see s_file_logger).
+    if (s_logs_hooked)
+    {
+        if (s_file_logger)
+        {
+            logs::listener::remove(s_file_logger.get());
+            s_file_logger.reset();
+        }
+        logs::listener::remove(&g_libretro_logs);
+        s_logs_hooked = false;
+    }
 
 
 
