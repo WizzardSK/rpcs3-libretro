@@ -3,16 +3,10 @@
 #include "Utilities/Thread.h"
 #include "Utilities/mutex.h"
 
-#ifndef WITHOUT_OPENAL
-#include "alc.h"
-#else
-// Built without OpenAL - Android has no copy of it and 3rdparty/CMakeLists.txt
-// defines WITHOUT_OPENAL there instead. Everything that calls into OpenAL is
-// already behind that switch; the one thing left outside it is a device
-// pointer that is then never dereferenced, so an incomplete type is enough to
-// keep the declarations valid.
+// The core has no OpenAL - a capture device is the frontend's to open - so
+// the only trace of it is a device pointer that is never dereferenced, and an
+// incomplete type is enough to keep the declarations valid.
 struct ALCdevice;
-#endif
 
 // Error Codes
 enum CellMicInError : u32
@@ -336,10 +330,6 @@ private:
 	static inline void variable_byteswap(const void* src, void* dst);
 	inline u32 convert_16_bit_pcm_to_float(const std::vector<u8>& buffer, u32 num_bytes);
 
-#ifndef WITHOUT_OPENAL
-	void enumerate_devices();
-	ALCdevice* open_device(const std::string& name, u32 samplingrate, ALCenum num_al_channels, u32 buf_size);
-#endif
 
 	u32 capture_audio();
 

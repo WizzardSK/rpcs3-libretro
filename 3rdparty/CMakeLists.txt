@@ -95,9 +95,6 @@ else()
 endif()
 
 
-# hidapi
-add_subdirectory(hidapi)
-
 # glslang
 add_subdirectory(glslang EXCLUDE_FROM_ALL)
 
@@ -136,34 +133,8 @@ endif()
 # stblib
 add_subdirectory(stblib)
 
-# Cubeb
-if(USE_SYSTEM_CUBEB)
-	find_package(cubeb REQUIRED GLOBAL)
-	message(STATUS "Using system cubeb version '${cubeb_VERSION}'")
-	add_library(3rdparty::cubeb ALIAS cubeb::cubeb)
-else()
-	message(STATUS "Using static cubeb from 3rdparty")
-	add_subdirectory(cubeb EXCLUDE_FROM_ALL)
-endif()
-
 # SoundTouch
 add_subdirectory(SoundTouch EXCLUDE_FROM_ALL)
-
-# libevdev
-set(LIBEVDEV_TARGET 3rdparty_dummy_lib)
-if(USE_LIBEVDEV)
-	pkg_check_modules(LIBEVDEV libevdev libudev)
-	if(LIBEVDEV_FOUND)
-		add_library(3rdparty_libevdev INTERFACE)
-		target_compile_definitions(3rdparty_libevdev INTERFACE -DHAVE_LIBEVDEV)
-		target_include_directories(3rdparty_libevdev SYSTEM
-			INTERFACE ${LIBEVDEV_INCLUDE_DIRS})
-		target_link_libraries(3rdparty_libevdev INTERFACE ${LIBEVDEV_LDFLAGS})
-
-		set(LIBEVDEV_TARGET 3rdparty_libevdev)
-	endif()
-endif()
-
 
 # Vulkan
 set(VULKAN_TARGET 3rdparty_dummy_lib)
@@ -220,79 +191,6 @@ endif()
 
 # AsmJit
 add_subdirectory(asmjit EXCLUDE_FROM_ALL)
-
-# SDL3
-set(SDL3_TARGET 3rdparty_dummy_lib)
-if(USE_SDL)
-	if(USE_SYSTEM_SDL)
-		find_package(SDL3)
-		if(SDL3_FOUND AND SDL3_VERSION VERSION_GREATER_EQUAL 3.2.0)
-			message(STATUS "Using system SDL3 version '${SDL3_VERSION}'")
-			add_library(3rdparty_sdl3 INTERFACE)
-			target_compile_definitions(3rdparty_sdl3 INTERFACE -DHAVE_SDL3=1)
-			target_link_libraries(3rdparty_sdl3 INTERFACE SDL3::SDL3)
-			set(SDL3_TARGET 3rdparty_sdl3)
-		else()
-			message(FATAL_ERROR "SDL3 is not available on this system")
-		endif()
-	else()
-		message(STATUS "Using static SDL3 from 3rdparty")
-		add_subdirectory(libsdl-org EXCLUDE_FROM_ALL)
-		target_compile_definitions(SDL3-static INTERFACE -DHAVE_SDL3=1)
-		set(SDL3_TARGET SDL3-static)
-		set(SDL3_DIR "${CMAKE_CURRENT_BINARY_DIR}/libsdl-org/SDL" CACHE STRING "")
-	endif()
-endif()
-
-# OpenAL
-# OpenAL is the PS3 microphone backend (cellMic) and nothing else. A libretro
-# core has no business opening a capture device - the frontend owns audio - and
-# linking libopenal costs a NEEDED entry that a flatpak RetroArch cannot satisfy,
-# so the core takes the same WITHOUT_OPENAL path Android already takes.
-if (NOT ANDROID AND NOT BUILD_LIBRETRO_CORE_ONLY)
-	add_subdirectory(OpenAL EXCLUDE_FROM_ALL)
-else()
-	add_library(3rdparty_openal INTERFACE)
-	target_compile_definitions(3rdparty_openal INTERFACE WITHOUT_OPENAL=1)
-endif()
-
-# FAudio
-set(FAUDIO_TARGET 3rdparty_dummy_lib)
-if(USE_FAUDIO)
-	# FAudio depends on SDL3
-	find_package(SDL3)
-	if (USE_SYSTEM_FAUDIO)
-		if (SDL3_FOUND AND SDL3_VERSION VERSION_GREATER_EQUAL 3.2.0)
-			message(STATUS "RPCS3: Using system FAudio")
-			find_package(FAudio REQUIRED CONFIGS FAudioConfig.cmake FAudio-config.cmake)
-			add_library(3rdparty_FAudio INTERFACE)
-			target_link_libraries(3rdparty_FAudio INTERFACE FAudio)
-			target_compile_definitions(3rdparty_FAudio INTERFACE -DHAVE_FAUDIO)
-			set(FAUDIO_TARGET 3rdparty_FAudio)
-		else()
-			message(WARNING
-				"RPCS3: System FAudio requires SDL 3.2.0 or newer. Since a valid SDL3"
-				">=3.2.0 version cannot be found, building with FAudio will be skipped.")
-			set(USE_FAUDIO OFF CACHE BOOL "Disabled using system FAudio with SDL < 3.2.0" FORCE)
-		endif()
-	else()
-		if (SDL3_FOUND AND SDL3_VERSION VERSION_GREATER_EQUAL 3.2.0)
-			message(STATUS "RPCS3: Using builtin FAudio")
-			set(BUILD_SHARED_LIBS OFF CACHE BOOL "Build shared library")
-			add_subdirectory(FAudio EXCLUDE_FROM_ALL)
-			target_compile_definitions(FAudio-static INTERFACE -DHAVE_FAUDIO)
-			set(FAUDIO_TARGET FAudio-static)
-		else()
-			message(WARNING
-				"-- RPCS3: 3rdparty FAudio requires SDL 3.2.0 or newer. Since a valid SDL3"
-				">=3.2.0 version cannot be found, building with FAudio will be skipped.")
-			set(USE_FAUDIO OFF CACHE BOOL "Disabled FAudio with SDL < 3.2.0" FORCE)
-		endif()
-	endif()
-endif()
-
-set_property(TARGET ${FAUDIO_TARGET} PROPERTY FOLDER "3rdparty/")
-
 
 # FFMPEG
 # The alias further down is created unconditionally, so skipping this block
@@ -402,20 +300,15 @@ add_library(3rdparty::flatbuffers ALIAS 3rdparty_flatbuffers)
 add_library(3rdparty::pugixml ALIAS pugixml)
 add_library(3rdparty::glslang ALIAS 3rdparty_glslang)
 add_library(3rdparty::yaml-cpp ALIAS yaml-cpp)
-add_library(3rdparty::hidapi ALIAS 3rdparty_hidapi)
 add_library(3rdparty::libpng ALIAS ${LIBPNG_TARGET})
 add_library(3rdparty::opengl ALIAS 3rdparty_opengl)
 add_library(3rdparty::stblib ALIAS 3rdparty_stblib)
-add_library(3rdparty::faudio ALIAS ${FAUDIO_TARGET})
-add_library(3rdparty::libevdev ALIAS ${LIBEVDEV_TARGET})
 add_library(3rdparty::vulkan ALIAS ${VULKAN_TARGET})
-add_library(3rdparty::openal ALIAS 3rdparty_openal)
 add_library(3rdparty::ffmpeg ALIAS 3rdparty_ffmpeg)
 add_library(3rdparty::glew ALIAS 3rdparty_glew)
 add_library(3rdparty::wolfssl ALIAS wolfssl)
 add_library(3rdparty::libcurl ALIAS 3rdparty_libcurl)
 add_library(3rdparty::soundtouch ALIAS soundtouch)
-add_library(3rdparty::sdl3 ALIAS ${SDL3_TARGET})
 add_library(3rdparty::miniupnpc ALIAS 3rdparty_miniupnpc)
 add_library(3rdparty::rtmidi ALIAS rtmidi)
 add_library(3rdparty::opencv ALIAS ${OPENCV_TARGET})

@@ -55,9 +55,6 @@ enum class audio_renderer
 	xaudio,
 #endif
 	cubeb,
-#ifdef HAVE_FAUDIO
-	faudio,
-#endif
 };
 
 enum class audio_provider
@@ -142,9 +139,6 @@ enum class move_handler
 	fake,
 	mouse,
 	raw_mouse,
-#ifdef HAVE_LIBEVDEV
-	gun
-#endif
 };
 
 enum class buzz_handler

@@ -15,12 +15,6 @@ enum class pad_handler
 	xinput,
 	mm,
 #endif
-#ifdef HAVE_SDL3
-	sdl,
-#endif
-#ifdef HAVE_LIBEVDEV
-	evdev,
-#endif
 };
 
 enum class mouse_movement_mode : s32

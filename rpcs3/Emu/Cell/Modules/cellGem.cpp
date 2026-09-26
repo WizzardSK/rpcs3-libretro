@@ -18,9 +18,6 @@
 #include "Input/ps_move_config.h"
 #include "Input/ps_move_tracker.h"
 
-#ifdef HAVE_LIBEVDEV
-#include "Emu/Io/evdev_gun_handler.h"
-#endif
 
 #include <cmath> // for fmod
 #include <type_traits>
@@ -146,45 +143,6 @@ static u32 pad_num(u32 gem_num)
 // * HLE helper structs *
 // **********************
 
-#ifdef HAVE_LIBEVDEV
-struct gun_handler
-{
-public:
-	gun_handler() = default;
-
-	static constexpr auto thread_name = "Evdev Gun Thread"sv;
-
-	evdev_gun_handler handler{};
-	atomic_t<u32> num_devices{0};
-
-	void operator()()
-	{
-		if (g_cfg.io.move != move_handler::gun)
-		{
-			return;
-		}
-
-		while (thread_ctrl::state() != thread_state::aborting && !Emu.IsStopped())
-		{
-			const bool is_active = !Emu.IsPaused() && handler.is_init();
-
-			if (is_active)
-			{
-				for (u32 i = 0; i < num_devices; i++)
-				{
-					std::scoped_lock lock(handler.mutex);
-					handler.poll(i);
-				}
-			}
-
-			thread_ctrl::wait_for(is_active ? 1000 : 10000);
-		}
-	}
-};
-
-using gun_thread = named_thread<gun_handler>;
-
-#endif
 
 cfg_gems g_cfg_gem_real;
 cfg_fake_gems g_cfg_gem_fake;
@@ -373,20 +331,6 @@ public:
 			}
 			break;
 		}
-#ifdef HAVE_LIBEVDEV
-		case move_handler::gun:
-		{
-			gun_thread& gun = *ensure(g_fxo->try_get<gun_thread>());
-			std::scoped_lock lock(gun.handler.mutex);
-			gun.num_devices = gun.handler.init() ? gun.handler.get_num_guns() : 0;
-
-			for (u32 i = 0; i < CELL_GEM_MAX_NUM; i++)
-			{
-				update_connection(i, i < attribute.max_connect && i < gun.num_devices);
-			}
-			break;
-		}
-#endif
 		case move_handler::null:
 		{
 			break;
@@ -521,21 +465,6 @@ public:
 			}
 			break;
 		}
-#ifdef HAVE_LIBEVDEV
-		case move_handler::gun:
-		{
-			gun_thread& gun = *ensure(g_fxo->try_get<gun_thread>());
-			std::scoped_lock lock(gun.handler.mutex);
-			gun.num_devices = gun.handler.init() ? gun.handler.get_num_guns() : 0;
-			connected_controllers = std::min<u32>(std::min<u32>(attribute.max_connect, CELL_GEM_MAX_NUM), gun.num_devices);
-
-			if (gem_num < connected_controllers)
-			{
-				is_connected = true;
-			}
-			break;
-		}
-#endif
 		case move_handler::null:
 			break;
 		}
@@ -2347,75 +2276,6 @@ static void mouse_pos_to_gem_state(u32 mouse_no, gem_config::gem_controller& con
 	}
 }
 
-#ifdef HAVE_LIBEVDEV
-static bool gun_input_to_pad(u32 gem_no, be_t<u16>& digital_buttons, be_t<u16>& analog_t)
-{
-	digital_buttons = 0;
-	analog_t = 0;
-
-	if (!is_input_allowed())
-		return false;
-
-	gun_thread& gun = g_fxo->get<gun_thread>();
-	std::scoped_lock lock(gun.handler.mutex);
-
-	if (gun.handler.get_button(gem_no, gun_button::btn_left) == 1)
-		digital_buttons |= CELL_GEM_CTRL_T;
-
-	if (gun.handler.get_button(gem_no, gun_button::btn_right) == 1)
-		digital_buttons |= CELL_GEM_CTRL_MOVE;
-
-	if (gun.handler.get_button(gem_no, gun_button::btn_middle) == 1)
-		digital_buttons |= CELL_GEM_CTRL_START;
-
-	if (gun.handler.get_button(gem_no, gun_button::btn_1) == 1)
-		digital_buttons |= CELL_GEM_CTRL_CROSS;
-
-	if (gun.handler.get_button(gem_no, gun_button::btn_2) == 1)
-		digital_buttons |= CELL_GEM_CTRL_CIRCLE;
-
-	if (gun.handler.get_button(gem_no, gun_button::btn_3) == 1)
-		digital_buttons |= CELL_GEM_CTRL_SELECT;
-
-	if (gun.handler.get_button(gem_no, gun_button::btn_5) == 1)
-		digital_buttons |= CELL_GEM_CTRL_TRIANGLE;
-
-	if (gun.handler.get_button(gem_no, gun_button::btn_6) == 1)
-		digital_buttons |= CELL_GEM_CTRL_SQUARE;
-
-	analog_t = gun.handler.get_button(gem_no, gun_button::btn_left) ? 255 : 0;
-
-	return true;
-}
-
-template <typename T>
-static void gun_pos_to_gem_state(u32 gem_no, gem_config::gem_controller& controller, T& gem_state)
-{
-	if (!gem_state || !is_input_allowed())
-		return;
-
-	int x_pos, y_pos, x_max, y_max;
-	{
-		gun_thread& gun = g_fxo->get<gun_thread>();
-		std::scoped_lock lock(gun.handler.mutex);
-
-		x_pos = gun.handler.get_axis_x(gem_no);
-		y_pos = gun.handler.get_axis_y(gem_no);
-		x_max = gun.handler.get_axis_x_max(gem_no);
-		y_max = gun.handler.get_axis_y_max(gem_no);
-	}
-
-	if constexpr (std::is_same_v<T, vm::ptr<CellGemState>>)
-	{
-		ps_move_data& move_data = ::at32(g_fxo->get<gem_config>().fake_move_data, gem_no);
-		pos_to_gem_state(gem_no, controller, gem_state, x_pos, y_pos, x_max, y_max, move_data);
-	}
-	else if constexpr (std::is_same_v<T, vm::ptr<CellGemImageState>>)
-	{
-		pos_to_gem_image_state(gem_no, controller, gem_state, x_pos, y_pos, x_max, y_max);
-	}
-}
-#endif
 
 // *********************
 // * cellGem functions *
@@ -2913,11 +2773,6 @@ error_code cellGemGetImageState(u32 gem_num, vm::ptr<CellGemImageState> gem_imag
 		case move_handler::raw_mouse:
 			mouse_pos_to_gem_state(gem_num, controller, gem_image_state);
 			break;
-#ifdef HAVE_LIBEVDEV
-		case move_handler::gun:
-			gun_pos_to_gem_state(gem_num, controller, gem_image_state);
-			break;
-#endif
 		case move_handler::null:
 			fmt::throw_exception("Unreachable");
 		}
@@ -2995,11 +2850,6 @@ error_code cellGemGetInertialState(u32 gem_num, u32 state_flag, u64 timestamp, v
 		case move_handler::raw_mouse:
 			mouse_input_to_pad(gem_num, inertial_state->pad.digitalbuttons, inertial_state->pad.analog_T);
 			break;
-#ifdef HAVE_LIBEVDEV
-		case move_handler::gun:
-			gun_input_to_pad(gem_num, inertial_state->pad.digitalbuttons, inertial_state->pad.analog_T);
-			break;
-#endif
 		case move_handler::null:
 			fmt::throw_exception("Unreachable");
 		}
@@ -3189,12 +3039,6 @@ error_code cellGemGetState(u32 gem_num, u32 flag, u64 time_parameter, vm::ptr<Ce
 			mouse_input_to_pad(gem_num, gem_state->pad.digitalbuttons, gem_state->pad.analog_T);
 			mouse_pos_to_gem_state(gem_num, controller, gem_state);
 			break;
-#ifdef HAVE_LIBEVDEV
-		case move_handler::gun:
-			gun_input_to_pad(gem_num, gem_state->pad.digitalbuttons, gem_state->pad.analog_T);
-			gun_pos_to_gem_state(gem_num, controller, gem_state);
-			break;
-#endif
 		case move_handler::null:
 			fmt::throw_exception("Unreachable");
 		}

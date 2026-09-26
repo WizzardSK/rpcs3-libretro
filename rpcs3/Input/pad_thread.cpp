@@ -2,25 +2,6 @@
 #include "pad_thread.h"
 #include "product_info.h"
 
-#ifndef LIBRETRO_CORE
- #include "ds3_pad_handler.h"
- #include "ds4_pad_handler.h"
- #include "dualsense_pad_handler.h"
- #include "skateboard_pad_handler.h"
- #include "ps_move_handler.h"
- #ifdef _WIN32
-  #include "xinput_pad_handler.h"
-  #include "mm_joystick_handler.h"
- #elif HAVE_LIBEVDEV
-  #include "evdev_joystick_handler.h"
- #endif
- #ifdef HAVE_SDL3
-  #include "sdl_pad_handler.h"
- #endif
- #ifndef ANDROID
-  #include "keyboard_pad_handler.h"
- #endif
-#endif
 #include "Emu/Io/Null/NullPadHandler.h"
 #include "Emu/Io/interception.h"
 #include "Emu/Io/PadHandler.h"
@@ -155,9 +136,6 @@ void pad_thread::Init()
 	input_log.trace("Using pad config:\n%s", g_cfg_input);
 
 
-#if !defined(ANDROID) && !defined(LIBRETRO_CORE)
-	std::shared_ptr<keyboard_pad_handler> keyptr;
-#endif
 
 	// Always have a Null Pad Handler
 	std::shared_ptr<NullPadHandler> nullpad = std::make_shared<NullPadHandler>();
@@ -178,14 +156,9 @@ void pad_thread::Init()
 		{
 			if (handler_type == pad_handler::keyboard)
 			{
-				#if defined(ANDROID) || defined(LIBRETRO_CORE)
-					cur_pad_handler = nullpad;
-				#else
-					keyptr = std::make_shared<keyboard_pad_handler>();
-					keyptr->moveToThread(static_cast<QThread*>(m_curthread));
-					keyptr->SetTargetWindow(static_cast<QWindow*>(m_curwindow));
-					cur_pad_handler = keyptr;
-				#endif
+				// The frontend owns the keyboard; its pads come through
+				// libretro_pad_handler instead.
+				cur_pad_handler = nullpad;
 			}
 			else
 			{
@@ -846,48 +819,11 @@ void pad_thread::UnregisterLddPad(u32 handle)
 
 std::shared_ptr<PadHandlerBase> pad_thread::GetHandler(pad_handler type)
 {
-#ifdef LIBRETRO_CORE
+	// The core's pads come from the frontend through libretro_pad_handler;
+	// the standalone's device handlers (DS3/DS4/DualSense, SDL, evdev,
+	// XInput, ...) are not part of it.
 	(void)type;
 	return std::make_shared<NullPadHandler>();
-#else
-	switch (type)
-	{
-	case pad_handler::null:
-		return std::make_shared<NullPadHandler>();
-	case pad_handler::keyboard:
-	#ifdef ANDROID
-		return std::make_shared<NullPadHandler>();
-	#else
-		return std::make_shared<keyboard_pad_handler>();
-	#endif
-	case pad_handler::ds3:
-		return std::make_shared<ds3_pad_handler>();
-	case pad_handler::ds4:
-		return std::make_shared<ds4_pad_handler>();
-	case pad_handler::dualsense:
-		return std::make_shared<dualsense_pad_handler>();
-	case pad_handler::skateboard:
-		return std::make_shared<skateboard_pad_handler>();
-	case pad_handler::move:
-		return std::make_shared<ps_move_handler>();
-	#ifdef _WIN32
-	case pad_handler::xinput:
-		return std::make_shared<xinput_pad_handler>();
-	case pad_handler::mm:
-		return std::make_shared<mm_joystick_handler>();
-	#endif
-	#ifdef HAVE_SDL3
-	case pad_handler::sdl:
-		return std::make_shared<sdl_pad_handler>();
-	#endif
-	#ifdef HAVE_LIBEVDEV
-	case pad_handler::evdev:
-		return std::make_shared<evdev_joystick_handler>();
-	#endif
-	}
-
-	return nullptr;
-#endif
 }
 
 void pad_thread::InitPadConfig(cfg_pad& cfg, pad_handler type, std::shared_ptr<PadHandlerBase>& handler)

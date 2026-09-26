@@ -114,9 +114,6 @@ void fmt_class_string<audio_renderer>::format(std::string& out, u64 arg)
 		case audio_renderer::xaudio: return "XAudio2";
 #endif
 		case audio_renderer::cubeb: return "Cubeb";
-#ifdef HAVE_FAUDIO
-		case audio_renderer::faudio: return "FAudio";
-#endif
 		}
 
 		return unknown;
@@ -425,9 +422,6 @@ void fmt_class_string<move_handler>::format(std::string& out, u64 arg)
 		case move_handler::fake: return "Fake";
 		case move_handler::mouse: return "Mouse";
 		case move_handler::raw_mouse: return "Raw Mouse";
-#ifdef HAVE_LIBEVDEV
-		case move_handler::gun: return "Gun";
-#endif
 		}
 
 		return unknown;
