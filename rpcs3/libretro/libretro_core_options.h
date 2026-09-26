@@ -543,6 +543,13 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "disabled"
     },
     {
+        "rpcs3_savedata_slot", "Save Data Slot", NULL,
+        "A PS3 game shows a list of its save data and lets the player pick; the core has no such list, so it picks this entry itself. Saving overwrites the entry at this position in the game's list, or makes a new save when the list is shorter; loading takes the entry at this position, or the last one. 0 is the first entry.",
+        NULL, "core",
+        { {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
+        "0"
+    },
+    {
         "rpcs3_show_ppu_compilation_hint", "Show PPU Compilation Hint", NULL,
         "Show hint when PPU modules are being compiled.",
         NULL, "core",

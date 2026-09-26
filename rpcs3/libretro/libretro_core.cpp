@@ -393,6 +393,9 @@ static std::string install_pkg_file(const std::string& pkg_path)
     return eboot_path;
 }
 
+// The Save Data Slot core option, for the save dialog (see libretro_save_dialog)
+static std::atomic<int> s_savedata_slot{0};
+
 static std::string get_option_value(const char* key, const char* default_val = "")
 {
     if (!environ_cb)
@@ -587,6 +590,13 @@ static void libretro_apply_core_options()
     std::string volume = get_option_value("rpcs3_master_volume", "100");
     g_cfg.audio.volume.set(std::stoi(volume));
 
+    // Save Data Slot (read here, on the frontend's thread, and kept for the
+    // save dialog, which runs on the game's)
+    {
+        const std::string slot = get_option_value("rpcs3_savedata_slot", "0");
+        s_savedata_slot = std::clamp(std::atoi(slot.c_str()), 0, 9);
+    }
+
     // ==================== SYSTEM/CORE OPTIONS ====================
     // System Language
     std::string lang = get_option_value("rpcs3_language", "english");
@@ -758,6 +768,55 @@ namespace
 // longer mapped - on Windows, about a second after closing content.
 static bool s_logs_hooked = false;
 static std::unique_ptr<logs::listener> s_file_logger;
+
+// Save data without a dialog. A PS3 game asks the system to show its save
+// list and waits for the player's pick; RPCS3 answers with a Qt dialog the
+// core does not have, and without one every list operation was cancelled, so
+// games could not save or load (NNshi). This picks for the player instead:
+// the entry at the Save Data Slot core option's position in the list the game
+// asked for - overwriting it when saving, or making a new save when there is
+// nothing at that position and the game allows one; loading it, or the last
+// entry when there is nothing at that position. Nothing is ever picked for
+// deletion. The "save / load this data?" confirmation that follows is answered
+// yes (g_cellsavedata_auto_confirm).
+extern atomic_t<bool> g_cellsavedata_auto_confirm;
+
+namespace
+{
+    class libretro_save_dialog : public SaveDialogBase
+    {
+    public:
+        s32 ShowSaveDataList(const std::string& /*base_dir*/, std::vector<SaveDataEntry>& save_entries, s32 /*focused*/, u32 op, vm::ptr<CellSaveDataListSet> listSet, bool /*enable_overlay*/) override
+        {
+            constexpr u32 op_list_save = 4, op_list_load = 5, op_list_auto_save = 2, op_list_auto_load = 3;
+            const s32 count = static_cast<s32>(save_entries.size());
+            const s32 slot = s_savedata_slot.load();
+            const bool saving = op == op_list_save || op == op_list_auto_save;
+            const bool loading = op == op_list_load || op == op_list_auto_load;
+            s32 pick = -2; // cancel
+
+            if (saving)
+            {
+                if (slot < count)
+                    pick = slot;
+                else if (listSet && listSet->newData)
+                    pick = -1; // new save
+                else if (count > 0)
+                    pick = count - 1;
+            }
+            else if (loading && count > 0)
+            {
+                pick = slot < count ? slot : count - 1;
+            }
+
+            if (log_cb)
+                log_cb(RETRO_LOG_INFO, "RPCS3: save data list (%s, %d entr%s, slot %d): %s\n",
+                    saving ? "save" : loading ? "load" : "other", count, count == 1 ? "y" : "ies", slot,
+                    pick == -2 ? "nothing picked" : pick == -1 ? "new save" : ("entry " + std::to_string(pick)).c_str());
+            return pick;
+        }
+    };
+}
 
 static std::string find_firmware_pup()
 {
@@ -2062,8 +2121,9 @@ static void init_emu_callbacks()
 
     callbacks.get_save_dialog = []() -> std::unique_ptr<SaveDialogBase>
     {
-        return nullptr;
+        return std::make_unique<libretro_save_dialog>();
     };
+    g_cellsavedata_auto_confirm = true;
 
     callbacks.get_trophy_notification_dialog = []() -> std::unique_ptr<TrophyNotificationBase>
     {

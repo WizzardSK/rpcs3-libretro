@@ -85,6 +85,12 @@ using PFuncStat = vm::ptr<CellSaveDataStatCallback>;
 using PFuncFile = vm::ptr<CellSaveDataFileCallback>;
 using PFuncDone = vm::ptr<CellSaveDataDoneCallback>;
 
+// Set by a frontend that has no one to ask (the libretro core): the "save /
+// overwrite / load this data?" confirmations after a save data list or a fixed
+// operation are answered yes without a dialog. Deleting is never confirmed
+// this way - the libretro save dialog does not pick anything to delete.
+atomic_t<bool> g_cellsavedata_auto_confirm{false};
+
 enum : u32
 {
 	SAVEDATA_OP_AUTO_SAVE      = 0,
@@ -1247,22 +1253,31 @@ static NEVER_INLINE error_code savedata_op(ppu_thread& ppu, u32 operation, u32 v
 				message = get_confirmation_message(operation, ::at32(save_entries, selected));
 			}
 
-			// Yield before a blocking dialog is being spawned
-			lv2_obj::sleep(ppu);
-
-			// Get user confirmation by opening a blocking dialog
 			s32 return_code = CELL_MSGDIALOG_BUTTON_NONE;
-			error_code res = open_msg_dialog(true, CELL_MSGDIALOG_TYPE_SE_TYPE_NORMAL | CELL_MSGDIALOG_TYPE_BUTTON_TYPE_YESNO, vm::make_str(message), msg_dialog_source::_cellSaveData, vm::null, vm::null, vm::null, &return_code);
 
-			// Reschedule after a blocking dialog returns
-			if (ppu.check_state())
+			if (g_cellsavedata_auto_confirm && operation != SAVEDATA_OP_LIST_DELETE)
 			{
-				return 0;
+				cellSaveData.notice("savedata_op(): confirmed without a dialog: %s", message);
+				return_code = CELL_MSGDIALOG_BUTTON_YES;
 			}
-
-			if (res != CELL_OK)
+			else
 			{
-				return CELL_SAVEDATA_ERROR_INTERNAL;
+				// Yield before a blocking dialog is being spawned
+				lv2_obj::sleep(ppu);
+
+				// Get user confirmation by opening a blocking dialog
+				error_code res = open_msg_dialog(true, CELL_MSGDIALOG_TYPE_SE_TYPE_NORMAL | CELL_MSGDIALOG_TYPE_BUTTON_TYPE_YESNO, vm::make_str(message), msg_dialog_source::_cellSaveData, vm::null, vm::null, vm::null, &return_code);
+
+				// Reschedule after a blocking dialog returns
+				if (ppu.check_state())
+				{
+					return 0;
+				}
+
+				if (res != CELL_OK)
+				{
+					return CELL_SAVEDATA_ERROR_INTERNAL;
+				}
 			}
 
 			if (return_code != CELL_MSGDIALOG_BUTTON_YES)
@@ -1377,23 +1392,32 @@ static NEVER_INLINE error_code savedata_op(ppu_thread& ppu, u32 operation, u32 v
 					message = get_confirmation_message(operation, ::at32(save_entries, selected));
 				}
 
-				// Yield before a blocking dialog is being spawned
-				lv2_obj::sleep(ppu);
-
-				// Get user confirmation by opening a blocking dialog
-				// TODO: show fixedSet->newIcon
 				s32 return_code = CELL_MSGDIALOG_BUTTON_NONE;
-				error_code res = open_msg_dialog(true, CELL_MSGDIALOG_TYPE_SE_TYPE_NORMAL | CELL_MSGDIALOG_TYPE_BUTTON_TYPE_YESNO, vm::make_str(message), msg_dialog_source::_cellSaveData, vm::null, vm::null, vm::null, &return_code);
 
-				// Reschedule after a blocking dialog returns
-				if (ppu.check_state())
+				if (g_cellsavedata_auto_confirm && operation != SAVEDATA_OP_FIXED_DELETE)
 				{
-					return {};
+					cellSaveData.notice("savedata_op(): confirmed without a dialog: %s", message);
+					return_code = CELL_MSGDIALOG_BUTTON_YES;
 				}
-
-				if (res != CELL_OK)
+				else
 				{
-					return CELL_SAVEDATA_ERROR_INTERNAL;
+					// Yield before a blocking dialog is being spawned
+					lv2_obj::sleep(ppu);
+
+					// Get user confirmation by opening a blocking dialog
+					// TODO: show fixedSet->newIcon
+					error_code res = open_msg_dialog(true, CELL_MSGDIALOG_TYPE_SE_TYPE_NORMAL | CELL_MSGDIALOG_TYPE_BUTTON_TYPE_YESNO, vm::make_str(message), msg_dialog_source::_cellSaveData, vm::null, vm::null, vm::null, &return_code);
+
+					// Reschedule after a blocking dialog returns
+					if (ppu.check_state())
+					{
+						return {};
+					}
+
+					if (res != CELL_OK)
+					{
+						return CELL_SAVEDATA_ERROR_INTERNAL;
+					}
 				}
 
 				if (return_code != CELL_MSGDIALOG_BUTTON_YES)
