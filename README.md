@@ -1,38 +1,29 @@
-RPCS3
-=====
+# RPCS3 libretro
 
-[![GitHub Actions](https://img.shields.io/github/actions/workflow/status/RPCS3/rpcs3/rpcs3.yml?branch=master&logo=github&label=Actions)](https://github.com/RPCS3/rpcs3/actions/workflows/rpcs3.yml)
-[![RPCS3 Discord Server](https://img.shields.io/discord/272035812277878785?color=5865F2&label=RPCS3%20Discord&logo=discord&logoColor=white)](https://discord.gg/rpcs3)
+[RPCS3](https://rpcs3.net/) (PlayStation 3 emulator) as a libretro core for RetroArch and other libretro frontends.
 
-The world's first free and open-source PlayStation 3 emulator/debugger, written in C++ for Windows, Linux, macOS and FreeBSD.
+This repository builds the core and nothing else. The standalone Qt application, its packaging and the input and audio backends a frontend replaces are not part of it; the emulator itself tracks upstream RPCS3.
 
-You can find some basic information on our [**website**](https://rpcs3.net/). Game info is being populated on the [**Wiki**](https://wiki.rpcs3.net/).
-For discussion about this emulator, PS3 emulation, and game compatibility reports, please visit our [**forums**](https://forums.rpcs3.net) and our [**Discord server**](https://discord.gg/RPCS3).
+## Getting the core
 
-[**Support Lead Developers Nekotekina and kd-11 on Patreon**](https://www.patreon.com/Nekotekina)
+Builds for Linux (x86_64 and aarch64), Windows x64 and Android arm64 are published as the [`libretro-latest`](https://github.com/WizzardSK/rpcs3-libretro/releases/tag/libretro-latest) release. Put the file for your platform in RetroArch's `cores` directory, together with `rpcs3_libretro.info` in its `info` directory.
 
-## Contributing
-
-If you want to help the project but do not code, the best way to help out is to test games and make bug reports. See:
-* [Quickstart](https://rpcs3.net/quickstart)
-
-If you want to contribute as a developer, please take a look at the following pages:
-
-* [Coding Style](https://github.com/RPCS3/rpcs3/wiki/Coding-Style)
-* [Developer Information](https://github.com/RPCS3/rpcs3/wiki/Developer-Information)
-
-You should also contact any of the developers in the forums or in the Discord server to learn more about the current state of the emulator.
+The PS3 firmware (`PS3UPDAT.PUP`, from playstation.com) goes into RetroArch's system directory as `system/rpcs3/PS3UPDAT.PUP`; the core installs it on first start. Disc keys for redump ISOs go into `system/rpcs3/data/redump/`, named like the ISO with a `.key` or `.dkey` extension.
 
 ## Building
 
-See [BUILDING.md](BUILDING.md) for more information about how to setup an environment to build RPCS3.
+The Linux build runs in a container with the toolchain RPCS3's CI uses, through `.ci/build-libretro.sh`; see `.github/workflows/libretro.yml` for the exact invocation, and `.ci/build-windows-clang-libretro.sh` for Windows (MSYS2 clang64). A local build is a regular CMake build of the `rpcs3_libretro` target:
 
-## Running
+```bash
+git clone --recursive https://github.com/WizzardSK/rpcs3-libretro.git
+cd rpcs3-libretro
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release \
+  -DUSE_NATIVE_INSTRUCTIONS=OFF -DUSE_SYSTEM_CURL=ON -DUSE_LIBEVDEV=OFF
+cmake --build build --target rpcs3_libretro
+```
 
-Check our friendly [quickstart](https://rpcs3.net/quickstart) guide to make sure your computer meets the minimum system requirements to run RPCS3.
-
-Don't forget to have your graphics driver up to date and to install the [Visual C++ Redistributable Packages for Visual Studio 2022](https://aka.ms/vs/17/release/VC_redist.x64.exe) if you are a Windows user.
+LLVM is needed for the PPU/SPU recompilers (`-DLLVM_DIR=...`, or `-DSTATIC_LINK_LLVM=OFF` with a shared `libLLVM` next to the core).
 
 ## License
 
-Most files are licensed under the terms of GNU GPL-2.0-only License; see LICENSE file for details. Some files may be licensed differently; check appropriate file headers for details.
+Most files are licensed under the terms of the GNU GPL-2.0-only license; see the LICENSE file for details. Some files may be licensed differently; check the appropriate file headers.
