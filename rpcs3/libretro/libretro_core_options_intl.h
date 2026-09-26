@@ -602,7 +602,7 @@ struct retro_core_option_v2_definition option_defs_ar[] = {
         RPCS3_AUDIO_BUFFERING_INFO_0_AR,
         NULL, "audio",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "disabled"
     },
     {
         "rpcs3_audio_buffer_duration", RPCS3_AUDIO_BUFFER_DURATION_LABEL_AR, NULL,
@@ -1421,7 +1421,7 @@ struct retro_core_option_v2_definition option_defs_ast[] = {
         RPCS3_AUDIO_BUFFERING_INFO_0_AST,
         NULL, "audio",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "disabled"
     },
     {
         "rpcs3_audio_buffer_duration", RPCS3_AUDIO_BUFFER_DURATION_LABEL_AST, NULL,
@@ -2240,7 +2240,7 @@ struct retro_core_option_v2_definition option_defs_be[] = {
         RPCS3_AUDIO_BUFFERING_INFO_0_BE,
         NULL, "audio",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "disabled"
     },
     {
         "rpcs3_audio_buffer_duration", RPCS3_AUDIO_BUFFER_DURATION_LABEL_BE, NULL,
@@ -3059,7 +3059,7 @@ struct retro_core_option_v2_definition option_defs_ca[] = {
         RPCS3_AUDIO_BUFFERING_INFO_0_CA,
         NULL, "audio",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "disabled"
     },
     {
         "rpcs3_audio_buffer_duration", RPCS3_AUDIO_BUFFER_DURATION_LABEL_CA, NULL,
@@ -3878,7 +3878,7 @@ struct retro_core_option_v2_definition option_defs_chs[] = {
         RPCS3_AUDIO_BUFFERING_INFO_0_CHS,
         NULL, "audio",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "disabled"
     },
     {
         "rpcs3_audio_buffer_duration", RPCS3_AUDIO_BUFFER_DURATION_LABEL_CHS, NULL,
@@ -4697,7 +4697,7 @@ struct retro_core_option_v2_definition option_defs_cht[] = {
         RPCS3_AUDIO_BUFFERING_INFO_0_CHT,
         NULL, "audio",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "disabled"
     },
     {
         "rpcs3_audio_buffer_duration", RPCS3_AUDIO_BUFFER_DURATION_LABEL_CHT, NULL,
@@ -5516,7 +5516,7 @@ struct retro_core_option_v2_definition option_defs_cs[] = {
         RPCS3_AUDIO_BUFFERING_INFO_0_CS,
         NULL, "audio",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "disabled"
     },
     {
         "rpcs3_audio_buffer_duration", RPCS3_AUDIO_BUFFER_DURATION_LABEL_CS, NULL,
@@ -6335,7 +6335,7 @@ struct retro_core_option_v2_definition option_defs_de[] = {
         RPCS3_AUDIO_BUFFERING_INFO_0_DE,
         NULL, "audio",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "disabled"
     },
     {
         "rpcs3_audio_buffer_duration", RPCS3_AUDIO_BUFFER_DURATION_LABEL_DE, NULL,
@@ -7154,7 +7154,7 @@ struct retro_core_option_v2_definition option_defs_el[] = {
         RPCS3_AUDIO_BUFFERING_INFO_0_EL,
         NULL, "audio",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "disabled"
     },
     {
         "rpcs3_audio_buffer_duration", RPCS3_AUDIO_BUFFER_DURATION_LABEL_EL, NULL,
@@ -7973,7 +7973,7 @@ struct retro_core_option_v2_definition option_defs_en[] = {
         RPCS3_AUDIO_BUFFERING_INFO_0_EN,
         NULL, "audio",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "disabled"
     },
     {
         "rpcs3_audio_buffer_duration", RPCS3_AUDIO_BUFFER_DURATION_LABEL_EN, NULL,
@@ -8792,7 +8792,7 @@ struct retro_core_option_v2_definition option_defs_eo[] = {
         RPCS3_AUDIO_BUFFERING_INFO_0_EO,
         NULL, "audio",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "disabled"
     },
     {
         "rpcs3_audio_buffer_duration", RPCS3_AUDIO_BUFFER_DURATION_LABEL_EO, NULL,
@@ -9611,7 +9611,7 @@ struct retro_core_option_v2_definition option_defs_es[] = {
         RPCS3_AUDIO_BUFFERING_INFO_0_ES,
         NULL, "audio",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "disabled"
     },
     {
         "rpcs3_audio_buffer_duration", RPCS3_AUDIO_BUFFER_DURATION_LABEL_ES, NULL,
@@ -10430,7 +10430,7 @@ struct retro_core_option_v2_definition option_defs_fa[] = {
         RPCS3_AUDIO_BUFFERING_INFO_0_FA,
         NULL, "audio",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "disabled"
     },
     {
         "rpcs3_audio_buffer_duration", RPCS3_AUDIO_BUFFER_DURATION_LABEL_FA, NULL,
@@ -11249,7 +11249,7 @@ struct retro_core_option_v2_definition option_defs_fi[] = {
         RPCS3_AUDIO_BUFFERING_INFO_0_FI,
         NULL, "audio",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "disabled"
     },
     {
         "rpcs3_audio_buffer_duration", RPCS3_AUDIO_BUFFER_DURATION_LABEL_FI, NULL,
@@ -12068,7 +12068,7 @@ struct retro_core_option_v2_definition option_defs_fr[] = {
         RPCS3_AUDIO_BUFFERING_INFO_0_FR,
         NULL, "audio",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "disabled"
     },
     {
         "rpcs3_audio_buffer_duration", RPCS3_AUDIO_BUFFER_DURATION_LABEL_FR, NULL,
@@ -12887,7 +12887,7 @@ struct retro_core_option_v2_definition option_defs_ga[] = {
         RPCS3_AUDIO_BUFFERING_INFO_0_GA,
         NULL, "audio",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "disabled"
     },
     {
         "rpcs3_audio_buffer_duration", RPCS3_AUDIO_BUFFER_DURATION_LABEL_GA, NULL,
@@ -13706,7 +13706,7 @@ struct retro_core_option_v2_definition option_defs_gl[] = {
         RPCS3_AUDIO_BUFFERING_INFO_0_GL,
         NULL, "audio",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "disabled"
     },
     {
         "rpcs3_audio_buffer_duration", RPCS3_AUDIO_BUFFER_DURATION_LABEL_GL, NULL,
@@ -14525,7 +14525,7 @@ struct retro_core_option_v2_definition option_defs_he[] = {
         RPCS3_AUDIO_BUFFERING_INFO_0_HE,
         NULL, "audio",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "disabled"
     },
     {
         "rpcs3_audio_buffer_duration", RPCS3_AUDIO_BUFFER_DURATION_LABEL_HE, NULL,
@@ -15344,7 +15344,7 @@ struct retro_core_option_v2_definition option_defs_hu[] = {
         RPCS3_AUDIO_BUFFERING_INFO_0_HU,
         NULL, "audio",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "disabled"
     },
     {
         "rpcs3_audio_buffer_duration", RPCS3_AUDIO_BUFFER_DURATION_LABEL_HU, NULL,
@@ -16163,7 +16163,7 @@ struct retro_core_option_v2_definition option_defs_id[] = {
         RPCS3_AUDIO_BUFFERING_INFO_0_ID,
         NULL, "audio",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "disabled"
     },
     {
         "rpcs3_audio_buffer_duration", RPCS3_AUDIO_BUFFER_DURATION_LABEL_ID, NULL,
@@ -16982,7 +16982,7 @@ struct retro_core_option_v2_definition option_defs_it[] = {
         RPCS3_AUDIO_BUFFERING_INFO_0_IT,
         NULL, "audio",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "disabled"
     },
     {
         "rpcs3_audio_buffer_duration", RPCS3_AUDIO_BUFFER_DURATION_LABEL_IT, NULL,
@@ -17801,7 +17801,7 @@ struct retro_core_option_v2_definition option_defs_ja[] = {
         RPCS3_AUDIO_BUFFERING_INFO_0_JA,
         NULL, "audio",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "disabled"
     },
     {
         "rpcs3_audio_buffer_duration", RPCS3_AUDIO_BUFFER_DURATION_LABEL_JA, NULL,
@@ -18620,7 +18620,7 @@ struct retro_core_option_v2_definition option_defs_ko[] = {
         RPCS3_AUDIO_BUFFERING_INFO_0_KO,
         NULL, "audio",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "disabled"
     },
     {
         "rpcs3_audio_buffer_duration", RPCS3_AUDIO_BUFFER_DURATION_LABEL_KO, NULL,
@@ -19439,7 +19439,7 @@ struct retro_core_option_v2_definition option_defs_nl[] = {
         RPCS3_AUDIO_BUFFERING_INFO_0_NL,
         NULL, "audio",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "disabled"
     },
     {
         "rpcs3_audio_buffer_duration", RPCS3_AUDIO_BUFFER_DURATION_LABEL_NL, NULL,
@@ -20258,7 +20258,7 @@ struct retro_core_option_v2_definition option_defs_no[] = {
         RPCS3_AUDIO_BUFFERING_INFO_0_NO,
         NULL, "audio",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "disabled"
     },
     {
         "rpcs3_audio_buffer_duration", RPCS3_AUDIO_BUFFER_DURATION_LABEL_NO, NULL,
@@ -21077,7 +21077,7 @@ struct retro_core_option_v2_definition option_defs_pl[] = {
         RPCS3_AUDIO_BUFFERING_INFO_0_PL,
         NULL, "audio",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "disabled"
     },
     {
         "rpcs3_audio_buffer_duration", RPCS3_AUDIO_BUFFER_DURATION_LABEL_PL, NULL,
@@ -21896,7 +21896,7 @@ struct retro_core_option_v2_definition option_defs_pt_br[] = {
         RPCS3_AUDIO_BUFFERING_INFO_0_PT_BR,
         NULL, "audio",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "disabled"
     },
     {
         "rpcs3_audio_buffer_duration", RPCS3_AUDIO_BUFFER_DURATION_LABEL_PT_BR, NULL,
@@ -22715,7 +22715,7 @@ struct retro_core_option_v2_definition option_defs_pt_pt[] = {
         RPCS3_AUDIO_BUFFERING_INFO_0_PT_PT,
         NULL, "audio",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "disabled"
     },
     {
         "rpcs3_audio_buffer_duration", RPCS3_AUDIO_BUFFER_DURATION_LABEL_PT_PT, NULL,
@@ -23534,7 +23534,7 @@ struct retro_core_option_v2_definition option_defs_ru[] = {
         RPCS3_AUDIO_BUFFERING_INFO_0_RU,
         NULL, "audio",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "disabled"
     },
     {
         "rpcs3_audio_buffer_duration", RPCS3_AUDIO_BUFFER_DURATION_LABEL_RU, NULL,
@@ -24353,7 +24353,7 @@ struct retro_core_option_v2_definition option_defs_sk[] = {
         RPCS3_AUDIO_BUFFERING_INFO_0_SK,
         NULL, "audio",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "disabled"
     },
     {
         "rpcs3_audio_buffer_duration", RPCS3_AUDIO_BUFFER_DURATION_LABEL_SK, NULL,
@@ -25172,7 +25172,7 @@ struct retro_core_option_v2_definition option_defs_sv[] = {
         RPCS3_AUDIO_BUFFERING_INFO_0_SV,
         NULL, "audio",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "disabled"
     },
     {
         "rpcs3_audio_buffer_duration", RPCS3_AUDIO_BUFFER_DURATION_LABEL_SV, NULL,
@@ -25991,7 +25991,7 @@ struct retro_core_option_v2_definition option_defs_tr[] = {
         RPCS3_AUDIO_BUFFERING_INFO_0_TR,
         NULL, "audio",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "disabled"
     },
     {
         "rpcs3_audio_buffer_duration", RPCS3_AUDIO_BUFFER_DURATION_LABEL_TR, NULL,
@@ -26810,7 +26810,7 @@ struct retro_core_option_v2_definition option_defs_uk[] = {
         RPCS3_AUDIO_BUFFERING_INFO_0_UK,
         NULL, "audio",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "disabled"
     },
     {
         "rpcs3_audio_buffer_duration", RPCS3_AUDIO_BUFFER_DURATION_LABEL_UK, NULL,
@@ -27629,7 +27629,7 @@ struct retro_core_option_v2_definition option_defs_val[] = {
         RPCS3_AUDIO_BUFFERING_INFO_0_VAL,
         NULL, "audio",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "disabled"
     },
     {
         "rpcs3_audio_buffer_duration", RPCS3_AUDIO_BUFFER_DURATION_LABEL_VAL, NULL,
@@ -28448,7 +28448,7 @@ struct retro_core_option_v2_definition option_defs_vn[] = {
         RPCS3_AUDIO_BUFFERING_INFO_0_VN,
         NULL, "audio",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "disabled"
     },
     {
         "rpcs3_audio_buffer_duration", RPCS3_AUDIO_BUFFER_DURATION_LABEL_VN, NULL,

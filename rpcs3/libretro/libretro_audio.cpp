@@ -57,10 +57,17 @@ void libretro_audio_process(retro_audio_sample_batch_t audio_batch_cb)
         const size_t frames = s_audio_backend->GetSamples(buffer, want);
         if (frames > 0)
             audio_batch_cb(buffer, frames);
+        remaining -= frames;
         if (frames < want)
             break; // nothing more to give this run
-        remaining -= frames;
     }
+
+    // Without buffering cellAudio produces in 256-sample blocks on its own
+    // clock, so a run often lands just before the next block is out. What was
+    // due but not there yet is owed to the next run - dropping it made every
+    // short run permanent, and the audio that came late piled up unplayed.
+    // Bounded, so a pause does not come back as a burst.
+    s_owed = std::min(s_owed + static_cast<double>(remaining), SAMPLE_RATE / 20);
 }
 
 LibretroAudioBackend::LibretroAudioBackend()
@@ -127,10 +134,14 @@ void LibretroAudioBackend::SetStateCallback(std::function<void(AudioStateEvent)>
 
 f64 LibretroAudioBackend::GetCallbackFrameLen()
 {
-    // Return frame length in seconds
-    // For libretro, we want callbacks frequently to keep the ring buffer filled
-    // 256 samples at 48kHz = ~5.3ms per callback
-    return 256.0 / static_cast<f64>(get_sampling_rate());
+    // How long cellAudio has to hold on to audio before it is collected - it
+    // sizes its ring from this. Collection happens once per retro_run, not
+    // every 5.3 ms like a sound card callback, and with buffering off the ring
+    // was 5.3 ms + two 256-sample blocks = 16 ms: less than one 60 Hz frame.
+    // Blocks that did not fit were dropped, RetroArch starved (NNshi: 98 %
+    // underrun at 60 fps, fine from 66 fps up). Three frames leave room for a
+    // late run; the ring is emptied every run, so this adds no latency.
+    return 3.0 / 60.0;
 }
 
 void LibretroAudioBackend::Play()

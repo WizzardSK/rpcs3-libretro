@@ -331,7 +331,7 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "Enable audio buffering.",
         NULL, "audio",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "disabled"
     },
     {
         "rpcs3_audio_buffer_duration", "Buffer Duration", NULL,

@@ -559,7 +559,9 @@ static void libretro_apply_core_options()
 
     // ==================== AUDIO OPTIONS ====================
     // Audio Buffering
-    g_cfg.audio.enable_buffering.set(get_option_value("rpcs3_audio_buffering", "enabled") == "enabled");
+    // Off by default: RetroArch keeps its own buffer, and cellAudio's comes on
+    // top of it as latency the pictures do not have (NNshi, Project Diva).
+    g_cfg.audio.enable_buffering.set(get_option_value("rpcs3_audio_buffering", "disabled") == "enabled");
 
     // Audio Buffer Duration
     std::string audio_buf = get_option_value("rpcs3_audio_buffer_duration", "100");
@@ -815,14 +817,6 @@ void retro_set_environment(retro_environment_t cb)
     }
 
 
-
-    // Set minimum audio latency to reduce crackling (per libretro docs recommendation)
-    // 64ms = ~4 frames at 60fps, good for emulators with variable frame timing
-    unsigned audio_latency_ms = 64;
-    if (cb(RETRO_ENVIRONMENT_SET_MINIMUM_AUDIO_LATENCY, &audio_latency_ms))
-    {
-
-    }
 
     // Apply defaults for core options early
     libretro_apply_core_options();
@@ -1399,7 +1393,7 @@ bool retro_load_game(const struct retro_game_info* game)
     g_cfg.video.disable_FIFO_reordering.set(false);  // Keep FIFO reordering enabled
 
     // Audio optimizations
-    g_cfg.audio.enable_buffering.set(true);  // Enable audio buffering
+    g_cfg.audio.enable_buffering.set(false);  // RetroArch buffers; see rpcs3_audio_buffering
     g_cfg.audio.desired_buffer_duration.set(100);  // 100ms buffer for smoother audio in libretro
     g_cfg.audio.enable_time_stretching.set(false);  // Disable time stretching (RetroArch handles sync)
 
