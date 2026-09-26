@@ -349,8 +349,10 @@ iso_type_status iso_file_decryption::check_type(const std::string& path, std::st
 	const std::string name_path = ext_pos == umax ? path : path.substr(0, ext_pos);
 
 	// Detect file name (with no parent folder and no file extension)
-	const usz name_pos = name_path.rfind('/');
-	const std::string name = name_pos == umax ? name_path : name_path.substr(name_pos);
+	// Either separator: a libretro frontend on Windows hands the path over with
+	// backslashes, and then the whole path was taken for the name.
+	const usz name_pos = name_path.find_last_of("/\\");
+	const std::string name = name_pos == umax ? name_path : name_path.substr(name_pos + 1);
 
 	const std::array<std::string, 4> key_paths {
 		name_path + ".dkey",
