@@ -146,29 +146,9 @@ target_sources(rpcs3_emu PRIVATE
     Audio/audio_utils.cpp
     Audio/AudioDumper.cpp
     Audio/AudioBackend.cpp
-    Audio/Cubeb/CubebBackend.cpp
-    Audio/Cubeb/cubeb_enumerator.cpp
 )
 
-if(USE_FAUDIO)
-    find_package(SDL3)
-    if(SDL3_FOUND AND SDL3_VERSION VERSION_GREATER_EQUAL 3.2.0)
-        target_sources(rpcs3_emu PRIVATE
-            Audio/FAudio/FAudioBackend.cpp
-            Audio/FAudio/faudio_enumerator.cpp
-        )
-        target_link_libraries(rpcs3_emu PUBLIC 3rdparty::faudio)
-    endif()
-endif()
-
 if(WIN32)
-    if(NOT MSVC)
-        target_link_libraries(rpcs3_emu PRIVATE xaudio2_9)
-    endif()
-    target_sources(rpcs3_emu PRIVATE
-        Audio/XAudio2/XAudio2Backend.cpp
-        Audio/XAudio2/xaudio2_enumerator.cpp
-    )
     target_compile_definitions(rpcs3_emu PRIVATE UNICODE _UNICODE _WIN32_WINNT=0x0A00)
     target_link_libraries(rpcs3_emu PRIVATE pdh bcrypt)
 endif()
@@ -407,7 +387,6 @@ target_sources(rpcs3_emu PRIVATE
     Io/Buzz.cpp
     Io/camera_config.cpp
     Io/Dimensions.cpp
-    Io/evdev_gun_handler.cpp
     Io/GameTablet.cpp
     Io/GHLtar.cpp
     Io/GunCon3.cpp
@@ -435,8 +414,6 @@ target_sources(rpcs3_emu PRIVATE
     Io/usb_device.cpp
     Io/usb_vfs.cpp
     Io/usio.cpp
-    Io/LogitechG27.cpp
-    Io/LogitechG27Config.cpp
 )
 
 # Np
@@ -652,18 +629,14 @@ target_link_libraries(rpcs3_emu
         3rdparty::llvm
         3rdparty::asmjit
         3rdparty::ffmpeg
-        3rdparty::sdl3
         3rdparty::opengl
         3rdparty::stblib
         3rdparty::vulkan
         3rdparty::glew
         3rdparty::libusb
         3rdparty::wolfssl
-        3rdparty::openal
-        3rdparty::cubeb
         3rdparty::soundtouch
         3rdparty::miniupnpc
-        3rdparty::libevdev
         3rdparty::flatbuffers
         3rdparty::pugixml
         3rdparty::vulkanmemoryallocator
