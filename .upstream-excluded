@@ -91,3 +91,4 @@ rpcs3/Input/sdl_instance.h
 3rdparty/libsdl-org
 3rdparty/hidapi
 3rdparty/OpenAL
+3rdparty/7zip
