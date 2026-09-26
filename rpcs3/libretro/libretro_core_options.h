@@ -186,10 +186,10 @@ struct retro_core_option_v2_definition option_defs_us[] = {
     // ==================== GPU OPTIONS ====================
     {
         "rpcs3_renderer", "Renderer", NULL,
-        "OpenGL draws into the frontend's context. Vulkan has none to draw into here, so it finishes each frame into memory and the frontend takes the pixels - slower, but it is the one that works where OpenGL is missing or broken.",
+        "Vulkan finishes each frame into memory and the frontend takes the pixels; it runs about as fast as standalone RPCS3 and works where OpenGL is missing or broken. OpenGL draws straight into the frontend's context.",
         NULL, "gpu",
         { {"opengl", "OpenGL"}, {"vulkan", "Vulkan (through memory)"}, {"null", "Null (No Video)"}, {NULL, NULL} },
-        "opengl"
+        "vulkan"
     },
     {
         "rpcs3_resolution_scale", "Resolution Scale", NULL,

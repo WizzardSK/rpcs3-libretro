@@ -460,7 +460,7 @@ struct retro_core_option_v2_definition option_defs_ar[] = {
         RPCS3_RENDERER_INFO_0_AR,
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_AR}, {"vulkan", OPTION_VAL_VULKAN_AR}, {"null", OPTION_VAL_NULL_AR}, {NULL, NULL} },
-        "opengl"
+        "vulkan"
     },
     {
         "rpcs3_resolution_scale", RPCS3_RESOLUTION_SCALE_LABEL_AR, NULL,
@@ -1279,7 +1279,7 @@ struct retro_core_option_v2_definition option_defs_ast[] = {
         RPCS3_RENDERER_INFO_0_AST,
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_AST}, {"vulkan", OPTION_VAL_VULKAN_AST}, {"null", OPTION_VAL_NULL_AST}, {NULL, NULL} },
-        "opengl"
+        "vulkan"
     },
     {
         "rpcs3_resolution_scale", RPCS3_RESOLUTION_SCALE_LABEL_AST, NULL,
@@ -2098,7 +2098,7 @@ struct retro_core_option_v2_definition option_defs_be[] = {
         RPCS3_RENDERER_INFO_0_BE,
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_BE}, {"vulkan", OPTION_VAL_VULKAN_BE}, {"null", OPTION_VAL_NULL_BE}, {NULL, NULL} },
-        "opengl"
+        "vulkan"
     },
     {
         "rpcs3_resolution_scale", RPCS3_RESOLUTION_SCALE_LABEL_BE, NULL,
@@ -2917,7 +2917,7 @@ struct retro_core_option_v2_definition option_defs_ca[] = {
         RPCS3_RENDERER_INFO_0_CA,
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_CA}, {"vulkan", OPTION_VAL_VULKAN_CA}, {"null", OPTION_VAL_NULL_CA}, {NULL, NULL} },
-        "opengl"
+        "vulkan"
     },
     {
         "rpcs3_resolution_scale", RPCS3_RESOLUTION_SCALE_LABEL_CA, NULL,
@@ -3736,7 +3736,7 @@ struct retro_core_option_v2_definition option_defs_chs[] = {
         RPCS3_RENDERER_INFO_0_CHS,
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_CHS}, {"vulkan", OPTION_VAL_VULKAN_CHS}, {"null", OPTION_VAL_NULL_CHS}, {NULL, NULL} },
-        "opengl"
+        "vulkan"
     },
     {
         "rpcs3_resolution_scale", RPCS3_RESOLUTION_SCALE_LABEL_CHS, NULL,
@@ -4555,7 +4555,7 @@ struct retro_core_option_v2_definition option_defs_cht[] = {
         RPCS3_RENDERER_INFO_0_CHT,
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_CHT}, {"vulkan", OPTION_VAL_VULKAN_CHT}, {"null", OPTION_VAL_NULL_CHT}, {NULL, NULL} },
-        "opengl"
+        "vulkan"
     },
     {
         "rpcs3_resolution_scale", RPCS3_RESOLUTION_SCALE_LABEL_CHT, NULL,
@@ -5374,7 +5374,7 @@ struct retro_core_option_v2_definition option_defs_cs[] = {
         RPCS3_RENDERER_INFO_0_CS,
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_CS}, {"vulkan", OPTION_VAL_VULKAN_CS}, {"null", OPTION_VAL_NULL_CS}, {NULL, NULL} },
-        "opengl"
+        "vulkan"
     },
     {
         "rpcs3_resolution_scale", RPCS3_RESOLUTION_SCALE_LABEL_CS, NULL,
@@ -6193,7 +6193,7 @@ struct retro_core_option_v2_definition option_defs_de[] = {
         RPCS3_RENDERER_INFO_0_DE,
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_DE}, {"vulkan", OPTION_VAL_VULKAN_DE}, {"null", OPTION_VAL_NULL_DE}, {NULL, NULL} },
-        "opengl"
+        "vulkan"
     },
     {
         "rpcs3_resolution_scale", RPCS3_RESOLUTION_SCALE_LABEL_DE, NULL,
@@ -7012,7 +7012,7 @@ struct retro_core_option_v2_definition option_defs_el[] = {
         RPCS3_RENDERER_INFO_0_EL,
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_EL}, {"vulkan", OPTION_VAL_VULKAN_EL}, {"null", OPTION_VAL_NULL_EL}, {NULL, NULL} },
-        "opengl"
+        "vulkan"
     },
     {
         "rpcs3_resolution_scale", RPCS3_RESOLUTION_SCALE_LABEL_EL, NULL,
@@ -7831,7 +7831,7 @@ struct retro_core_option_v2_definition option_defs_en[] = {
         RPCS3_RENDERER_INFO_0_EN,
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_EN}, {"vulkan", OPTION_VAL_VULKAN_EN}, {"null", OPTION_VAL_NULL_EN}, {NULL, NULL} },
-        "opengl"
+        "vulkan"
     },
     {
         "rpcs3_resolution_scale", RPCS3_RESOLUTION_SCALE_LABEL_EN, NULL,
@@ -8650,7 +8650,7 @@ struct retro_core_option_v2_definition option_defs_eo[] = {
         RPCS3_RENDERER_INFO_0_EO,
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_EO}, {"vulkan", OPTION_VAL_VULKAN_EO}, {"null", OPTION_VAL_NULL_EO}, {NULL, NULL} },
-        "opengl"
+        "vulkan"
     },
     {
         "rpcs3_resolution_scale", RPCS3_RESOLUTION_SCALE_LABEL_EO, NULL,
@@ -9469,7 +9469,7 @@ struct retro_core_option_v2_definition option_defs_es[] = {
         RPCS3_RENDERER_INFO_0_ES,
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_ES}, {"vulkan", OPTION_VAL_VULKAN_ES}, {"null", OPTION_VAL_NULL_ES}, {NULL, NULL} },
-        "opengl"
+        "vulkan"
     },
     {
         "rpcs3_resolution_scale", RPCS3_RESOLUTION_SCALE_LABEL_ES, NULL,
@@ -10288,7 +10288,7 @@ struct retro_core_option_v2_definition option_defs_fa[] = {
         RPCS3_RENDERER_INFO_0_FA,
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_FA}, {"vulkan", OPTION_VAL_VULKAN_FA}, {"null", OPTION_VAL_NULL_FA}, {NULL, NULL} },
-        "opengl"
+        "vulkan"
     },
     {
         "rpcs3_resolution_scale", RPCS3_RESOLUTION_SCALE_LABEL_FA, NULL,
@@ -11107,7 +11107,7 @@ struct retro_core_option_v2_definition option_defs_fi[] = {
         RPCS3_RENDERER_INFO_0_FI,
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_FI}, {"vulkan", OPTION_VAL_VULKAN_FI}, {"null", OPTION_VAL_NULL_FI}, {NULL, NULL} },
-        "opengl"
+        "vulkan"
     },
     {
         "rpcs3_resolution_scale", RPCS3_RESOLUTION_SCALE_LABEL_FI, NULL,
@@ -11926,7 +11926,7 @@ struct retro_core_option_v2_definition option_defs_fr[] = {
         RPCS3_RENDERER_INFO_0_FR,
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_FR}, {"vulkan", OPTION_VAL_VULKAN_FR}, {"null", OPTION_VAL_NULL_FR}, {NULL, NULL} },
-        "opengl"
+        "vulkan"
     },
     {
         "rpcs3_resolution_scale", RPCS3_RESOLUTION_SCALE_LABEL_FR, NULL,
@@ -12745,7 +12745,7 @@ struct retro_core_option_v2_definition option_defs_ga[] = {
         RPCS3_RENDERER_INFO_0_GA,
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_GA}, {"vulkan", OPTION_VAL_VULKAN_GA}, {"null", OPTION_VAL_NULL_GA}, {NULL, NULL} },
-        "opengl"
+        "vulkan"
     },
     {
         "rpcs3_resolution_scale", RPCS3_RESOLUTION_SCALE_LABEL_GA, NULL,
@@ -13564,7 +13564,7 @@ struct retro_core_option_v2_definition option_defs_gl[] = {
         RPCS3_RENDERER_INFO_0_GL,
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_GL}, {"vulkan", OPTION_VAL_VULKAN_GL}, {"null", OPTION_VAL_NULL_GL}, {NULL, NULL} },
-        "opengl"
+        "vulkan"
     },
     {
         "rpcs3_resolution_scale", RPCS3_RESOLUTION_SCALE_LABEL_GL, NULL,
@@ -14383,7 +14383,7 @@ struct retro_core_option_v2_definition option_defs_he[] = {
         RPCS3_RENDERER_INFO_0_HE,
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_HE}, {"vulkan", OPTION_VAL_VULKAN_HE}, {"null", OPTION_VAL_NULL_HE}, {NULL, NULL} },
-        "opengl"
+        "vulkan"
     },
     {
         "rpcs3_resolution_scale", RPCS3_RESOLUTION_SCALE_LABEL_HE, NULL,
@@ -15202,7 +15202,7 @@ struct retro_core_option_v2_definition option_defs_hu[] = {
         RPCS3_RENDERER_INFO_0_HU,
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_HU}, {"vulkan", OPTION_VAL_VULKAN_HU}, {"null", OPTION_VAL_NULL_HU}, {NULL, NULL} },
-        "opengl"
+        "vulkan"
     },
     {
         "rpcs3_resolution_scale", RPCS3_RESOLUTION_SCALE_LABEL_HU, NULL,
@@ -16021,7 +16021,7 @@ struct retro_core_option_v2_definition option_defs_id[] = {
         RPCS3_RENDERER_INFO_0_ID,
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_ID}, {"vulkan", OPTION_VAL_VULKAN_ID}, {"null", OPTION_VAL_NULL_ID}, {NULL, NULL} },
-        "opengl"
+        "vulkan"
     },
     {
         "rpcs3_resolution_scale", RPCS3_RESOLUTION_SCALE_LABEL_ID, NULL,
@@ -16840,7 +16840,7 @@ struct retro_core_option_v2_definition option_defs_it[] = {
         RPCS3_RENDERER_INFO_0_IT,
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_IT}, {"vulkan", OPTION_VAL_VULKAN_IT}, {"null", OPTION_VAL_NULL_IT}, {NULL, NULL} },
-        "opengl"
+        "vulkan"
     },
     {
         "rpcs3_resolution_scale", RPCS3_RESOLUTION_SCALE_LABEL_IT, NULL,
@@ -17659,7 +17659,7 @@ struct retro_core_option_v2_definition option_defs_ja[] = {
         RPCS3_RENDERER_INFO_0_JA,
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_JA}, {"vulkan", OPTION_VAL_VULKAN_JA}, {"null", OPTION_VAL_NULL_JA}, {NULL, NULL} },
-        "opengl"
+        "vulkan"
     },
     {
         "rpcs3_resolution_scale", RPCS3_RESOLUTION_SCALE_LABEL_JA, NULL,
@@ -18478,7 +18478,7 @@ struct retro_core_option_v2_definition option_defs_ko[] = {
         RPCS3_RENDERER_INFO_0_KO,
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_KO}, {"vulkan", OPTION_VAL_VULKAN_KO}, {"null", OPTION_VAL_NULL_KO}, {NULL, NULL} },
-        "opengl"
+        "vulkan"
     },
     {
         "rpcs3_resolution_scale", RPCS3_RESOLUTION_SCALE_LABEL_KO, NULL,
@@ -19297,7 +19297,7 @@ struct retro_core_option_v2_definition option_defs_nl[] = {
         RPCS3_RENDERER_INFO_0_NL,
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_NL}, {"vulkan", OPTION_VAL_VULKAN_NL}, {"null", OPTION_VAL_NULL_NL}, {NULL, NULL} },
-        "opengl"
+        "vulkan"
     },
     {
         "rpcs3_resolution_scale", RPCS3_RESOLUTION_SCALE_LABEL_NL, NULL,
@@ -20116,7 +20116,7 @@ struct retro_core_option_v2_definition option_defs_no[] = {
         RPCS3_RENDERER_INFO_0_NO,
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_NO}, {"vulkan", OPTION_VAL_VULKAN_NO}, {"null", OPTION_VAL_NULL_NO}, {NULL, NULL} },
-        "opengl"
+        "vulkan"
     },
     {
         "rpcs3_resolution_scale", RPCS3_RESOLUTION_SCALE_LABEL_NO, NULL,
@@ -20935,7 +20935,7 @@ struct retro_core_option_v2_definition option_defs_pl[] = {
         RPCS3_RENDERER_INFO_0_PL,
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_PL}, {"vulkan", OPTION_VAL_VULKAN_PL}, {"null", OPTION_VAL_NULL_PL}, {NULL, NULL} },
-        "opengl"
+        "vulkan"
     },
     {
         "rpcs3_resolution_scale", RPCS3_RESOLUTION_SCALE_LABEL_PL, NULL,
@@ -21754,7 +21754,7 @@ struct retro_core_option_v2_definition option_defs_pt_br[] = {
         RPCS3_RENDERER_INFO_0_PT_BR,
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_PT_BR}, {"vulkan", OPTION_VAL_VULKAN_PT_BR}, {"null", OPTION_VAL_NULL_PT_BR}, {NULL, NULL} },
-        "opengl"
+        "vulkan"
     },
     {
         "rpcs3_resolution_scale", RPCS3_RESOLUTION_SCALE_LABEL_PT_BR, NULL,
@@ -22573,7 +22573,7 @@ struct retro_core_option_v2_definition option_defs_pt_pt[] = {
         RPCS3_RENDERER_INFO_0_PT_PT,
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_PT_PT}, {"vulkan", OPTION_VAL_VULKAN_PT_PT}, {"null", OPTION_VAL_NULL_PT_PT}, {NULL, NULL} },
-        "opengl"
+        "vulkan"
     },
     {
         "rpcs3_resolution_scale", RPCS3_RESOLUTION_SCALE_LABEL_PT_PT, NULL,
@@ -23392,7 +23392,7 @@ struct retro_core_option_v2_definition option_defs_ru[] = {
         RPCS3_RENDERER_INFO_0_RU,
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_RU}, {"vulkan", OPTION_VAL_VULKAN_RU}, {"null", OPTION_VAL_NULL_RU}, {NULL, NULL} },
-        "opengl"
+        "vulkan"
     },
     {
         "rpcs3_resolution_scale", RPCS3_RESOLUTION_SCALE_LABEL_RU, NULL,
@@ -24211,7 +24211,7 @@ struct retro_core_option_v2_definition option_defs_sk[] = {
         RPCS3_RENDERER_INFO_0_SK,
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_SK}, {"vulkan", OPTION_VAL_VULKAN_SK}, {"null", OPTION_VAL_NULL_SK}, {NULL, NULL} },
-        "opengl"
+        "vulkan"
     },
     {
         "rpcs3_resolution_scale", RPCS3_RESOLUTION_SCALE_LABEL_SK, NULL,
@@ -25030,7 +25030,7 @@ struct retro_core_option_v2_definition option_defs_sv[] = {
         RPCS3_RENDERER_INFO_0_SV,
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_SV}, {"vulkan", OPTION_VAL_VULKAN_SV}, {"null", OPTION_VAL_NULL_SV}, {NULL, NULL} },
-        "opengl"
+        "vulkan"
     },
     {
         "rpcs3_resolution_scale", RPCS3_RESOLUTION_SCALE_LABEL_SV, NULL,
@@ -25849,7 +25849,7 @@ struct retro_core_option_v2_definition option_defs_tr[] = {
         RPCS3_RENDERER_INFO_0_TR,
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_TR}, {"vulkan", OPTION_VAL_VULKAN_TR}, {"null", OPTION_VAL_NULL_TR}, {NULL, NULL} },
-        "opengl"
+        "vulkan"
     },
     {
         "rpcs3_resolution_scale", RPCS3_RESOLUTION_SCALE_LABEL_TR, NULL,
@@ -26668,7 +26668,7 @@ struct retro_core_option_v2_definition option_defs_uk[] = {
         RPCS3_RENDERER_INFO_0_UK,
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_UK}, {"vulkan", OPTION_VAL_VULKAN_UK}, {"null", OPTION_VAL_NULL_UK}, {NULL, NULL} },
-        "opengl"
+        "vulkan"
     },
     {
         "rpcs3_resolution_scale", RPCS3_RESOLUTION_SCALE_LABEL_UK, NULL,
@@ -27487,7 +27487,7 @@ struct retro_core_option_v2_definition option_defs_val[] = {
         RPCS3_RENDERER_INFO_0_VAL,
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_VAL}, {"vulkan", OPTION_VAL_VULKAN_VAL}, {"null", OPTION_VAL_NULL_VAL}, {NULL, NULL} },
-        "opengl"
+        "vulkan"
     },
     {
         "rpcs3_resolution_scale", RPCS3_RESOLUTION_SCALE_LABEL_VAL, NULL,
@@ -28306,7 +28306,7 @@ struct retro_core_option_v2_definition option_defs_vn[] = {
         RPCS3_RENDERER_INFO_0_VN,
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_VN}, {"vulkan", OPTION_VAL_VULKAN_VN}, {"null", OPTION_VAL_NULL_VN}, {NULL, NULL} },
-        "opengl"
+        "vulkan"
     },
     {
         "rpcs3_resolution_scale", RPCS3_RESOLUTION_SCALE_LABEL_VN, NULL,
