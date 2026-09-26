@@ -410,6 +410,19 @@ static void libretro_apply_core_options()
     if (!environ_cb)
         return;
 
+    // Only when the frontend has options to give. retro_set_environment()
+    // applies them too, and RetroArch calls it again after it has brought up
+    // the video driver, at a point where it answers no GET_VARIABLE at all -
+    // every option then read as its default and overwrote what the user set:
+    // the resolution scale went back to 100% moments after boot, which is why
+    // no game ever came out scaled (NNshi). Nothing answered means nothing to
+    // apply, not "apply the defaults".
+    {
+        retro_variable probe{"rpcs3_renderer", nullptr};
+        if (!environ_cb(RETRO_ENVIRONMENT_GET_VARIABLE, &probe) || !probe.value)
+            return;
+    }
+
     // ==================== CPU OPTIONS ====================
     // PPU Decoder
     std::string ppu_decoder = get_option_value("rpcs3_ppu_decoder", "llvm");

@@ -509,6 +509,37 @@ void VKGSRender::flip(const rsx::display_flip_info_t& info)
 
 		buffer_width = present_info.width;
 		buffer_height = present_info.height;
+
+		// The size only carries the resolution scale when the picture came
+		// out of the surface cache. A title that presents a blit destination
+		// hands over a texture drawn at the scaled resolution while the size
+		// stays native, and the libretro core copies out exactly that size -
+		// NNshi's Project Diva F at 200% reached the frontend as 1280x720. A
+		// source at least as large as the scaled size is taken to be scaled;
+		// one read back from memory, or already sized by the surface cache,
+		// is not that large and keeps its size.
+		if (g_libretro_software_present && image_to_flip)
+		{
+			const auto [scaled_width, scaled_height] = rsx::apply_resolution_scale<true>(buffer_width, buffer_height);
+			const bool scaled_source = scaled_width > buffer_width &&
+				image_to_flip->width() >= scaled_width && image_to_flip->height() >= scaled_height;
+
+			static u64 s_last_reported = 0;
+			const u64 report = (u64{image_to_flip->width()} << 48) | (u64{image_to_flip->height()} << 32) | (u64{buffer_width} << 16) | buffer_height;
+			if (report != s_last_reported)
+			{
+				s_last_reported = report;
+				rsx_log.notice("libretro present: source %ux%u, buffer %ux%u, sent as %ux%u",
+					image_to_flip->width(), image_to_flip->height(), buffer_width, buffer_height,
+					scaled_source ? scaled_width : buffer_width, scaled_source ? scaled_height : buffer_height);
+			}
+
+			if (scaled_source)
+			{
+				buffer_width = scaled_width;
+				buffer_height = scaled_height;
+			}
+		}
 	}
 
 	if (info.emu_flip)

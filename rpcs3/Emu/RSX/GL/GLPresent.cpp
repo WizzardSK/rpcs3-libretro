@@ -407,6 +407,14 @@ void GLGSRender::flip(const rsx::display_flip_info_t& info)
 		evaluate_cpu_usage_reduction_limits();
 	}
 
+#if defined(LIBRETRO_CORE)
+	// The core's window is the shared texture handed to the frontend. Size it
+	// to the picture - which carries the resolution scale - before it is used
+	// below as the area to draw into.
+	if (image_to_flip && buffer_width && buffer_height)
+		libretro_ensure_render_size(static_cast<int>(buffer_width), static_cast<int>(buffer_height));
+#endif
+
 	// Get window state
 	const int width = m_frame->client_width();
 	const int height = m_frame->client_height();

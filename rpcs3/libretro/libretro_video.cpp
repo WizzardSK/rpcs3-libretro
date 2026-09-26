@@ -283,19 +283,25 @@ static void resize_rsx_render_resources(int new_width, int new_height)
     s_main_fbo_created = false;
 }
 
+// Sizes the shared texture to the picture being presented, from the RSX
+// thread. It is what the frontend is handed and what LibretroGSFrame reports as
+// the window, so it has to match the picture exactly: at the 1280x720 it was
+// created with, a title drawn at a higher resolution scale was shrunk back into
+// it, and the frontend never saw more than 720p (NNshi). Larger than the
+// picture would leave it in a corner.
 void libretro_ensure_render_size(int width, int height)
 {
-    // Called to ensure shared texture can accommodate the requested size
+    if (width <= 0 || height <= 0)
+        return;
+
     if (!s_rsx_resources_created.load())
     {
-        // First time - create at requested size
         s_shared_texture_width = width;
         s_shared_texture_height = height;
         create_rsx_render_resources(width, height);
     }
-    else if (width > s_shared_texture_width || height > s_shared_texture_height)
+    else
     {
-        // Need to resize to accommodate larger resolution
         resize_rsx_render_resources(width, height);
     }
 }
