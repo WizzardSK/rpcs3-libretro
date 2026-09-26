@@ -1074,10 +1074,10 @@ void retro_init(void)
     // each frame into memory and retro_run hands the pixels over - the same
     // path Android and the Apple embedded systems already take.
 #ifdef HAVE_VULKAN
-    if (get_option_value("rpcs3_renderer", "opengl") == "vulkan")
+    if (get_option_value("rpcs3_renderer", "vulkan") == "vulkan")
         g_libretro_software_present = true;
 #else
-    if (get_option_value("rpcs3_renderer", "opengl") == "vulkan" && log_cb)
+    if (get_option_value("rpcs3_renderer", "vulkan") == "vulkan" && log_cb)
         log_cb(RETRO_LOG_WARN, "RPCS3: this core was built without Vulkan - using OpenGL\n");
 #endif
 
@@ -1421,7 +1421,7 @@ bool retro_load_game(const struct retro_game_info* game)
     // can finish a frame into memory, which is what the software path reads.
     // Null is the option saying not to draw at all, which is worth having when
     // the question is whether the emulator runs rather than what it looks like.
-    if (get_option_value("rpcs3_renderer", "opengl") == "null")
+    if (get_option_value("rpcs3_renderer", "vulkan") == "null")
         g_cfg.video.renderer.set(video_renderer::null);
     else if (g_libretro_software_present)
         g_cfg.video.renderer.set(video_renderer::vulkan);
