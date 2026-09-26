@@ -34,7 +34,6 @@ option(BUILD_LLVM "Build LLVM from git submodule" OFF)
 option(STATIC_LINK_LLVM "Link against LLVM statically. This will get set to ON if you build LLVM from the submodule." OFF)
 option(USE_FAUDIO "FAudio audio backend" ON)
 option(USE_LIBEVDEV "libevdev-based joystick support" ON)
-option(USE_DISCORD_RPC "Discord rich presence integration" OFF)
 option(USE_VULKAN "Vulkan render backend" ON)
 option(USE_PRECOMPILED_HEADERS "Use precompiled headers" OFF)
 option(USE_SDL "Enables SDL input handler" OFF)
@@ -60,9 +59,10 @@ option(USE_SYSTEM_ZLIB "Prefer system ZLIB instead of the builtin one" ON)
 option(USE_SYSTEM_ZSTD "Prefer system zstd instead of the builtin one" OFF)
 option(HAS_MEMORY_BREAKPOINTS "Add support for memory breakpoints to the interpreter" OFF)
 option(USE_LTO "Use LTO for building" ON)
-option(BUILD_RPCS3_TESTS "Build RPCS3 unit tests." OFF)
-option(RUN_RPCS3_TESTS "Run RPCS3 unit tests. Requires BUILD_RPCS3_TESTS" OFF)
-option(USE_GAMEMODE "Choose whether to enable GameMode features or not." ON)
+
+# The libretro core is the only thing this repository builds. The flag stays a
+# variable because the rest of the build, shared with upstream, still asks for it.
+set(BUILD_LIBRETRO_CORE_ONLY ON)
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/buildfiles/cmake")
 
@@ -70,10 +70,6 @@ include(CheckCXXCompilerFlag)
 
 get_property(IS_MULTI_CONFIG GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
 if(IS_MULTI_CONFIG)
-    # TODO(cjj19970505@live.cn)
-    # Currently DicordRPC is included as a binary compiled with /MT flag.
-    # We need all 4 binaries(/MT /MTd /MD /MDd) or including the source instead of binary.
-    set(USE_DISCORD_RPC OFF CACHE BOOL "Discord RPC is only avaliable with single-config generator" FORCE)
 else()
     if(NOT CMAKE_BUILD_TYPE)
         message(STATUS "No build type selected, default to Release")
@@ -87,18 +83,6 @@ endif()
 
 if(MSVC)
     option(USE_MSVC_STATIC_CRT "Use static MSVC C runtime" OFF)
-
-    # TODO(cjj19970505@live.cn)
-    # DiscordRPC binary in 3rdparty is compiled /MT
-    # So theoretically we should enable DiscordRPC in Release and static CRT build
-    # since we might encounter some rumtime issues when more than one CRT version are presented.
-    # https://docs.microsoft.com/en-us/cpp/c-runtime-library/crt-library-features?view=msvc-160#what-problems-exist-if-an-application-uses-more-than-one-crt-version
-    # Add other DiscordRPC binaries(compiled with /MTd, /MD, /MDd) or compile it from source may address this issue.
-    if(NOT IS_MULTI_CONFIG)
-        if(NOT(CMAKE_BUILD_TYPE MATCHES "Release" AND USE_MSVC_STATIC_CRT))
-            set(USE_DISCORD_RPC OFF CACHE BOOL "Discord RPC is only available in Release and static CRT build." FORCE)
-        endif()
-    endif()
 
     if(USE_MSVC_STATIC_CRT)
         set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
@@ -163,14 +147,6 @@ endif()
 
 if(NOT WIN32)
     add_compile_options(-pthread)
-endif()
-
-## Look for Gamemode if its installed on Linux
-if(LINUX)
-    ## User chooses whether to Enable GameMode features or not
-    if(USE_GAMEMODE)
-         add_compile_definitions(GAMEMODE_AVAILABLE)
-    endif()
 endif()
 
 # TODO: do real installation, including copying directory structure

@@ -100,15 +100,7 @@
 	path = 3rdparty/fusion/fusion
 	url = ../../xioTechnologies/Fusion.git
 	ignore = dirty
-[submodule "3rdparty/discord-rpc/discord-rpc"]
-	path = 3rdparty/discord-rpc/discord-rpc
-	url = ../../Vestrel/discord-rpc
-	ignore = dirty
 [submodule "3rdparty/GPUOpen/VulkanMemoryAllocator"]
 	path = 3rdparty/GPUOpen/VulkanMemoryAllocator
 	url = ../../GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator.git
-	ignore = dirty
-[submodule "3rdparty/feralinteractive/feralinteractive"]
-	path = 3rdparty/feralinteractive/feralinteractive
-	url = ../../FeralInteractive/gamemode.git
 	ignore = dirty
