@@ -36,7 +36,8 @@ rpcs3/stdafx.cpp
 :(glob)**/*.props
 :(glob)**/*.sln
 buildfiles/msvc
-bin
+bin/GuiConfigs
+bin/test
 BUILDING.md
 git-clang-format
 pre-commit.readme
