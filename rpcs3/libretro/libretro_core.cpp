@@ -867,15 +867,76 @@ void retro_get_system_info(struct retro_system_info* info)
     info->block_extract = false;
 }
 
-void retro_get_system_av_info(struct retro_system_av_info* info)
+// The renderer draws at the game's resolution times the Resolution Scale
+// option, and hands the frontend frames of that size. The base size here is a
+// 720p game's, which is what most are; the real one is reported with the
+// first frame. The maximum has to cover a 1080p game at the scale in use, or
+// the frontend is told of frames larger than it made room for.
+static unsigned scaled_dimension(unsigned native)
 {
-    info->geometry.base_width = 1280;
-    info->geometry.base_height = 720;
-    info->geometry.max_width = 3840;
-    info->geometry.max_height = 2160;
+    return static_cast<unsigned>(static_cast<u64>(native) * g_cfg.video.resolution_scale_percent.get() / 100);
+}
+
+// What the frontend was last told: the frame size, and the largest frame it
+// made room for. Both start over whenever it asks for the AV info again.
+static unsigned s_reported_width = 0;
+static unsigned s_reported_height = 0;
+static unsigned s_max_width = 0;
+static unsigned s_max_height = 0;
+
+static void fill_av_info(retro_system_av_info* info)
+{
+    info->geometry.base_width = scaled_dimension(1280);
+    info->geometry.base_height = scaled_dimension(720);
+    info->geometry.max_width = std::max(3840u, scaled_dimension(1920));
+    info->geometry.max_height = std::max(2160u, scaled_dimension(1080));
     info->geometry.aspect_ratio = 16.0f / 9.0f;
     info->timing.fps = 60.0;
     info->timing.sample_rate = 48000.0;
+}
+
+void retro_get_system_av_info(struct retro_system_av_info* info)
+{
+    fill_av_info(info);
+    s_reported_width = info->geometry.base_width;
+    s_reported_height = info->geometry.base_height;
+    s_max_width = info->geometry.max_width;
+    s_max_height = info->geometry.max_height;
+}
+
+// Tells the frontend the size of the frames it is now getting, once per
+// change. Without it the frontend keeps the size from
+// retro_get_system_av_info() - 1280x720 whatever the resolution scale.
+static void report_frame_size(unsigned width, unsigned height)
+{
+    if (width == s_reported_width && height == s_reported_height)
+        return;
+
+    s_reported_width = width;
+    s_reported_height = height;
+
+    retro_system_av_info av = {};
+    fill_av_info(&av);
+    av.geometry.base_width = width;
+    av.geometry.base_height = height;
+
+    // Only a frame larger than the frontend made room for needs a full AV
+    // info update, which rebuilds its video driver; otherwise geometry does.
+    if (width > s_max_width || height > s_max_height)
+    {
+        s_max_width = av.geometry.max_width = std::max({av.geometry.max_width, s_max_width, width});
+        s_max_height = av.geometry.max_height = std::max({av.geometry.max_height, s_max_height, height});
+        environ_cb(RETRO_ENVIRONMENT_SET_SYSTEM_AV_INFO, &av);
+    }
+    else
+    {
+        av.geometry.max_width = s_max_width;
+        av.geometry.max_height = s_max_height;
+        environ_cb(RETRO_ENVIRONMENT_SET_GEOMETRY, &av.geometry);
+    }
+
+    if (log_cb)
+        log_cb(RETRO_LOG_INFO, "RPCS3: presenting %ux%u\n", width, height);
 }
 
 // Forward declarations
@@ -1687,10 +1748,16 @@ void retro_run(void)
     {
         const void* pixels = nullptr;
         u32 sw_width = 0, sw_height = 0, sw_pitch = 0;
+        static u32 s_sw_width = 1280, s_sw_height = 720;
         if (libretro_take_software_frame(&pixels, &sw_width, &sw_height, &sw_pitch))
+        {
+            report_frame_size(sw_width, sw_height);
+            s_sw_width = sw_width;
+            s_sw_height = sw_height;
             video_cb(pixels, sw_width, sw_height, sw_pitch);
+        }
         else
-            video_cb(NULL, 1280, 720, 0);
+            video_cb(NULL, s_sw_width, s_sw_height, 0);
         return;
     }
 
@@ -1719,25 +1786,7 @@ void retro_run(void)
     // The frontend sized its window from retro_get_system_av_info(); if the
     // emulator is drawing something else now, say so, or it keeps scaling to
     // the old shape.
-    static unsigned s_last_reported_width = 0;
-    static unsigned s_last_reported_height = 0;
-
-    if (frame_width != s_last_reported_width || frame_height != s_last_reported_height)
-    {
-        s_last_reported_width = frame_width;
-        s_last_reported_height = frame_height;
-
-        struct retro_game_geometry geom = {};
-        geom.base_width = frame_width;
-        geom.base_height = frame_height;
-        geom.max_width = 3840;
-        geom.max_height = 2160;
-        geom.aspect_ratio = 16.0f / 9.0f;
-        environ_cb(RETRO_ENVIRONMENT_SET_GEOMETRY, &geom);
-
-        if (log_cb)
-            log_cb(RETRO_LOG_INFO, "RPCS3: presenting %ux%u\n", frame_width, frame_height);
-    }
+    report_frame_size(frame_width, frame_height);
 
     if (has_new_frame)
     {
