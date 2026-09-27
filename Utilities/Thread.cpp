@@ -1945,24 +1945,56 @@ static LONG exception_filter(PEXCEPTION_POINTERS pExp) noexcept
 	thread_ctrl::emergency_exit(msg);
 }
 
+#ifdef LIBRETRO_CORE
+// Kept so the core can take them out again before it is unloaded
+static PVOID s_vectored_exception_handler = nullptr;
+static LPTOP_LEVEL_EXCEPTION_FILTER s_previous_exception_filter = nullptr;
+#endif
+
 const bool s_exception_handler_set = []() -> bool
 {
 #ifdef USE_ASAN
-	if (!AddVectoredExceptionHandler(FALSE, static_cast<PVECTORED_EXCEPTION_HANDLER>(exception_handler)))
+	PVOID handler = AddVectoredExceptionHandler(FALSE, static_cast<PVECTORED_EXCEPTION_HANDLER>(exception_handler));
 #else
-	if (!AddVectoredExceptionHandler(1, static_cast<PVECTORED_EXCEPTION_HANDLER>(exception_handler)))
+	PVOID handler = AddVectoredExceptionHandler(1, static_cast<PVECTORED_EXCEPTION_HANDLER>(exception_handler));
 #endif
+	if (!handler)
 	{
 		report_fatal_error("AddVectoredExceptionHandler() failed.");
 	}
 
-	if (!SetUnhandledExceptionFilter(static_cast<LPTOP_LEVEL_EXCEPTION_FILTER>(exception_filter)))
+	LPTOP_LEVEL_EXCEPTION_FILTER previous = SetUnhandledExceptionFilter(static_cast<LPTOP_LEVEL_EXCEPTION_FILTER>(exception_filter));
+	if (!previous)
 	{
 		report_fatal_error("SetUnhandledExceptionFilter() failed.");
 	}
 
+#ifdef LIBRETRO_CORE
+	s_vectored_exception_handler = handler;
+	s_previous_exception_filter = previous;
+#endif
 	return true;
 }();
+
+#ifdef LIBRETRO_CORE
+// The handlers live in this library, and Windows goes on calling them after
+// the frontend has unloaded it: the next exception anywhere in the process -
+// the frontend's own, first-chance ones included - jumps into memory that is
+// no longer there (NNshi: "rpcs3_libretro.dll_unloaded", at exception_handler).
+void thread_ctrl_uninstall_exception_handlers()
+{
+	if (s_vectored_exception_handler)
+	{
+		RemoveVectoredExceptionHandler(s_vectored_exception_handler);
+		s_vectored_exception_handler = nullptr;
+	}
+	// Put the one from before ours back - unless someone replaced ours since,
+	// in which case theirs stays
+	const LPTOP_LEVEL_EXCEPTION_FILTER current = SetUnhandledExceptionFilter(s_previous_exception_filter);
+	if (current != static_cast<LPTOP_LEVEL_EXCEPTION_FILTER>(exception_filter))
+		SetUnhandledExceptionFilter(current);
+}
+#endif
 
 #else
 

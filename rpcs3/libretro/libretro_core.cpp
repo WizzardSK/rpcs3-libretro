@@ -1122,9 +1122,12 @@ void retro_init(void)
 
         // Also create a native RPCS3 file logger for detailed debugging
         // This captures all internal RPCS3 logs that may not be forwarded to RetroArch
-        if (!save_dir.empty())
+        // Beside everything else the core keeps, in system/rpcs3 (NNshi); the
+        // save directory only when there is no system directory
+        const std::string log_dir = !system_dir.empty() ? system_dir + "/rpcs3/" : (save_dir.empty() ? std::string() : save_dir + "/");
+        if (!log_dir.empty())
         {
-            const std::string log_path = save_dir + "/rpcs3_detailed.log";
+            const std::string log_path = log_dir + "rpcs3_detailed.log";
             s_file_logger = logs::make_file_listener(log_path, 100 * 1024 * 1024); // 100MB max
         }
     }
@@ -1262,6 +1265,10 @@ static void wait_for_emulation_stop(const char* what)
         log_cb(RETRO_LOG_INFO, "RPCS3: emulation stopped after %d ms\n", waited);
 }
 
+#ifdef _WIN32
+void thread_ctrl_uninstall_exception_handlers(); // Utilities/Thread.cpp
+#endif
+
 void retro_deinit(void)
 {
     if (!core_initialized)
@@ -1302,6 +1309,10 @@ void retro_deinit(void)
 #ifdef _WIN32
     lrcore_uninstall_crash_handler();
     lrcore_restore_timer_resolution();
+    // RPCS3's own exception handlers, installed when the library was loaded
+    // (Utilities/Thread.cpp); left in, the next exception in the frontend
+    // after the unload jumps into code that is gone
+    thread_ctrl_uninstall_exception_handlers();
 #endif
 
 
