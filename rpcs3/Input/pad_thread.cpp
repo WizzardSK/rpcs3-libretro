@@ -366,6 +366,61 @@ void pad_thread::apply_copilots()
 	}
 }
 
+void pad_thread::update_ignore_input()
+{
+	// The ignore_input section is only reached when a dialog was closed and the pads are still intercepted.
+	// As long as any of the listed buttons is pressed, cellPadGetData will ignore all input (needed for Hotline Miami).
+	// ignore_input was added because if we keep the pads intercepted, then some games will enter the menu due to unexpected system interception (tested with Ninja Gaiden Sigma).
+	if (m_info.ignore_input && !(m_info.system_info & CELL_PAD_INFO_INTERCEPTED))
+	{
+		bool any_button_pressed = false;
+
+		for (usz i = 0; i < m_pads.size() && !any_button_pressed; i++)
+		{
+			const auto& pad = m_pads[i];
+
+			if (!pad->is_connected())
+				continue;
+
+			for (const auto& button : pad->m_buttons)
+			{
+				if (button.m_pressed && (
+					button.m_outKeyCode == CELL_PAD_CTRL_CROSS ||
+					button.m_outKeyCode == CELL_PAD_CTRL_CIRCLE ||
+					button.m_outKeyCode == CELL_PAD_CTRL_TRIANGLE ||
+					button.m_outKeyCode == CELL_PAD_CTRL_SQUARE ||
+					button.m_outKeyCode == CELL_PAD_CTRL_START ||
+					button.m_outKeyCode == CELL_PAD_CTRL_SELECT))
+				{
+					any_button_pressed = true;
+					break;
+				}
+			}
+		}
+
+		if (!any_button_pressed)
+		{
+			m_info.ignore_input = false;
+		}
+	}
+}
+
+#ifdef LIBRETRO_CORE
+void pad_thread::frontend_update(u32 connected_devices)
+{
+	// Native overlays (message dialogs, the save data list) ignore the pads
+	// while nothing is counted as connected
+	m_info.now_connect = connected_devices + num_ldd_pad;
+
+	if (Emu.IsRunning())
+	{
+		update_pad_states();
+	}
+
+	update_ignore_input();
+}
+#endif
+
 void pad_thread::update_pad_states()
 {
 	for (usz i = 0; i < m_pads.size(); i++)
@@ -587,41 +642,7 @@ void pad_thread::operator()()
 
 		m_info.now_connect = connected_devices + num_ldd_pad;
 
-		// The ignore_input section is only reached when a dialog was closed and the pads are still intercepted.
-		// As long as any of the listed buttons is pressed, cellPadGetData will ignore all input (needed for Hotline Miami).
-		// ignore_input was added because if we keep the pads intercepted, then some games will enter the menu due to unexpected system interception (tested with Ninja Gaiden Sigma).
-		if (m_info.ignore_input && !(m_info.system_info & CELL_PAD_INFO_INTERCEPTED))
-		{
-			bool any_button_pressed = false;
-
-			for (usz i = 0; i < m_pads.size() && !any_button_pressed; i++)
-			{
-				const auto& pad = m_pads[i];
-
-				if (!pad->is_connected())
-					continue;
-
-				for (const auto& button : pad->m_buttons)
-				{
-					if (button.m_pressed && (
-						button.m_outKeyCode == CELL_PAD_CTRL_CROSS ||
-						button.m_outKeyCode == CELL_PAD_CTRL_CIRCLE ||
-						button.m_outKeyCode == CELL_PAD_CTRL_TRIANGLE ||
-						button.m_outKeyCode == CELL_PAD_CTRL_SQUARE ||
-						button.m_outKeyCode == CELL_PAD_CTRL_START ||
-						button.m_outKeyCode == CELL_PAD_CTRL_SELECT))
-					{
-						any_button_pressed = true;
-						break;
-					}
-				}
-			}
-
-			if (!any_button_pressed)
-			{
-				m_info.ignore_input = false;
-			}
-		}
+		update_ignore_input();
 
 		// Handle home menu if requested
 		if (!is_vsh && !m_home_menu_open && Emu.IsRunning())

@@ -398,7 +398,7 @@ static std::string install_pkg_file(const std::string& pkg_path)
 }
 
 // The Save Data Slot core option, for the save dialog (see libretro_save_dialog)
-static std::atomic<int> s_savedata_slot{-1}; // -1: let the player pick from the game's list
+static std::atomic<int> s_savedata_slot{0}; // -1: let the player pick from the game's list
 
 static std::string get_option_value(const char* key, const char* default_val = "")
 {
@@ -599,7 +599,7 @@ static void libretro_apply_core_options()
     // Save Data Slot (read here, on the frontend's thread, and kept for the
     // save dialog, which runs on the game's)
     {
-        const std::string slot = get_option_value("rpcs3_savedata_slot", "list");
+        const std::string slot = get_option_value("rpcs3_savedata_slot", "0");
         s_savedata_slot = slot == "list" ? -1 : std::clamp(std::atoi(slot.c_str()), 0, 9);
     }
 
@@ -1919,6 +1919,19 @@ void retro_run(void)
     if (g_libretro_pad_thread)
     {
         g_libretro_pad_thread->apply_copilots();
+
+        // What pad_thread's own loop does after that, which the core never
+        // ran: without it no pad counted as connected, and RPCS3's in-game
+        // dialogs (save data list, "install game data?") ignored the
+        // controller and left the game waiting on them for good (NNshi)
+        u32 connected = 0;
+        {
+            std::lock_guard lock(pad::g_pad_mutex);
+            for (const auto& pad : g_libretro_pad_thread->GetPads())
+                if (pad && pad->is_connected())
+                    connected++;
+        }
+        g_libretro_pad_thread->frontend_update(connected);
     }
 
     // One PS3 VBLANK per frame the frontend asks for (Frame Pacing: RetroArch)
