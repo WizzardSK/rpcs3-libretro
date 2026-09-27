@@ -775,8 +775,8 @@ static std::unique_ptr<logs::listener> s_file_logger;
 // games could not save or load (NNshi). This picks for the player instead:
 // the entry at the Save Data Slot core option's position in the list the game
 // asked for - overwriting it when saving, or making a new save when there is
-// nothing at that position and the game allows one; loading it, or the last
-// entry when there is nothing at that position. Nothing is ever picked for
+// nothing at that position and the game allows one; loading it, or nothing
+// when there is nothing at that position. Nothing is ever picked for
 // deletion. The "save / load this data?" confirmation that follows is answered
 // yes (g_cellsavedata_auto_confirm).
 extern atomic_t<bool> g_cellsavedata_auto_confirm;
@@ -795,18 +795,19 @@ namespace
             const bool loading = op == op_list_load || op == op_list_auto_load;
             s32 pick = -2; // cancel
 
+            // Only ever the entry at the slot's position: falling back to
+            // another one loaded, and then overwrote, a save the player had
+            // not picked (NNshi, slot 1 with a single save in slot 0).
             if (saving)
             {
                 if (slot < count)
                     pick = slot;
                 else if (listSet && listSet->newData)
                     pick = -1; // new save
-                else if (count > 0)
-                    pick = count - 1;
             }
-            else if (loading && count > 0)
+            else if (loading && slot < count)
             {
-                pick = slot < count ? slot : count - 1;
+                pick = slot;
             }
 
             if (log_cb)
@@ -1794,11 +1795,27 @@ void retro_run(void)
     // The guest can end the emulation on its own (_sys_process_exit, e.g. the
     // ScummVM launcher's Quit). Nothing told the frontend so far, so RetroArch
     // kept spinning on the last frame of a dead emulator. Ask it to unload.
+    //
+    // Not when it is only switching executables, though. A launcher that
+    // starts the real game with exitspawn (Zone of the Enders HD Collection
+    // booting ZoE2) stops the emulator too, and the next executable is booted
+    // from the Emulation Join Thread once the stop is complete. Unloading at
+    // that point had GracefulShutdown hold the emulator's state guard right
+    // when that boot came, which then failed with "Booting is restricted"
+    // (NNshi). exitspawn switches continuous mode on before it stops the
+    // emulator, and the boot follows only once the stop is complete; give it a
+    // moment to begin before taking the stop as the end.
+    static u32 s_stopped_frames = 0;
     if (Emu.IsStopped() && !pending_game_boot)
     {
+        if (!Emu.IsStopped(true) || (Emu.ContinuousModeEnabled(false) && ++s_stopped_frames < 120))
+            return;
+
+        s_stopped_frames = 0;
         environ_cb(RETRO_ENVIRONMENT_SHUTDOWN, nullptr);
         return;
     }
+    s_stopped_frames = 0;
 
     static u64 s_run_counter = 0;
     s_run_counter++;
