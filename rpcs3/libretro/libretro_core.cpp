@@ -17,6 +17,9 @@
 #include "Crypto/unpkg.h"
 #include "Emu/Cell/Modules/cellOskDialog.h"
 #include "Emu/Cell/Modules/cellSaveData.h"
+#include "Emu/Cell/Modules/cellSysutil.h"
+#include "Emu/RSX/Overlays/overlay_manager.h"
+#include "Emu/RSX/Overlays/overlay_save_dialog.h"
 #include "Emu/Cell/Modules/sceNpTrophy.h"
 #include "Emu/Io/Null/null_camera_handler.h"
 #include "Emu/Io/Null/null_music_handler.h"
@@ -49,6 +52,7 @@
 #include "libretro_firmware.h"
 #include "libretro_pad_handler.h"
 #include "libretro_vfs.h"
+#include "libretro_ui_icons.h"
 #include "Loader/ISO.h"
 
 #include <clocale>
@@ -394,7 +398,7 @@ static std::string install_pkg_file(const std::string& pkg_path)
 }
 
 // The Save Data Slot core option, for the save dialog (see libretro_save_dialog)
-static std::atomic<int> s_savedata_slot{0};
+static std::atomic<int> s_savedata_slot{-1}; // -1: let the player pick from the game's list
 
 static std::string get_option_value(const char* key, const char* default_val = "")
 {
@@ -593,8 +597,8 @@ static void libretro_apply_core_options()
     // Save Data Slot (read here, on the frontend's thread, and kept for the
     // save dialog, which runs on the game's)
     {
-        const std::string slot = get_option_value("rpcs3_savedata_slot", "0");
-        s_savedata_slot = std::clamp(std::atoi(slot.c_str()), 0, 9);
+        const std::string slot = get_option_value("rpcs3_savedata_slot", "list");
+        s_savedata_slot = slot == "list" ? -1 : std::clamp(std::atoi(slot.c_str()), 0, 9);
     }
 
     // ==================== SYSTEM/CORE OPTIONS ====================
@@ -769,10 +773,12 @@ namespace
 static bool s_logs_hooked = false;
 static std::unique_ptr<logs::listener> s_file_logger;
 
-// Save data without a dialog. A PS3 game asks the system to show its save
-// list and waits for the player's pick; RPCS3 answers with a Qt dialog the
-// core does not have, and without one every list operation was cancelled, so
-// games could not save or load (NNshi). This picks for the player instead:
+// Save data lists. A PS3 game asks the system to show its save list and waits
+// for the player's pick; RPCS3 answers with a Qt dialog the core does not have,
+// and without one every list operation was cancelled, so games could not save
+// or load (NNshi). By default the list is RPCS3's own in-game one, drawn into
+// the picture like the PS3's and driven with the pad. With the Save Data Slot
+// core option set to a number, the core picks for the player instead:
 // the entry at the Save Data Slot core option's position in the list the game
 // asked for - overwriting it when saving, or making a new save when there is
 // nothing at that position and the game allows one; loading it, or nothing
@@ -786,11 +792,30 @@ namespace
     class libretro_save_dialog : public SaveDialogBase
     {
     public:
-        s32 ShowSaveDataList(const std::string& /*base_dir*/, std::vector<SaveDataEntry>& save_entries, s32 /*focused*/, u32 op, vm::ptr<CellSaveDataListSet> listSet, bool /*enable_overlay*/) override
+        s32 ShowSaveDataList(const std::string& base_dir, std::vector<SaveDataEntry>& save_entries, s32 focused, u32 op, vm::ptr<CellSaveDataListSet> listSet, bool enable_overlay) override
         {
             constexpr u32 op_list_save = 4, op_list_load = 5, op_list_auto_save = 2, op_list_auto_load = 3;
             const s32 count = static_cast<s32>(save_entries.size());
             const s32 slot = s_savedata_slot.load();
+
+            if (slot < 0)
+            {
+                // What standalone RPCS3 does with its native interface enabled
+                if (auto manager = g_fxo->try_get<rsx::overlays::display_manager>())
+                {
+                    const bool use_end = sysutil_send_system_cmd(CELL_SYSUTIL_DRAWING_BEGIN, 0) >= 0;
+                    const s32 result = manager->create<rsx::overlays::save_dialog>()->show(base_dir, save_entries, focused, op, listSet, enable_overlay);
+                    if (use_end)
+                        sysutil_send_system_cmd(CELL_SYSUTIL_DRAWING_END, 0);
+                    if (result != rsx::overlays::user_interface::selection_code::error)
+                        return result;
+                }
+            }
+
+            if (slot < 0 && op != op_list_save && op != op_list_load && op != op_list_auto_save && op != op_list_auto_load)
+                return -2; // deleting needs the list, and it could not be shown
+
+            const s32 pick_slot = slot < 0 ? 0 : slot;
             const bool saving = op == op_list_save || op == op_list_auto_save;
             const bool loading = op == op_list_load || op == op_list_auto_load;
             s32 pick = -2; // cancel
@@ -800,23 +825,50 @@ namespace
             // not picked (NNshi, slot 1 with a single save in slot 0).
             if (saving)
             {
-                if (slot < count)
-                    pick = slot;
+                if (pick_slot < count)
+                    pick = pick_slot;
                 else if (listSet && listSet->newData)
                     pick = -1; // new save
             }
-            else if (loading && slot < count)
+            else if (loading && pick_slot < count)
             {
-                pick = slot;
+                pick = pick_slot;
             }
 
             if (log_cb)
                 log_cb(RETRO_LOG_INFO, "RPCS3: save data list (%s, %d entr%s, slot %d): %s\n",
-                    saving ? "save" : loading ? "load" : "other", count, count == 1 ? "y" : "ies", slot,
+                    saving ? "save" : loading ? "load" : "other", count, count == 1 ? "y" : "ies", pick_slot,
                     pick == -2 ? "nothing picked" : pick == -1 ? "new save" : ("entry " + std::to_string(pick)).c_str());
             return pick;
         }
     };
+}
+
+// RPCS3's in-game overlays look for their icons in the config dir first, and
+// standalone copies them there from next to the executable. The core carries
+// them itself; put them where they are looked for.
+static void install_ui_icons()
+{
+    const std::string dir = fs::get_config_dir() + "Icons/ui/";
+    if (!fs::create_path(dir))
+    {
+        if (log_cb)
+            log_cb(RETRO_LOG_WARN, "RPCS3: could not create %s, in-game dialogs will lack their icons\n", dir.c_str());
+        return;
+    }
+
+    for (std::size_t i = 0; i < g_libretro_ui_icon_count; i++)
+    {
+        const libretro_ui_icon& icon = g_libretro_ui_icons[i];
+        const std::string path = dir + icon.name;
+
+        fs::stat_t info{};
+        if (fs::get_stat(path, info) && info.size == icon.size)
+            continue;
+
+        if (!fs::write_file(path, fs::rewrite, icon.data, icon.size) && log_cb)
+            log_cb(RETRO_LOG_WARN, "RPCS3: could not write %s\n", path.c_str());
+    }
 }
 
 static std::string find_firmware_pup()
@@ -1556,11 +1608,15 @@ bool retro_load_game(const struct retro_game_info* game)
     g_cfg.audio.channel_layout.set(audio_channel_layout::stereo);
 
 
-    // Disable RPCS3's native UI/overlay system completely for libretro.
-    // This prevents the overlay manager from being created, which would try to load
-    // icon files that don't exist and cause texture creation errors with 0x0 dimensions.
-    // RetroArch has its own overlay system.
-    g_cfg.misc.use_native_interface.set(false);
+    // RPCS3's native interface draws what a PS3 draws over the game - message
+    // dialogs ("install game data?", errors), save data lists, the on-screen
+    // keyboard - into the picture, driven with the pad. Without it every one of
+    // those calls failed at once, as there is no Qt dialog to fall back to
+    // (NNshi). It was off because its icons were missing, which the core now
+    // installs (install_ui_icons). The software present reads the picture back
+    // before the overlays are drawn on the output, unless it records with them.
+    g_cfg.misc.use_native_interface.set(true);
+    g_cfg.video.record_with_overlays.set(true);
     g_cfg.misc.show_shader_compilation_hint.set(false);
     g_cfg.misc.show_ppu_compilation_hint.set(false);
     g_cfg.misc.show_autosave_autoload_hint.set(false);
@@ -1580,6 +1636,8 @@ bool retro_load_game(const struct retro_game_info* game)
     // Note: RPCS3 loads config from fs::get_config_dir(true) which adds "config/" subdirectory
     const std::string config_path = fs::get_config_dir(true) + "config.yml";
     g_cfg.save(config_path);
+
+    install_ui_icons();
 
     // For null renderer, boot immediately. For OpenGL, defer until
     // context_reset(). The software path has no context coming, so it boots
@@ -2124,6 +2182,32 @@ static void init_emu_callbacks()
         }
 
 
+    };
+
+    // The overlays' text: dev_flash's fonts are always searched as well, so
+    // these only add the system's own, which cover more characters.
+    callbacks.get_font_dirs = []() -> std::vector<std::string>
+    {
+#ifdef _WIN32
+        std::string windir = "C:\\Windows";
+        if (const char* env = std::getenv("WINDIR"))
+            windir = env;
+        return { windir + "\\Fonts\\" };
+#elif defined(__ANDROID__)
+        return { "/system/fonts/" };
+#elif defined(__APPLE__)
+        return { "/System/Library/Fonts/", "/System/Library/Fonts/Supplemental/", "/Library/Fonts/" };
+#else
+        std::vector<std::string> dirs;
+        if (const char* home = std::getenv("HOME"))
+            dirs.push_back(std::string(home) + "/.local/share/fonts/");
+        dirs.push_back("/usr/share/fonts/");
+        dirs.push_back("/usr/share/fonts/truetype/dejavu/");
+        dirs.push_back("/usr/share/fonts/TTF/");
+        dirs.push_back("/usr/share/fonts/dejavu/");
+        dirs.push_back("/usr/share/fonts/noto/");
+        return dirs;
+#endif
     };
 
     callbacks.get_msg_dialog = []() -> std::shared_ptr<MsgDialogBase>

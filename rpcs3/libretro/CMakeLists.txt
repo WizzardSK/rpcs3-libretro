@@ -9,8 +9,12 @@ else()
     set(LIBRETRO_VIDEO_SRC libretro_video.cpp)
 endif()
 
+include(${CMAKE_CURRENT_SOURCE_DIR}/embed_ui_icons.cmake)
+libretro_embed_ui_icons(${CMAKE_CURRENT_BINARY_DIR}/libretro_ui_icons.cpp)
+
 add_library(rpcs3_libretro SHARED
     libretro_core.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/libretro_ui_icons.cpp
     ${LIBRETRO_VIDEO_SRC}
     libretro_audio.cpp
     libretro_input.cpp
