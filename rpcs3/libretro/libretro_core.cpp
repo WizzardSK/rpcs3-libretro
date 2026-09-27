@@ -573,6 +573,8 @@ static void libretro_apply_core_options()
     std::string vblank = get_option_value("rpcs3_vblank_rate", "60");
     g_cfg.video.vblank_rate.set(std::stoi(vblank));
 
+    g_libretro_frontend_vblank = get_option_value("rpcs3_frame_pacing", "frontend") == "frontend";
+
     // Driver Wake-Up Delay
     std::string driver_delay = get_option_value("rpcs3_driver_wakeup_delay", "200");
     g_cfg.video.driver_wakeup_delay.set(std::stoi(driver_delay));
@@ -1023,7 +1025,10 @@ static void fill_av_info(retro_system_av_info* info)
     info->geometry.max_width = std::max(3840u, scaled_dimension(1920));
     info->geometry.max_height = std::max(2160u, scaled_dimension(1080));
     info->geometry.aspect_ratio = 16.0f / 9.0f;
-    info->timing.fps = 60.0;
+    // The PS3's refresh rate: with Frame Pacing on RetroArch, every frame the
+    // frontend asks for is one VBLANK, so this is the rate the game runs at.
+    const double vblank_period = 1'000'000.0 + g_cfg.video.vblank_ntsc.get() * 1000.0;
+    info->timing.fps = g_cfg.video.vblank_rate.get() * 1'000'000.0 / vblank_period;
     info->timing.sample_rate = 48000.0;
 }
 
@@ -1914,6 +1919,13 @@ void retro_run(void)
     if (g_libretro_pad_thread)
     {
         g_libretro_pad_thread->apply_copilots();
+    }
+
+    // One PS3 VBLANK per frame the frontend asks for (Frame Pacing: RetroArch)
+    if (g_libretro_frontend_vblank && Emu.IsRunning())
+    {
+        g_libretro_vblank_requests++;
+        g_libretro_vblank_requests.notify_one();
     }
 
     // Process audio

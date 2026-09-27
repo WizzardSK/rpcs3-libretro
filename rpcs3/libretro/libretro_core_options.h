@@ -312,10 +312,17 @@ struct retro_core_option_v2_definition option_defs_us[] = {
     },
     {
         "rpcs3_vblank_rate", "VBlank Rate", NULL,
-        "VBlank frequency in Hz.",
+        "The PS3's refresh rate in Hz. It is also the frame rate the core asks RetroArch for, which takes effect when content is loaded; games that can run above 60 FPS need a display that refreshes that fast.",
         NULL, "gpu",
         { {"50", "50 Hz (PAL)"}, {"60", "60 Hz (NTSC)"}, {"120", "120 Hz"}, {"144", "144 Hz"}, {"240", "240 Hz"}, {NULL, NULL} },
         "60"
+    },
+    {
+        "rpcs3_frame_pacing", "Frame Pacing", NULL,
+        "What the game's frames are timed by. RetroArch gives the game one PS3 refresh per frame RetroArch shows, so every frame is shown exactly once and fast-forward speeds the game up; the game runs at the VBlank Rate when RetroArch shows that many frames a second. Emulator clock is RPCS3's own timer, which drifts against the display and now and then shows a frame twice or skips one.",
+        NULL, "gpu",
+        { {"frontend", "RetroArch"}, {"emulator", "Emulator clock"}, {NULL, NULL} },
+        "frontend"
     },
     {
         "rpcs3_stretch_to_display", "Stretch to Display", NULL,

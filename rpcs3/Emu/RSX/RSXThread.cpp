@@ -41,6 +41,10 @@ atomic_t<bool> g_user_asked_for_recording = false;
 atomic_t<bool> g_user_asked_for_screenshot = false;
 atomic_t<bool> g_user_asked_for_frame_capture = false;
 atomic_t<bool> g_disable_frame_limit = false;
+#ifdef LIBRETRO_CORE
+atomic_t<bool> g_libretro_frontend_vblank = false;
+atomic_t<u64> g_libretro_vblank_requests = 0;
+#endif
 rsx::frame_trace_data frame_debug;
 rsx::frame_capture_data frame_capture;
 
@@ -1001,10 +1005,50 @@ namespace rsx
 			u64 vblank_period = 1'000'000 + u64{g_cfg.video.vblank_ntsc.get()} * 1000;
 
 			u64 local_vblank_count = 0;
+#ifdef LIBRETRO_CORE
+			u64 frontend_vblanks = g_libretro_vblank_requests;
+#endif
 
 			// TODO: exit condition
 			while (!is_stopped() && !unsent_gcm_events && thread_ctrl::state() != thread_state::aborting)
 			{
+#ifdef LIBRETRO_CORE
+				// VBLANK on the frontend's clock: one per retro_run. The game then
+				// makes exactly one frame per frame the frontend shows, instead of
+				// drifting against it and now and then showing one twice or not at all.
+				if (g_libretro_frontend_vblank)
+				{
+					const u64 requested = g_libretro_vblank_requests;
+
+					if (requested == frontend_vblanks)
+					{
+						g_libretro_vblank_requests.wait(requested, atomic_wait_timeout{5'000'000});
+					}
+					else
+					{
+						frontend_vblanks++;
+						post_vblank_event(get_system_time());
+					}
+
+					if (Emu.IsPaused())
+					{
+						while (Emu.IsPaused() && !is_stopped())
+						{
+							thread_ctrl::wait_for(5'000);
+						}
+
+						// What piled up while paused is not owed to the game
+						frontend_vblanks = g_libretro_vblank_requests;
+					}
+
+					// Picks up from here should the timer take over again
+					start_time = get_system_time();
+					local_vblank_count = 0;
+					continue;
+				}
+
+				frontend_vblanks = g_libretro_vblank_requests;
+#endif
 				// Get current time
 				const u64 current = get_system_time();
 
