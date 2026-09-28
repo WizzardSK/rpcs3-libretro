@@ -205,6 +205,22 @@ namespace vk
 			swapchain_images[index].first = false;
 			return VK_SUCCESS;
 		}
+
+		// For the flip's wait on a free image: which images are held, and a
+		// way out when nothing is ever going to give one back
+		std::string describe_images() const
+		{
+			std::string result;
+			for (const auto& image : swapchain_images)
+				result += image.first ? 'H' : '-';
+			return result;
+		}
+
+		void release_all_images()
+		{
+			for (auto& image : swapchain_images)
+				image.first = false;
+		}
 	};
 
 	class swapchain_WSI : public WSI_swapchain_base

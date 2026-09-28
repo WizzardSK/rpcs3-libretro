@@ -552,6 +552,15 @@ void VKGSRender::flip(const rsx::display_flip_info_t& info)
 	ensure(m_current_frame->swap_command_buffer == nullptr);
 
 	u64 timeout = m_swapchain->get_swap_image_count() <= VK_MAX_ASYNC_FRAMES? 0ull: 100000000ull;
+#ifdef LIBRETRO_CORE
+	// The libretro swapchain only gets an image back when its frame is
+	// presented. If that never happens this loop spins on one core forever,
+	// which is what a Linux/RADV user saw (ozzfreak): say what is held, and
+	// let go of it rather than hanging the emulator and, on exit, RetroArch.
+	auto* libretro_swapchain = dynamic_cast<vk::swapchain_LIBRETRO*>(m_swapchain.get());
+	const u64 acquire_start = get_system_time();
+	bool acquire_reported = false;
+#endif
 	while (VkResult status = m_swapchain->acquire_next_swapchain_image(m_current_frame->acquire_signal_semaphore, timeout, &m_current_frame->present_image))
 	{
 		switch (status)
@@ -559,6 +568,30 @@ void VKGSRender::flip(const rsx::display_flip_info_t& info)
 		case VK_TIMEOUT:
 		case VK_NOT_READY:
 		{
+#ifdef LIBRETRO_CORE
+			if (libretro_swapchain)
+			{
+				const u64 waited = get_system_time() - acquire_start;
+				if (!acquire_reported && waited > 2'000'000)
+				{
+					acquire_reported = true;
+					std::string frames;
+					for (auto* ctx : m_queued_frames)
+					{
+						fmt::append(frames, " [image %d, commands %s]", static_cast<s32>(ctx->present_image),
+							!ctx->swap_command_buffer ? "none" : ctx->swap_command_buffer->poke() ? "done" : "pending");
+					}
+					rsx_log.error("libretro present: no free image for 2s (images %s, swapchain %s, %u frames queued:%s)",
+						libretro_swapchain->describe_images(), swapchain_unavailable ? "unavailable" : "available",
+						::size32(m_queued_frames), frames);
+				}
+				if (waited > 5'000'000)
+				{
+					rsx_log.error("libretro present: still no free image after 5s, releasing them");
+					libretro_swapchain->release_all_images();
+				}
+			}
+#endif
 			// In some cases, after a fullscreen switch, the driver only allows N-1 images to be acquirable, where N = number of available swap images.
 			// This means that any acquired images have to be released
 			// before acquireNextImage can return successfully. This is despite the driver reporting 2 swap chain images available
