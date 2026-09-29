@@ -255,10 +255,6 @@ extern "C" {
 #define OPTION_VAL_8_8_8_8_AR NULL
 #define OPTION_VAL_1_1_1_1_AR NULL
 #define OPTION_VAL_208_67_222_222_AR NULL
-#define RPCS3_RPCN_SERVER_LABEL_AR NULL
-#define RPCS3_RPCN_SERVER_INFO_0_AR NULL
-#define OPTION_VAL_RPCN_RPCS3_NET_AR NULL
-#define OPTION_VAL_CUSTOM_AR NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_AR NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_AR NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_AR NULL
@@ -708,13 +704,6 @@ struct retro_core_option_v2_definition option_defs_ar[] = {
         { {"8.8.8.8", OPTION_VAL_8_8_8_8_AR}, {"1.1.1.1", OPTION_VAL_1_1_1_1_AR}, {"208.67.222.222", OPTION_VAL_208_67_222_222_AR}, {NULL, NULL} },
         "8.8.8.8"
     },
-    {
-        "rpcs3_rpcn_server", RPCS3_RPCN_SERVER_LABEL_AR, NULL,
-        RPCS3_RPCN_SERVER_INFO_0_AR,
-        NULL, "network",
-        { {"rpcn.rpcs3.net", OPTION_VAL_RPCN_RPCS3_NET_AR}, {"custom", OPTION_VAL_CUSTOM_AR}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
-    },
 
     // ==================== ADVANCED OPTIONS ====================
     {
@@ -1106,10 +1095,6 @@ struct retro_core_options_v2 options_ar = {
 #define OPTION_VAL_8_8_8_8_AST NULL
 #define OPTION_VAL_1_1_1_1_AST NULL
 #define OPTION_VAL_208_67_222_222_AST NULL
-#define RPCS3_RPCN_SERVER_LABEL_AST NULL
-#define RPCS3_RPCN_SERVER_INFO_0_AST NULL
-#define OPTION_VAL_RPCN_RPCS3_NET_AST NULL
-#define OPTION_VAL_CUSTOM_AST NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_AST NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_AST NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_AST NULL
@@ -1559,13 +1544,6 @@ struct retro_core_option_v2_definition option_defs_ast[] = {
         { {"8.8.8.8", OPTION_VAL_8_8_8_8_AST}, {"1.1.1.1", OPTION_VAL_1_1_1_1_AST}, {"208.67.222.222", OPTION_VAL_208_67_222_222_AST}, {NULL, NULL} },
         "8.8.8.8"
     },
-    {
-        "rpcs3_rpcn_server", RPCS3_RPCN_SERVER_LABEL_AST, NULL,
-        RPCS3_RPCN_SERVER_INFO_0_AST,
-        NULL, "network",
-        { {"rpcn.rpcs3.net", OPTION_VAL_RPCN_RPCS3_NET_AST}, {"custom", OPTION_VAL_CUSTOM_AST}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
-    },
 
     // ==================== ADVANCED OPTIONS ====================
     {
@@ -1957,10 +1935,6 @@ struct retro_core_options_v2 options_ast = {
 #define OPTION_VAL_8_8_8_8_BE NULL
 #define OPTION_VAL_1_1_1_1_BE NULL
 #define OPTION_VAL_208_67_222_222_BE NULL
-#define RPCS3_RPCN_SERVER_LABEL_BE NULL
-#define RPCS3_RPCN_SERVER_INFO_0_BE NULL
-#define OPTION_VAL_RPCN_RPCS3_NET_BE NULL
-#define OPTION_VAL_CUSTOM_BE NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_BE NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_BE NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_BE NULL
@@ -2410,13 +2384,6 @@ struct retro_core_option_v2_definition option_defs_be[] = {
         { {"8.8.8.8", OPTION_VAL_8_8_8_8_BE}, {"1.1.1.1", OPTION_VAL_1_1_1_1_BE}, {"208.67.222.222", OPTION_VAL_208_67_222_222_BE}, {NULL, NULL} },
         "8.8.8.8"
     },
-    {
-        "rpcs3_rpcn_server", RPCS3_RPCN_SERVER_LABEL_BE, NULL,
-        RPCS3_RPCN_SERVER_INFO_0_BE,
-        NULL, "network",
-        { {"rpcn.rpcs3.net", OPTION_VAL_RPCN_RPCS3_NET_BE}, {"custom", OPTION_VAL_CUSTOM_BE}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
-    },
 
     // ==================== ADVANCED OPTIONS ====================
     {
@@ -2808,10 +2775,6 @@ struct retro_core_options_v2 options_be = {
 #define OPTION_VAL_8_8_8_8_CA NULL
 #define OPTION_VAL_1_1_1_1_CA NULL
 #define OPTION_VAL_208_67_222_222_CA NULL
-#define RPCS3_RPCN_SERVER_LABEL_CA NULL
-#define RPCS3_RPCN_SERVER_INFO_0_CA NULL
-#define OPTION_VAL_RPCN_RPCS3_NET_CA NULL
-#define OPTION_VAL_CUSTOM_CA NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_CA NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_CA NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_CA NULL
@@ -3261,13 +3224,6 @@ struct retro_core_option_v2_definition option_defs_ca[] = {
         { {"8.8.8.8", OPTION_VAL_8_8_8_8_CA}, {"1.1.1.1", OPTION_VAL_1_1_1_1_CA}, {"208.67.222.222", OPTION_VAL_208_67_222_222_CA}, {NULL, NULL} },
         "8.8.8.8"
     },
-    {
-        "rpcs3_rpcn_server", RPCS3_RPCN_SERVER_LABEL_CA, NULL,
-        RPCS3_RPCN_SERVER_INFO_0_CA,
-        NULL, "network",
-        { {"rpcn.rpcs3.net", OPTION_VAL_RPCN_RPCS3_NET_CA}, {"custom", OPTION_VAL_CUSTOM_CA}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
-    },
 
     // ==================== ADVANCED OPTIONS ====================
     {
@@ -3659,10 +3615,6 @@ struct retro_core_options_v2 options_ca = {
 #define OPTION_VAL_8_8_8_8_CHS NULL
 #define OPTION_VAL_1_1_1_1_CHS NULL
 #define OPTION_VAL_208_67_222_222_CHS NULL
-#define RPCS3_RPCN_SERVER_LABEL_CHS NULL
-#define RPCS3_RPCN_SERVER_INFO_0_CHS NULL
-#define OPTION_VAL_RPCN_RPCS3_NET_CHS NULL
-#define OPTION_VAL_CUSTOM_CHS NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_CHS NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_CHS NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_CHS NULL
@@ -4112,13 +4064,6 @@ struct retro_core_option_v2_definition option_defs_chs[] = {
         { {"8.8.8.8", OPTION_VAL_8_8_8_8_CHS}, {"1.1.1.1", OPTION_VAL_1_1_1_1_CHS}, {"208.67.222.222", OPTION_VAL_208_67_222_222_CHS}, {NULL, NULL} },
         "8.8.8.8"
     },
-    {
-        "rpcs3_rpcn_server", RPCS3_RPCN_SERVER_LABEL_CHS, NULL,
-        RPCS3_RPCN_SERVER_INFO_0_CHS,
-        NULL, "network",
-        { {"rpcn.rpcs3.net", OPTION_VAL_RPCN_RPCS3_NET_CHS}, {"custom", OPTION_VAL_CUSTOM_CHS}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
-    },
 
     // ==================== ADVANCED OPTIONS ====================
     {
@@ -4510,10 +4455,6 @@ struct retro_core_options_v2 options_chs = {
 #define OPTION_VAL_8_8_8_8_CHT NULL
 #define OPTION_VAL_1_1_1_1_CHT NULL
 #define OPTION_VAL_208_67_222_222_CHT NULL
-#define RPCS3_RPCN_SERVER_LABEL_CHT NULL
-#define RPCS3_RPCN_SERVER_INFO_0_CHT NULL
-#define OPTION_VAL_RPCN_RPCS3_NET_CHT NULL
-#define OPTION_VAL_CUSTOM_CHT NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_CHT NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_CHT NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_CHT NULL
@@ -4963,13 +4904,6 @@ struct retro_core_option_v2_definition option_defs_cht[] = {
         { {"8.8.8.8", OPTION_VAL_8_8_8_8_CHT}, {"1.1.1.1", OPTION_VAL_1_1_1_1_CHT}, {"208.67.222.222", OPTION_VAL_208_67_222_222_CHT}, {NULL, NULL} },
         "8.8.8.8"
     },
-    {
-        "rpcs3_rpcn_server", RPCS3_RPCN_SERVER_LABEL_CHT, NULL,
-        RPCS3_RPCN_SERVER_INFO_0_CHT,
-        NULL, "network",
-        { {"rpcn.rpcs3.net", OPTION_VAL_RPCN_RPCS3_NET_CHT}, {"custom", OPTION_VAL_CUSTOM_CHT}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
-    },
 
     // ==================== ADVANCED OPTIONS ====================
     {
@@ -5361,10 +5295,6 @@ struct retro_core_options_v2 options_cht = {
 #define OPTION_VAL_8_8_8_8_CS NULL
 #define OPTION_VAL_1_1_1_1_CS NULL
 #define OPTION_VAL_208_67_222_222_CS NULL
-#define RPCS3_RPCN_SERVER_LABEL_CS NULL
-#define RPCS3_RPCN_SERVER_INFO_0_CS NULL
-#define OPTION_VAL_RPCN_RPCS3_NET_CS NULL
-#define OPTION_VAL_CUSTOM_CS NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_CS NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_CS NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_CS NULL
@@ -5814,13 +5744,6 @@ struct retro_core_option_v2_definition option_defs_cs[] = {
         { {"8.8.8.8", OPTION_VAL_8_8_8_8_CS}, {"1.1.1.1", OPTION_VAL_1_1_1_1_CS}, {"208.67.222.222", OPTION_VAL_208_67_222_222_CS}, {NULL, NULL} },
         "8.8.8.8"
     },
-    {
-        "rpcs3_rpcn_server", RPCS3_RPCN_SERVER_LABEL_CS, NULL,
-        RPCS3_RPCN_SERVER_INFO_0_CS,
-        NULL, "network",
-        { {"rpcn.rpcs3.net", OPTION_VAL_RPCN_RPCS3_NET_CS}, {"custom", OPTION_VAL_CUSTOM_CS}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
-    },
 
     // ==================== ADVANCED OPTIONS ====================
     {
@@ -6212,10 +6135,6 @@ struct retro_core_options_v2 options_cs = {
 #define OPTION_VAL_8_8_8_8_DE NULL
 #define OPTION_VAL_1_1_1_1_DE NULL
 #define OPTION_VAL_208_67_222_222_DE NULL
-#define RPCS3_RPCN_SERVER_LABEL_DE NULL
-#define RPCS3_RPCN_SERVER_INFO_0_DE NULL
-#define OPTION_VAL_RPCN_RPCS3_NET_DE NULL
-#define OPTION_VAL_CUSTOM_DE NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_DE NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_DE NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_DE NULL
@@ -6665,13 +6584,6 @@ struct retro_core_option_v2_definition option_defs_de[] = {
         { {"8.8.8.8", OPTION_VAL_8_8_8_8_DE}, {"1.1.1.1", OPTION_VAL_1_1_1_1_DE}, {"208.67.222.222", OPTION_VAL_208_67_222_222_DE}, {NULL, NULL} },
         "8.8.8.8"
     },
-    {
-        "rpcs3_rpcn_server", RPCS3_RPCN_SERVER_LABEL_DE, NULL,
-        RPCS3_RPCN_SERVER_INFO_0_DE,
-        NULL, "network",
-        { {"rpcn.rpcs3.net", OPTION_VAL_RPCN_RPCS3_NET_DE}, {"custom", OPTION_VAL_CUSTOM_DE}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
-    },
 
     // ==================== ADVANCED OPTIONS ====================
     {
@@ -7063,10 +6975,6 @@ struct retro_core_options_v2 options_de = {
 #define OPTION_VAL_8_8_8_8_EL NULL
 #define OPTION_VAL_1_1_1_1_EL NULL
 #define OPTION_VAL_208_67_222_222_EL NULL
-#define RPCS3_RPCN_SERVER_LABEL_EL NULL
-#define RPCS3_RPCN_SERVER_INFO_0_EL NULL
-#define OPTION_VAL_RPCN_RPCS3_NET_EL NULL
-#define OPTION_VAL_CUSTOM_EL NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_EL NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_EL NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_EL NULL
@@ -7516,13 +7424,6 @@ struct retro_core_option_v2_definition option_defs_el[] = {
         { {"8.8.8.8", OPTION_VAL_8_8_8_8_EL}, {"1.1.1.1", OPTION_VAL_1_1_1_1_EL}, {"208.67.222.222", OPTION_VAL_208_67_222_222_EL}, {NULL, NULL} },
         "8.8.8.8"
     },
-    {
-        "rpcs3_rpcn_server", RPCS3_RPCN_SERVER_LABEL_EL, NULL,
-        RPCS3_RPCN_SERVER_INFO_0_EL,
-        NULL, "network",
-        { {"rpcn.rpcs3.net", OPTION_VAL_RPCN_RPCS3_NET_EL}, {"custom", OPTION_VAL_CUSTOM_EL}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
-    },
 
     // ==================== ADVANCED OPTIONS ====================
     {
@@ -7914,10 +7815,6 @@ struct retro_core_options_v2 options_el = {
 #define OPTION_VAL_8_8_8_8_EN NULL
 #define OPTION_VAL_1_1_1_1_EN NULL
 #define OPTION_VAL_208_67_222_222_EN NULL
-#define RPCS3_RPCN_SERVER_LABEL_EN NULL
-#define RPCS3_RPCN_SERVER_INFO_0_EN NULL
-#define OPTION_VAL_RPCN_RPCS3_NET_EN NULL
-#define OPTION_VAL_CUSTOM_EN NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_EN NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_EN NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_EN NULL
@@ -8367,13 +8264,6 @@ struct retro_core_option_v2_definition option_defs_en[] = {
         { {"8.8.8.8", OPTION_VAL_8_8_8_8_EN}, {"1.1.1.1", OPTION_VAL_1_1_1_1_EN}, {"208.67.222.222", OPTION_VAL_208_67_222_222_EN}, {NULL, NULL} },
         "8.8.8.8"
     },
-    {
-        "rpcs3_rpcn_server", RPCS3_RPCN_SERVER_LABEL_EN, NULL,
-        RPCS3_RPCN_SERVER_INFO_0_EN,
-        NULL, "network",
-        { {"rpcn.rpcs3.net", OPTION_VAL_RPCN_RPCS3_NET_EN}, {"custom", OPTION_VAL_CUSTOM_EN}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
-    },
 
     // ==================== ADVANCED OPTIONS ====================
     {
@@ -8765,10 +8655,6 @@ struct retro_core_options_v2 options_en = {
 #define OPTION_VAL_8_8_8_8_EO NULL
 #define OPTION_VAL_1_1_1_1_EO NULL
 #define OPTION_VAL_208_67_222_222_EO NULL
-#define RPCS3_RPCN_SERVER_LABEL_EO NULL
-#define RPCS3_RPCN_SERVER_INFO_0_EO NULL
-#define OPTION_VAL_RPCN_RPCS3_NET_EO NULL
-#define OPTION_VAL_CUSTOM_EO NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_EO NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_EO NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_EO NULL
@@ -9218,13 +9104,6 @@ struct retro_core_option_v2_definition option_defs_eo[] = {
         { {"8.8.8.8", OPTION_VAL_8_8_8_8_EO}, {"1.1.1.1", OPTION_VAL_1_1_1_1_EO}, {"208.67.222.222", OPTION_VAL_208_67_222_222_EO}, {NULL, NULL} },
         "8.8.8.8"
     },
-    {
-        "rpcs3_rpcn_server", RPCS3_RPCN_SERVER_LABEL_EO, NULL,
-        RPCS3_RPCN_SERVER_INFO_0_EO,
-        NULL, "network",
-        { {"rpcn.rpcs3.net", OPTION_VAL_RPCN_RPCS3_NET_EO}, {"custom", OPTION_VAL_CUSTOM_EO}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
-    },
 
     // ==================== ADVANCED OPTIONS ====================
     {
@@ -9616,10 +9495,6 @@ struct retro_core_options_v2 options_eo = {
 #define OPTION_VAL_8_8_8_8_ES NULL
 #define OPTION_VAL_1_1_1_1_ES NULL
 #define OPTION_VAL_208_67_222_222_ES NULL
-#define RPCS3_RPCN_SERVER_LABEL_ES NULL
-#define RPCS3_RPCN_SERVER_INFO_0_ES NULL
-#define OPTION_VAL_RPCN_RPCS3_NET_ES NULL
-#define OPTION_VAL_CUSTOM_ES NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_ES NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_ES NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_ES NULL
@@ -10069,13 +9944,6 @@ struct retro_core_option_v2_definition option_defs_es[] = {
         { {"8.8.8.8", OPTION_VAL_8_8_8_8_ES}, {"1.1.1.1", OPTION_VAL_1_1_1_1_ES}, {"208.67.222.222", OPTION_VAL_208_67_222_222_ES}, {NULL, NULL} },
         "8.8.8.8"
     },
-    {
-        "rpcs3_rpcn_server", RPCS3_RPCN_SERVER_LABEL_ES, NULL,
-        RPCS3_RPCN_SERVER_INFO_0_ES,
-        NULL, "network",
-        { {"rpcn.rpcs3.net", OPTION_VAL_RPCN_RPCS3_NET_ES}, {"custom", OPTION_VAL_CUSTOM_ES}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
-    },
 
     // ==================== ADVANCED OPTIONS ====================
     {
@@ -10467,10 +10335,6 @@ struct retro_core_options_v2 options_es = {
 #define OPTION_VAL_8_8_8_8_FA NULL
 #define OPTION_VAL_1_1_1_1_FA NULL
 #define OPTION_VAL_208_67_222_222_FA NULL
-#define RPCS3_RPCN_SERVER_LABEL_FA NULL
-#define RPCS3_RPCN_SERVER_INFO_0_FA NULL
-#define OPTION_VAL_RPCN_RPCS3_NET_FA NULL
-#define OPTION_VAL_CUSTOM_FA NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_FA NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_FA NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_FA NULL
@@ -10920,13 +10784,6 @@ struct retro_core_option_v2_definition option_defs_fa[] = {
         { {"8.8.8.8", OPTION_VAL_8_8_8_8_FA}, {"1.1.1.1", OPTION_VAL_1_1_1_1_FA}, {"208.67.222.222", OPTION_VAL_208_67_222_222_FA}, {NULL, NULL} },
         "8.8.8.8"
     },
-    {
-        "rpcs3_rpcn_server", RPCS3_RPCN_SERVER_LABEL_FA, NULL,
-        RPCS3_RPCN_SERVER_INFO_0_FA,
-        NULL, "network",
-        { {"rpcn.rpcs3.net", OPTION_VAL_RPCN_RPCS3_NET_FA}, {"custom", OPTION_VAL_CUSTOM_FA}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
-    },
 
     // ==================== ADVANCED OPTIONS ====================
     {
@@ -11318,10 +11175,6 @@ struct retro_core_options_v2 options_fa = {
 #define OPTION_VAL_8_8_8_8_FI NULL
 #define OPTION_VAL_1_1_1_1_FI NULL
 #define OPTION_VAL_208_67_222_222_FI NULL
-#define RPCS3_RPCN_SERVER_LABEL_FI NULL
-#define RPCS3_RPCN_SERVER_INFO_0_FI NULL
-#define OPTION_VAL_RPCN_RPCS3_NET_FI NULL
-#define OPTION_VAL_CUSTOM_FI NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_FI NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_FI NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_FI NULL
@@ -11771,13 +11624,6 @@ struct retro_core_option_v2_definition option_defs_fi[] = {
         { {"8.8.8.8", OPTION_VAL_8_8_8_8_FI}, {"1.1.1.1", OPTION_VAL_1_1_1_1_FI}, {"208.67.222.222", OPTION_VAL_208_67_222_222_FI}, {NULL, NULL} },
         "8.8.8.8"
     },
-    {
-        "rpcs3_rpcn_server", RPCS3_RPCN_SERVER_LABEL_FI, NULL,
-        RPCS3_RPCN_SERVER_INFO_0_FI,
-        NULL, "network",
-        { {"rpcn.rpcs3.net", OPTION_VAL_RPCN_RPCS3_NET_FI}, {"custom", OPTION_VAL_CUSTOM_FI}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
-    },
 
     // ==================== ADVANCED OPTIONS ====================
     {
@@ -12169,10 +12015,6 @@ struct retro_core_options_v2 options_fi = {
 #define OPTION_VAL_8_8_8_8_FR NULL
 #define OPTION_VAL_1_1_1_1_FR NULL
 #define OPTION_VAL_208_67_222_222_FR NULL
-#define RPCS3_RPCN_SERVER_LABEL_FR NULL
-#define RPCS3_RPCN_SERVER_INFO_0_FR NULL
-#define OPTION_VAL_RPCN_RPCS3_NET_FR NULL
-#define OPTION_VAL_CUSTOM_FR NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_FR NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_FR NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_FR NULL
@@ -12622,13 +12464,6 @@ struct retro_core_option_v2_definition option_defs_fr[] = {
         { {"8.8.8.8", OPTION_VAL_8_8_8_8_FR}, {"1.1.1.1", OPTION_VAL_1_1_1_1_FR}, {"208.67.222.222", OPTION_VAL_208_67_222_222_FR}, {NULL, NULL} },
         "8.8.8.8"
     },
-    {
-        "rpcs3_rpcn_server", RPCS3_RPCN_SERVER_LABEL_FR, NULL,
-        RPCS3_RPCN_SERVER_INFO_0_FR,
-        NULL, "network",
-        { {"rpcn.rpcs3.net", OPTION_VAL_RPCN_RPCS3_NET_FR}, {"custom", OPTION_VAL_CUSTOM_FR}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
-    },
 
     // ==================== ADVANCED OPTIONS ====================
     {
@@ -13020,10 +12855,6 @@ struct retro_core_options_v2 options_fr = {
 #define OPTION_VAL_8_8_8_8_GA NULL
 #define OPTION_VAL_1_1_1_1_GA NULL
 #define OPTION_VAL_208_67_222_222_GA NULL
-#define RPCS3_RPCN_SERVER_LABEL_GA NULL
-#define RPCS3_RPCN_SERVER_INFO_0_GA NULL
-#define OPTION_VAL_RPCN_RPCS3_NET_GA NULL
-#define OPTION_VAL_CUSTOM_GA NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_GA NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_GA NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_GA NULL
@@ -13473,13 +13304,6 @@ struct retro_core_option_v2_definition option_defs_ga[] = {
         { {"8.8.8.8", OPTION_VAL_8_8_8_8_GA}, {"1.1.1.1", OPTION_VAL_1_1_1_1_GA}, {"208.67.222.222", OPTION_VAL_208_67_222_222_GA}, {NULL, NULL} },
         "8.8.8.8"
     },
-    {
-        "rpcs3_rpcn_server", RPCS3_RPCN_SERVER_LABEL_GA, NULL,
-        RPCS3_RPCN_SERVER_INFO_0_GA,
-        NULL, "network",
-        { {"rpcn.rpcs3.net", OPTION_VAL_RPCN_RPCS3_NET_GA}, {"custom", OPTION_VAL_CUSTOM_GA}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
-    },
 
     // ==================== ADVANCED OPTIONS ====================
     {
@@ -13871,10 +13695,6 @@ struct retro_core_options_v2 options_ga = {
 #define OPTION_VAL_8_8_8_8_GL NULL
 #define OPTION_VAL_1_1_1_1_GL NULL
 #define OPTION_VAL_208_67_222_222_GL NULL
-#define RPCS3_RPCN_SERVER_LABEL_GL NULL
-#define RPCS3_RPCN_SERVER_INFO_0_GL NULL
-#define OPTION_VAL_RPCN_RPCS3_NET_GL NULL
-#define OPTION_VAL_CUSTOM_GL NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_GL NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_GL NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_GL NULL
@@ -14324,13 +14144,6 @@ struct retro_core_option_v2_definition option_defs_gl[] = {
         { {"8.8.8.8", OPTION_VAL_8_8_8_8_GL}, {"1.1.1.1", OPTION_VAL_1_1_1_1_GL}, {"208.67.222.222", OPTION_VAL_208_67_222_222_GL}, {NULL, NULL} },
         "8.8.8.8"
     },
-    {
-        "rpcs3_rpcn_server", RPCS3_RPCN_SERVER_LABEL_GL, NULL,
-        RPCS3_RPCN_SERVER_INFO_0_GL,
-        NULL, "network",
-        { {"rpcn.rpcs3.net", OPTION_VAL_RPCN_RPCS3_NET_GL}, {"custom", OPTION_VAL_CUSTOM_GL}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
-    },
 
     // ==================== ADVANCED OPTIONS ====================
     {
@@ -14722,10 +14535,6 @@ struct retro_core_options_v2 options_gl = {
 #define OPTION_VAL_8_8_8_8_HE NULL
 #define OPTION_VAL_1_1_1_1_HE NULL
 #define OPTION_VAL_208_67_222_222_HE NULL
-#define RPCS3_RPCN_SERVER_LABEL_HE NULL
-#define RPCS3_RPCN_SERVER_INFO_0_HE NULL
-#define OPTION_VAL_RPCN_RPCS3_NET_HE NULL
-#define OPTION_VAL_CUSTOM_HE NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_HE NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_HE NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_HE NULL
@@ -15175,13 +14984,6 @@ struct retro_core_option_v2_definition option_defs_he[] = {
         { {"8.8.8.8", OPTION_VAL_8_8_8_8_HE}, {"1.1.1.1", OPTION_VAL_1_1_1_1_HE}, {"208.67.222.222", OPTION_VAL_208_67_222_222_HE}, {NULL, NULL} },
         "8.8.8.8"
     },
-    {
-        "rpcs3_rpcn_server", RPCS3_RPCN_SERVER_LABEL_HE, NULL,
-        RPCS3_RPCN_SERVER_INFO_0_HE,
-        NULL, "network",
-        { {"rpcn.rpcs3.net", OPTION_VAL_RPCN_RPCS3_NET_HE}, {"custom", OPTION_VAL_CUSTOM_HE}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
-    },
 
     // ==================== ADVANCED OPTIONS ====================
     {
@@ -15573,10 +15375,6 @@ struct retro_core_options_v2 options_he = {
 #define OPTION_VAL_8_8_8_8_HU NULL
 #define OPTION_VAL_1_1_1_1_HU NULL
 #define OPTION_VAL_208_67_222_222_HU NULL
-#define RPCS3_RPCN_SERVER_LABEL_HU NULL
-#define RPCS3_RPCN_SERVER_INFO_0_HU NULL
-#define OPTION_VAL_RPCN_RPCS3_NET_HU NULL
-#define OPTION_VAL_CUSTOM_HU NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_HU NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_HU NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_HU NULL
@@ -16026,13 +15824,6 @@ struct retro_core_option_v2_definition option_defs_hu[] = {
         { {"8.8.8.8", OPTION_VAL_8_8_8_8_HU}, {"1.1.1.1", OPTION_VAL_1_1_1_1_HU}, {"208.67.222.222", OPTION_VAL_208_67_222_222_HU}, {NULL, NULL} },
         "8.8.8.8"
     },
-    {
-        "rpcs3_rpcn_server", RPCS3_RPCN_SERVER_LABEL_HU, NULL,
-        RPCS3_RPCN_SERVER_INFO_0_HU,
-        NULL, "network",
-        { {"rpcn.rpcs3.net", OPTION_VAL_RPCN_RPCS3_NET_HU}, {"custom", OPTION_VAL_CUSTOM_HU}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
-    },
 
     // ==================== ADVANCED OPTIONS ====================
     {
@@ -16424,10 +16215,6 @@ struct retro_core_options_v2 options_hu = {
 #define OPTION_VAL_8_8_8_8_ID NULL
 #define OPTION_VAL_1_1_1_1_ID NULL
 #define OPTION_VAL_208_67_222_222_ID NULL
-#define RPCS3_RPCN_SERVER_LABEL_ID NULL
-#define RPCS3_RPCN_SERVER_INFO_0_ID NULL
-#define OPTION_VAL_RPCN_RPCS3_NET_ID NULL
-#define OPTION_VAL_CUSTOM_ID NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_ID NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_ID NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_ID NULL
@@ -16877,13 +16664,6 @@ struct retro_core_option_v2_definition option_defs_id[] = {
         { {"8.8.8.8", OPTION_VAL_8_8_8_8_ID}, {"1.1.1.1", OPTION_VAL_1_1_1_1_ID}, {"208.67.222.222", OPTION_VAL_208_67_222_222_ID}, {NULL, NULL} },
         "8.8.8.8"
     },
-    {
-        "rpcs3_rpcn_server", RPCS3_RPCN_SERVER_LABEL_ID, NULL,
-        RPCS3_RPCN_SERVER_INFO_0_ID,
-        NULL, "network",
-        { {"rpcn.rpcs3.net", OPTION_VAL_RPCN_RPCS3_NET_ID}, {"custom", OPTION_VAL_CUSTOM_ID}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
-    },
 
     // ==================== ADVANCED OPTIONS ====================
     {
@@ -17275,10 +17055,6 @@ struct retro_core_options_v2 options_id = {
 #define OPTION_VAL_8_8_8_8_IT NULL
 #define OPTION_VAL_1_1_1_1_IT NULL
 #define OPTION_VAL_208_67_222_222_IT NULL
-#define RPCS3_RPCN_SERVER_LABEL_IT NULL
-#define RPCS3_RPCN_SERVER_INFO_0_IT NULL
-#define OPTION_VAL_RPCN_RPCS3_NET_IT NULL
-#define OPTION_VAL_CUSTOM_IT NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_IT NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_IT NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_IT NULL
@@ -17728,13 +17504,6 @@ struct retro_core_option_v2_definition option_defs_it[] = {
         { {"8.8.8.8", OPTION_VAL_8_8_8_8_IT}, {"1.1.1.1", OPTION_VAL_1_1_1_1_IT}, {"208.67.222.222", OPTION_VAL_208_67_222_222_IT}, {NULL, NULL} },
         "8.8.8.8"
     },
-    {
-        "rpcs3_rpcn_server", RPCS3_RPCN_SERVER_LABEL_IT, NULL,
-        RPCS3_RPCN_SERVER_INFO_0_IT,
-        NULL, "network",
-        { {"rpcn.rpcs3.net", OPTION_VAL_RPCN_RPCS3_NET_IT}, {"custom", OPTION_VAL_CUSTOM_IT}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
-    },
 
     // ==================== ADVANCED OPTIONS ====================
     {
@@ -18126,10 +17895,6 @@ struct retro_core_options_v2 options_it = {
 #define OPTION_VAL_8_8_8_8_JA NULL
 #define OPTION_VAL_1_1_1_1_JA NULL
 #define OPTION_VAL_208_67_222_222_JA NULL
-#define RPCS3_RPCN_SERVER_LABEL_JA NULL
-#define RPCS3_RPCN_SERVER_INFO_0_JA NULL
-#define OPTION_VAL_RPCN_RPCS3_NET_JA NULL
-#define OPTION_VAL_CUSTOM_JA NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_JA NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_JA NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_JA NULL
@@ -18579,13 +18344,6 @@ struct retro_core_option_v2_definition option_defs_ja[] = {
         { {"8.8.8.8", OPTION_VAL_8_8_8_8_JA}, {"1.1.1.1", OPTION_VAL_1_1_1_1_JA}, {"208.67.222.222", OPTION_VAL_208_67_222_222_JA}, {NULL, NULL} },
         "8.8.8.8"
     },
-    {
-        "rpcs3_rpcn_server", RPCS3_RPCN_SERVER_LABEL_JA, NULL,
-        RPCS3_RPCN_SERVER_INFO_0_JA,
-        NULL, "network",
-        { {"rpcn.rpcs3.net", OPTION_VAL_RPCN_RPCS3_NET_JA}, {"custom", OPTION_VAL_CUSTOM_JA}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
-    },
 
     // ==================== ADVANCED OPTIONS ====================
     {
@@ -18977,10 +18735,6 @@ struct retro_core_options_v2 options_ja = {
 #define OPTION_VAL_8_8_8_8_KO NULL
 #define OPTION_VAL_1_1_1_1_KO NULL
 #define OPTION_VAL_208_67_222_222_KO NULL
-#define RPCS3_RPCN_SERVER_LABEL_KO NULL
-#define RPCS3_RPCN_SERVER_INFO_0_KO NULL
-#define OPTION_VAL_RPCN_RPCS3_NET_KO NULL
-#define OPTION_VAL_CUSTOM_KO NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_KO NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_KO NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_KO NULL
@@ -19430,13 +19184,6 @@ struct retro_core_option_v2_definition option_defs_ko[] = {
         { {"8.8.8.8", OPTION_VAL_8_8_8_8_KO}, {"1.1.1.1", OPTION_VAL_1_1_1_1_KO}, {"208.67.222.222", OPTION_VAL_208_67_222_222_KO}, {NULL, NULL} },
         "8.8.8.8"
     },
-    {
-        "rpcs3_rpcn_server", RPCS3_RPCN_SERVER_LABEL_KO, NULL,
-        RPCS3_RPCN_SERVER_INFO_0_KO,
-        NULL, "network",
-        { {"rpcn.rpcs3.net", OPTION_VAL_RPCN_RPCS3_NET_KO}, {"custom", OPTION_VAL_CUSTOM_KO}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
-    },
 
     // ==================== ADVANCED OPTIONS ====================
     {
@@ -19828,10 +19575,6 @@ struct retro_core_options_v2 options_ko = {
 #define OPTION_VAL_8_8_8_8_NL NULL
 #define OPTION_VAL_1_1_1_1_NL NULL
 #define OPTION_VAL_208_67_222_222_NL NULL
-#define RPCS3_RPCN_SERVER_LABEL_NL NULL
-#define RPCS3_RPCN_SERVER_INFO_0_NL NULL
-#define OPTION_VAL_RPCN_RPCS3_NET_NL NULL
-#define OPTION_VAL_CUSTOM_NL NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_NL NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_NL NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_NL NULL
@@ -20281,13 +20024,6 @@ struct retro_core_option_v2_definition option_defs_nl[] = {
         { {"8.8.8.8", OPTION_VAL_8_8_8_8_NL}, {"1.1.1.1", OPTION_VAL_1_1_1_1_NL}, {"208.67.222.222", OPTION_VAL_208_67_222_222_NL}, {NULL, NULL} },
         "8.8.8.8"
     },
-    {
-        "rpcs3_rpcn_server", RPCS3_RPCN_SERVER_LABEL_NL, NULL,
-        RPCS3_RPCN_SERVER_INFO_0_NL,
-        NULL, "network",
-        { {"rpcn.rpcs3.net", OPTION_VAL_RPCN_RPCS3_NET_NL}, {"custom", OPTION_VAL_CUSTOM_NL}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
-    },
 
     // ==================== ADVANCED OPTIONS ====================
     {
@@ -20679,10 +20415,6 @@ struct retro_core_options_v2 options_nl = {
 #define OPTION_VAL_8_8_8_8_NO NULL
 #define OPTION_VAL_1_1_1_1_NO NULL
 #define OPTION_VAL_208_67_222_222_NO NULL
-#define RPCS3_RPCN_SERVER_LABEL_NO NULL
-#define RPCS3_RPCN_SERVER_INFO_0_NO NULL
-#define OPTION_VAL_RPCN_RPCS3_NET_NO NULL
-#define OPTION_VAL_CUSTOM_NO NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_NO NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_NO NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_NO NULL
@@ -21132,13 +20864,6 @@ struct retro_core_option_v2_definition option_defs_no[] = {
         { {"8.8.8.8", OPTION_VAL_8_8_8_8_NO}, {"1.1.1.1", OPTION_VAL_1_1_1_1_NO}, {"208.67.222.222", OPTION_VAL_208_67_222_222_NO}, {NULL, NULL} },
         "8.8.8.8"
     },
-    {
-        "rpcs3_rpcn_server", RPCS3_RPCN_SERVER_LABEL_NO, NULL,
-        RPCS3_RPCN_SERVER_INFO_0_NO,
-        NULL, "network",
-        { {"rpcn.rpcs3.net", OPTION_VAL_RPCN_RPCS3_NET_NO}, {"custom", OPTION_VAL_CUSTOM_NO}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
-    },
 
     // ==================== ADVANCED OPTIONS ====================
     {
@@ -21530,10 +21255,6 @@ struct retro_core_options_v2 options_no = {
 #define OPTION_VAL_8_8_8_8_PL NULL
 #define OPTION_VAL_1_1_1_1_PL NULL
 #define OPTION_VAL_208_67_222_222_PL NULL
-#define RPCS3_RPCN_SERVER_LABEL_PL NULL
-#define RPCS3_RPCN_SERVER_INFO_0_PL NULL
-#define OPTION_VAL_RPCN_RPCS3_NET_PL NULL
-#define OPTION_VAL_CUSTOM_PL NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_PL NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_PL NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_PL NULL
@@ -21983,13 +21704,6 @@ struct retro_core_option_v2_definition option_defs_pl[] = {
         { {"8.8.8.8", OPTION_VAL_8_8_8_8_PL}, {"1.1.1.1", OPTION_VAL_1_1_1_1_PL}, {"208.67.222.222", OPTION_VAL_208_67_222_222_PL}, {NULL, NULL} },
         "8.8.8.8"
     },
-    {
-        "rpcs3_rpcn_server", RPCS3_RPCN_SERVER_LABEL_PL, NULL,
-        RPCS3_RPCN_SERVER_INFO_0_PL,
-        NULL, "network",
-        { {"rpcn.rpcs3.net", OPTION_VAL_RPCN_RPCS3_NET_PL}, {"custom", OPTION_VAL_CUSTOM_PL}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
-    },
 
     // ==================== ADVANCED OPTIONS ====================
     {
@@ -22381,10 +22095,6 @@ struct retro_core_options_v2 options_pl = {
 #define OPTION_VAL_8_8_8_8_PT_BR NULL
 #define OPTION_VAL_1_1_1_1_PT_BR NULL
 #define OPTION_VAL_208_67_222_222_PT_BR NULL
-#define RPCS3_RPCN_SERVER_LABEL_PT_BR NULL
-#define RPCS3_RPCN_SERVER_INFO_0_PT_BR NULL
-#define OPTION_VAL_RPCN_RPCS3_NET_PT_BR NULL
-#define OPTION_VAL_CUSTOM_PT_BR NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_PT_BR NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_PT_BR NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_PT_BR NULL
@@ -22834,13 +22544,6 @@ struct retro_core_option_v2_definition option_defs_pt_br[] = {
         { {"8.8.8.8", OPTION_VAL_8_8_8_8_PT_BR}, {"1.1.1.1", OPTION_VAL_1_1_1_1_PT_BR}, {"208.67.222.222", OPTION_VAL_208_67_222_222_PT_BR}, {NULL, NULL} },
         "8.8.8.8"
     },
-    {
-        "rpcs3_rpcn_server", RPCS3_RPCN_SERVER_LABEL_PT_BR, NULL,
-        RPCS3_RPCN_SERVER_INFO_0_PT_BR,
-        NULL, "network",
-        { {"rpcn.rpcs3.net", OPTION_VAL_RPCN_RPCS3_NET_PT_BR}, {"custom", OPTION_VAL_CUSTOM_PT_BR}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
-    },
 
     // ==================== ADVANCED OPTIONS ====================
     {
@@ -23232,10 +22935,6 @@ struct retro_core_options_v2 options_pt_br = {
 #define OPTION_VAL_8_8_8_8_PT_PT NULL
 #define OPTION_VAL_1_1_1_1_PT_PT NULL
 #define OPTION_VAL_208_67_222_222_PT_PT NULL
-#define RPCS3_RPCN_SERVER_LABEL_PT_PT NULL
-#define RPCS3_RPCN_SERVER_INFO_0_PT_PT NULL
-#define OPTION_VAL_RPCN_RPCS3_NET_PT_PT NULL
-#define OPTION_VAL_CUSTOM_PT_PT NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_PT_PT NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_PT_PT NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_PT_PT NULL
@@ -23685,13 +23384,6 @@ struct retro_core_option_v2_definition option_defs_pt_pt[] = {
         { {"8.8.8.8", OPTION_VAL_8_8_8_8_PT_PT}, {"1.1.1.1", OPTION_VAL_1_1_1_1_PT_PT}, {"208.67.222.222", OPTION_VAL_208_67_222_222_PT_PT}, {NULL, NULL} },
         "8.8.8.8"
     },
-    {
-        "rpcs3_rpcn_server", RPCS3_RPCN_SERVER_LABEL_PT_PT, NULL,
-        RPCS3_RPCN_SERVER_INFO_0_PT_PT,
-        NULL, "network",
-        { {"rpcn.rpcs3.net", OPTION_VAL_RPCN_RPCS3_NET_PT_PT}, {"custom", OPTION_VAL_CUSTOM_PT_PT}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
-    },
 
     // ==================== ADVANCED OPTIONS ====================
     {
@@ -24083,10 +23775,6 @@ struct retro_core_options_v2 options_pt_pt = {
 #define OPTION_VAL_8_8_8_8_RU NULL
 #define OPTION_VAL_1_1_1_1_RU NULL
 #define OPTION_VAL_208_67_222_222_RU NULL
-#define RPCS3_RPCN_SERVER_LABEL_RU NULL
-#define RPCS3_RPCN_SERVER_INFO_0_RU NULL
-#define OPTION_VAL_RPCN_RPCS3_NET_RU NULL
-#define OPTION_VAL_CUSTOM_RU NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_RU NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_RU NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_RU NULL
@@ -24536,13 +24224,6 @@ struct retro_core_option_v2_definition option_defs_ru[] = {
         { {"8.8.8.8", OPTION_VAL_8_8_8_8_RU}, {"1.1.1.1", OPTION_VAL_1_1_1_1_RU}, {"208.67.222.222", OPTION_VAL_208_67_222_222_RU}, {NULL, NULL} },
         "8.8.8.8"
     },
-    {
-        "rpcs3_rpcn_server", RPCS3_RPCN_SERVER_LABEL_RU, NULL,
-        RPCS3_RPCN_SERVER_INFO_0_RU,
-        NULL, "network",
-        { {"rpcn.rpcs3.net", OPTION_VAL_RPCN_RPCS3_NET_RU}, {"custom", OPTION_VAL_CUSTOM_RU}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
-    },
 
     // ==================== ADVANCED OPTIONS ====================
     {
@@ -24934,10 +24615,6 @@ struct retro_core_options_v2 options_ru = {
 #define OPTION_VAL_8_8_8_8_SK NULL
 #define OPTION_VAL_1_1_1_1_SK NULL
 #define OPTION_VAL_208_67_222_222_SK NULL
-#define RPCS3_RPCN_SERVER_LABEL_SK NULL
-#define RPCS3_RPCN_SERVER_INFO_0_SK NULL
-#define OPTION_VAL_RPCN_RPCS3_NET_SK NULL
-#define OPTION_VAL_CUSTOM_SK NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_SK NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_SK NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_SK NULL
@@ -25387,13 +25064,6 @@ struct retro_core_option_v2_definition option_defs_sk[] = {
         { {"8.8.8.8", OPTION_VAL_8_8_8_8_SK}, {"1.1.1.1", OPTION_VAL_1_1_1_1_SK}, {"208.67.222.222", OPTION_VAL_208_67_222_222_SK}, {NULL, NULL} },
         "8.8.8.8"
     },
-    {
-        "rpcs3_rpcn_server", RPCS3_RPCN_SERVER_LABEL_SK, NULL,
-        RPCS3_RPCN_SERVER_INFO_0_SK,
-        NULL, "network",
-        { {"rpcn.rpcs3.net", OPTION_VAL_RPCN_RPCS3_NET_SK}, {"custom", OPTION_VAL_CUSTOM_SK}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
-    },
 
     // ==================== ADVANCED OPTIONS ====================
     {
@@ -25785,10 +25455,6 @@ struct retro_core_options_v2 options_sk = {
 #define OPTION_VAL_8_8_8_8_SV NULL
 #define OPTION_VAL_1_1_1_1_SV NULL
 #define OPTION_VAL_208_67_222_222_SV NULL
-#define RPCS3_RPCN_SERVER_LABEL_SV NULL
-#define RPCS3_RPCN_SERVER_INFO_0_SV NULL
-#define OPTION_VAL_RPCN_RPCS3_NET_SV NULL
-#define OPTION_VAL_CUSTOM_SV NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_SV NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_SV NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_SV NULL
@@ -26238,13 +25904,6 @@ struct retro_core_option_v2_definition option_defs_sv[] = {
         { {"8.8.8.8", OPTION_VAL_8_8_8_8_SV}, {"1.1.1.1", OPTION_VAL_1_1_1_1_SV}, {"208.67.222.222", OPTION_VAL_208_67_222_222_SV}, {NULL, NULL} },
         "8.8.8.8"
     },
-    {
-        "rpcs3_rpcn_server", RPCS3_RPCN_SERVER_LABEL_SV, NULL,
-        RPCS3_RPCN_SERVER_INFO_0_SV,
-        NULL, "network",
-        { {"rpcn.rpcs3.net", OPTION_VAL_RPCN_RPCS3_NET_SV}, {"custom", OPTION_VAL_CUSTOM_SV}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
-    },
 
     // ==================== ADVANCED OPTIONS ====================
     {
@@ -26636,10 +26295,6 @@ struct retro_core_options_v2 options_sv = {
 #define OPTION_VAL_8_8_8_8_TR NULL
 #define OPTION_VAL_1_1_1_1_TR NULL
 #define OPTION_VAL_208_67_222_222_TR NULL
-#define RPCS3_RPCN_SERVER_LABEL_TR NULL
-#define RPCS3_RPCN_SERVER_INFO_0_TR NULL
-#define OPTION_VAL_RPCN_RPCS3_NET_TR NULL
-#define OPTION_VAL_CUSTOM_TR NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_TR NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_TR NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_TR NULL
@@ -27089,13 +26744,6 @@ struct retro_core_option_v2_definition option_defs_tr[] = {
         { {"8.8.8.8", OPTION_VAL_8_8_8_8_TR}, {"1.1.1.1", OPTION_VAL_1_1_1_1_TR}, {"208.67.222.222", OPTION_VAL_208_67_222_222_TR}, {NULL, NULL} },
         "8.8.8.8"
     },
-    {
-        "rpcs3_rpcn_server", RPCS3_RPCN_SERVER_LABEL_TR, NULL,
-        RPCS3_RPCN_SERVER_INFO_0_TR,
-        NULL, "network",
-        { {"rpcn.rpcs3.net", OPTION_VAL_RPCN_RPCS3_NET_TR}, {"custom", OPTION_VAL_CUSTOM_TR}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
-    },
 
     // ==================== ADVANCED OPTIONS ====================
     {
@@ -27487,10 +27135,6 @@ struct retro_core_options_v2 options_tr = {
 #define OPTION_VAL_8_8_8_8_UK NULL
 #define OPTION_VAL_1_1_1_1_UK NULL
 #define OPTION_VAL_208_67_222_222_UK NULL
-#define RPCS3_RPCN_SERVER_LABEL_UK NULL
-#define RPCS3_RPCN_SERVER_INFO_0_UK NULL
-#define OPTION_VAL_RPCN_RPCS3_NET_UK NULL
-#define OPTION_VAL_CUSTOM_UK NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_UK NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_UK NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_UK NULL
@@ -27940,13 +27584,6 @@ struct retro_core_option_v2_definition option_defs_uk[] = {
         { {"8.8.8.8", OPTION_VAL_8_8_8_8_UK}, {"1.1.1.1", OPTION_VAL_1_1_1_1_UK}, {"208.67.222.222", OPTION_VAL_208_67_222_222_UK}, {NULL, NULL} },
         "8.8.8.8"
     },
-    {
-        "rpcs3_rpcn_server", RPCS3_RPCN_SERVER_LABEL_UK, NULL,
-        RPCS3_RPCN_SERVER_INFO_0_UK,
-        NULL, "network",
-        { {"rpcn.rpcs3.net", OPTION_VAL_RPCN_RPCS3_NET_UK}, {"custom", OPTION_VAL_CUSTOM_UK}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
-    },
 
     // ==================== ADVANCED OPTIONS ====================
     {
@@ -28338,10 +27975,6 @@ struct retro_core_options_v2 options_uk = {
 #define OPTION_VAL_8_8_8_8_VAL NULL
 #define OPTION_VAL_1_1_1_1_VAL NULL
 #define OPTION_VAL_208_67_222_222_VAL NULL
-#define RPCS3_RPCN_SERVER_LABEL_VAL NULL
-#define RPCS3_RPCN_SERVER_INFO_0_VAL NULL
-#define OPTION_VAL_RPCN_RPCS3_NET_VAL NULL
-#define OPTION_VAL_CUSTOM_VAL NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_VAL NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_VAL NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_VAL NULL
@@ -28791,13 +28424,6 @@ struct retro_core_option_v2_definition option_defs_val[] = {
         { {"8.8.8.8", OPTION_VAL_8_8_8_8_VAL}, {"1.1.1.1", OPTION_VAL_1_1_1_1_VAL}, {"208.67.222.222", OPTION_VAL_208_67_222_222_VAL}, {NULL, NULL} },
         "8.8.8.8"
     },
-    {
-        "rpcs3_rpcn_server", RPCS3_RPCN_SERVER_LABEL_VAL, NULL,
-        RPCS3_RPCN_SERVER_INFO_0_VAL,
-        NULL, "network",
-        { {"rpcn.rpcs3.net", OPTION_VAL_RPCN_RPCS3_NET_VAL}, {"custom", OPTION_VAL_CUSTOM_VAL}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
-    },
 
     // ==================== ADVANCED OPTIONS ====================
     {
@@ -29189,10 +28815,6 @@ struct retro_core_options_v2 options_val = {
 #define OPTION_VAL_8_8_8_8_VN NULL
 #define OPTION_VAL_1_1_1_1_VN NULL
 #define OPTION_VAL_208_67_222_222_VN NULL
-#define RPCS3_RPCN_SERVER_LABEL_VN NULL
-#define RPCS3_RPCN_SERVER_INFO_0_VN NULL
-#define OPTION_VAL_RPCN_RPCS3_NET_VN NULL
-#define OPTION_VAL_CUSTOM_VN NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_VN NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_VN NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_VN NULL
@@ -29641,13 +29263,6 @@ struct retro_core_option_v2_definition option_defs_vn[] = {
         NULL, "network",
         { {"8.8.8.8", OPTION_VAL_8_8_8_8_VN}, {"1.1.1.1", OPTION_VAL_1_1_1_1_VN}, {"208.67.222.222", OPTION_VAL_208_67_222_222_VN}, {NULL, NULL} },
         "8.8.8.8"
-    },
-    {
-        "rpcs3_rpcn_server", RPCS3_RPCN_SERVER_LABEL_VN, NULL,
-        RPCS3_RPCN_SERVER_INFO_0_VN,
-        NULL, "network",
-        { {"rpcn.rpcs3.net", OPTION_VAL_RPCN_RPCS3_NET_VN}, {"custom", OPTION_VAL_CUSTOM_VN}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
     },
 
     // ==================== ADVANCED OPTIONS ====================

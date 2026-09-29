@@ -618,7 +618,15 @@ bool logs::file_writer::flush(u64 bufv)
 				m_zs.avail_out = sizeof(m_zout);
 				m_zs.next_out  = m_zout;
 
-				if (deflate(&m_zs, Z_NO_FLUSH) == Z_STREAM_ERROR || m_fout2.write(m_zout, sizeof(m_zout) - m_zs.avail_out) != sizeof(m_zout) - m_zs.avail_out)
+#ifdef LIBRETRO_CORE
+				// Every write complete in the file: testers send the .gz, and
+				// after a crash or a kill the last block, with whatever went
+				// wrong in it, was otherwise never written out
+				constexpr int flush_mode = Z_SYNC_FLUSH;
+#else
+				constexpr int flush_mode = Z_NO_FLUSH;
+#endif
+				if (deflate(&m_zs, flush_mode) == Z_STREAM_ERROR || m_fout2.write(m_zout, sizeof(m_zout) - m_zs.avail_out) != sizeof(m_zout) - m_zs.avail_out)
 				{
 					deflateEnd(&m_zs);
 					m_fout2.close();

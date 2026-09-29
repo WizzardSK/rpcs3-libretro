@@ -21,6 +21,7 @@
 #include "Emu/RSX/Overlays/overlay_manager.h"
 #include "Emu/RSX/Overlays/overlay_save_dialog.h"
 #include "Emu/Cell/Modules/sceNpTrophy.h"
+#include "Emu/Cell/Modules/sceNp.h"
 #include "Emu/Io/Null/null_camera_handler.h"
 #include "Emu/Io/Null/null_music_handler.h"
 #include "Emu/Io/Null/NullKeyboardHandler.h"
@@ -66,6 +67,7 @@
 
 #ifdef _WIN32
 #define WIN32_LEAN_AND_MEAN
+#include <winsock2.h>
 #include <Windows.h>
 #endif
 #ifdef __linux__
@@ -86,6 +88,7 @@ LOG_CHANNEL(sys_log, "SYS");
 typedef LONG(NTAPI* lr_NtQueryTimerResolution_t)(PULONG, PULONG, PULONG);
 typedef LONG(NTAPI* lr_NtSetTimerResolution_t)(ULONG, BOOLEAN, PULONG);
 static bool s_timer_resolution_set = false;
+static bool s_wsa_started = false;
 static ULONG s_timer_resolution = 0;
 
 static void lrcore_raise_timer_resolution()
@@ -624,6 +627,22 @@ static void libretro_apply_core_options()
         s_savedata_slot = slot == "list" ? -1 : std::clamp(std::atoi(slot.c_str()), 0, 9);
     }
 
+    // ==================== NETWORK OPTIONS ====================
+    // None of these were read before: the network stayed off whatever they
+    // said. The connection is set up when a game boots, so only between games.
+    if (Emu.IsStopped())
+    {
+        g_cfg.net.net_active.set(get_option_value("rpcs3_network_enabled", "disabled") == "enabled"
+            ? np_internet_status::enabled : np_internet_status::disabled);
+        const std::string psn = get_option_value("rpcs3_psn_status", "disabled");
+        g_cfg.net.psn_status.set(psn == "simulated" ? np_psn_status::psn_fake
+            : psn == "rpcn" ? np_psn_status::psn_rpcn : np_psn_status::disabled);
+        g_cfg.net.upnp_enabled.set(get_option_value("rpcs3_upnp", "disabled") == "enabled");
+        g_cfg.net.dns.from_string(get_option_value("rpcs3_dns", "8.8.8.8"));
+    }
+    g_cfg.misc.show_rpcn_popups.set(get_option_value("rpcs3_show_rpcn_popups", "enabled") == "enabled");
+    g_cfg.misc.show_trophy_popups.set(get_option_value("rpcs3_show_trophy_popups", "enabled") == "enabled");
+
     // ==================== SYSTEM/CORE OPTIONS ====================
     // System Language
     std::string lang = get_option_value("rpcs3_language", "english");
@@ -1118,6 +1137,18 @@ void retro_init(void)
 #ifdef _WIN32
     lrcore_install_crash_handler();
     lrcore_raise_timer_resolution();
+
+    // Also from standalone's startup, and missing with it (NNshi's logs):
+    // Winsock, without which a game's first socket crashed it (Wipeout HD
+    // Fury, in sys_net_bnet_socket), and the 2-3 GiB working set PS3 memory
+    // that has to stay resident is locked in ("Failed to lock sudo memory").
+    // Standalone gives up without them; the core says so and carries on.
+    if (!SetProcessWorkingSetSize(GetCurrentProcess(), 0x80000000, 0xC0000000))
+        sys_log.error("SetProcessWorkingSetSize() failed (error %lu)", GetLastError());
+    WSADATA wsa_data{};
+    s_wsa_started = WSAStartup(MAKEWORD(2, 2), &wsa_data) == 0;
+    if (!s_wsa_started)
+        sys_log.error("WSAStartup() failed, games cannot use the network");
 #endif
 #ifdef __linux__
     // Standalone's other startup setting: 1 us timer slack instead of the
@@ -1343,6 +1374,11 @@ void retro_deinit(void)
 #ifdef _WIN32
     lrcore_uninstall_crash_handler();
     lrcore_restore_timer_resolution();
+    if (s_wsa_started)
+    {
+        WSACleanup();
+        s_wsa_started = false;
+    }
     // RPCS3's own exception handlers, installed when the library was loaded
     // (Utilities/Thread.cpp); left in, the next exception in the frontend
     // after the unload jumps into code that is gone
@@ -1665,8 +1701,6 @@ bool retro_load_game(const struct retro_game_info* game)
     g_cfg.misc.show_ppu_compilation_hint.set(false);
     g_cfg.misc.show_autosave_autoload_hint.set(false);
     g_cfg.misc.show_pressure_intensity_toggle_hint.set(false);
-    g_cfg.misc.show_trophy_popups.set(false);
-    g_cfg.misc.show_rpcn_popups.set(false);
 
 
     // The block above hardcodes settings that also have core options behind them
@@ -2116,6 +2150,25 @@ void retro_set_controller_port_device(unsigned port, unsigned device)
     libretro_input_set_controller(port, device);
 }
 
+// PSN messages have no window to be written or read in here; a game that
+// asks gets a cancel, as if the player had closed the window.
+namespace
+{
+    class libretro_sendmessage_dialog : public SendMessageDialogBase
+    {
+    public:
+        error_code Exec(message_data&, std::set<std::string>&) override { return CELL_CANCEL; }
+        void callback_handler(rpcn::NotificationType, const std::string&, bool) override {}
+    };
+
+    class libretro_recvmessage_dialog : public RecvMessageDialogBase
+    {
+    public:
+        error_code Exec(SceNpBasicMessageMainType, SceNpBasicMessageRecvOptions, SceNpBasicMessageRecvAction&, u64&) override { return CELL_CANCEL; }
+        void callback_handler(const shared_ptr<std::pair<std::string, message_data>>, u64) override {}
+    };
+}
+
 // Initialize emulator callbacks for libretro integration
 static void init_emu_callbacks()
 {
@@ -2321,6 +2374,16 @@ static void init_emu_callbacks()
 
     callbacks.check_microphone_permissions = []() {};
     callbacks.make_video_source = []() { return nullptr; };
+
+    // Every callback has to be set: an empty one is a std::bad_function_call
+    // the first time the emulator reaches for it, which kills the frontend.
+    // These five were not. Images are decoded by Qt in standalone; without
+    // it, cellPhotoDecode and the media library get a failure to report.
+    callbacks.get_image_info = [](const std::string&, std::string&, s32&, s32&, s32&) { return false; };
+    callbacks.get_scaled_image = [](const std::string&, s32, s32, s32&, s32&, u8*, bool) { return false; };
+    callbacks.get_sendmessage_dialog = []() -> std::shared_ptr<SendMessageDialogBase> { return std::make_shared<libretro_sendmessage_dialog>(); };
+    callbacks.get_recvmessage_dialog = []() -> std::shared_ptr<RecvMessageDialogBase> { return std::make_shared<libretro_recvmessage_dialog>(); };
+    callbacks.enable_gamemode = [](bool) {};
 
     callbacks.update_emu_settings = []() {};
     callbacks.save_emu_settings = []() {};

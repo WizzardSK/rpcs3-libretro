@@ -386,14 +386,14 @@ struct retro_core_option_v2_definition option_defs_us[] = {
     // ==================== NETWORK OPTIONS ====================
     {
         "rpcs3_network_enabled", "Network Enabled", NULL,
-        "Enable network features.",
+        "Lets games reach the internet. Takes effect when content is loaded.",
         NULL, "network",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
     {
         "rpcs3_psn_status", "PSN Status", NULL,
-        "PlayStation Network status.",
+        "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded.",
         NULL, "network",
         { {"disabled", NULL}, {"simulated", "Simulated"}, {"rpcn", "RPCN"}, {NULL, NULL} },
         "disabled"
@@ -425,13 +425,6 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         NULL, "network",
         { {"8.8.8.8", "Google DNS"}, {"1.1.1.1", "Cloudflare DNS"}, {"208.67.222.222", "OpenDNS"}, {NULL, NULL} },
         "8.8.8.8"
-    },
-    {
-        "rpcs3_rpcn_server", "RPCN Server", NULL,
-        "RPCN server address for online play.",
-        NULL, "network",
-        { {"rpcn.rpcs3.net", "Official RPCN"}, {"custom", "Custom"}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
     },
 
     // ==================== ADVANCED OPTIONS ====================
