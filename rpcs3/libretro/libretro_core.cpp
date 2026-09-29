@@ -63,6 +63,7 @@
 #include <thread>
 #include <mutex>
 #include <functional>
+#include <filesystem>
 #include <string>
 #include <vector>
 
@@ -2399,6 +2400,27 @@ static void init_emu_callbacks()
 
     callbacks.check_microphone_permissions = []() {};
     callbacks.make_video_source = []() { return nullptr; };
+
+    // Standalone resolves paths with Qt's canonicalFilePath: absolute, links
+    // followed, no trailing separator. Without this the default passed paths
+    // through unchanged, and the boot path of a title in dev_hdd0/game was cut
+    // from "<hdd0>/game/" + '/' - one character too far, so SCUM12000 booted
+    // as /dev_hdd0/game/CUM12000/. A path that is not on disk (a disc image's
+    // virtual device) keeps its text, less any trailing separator; Qt would
+    // have made it empty, which the image boot does not expect.
+    callbacks.resolve_path = [](std::string_view path) -> std::string
+    {
+        std::error_code ec;
+        const std::filesystem::path canonical = std::filesystem::canonical(std::filesystem::path(std::u8string(path.begin(), path.end())), ec);
+        if (!ec)
+        {
+            const std::u8string text = canonical.generic_u8string();
+            return std::string(text.begin(), text.end());
+        }
+        while (path.size() > 1 && (path.back() == '/' || path.back() == '\\'))
+            path.remove_suffix(1);
+        return std::string(path);
+    };
 
     // Every callback has to be set: an empty one is a std::bad_function_call
     // the first time the emulator reaches for it, which kills the frontend.
