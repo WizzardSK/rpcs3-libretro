@@ -45,6 +45,7 @@
 #include "util/video_source.h"
 #include "Emu/vfs_config.h"
 #include "Utilities/File.h"
+#include "Utilities/StrUtil.h"
 #include "Utilities/stack_trace.h"
 
 #include "libretro_audio.h"
@@ -1030,7 +1031,7 @@ void retro_get_system_info(struct retro_system_info* info)
 {
     info->library_name = "RPCS3";
     info->library_version = "0.0.1";
-    info->valid_extensions = "bin|self|elf|pkg|iso";
+    info->valid_extensions = "bin|self|elf|pkg|iso|sfo|sfb";
     // The path, never the bytes. retro_load_game() reads game->path and hands
     // it to RPCS3, which opens the file itself - it never looks at game->data.
     // With need_fullpath false the frontend loads the whole file into memory
@@ -1484,6 +1485,13 @@ static bool setup_hw_render()
     return false;
 }
 
+// The last component of a path, with either kind of separator
+static std::string_view path_leaf(std::string_view path)
+{
+    const usz slash = path.find_last_of("/\\");
+    return slash == umax ? path : path.substr(slash + 1);
+}
+
 bool retro_load_game(const struct retro_game_info* game)
 {
 
@@ -1562,6 +1570,23 @@ bool retro_load_game(const struct retro_game_info* game)
             log_cb(RETRO_LOG_INFO, "RPCS3: booting the disc image as %s\n", eboot.c_str());
 
         game_path = eboot;
+    }
+    // PARAM.SFO or PS3_DISC.SFB stand for the game folder they sit in. They
+    // are content for the sake of the frontend's per-folder options: those are
+    // named after the folder of the loaded file, and for an EBOOT.BIN that is
+    // USRDIR in every game, while PARAM.SFO of a PSN title sits in the folder
+    // named after its title ID (NPUB31234) and PS3_DISC.SFB in the root of a
+    // disc dump. The game folder is booted, as for an EBOOT.BIN (NNshi).
+    else if (const std::string name = fmt::to_lower(path_leaf(game_path)); name == "param.sfo" || name == "ps3_disc.sfb")
+    {
+        std::string game_folder = fs::get_parent_dir(game_path);
+        // A disc dump's PARAM.SFO is in PS3_GAME, one level below its root
+        if (name == "param.sfo" && fmt::to_lower(path_leaf(game_folder)) == "ps3_game" && fs::is_file(fs::get_parent_dir(game_folder) + "/PS3_DISC.SFB"))
+            game_folder = fs::get_parent_dir(game_folder);
+
+        if (log_cb)
+            log_cb(RETRO_LOG_INFO, "RPCS3: booting the game folder %s\n", game_folder.c_str());
+        game_path = game_folder;
     }
     // Check if EBOOT.BIN was passed directly - need to find parent game folder
     else if (game_path.size() >= 9)

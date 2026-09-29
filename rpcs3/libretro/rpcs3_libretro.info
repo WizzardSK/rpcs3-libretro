@@ -1,7 +1,7 @@
 # Software Information
 display_name = "Sony - PlayStation 3 (RPCS3)"
 authors = "RPCS3 Team|WizzardSK"
-supported_extensions = "bin|self|elf|iso|pkg"
+supported_extensions = "bin|self|elf|iso|pkg|sfo|sfb"
 corename = "RPCS3"
 categories = "Emulator"
 license = "GPLv2"
