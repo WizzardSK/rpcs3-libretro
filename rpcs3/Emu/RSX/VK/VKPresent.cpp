@@ -843,6 +843,63 @@ void VKGSRender::flip(const rsx::display_flip_info_t& info)
 			}
 		}
 	}
+	else if (g_libretro_software_present && has_overlay && m_frame->can_consume_frame())
+	{
+		// The frontend only gets what is copied out above, and that needs a
+		// picture from the game. A game that opens a dialog before it has drawn
+		// anything - Project Diva F's save list at boot (NNshi) - has none, so
+		// the dialog was drawn onto the swapchain image alone, which the frontend
+		// never sees, and the game waited on it for good. Draw it over black.
+		u32 width = buffer_width ? buffer_width : 1280;
+		u32 height = buffer_height ? buffer_height : 720;
+		std::tie(width, height) = rsx::apply_resolution_scale<true>(width, height);
+
+		const VkFormat format = m_swapchain->get_surface_format();
+		if (!m_overlay_recording_img ||
+			m_overlay_recording_img->format() != format ||
+			m_overlay_recording_img->width() != width ||
+			m_overlay_recording_img->height() != height)
+		{
+			m_overlay_recording_img = std::make_unique<vk::image>(*m_device, m_device->get_memory_mapping().device_local, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT,
+				VK_IMAGE_TYPE_2D, format, width, height, 1, 1, 1, VK_SAMPLE_COUNT_1_BIT,
+				VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, VK_IMAGE_TILING_OPTIMAL, VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_TRANSFER_SRC_BIT | VK_IMAGE_USAGE_SAMPLED_BIT | VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT,
+				0, VMM_ALLOCATION_POOL_UNDEFINED);
+		}
+
+		m_overlay_recording_img->change_layout(*m_current_command_buffer, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
+		const VkClearColorValue black{};
+		vkCmdClearColorImage(*m_current_command_buffer, m_overlay_recording_img->value, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, &black, 1, &subresource_range);
+		m_overlay_recording_img->change_layout(*m_current_command_buffer, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
+
+		const auto key = vk::get_renderpass_key(format);
+		single_target_pass = vk::get_renderpass(*m_device, key);
+		ensure(single_target_pass != VK_NULL_HANDLE);
+
+		const areai rect = areai(0, 0, width, height);
+		vk::framebuffer_holder* ui_fbo = vk::get_framebuffer(*m_device, width, height, VK_FALSE, single_target_pass, { m_overlay_recording_img.get() });
+		ui_fbo->add_ref();
+		render_overlays(ui_fbo, areau(rect));
+		ui_fbo->release();
+
+		const usz frame_size = usz{width} * height * 4;
+		vk::buffer frame_buf(*m_device, utils::align(frame_size, 0x100000), m_device->get_memory_mapping().host_visible_coherent,
+			VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT, VK_BUFFER_USAGE_TRANSFER_DST_BIT, 0, VMM_ALLOCATION_POOL_UNDEFINED);
+
+		VkBufferImageCopy copy_info{};
+		copy_info.imageSubresource = { VK_IMAGE_ASPECT_COLOR_BIT, 0, 0, 1 };
+		copy_info.imageExtent = { width, height, 1 };
+
+		m_overlay_recording_img->push_layout(*m_current_command_buffer, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
+		vk::copy_image_to_buffer(*m_current_command_buffer, m_overlay_recording_img.get(), &frame_buf, copy_info);
+		m_overlay_recording_img->pop_layout(*m_current_command_buffer);
+
+		flush_command_queue(true);
+		std::vector<u8> frame(frame_size);
+		std::memcpy(frame.data(), frame_buf.map(0, frame_size), frame_size);
+		frame_buf.unmap();
+
+		m_frame->present_frame(std::move(frame), width * 4, width, height, format == VK_FORMAT_B8G8R8A8_UNORM);
+	}
 
 	if (g_cfg.video.debug_overlay || has_overlay)
 	{
