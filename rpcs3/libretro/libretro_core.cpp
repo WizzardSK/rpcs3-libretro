@@ -461,7 +461,7 @@ static void libretro_apply_core_options()
     g_cfg.core.preferred_spu_threads.set(std::stoi(spu_threads));
 
     // SPU Loop Detection
-    g_cfg.core.spu_loop_detection.set(get_option_value("rpcs3_spu_loop_detection", "enabled") == "enabled");
+    g_cfg.core.spu_loop_detection.set(get_option_value("rpcs3_spu_loop_detection", "disabled") == "enabled");
 
     // SPU Cache
     g_cfg.core.spu_cache.set(get_option_value("rpcs3_spu_cache", "enabled") == "enabled");
@@ -470,7 +470,7 @@ static void libretro_apply_core_options()
     g_cfg.core.llvm_precompilation.set(get_option_value("rpcs3_llvm_precompilation", "enabled") == "enabled");
 
     // Accurate DFMA
-    g_cfg.core.use_accurate_dfma.set(get_option_value("rpcs3_accurate_dfma", "disabled") == "enabled");
+    g_cfg.core.use_accurate_dfma.set(get_option_value("rpcs3_accurate_dfma", "enabled") == "enabled");
 
     // Clocks Scale
     std::string clocks = get_option_value("rpcs3_clocks_scale", "100");
@@ -484,9 +484,33 @@ static void libretro_apply_core_options()
         g_cfg.core.max_spurs_threads.set(std::stoi(spurs));
 
     // ==================== GPU OPTIONS ====================
+    // Default Resolution: what the game is told the display is. Only between
+    // games - a game asks once, at boot, and the frame size the frontend was
+    // given depends on it.
+    if (Emu.IsStopped())
+    {
+        const std::string resolution = get_option_value("rpcs3_default_resolution", "720p");
+        if (resolution == "1080p")
+            g_cfg.video.resolution.set(video_resolution::_1080p);
+        else if (resolution == "480p")
+            g_cfg.video.resolution.set(video_resolution::_480p);
+        else if (resolution == "576p")
+            g_cfg.video.resolution.set(video_resolution::_576p);
+        else
+            g_cfg.video.resolution.set(video_resolution::_720p);
+    }
+
     // Resolution Scale
     std::string res_scale = get_option_value("rpcs3_resolution_scale", "100");
     g_cfg.video.resolution_scale_percent.set(std::stoi(res_scale));
+
+    // Resolution Scale Threshold
+    g_cfg.video.min_scalable_dimension.set(std::stoi(get_option_value("rpcs3_scale_threshold", "16")));
+
+    // ZCULL Accuracy, RPCS3's three settings as its own UI makes them
+    const std::string zcull = get_option_value("rpcs3_zcull_accuracy", "precise");
+    g_cfg.video.precise_zpass_count.set(zcull == "precise");
+    g_cfg.video.relaxed_zcull_sync.set(zcull == "relaxed");
 
     // Frame Limit
     std::string limit = get_option_value("rpcs3_frame_limit", "auto");
@@ -564,7 +588,7 @@ static void libretro_apply_core_options()
     g_cfg.video.strict_rendering_mode.set(get_option_value("rpcs3_strict_rendering", "disabled") == "enabled");
 
     // Multithreaded RSX
-    g_cfg.video.multithreaded_rsx.set(get_option_value("rpcs3_multithreaded_rsx", "enabled") == "enabled");
+    g_cfg.video.multithreaded_rsx.set(get_option_value("rpcs3_multithreaded_rsx", "disabled") == "enabled");
 
     // VBlank Rate
     std::string vblank = get_option_value("rpcs3_vblank_rate", "60");
@@ -573,7 +597,7 @@ static void libretro_apply_core_options()
     g_libretro_frontend_vblank = get_option_value("rpcs3_frame_pacing", "frontend") == "frontend";
 
     // Driver Wake-Up Delay
-    std::string driver_delay = get_option_value("rpcs3_driver_wakeup_delay", "200");
+    std::string driver_delay = get_option_value("rpcs3_driver_wakeup_delay", "0");
     g_cfg.video.driver_wakeup_delay.set(std::stoi(driver_delay));
 
     // ==================== AUDIO OPTIONS ====================
@@ -999,9 +1023,9 @@ void retro_get_system_info(struct retro_system_info* info)
 }
 
 // The renderer draws at the game's resolution times the Resolution Scale
-// option, and hands the frontend frames of that size. The base size here is a
-// 720p game's, which is what most are; the real one is reported with the
-// first frame. The maximum has to cover a 1080p game at the scale in use, or
+// option, and hands the frontend frames of that size. The base size here is
+// the Default Resolution's, which is what most games draw at; the real one is
+// reported with the first frame. The maximum has to cover a 1080p game at the scale in use, or
 // the frontend is told of frames larger than it made room for.
 static unsigned scaled_dimension(unsigned native)
 {
@@ -1017,8 +1041,16 @@ static unsigned s_max_height = 0;
 
 static void fill_av_info(retro_system_av_info* info)
 {
-    info->geometry.base_width = scaled_dimension(1280);
-    info->geometry.base_height = scaled_dimension(720);
+    unsigned width = 1280, height = 720;
+    switch (g_cfg.video.resolution.get())
+    {
+    case video_resolution::_1080p: width = 1920; height = 1080; break;
+    case video_resolution::_480p: width = 720; height = 480; break;
+    case video_resolution::_576p: width = 720; height = 576; break;
+    default: break;
+    }
+    info->geometry.base_width = scaled_dimension(width);
+    info->geometry.base_height = scaled_dimension(height);
     info->geometry.max_width = std::max(3840u, scaled_dimension(1920));
     info->geometry.max_height = std::max(2160u, scaled_dimension(1080));
     info->geometry.aspect_ratio = 16.0f / 9.0f;
@@ -1594,10 +1626,10 @@ bool retro_load_game(const struct retro_game_info* game)
 
 
     // Performance optimizations
-    g_cfg.core.spu_loop_detection.set(true);  // Faster SPU loops
-    g_cfg.core.llvm_threads.set(std::thread::hardware_concurrency());  // Use all CPU cores for LLVM compilation
+    g_cfg.core.spu_loop_detection.set(false);
+    g_cfg.core.llvm_threads.set(0);  // 0 = as many as the CPU has, as in RPCS3
     g_cfg.core.llvm_precompilation.set(true);  // Precompile LLVM modules
-    g_cfg.video.multithreaded_rsx.set(true);  // Multi-threaded RSX
+    g_cfg.video.multithreaded_rsx.set(false);
     g_cfg.video.disable_vertex_cache.set(false);  // Keep vertex cache enabled
 
     // Shader compilation optimizations
@@ -1606,7 +1638,6 @@ bool retro_load_game(const struct retro_game_info* game)
     g_cfg.video.disable_on_disk_shader_cache.set(false);  // Keep shader cache enabled for faster subsequent loads
 
     // RSX optimizations
-    g_cfg.video.relaxed_zcull_sync.set(true);  // Relaxed ZCULL for better performance
     g_cfg.video.strict_rendering_mode.set(false);  // Disable strict mode for better performance
     g_cfg.video.disable_FIFO_reordering.set(false);  // Keep FIFO reordering enabled
 

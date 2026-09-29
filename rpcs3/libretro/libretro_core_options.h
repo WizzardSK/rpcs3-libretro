@@ -93,10 +93,10 @@ struct retro_core_option_v2_definition option_defs_us[] = {
     },
     {
         "rpcs3_spu_loop_detection", "SPU Loop Detection", NULL,
-        "Enable SPU loop detection for performance.",
+        "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones.",
         NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
     },
     {
         "rpcs3_spu_cache", "SPU Cache", NULL,
@@ -114,10 +114,10 @@ struct retro_core_option_v2_definition option_defs_us[] = {
     },
     {
         "rpcs3_accurate_dfma", "Accurate DFMA", NULL,
-        "Use accurate double-precision fused multiply-add.",
+        "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games.",
         NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
+        "enabled"
     },
     {
         "rpcs3_ppu_reservations", "PPU Thread Reservations", NULL,
@@ -192,11 +192,25 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "vulkan"
     },
     {
-        "rpcs3_resolution_scale", "Resolution Scale", NULL,
-        "Internal rendering resolution scale percentage.",
+        "rpcs3_default_resolution", "Default Resolution", NULL,
+        "The output resolution the emulated PS3 offers the game, as in RPCS3. Most games run at 720p; some look better at 1080p, and some need 480p or 576p to avoid bugs. Takes effect when content is loaded.",
         NULL, "gpu",
-        { {"25", "25%"}, {"30", "30%"}, {"35", "35%"}, {"40", "40%"}, {"45", "45%"}, {"50", "50%"}, {"55", "55%"}, {"60", "60%"}, {"65", "65%"}, {"70", "70%"}, {"75", "75%"}, {"80", "80%"}, {"85", "85%"}, {"90", "90%"}, {"95", "95%"}, {"100", "100% (Native)"}, {"105", "105%"}, {"110", "110%"}, {"115", "115%"}, {"120", "120%"}, {"125", "125%"}, {"130", "130%"}, {"135", "135%"}, {"140", "140%"}, {"145", "145%"}, {"150", "150%"}, {"175", "175%"}, {"200", "200%"}, {"250", "250%"}, {"300", "300%"}, {NULL, NULL} },
+        { {"720p", "720p (Default)"}, {"1080p", "1080p"}, {"480p", "480p"}, {"576p", "576p"}, {NULL, NULL} },
+        "720p"
+    },
+    {
+        "rpcs3_resolution_scale", "Resolution Scale", NULL,
+        "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160.",
+        NULL, "gpu",
+        { {"25", "25%"}, {"50", "50%"}, {"66", "66%"}, {"75", "75%"}, {"100", "100% (Native)"}, {"150", "150%"}, {"200", "200%"}, {"250", "250%"}, {"300", "300%"}, {"400", "400%"}, {"500", "500%"}, {"600", "600%"}, {"700", "700%"}, {"800", "800%"}, {NULL, NULL} },
         "100"
+    },
+    {
+        "rpcs3_scale_threshold", "Resolution Scale Threshold", NULL,
+        "Render targets smaller than this are not scaled. Some games need a different value for the scaling to look right.",
+        NULL, "gpu",
+        { {"1", "1x1"}, {"16", "16x16 (Default)"}, {"64", "64x64"}, {"120", "120x120"}, {"240", "240x240"}, {"256", "256x256"}, {"512", "512x512"}, {"640", "640x640"}, {"1024", "1024x1024"}, {NULL, NULL} },
+        "16"
     },
     {
         "rpcs3_frame_limit", "Frame Limit", NULL,
@@ -284,17 +298,17 @@ struct retro_core_option_v2_definition option_defs_us[] = {
     },
     {
         "rpcs3_multithreaded_rsx", "Multithreaded RSX", NULL,
-        "Enable multithreaded RSX for better performance.",
+        "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included.",
         NULL, "gpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
     },
     {
         "rpcs3_zcull_accuracy", "ZCULL Accuracy", NULL,
-        "ZCULL occlusion query accuracy.",
+        "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones.",
         NULL, "gpu",
-        { {"relaxed", "Relaxed (Fastest)"}, {"approximate", "Approximate"}, {"precise", "Precise (Slowest)"}, {NULL, NULL} },
-        "relaxed"
+        { {"precise", "Precise (Default)"}, {"approximate", "Approximate"}, {"relaxed", "Relaxed (Fastest)"}, {NULL, NULL} },
+        "precise"
     },
     {
         "rpcs3_cpu_blit", "Force CPU Blit", NULL,
@@ -305,10 +319,10 @@ struct retro_core_option_v2_definition option_defs_us[] = {
     },
     {
         "rpcs3_driver_wakeup_delay", "Driver Wake-Up Delay", NULL,
-        "Driver wake-up delay in microseconds.",
+        "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it.",
         NULL, "gpu",
-        { {"0", "0 (Minimum)"}, {"20", "20"}, {"50", "50"}, {"100", "100"}, {"200", "200 (Default)"}, {"400", "400"}, {"800", "800"}, {NULL, NULL} },
-        "200"
+        { {"0", "0 (Default)"}, {"20", "20"}, {"50", "50"}, {"100", "100"}, {"200", "200"}, {"400", "400"}, {"800", "800"}, {NULL, NULL} },
+        "0"
     },
     {
         "rpcs3_vblank_rate", "VBlank Rate", NULL,
@@ -462,13 +476,6 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         NULL, "advanced",
         { {"0", "0"}, {"1", "1"}, {"2", "2"}, {"3", "3 (Default)"}, {"4", "4"}, {"5", "5"}, {NULL, NULL} },
         "3"
-    },
-    {
-        "rpcs3_zcull_sync", "Relaxed ZCull Sync", NULL,
-        "Use relaxed ZCull synchronization.",
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
     },
     {
         "rpcs3_async_texture_streaming", "Async Texture Streaming", NULL,
