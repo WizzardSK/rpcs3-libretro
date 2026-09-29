@@ -1983,17 +1983,31 @@ const bool s_exception_handler_set = []() -> bool
 // no longer there (NNshi: "rpcs3_libretro.dll_unloaded", at exception_handler).
 void thread_ctrl_uninstall_exception_handlers()
 {
-	if (s_vectored_exception_handler)
-	{
-		RemoveVectoredExceptionHandler(s_vectored_exception_handler);
-		s_vectored_exception_handler = nullptr;
-	}
+	if (!s_vectored_exception_handler)
+		return;
+
+	RemoveVectoredExceptionHandler(s_vectored_exception_handler);
+	s_vectored_exception_handler = nullptr;
+
 	// Put the one from before ours back - unless someone replaced ours since,
 	// in which case theirs stays
 	const LPTOP_LEVEL_EXCEPTION_FILTER current = SetUnhandledExceptionFilter(s_previous_exception_filter);
 	if (current != static_cast<LPTOP_LEVEL_EXCEPTION_FILTER>(exception_filter))
 		SetUnhandledExceptionFilter(current);
 }
+
+// retro_deinit() is not enough: the handlers go in when the library is loaded,
+// and a frontend loads it without ever calling retro_init() or retro_deinit()
+// too - RetroArch does, to read retro_get_system_info() - and unloads it
+// again with the handlers still in. Static destructors run inside
+// FreeLibrary, so this catches every unload.
+static struct exception_handler_remover
+{
+	~exception_handler_remover()
+	{
+		thread_ctrl_uninstall_exception_handlers();
+	}
+} s_exception_handler_remover;
 #endif
 
 #else
