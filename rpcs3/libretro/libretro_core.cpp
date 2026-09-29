@@ -492,37 +492,34 @@ static void libretro_apply_core_options()
     std::string limit = get_option_value("rpcs3_frame_limit", "auto");
     g_cfg.video.vsync.set(false);  // Disable RPCS3 vsync, RetroArch controls timing
 
+    // Auto is RPCS3's own default: at most one flip per PS3 refresh (the
+    // VBlank Rate). Leaving the limiter off for it, as this used to, let
+    // every game that does not wait for VBLANK itself run too fast (NNshi).
+    // 144 and 240 have no frame_limit_type of their own; they go through the
+    // second limit, which applies when the first one is unlimited.
+    g_disable_frame_limit = false;
+    g_cfg.video.second_frame_limit.set(0);
+
     if (limit == "off" || limit == "Off")
     {
         g_disable_frame_limit = true;
         g_cfg.video.frame_limit.set(frame_limit_type::none);
     }
     else if (limit == "30")
-    {
-        g_disable_frame_limit = false;
         g_cfg.video.frame_limit.set(frame_limit_type::_30);
-    }
     else if (limit == "50")
-    {
-        g_disable_frame_limit = false;
         g_cfg.video.frame_limit.set(frame_limit_type::_50);
-    }
     else if (limit == "60")
-    {
-        g_disable_frame_limit = false;
         g_cfg.video.frame_limit.set(frame_limit_type::_60);
-    }
     else if (limit == "120")
-    {
-        g_disable_frame_limit = false;
         g_cfg.video.frame_limit.set(frame_limit_type::_120);
+    else if (limit == "144" || limit == "240")
+    {
+        g_cfg.video.frame_limit.set(frame_limit_type::infinite);
+        g_cfg.video.second_frame_limit.set(std::stoi(limit));
     }
     else
-    {
-        // Auto: disable limiter in libretro by default
-        g_disable_frame_limit = true;
-        g_cfg.video.frame_limit.set(frame_limit_type::none);
-    }
+        g_cfg.video.frame_limit.set(frame_limit_type::_auto);
 
     // Shader Mode
     std::string shader_mode = get_option_value("rpcs3_shader_mode", "async");

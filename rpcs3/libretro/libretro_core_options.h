@@ -200,7 +200,7 @@ struct retro_core_option_v2_definition option_defs_us[] = {
     },
     {
         "rpcs3_frame_limit", "Frame Limit", NULL,
-        "Limit frame rate. Auto uses RetroArch timing.",
+        "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; Off lets games that do not wait for the PS3's refresh themselves run too fast.",
         NULL, "gpu",
         { {"auto", "Auto"}, {"off", "Off"}, {"30", "30 FPS"}, {"50", "50 FPS"}, {"60", "60 FPS"}, {"120", "120 FPS"}, {"144", "144 FPS"}, {"240", "240 FPS"}, {NULL, NULL} },
         "auto"
