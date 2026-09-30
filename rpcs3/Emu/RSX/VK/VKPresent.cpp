@@ -208,6 +208,24 @@ void VKGSRender::queue_swap_request()
 	advance_queued_frames();
 }
 
+#ifdef LIBRETRO_CORE
+void VKGSRender::libretro_deliver_readback(vk::frame_context_t* ctx)
+{
+	auto* readback = libretro_readback_for(ctx);
+	if (!readback || !readback->pending)
+		return;
+
+	readback->pending = false;
+
+	const usz size = usz{readback->width} * readback->height * 4;
+	std::vector<u8> frame(size);
+	std::memcpy(frame.data(), readback->buffer->map(0, size), size);
+	readback->buffer->unmap();
+
+	m_frame->present_frame(std::move(frame), readback->width * 4, readback->width, readback->height, readback->is_bgra);
+}
+#endif
+
 void VKGSRender::frame_context_cleanup(vk::frame_context_t *ctx)
 {
 	ensure(ctx->swap_command_buffer);
@@ -218,6 +236,15 @@ void VKGSRender::frame_context_cleanup(vk::frame_context_t *ctx)
 		// Lost surface/device, release swapchain
 		swapchain_unavailable = true;
 	}
+#ifdef LIBRETRO_CORE
+	else
+	{
+		libretro_deliver_readback(ctx);
+	}
+
+	if (auto* readback = libretro_readback_for(ctx))
+		readback->pending = false;
+#endif
 
 	// Resource cleanup.
 	{
@@ -776,8 +803,29 @@ void VKGSRender::flip(const rsx::display_flip_info_t& info)
 		{
 			const usz sshot_size = buffer_height * buffer_width * 4;
 
+#ifdef LIBRETRO_CORE
+			// A frame for the frontend reuses its frame context's buffer: at
+			// 250% that is some 23 MB, which was allocated and freed every flip.
+			const auto make_readback_buffer = [&]()
+			{
+				return std::make_unique<vk::buffer>(*m_device, utils::align(sshot_size, 0x100000), m_device->get_memory_mapping().host_visible_coherent,
+					VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT, VK_BUFFER_USAGE_TRANSFER_DST_BIT, 0, VMM_ALLOCATION_POOL_UNDEFINED);
+			};
+
+			libretro_readback_t* readback = (!user_asked_for_screenshot && g_recording_mode == recording_mode::stopped) ?
+				libretro_readback_for(m_current_frame) : nullptr;
+			std::unique_ptr<vk::buffer> temp_vkbuf;
+
+			if (readback && (!readback->buffer || readback->buffer->size() < sshot_size))
+				readback->buffer = make_readback_buffer();
+			else if (!readback)
+				temp_vkbuf = make_readback_buffer();
+
+			vk::buffer& sshot_vkbuf = readback ? *readback->buffer : *temp_vkbuf;
+#else
 			vk::buffer sshot_vkbuf(*m_device, utils::align(sshot_size, 0x100000), m_device->get_memory_mapping().host_visible_coherent,
 				VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT, VK_BUFFER_USAGE_TRANSFER_DST_BIT, 0, VMM_ALLOCATION_POOL_UNDEFINED);
+#endif
 
 			VkBufferImageCopy copy_info {};
 			copy_info.bufferOffset                    = 0;
@@ -836,21 +884,38 @@ void VKGSRender::flip(const rsx::display_flip_info_t& info)
 			vk::copy_image_to_buffer(*m_current_command_buffer, image_to_copy, &sshot_vkbuf, copy_info);
 			image_to_copy->pop_layout(*m_current_command_buffer);
 
-			flush_command_queue(true);
-			const auto src = sshot_vkbuf.map(0, sshot_size);
-			std::vector<u8> sshot_frame(sshot_size);
-			memcpy(sshot_frame.data(), src, sshot_size);
-			sshot_vkbuf.unmap();
-
-			const bool is_bgra = image_to_copy->format() == VK_FORMAT_B8G8R8A8_UNORM;
-
-			if (user_asked_for_screenshot)
+#ifdef LIBRETRO_CORE
+			// Deferred: the copy runs with the rest of this frame, and
+			// frame_context_cleanup hands the pixels over once it has. The
+			// immediate path below waits here for the GPU to go idle, so the
+			// next frame cannot start until this one is drawn - fine at native
+			// resolution, the judder NNshi measured at high resolution scales.
+			if (readback && g_libretro_deferred_readback)
 			{
-				m_frame->take_screenshot(std::move(sshot_frame), buffer_width, buffer_height, is_bgra);
+				readback->width = buffer_width;
+				readback->height = buffer_height;
+				readback->is_bgra = image_to_copy->format() == VK_FORMAT_B8G8R8A8_UNORM;
+				readback->pending = true;
 			}
 			else
+#endif
 			{
-				m_frame->present_frame(std::move(sshot_frame), buffer_width * 4, buffer_width, buffer_height, is_bgra);
+				flush_command_queue(true);
+				const auto src = sshot_vkbuf.map(0, sshot_size);
+				std::vector<u8> sshot_frame(sshot_size);
+				memcpy(sshot_frame.data(), src, sshot_size);
+				sshot_vkbuf.unmap();
+
+				const bool is_bgra = image_to_copy->format() == VK_FORMAT_B8G8R8A8_UNORM;
+
+				if (user_asked_for_screenshot)
+				{
+					m_frame->take_screenshot(std::move(sshot_frame), buffer_width, buffer_height, is_bgra);
+				}
+				else
+				{
+					m_frame->present_frame(std::move(sshot_frame), buffer_width * 4, buffer_width, buffer_height, is_bgra);
+				}
 			}
 		}
 	}

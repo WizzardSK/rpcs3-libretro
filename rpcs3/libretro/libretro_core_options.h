@@ -192,6 +192,13 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "vulkan"
     },
     {
+        "rpcs3_vk_readback", "Vulkan Frame Readback", NULL,
+        "How a Vulkan frame reaches the frontend. Immediate waits for the GPU to finish each frame before the next one starts: lowest latency, but at high resolution scales the waits show as uneven frame times. Deferred lets the GPU finish a frame while the next is prepared and hands it over when it is done: smoother at high resolution scales, up to one frame more latency.",
+        NULL, "gpu",
+        { {"immediate", "Immediate"}, {"deferred", "Deferred"}, {NULL, NULL} },
+        "immediate"
+    },
+    {
         "rpcs3_default_resolution", "Default Resolution", NULL,
         "The output resolution the emulated PS3 offers the game, as in RPCS3. Most games run at 720p; some look better at 1080p, and some need 480p or 576p to avoid bugs. Takes effect when content is loaded.",
         NULL, "gpu",

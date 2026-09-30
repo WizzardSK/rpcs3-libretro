@@ -151,6 +151,7 @@ bool g_libretro_software_present = true;
 #else
 bool g_libretro_software_present = false;
 #endif
+bool g_libretro_deferred_readback = false;
 
 // Core state
 static bool core_initialized = false;
@@ -614,6 +615,8 @@ static void libretro_apply_core_options()
     g_cfg.video.vblank_rate.set(std::stoi(vblank));
 
     g_libretro_frontend_vblank = get_option_value("rpcs3_frame_pacing", "frontend") == "frontend";
+
+    g_libretro_deferred_readback = get_option_value("rpcs3_vk_readback", "immediate") == "deferred";
 
     // Driver Wake-Up Delay
     std::string driver_delay = get_option_value("rpcs3_driver_wakeup_delay", "0");

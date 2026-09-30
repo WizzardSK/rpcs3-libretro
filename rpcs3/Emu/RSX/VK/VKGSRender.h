@@ -189,6 +189,31 @@ private:
 
 	std::unique_ptr<vk::image> m_overlay_recording_img;
 
+#ifdef LIBRETRO_CORE
+	// The libretro core without a hardware context reads every finished frame
+	// back. One buffer per frame context, kept rather than allocated per frame,
+	// and with a deferred readback filled by one frame's commands and handed
+	// over in frame_context_cleanup once they have run, instead of stalling the
+	// flip until the GPU is idle.
+	struct libretro_readback_t
+	{
+		std::unique_ptr<vk::buffer> buffer;
+		u32 width = 0;
+		u32 height = 0;
+		bool is_bgra = false;
+		bool pending = false;
+	};
+	std::array<libretro_readback_t, VK_MAX_ASYNC_FRAMES> m_libretro_readback;
+
+	libretro_readback_t* libretro_readback_for(const vk::frame_context_t* ctx)
+	{
+		const auto index = ctx - frame_context_storage.data();
+		return (index >= 0 && index < VK_MAX_ASYNC_FRAMES) ? &m_libretro_readback[index] : nullptr;
+	}
+
+	void libretro_deliver_readback(vk::frame_context_t* ctx);
+#endif
+
 	//Vertex layout
 	rsx::vertex_input_layout m_vertex_layout;
 

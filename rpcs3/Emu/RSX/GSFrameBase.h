@@ -14,6 +14,11 @@
 // OpenGL for the port to ask for, it is that or nothing.
 extern bool g_libretro_software_present;
 
+// With g_libretro_software_present on Vulkan: hand a frame over once the GPU
+// has finished it, rather than waiting for the GPU to go idle in the flip.
+// Up to a frame more latency; the flip no longer stalls at high resolutions.
+extern bool g_libretro_deferred_readback;
+
 class GSFrameBase
 {
 public:

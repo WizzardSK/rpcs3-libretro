@@ -849,6 +849,10 @@ VKGSRender::~VKGSRender()
 	m_texture_cache.destroy();
 
 	m_overlay_recording_img.reset();
+#ifdef LIBRETRO_CORE
+	for (auto& readback : m_libretro_readback)
+		readback = {};
+#endif
 	m_stencil_mirror_sampler.reset();
 
 	// Queries
