@@ -192,9 +192,18 @@ namespace vk
 			// No window to attach to.
 		}
 
-		void destroy(bool /*full*/ = true) override
+		void destroy(bool full = true) override
 		{
 			swapchain_images.clear();
+
+			// The device belongs to the swapchain, as with every other one.
+			// Left alive, VKGSRender destroyed the instance under it and
+			// g_render_device kept pointing at it, and NVIDIA's driver then
+			// crashed on a thread of its own at the same address every time
+			// the emulator stopped: on unloading the core, and when a
+			// multi-game disc restarts into the chosen game (NNshi).
+			if (full)
+				dev.destroy();
 		}
 
 		VkResult present(VkSemaphore /*semaphore*/, u32 index) override
