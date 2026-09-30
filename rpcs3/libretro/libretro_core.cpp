@@ -534,6 +534,8 @@ static void libretro_apply_core_options()
         g_disable_frame_limit = true;
         g_cfg.video.frame_limit.set(frame_limit_type::none);
     }
+    else if (limit == "ps3")
+        g_cfg.video.frame_limit.set(frame_limit_type::_ps3);
     else if (limit == "30")
         g_cfg.video.frame_limit.set(frame_limit_type::_30);
     else if (limit == "50")
@@ -576,6 +578,18 @@ static void libretro_apply_core_options()
         g_cfg.video.anisotropic_level_override.set(0);
     else
         g_cfg.video.anisotropic_level_override.set(std::stoi(aniso));
+
+    // Anti-Aliasing and Shader Quality were offered here but never applied
+    g_cfg.video.antialiasing_level.set(get_option_value("rpcs3_msaa", "auto") == "disabled" ? msaa_level::none : msaa_level::_auto);
+
+    const std::string shader_quality = get_option_value("rpcs3_shader_quality", "high");
+    g_cfg.video.shader_precision.set(shader_quality == "low" ? gpu_preset_level::low :
+        shader_quality == "ultra" ? gpu_preset_level::ultra : gpu_preset_level::high);
+
+    g_cfg.video.disable_zcull_queries.set(get_option_value("rpcs3_disable_zcull_queries", "disabled") == "enabled");
+    g_cfg.video.vblank_ntsc.set(get_option_value("rpcs3_vblank_ntsc", "disabled") == "enabled");
+    g_cfg.core.rsx_accurate_res_access.set(get_option_value("rpcs3_accurate_rsx_reservation", "disabled") == "enabled");
+    g_cfg.core.spu_getllar_spin_optimization_disabled.set(get_option_value("rpcs3_disable_getllar_spin_opt", "disabled") == "enabled");
 
     // Write Color Buffers
     g_cfg.video.write_color_buffers.set(get_option_value("rpcs3_write_color_buffers", "disabled") == "enabled");

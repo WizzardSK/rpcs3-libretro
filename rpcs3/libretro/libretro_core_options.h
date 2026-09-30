@@ -214,9 +214,9 @@ struct retro_core_option_v2_definition option_defs_us[] = {
     },
     {
         "rpcs3_frame_limit", "Frame Limit", NULL,
-        "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; Off lets games that do not wait for the PS3's refresh themselves run too fast.",
+        "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast.",
         NULL, "gpu",
-        { {"auto", "Auto"}, {"off", "Off"}, {"30", "30 FPS"}, {"50", "50 FPS"}, {"60", "60 FPS"}, {"120", "120 FPS"}, {"144", "144 FPS"}, {"240", "240 FPS"}, {NULL, NULL} },
+        { {"auto", "Auto"}, {"ps3", "PS3 Native"}, {"off", "Off"}, {"30", "30 FPS"}, {"50", "50 FPS"}, {"60", "60 FPS"}, {"120", "120 FPS"}, {"144", "144 FPS"}, {"240", "240 FPS"}, {NULL, NULL} },
         "auto"
     },
     {
@@ -237,22 +237,22 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "rpcs3_anisotropic_filter", "Anisotropic Filtering", NULL,
         "Texture filtering quality.",
         NULL, "gpu",
-        { {"auto", "Auto"}, {"1", "1x (Off)"}, {"2", "2x"}, {"4", "4x"}, {"8", "8x"}, {"16", "16x"}, {NULL, NULL} },
+        { {"auto", "Auto"}, {"2", "2x"}, {"4", "4x"}, {"8", "8x"}, {"16", "16x"}, {NULL, NULL} },
         "auto"
     },
     {
-        "rpcs3_msaa", "Anti-Aliasing (MSAA)", NULL,
-        "Multi-sample anti-aliasing.",
+        "rpcs3_msaa", "Anti-Aliasing", NULL,
+        "Multi-sample anti-aliasing where the game asks for it, as in RPCS3.",
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", "2x"}, {"4", "4x"}, {"8", "8x"}, {"16", "16x"}, {NULL, NULL} },
-        "disabled"
+        { {"auto", "Auto"}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", "Shader Precision", NULL,
-        "Shader floating-point precision.",
+        "rpcs3_shader_quality", "Shader Quality", NULL,
+        "Precision of the shaders RPCS3 generates. Low is fastest, Ultra most accurate.",
         NULL, "gpu",
-        { {"low", "Low (Fastest)"}, {"normal", "Normal"}, {"high", "High (Most Accurate)"}, {NULL, NULL} },
-        "normal"
+        { {"low", "Low"}, {"high", "High"}, {"ultra", "Ultra"}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", "Write Color Buffers", NULL,
@@ -515,6 +515,34 @@ struct retro_core_option_v2_definition option_defs_us[] = {
     {
         "rpcs3_ppu_set_fpcc", "PPU Set FPCC", NULL,
         "Accurately set PPU FPCC bits.",
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_accurate_rsx_reservation", "Accurate RSX Reservation Access", NULL,
+        "Synchronize RSX memory accesses with the reservations of the CPU threads. Needed by a few games, slower.",
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", "Disable SPU GETLLAR Spin Optimization", NULL,
+        "Turn off the detection of SPU busy-wait loops on GETLLAR. A few games need it off.",
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", "Disable ZCull Occlusion Queries", NULL,
+        "Report occlusion queries as passed without running them. Faster; breaks games that rely on them (lens flares, visibility).",
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", "VBlank NTSC Fixup", NULL,
+        "Run the VBlank Rate at the NTSC rate (59.94 Hz for 60) instead of the round number.",
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"

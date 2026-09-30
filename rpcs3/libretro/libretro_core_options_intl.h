@@ -140,6 +140,7 @@ extern "C" {
 #define OPTION_VAL_1024_AR NULL
 #define RPCS3_FRAME_LIMIT_LABEL_AR NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_AR NULL
+#define OPTION_VAL_PS3_AR NULL
 #define OPTION_VAL_30_AR NULL
 #define OPTION_VAL_50_O21_AR NULL
 #define OPTION_VAL_60_AR NULL
@@ -157,18 +158,17 @@ extern "C" {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_AR NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_AR NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_AR NULL
-#define OPTION_VAL_1_O24_AR NULL
 #define OPTION_VAL_2_AR NULL
 #define OPTION_VAL_4_AR NULL
 #define OPTION_VAL_8_AR NULL
 #define OPTION_VAL_16_O24_AR NULL
 #define RPCS3_MSAA_LABEL_AR NULL
 #define RPCS3_MSAA_INFO_0_AR NULL
-#define RPCS3_SHADER_PRECISION_LABEL_AR NULL
-#define RPCS3_SHADER_PRECISION_INFO_0_AR NULL
+#define RPCS3_SHADER_QUALITY_LABEL_AR NULL
+#define RPCS3_SHADER_QUALITY_INFO_0_AR NULL
 #define OPTION_VAL_LOW_AR NULL
-#define OPTION_VAL_NORMAL_AR NULL
 #define OPTION_VAL_HIGH_AR NULL
+#define OPTION_VAL_ULTRA_O26_AR NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_AR NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_AR NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_AR NULL
@@ -288,6 +288,14 @@ extern "C" {
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_AR NULL
 #define RPCS3_PPU_SET_FPCC_LABEL_AR NULL
 #define RPCS3_PPU_SET_FPCC_INFO_0_AR NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_AR NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_AR NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_AR NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_AR NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_AR NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_AR NULL
+#define RPCS3_VBLANK_NTSC_LABEL_AR NULL
+#define RPCS3_VBLANK_NTSC_INFO_0_AR NULL
 #define RPCS3_LANGUAGE_LABEL_AR NULL
 #define RPCS3_LANGUAGE_INFO_0_AR NULL
 #define OPTION_VAL_ENGLISH_AR NULL
@@ -494,7 +502,7 @@ struct retro_core_option_v2_definition option_defs_ar[] = {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_AR, NULL,
         RPCS3_FRAME_LIMIT_INFO_0_AR,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_AR}, {"off", "Off"}, {"30", OPTION_VAL_30_AR}, {"50", OPTION_VAL_50_O21_AR}, {"60", OPTION_VAL_60_AR}, {"120", OPTION_VAL_120_O21_AR}, {"144", OPTION_VAL_144_AR}, {"240", OPTION_VAL_240_O21_AR}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_AR}, {"ps3", OPTION_VAL_PS3_AR}, {"off", "Off"}, {"30", OPTION_VAL_30_AR}, {"50", OPTION_VAL_50_O21_AR}, {"60", OPTION_VAL_60_AR}, {"120", OPTION_VAL_120_O21_AR}, {"144", OPTION_VAL_144_AR}, {"240", OPTION_VAL_240_O21_AR}, {NULL, NULL} },
         "auto"
     },
     {
@@ -515,22 +523,22 @@ struct retro_core_option_v2_definition option_defs_ar[] = {
         "rpcs3_anisotropic_filter", RPCS3_ANISOTROPIC_FILTER_LABEL_AR, NULL,
         RPCS3_ANISOTROPIC_FILTER_INFO_0_AR,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_AR}, {"1", OPTION_VAL_1_O24_AR}, {"2", OPTION_VAL_2_AR}, {"4", OPTION_VAL_4_AR}, {"8", OPTION_VAL_8_AR}, {"16", OPTION_VAL_16_O24_AR}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_AR}, {"2", OPTION_VAL_2_AR}, {"4", OPTION_VAL_4_AR}, {"8", OPTION_VAL_8_AR}, {"16", OPTION_VAL_16_O24_AR}, {NULL, NULL} },
         "auto"
     },
     {
         "rpcs3_msaa", RPCS3_MSAA_LABEL_AR, NULL,
         RPCS3_MSAA_INFO_0_AR,
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", OPTION_VAL_2_AR}, {"4", OPTION_VAL_4_AR}, {"8", OPTION_VAL_8_AR}, {"16", OPTION_VAL_16_O24_AR}, {NULL, NULL} },
-        "disabled"
+        { {"auto", OPTION_VAL_0_AR}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", RPCS3_SHADER_PRECISION_LABEL_AR, NULL,
-        RPCS3_SHADER_PRECISION_INFO_0_AR,
+        "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_AR, NULL,
+        RPCS3_SHADER_QUALITY_INFO_0_AR,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_AR}, {"normal", OPTION_VAL_NORMAL_AR}, {"high", OPTION_VAL_HIGH_AR}, {NULL, NULL} },
-        "normal"
+        { {"low", OPTION_VAL_LOW_AR}, {"high", OPTION_VAL_HIGH_AR}, {"ultra", OPTION_VAL_ULTRA_O26_AR}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", RPCS3_WRITE_COLOR_BUFFERS_LABEL_AR, NULL,
@@ -797,6 +805,34 @@ struct retro_core_option_v2_definition option_defs_ar[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    {
+        "rpcs3_accurate_rsx_reservation", RPCS3_ACCURATE_RSX_RESERVATION_LABEL_AR, NULL,
+        RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_AR,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_AR, NULL,
+        RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_AR,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", RPCS3_DISABLE_ZCULL_QUERIES_LABEL_AR, NULL,
+        RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_AR,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", RPCS3_VBLANK_NTSC_LABEL_AR, NULL,
+        RPCS3_VBLANK_NTSC_INFO_0_AR,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
 
     // ==================== CORE OPTIONS ====================
     {
@@ -980,6 +1016,7 @@ struct retro_core_options_v2 options_ar = {
 #define OPTION_VAL_1024_AST NULL
 #define RPCS3_FRAME_LIMIT_LABEL_AST NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_AST NULL
+#define OPTION_VAL_PS3_AST NULL
 #define OPTION_VAL_30_AST NULL
 #define OPTION_VAL_50_O21_AST NULL
 #define OPTION_VAL_60_AST NULL
@@ -997,18 +1034,17 @@ struct retro_core_options_v2 options_ar = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_AST NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_AST NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_AST NULL
-#define OPTION_VAL_1_O24_AST NULL
 #define OPTION_VAL_2_AST NULL
 #define OPTION_VAL_4_AST NULL
 #define OPTION_VAL_8_AST NULL
 #define OPTION_VAL_16_O24_AST NULL
 #define RPCS3_MSAA_LABEL_AST NULL
 #define RPCS3_MSAA_INFO_0_AST NULL
-#define RPCS3_SHADER_PRECISION_LABEL_AST NULL
-#define RPCS3_SHADER_PRECISION_INFO_0_AST NULL
+#define RPCS3_SHADER_QUALITY_LABEL_AST NULL
+#define RPCS3_SHADER_QUALITY_INFO_0_AST NULL
 #define OPTION_VAL_LOW_AST NULL
-#define OPTION_VAL_NORMAL_AST NULL
 #define OPTION_VAL_HIGH_AST NULL
+#define OPTION_VAL_ULTRA_O26_AST NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_AST NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_AST NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_AST NULL
@@ -1128,6 +1164,14 @@ struct retro_core_options_v2 options_ar = {
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_AST NULL
 #define RPCS3_PPU_SET_FPCC_LABEL_AST NULL
 #define RPCS3_PPU_SET_FPCC_INFO_0_AST NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_AST NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_AST NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_AST NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_AST NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_AST NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_AST NULL
+#define RPCS3_VBLANK_NTSC_LABEL_AST NULL
+#define RPCS3_VBLANK_NTSC_INFO_0_AST NULL
 #define RPCS3_LANGUAGE_LABEL_AST NULL
 #define RPCS3_LANGUAGE_INFO_0_AST NULL
 #define OPTION_VAL_ENGLISH_AST NULL
@@ -1334,7 +1378,7 @@ struct retro_core_option_v2_definition option_defs_ast[] = {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_AST, NULL,
         RPCS3_FRAME_LIMIT_INFO_0_AST,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_AST}, {"off", "Off"}, {"30", OPTION_VAL_30_AST}, {"50", OPTION_VAL_50_O21_AST}, {"60", OPTION_VAL_60_AST}, {"120", OPTION_VAL_120_O21_AST}, {"144", OPTION_VAL_144_AST}, {"240", OPTION_VAL_240_O21_AST}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_AST}, {"ps3", OPTION_VAL_PS3_AST}, {"off", "Off"}, {"30", OPTION_VAL_30_AST}, {"50", OPTION_VAL_50_O21_AST}, {"60", OPTION_VAL_60_AST}, {"120", OPTION_VAL_120_O21_AST}, {"144", OPTION_VAL_144_AST}, {"240", OPTION_VAL_240_O21_AST}, {NULL, NULL} },
         "auto"
     },
     {
@@ -1355,22 +1399,22 @@ struct retro_core_option_v2_definition option_defs_ast[] = {
         "rpcs3_anisotropic_filter", RPCS3_ANISOTROPIC_FILTER_LABEL_AST, NULL,
         RPCS3_ANISOTROPIC_FILTER_INFO_0_AST,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_AST}, {"1", OPTION_VAL_1_O24_AST}, {"2", OPTION_VAL_2_AST}, {"4", OPTION_VAL_4_AST}, {"8", OPTION_VAL_8_AST}, {"16", OPTION_VAL_16_O24_AST}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_AST}, {"2", OPTION_VAL_2_AST}, {"4", OPTION_VAL_4_AST}, {"8", OPTION_VAL_8_AST}, {"16", OPTION_VAL_16_O24_AST}, {NULL, NULL} },
         "auto"
     },
     {
         "rpcs3_msaa", RPCS3_MSAA_LABEL_AST, NULL,
         RPCS3_MSAA_INFO_0_AST,
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", OPTION_VAL_2_AST}, {"4", OPTION_VAL_4_AST}, {"8", OPTION_VAL_8_AST}, {"16", OPTION_VAL_16_O24_AST}, {NULL, NULL} },
-        "disabled"
+        { {"auto", OPTION_VAL_0_AST}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", RPCS3_SHADER_PRECISION_LABEL_AST, NULL,
-        RPCS3_SHADER_PRECISION_INFO_0_AST,
+        "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_AST, NULL,
+        RPCS3_SHADER_QUALITY_INFO_0_AST,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_AST}, {"normal", OPTION_VAL_NORMAL_AST}, {"high", OPTION_VAL_HIGH_AST}, {NULL, NULL} },
-        "normal"
+        { {"low", OPTION_VAL_LOW_AST}, {"high", OPTION_VAL_HIGH_AST}, {"ultra", OPTION_VAL_ULTRA_O26_AST}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", RPCS3_WRITE_COLOR_BUFFERS_LABEL_AST, NULL,
@@ -1637,6 +1681,34 @@ struct retro_core_option_v2_definition option_defs_ast[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    {
+        "rpcs3_accurate_rsx_reservation", RPCS3_ACCURATE_RSX_RESERVATION_LABEL_AST, NULL,
+        RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_AST,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_AST, NULL,
+        RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_AST,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", RPCS3_DISABLE_ZCULL_QUERIES_LABEL_AST, NULL,
+        RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_AST,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", RPCS3_VBLANK_NTSC_LABEL_AST, NULL,
+        RPCS3_VBLANK_NTSC_INFO_0_AST,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
 
     // ==================== CORE OPTIONS ====================
     {
@@ -1820,6 +1892,7 @@ struct retro_core_options_v2 options_ast = {
 #define OPTION_VAL_1024_BE NULL
 #define RPCS3_FRAME_LIMIT_LABEL_BE NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_BE NULL
+#define OPTION_VAL_PS3_BE NULL
 #define OPTION_VAL_30_BE NULL
 #define OPTION_VAL_50_O21_BE NULL
 #define OPTION_VAL_60_BE NULL
@@ -1837,18 +1910,17 @@ struct retro_core_options_v2 options_ast = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_BE NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_BE NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_BE NULL
-#define OPTION_VAL_1_O24_BE NULL
 #define OPTION_VAL_2_BE NULL
 #define OPTION_VAL_4_BE NULL
 #define OPTION_VAL_8_BE NULL
 #define OPTION_VAL_16_O24_BE NULL
 #define RPCS3_MSAA_LABEL_BE NULL
 #define RPCS3_MSAA_INFO_0_BE NULL
-#define RPCS3_SHADER_PRECISION_LABEL_BE NULL
-#define RPCS3_SHADER_PRECISION_INFO_0_BE NULL
+#define RPCS3_SHADER_QUALITY_LABEL_BE NULL
+#define RPCS3_SHADER_QUALITY_INFO_0_BE NULL
 #define OPTION_VAL_LOW_BE NULL
-#define OPTION_VAL_NORMAL_BE NULL
 #define OPTION_VAL_HIGH_BE NULL
+#define OPTION_VAL_ULTRA_O26_BE NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_BE NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_BE NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_BE NULL
@@ -1968,6 +2040,14 @@ struct retro_core_options_v2 options_ast = {
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_BE NULL
 #define RPCS3_PPU_SET_FPCC_LABEL_BE NULL
 #define RPCS3_PPU_SET_FPCC_INFO_0_BE NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_BE NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_BE NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_BE NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_BE NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_BE NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_BE NULL
+#define RPCS3_VBLANK_NTSC_LABEL_BE NULL
+#define RPCS3_VBLANK_NTSC_INFO_0_BE NULL
 #define RPCS3_LANGUAGE_LABEL_BE NULL
 #define RPCS3_LANGUAGE_INFO_0_BE NULL
 #define OPTION_VAL_ENGLISH_BE NULL
@@ -2174,7 +2254,7 @@ struct retro_core_option_v2_definition option_defs_be[] = {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_BE, NULL,
         RPCS3_FRAME_LIMIT_INFO_0_BE,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_BE}, {"off", "Off"}, {"30", OPTION_VAL_30_BE}, {"50", OPTION_VAL_50_O21_BE}, {"60", OPTION_VAL_60_BE}, {"120", OPTION_VAL_120_O21_BE}, {"144", OPTION_VAL_144_BE}, {"240", OPTION_VAL_240_O21_BE}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_BE}, {"ps3", OPTION_VAL_PS3_BE}, {"off", "Off"}, {"30", OPTION_VAL_30_BE}, {"50", OPTION_VAL_50_O21_BE}, {"60", OPTION_VAL_60_BE}, {"120", OPTION_VAL_120_O21_BE}, {"144", OPTION_VAL_144_BE}, {"240", OPTION_VAL_240_O21_BE}, {NULL, NULL} },
         "auto"
     },
     {
@@ -2195,22 +2275,22 @@ struct retro_core_option_v2_definition option_defs_be[] = {
         "rpcs3_anisotropic_filter", RPCS3_ANISOTROPIC_FILTER_LABEL_BE, NULL,
         RPCS3_ANISOTROPIC_FILTER_INFO_0_BE,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_BE}, {"1", OPTION_VAL_1_O24_BE}, {"2", OPTION_VAL_2_BE}, {"4", OPTION_VAL_4_BE}, {"8", OPTION_VAL_8_BE}, {"16", OPTION_VAL_16_O24_BE}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_BE}, {"2", OPTION_VAL_2_BE}, {"4", OPTION_VAL_4_BE}, {"8", OPTION_VAL_8_BE}, {"16", OPTION_VAL_16_O24_BE}, {NULL, NULL} },
         "auto"
     },
     {
         "rpcs3_msaa", RPCS3_MSAA_LABEL_BE, NULL,
         RPCS3_MSAA_INFO_0_BE,
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", OPTION_VAL_2_BE}, {"4", OPTION_VAL_4_BE}, {"8", OPTION_VAL_8_BE}, {"16", OPTION_VAL_16_O24_BE}, {NULL, NULL} },
-        "disabled"
+        { {"auto", OPTION_VAL_0_BE}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", RPCS3_SHADER_PRECISION_LABEL_BE, NULL,
-        RPCS3_SHADER_PRECISION_INFO_0_BE,
+        "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_BE, NULL,
+        RPCS3_SHADER_QUALITY_INFO_0_BE,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_BE}, {"normal", OPTION_VAL_NORMAL_BE}, {"high", OPTION_VAL_HIGH_BE}, {NULL, NULL} },
-        "normal"
+        { {"low", OPTION_VAL_LOW_BE}, {"high", OPTION_VAL_HIGH_BE}, {"ultra", OPTION_VAL_ULTRA_O26_BE}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", RPCS3_WRITE_COLOR_BUFFERS_LABEL_BE, NULL,
@@ -2477,6 +2557,34 @@ struct retro_core_option_v2_definition option_defs_be[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    {
+        "rpcs3_accurate_rsx_reservation", RPCS3_ACCURATE_RSX_RESERVATION_LABEL_BE, NULL,
+        RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_BE,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_BE, NULL,
+        RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_BE,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", RPCS3_DISABLE_ZCULL_QUERIES_LABEL_BE, NULL,
+        RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_BE,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", RPCS3_VBLANK_NTSC_LABEL_BE, NULL,
+        RPCS3_VBLANK_NTSC_INFO_0_BE,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
 
     // ==================== CORE OPTIONS ====================
     {
@@ -2660,6 +2768,7 @@ struct retro_core_options_v2 options_be = {
 #define OPTION_VAL_1024_CA NULL
 #define RPCS3_FRAME_LIMIT_LABEL_CA NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_CA NULL
+#define OPTION_VAL_PS3_CA NULL
 #define OPTION_VAL_30_CA NULL
 #define OPTION_VAL_50_O21_CA NULL
 #define OPTION_VAL_60_CA NULL
@@ -2677,18 +2786,17 @@ struct retro_core_options_v2 options_be = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_CA NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_CA NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_CA NULL
-#define OPTION_VAL_1_O24_CA NULL
 #define OPTION_VAL_2_CA NULL
 #define OPTION_VAL_4_CA NULL
 #define OPTION_VAL_8_CA NULL
 #define OPTION_VAL_16_O24_CA NULL
 #define RPCS3_MSAA_LABEL_CA NULL
 #define RPCS3_MSAA_INFO_0_CA NULL
-#define RPCS3_SHADER_PRECISION_LABEL_CA NULL
-#define RPCS3_SHADER_PRECISION_INFO_0_CA NULL
+#define RPCS3_SHADER_QUALITY_LABEL_CA NULL
+#define RPCS3_SHADER_QUALITY_INFO_0_CA NULL
 #define OPTION_VAL_LOW_CA NULL
-#define OPTION_VAL_NORMAL_CA NULL
 #define OPTION_VAL_HIGH_CA NULL
+#define OPTION_VAL_ULTRA_O26_CA NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_CA NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_CA NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_CA NULL
@@ -2808,6 +2916,14 @@ struct retro_core_options_v2 options_be = {
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_CA NULL
 #define RPCS3_PPU_SET_FPCC_LABEL_CA NULL
 #define RPCS3_PPU_SET_FPCC_INFO_0_CA NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_CA NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_CA NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_CA NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_CA NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_CA NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_CA NULL
+#define RPCS3_VBLANK_NTSC_LABEL_CA NULL
+#define RPCS3_VBLANK_NTSC_INFO_0_CA NULL
 #define RPCS3_LANGUAGE_LABEL_CA NULL
 #define RPCS3_LANGUAGE_INFO_0_CA NULL
 #define OPTION_VAL_ENGLISH_CA NULL
@@ -3014,7 +3130,7 @@ struct retro_core_option_v2_definition option_defs_ca[] = {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_CA, NULL,
         RPCS3_FRAME_LIMIT_INFO_0_CA,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_CA}, {"off", "Off"}, {"30", OPTION_VAL_30_CA}, {"50", OPTION_VAL_50_O21_CA}, {"60", OPTION_VAL_60_CA}, {"120", OPTION_VAL_120_O21_CA}, {"144", OPTION_VAL_144_CA}, {"240", OPTION_VAL_240_O21_CA}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_CA}, {"ps3", OPTION_VAL_PS3_CA}, {"off", "Off"}, {"30", OPTION_VAL_30_CA}, {"50", OPTION_VAL_50_O21_CA}, {"60", OPTION_VAL_60_CA}, {"120", OPTION_VAL_120_O21_CA}, {"144", OPTION_VAL_144_CA}, {"240", OPTION_VAL_240_O21_CA}, {NULL, NULL} },
         "auto"
     },
     {
@@ -3035,22 +3151,22 @@ struct retro_core_option_v2_definition option_defs_ca[] = {
         "rpcs3_anisotropic_filter", RPCS3_ANISOTROPIC_FILTER_LABEL_CA, NULL,
         RPCS3_ANISOTROPIC_FILTER_INFO_0_CA,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_CA}, {"1", OPTION_VAL_1_O24_CA}, {"2", OPTION_VAL_2_CA}, {"4", OPTION_VAL_4_CA}, {"8", OPTION_VAL_8_CA}, {"16", OPTION_VAL_16_O24_CA}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_CA}, {"2", OPTION_VAL_2_CA}, {"4", OPTION_VAL_4_CA}, {"8", OPTION_VAL_8_CA}, {"16", OPTION_VAL_16_O24_CA}, {NULL, NULL} },
         "auto"
     },
     {
         "rpcs3_msaa", RPCS3_MSAA_LABEL_CA, NULL,
         RPCS3_MSAA_INFO_0_CA,
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", OPTION_VAL_2_CA}, {"4", OPTION_VAL_4_CA}, {"8", OPTION_VAL_8_CA}, {"16", OPTION_VAL_16_O24_CA}, {NULL, NULL} },
-        "disabled"
+        { {"auto", OPTION_VAL_0_CA}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", RPCS3_SHADER_PRECISION_LABEL_CA, NULL,
-        RPCS3_SHADER_PRECISION_INFO_0_CA,
+        "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_CA, NULL,
+        RPCS3_SHADER_QUALITY_INFO_0_CA,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_CA}, {"normal", OPTION_VAL_NORMAL_CA}, {"high", OPTION_VAL_HIGH_CA}, {NULL, NULL} },
-        "normal"
+        { {"low", OPTION_VAL_LOW_CA}, {"high", OPTION_VAL_HIGH_CA}, {"ultra", OPTION_VAL_ULTRA_O26_CA}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", RPCS3_WRITE_COLOR_BUFFERS_LABEL_CA, NULL,
@@ -3317,6 +3433,34 @@ struct retro_core_option_v2_definition option_defs_ca[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    {
+        "rpcs3_accurate_rsx_reservation", RPCS3_ACCURATE_RSX_RESERVATION_LABEL_CA, NULL,
+        RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_CA,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_CA, NULL,
+        RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_CA,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", RPCS3_DISABLE_ZCULL_QUERIES_LABEL_CA, NULL,
+        RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_CA,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", RPCS3_VBLANK_NTSC_LABEL_CA, NULL,
+        RPCS3_VBLANK_NTSC_INFO_0_CA,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
 
     // ==================== CORE OPTIONS ====================
     {
@@ -3500,6 +3644,7 @@ struct retro_core_options_v2 options_ca = {
 #define OPTION_VAL_1024_CHS NULL
 #define RPCS3_FRAME_LIMIT_LABEL_CHS NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_CHS NULL
+#define OPTION_VAL_PS3_CHS NULL
 #define OPTION_VAL_30_CHS NULL
 #define OPTION_VAL_50_O21_CHS NULL
 #define OPTION_VAL_60_CHS NULL
@@ -3517,18 +3662,17 @@ struct retro_core_options_v2 options_ca = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_CHS NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_CHS NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_CHS NULL
-#define OPTION_VAL_1_O24_CHS NULL
 #define OPTION_VAL_2_CHS NULL
 #define OPTION_VAL_4_CHS NULL
 #define OPTION_VAL_8_CHS NULL
 #define OPTION_VAL_16_O24_CHS NULL
 #define RPCS3_MSAA_LABEL_CHS NULL
 #define RPCS3_MSAA_INFO_0_CHS NULL
-#define RPCS3_SHADER_PRECISION_LABEL_CHS NULL
-#define RPCS3_SHADER_PRECISION_INFO_0_CHS NULL
+#define RPCS3_SHADER_QUALITY_LABEL_CHS NULL
+#define RPCS3_SHADER_QUALITY_INFO_0_CHS NULL
 #define OPTION_VAL_LOW_CHS NULL
-#define OPTION_VAL_NORMAL_CHS NULL
 #define OPTION_VAL_HIGH_CHS NULL
+#define OPTION_VAL_ULTRA_O26_CHS NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_CHS NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_CHS NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_CHS NULL
@@ -3648,6 +3792,14 @@ struct retro_core_options_v2 options_ca = {
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_CHS NULL
 #define RPCS3_PPU_SET_FPCC_LABEL_CHS NULL
 #define RPCS3_PPU_SET_FPCC_INFO_0_CHS NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_CHS NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_CHS NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_CHS NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_CHS NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_CHS NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_CHS NULL
+#define RPCS3_VBLANK_NTSC_LABEL_CHS NULL
+#define RPCS3_VBLANK_NTSC_INFO_0_CHS NULL
 #define RPCS3_LANGUAGE_LABEL_CHS NULL
 #define RPCS3_LANGUAGE_INFO_0_CHS NULL
 #define OPTION_VAL_ENGLISH_CHS NULL
@@ -3854,7 +4006,7 @@ struct retro_core_option_v2_definition option_defs_chs[] = {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_CHS, NULL,
         RPCS3_FRAME_LIMIT_INFO_0_CHS,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_CHS}, {"off", "Off"}, {"30", OPTION_VAL_30_CHS}, {"50", OPTION_VAL_50_O21_CHS}, {"60", OPTION_VAL_60_CHS}, {"120", OPTION_VAL_120_O21_CHS}, {"144", OPTION_VAL_144_CHS}, {"240", OPTION_VAL_240_O21_CHS}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_CHS}, {"ps3", OPTION_VAL_PS3_CHS}, {"off", "Off"}, {"30", OPTION_VAL_30_CHS}, {"50", OPTION_VAL_50_O21_CHS}, {"60", OPTION_VAL_60_CHS}, {"120", OPTION_VAL_120_O21_CHS}, {"144", OPTION_VAL_144_CHS}, {"240", OPTION_VAL_240_O21_CHS}, {NULL, NULL} },
         "auto"
     },
     {
@@ -3875,22 +4027,22 @@ struct retro_core_option_v2_definition option_defs_chs[] = {
         "rpcs3_anisotropic_filter", RPCS3_ANISOTROPIC_FILTER_LABEL_CHS, NULL,
         RPCS3_ANISOTROPIC_FILTER_INFO_0_CHS,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_CHS}, {"1", OPTION_VAL_1_O24_CHS}, {"2", OPTION_VAL_2_CHS}, {"4", OPTION_VAL_4_CHS}, {"8", OPTION_VAL_8_CHS}, {"16", OPTION_VAL_16_O24_CHS}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_CHS}, {"2", OPTION_VAL_2_CHS}, {"4", OPTION_VAL_4_CHS}, {"8", OPTION_VAL_8_CHS}, {"16", OPTION_VAL_16_O24_CHS}, {NULL, NULL} },
         "auto"
     },
     {
         "rpcs3_msaa", RPCS3_MSAA_LABEL_CHS, NULL,
         RPCS3_MSAA_INFO_0_CHS,
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", OPTION_VAL_2_CHS}, {"4", OPTION_VAL_4_CHS}, {"8", OPTION_VAL_8_CHS}, {"16", OPTION_VAL_16_O24_CHS}, {NULL, NULL} },
-        "disabled"
+        { {"auto", OPTION_VAL_0_CHS}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", RPCS3_SHADER_PRECISION_LABEL_CHS, NULL,
-        RPCS3_SHADER_PRECISION_INFO_0_CHS,
+        "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_CHS, NULL,
+        RPCS3_SHADER_QUALITY_INFO_0_CHS,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_CHS}, {"normal", OPTION_VAL_NORMAL_CHS}, {"high", OPTION_VAL_HIGH_CHS}, {NULL, NULL} },
-        "normal"
+        { {"low", OPTION_VAL_LOW_CHS}, {"high", OPTION_VAL_HIGH_CHS}, {"ultra", OPTION_VAL_ULTRA_O26_CHS}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", RPCS3_WRITE_COLOR_BUFFERS_LABEL_CHS, NULL,
@@ -4157,6 +4309,34 @@ struct retro_core_option_v2_definition option_defs_chs[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    {
+        "rpcs3_accurate_rsx_reservation", RPCS3_ACCURATE_RSX_RESERVATION_LABEL_CHS, NULL,
+        RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_CHS,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_CHS, NULL,
+        RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_CHS,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", RPCS3_DISABLE_ZCULL_QUERIES_LABEL_CHS, NULL,
+        RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_CHS,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", RPCS3_VBLANK_NTSC_LABEL_CHS, NULL,
+        RPCS3_VBLANK_NTSC_INFO_0_CHS,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
 
     // ==================== CORE OPTIONS ====================
     {
@@ -4340,6 +4520,7 @@ struct retro_core_options_v2 options_chs = {
 #define OPTION_VAL_1024_CHT NULL
 #define RPCS3_FRAME_LIMIT_LABEL_CHT NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_CHT NULL
+#define OPTION_VAL_PS3_CHT NULL
 #define OPTION_VAL_30_CHT NULL
 #define OPTION_VAL_50_O21_CHT NULL
 #define OPTION_VAL_60_CHT NULL
@@ -4357,18 +4538,17 @@ struct retro_core_options_v2 options_chs = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_CHT NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_CHT NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_CHT NULL
-#define OPTION_VAL_1_O24_CHT NULL
 #define OPTION_VAL_2_CHT NULL
 #define OPTION_VAL_4_CHT NULL
 #define OPTION_VAL_8_CHT NULL
 #define OPTION_VAL_16_O24_CHT NULL
 #define RPCS3_MSAA_LABEL_CHT NULL
 #define RPCS3_MSAA_INFO_0_CHT NULL
-#define RPCS3_SHADER_PRECISION_LABEL_CHT NULL
-#define RPCS3_SHADER_PRECISION_INFO_0_CHT NULL
+#define RPCS3_SHADER_QUALITY_LABEL_CHT NULL
+#define RPCS3_SHADER_QUALITY_INFO_0_CHT NULL
 #define OPTION_VAL_LOW_CHT NULL
-#define OPTION_VAL_NORMAL_CHT NULL
 #define OPTION_VAL_HIGH_CHT NULL
+#define OPTION_VAL_ULTRA_O26_CHT NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_CHT NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_CHT NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_CHT NULL
@@ -4488,6 +4668,14 @@ struct retro_core_options_v2 options_chs = {
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_CHT NULL
 #define RPCS3_PPU_SET_FPCC_LABEL_CHT NULL
 #define RPCS3_PPU_SET_FPCC_INFO_0_CHT NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_CHT NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_CHT NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_CHT NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_CHT NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_CHT NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_CHT NULL
+#define RPCS3_VBLANK_NTSC_LABEL_CHT NULL
+#define RPCS3_VBLANK_NTSC_INFO_0_CHT NULL
 #define RPCS3_LANGUAGE_LABEL_CHT NULL
 #define RPCS3_LANGUAGE_INFO_0_CHT NULL
 #define OPTION_VAL_ENGLISH_CHT NULL
@@ -4694,7 +4882,7 @@ struct retro_core_option_v2_definition option_defs_cht[] = {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_CHT, NULL,
         RPCS3_FRAME_LIMIT_INFO_0_CHT,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_CHT}, {"off", "Off"}, {"30", OPTION_VAL_30_CHT}, {"50", OPTION_VAL_50_O21_CHT}, {"60", OPTION_VAL_60_CHT}, {"120", OPTION_VAL_120_O21_CHT}, {"144", OPTION_VAL_144_CHT}, {"240", OPTION_VAL_240_O21_CHT}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_CHT}, {"ps3", OPTION_VAL_PS3_CHT}, {"off", "Off"}, {"30", OPTION_VAL_30_CHT}, {"50", OPTION_VAL_50_O21_CHT}, {"60", OPTION_VAL_60_CHT}, {"120", OPTION_VAL_120_O21_CHT}, {"144", OPTION_VAL_144_CHT}, {"240", OPTION_VAL_240_O21_CHT}, {NULL, NULL} },
         "auto"
     },
     {
@@ -4715,22 +4903,22 @@ struct retro_core_option_v2_definition option_defs_cht[] = {
         "rpcs3_anisotropic_filter", RPCS3_ANISOTROPIC_FILTER_LABEL_CHT, NULL,
         RPCS3_ANISOTROPIC_FILTER_INFO_0_CHT,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_CHT}, {"1", OPTION_VAL_1_O24_CHT}, {"2", OPTION_VAL_2_CHT}, {"4", OPTION_VAL_4_CHT}, {"8", OPTION_VAL_8_CHT}, {"16", OPTION_VAL_16_O24_CHT}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_CHT}, {"2", OPTION_VAL_2_CHT}, {"4", OPTION_VAL_4_CHT}, {"8", OPTION_VAL_8_CHT}, {"16", OPTION_VAL_16_O24_CHT}, {NULL, NULL} },
         "auto"
     },
     {
         "rpcs3_msaa", RPCS3_MSAA_LABEL_CHT, NULL,
         RPCS3_MSAA_INFO_0_CHT,
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", OPTION_VAL_2_CHT}, {"4", OPTION_VAL_4_CHT}, {"8", OPTION_VAL_8_CHT}, {"16", OPTION_VAL_16_O24_CHT}, {NULL, NULL} },
-        "disabled"
+        { {"auto", OPTION_VAL_0_CHT}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", RPCS3_SHADER_PRECISION_LABEL_CHT, NULL,
-        RPCS3_SHADER_PRECISION_INFO_0_CHT,
+        "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_CHT, NULL,
+        RPCS3_SHADER_QUALITY_INFO_0_CHT,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_CHT}, {"normal", OPTION_VAL_NORMAL_CHT}, {"high", OPTION_VAL_HIGH_CHT}, {NULL, NULL} },
-        "normal"
+        { {"low", OPTION_VAL_LOW_CHT}, {"high", OPTION_VAL_HIGH_CHT}, {"ultra", OPTION_VAL_ULTRA_O26_CHT}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", RPCS3_WRITE_COLOR_BUFFERS_LABEL_CHT, NULL,
@@ -4997,6 +5185,34 @@ struct retro_core_option_v2_definition option_defs_cht[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    {
+        "rpcs3_accurate_rsx_reservation", RPCS3_ACCURATE_RSX_RESERVATION_LABEL_CHT, NULL,
+        RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_CHT,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_CHT, NULL,
+        RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_CHT,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", RPCS3_DISABLE_ZCULL_QUERIES_LABEL_CHT, NULL,
+        RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_CHT,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", RPCS3_VBLANK_NTSC_LABEL_CHT, NULL,
+        RPCS3_VBLANK_NTSC_INFO_0_CHT,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
 
     // ==================== CORE OPTIONS ====================
     {
@@ -5180,6 +5396,7 @@ struct retro_core_options_v2 options_cht = {
 #define OPTION_VAL_1024_CS NULL
 #define RPCS3_FRAME_LIMIT_LABEL_CS NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_CS NULL
+#define OPTION_VAL_PS3_CS NULL
 #define OPTION_VAL_30_CS NULL
 #define OPTION_VAL_50_O21_CS NULL
 #define OPTION_VAL_60_CS NULL
@@ -5197,18 +5414,17 @@ struct retro_core_options_v2 options_cht = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_CS NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_CS NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_CS NULL
-#define OPTION_VAL_1_O24_CS NULL
 #define OPTION_VAL_2_CS NULL
 #define OPTION_VAL_4_CS NULL
 #define OPTION_VAL_8_CS NULL
 #define OPTION_VAL_16_O24_CS NULL
 #define RPCS3_MSAA_LABEL_CS NULL
 #define RPCS3_MSAA_INFO_0_CS NULL
-#define RPCS3_SHADER_PRECISION_LABEL_CS NULL
-#define RPCS3_SHADER_PRECISION_INFO_0_CS NULL
+#define RPCS3_SHADER_QUALITY_LABEL_CS NULL
+#define RPCS3_SHADER_QUALITY_INFO_0_CS NULL
 #define OPTION_VAL_LOW_CS NULL
-#define OPTION_VAL_NORMAL_CS NULL
 #define OPTION_VAL_HIGH_CS NULL
+#define OPTION_VAL_ULTRA_O26_CS NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_CS NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_CS NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_CS NULL
@@ -5328,6 +5544,14 @@ struct retro_core_options_v2 options_cht = {
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_CS NULL
 #define RPCS3_PPU_SET_FPCC_LABEL_CS NULL
 #define RPCS3_PPU_SET_FPCC_INFO_0_CS NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_CS NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_CS NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_CS NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_CS NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_CS NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_CS NULL
+#define RPCS3_VBLANK_NTSC_LABEL_CS NULL
+#define RPCS3_VBLANK_NTSC_INFO_0_CS NULL
 #define RPCS3_LANGUAGE_LABEL_CS NULL
 #define RPCS3_LANGUAGE_INFO_0_CS NULL
 #define OPTION_VAL_ENGLISH_CS NULL
@@ -5534,7 +5758,7 @@ struct retro_core_option_v2_definition option_defs_cs[] = {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_CS, NULL,
         RPCS3_FRAME_LIMIT_INFO_0_CS,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_CS}, {"off", "Off"}, {"30", OPTION_VAL_30_CS}, {"50", OPTION_VAL_50_O21_CS}, {"60", OPTION_VAL_60_CS}, {"120", OPTION_VAL_120_O21_CS}, {"144", OPTION_VAL_144_CS}, {"240", OPTION_VAL_240_O21_CS}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_CS}, {"ps3", OPTION_VAL_PS3_CS}, {"off", "Off"}, {"30", OPTION_VAL_30_CS}, {"50", OPTION_VAL_50_O21_CS}, {"60", OPTION_VAL_60_CS}, {"120", OPTION_VAL_120_O21_CS}, {"144", OPTION_VAL_144_CS}, {"240", OPTION_VAL_240_O21_CS}, {NULL, NULL} },
         "auto"
     },
     {
@@ -5555,22 +5779,22 @@ struct retro_core_option_v2_definition option_defs_cs[] = {
         "rpcs3_anisotropic_filter", RPCS3_ANISOTROPIC_FILTER_LABEL_CS, NULL,
         RPCS3_ANISOTROPIC_FILTER_INFO_0_CS,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_CS}, {"1", OPTION_VAL_1_O24_CS}, {"2", OPTION_VAL_2_CS}, {"4", OPTION_VAL_4_CS}, {"8", OPTION_VAL_8_CS}, {"16", OPTION_VAL_16_O24_CS}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_CS}, {"2", OPTION_VAL_2_CS}, {"4", OPTION_VAL_4_CS}, {"8", OPTION_VAL_8_CS}, {"16", OPTION_VAL_16_O24_CS}, {NULL, NULL} },
         "auto"
     },
     {
         "rpcs3_msaa", RPCS3_MSAA_LABEL_CS, NULL,
         RPCS3_MSAA_INFO_0_CS,
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", OPTION_VAL_2_CS}, {"4", OPTION_VAL_4_CS}, {"8", OPTION_VAL_8_CS}, {"16", OPTION_VAL_16_O24_CS}, {NULL, NULL} },
-        "disabled"
+        { {"auto", OPTION_VAL_0_CS}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", RPCS3_SHADER_PRECISION_LABEL_CS, NULL,
-        RPCS3_SHADER_PRECISION_INFO_0_CS,
+        "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_CS, NULL,
+        RPCS3_SHADER_QUALITY_INFO_0_CS,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_CS}, {"normal", OPTION_VAL_NORMAL_CS}, {"high", OPTION_VAL_HIGH_CS}, {NULL, NULL} },
-        "normal"
+        { {"low", OPTION_VAL_LOW_CS}, {"high", OPTION_VAL_HIGH_CS}, {"ultra", OPTION_VAL_ULTRA_O26_CS}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", RPCS3_WRITE_COLOR_BUFFERS_LABEL_CS, NULL,
@@ -5837,6 +6061,34 @@ struct retro_core_option_v2_definition option_defs_cs[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    {
+        "rpcs3_accurate_rsx_reservation", RPCS3_ACCURATE_RSX_RESERVATION_LABEL_CS, NULL,
+        RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_CS,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_CS, NULL,
+        RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_CS,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", RPCS3_DISABLE_ZCULL_QUERIES_LABEL_CS, NULL,
+        RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_CS,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", RPCS3_VBLANK_NTSC_LABEL_CS, NULL,
+        RPCS3_VBLANK_NTSC_INFO_0_CS,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
 
     // ==================== CORE OPTIONS ====================
     {
@@ -6020,6 +6272,7 @@ struct retro_core_options_v2 options_cs = {
 #define OPTION_VAL_1024_DE NULL
 #define RPCS3_FRAME_LIMIT_LABEL_DE NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_DE NULL
+#define OPTION_VAL_PS3_DE NULL
 #define OPTION_VAL_30_DE NULL
 #define OPTION_VAL_50_O21_DE NULL
 #define OPTION_VAL_60_DE NULL
@@ -6037,18 +6290,17 @@ struct retro_core_options_v2 options_cs = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_DE NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_DE NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_DE NULL
-#define OPTION_VAL_1_O24_DE NULL
 #define OPTION_VAL_2_DE NULL
 #define OPTION_VAL_4_DE NULL
 #define OPTION_VAL_8_DE NULL
 #define OPTION_VAL_16_O24_DE NULL
 #define RPCS3_MSAA_LABEL_DE NULL
 #define RPCS3_MSAA_INFO_0_DE NULL
-#define RPCS3_SHADER_PRECISION_LABEL_DE NULL
-#define RPCS3_SHADER_PRECISION_INFO_0_DE NULL
+#define RPCS3_SHADER_QUALITY_LABEL_DE NULL
+#define RPCS3_SHADER_QUALITY_INFO_0_DE NULL
 #define OPTION_VAL_LOW_DE NULL
-#define OPTION_VAL_NORMAL_DE NULL
 #define OPTION_VAL_HIGH_DE NULL
+#define OPTION_VAL_ULTRA_O26_DE NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_DE NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_DE NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_DE NULL
@@ -6168,6 +6420,14 @@ struct retro_core_options_v2 options_cs = {
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_DE NULL
 #define RPCS3_PPU_SET_FPCC_LABEL_DE NULL
 #define RPCS3_PPU_SET_FPCC_INFO_0_DE NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_DE NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_DE NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_DE NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_DE NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_DE NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_DE NULL
+#define RPCS3_VBLANK_NTSC_LABEL_DE NULL
+#define RPCS3_VBLANK_NTSC_INFO_0_DE NULL
 #define RPCS3_LANGUAGE_LABEL_DE NULL
 #define RPCS3_LANGUAGE_INFO_0_DE NULL
 #define OPTION_VAL_ENGLISH_DE NULL
@@ -6374,7 +6634,7 @@ struct retro_core_option_v2_definition option_defs_de[] = {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_DE, NULL,
         RPCS3_FRAME_LIMIT_INFO_0_DE,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_DE}, {"off", "Off"}, {"30", OPTION_VAL_30_DE}, {"50", OPTION_VAL_50_O21_DE}, {"60", OPTION_VAL_60_DE}, {"120", OPTION_VAL_120_O21_DE}, {"144", OPTION_VAL_144_DE}, {"240", OPTION_VAL_240_O21_DE}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_DE}, {"ps3", OPTION_VAL_PS3_DE}, {"off", "Off"}, {"30", OPTION_VAL_30_DE}, {"50", OPTION_VAL_50_O21_DE}, {"60", OPTION_VAL_60_DE}, {"120", OPTION_VAL_120_O21_DE}, {"144", OPTION_VAL_144_DE}, {"240", OPTION_VAL_240_O21_DE}, {NULL, NULL} },
         "auto"
     },
     {
@@ -6395,22 +6655,22 @@ struct retro_core_option_v2_definition option_defs_de[] = {
         "rpcs3_anisotropic_filter", RPCS3_ANISOTROPIC_FILTER_LABEL_DE, NULL,
         RPCS3_ANISOTROPIC_FILTER_INFO_0_DE,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_DE}, {"1", OPTION_VAL_1_O24_DE}, {"2", OPTION_VAL_2_DE}, {"4", OPTION_VAL_4_DE}, {"8", OPTION_VAL_8_DE}, {"16", OPTION_VAL_16_O24_DE}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_DE}, {"2", OPTION_VAL_2_DE}, {"4", OPTION_VAL_4_DE}, {"8", OPTION_VAL_8_DE}, {"16", OPTION_VAL_16_O24_DE}, {NULL, NULL} },
         "auto"
     },
     {
         "rpcs3_msaa", RPCS3_MSAA_LABEL_DE, NULL,
         RPCS3_MSAA_INFO_0_DE,
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", OPTION_VAL_2_DE}, {"4", OPTION_VAL_4_DE}, {"8", OPTION_VAL_8_DE}, {"16", OPTION_VAL_16_O24_DE}, {NULL, NULL} },
-        "disabled"
+        { {"auto", OPTION_VAL_0_DE}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", RPCS3_SHADER_PRECISION_LABEL_DE, NULL,
-        RPCS3_SHADER_PRECISION_INFO_0_DE,
+        "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_DE, NULL,
+        RPCS3_SHADER_QUALITY_INFO_0_DE,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_DE}, {"normal", OPTION_VAL_NORMAL_DE}, {"high", OPTION_VAL_HIGH_DE}, {NULL, NULL} },
-        "normal"
+        { {"low", OPTION_VAL_LOW_DE}, {"high", OPTION_VAL_HIGH_DE}, {"ultra", OPTION_VAL_ULTRA_O26_DE}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", RPCS3_WRITE_COLOR_BUFFERS_LABEL_DE, NULL,
@@ -6677,6 +6937,34 @@ struct retro_core_option_v2_definition option_defs_de[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    {
+        "rpcs3_accurate_rsx_reservation", RPCS3_ACCURATE_RSX_RESERVATION_LABEL_DE, NULL,
+        RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_DE,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_DE, NULL,
+        RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_DE,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", RPCS3_DISABLE_ZCULL_QUERIES_LABEL_DE, NULL,
+        RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_DE,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", RPCS3_VBLANK_NTSC_LABEL_DE, NULL,
+        RPCS3_VBLANK_NTSC_INFO_0_DE,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
 
     // ==================== CORE OPTIONS ====================
     {
@@ -6860,6 +7148,7 @@ struct retro_core_options_v2 options_de = {
 #define OPTION_VAL_1024_EL NULL
 #define RPCS3_FRAME_LIMIT_LABEL_EL NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_EL NULL
+#define OPTION_VAL_PS3_EL NULL
 #define OPTION_VAL_30_EL NULL
 #define OPTION_VAL_50_O21_EL NULL
 #define OPTION_VAL_60_EL NULL
@@ -6877,18 +7166,17 @@ struct retro_core_options_v2 options_de = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_EL NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_EL NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_EL NULL
-#define OPTION_VAL_1_O24_EL NULL
 #define OPTION_VAL_2_EL NULL
 #define OPTION_VAL_4_EL NULL
 #define OPTION_VAL_8_EL NULL
 #define OPTION_VAL_16_O24_EL NULL
 #define RPCS3_MSAA_LABEL_EL NULL
 #define RPCS3_MSAA_INFO_0_EL NULL
-#define RPCS3_SHADER_PRECISION_LABEL_EL NULL
-#define RPCS3_SHADER_PRECISION_INFO_0_EL NULL
+#define RPCS3_SHADER_QUALITY_LABEL_EL NULL
+#define RPCS3_SHADER_QUALITY_INFO_0_EL NULL
 #define OPTION_VAL_LOW_EL NULL
-#define OPTION_VAL_NORMAL_EL NULL
 #define OPTION_VAL_HIGH_EL NULL
+#define OPTION_VAL_ULTRA_O26_EL NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_EL NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_EL NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_EL NULL
@@ -7008,6 +7296,14 @@ struct retro_core_options_v2 options_de = {
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_EL NULL
 #define RPCS3_PPU_SET_FPCC_LABEL_EL NULL
 #define RPCS3_PPU_SET_FPCC_INFO_0_EL NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_EL NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_EL NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_EL NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_EL NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_EL NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_EL NULL
+#define RPCS3_VBLANK_NTSC_LABEL_EL NULL
+#define RPCS3_VBLANK_NTSC_INFO_0_EL NULL
 #define RPCS3_LANGUAGE_LABEL_EL NULL
 #define RPCS3_LANGUAGE_INFO_0_EL NULL
 #define OPTION_VAL_ENGLISH_EL NULL
@@ -7214,7 +7510,7 @@ struct retro_core_option_v2_definition option_defs_el[] = {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_EL, NULL,
         RPCS3_FRAME_LIMIT_INFO_0_EL,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_EL}, {"off", "Off"}, {"30", OPTION_VAL_30_EL}, {"50", OPTION_VAL_50_O21_EL}, {"60", OPTION_VAL_60_EL}, {"120", OPTION_VAL_120_O21_EL}, {"144", OPTION_VAL_144_EL}, {"240", OPTION_VAL_240_O21_EL}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_EL}, {"ps3", OPTION_VAL_PS3_EL}, {"off", "Off"}, {"30", OPTION_VAL_30_EL}, {"50", OPTION_VAL_50_O21_EL}, {"60", OPTION_VAL_60_EL}, {"120", OPTION_VAL_120_O21_EL}, {"144", OPTION_VAL_144_EL}, {"240", OPTION_VAL_240_O21_EL}, {NULL, NULL} },
         "auto"
     },
     {
@@ -7235,22 +7531,22 @@ struct retro_core_option_v2_definition option_defs_el[] = {
         "rpcs3_anisotropic_filter", RPCS3_ANISOTROPIC_FILTER_LABEL_EL, NULL,
         RPCS3_ANISOTROPIC_FILTER_INFO_0_EL,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_EL}, {"1", OPTION_VAL_1_O24_EL}, {"2", OPTION_VAL_2_EL}, {"4", OPTION_VAL_4_EL}, {"8", OPTION_VAL_8_EL}, {"16", OPTION_VAL_16_O24_EL}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_EL}, {"2", OPTION_VAL_2_EL}, {"4", OPTION_VAL_4_EL}, {"8", OPTION_VAL_8_EL}, {"16", OPTION_VAL_16_O24_EL}, {NULL, NULL} },
         "auto"
     },
     {
         "rpcs3_msaa", RPCS3_MSAA_LABEL_EL, NULL,
         RPCS3_MSAA_INFO_0_EL,
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", OPTION_VAL_2_EL}, {"4", OPTION_VAL_4_EL}, {"8", OPTION_VAL_8_EL}, {"16", OPTION_VAL_16_O24_EL}, {NULL, NULL} },
-        "disabled"
+        { {"auto", OPTION_VAL_0_EL}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", RPCS3_SHADER_PRECISION_LABEL_EL, NULL,
-        RPCS3_SHADER_PRECISION_INFO_0_EL,
+        "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_EL, NULL,
+        RPCS3_SHADER_QUALITY_INFO_0_EL,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_EL}, {"normal", OPTION_VAL_NORMAL_EL}, {"high", OPTION_VAL_HIGH_EL}, {NULL, NULL} },
-        "normal"
+        { {"low", OPTION_VAL_LOW_EL}, {"high", OPTION_VAL_HIGH_EL}, {"ultra", OPTION_VAL_ULTRA_O26_EL}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", RPCS3_WRITE_COLOR_BUFFERS_LABEL_EL, NULL,
@@ -7517,6 +7813,34 @@ struct retro_core_option_v2_definition option_defs_el[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    {
+        "rpcs3_accurate_rsx_reservation", RPCS3_ACCURATE_RSX_RESERVATION_LABEL_EL, NULL,
+        RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_EL,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_EL, NULL,
+        RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_EL,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", RPCS3_DISABLE_ZCULL_QUERIES_LABEL_EL, NULL,
+        RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_EL,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", RPCS3_VBLANK_NTSC_LABEL_EL, NULL,
+        RPCS3_VBLANK_NTSC_INFO_0_EL,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
 
     // ==================== CORE OPTIONS ====================
     {
@@ -7700,6 +8024,7 @@ struct retro_core_options_v2 options_el = {
 #define OPTION_VAL_1024_EN NULL
 #define RPCS3_FRAME_LIMIT_LABEL_EN NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_EN NULL
+#define OPTION_VAL_PS3_EN NULL
 #define OPTION_VAL_30_EN NULL
 #define OPTION_VAL_50_O21_EN NULL
 #define OPTION_VAL_60_EN NULL
@@ -7717,18 +8042,17 @@ struct retro_core_options_v2 options_el = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_EN NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_EN NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_EN NULL
-#define OPTION_VAL_1_O24_EN NULL
 #define OPTION_VAL_2_EN NULL
 #define OPTION_VAL_4_EN NULL
 #define OPTION_VAL_8_EN NULL
 #define OPTION_VAL_16_O24_EN NULL
 #define RPCS3_MSAA_LABEL_EN NULL
 #define RPCS3_MSAA_INFO_0_EN NULL
-#define RPCS3_SHADER_PRECISION_LABEL_EN NULL
-#define RPCS3_SHADER_PRECISION_INFO_0_EN NULL
+#define RPCS3_SHADER_QUALITY_LABEL_EN NULL
+#define RPCS3_SHADER_QUALITY_INFO_0_EN NULL
 #define OPTION_VAL_LOW_EN NULL
-#define OPTION_VAL_NORMAL_EN NULL
 #define OPTION_VAL_HIGH_EN NULL
+#define OPTION_VAL_ULTRA_O26_EN NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_EN NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_EN NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_EN NULL
@@ -7848,6 +8172,14 @@ struct retro_core_options_v2 options_el = {
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_EN NULL
 #define RPCS3_PPU_SET_FPCC_LABEL_EN NULL
 #define RPCS3_PPU_SET_FPCC_INFO_0_EN NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_EN NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_EN NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_EN NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_EN NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_EN NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_EN NULL
+#define RPCS3_VBLANK_NTSC_LABEL_EN NULL
+#define RPCS3_VBLANK_NTSC_INFO_0_EN NULL
 #define RPCS3_LANGUAGE_LABEL_EN NULL
 #define RPCS3_LANGUAGE_INFO_0_EN NULL
 #define OPTION_VAL_ENGLISH_EN NULL
@@ -8054,7 +8386,7 @@ struct retro_core_option_v2_definition option_defs_en[] = {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_EN, NULL,
         RPCS3_FRAME_LIMIT_INFO_0_EN,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_EN}, {"off", "Off"}, {"30", OPTION_VAL_30_EN}, {"50", OPTION_VAL_50_O21_EN}, {"60", OPTION_VAL_60_EN}, {"120", OPTION_VAL_120_O21_EN}, {"144", OPTION_VAL_144_EN}, {"240", OPTION_VAL_240_O21_EN}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_EN}, {"ps3", OPTION_VAL_PS3_EN}, {"off", "Off"}, {"30", OPTION_VAL_30_EN}, {"50", OPTION_VAL_50_O21_EN}, {"60", OPTION_VAL_60_EN}, {"120", OPTION_VAL_120_O21_EN}, {"144", OPTION_VAL_144_EN}, {"240", OPTION_VAL_240_O21_EN}, {NULL, NULL} },
         "auto"
     },
     {
@@ -8075,22 +8407,22 @@ struct retro_core_option_v2_definition option_defs_en[] = {
         "rpcs3_anisotropic_filter", RPCS3_ANISOTROPIC_FILTER_LABEL_EN, NULL,
         RPCS3_ANISOTROPIC_FILTER_INFO_0_EN,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_EN}, {"1", OPTION_VAL_1_O24_EN}, {"2", OPTION_VAL_2_EN}, {"4", OPTION_VAL_4_EN}, {"8", OPTION_VAL_8_EN}, {"16", OPTION_VAL_16_O24_EN}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_EN}, {"2", OPTION_VAL_2_EN}, {"4", OPTION_VAL_4_EN}, {"8", OPTION_VAL_8_EN}, {"16", OPTION_VAL_16_O24_EN}, {NULL, NULL} },
         "auto"
     },
     {
         "rpcs3_msaa", RPCS3_MSAA_LABEL_EN, NULL,
         RPCS3_MSAA_INFO_0_EN,
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", OPTION_VAL_2_EN}, {"4", OPTION_VAL_4_EN}, {"8", OPTION_VAL_8_EN}, {"16", OPTION_VAL_16_O24_EN}, {NULL, NULL} },
-        "disabled"
+        { {"auto", OPTION_VAL_0_EN}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", RPCS3_SHADER_PRECISION_LABEL_EN, NULL,
-        RPCS3_SHADER_PRECISION_INFO_0_EN,
+        "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_EN, NULL,
+        RPCS3_SHADER_QUALITY_INFO_0_EN,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_EN}, {"normal", OPTION_VAL_NORMAL_EN}, {"high", OPTION_VAL_HIGH_EN}, {NULL, NULL} },
-        "normal"
+        { {"low", OPTION_VAL_LOW_EN}, {"high", OPTION_VAL_HIGH_EN}, {"ultra", OPTION_VAL_ULTRA_O26_EN}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", RPCS3_WRITE_COLOR_BUFFERS_LABEL_EN, NULL,
@@ -8357,6 +8689,34 @@ struct retro_core_option_v2_definition option_defs_en[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    {
+        "rpcs3_accurate_rsx_reservation", RPCS3_ACCURATE_RSX_RESERVATION_LABEL_EN, NULL,
+        RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_EN,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_EN, NULL,
+        RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_EN,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", RPCS3_DISABLE_ZCULL_QUERIES_LABEL_EN, NULL,
+        RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_EN,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", RPCS3_VBLANK_NTSC_LABEL_EN, NULL,
+        RPCS3_VBLANK_NTSC_INFO_0_EN,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
 
     // ==================== CORE OPTIONS ====================
     {
@@ -8540,6 +8900,7 @@ struct retro_core_options_v2 options_en = {
 #define OPTION_VAL_1024_EO NULL
 #define RPCS3_FRAME_LIMIT_LABEL_EO NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_EO NULL
+#define OPTION_VAL_PS3_EO NULL
 #define OPTION_VAL_30_EO NULL
 #define OPTION_VAL_50_O21_EO NULL
 #define OPTION_VAL_60_EO NULL
@@ -8557,18 +8918,17 @@ struct retro_core_options_v2 options_en = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_EO NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_EO NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_EO NULL
-#define OPTION_VAL_1_O24_EO NULL
 #define OPTION_VAL_2_EO NULL
 #define OPTION_VAL_4_EO NULL
 #define OPTION_VAL_8_EO NULL
 #define OPTION_VAL_16_O24_EO NULL
 #define RPCS3_MSAA_LABEL_EO NULL
 #define RPCS3_MSAA_INFO_0_EO NULL
-#define RPCS3_SHADER_PRECISION_LABEL_EO NULL
-#define RPCS3_SHADER_PRECISION_INFO_0_EO NULL
+#define RPCS3_SHADER_QUALITY_LABEL_EO NULL
+#define RPCS3_SHADER_QUALITY_INFO_0_EO NULL
 #define OPTION_VAL_LOW_EO NULL
-#define OPTION_VAL_NORMAL_EO NULL
 #define OPTION_VAL_HIGH_EO NULL
+#define OPTION_VAL_ULTRA_O26_EO NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_EO NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_EO NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_EO NULL
@@ -8688,6 +9048,14 @@ struct retro_core_options_v2 options_en = {
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_EO NULL
 #define RPCS3_PPU_SET_FPCC_LABEL_EO NULL
 #define RPCS3_PPU_SET_FPCC_INFO_0_EO NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_EO NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_EO NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_EO NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_EO NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_EO NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_EO NULL
+#define RPCS3_VBLANK_NTSC_LABEL_EO NULL
+#define RPCS3_VBLANK_NTSC_INFO_0_EO NULL
 #define RPCS3_LANGUAGE_LABEL_EO NULL
 #define RPCS3_LANGUAGE_INFO_0_EO NULL
 #define OPTION_VAL_ENGLISH_EO NULL
@@ -8894,7 +9262,7 @@ struct retro_core_option_v2_definition option_defs_eo[] = {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_EO, NULL,
         RPCS3_FRAME_LIMIT_INFO_0_EO,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_EO}, {"off", "Off"}, {"30", OPTION_VAL_30_EO}, {"50", OPTION_VAL_50_O21_EO}, {"60", OPTION_VAL_60_EO}, {"120", OPTION_VAL_120_O21_EO}, {"144", OPTION_VAL_144_EO}, {"240", OPTION_VAL_240_O21_EO}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_EO}, {"ps3", OPTION_VAL_PS3_EO}, {"off", "Off"}, {"30", OPTION_VAL_30_EO}, {"50", OPTION_VAL_50_O21_EO}, {"60", OPTION_VAL_60_EO}, {"120", OPTION_VAL_120_O21_EO}, {"144", OPTION_VAL_144_EO}, {"240", OPTION_VAL_240_O21_EO}, {NULL, NULL} },
         "auto"
     },
     {
@@ -8915,22 +9283,22 @@ struct retro_core_option_v2_definition option_defs_eo[] = {
         "rpcs3_anisotropic_filter", RPCS3_ANISOTROPIC_FILTER_LABEL_EO, NULL,
         RPCS3_ANISOTROPIC_FILTER_INFO_0_EO,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_EO}, {"1", OPTION_VAL_1_O24_EO}, {"2", OPTION_VAL_2_EO}, {"4", OPTION_VAL_4_EO}, {"8", OPTION_VAL_8_EO}, {"16", OPTION_VAL_16_O24_EO}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_EO}, {"2", OPTION_VAL_2_EO}, {"4", OPTION_VAL_4_EO}, {"8", OPTION_VAL_8_EO}, {"16", OPTION_VAL_16_O24_EO}, {NULL, NULL} },
         "auto"
     },
     {
         "rpcs3_msaa", RPCS3_MSAA_LABEL_EO, NULL,
         RPCS3_MSAA_INFO_0_EO,
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", OPTION_VAL_2_EO}, {"4", OPTION_VAL_4_EO}, {"8", OPTION_VAL_8_EO}, {"16", OPTION_VAL_16_O24_EO}, {NULL, NULL} },
-        "disabled"
+        { {"auto", OPTION_VAL_0_EO}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", RPCS3_SHADER_PRECISION_LABEL_EO, NULL,
-        RPCS3_SHADER_PRECISION_INFO_0_EO,
+        "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_EO, NULL,
+        RPCS3_SHADER_QUALITY_INFO_0_EO,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_EO}, {"normal", OPTION_VAL_NORMAL_EO}, {"high", OPTION_VAL_HIGH_EO}, {NULL, NULL} },
-        "normal"
+        { {"low", OPTION_VAL_LOW_EO}, {"high", OPTION_VAL_HIGH_EO}, {"ultra", OPTION_VAL_ULTRA_O26_EO}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", RPCS3_WRITE_COLOR_BUFFERS_LABEL_EO, NULL,
@@ -9197,6 +9565,34 @@ struct retro_core_option_v2_definition option_defs_eo[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    {
+        "rpcs3_accurate_rsx_reservation", RPCS3_ACCURATE_RSX_RESERVATION_LABEL_EO, NULL,
+        RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_EO,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_EO, NULL,
+        RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_EO,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", RPCS3_DISABLE_ZCULL_QUERIES_LABEL_EO, NULL,
+        RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_EO,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", RPCS3_VBLANK_NTSC_LABEL_EO, NULL,
+        RPCS3_VBLANK_NTSC_INFO_0_EO,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
 
     // ==================== CORE OPTIONS ====================
     {
@@ -9380,6 +9776,7 @@ struct retro_core_options_v2 options_eo = {
 #define OPTION_VAL_1024_ES NULL
 #define RPCS3_FRAME_LIMIT_LABEL_ES NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_ES NULL
+#define OPTION_VAL_PS3_ES NULL
 #define OPTION_VAL_30_ES NULL
 #define OPTION_VAL_50_O21_ES NULL
 #define OPTION_VAL_60_ES NULL
@@ -9397,18 +9794,17 @@ struct retro_core_options_v2 options_eo = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_ES NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_ES NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_ES NULL
-#define OPTION_VAL_1_O24_ES NULL
 #define OPTION_VAL_2_ES NULL
 #define OPTION_VAL_4_ES NULL
 #define OPTION_VAL_8_ES NULL
 #define OPTION_VAL_16_O24_ES NULL
 #define RPCS3_MSAA_LABEL_ES NULL
 #define RPCS3_MSAA_INFO_0_ES NULL
-#define RPCS3_SHADER_PRECISION_LABEL_ES NULL
-#define RPCS3_SHADER_PRECISION_INFO_0_ES NULL
+#define RPCS3_SHADER_QUALITY_LABEL_ES NULL
+#define RPCS3_SHADER_QUALITY_INFO_0_ES NULL
 #define OPTION_VAL_LOW_ES NULL
-#define OPTION_VAL_NORMAL_ES NULL
 #define OPTION_VAL_HIGH_ES NULL
+#define OPTION_VAL_ULTRA_O26_ES NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_ES NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_ES NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_ES NULL
@@ -9528,6 +9924,14 @@ struct retro_core_options_v2 options_eo = {
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_ES NULL
 #define RPCS3_PPU_SET_FPCC_LABEL_ES NULL
 #define RPCS3_PPU_SET_FPCC_INFO_0_ES NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_ES NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_ES NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_ES NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_ES NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_ES NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_ES NULL
+#define RPCS3_VBLANK_NTSC_LABEL_ES NULL
+#define RPCS3_VBLANK_NTSC_INFO_0_ES NULL
 #define RPCS3_LANGUAGE_LABEL_ES NULL
 #define RPCS3_LANGUAGE_INFO_0_ES NULL
 #define OPTION_VAL_ENGLISH_ES NULL
@@ -9734,7 +10138,7 @@ struct retro_core_option_v2_definition option_defs_es[] = {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_ES, NULL,
         RPCS3_FRAME_LIMIT_INFO_0_ES,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_ES}, {"off", "Off"}, {"30", OPTION_VAL_30_ES}, {"50", OPTION_VAL_50_O21_ES}, {"60", OPTION_VAL_60_ES}, {"120", OPTION_VAL_120_O21_ES}, {"144", OPTION_VAL_144_ES}, {"240", OPTION_VAL_240_O21_ES}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_ES}, {"ps3", OPTION_VAL_PS3_ES}, {"off", "Off"}, {"30", OPTION_VAL_30_ES}, {"50", OPTION_VAL_50_O21_ES}, {"60", OPTION_VAL_60_ES}, {"120", OPTION_VAL_120_O21_ES}, {"144", OPTION_VAL_144_ES}, {"240", OPTION_VAL_240_O21_ES}, {NULL, NULL} },
         "auto"
     },
     {
@@ -9755,22 +10159,22 @@ struct retro_core_option_v2_definition option_defs_es[] = {
         "rpcs3_anisotropic_filter", RPCS3_ANISOTROPIC_FILTER_LABEL_ES, NULL,
         RPCS3_ANISOTROPIC_FILTER_INFO_0_ES,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_ES}, {"1", OPTION_VAL_1_O24_ES}, {"2", OPTION_VAL_2_ES}, {"4", OPTION_VAL_4_ES}, {"8", OPTION_VAL_8_ES}, {"16", OPTION_VAL_16_O24_ES}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_ES}, {"2", OPTION_VAL_2_ES}, {"4", OPTION_VAL_4_ES}, {"8", OPTION_VAL_8_ES}, {"16", OPTION_VAL_16_O24_ES}, {NULL, NULL} },
         "auto"
     },
     {
         "rpcs3_msaa", RPCS3_MSAA_LABEL_ES, NULL,
         RPCS3_MSAA_INFO_0_ES,
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", OPTION_VAL_2_ES}, {"4", OPTION_VAL_4_ES}, {"8", OPTION_VAL_8_ES}, {"16", OPTION_VAL_16_O24_ES}, {NULL, NULL} },
-        "disabled"
+        { {"auto", OPTION_VAL_0_ES}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", RPCS3_SHADER_PRECISION_LABEL_ES, NULL,
-        RPCS3_SHADER_PRECISION_INFO_0_ES,
+        "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_ES, NULL,
+        RPCS3_SHADER_QUALITY_INFO_0_ES,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_ES}, {"normal", OPTION_VAL_NORMAL_ES}, {"high", OPTION_VAL_HIGH_ES}, {NULL, NULL} },
-        "normal"
+        { {"low", OPTION_VAL_LOW_ES}, {"high", OPTION_VAL_HIGH_ES}, {"ultra", OPTION_VAL_ULTRA_O26_ES}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", RPCS3_WRITE_COLOR_BUFFERS_LABEL_ES, NULL,
@@ -10037,6 +10441,34 @@ struct retro_core_option_v2_definition option_defs_es[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    {
+        "rpcs3_accurate_rsx_reservation", RPCS3_ACCURATE_RSX_RESERVATION_LABEL_ES, NULL,
+        RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_ES,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_ES, NULL,
+        RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_ES,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", RPCS3_DISABLE_ZCULL_QUERIES_LABEL_ES, NULL,
+        RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_ES,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", RPCS3_VBLANK_NTSC_LABEL_ES, NULL,
+        RPCS3_VBLANK_NTSC_INFO_0_ES,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
 
     // ==================== CORE OPTIONS ====================
     {
@@ -10220,6 +10652,7 @@ struct retro_core_options_v2 options_es = {
 #define OPTION_VAL_1024_FA NULL
 #define RPCS3_FRAME_LIMIT_LABEL_FA NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_FA NULL
+#define OPTION_VAL_PS3_FA NULL
 #define OPTION_VAL_30_FA NULL
 #define OPTION_VAL_50_O21_FA NULL
 #define OPTION_VAL_60_FA NULL
@@ -10237,18 +10670,17 @@ struct retro_core_options_v2 options_es = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_FA NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_FA NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_FA NULL
-#define OPTION_VAL_1_O24_FA NULL
 #define OPTION_VAL_2_FA NULL
 #define OPTION_VAL_4_FA NULL
 #define OPTION_VAL_8_FA NULL
 #define OPTION_VAL_16_O24_FA NULL
 #define RPCS3_MSAA_LABEL_FA NULL
 #define RPCS3_MSAA_INFO_0_FA NULL
-#define RPCS3_SHADER_PRECISION_LABEL_FA NULL
-#define RPCS3_SHADER_PRECISION_INFO_0_FA NULL
+#define RPCS3_SHADER_QUALITY_LABEL_FA NULL
+#define RPCS3_SHADER_QUALITY_INFO_0_FA NULL
 #define OPTION_VAL_LOW_FA NULL
-#define OPTION_VAL_NORMAL_FA NULL
 #define OPTION_VAL_HIGH_FA NULL
+#define OPTION_VAL_ULTRA_O26_FA NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_FA NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_FA NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_FA NULL
@@ -10368,6 +10800,14 @@ struct retro_core_options_v2 options_es = {
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_FA NULL
 #define RPCS3_PPU_SET_FPCC_LABEL_FA NULL
 #define RPCS3_PPU_SET_FPCC_INFO_0_FA NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_FA NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_FA NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_FA NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_FA NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_FA NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_FA NULL
+#define RPCS3_VBLANK_NTSC_LABEL_FA NULL
+#define RPCS3_VBLANK_NTSC_INFO_0_FA NULL
 #define RPCS3_LANGUAGE_LABEL_FA NULL
 #define RPCS3_LANGUAGE_INFO_0_FA NULL
 #define OPTION_VAL_ENGLISH_FA NULL
@@ -10574,7 +11014,7 @@ struct retro_core_option_v2_definition option_defs_fa[] = {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_FA, NULL,
         RPCS3_FRAME_LIMIT_INFO_0_FA,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_FA}, {"off", "Off"}, {"30", OPTION_VAL_30_FA}, {"50", OPTION_VAL_50_O21_FA}, {"60", OPTION_VAL_60_FA}, {"120", OPTION_VAL_120_O21_FA}, {"144", OPTION_VAL_144_FA}, {"240", OPTION_VAL_240_O21_FA}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_FA}, {"ps3", OPTION_VAL_PS3_FA}, {"off", "Off"}, {"30", OPTION_VAL_30_FA}, {"50", OPTION_VAL_50_O21_FA}, {"60", OPTION_VAL_60_FA}, {"120", OPTION_VAL_120_O21_FA}, {"144", OPTION_VAL_144_FA}, {"240", OPTION_VAL_240_O21_FA}, {NULL, NULL} },
         "auto"
     },
     {
@@ -10595,22 +11035,22 @@ struct retro_core_option_v2_definition option_defs_fa[] = {
         "rpcs3_anisotropic_filter", RPCS3_ANISOTROPIC_FILTER_LABEL_FA, NULL,
         RPCS3_ANISOTROPIC_FILTER_INFO_0_FA,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_FA}, {"1", OPTION_VAL_1_O24_FA}, {"2", OPTION_VAL_2_FA}, {"4", OPTION_VAL_4_FA}, {"8", OPTION_VAL_8_FA}, {"16", OPTION_VAL_16_O24_FA}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_FA}, {"2", OPTION_VAL_2_FA}, {"4", OPTION_VAL_4_FA}, {"8", OPTION_VAL_8_FA}, {"16", OPTION_VAL_16_O24_FA}, {NULL, NULL} },
         "auto"
     },
     {
         "rpcs3_msaa", RPCS3_MSAA_LABEL_FA, NULL,
         RPCS3_MSAA_INFO_0_FA,
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", OPTION_VAL_2_FA}, {"4", OPTION_VAL_4_FA}, {"8", OPTION_VAL_8_FA}, {"16", OPTION_VAL_16_O24_FA}, {NULL, NULL} },
-        "disabled"
+        { {"auto", OPTION_VAL_0_FA}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", RPCS3_SHADER_PRECISION_LABEL_FA, NULL,
-        RPCS3_SHADER_PRECISION_INFO_0_FA,
+        "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_FA, NULL,
+        RPCS3_SHADER_QUALITY_INFO_0_FA,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_FA}, {"normal", OPTION_VAL_NORMAL_FA}, {"high", OPTION_VAL_HIGH_FA}, {NULL, NULL} },
-        "normal"
+        { {"low", OPTION_VAL_LOW_FA}, {"high", OPTION_VAL_HIGH_FA}, {"ultra", OPTION_VAL_ULTRA_O26_FA}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", RPCS3_WRITE_COLOR_BUFFERS_LABEL_FA, NULL,
@@ -10877,6 +11317,34 @@ struct retro_core_option_v2_definition option_defs_fa[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    {
+        "rpcs3_accurate_rsx_reservation", RPCS3_ACCURATE_RSX_RESERVATION_LABEL_FA, NULL,
+        RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_FA,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_FA, NULL,
+        RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_FA,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", RPCS3_DISABLE_ZCULL_QUERIES_LABEL_FA, NULL,
+        RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_FA,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", RPCS3_VBLANK_NTSC_LABEL_FA, NULL,
+        RPCS3_VBLANK_NTSC_INFO_0_FA,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
 
     // ==================== CORE OPTIONS ====================
     {
@@ -11060,6 +11528,7 @@ struct retro_core_options_v2 options_fa = {
 #define OPTION_VAL_1024_FI NULL
 #define RPCS3_FRAME_LIMIT_LABEL_FI NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_FI NULL
+#define OPTION_VAL_PS3_FI NULL
 #define OPTION_VAL_30_FI NULL
 #define OPTION_VAL_50_O21_FI NULL
 #define OPTION_VAL_60_FI NULL
@@ -11077,18 +11546,17 @@ struct retro_core_options_v2 options_fa = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_FI NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_FI NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_FI NULL
-#define OPTION_VAL_1_O24_FI NULL
 #define OPTION_VAL_2_FI NULL
 #define OPTION_VAL_4_FI NULL
 #define OPTION_VAL_8_FI NULL
 #define OPTION_VAL_16_O24_FI NULL
 #define RPCS3_MSAA_LABEL_FI NULL
 #define RPCS3_MSAA_INFO_0_FI NULL
-#define RPCS3_SHADER_PRECISION_LABEL_FI NULL
-#define RPCS3_SHADER_PRECISION_INFO_0_FI NULL
+#define RPCS3_SHADER_QUALITY_LABEL_FI NULL
+#define RPCS3_SHADER_QUALITY_INFO_0_FI NULL
 #define OPTION_VAL_LOW_FI NULL
-#define OPTION_VAL_NORMAL_FI NULL
 #define OPTION_VAL_HIGH_FI NULL
+#define OPTION_VAL_ULTRA_O26_FI NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_FI NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_FI NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_FI NULL
@@ -11208,6 +11676,14 @@ struct retro_core_options_v2 options_fa = {
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_FI NULL
 #define RPCS3_PPU_SET_FPCC_LABEL_FI NULL
 #define RPCS3_PPU_SET_FPCC_INFO_0_FI NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_FI NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_FI NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_FI NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_FI NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_FI NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_FI NULL
+#define RPCS3_VBLANK_NTSC_LABEL_FI NULL
+#define RPCS3_VBLANK_NTSC_INFO_0_FI NULL
 #define RPCS3_LANGUAGE_LABEL_FI NULL
 #define RPCS3_LANGUAGE_INFO_0_FI NULL
 #define OPTION_VAL_ENGLISH_FI NULL
@@ -11414,7 +11890,7 @@ struct retro_core_option_v2_definition option_defs_fi[] = {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_FI, NULL,
         RPCS3_FRAME_LIMIT_INFO_0_FI,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_FI}, {"off", "Off"}, {"30", OPTION_VAL_30_FI}, {"50", OPTION_VAL_50_O21_FI}, {"60", OPTION_VAL_60_FI}, {"120", OPTION_VAL_120_O21_FI}, {"144", OPTION_VAL_144_FI}, {"240", OPTION_VAL_240_O21_FI}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_FI}, {"ps3", OPTION_VAL_PS3_FI}, {"off", "Off"}, {"30", OPTION_VAL_30_FI}, {"50", OPTION_VAL_50_O21_FI}, {"60", OPTION_VAL_60_FI}, {"120", OPTION_VAL_120_O21_FI}, {"144", OPTION_VAL_144_FI}, {"240", OPTION_VAL_240_O21_FI}, {NULL, NULL} },
         "auto"
     },
     {
@@ -11435,22 +11911,22 @@ struct retro_core_option_v2_definition option_defs_fi[] = {
         "rpcs3_anisotropic_filter", RPCS3_ANISOTROPIC_FILTER_LABEL_FI, NULL,
         RPCS3_ANISOTROPIC_FILTER_INFO_0_FI,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_FI}, {"1", OPTION_VAL_1_O24_FI}, {"2", OPTION_VAL_2_FI}, {"4", OPTION_VAL_4_FI}, {"8", OPTION_VAL_8_FI}, {"16", OPTION_VAL_16_O24_FI}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_FI}, {"2", OPTION_VAL_2_FI}, {"4", OPTION_VAL_4_FI}, {"8", OPTION_VAL_8_FI}, {"16", OPTION_VAL_16_O24_FI}, {NULL, NULL} },
         "auto"
     },
     {
         "rpcs3_msaa", RPCS3_MSAA_LABEL_FI, NULL,
         RPCS3_MSAA_INFO_0_FI,
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", OPTION_VAL_2_FI}, {"4", OPTION_VAL_4_FI}, {"8", OPTION_VAL_8_FI}, {"16", OPTION_VAL_16_O24_FI}, {NULL, NULL} },
-        "disabled"
+        { {"auto", OPTION_VAL_0_FI}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", RPCS3_SHADER_PRECISION_LABEL_FI, NULL,
-        RPCS3_SHADER_PRECISION_INFO_0_FI,
+        "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_FI, NULL,
+        RPCS3_SHADER_QUALITY_INFO_0_FI,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_FI}, {"normal", OPTION_VAL_NORMAL_FI}, {"high", OPTION_VAL_HIGH_FI}, {NULL, NULL} },
-        "normal"
+        { {"low", OPTION_VAL_LOW_FI}, {"high", OPTION_VAL_HIGH_FI}, {"ultra", OPTION_VAL_ULTRA_O26_FI}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", RPCS3_WRITE_COLOR_BUFFERS_LABEL_FI, NULL,
@@ -11717,6 +12193,34 @@ struct retro_core_option_v2_definition option_defs_fi[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    {
+        "rpcs3_accurate_rsx_reservation", RPCS3_ACCURATE_RSX_RESERVATION_LABEL_FI, NULL,
+        RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_FI,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_FI, NULL,
+        RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_FI,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", RPCS3_DISABLE_ZCULL_QUERIES_LABEL_FI, NULL,
+        RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_FI,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", RPCS3_VBLANK_NTSC_LABEL_FI, NULL,
+        RPCS3_VBLANK_NTSC_INFO_0_FI,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
 
     // ==================== CORE OPTIONS ====================
     {
@@ -11900,6 +12404,7 @@ struct retro_core_options_v2 options_fi = {
 #define OPTION_VAL_1024_FR NULL
 #define RPCS3_FRAME_LIMIT_LABEL_FR NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_FR NULL
+#define OPTION_VAL_PS3_FR NULL
 #define OPTION_VAL_30_FR NULL
 #define OPTION_VAL_50_O21_FR NULL
 #define OPTION_VAL_60_FR NULL
@@ -11917,18 +12422,17 @@ struct retro_core_options_v2 options_fi = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_FR NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_FR NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_FR NULL
-#define OPTION_VAL_1_O24_FR NULL
 #define OPTION_VAL_2_FR NULL
 #define OPTION_VAL_4_FR NULL
 #define OPTION_VAL_8_FR NULL
 #define OPTION_VAL_16_O24_FR NULL
 #define RPCS3_MSAA_LABEL_FR NULL
 #define RPCS3_MSAA_INFO_0_FR NULL
-#define RPCS3_SHADER_PRECISION_LABEL_FR NULL
-#define RPCS3_SHADER_PRECISION_INFO_0_FR NULL
+#define RPCS3_SHADER_QUALITY_LABEL_FR NULL
+#define RPCS3_SHADER_QUALITY_INFO_0_FR NULL
 #define OPTION_VAL_LOW_FR NULL
-#define OPTION_VAL_NORMAL_FR NULL
 #define OPTION_VAL_HIGH_FR NULL
+#define OPTION_VAL_ULTRA_O26_FR NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_FR NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_FR NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_FR NULL
@@ -12048,6 +12552,14 @@ struct retro_core_options_v2 options_fi = {
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_FR NULL
 #define RPCS3_PPU_SET_FPCC_LABEL_FR NULL
 #define RPCS3_PPU_SET_FPCC_INFO_0_FR NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_FR NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_FR NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_FR NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_FR NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_FR NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_FR NULL
+#define RPCS3_VBLANK_NTSC_LABEL_FR NULL
+#define RPCS3_VBLANK_NTSC_INFO_0_FR NULL
 #define RPCS3_LANGUAGE_LABEL_FR NULL
 #define RPCS3_LANGUAGE_INFO_0_FR NULL
 #define OPTION_VAL_ENGLISH_FR NULL
@@ -12254,7 +12766,7 @@ struct retro_core_option_v2_definition option_defs_fr[] = {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_FR, NULL,
         RPCS3_FRAME_LIMIT_INFO_0_FR,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_FR}, {"off", "Off"}, {"30", OPTION_VAL_30_FR}, {"50", OPTION_VAL_50_O21_FR}, {"60", OPTION_VAL_60_FR}, {"120", OPTION_VAL_120_O21_FR}, {"144", OPTION_VAL_144_FR}, {"240", OPTION_VAL_240_O21_FR}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_FR}, {"ps3", OPTION_VAL_PS3_FR}, {"off", "Off"}, {"30", OPTION_VAL_30_FR}, {"50", OPTION_VAL_50_O21_FR}, {"60", OPTION_VAL_60_FR}, {"120", OPTION_VAL_120_O21_FR}, {"144", OPTION_VAL_144_FR}, {"240", OPTION_VAL_240_O21_FR}, {NULL, NULL} },
         "auto"
     },
     {
@@ -12275,22 +12787,22 @@ struct retro_core_option_v2_definition option_defs_fr[] = {
         "rpcs3_anisotropic_filter", RPCS3_ANISOTROPIC_FILTER_LABEL_FR, NULL,
         RPCS3_ANISOTROPIC_FILTER_INFO_0_FR,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_FR}, {"1", OPTION_VAL_1_O24_FR}, {"2", OPTION_VAL_2_FR}, {"4", OPTION_VAL_4_FR}, {"8", OPTION_VAL_8_FR}, {"16", OPTION_VAL_16_O24_FR}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_FR}, {"2", OPTION_VAL_2_FR}, {"4", OPTION_VAL_4_FR}, {"8", OPTION_VAL_8_FR}, {"16", OPTION_VAL_16_O24_FR}, {NULL, NULL} },
         "auto"
     },
     {
         "rpcs3_msaa", RPCS3_MSAA_LABEL_FR, NULL,
         RPCS3_MSAA_INFO_0_FR,
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", OPTION_VAL_2_FR}, {"4", OPTION_VAL_4_FR}, {"8", OPTION_VAL_8_FR}, {"16", OPTION_VAL_16_O24_FR}, {NULL, NULL} },
-        "disabled"
+        { {"auto", OPTION_VAL_0_FR}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", RPCS3_SHADER_PRECISION_LABEL_FR, NULL,
-        RPCS3_SHADER_PRECISION_INFO_0_FR,
+        "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_FR, NULL,
+        RPCS3_SHADER_QUALITY_INFO_0_FR,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_FR}, {"normal", OPTION_VAL_NORMAL_FR}, {"high", OPTION_VAL_HIGH_FR}, {NULL, NULL} },
-        "normal"
+        { {"low", OPTION_VAL_LOW_FR}, {"high", OPTION_VAL_HIGH_FR}, {"ultra", OPTION_VAL_ULTRA_O26_FR}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", RPCS3_WRITE_COLOR_BUFFERS_LABEL_FR, NULL,
@@ -12557,6 +13069,34 @@ struct retro_core_option_v2_definition option_defs_fr[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    {
+        "rpcs3_accurate_rsx_reservation", RPCS3_ACCURATE_RSX_RESERVATION_LABEL_FR, NULL,
+        RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_FR,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_FR, NULL,
+        RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_FR,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", RPCS3_DISABLE_ZCULL_QUERIES_LABEL_FR, NULL,
+        RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_FR,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", RPCS3_VBLANK_NTSC_LABEL_FR, NULL,
+        RPCS3_VBLANK_NTSC_INFO_0_FR,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
 
     // ==================== CORE OPTIONS ====================
     {
@@ -12740,6 +13280,7 @@ struct retro_core_options_v2 options_fr = {
 #define OPTION_VAL_1024_GA NULL
 #define RPCS3_FRAME_LIMIT_LABEL_GA NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_GA NULL
+#define OPTION_VAL_PS3_GA NULL
 #define OPTION_VAL_30_GA NULL
 #define OPTION_VAL_50_O21_GA NULL
 #define OPTION_VAL_60_GA NULL
@@ -12757,18 +13298,17 @@ struct retro_core_options_v2 options_fr = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_GA NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_GA NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_GA NULL
-#define OPTION_VAL_1_O24_GA NULL
 #define OPTION_VAL_2_GA NULL
 #define OPTION_VAL_4_GA NULL
 #define OPTION_VAL_8_GA NULL
 #define OPTION_VAL_16_O24_GA NULL
 #define RPCS3_MSAA_LABEL_GA NULL
 #define RPCS3_MSAA_INFO_0_GA NULL
-#define RPCS3_SHADER_PRECISION_LABEL_GA NULL
-#define RPCS3_SHADER_PRECISION_INFO_0_GA NULL
+#define RPCS3_SHADER_QUALITY_LABEL_GA NULL
+#define RPCS3_SHADER_QUALITY_INFO_0_GA NULL
 #define OPTION_VAL_LOW_GA NULL
-#define OPTION_VAL_NORMAL_GA NULL
 #define OPTION_VAL_HIGH_GA NULL
+#define OPTION_VAL_ULTRA_O26_GA NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_GA NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_GA NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_GA NULL
@@ -12888,6 +13428,14 @@ struct retro_core_options_v2 options_fr = {
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_GA NULL
 #define RPCS3_PPU_SET_FPCC_LABEL_GA NULL
 #define RPCS3_PPU_SET_FPCC_INFO_0_GA NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_GA NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_GA NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_GA NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_GA NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_GA NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_GA NULL
+#define RPCS3_VBLANK_NTSC_LABEL_GA NULL
+#define RPCS3_VBLANK_NTSC_INFO_0_GA NULL
 #define RPCS3_LANGUAGE_LABEL_GA NULL
 #define RPCS3_LANGUAGE_INFO_0_GA NULL
 #define OPTION_VAL_ENGLISH_GA NULL
@@ -13094,7 +13642,7 @@ struct retro_core_option_v2_definition option_defs_ga[] = {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_GA, NULL,
         RPCS3_FRAME_LIMIT_INFO_0_GA,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_GA}, {"off", "Off"}, {"30", OPTION_VAL_30_GA}, {"50", OPTION_VAL_50_O21_GA}, {"60", OPTION_VAL_60_GA}, {"120", OPTION_VAL_120_O21_GA}, {"144", OPTION_VAL_144_GA}, {"240", OPTION_VAL_240_O21_GA}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_GA}, {"ps3", OPTION_VAL_PS3_GA}, {"off", "Off"}, {"30", OPTION_VAL_30_GA}, {"50", OPTION_VAL_50_O21_GA}, {"60", OPTION_VAL_60_GA}, {"120", OPTION_VAL_120_O21_GA}, {"144", OPTION_VAL_144_GA}, {"240", OPTION_VAL_240_O21_GA}, {NULL, NULL} },
         "auto"
     },
     {
@@ -13115,22 +13663,22 @@ struct retro_core_option_v2_definition option_defs_ga[] = {
         "rpcs3_anisotropic_filter", RPCS3_ANISOTROPIC_FILTER_LABEL_GA, NULL,
         RPCS3_ANISOTROPIC_FILTER_INFO_0_GA,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_GA}, {"1", OPTION_VAL_1_O24_GA}, {"2", OPTION_VAL_2_GA}, {"4", OPTION_VAL_4_GA}, {"8", OPTION_VAL_8_GA}, {"16", OPTION_VAL_16_O24_GA}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_GA}, {"2", OPTION_VAL_2_GA}, {"4", OPTION_VAL_4_GA}, {"8", OPTION_VAL_8_GA}, {"16", OPTION_VAL_16_O24_GA}, {NULL, NULL} },
         "auto"
     },
     {
         "rpcs3_msaa", RPCS3_MSAA_LABEL_GA, NULL,
         RPCS3_MSAA_INFO_0_GA,
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", OPTION_VAL_2_GA}, {"4", OPTION_VAL_4_GA}, {"8", OPTION_VAL_8_GA}, {"16", OPTION_VAL_16_O24_GA}, {NULL, NULL} },
-        "disabled"
+        { {"auto", OPTION_VAL_0_GA}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", RPCS3_SHADER_PRECISION_LABEL_GA, NULL,
-        RPCS3_SHADER_PRECISION_INFO_0_GA,
+        "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_GA, NULL,
+        RPCS3_SHADER_QUALITY_INFO_0_GA,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_GA}, {"normal", OPTION_VAL_NORMAL_GA}, {"high", OPTION_VAL_HIGH_GA}, {NULL, NULL} },
-        "normal"
+        { {"low", OPTION_VAL_LOW_GA}, {"high", OPTION_VAL_HIGH_GA}, {"ultra", OPTION_VAL_ULTRA_O26_GA}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", RPCS3_WRITE_COLOR_BUFFERS_LABEL_GA, NULL,
@@ -13397,6 +13945,34 @@ struct retro_core_option_v2_definition option_defs_ga[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    {
+        "rpcs3_accurate_rsx_reservation", RPCS3_ACCURATE_RSX_RESERVATION_LABEL_GA, NULL,
+        RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_GA,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_GA, NULL,
+        RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_GA,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", RPCS3_DISABLE_ZCULL_QUERIES_LABEL_GA, NULL,
+        RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_GA,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", RPCS3_VBLANK_NTSC_LABEL_GA, NULL,
+        RPCS3_VBLANK_NTSC_INFO_0_GA,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
 
     // ==================== CORE OPTIONS ====================
     {
@@ -13580,6 +14156,7 @@ struct retro_core_options_v2 options_ga = {
 #define OPTION_VAL_1024_GL NULL
 #define RPCS3_FRAME_LIMIT_LABEL_GL NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_GL NULL
+#define OPTION_VAL_PS3_GL NULL
 #define OPTION_VAL_30_GL NULL
 #define OPTION_VAL_50_O21_GL NULL
 #define OPTION_VAL_60_GL NULL
@@ -13597,18 +14174,17 @@ struct retro_core_options_v2 options_ga = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_GL NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_GL NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_GL NULL
-#define OPTION_VAL_1_O24_GL NULL
 #define OPTION_VAL_2_GL NULL
 #define OPTION_VAL_4_GL NULL
 #define OPTION_VAL_8_GL NULL
 #define OPTION_VAL_16_O24_GL NULL
 #define RPCS3_MSAA_LABEL_GL NULL
 #define RPCS3_MSAA_INFO_0_GL NULL
-#define RPCS3_SHADER_PRECISION_LABEL_GL NULL
-#define RPCS3_SHADER_PRECISION_INFO_0_GL NULL
+#define RPCS3_SHADER_QUALITY_LABEL_GL NULL
+#define RPCS3_SHADER_QUALITY_INFO_0_GL NULL
 #define OPTION_VAL_LOW_GL NULL
-#define OPTION_VAL_NORMAL_GL NULL
 #define OPTION_VAL_HIGH_GL NULL
+#define OPTION_VAL_ULTRA_O26_GL NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_GL NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_GL NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_GL NULL
@@ -13728,6 +14304,14 @@ struct retro_core_options_v2 options_ga = {
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_GL NULL
 #define RPCS3_PPU_SET_FPCC_LABEL_GL NULL
 #define RPCS3_PPU_SET_FPCC_INFO_0_GL NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_GL NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_GL NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_GL NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_GL NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_GL NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_GL NULL
+#define RPCS3_VBLANK_NTSC_LABEL_GL NULL
+#define RPCS3_VBLANK_NTSC_INFO_0_GL NULL
 #define RPCS3_LANGUAGE_LABEL_GL NULL
 #define RPCS3_LANGUAGE_INFO_0_GL NULL
 #define OPTION_VAL_ENGLISH_GL NULL
@@ -13934,7 +14518,7 @@ struct retro_core_option_v2_definition option_defs_gl[] = {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_GL, NULL,
         RPCS3_FRAME_LIMIT_INFO_0_GL,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_GL}, {"off", "Off"}, {"30", OPTION_VAL_30_GL}, {"50", OPTION_VAL_50_O21_GL}, {"60", OPTION_VAL_60_GL}, {"120", OPTION_VAL_120_O21_GL}, {"144", OPTION_VAL_144_GL}, {"240", OPTION_VAL_240_O21_GL}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_GL}, {"ps3", OPTION_VAL_PS3_GL}, {"off", "Off"}, {"30", OPTION_VAL_30_GL}, {"50", OPTION_VAL_50_O21_GL}, {"60", OPTION_VAL_60_GL}, {"120", OPTION_VAL_120_O21_GL}, {"144", OPTION_VAL_144_GL}, {"240", OPTION_VAL_240_O21_GL}, {NULL, NULL} },
         "auto"
     },
     {
@@ -13955,22 +14539,22 @@ struct retro_core_option_v2_definition option_defs_gl[] = {
         "rpcs3_anisotropic_filter", RPCS3_ANISOTROPIC_FILTER_LABEL_GL, NULL,
         RPCS3_ANISOTROPIC_FILTER_INFO_0_GL,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_GL}, {"1", OPTION_VAL_1_O24_GL}, {"2", OPTION_VAL_2_GL}, {"4", OPTION_VAL_4_GL}, {"8", OPTION_VAL_8_GL}, {"16", OPTION_VAL_16_O24_GL}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_GL}, {"2", OPTION_VAL_2_GL}, {"4", OPTION_VAL_4_GL}, {"8", OPTION_VAL_8_GL}, {"16", OPTION_VAL_16_O24_GL}, {NULL, NULL} },
         "auto"
     },
     {
         "rpcs3_msaa", RPCS3_MSAA_LABEL_GL, NULL,
         RPCS3_MSAA_INFO_0_GL,
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", OPTION_VAL_2_GL}, {"4", OPTION_VAL_4_GL}, {"8", OPTION_VAL_8_GL}, {"16", OPTION_VAL_16_O24_GL}, {NULL, NULL} },
-        "disabled"
+        { {"auto", OPTION_VAL_0_GL}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", RPCS3_SHADER_PRECISION_LABEL_GL, NULL,
-        RPCS3_SHADER_PRECISION_INFO_0_GL,
+        "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_GL, NULL,
+        RPCS3_SHADER_QUALITY_INFO_0_GL,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_GL}, {"normal", OPTION_VAL_NORMAL_GL}, {"high", OPTION_VAL_HIGH_GL}, {NULL, NULL} },
-        "normal"
+        { {"low", OPTION_VAL_LOW_GL}, {"high", OPTION_VAL_HIGH_GL}, {"ultra", OPTION_VAL_ULTRA_O26_GL}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", RPCS3_WRITE_COLOR_BUFFERS_LABEL_GL, NULL,
@@ -14237,6 +14821,34 @@ struct retro_core_option_v2_definition option_defs_gl[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    {
+        "rpcs3_accurate_rsx_reservation", RPCS3_ACCURATE_RSX_RESERVATION_LABEL_GL, NULL,
+        RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_GL,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_GL, NULL,
+        RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_GL,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", RPCS3_DISABLE_ZCULL_QUERIES_LABEL_GL, NULL,
+        RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_GL,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", RPCS3_VBLANK_NTSC_LABEL_GL, NULL,
+        RPCS3_VBLANK_NTSC_INFO_0_GL,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
 
     // ==================== CORE OPTIONS ====================
     {
@@ -14420,6 +15032,7 @@ struct retro_core_options_v2 options_gl = {
 #define OPTION_VAL_1024_HE NULL
 #define RPCS3_FRAME_LIMIT_LABEL_HE NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_HE NULL
+#define OPTION_VAL_PS3_HE NULL
 #define OPTION_VAL_30_HE NULL
 #define OPTION_VAL_50_O21_HE NULL
 #define OPTION_VAL_60_HE NULL
@@ -14437,18 +15050,17 @@ struct retro_core_options_v2 options_gl = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_HE NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_HE NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_HE NULL
-#define OPTION_VAL_1_O24_HE NULL
 #define OPTION_VAL_2_HE NULL
 #define OPTION_VAL_4_HE NULL
 #define OPTION_VAL_8_HE NULL
 #define OPTION_VAL_16_O24_HE NULL
 #define RPCS3_MSAA_LABEL_HE NULL
 #define RPCS3_MSAA_INFO_0_HE NULL
-#define RPCS3_SHADER_PRECISION_LABEL_HE NULL
-#define RPCS3_SHADER_PRECISION_INFO_0_HE NULL
+#define RPCS3_SHADER_QUALITY_LABEL_HE NULL
+#define RPCS3_SHADER_QUALITY_INFO_0_HE NULL
 #define OPTION_VAL_LOW_HE NULL
-#define OPTION_VAL_NORMAL_HE NULL
 #define OPTION_VAL_HIGH_HE NULL
+#define OPTION_VAL_ULTRA_O26_HE NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_HE NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_HE NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_HE NULL
@@ -14568,6 +15180,14 @@ struct retro_core_options_v2 options_gl = {
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_HE NULL
 #define RPCS3_PPU_SET_FPCC_LABEL_HE NULL
 #define RPCS3_PPU_SET_FPCC_INFO_0_HE NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_HE NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_HE NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_HE NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_HE NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_HE NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_HE NULL
+#define RPCS3_VBLANK_NTSC_LABEL_HE NULL
+#define RPCS3_VBLANK_NTSC_INFO_0_HE NULL
 #define RPCS3_LANGUAGE_LABEL_HE NULL
 #define RPCS3_LANGUAGE_INFO_0_HE NULL
 #define OPTION_VAL_ENGLISH_HE NULL
@@ -14774,7 +15394,7 @@ struct retro_core_option_v2_definition option_defs_he[] = {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_HE, NULL,
         RPCS3_FRAME_LIMIT_INFO_0_HE,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_HE}, {"off", "Off"}, {"30", OPTION_VAL_30_HE}, {"50", OPTION_VAL_50_O21_HE}, {"60", OPTION_VAL_60_HE}, {"120", OPTION_VAL_120_O21_HE}, {"144", OPTION_VAL_144_HE}, {"240", OPTION_VAL_240_O21_HE}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_HE}, {"ps3", OPTION_VAL_PS3_HE}, {"off", "Off"}, {"30", OPTION_VAL_30_HE}, {"50", OPTION_VAL_50_O21_HE}, {"60", OPTION_VAL_60_HE}, {"120", OPTION_VAL_120_O21_HE}, {"144", OPTION_VAL_144_HE}, {"240", OPTION_VAL_240_O21_HE}, {NULL, NULL} },
         "auto"
     },
     {
@@ -14795,22 +15415,22 @@ struct retro_core_option_v2_definition option_defs_he[] = {
         "rpcs3_anisotropic_filter", RPCS3_ANISOTROPIC_FILTER_LABEL_HE, NULL,
         RPCS3_ANISOTROPIC_FILTER_INFO_0_HE,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_HE}, {"1", OPTION_VAL_1_O24_HE}, {"2", OPTION_VAL_2_HE}, {"4", OPTION_VAL_4_HE}, {"8", OPTION_VAL_8_HE}, {"16", OPTION_VAL_16_O24_HE}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_HE}, {"2", OPTION_VAL_2_HE}, {"4", OPTION_VAL_4_HE}, {"8", OPTION_VAL_8_HE}, {"16", OPTION_VAL_16_O24_HE}, {NULL, NULL} },
         "auto"
     },
     {
         "rpcs3_msaa", RPCS3_MSAA_LABEL_HE, NULL,
         RPCS3_MSAA_INFO_0_HE,
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", OPTION_VAL_2_HE}, {"4", OPTION_VAL_4_HE}, {"8", OPTION_VAL_8_HE}, {"16", OPTION_VAL_16_O24_HE}, {NULL, NULL} },
-        "disabled"
+        { {"auto", OPTION_VAL_0_HE}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", RPCS3_SHADER_PRECISION_LABEL_HE, NULL,
-        RPCS3_SHADER_PRECISION_INFO_0_HE,
+        "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_HE, NULL,
+        RPCS3_SHADER_QUALITY_INFO_0_HE,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_HE}, {"normal", OPTION_VAL_NORMAL_HE}, {"high", OPTION_VAL_HIGH_HE}, {NULL, NULL} },
-        "normal"
+        { {"low", OPTION_VAL_LOW_HE}, {"high", OPTION_VAL_HIGH_HE}, {"ultra", OPTION_VAL_ULTRA_O26_HE}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", RPCS3_WRITE_COLOR_BUFFERS_LABEL_HE, NULL,
@@ -15077,6 +15697,34 @@ struct retro_core_option_v2_definition option_defs_he[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    {
+        "rpcs3_accurate_rsx_reservation", RPCS3_ACCURATE_RSX_RESERVATION_LABEL_HE, NULL,
+        RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_HE,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_HE, NULL,
+        RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_HE,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", RPCS3_DISABLE_ZCULL_QUERIES_LABEL_HE, NULL,
+        RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_HE,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", RPCS3_VBLANK_NTSC_LABEL_HE, NULL,
+        RPCS3_VBLANK_NTSC_INFO_0_HE,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
 
     // ==================== CORE OPTIONS ====================
     {
@@ -15260,6 +15908,7 @@ struct retro_core_options_v2 options_he = {
 #define OPTION_VAL_1024_HU NULL
 #define RPCS3_FRAME_LIMIT_LABEL_HU NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_HU NULL
+#define OPTION_VAL_PS3_HU NULL
 #define OPTION_VAL_30_HU NULL
 #define OPTION_VAL_50_O21_HU NULL
 #define OPTION_VAL_60_HU NULL
@@ -15277,18 +15926,17 @@ struct retro_core_options_v2 options_he = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_HU NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_HU NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_HU NULL
-#define OPTION_VAL_1_O24_HU NULL
 #define OPTION_VAL_2_HU NULL
 #define OPTION_VAL_4_HU NULL
 #define OPTION_VAL_8_HU NULL
 #define OPTION_VAL_16_O24_HU NULL
 #define RPCS3_MSAA_LABEL_HU NULL
 #define RPCS3_MSAA_INFO_0_HU NULL
-#define RPCS3_SHADER_PRECISION_LABEL_HU NULL
-#define RPCS3_SHADER_PRECISION_INFO_0_HU NULL
+#define RPCS3_SHADER_QUALITY_LABEL_HU NULL
+#define RPCS3_SHADER_QUALITY_INFO_0_HU NULL
 #define OPTION_VAL_LOW_HU NULL
-#define OPTION_VAL_NORMAL_HU NULL
 #define OPTION_VAL_HIGH_HU NULL
+#define OPTION_VAL_ULTRA_O26_HU NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_HU NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_HU NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_HU NULL
@@ -15408,6 +16056,14 @@ struct retro_core_options_v2 options_he = {
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_HU NULL
 #define RPCS3_PPU_SET_FPCC_LABEL_HU NULL
 #define RPCS3_PPU_SET_FPCC_INFO_0_HU NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_HU NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_HU NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_HU NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_HU NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_HU NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_HU NULL
+#define RPCS3_VBLANK_NTSC_LABEL_HU NULL
+#define RPCS3_VBLANK_NTSC_INFO_0_HU NULL
 #define RPCS3_LANGUAGE_LABEL_HU NULL
 #define RPCS3_LANGUAGE_INFO_0_HU NULL
 #define OPTION_VAL_ENGLISH_HU NULL
@@ -15614,7 +16270,7 @@ struct retro_core_option_v2_definition option_defs_hu[] = {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_HU, NULL,
         RPCS3_FRAME_LIMIT_INFO_0_HU,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_HU}, {"off", "Off"}, {"30", OPTION_VAL_30_HU}, {"50", OPTION_VAL_50_O21_HU}, {"60", OPTION_VAL_60_HU}, {"120", OPTION_VAL_120_O21_HU}, {"144", OPTION_VAL_144_HU}, {"240", OPTION_VAL_240_O21_HU}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_HU}, {"ps3", OPTION_VAL_PS3_HU}, {"off", "Off"}, {"30", OPTION_VAL_30_HU}, {"50", OPTION_VAL_50_O21_HU}, {"60", OPTION_VAL_60_HU}, {"120", OPTION_VAL_120_O21_HU}, {"144", OPTION_VAL_144_HU}, {"240", OPTION_VAL_240_O21_HU}, {NULL, NULL} },
         "auto"
     },
     {
@@ -15635,22 +16291,22 @@ struct retro_core_option_v2_definition option_defs_hu[] = {
         "rpcs3_anisotropic_filter", RPCS3_ANISOTROPIC_FILTER_LABEL_HU, NULL,
         RPCS3_ANISOTROPIC_FILTER_INFO_0_HU,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_HU}, {"1", OPTION_VAL_1_O24_HU}, {"2", OPTION_VAL_2_HU}, {"4", OPTION_VAL_4_HU}, {"8", OPTION_VAL_8_HU}, {"16", OPTION_VAL_16_O24_HU}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_HU}, {"2", OPTION_VAL_2_HU}, {"4", OPTION_VAL_4_HU}, {"8", OPTION_VAL_8_HU}, {"16", OPTION_VAL_16_O24_HU}, {NULL, NULL} },
         "auto"
     },
     {
         "rpcs3_msaa", RPCS3_MSAA_LABEL_HU, NULL,
         RPCS3_MSAA_INFO_0_HU,
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", OPTION_VAL_2_HU}, {"4", OPTION_VAL_4_HU}, {"8", OPTION_VAL_8_HU}, {"16", OPTION_VAL_16_O24_HU}, {NULL, NULL} },
-        "disabled"
+        { {"auto", OPTION_VAL_0_HU}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", RPCS3_SHADER_PRECISION_LABEL_HU, NULL,
-        RPCS3_SHADER_PRECISION_INFO_0_HU,
+        "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_HU, NULL,
+        RPCS3_SHADER_QUALITY_INFO_0_HU,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_HU}, {"normal", OPTION_VAL_NORMAL_HU}, {"high", OPTION_VAL_HIGH_HU}, {NULL, NULL} },
-        "normal"
+        { {"low", OPTION_VAL_LOW_HU}, {"high", OPTION_VAL_HIGH_HU}, {"ultra", OPTION_VAL_ULTRA_O26_HU}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", RPCS3_WRITE_COLOR_BUFFERS_LABEL_HU, NULL,
@@ -15917,6 +16573,34 @@ struct retro_core_option_v2_definition option_defs_hu[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    {
+        "rpcs3_accurate_rsx_reservation", RPCS3_ACCURATE_RSX_RESERVATION_LABEL_HU, NULL,
+        RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_HU,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_HU, NULL,
+        RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_HU,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", RPCS3_DISABLE_ZCULL_QUERIES_LABEL_HU, NULL,
+        RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_HU,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", RPCS3_VBLANK_NTSC_LABEL_HU, NULL,
+        RPCS3_VBLANK_NTSC_INFO_0_HU,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
 
     // ==================== CORE OPTIONS ====================
     {
@@ -16100,6 +16784,7 @@ struct retro_core_options_v2 options_hu = {
 #define OPTION_VAL_1024_ID NULL
 #define RPCS3_FRAME_LIMIT_LABEL_ID NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_ID NULL
+#define OPTION_VAL_PS3_ID NULL
 #define OPTION_VAL_30_ID NULL
 #define OPTION_VAL_50_O21_ID NULL
 #define OPTION_VAL_60_ID NULL
@@ -16117,18 +16802,17 @@ struct retro_core_options_v2 options_hu = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_ID NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_ID NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_ID NULL
-#define OPTION_VAL_1_O24_ID NULL
 #define OPTION_VAL_2_ID NULL
 #define OPTION_VAL_4_ID NULL
 #define OPTION_VAL_8_ID NULL
 #define OPTION_VAL_16_O24_ID NULL
 #define RPCS3_MSAA_LABEL_ID NULL
 #define RPCS3_MSAA_INFO_0_ID NULL
-#define RPCS3_SHADER_PRECISION_LABEL_ID NULL
-#define RPCS3_SHADER_PRECISION_INFO_0_ID NULL
+#define RPCS3_SHADER_QUALITY_LABEL_ID NULL
+#define RPCS3_SHADER_QUALITY_INFO_0_ID NULL
 #define OPTION_VAL_LOW_ID NULL
-#define OPTION_VAL_NORMAL_ID NULL
 #define OPTION_VAL_HIGH_ID NULL
+#define OPTION_VAL_ULTRA_O26_ID NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_ID NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_ID NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_ID NULL
@@ -16248,6 +16932,14 @@ struct retro_core_options_v2 options_hu = {
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_ID NULL
 #define RPCS3_PPU_SET_FPCC_LABEL_ID NULL
 #define RPCS3_PPU_SET_FPCC_INFO_0_ID NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_ID NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_ID NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_ID NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_ID NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_ID NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_ID NULL
+#define RPCS3_VBLANK_NTSC_LABEL_ID NULL
+#define RPCS3_VBLANK_NTSC_INFO_0_ID NULL
 #define RPCS3_LANGUAGE_LABEL_ID NULL
 #define RPCS3_LANGUAGE_INFO_0_ID NULL
 #define OPTION_VAL_ENGLISH_ID NULL
@@ -16454,7 +17146,7 @@ struct retro_core_option_v2_definition option_defs_id[] = {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_ID, NULL,
         RPCS3_FRAME_LIMIT_INFO_0_ID,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_ID}, {"off", "Off"}, {"30", OPTION_VAL_30_ID}, {"50", OPTION_VAL_50_O21_ID}, {"60", OPTION_VAL_60_ID}, {"120", OPTION_VAL_120_O21_ID}, {"144", OPTION_VAL_144_ID}, {"240", OPTION_VAL_240_O21_ID}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_ID}, {"ps3", OPTION_VAL_PS3_ID}, {"off", "Off"}, {"30", OPTION_VAL_30_ID}, {"50", OPTION_VAL_50_O21_ID}, {"60", OPTION_VAL_60_ID}, {"120", OPTION_VAL_120_O21_ID}, {"144", OPTION_VAL_144_ID}, {"240", OPTION_VAL_240_O21_ID}, {NULL, NULL} },
         "auto"
     },
     {
@@ -16475,22 +17167,22 @@ struct retro_core_option_v2_definition option_defs_id[] = {
         "rpcs3_anisotropic_filter", RPCS3_ANISOTROPIC_FILTER_LABEL_ID, NULL,
         RPCS3_ANISOTROPIC_FILTER_INFO_0_ID,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_ID}, {"1", OPTION_VAL_1_O24_ID}, {"2", OPTION_VAL_2_ID}, {"4", OPTION_VAL_4_ID}, {"8", OPTION_VAL_8_ID}, {"16", OPTION_VAL_16_O24_ID}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_ID}, {"2", OPTION_VAL_2_ID}, {"4", OPTION_VAL_4_ID}, {"8", OPTION_VAL_8_ID}, {"16", OPTION_VAL_16_O24_ID}, {NULL, NULL} },
         "auto"
     },
     {
         "rpcs3_msaa", RPCS3_MSAA_LABEL_ID, NULL,
         RPCS3_MSAA_INFO_0_ID,
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", OPTION_VAL_2_ID}, {"4", OPTION_VAL_4_ID}, {"8", OPTION_VAL_8_ID}, {"16", OPTION_VAL_16_O24_ID}, {NULL, NULL} },
-        "disabled"
+        { {"auto", OPTION_VAL_0_ID}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", RPCS3_SHADER_PRECISION_LABEL_ID, NULL,
-        RPCS3_SHADER_PRECISION_INFO_0_ID,
+        "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_ID, NULL,
+        RPCS3_SHADER_QUALITY_INFO_0_ID,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_ID}, {"normal", OPTION_VAL_NORMAL_ID}, {"high", OPTION_VAL_HIGH_ID}, {NULL, NULL} },
-        "normal"
+        { {"low", OPTION_VAL_LOW_ID}, {"high", OPTION_VAL_HIGH_ID}, {"ultra", OPTION_VAL_ULTRA_O26_ID}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", RPCS3_WRITE_COLOR_BUFFERS_LABEL_ID, NULL,
@@ -16757,6 +17449,34 @@ struct retro_core_option_v2_definition option_defs_id[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    {
+        "rpcs3_accurate_rsx_reservation", RPCS3_ACCURATE_RSX_RESERVATION_LABEL_ID, NULL,
+        RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_ID,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_ID, NULL,
+        RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_ID,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", RPCS3_DISABLE_ZCULL_QUERIES_LABEL_ID, NULL,
+        RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_ID,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", RPCS3_VBLANK_NTSC_LABEL_ID, NULL,
+        RPCS3_VBLANK_NTSC_INFO_0_ID,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
 
     // ==================== CORE OPTIONS ====================
     {
@@ -16940,6 +17660,7 @@ struct retro_core_options_v2 options_id = {
 #define OPTION_VAL_1024_IT NULL
 #define RPCS3_FRAME_LIMIT_LABEL_IT NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_IT NULL
+#define OPTION_VAL_PS3_IT NULL
 #define OPTION_VAL_30_IT NULL
 #define OPTION_VAL_50_O21_IT NULL
 #define OPTION_VAL_60_IT NULL
@@ -16957,18 +17678,17 @@ struct retro_core_options_v2 options_id = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_IT NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_IT NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_IT NULL
-#define OPTION_VAL_1_O24_IT NULL
 #define OPTION_VAL_2_IT NULL
 #define OPTION_VAL_4_IT NULL
 #define OPTION_VAL_8_IT NULL
 #define OPTION_VAL_16_O24_IT NULL
 #define RPCS3_MSAA_LABEL_IT NULL
 #define RPCS3_MSAA_INFO_0_IT NULL
-#define RPCS3_SHADER_PRECISION_LABEL_IT NULL
-#define RPCS3_SHADER_PRECISION_INFO_0_IT NULL
+#define RPCS3_SHADER_QUALITY_LABEL_IT NULL
+#define RPCS3_SHADER_QUALITY_INFO_0_IT NULL
 #define OPTION_VAL_LOW_IT NULL
-#define OPTION_VAL_NORMAL_IT NULL
 #define OPTION_VAL_HIGH_IT NULL
+#define OPTION_VAL_ULTRA_O26_IT NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_IT NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_IT NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_IT NULL
@@ -17088,6 +17808,14 @@ struct retro_core_options_v2 options_id = {
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_IT NULL
 #define RPCS3_PPU_SET_FPCC_LABEL_IT NULL
 #define RPCS3_PPU_SET_FPCC_INFO_0_IT NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_IT NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_IT NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_IT NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_IT NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_IT NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_IT NULL
+#define RPCS3_VBLANK_NTSC_LABEL_IT NULL
+#define RPCS3_VBLANK_NTSC_INFO_0_IT NULL
 #define RPCS3_LANGUAGE_LABEL_IT NULL
 #define RPCS3_LANGUAGE_INFO_0_IT NULL
 #define OPTION_VAL_ENGLISH_IT NULL
@@ -17294,7 +18022,7 @@ struct retro_core_option_v2_definition option_defs_it[] = {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_IT, NULL,
         RPCS3_FRAME_LIMIT_INFO_0_IT,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_IT}, {"off", "Off"}, {"30", OPTION_VAL_30_IT}, {"50", OPTION_VAL_50_O21_IT}, {"60", OPTION_VAL_60_IT}, {"120", OPTION_VAL_120_O21_IT}, {"144", OPTION_VAL_144_IT}, {"240", OPTION_VAL_240_O21_IT}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_IT}, {"ps3", OPTION_VAL_PS3_IT}, {"off", "Off"}, {"30", OPTION_VAL_30_IT}, {"50", OPTION_VAL_50_O21_IT}, {"60", OPTION_VAL_60_IT}, {"120", OPTION_VAL_120_O21_IT}, {"144", OPTION_VAL_144_IT}, {"240", OPTION_VAL_240_O21_IT}, {NULL, NULL} },
         "auto"
     },
     {
@@ -17315,22 +18043,22 @@ struct retro_core_option_v2_definition option_defs_it[] = {
         "rpcs3_anisotropic_filter", RPCS3_ANISOTROPIC_FILTER_LABEL_IT, NULL,
         RPCS3_ANISOTROPIC_FILTER_INFO_0_IT,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_IT}, {"1", OPTION_VAL_1_O24_IT}, {"2", OPTION_VAL_2_IT}, {"4", OPTION_VAL_4_IT}, {"8", OPTION_VAL_8_IT}, {"16", OPTION_VAL_16_O24_IT}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_IT}, {"2", OPTION_VAL_2_IT}, {"4", OPTION_VAL_4_IT}, {"8", OPTION_VAL_8_IT}, {"16", OPTION_VAL_16_O24_IT}, {NULL, NULL} },
         "auto"
     },
     {
         "rpcs3_msaa", RPCS3_MSAA_LABEL_IT, NULL,
         RPCS3_MSAA_INFO_0_IT,
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", OPTION_VAL_2_IT}, {"4", OPTION_VAL_4_IT}, {"8", OPTION_VAL_8_IT}, {"16", OPTION_VAL_16_O24_IT}, {NULL, NULL} },
-        "disabled"
+        { {"auto", OPTION_VAL_0_IT}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", RPCS3_SHADER_PRECISION_LABEL_IT, NULL,
-        RPCS3_SHADER_PRECISION_INFO_0_IT,
+        "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_IT, NULL,
+        RPCS3_SHADER_QUALITY_INFO_0_IT,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_IT}, {"normal", OPTION_VAL_NORMAL_IT}, {"high", OPTION_VAL_HIGH_IT}, {NULL, NULL} },
-        "normal"
+        { {"low", OPTION_VAL_LOW_IT}, {"high", OPTION_VAL_HIGH_IT}, {"ultra", OPTION_VAL_ULTRA_O26_IT}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", RPCS3_WRITE_COLOR_BUFFERS_LABEL_IT, NULL,
@@ -17597,6 +18325,34 @@ struct retro_core_option_v2_definition option_defs_it[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    {
+        "rpcs3_accurate_rsx_reservation", RPCS3_ACCURATE_RSX_RESERVATION_LABEL_IT, NULL,
+        RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_IT,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_IT, NULL,
+        RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_IT,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", RPCS3_DISABLE_ZCULL_QUERIES_LABEL_IT, NULL,
+        RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_IT,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", RPCS3_VBLANK_NTSC_LABEL_IT, NULL,
+        RPCS3_VBLANK_NTSC_INFO_0_IT,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
 
     // ==================== CORE OPTIONS ====================
     {
@@ -17780,6 +18536,7 @@ struct retro_core_options_v2 options_it = {
 #define OPTION_VAL_1024_JA NULL
 #define RPCS3_FRAME_LIMIT_LABEL_JA NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_JA NULL
+#define OPTION_VAL_PS3_JA NULL
 #define OPTION_VAL_30_JA NULL
 #define OPTION_VAL_50_O21_JA NULL
 #define OPTION_VAL_60_JA NULL
@@ -17797,18 +18554,17 @@ struct retro_core_options_v2 options_it = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_JA NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_JA NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_JA NULL
-#define OPTION_VAL_1_O24_JA NULL
 #define OPTION_VAL_2_JA NULL
 #define OPTION_VAL_4_JA NULL
 #define OPTION_VAL_8_JA NULL
 #define OPTION_VAL_16_O24_JA NULL
 #define RPCS3_MSAA_LABEL_JA NULL
 #define RPCS3_MSAA_INFO_0_JA NULL
-#define RPCS3_SHADER_PRECISION_LABEL_JA NULL
-#define RPCS3_SHADER_PRECISION_INFO_0_JA NULL
+#define RPCS3_SHADER_QUALITY_LABEL_JA NULL
+#define RPCS3_SHADER_QUALITY_INFO_0_JA NULL
 #define OPTION_VAL_LOW_JA NULL
-#define OPTION_VAL_NORMAL_JA NULL
 #define OPTION_VAL_HIGH_JA NULL
+#define OPTION_VAL_ULTRA_O26_JA NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_JA NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_JA NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_JA NULL
@@ -17928,6 +18684,14 @@ struct retro_core_options_v2 options_it = {
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_JA NULL
 #define RPCS3_PPU_SET_FPCC_LABEL_JA NULL
 #define RPCS3_PPU_SET_FPCC_INFO_0_JA NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_JA NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_JA NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_JA NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_JA NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_JA NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_JA NULL
+#define RPCS3_VBLANK_NTSC_LABEL_JA NULL
+#define RPCS3_VBLANK_NTSC_INFO_0_JA NULL
 #define RPCS3_LANGUAGE_LABEL_JA NULL
 #define RPCS3_LANGUAGE_INFO_0_JA NULL
 #define OPTION_VAL_ENGLISH_JA NULL
@@ -18134,7 +18898,7 @@ struct retro_core_option_v2_definition option_defs_ja[] = {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_JA, NULL,
         RPCS3_FRAME_LIMIT_INFO_0_JA,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_JA}, {"off", "Off"}, {"30", OPTION_VAL_30_JA}, {"50", OPTION_VAL_50_O21_JA}, {"60", OPTION_VAL_60_JA}, {"120", OPTION_VAL_120_O21_JA}, {"144", OPTION_VAL_144_JA}, {"240", OPTION_VAL_240_O21_JA}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_JA}, {"ps3", OPTION_VAL_PS3_JA}, {"off", "Off"}, {"30", OPTION_VAL_30_JA}, {"50", OPTION_VAL_50_O21_JA}, {"60", OPTION_VAL_60_JA}, {"120", OPTION_VAL_120_O21_JA}, {"144", OPTION_VAL_144_JA}, {"240", OPTION_VAL_240_O21_JA}, {NULL, NULL} },
         "auto"
     },
     {
@@ -18155,22 +18919,22 @@ struct retro_core_option_v2_definition option_defs_ja[] = {
         "rpcs3_anisotropic_filter", RPCS3_ANISOTROPIC_FILTER_LABEL_JA, NULL,
         RPCS3_ANISOTROPIC_FILTER_INFO_0_JA,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_JA}, {"1", OPTION_VAL_1_O24_JA}, {"2", OPTION_VAL_2_JA}, {"4", OPTION_VAL_4_JA}, {"8", OPTION_VAL_8_JA}, {"16", OPTION_VAL_16_O24_JA}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_JA}, {"2", OPTION_VAL_2_JA}, {"4", OPTION_VAL_4_JA}, {"8", OPTION_VAL_8_JA}, {"16", OPTION_VAL_16_O24_JA}, {NULL, NULL} },
         "auto"
     },
     {
         "rpcs3_msaa", RPCS3_MSAA_LABEL_JA, NULL,
         RPCS3_MSAA_INFO_0_JA,
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", OPTION_VAL_2_JA}, {"4", OPTION_VAL_4_JA}, {"8", OPTION_VAL_8_JA}, {"16", OPTION_VAL_16_O24_JA}, {NULL, NULL} },
-        "disabled"
+        { {"auto", OPTION_VAL_0_JA}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", RPCS3_SHADER_PRECISION_LABEL_JA, NULL,
-        RPCS3_SHADER_PRECISION_INFO_0_JA,
+        "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_JA, NULL,
+        RPCS3_SHADER_QUALITY_INFO_0_JA,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_JA}, {"normal", OPTION_VAL_NORMAL_JA}, {"high", OPTION_VAL_HIGH_JA}, {NULL, NULL} },
-        "normal"
+        { {"low", OPTION_VAL_LOW_JA}, {"high", OPTION_VAL_HIGH_JA}, {"ultra", OPTION_VAL_ULTRA_O26_JA}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", RPCS3_WRITE_COLOR_BUFFERS_LABEL_JA, NULL,
@@ -18437,6 +19201,34 @@ struct retro_core_option_v2_definition option_defs_ja[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    {
+        "rpcs3_accurate_rsx_reservation", RPCS3_ACCURATE_RSX_RESERVATION_LABEL_JA, NULL,
+        RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_JA,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_JA, NULL,
+        RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_JA,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", RPCS3_DISABLE_ZCULL_QUERIES_LABEL_JA, NULL,
+        RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_JA,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", RPCS3_VBLANK_NTSC_LABEL_JA, NULL,
+        RPCS3_VBLANK_NTSC_INFO_0_JA,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
 
     // ==================== CORE OPTIONS ====================
     {
@@ -18620,6 +19412,7 @@ struct retro_core_options_v2 options_ja = {
 #define OPTION_VAL_1024_KO NULL
 #define RPCS3_FRAME_LIMIT_LABEL_KO NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_KO NULL
+#define OPTION_VAL_PS3_KO NULL
 #define OPTION_VAL_30_KO NULL
 #define OPTION_VAL_50_O21_KO NULL
 #define OPTION_VAL_60_KO NULL
@@ -18637,18 +19430,17 @@ struct retro_core_options_v2 options_ja = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_KO NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_KO NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_KO NULL
-#define OPTION_VAL_1_O24_KO NULL
 #define OPTION_VAL_2_KO NULL
 #define OPTION_VAL_4_KO NULL
 #define OPTION_VAL_8_KO NULL
 #define OPTION_VAL_16_O24_KO NULL
 #define RPCS3_MSAA_LABEL_KO NULL
 #define RPCS3_MSAA_INFO_0_KO NULL
-#define RPCS3_SHADER_PRECISION_LABEL_KO NULL
-#define RPCS3_SHADER_PRECISION_INFO_0_KO NULL
+#define RPCS3_SHADER_QUALITY_LABEL_KO NULL
+#define RPCS3_SHADER_QUALITY_INFO_0_KO NULL
 #define OPTION_VAL_LOW_KO NULL
-#define OPTION_VAL_NORMAL_KO NULL
 #define OPTION_VAL_HIGH_KO NULL
+#define OPTION_VAL_ULTRA_O26_KO NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_KO NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_KO NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_KO NULL
@@ -18768,6 +19560,14 @@ struct retro_core_options_v2 options_ja = {
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_KO NULL
 #define RPCS3_PPU_SET_FPCC_LABEL_KO NULL
 #define RPCS3_PPU_SET_FPCC_INFO_0_KO NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_KO NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_KO NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_KO NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_KO NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_KO NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_KO NULL
+#define RPCS3_VBLANK_NTSC_LABEL_KO NULL
+#define RPCS3_VBLANK_NTSC_INFO_0_KO NULL
 #define RPCS3_LANGUAGE_LABEL_KO NULL
 #define RPCS3_LANGUAGE_INFO_0_KO NULL
 #define OPTION_VAL_ENGLISH_KO NULL
@@ -18974,7 +19774,7 @@ struct retro_core_option_v2_definition option_defs_ko[] = {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_KO, NULL,
         RPCS3_FRAME_LIMIT_INFO_0_KO,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_KO}, {"off", "Off"}, {"30", OPTION_VAL_30_KO}, {"50", OPTION_VAL_50_O21_KO}, {"60", OPTION_VAL_60_KO}, {"120", OPTION_VAL_120_O21_KO}, {"144", OPTION_VAL_144_KO}, {"240", OPTION_VAL_240_O21_KO}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_KO}, {"ps3", OPTION_VAL_PS3_KO}, {"off", "Off"}, {"30", OPTION_VAL_30_KO}, {"50", OPTION_VAL_50_O21_KO}, {"60", OPTION_VAL_60_KO}, {"120", OPTION_VAL_120_O21_KO}, {"144", OPTION_VAL_144_KO}, {"240", OPTION_VAL_240_O21_KO}, {NULL, NULL} },
         "auto"
     },
     {
@@ -18995,22 +19795,22 @@ struct retro_core_option_v2_definition option_defs_ko[] = {
         "rpcs3_anisotropic_filter", RPCS3_ANISOTROPIC_FILTER_LABEL_KO, NULL,
         RPCS3_ANISOTROPIC_FILTER_INFO_0_KO,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_KO}, {"1", OPTION_VAL_1_O24_KO}, {"2", OPTION_VAL_2_KO}, {"4", OPTION_VAL_4_KO}, {"8", OPTION_VAL_8_KO}, {"16", OPTION_VAL_16_O24_KO}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_KO}, {"2", OPTION_VAL_2_KO}, {"4", OPTION_VAL_4_KO}, {"8", OPTION_VAL_8_KO}, {"16", OPTION_VAL_16_O24_KO}, {NULL, NULL} },
         "auto"
     },
     {
         "rpcs3_msaa", RPCS3_MSAA_LABEL_KO, NULL,
         RPCS3_MSAA_INFO_0_KO,
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", OPTION_VAL_2_KO}, {"4", OPTION_VAL_4_KO}, {"8", OPTION_VAL_8_KO}, {"16", OPTION_VAL_16_O24_KO}, {NULL, NULL} },
-        "disabled"
+        { {"auto", OPTION_VAL_0_KO}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", RPCS3_SHADER_PRECISION_LABEL_KO, NULL,
-        RPCS3_SHADER_PRECISION_INFO_0_KO,
+        "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_KO, NULL,
+        RPCS3_SHADER_QUALITY_INFO_0_KO,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_KO}, {"normal", OPTION_VAL_NORMAL_KO}, {"high", OPTION_VAL_HIGH_KO}, {NULL, NULL} },
-        "normal"
+        { {"low", OPTION_VAL_LOW_KO}, {"high", OPTION_VAL_HIGH_KO}, {"ultra", OPTION_VAL_ULTRA_O26_KO}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", RPCS3_WRITE_COLOR_BUFFERS_LABEL_KO, NULL,
@@ -19277,6 +20077,34 @@ struct retro_core_option_v2_definition option_defs_ko[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    {
+        "rpcs3_accurate_rsx_reservation", RPCS3_ACCURATE_RSX_RESERVATION_LABEL_KO, NULL,
+        RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_KO,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_KO, NULL,
+        RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_KO,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", RPCS3_DISABLE_ZCULL_QUERIES_LABEL_KO, NULL,
+        RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_KO,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", RPCS3_VBLANK_NTSC_LABEL_KO, NULL,
+        RPCS3_VBLANK_NTSC_INFO_0_KO,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
 
     // ==================== CORE OPTIONS ====================
     {
@@ -19460,6 +20288,7 @@ struct retro_core_options_v2 options_ko = {
 #define OPTION_VAL_1024_NL NULL
 #define RPCS3_FRAME_LIMIT_LABEL_NL NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_NL NULL
+#define OPTION_VAL_PS3_NL NULL
 #define OPTION_VAL_30_NL NULL
 #define OPTION_VAL_50_O21_NL NULL
 #define OPTION_VAL_60_NL NULL
@@ -19477,18 +20306,17 @@ struct retro_core_options_v2 options_ko = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_NL NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_NL NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_NL NULL
-#define OPTION_VAL_1_O24_NL NULL
 #define OPTION_VAL_2_NL NULL
 #define OPTION_VAL_4_NL NULL
 #define OPTION_VAL_8_NL NULL
 #define OPTION_VAL_16_O24_NL NULL
 #define RPCS3_MSAA_LABEL_NL NULL
 #define RPCS3_MSAA_INFO_0_NL NULL
-#define RPCS3_SHADER_PRECISION_LABEL_NL NULL
-#define RPCS3_SHADER_PRECISION_INFO_0_NL NULL
+#define RPCS3_SHADER_QUALITY_LABEL_NL NULL
+#define RPCS3_SHADER_QUALITY_INFO_0_NL NULL
 #define OPTION_VAL_LOW_NL NULL
-#define OPTION_VAL_NORMAL_NL NULL
 #define OPTION_VAL_HIGH_NL NULL
+#define OPTION_VAL_ULTRA_O26_NL NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_NL NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_NL NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_NL NULL
@@ -19608,6 +20436,14 @@ struct retro_core_options_v2 options_ko = {
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_NL NULL
 #define RPCS3_PPU_SET_FPCC_LABEL_NL NULL
 #define RPCS3_PPU_SET_FPCC_INFO_0_NL NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_NL NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_NL NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_NL NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_NL NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_NL NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_NL NULL
+#define RPCS3_VBLANK_NTSC_LABEL_NL NULL
+#define RPCS3_VBLANK_NTSC_INFO_0_NL NULL
 #define RPCS3_LANGUAGE_LABEL_NL NULL
 #define RPCS3_LANGUAGE_INFO_0_NL NULL
 #define OPTION_VAL_ENGLISH_NL NULL
@@ -19814,7 +20650,7 @@ struct retro_core_option_v2_definition option_defs_nl[] = {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_NL, NULL,
         RPCS3_FRAME_LIMIT_INFO_0_NL,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_NL}, {"off", "Off"}, {"30", OPTION_VAL_30_NL}, {"50", OPTION_VAL_50_O21_NL}, {"60", OPTION_VAL_60_NL}, {"120", OPTION_VAL_120_O21_NL}, {"144", OPTION_VAL_144_NL}, {"240", OPTION_VAL_240_O21_NL}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_NL}, {"ps3", OPTION_VAL_PS3_NL}, {"off", "Off"}, {"30", OPTION_VAL_30_NL}, {"50", OPTION_VAL_50_O21_NL}, {"60", OPTION_VAL_60_NL}, {"120", OPTION_VAL_120_O21_NL}, {"144", OPTION_VAL_144_NL}, {"240", OPTION_VAL_240_O21_NL}, {NULL, NULL} },
         "auto"
     },
     {
@@ -19835,22 +20671,22 @@ struct retro_core_option_v2_definition option_defs_nl[] = {
         "rpcs3_anisotropic_filter", RPCS3_ANISOTROPIC_FILTER_LABEL_NL, NULL,
         RPCS3_ANISOTROPIC_FILTER_INFO_0_NL,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_NL}, {"1", OPTION_VAL_1_O24_NL}, {"2", OPTION_VAL_2_NL}, {"4", OPTION_VAL_4_NL}, {"8", OPTION_VAL_8_NL}, {"16", OPTION_VAL_16_O24_NL}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_NL}, {"2", OPTION_VAL_2_NL}, {"4", OPTION_VAL_4_NL}, {"8", OPTION_VAL_8_NL}, {"16", OPTION_VAL_16_O24_NL}, {NULL, NULL} },
         "auto"
     },
     {
         "rpcs3_msaa", RPCS3_MSAA_LABEL_NL, NULL,
         RPCS3_MSAA_INFO_0_NL,
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", OPTION_VAL_2_NL}, {"4", OPTION_VAL_4_NL}, {"8", OPTION_VAL_8_NL}, {"16", OPTION_VAL_16_O24_NL}, {NULL, NULL} },
-        "disabled"
+        { {"auto", OPTION_VAL_0_NL}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", RPCS3_SHADER_PRECISION_LABEL_NL, NULL,
-        RPCS3_SHADER_PRECISION_INFO_0_NL,
+        "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_NL, NULL,
+        RPCS3_SHADER_QUALITY_INFO_0_NL,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_NL}, {"normal", OPTION_VAL_NORMAL_NL}, {"high", OPTION_VAL_HIGH_NL}, {NULL, NULL} },
-        "normal"
+        { {"low", OPTION_VAL_LOW_NL}, {"high", OPTION_VAL_HIGH_NL}, {"ultra", OPTION_VAL_ULTRA_O26_NL}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", RPCS3_WRITE_COLOR_BUFFERS_LABEL_NL, NULL,
@@ -20117,6 +20953,34 @@ struct retro_core_option_v2_definition option_defs_nl[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    {
+        "rpcs3_accurate_rsx_reservation", RPCS3_ACCURATE_RSX_RESERVATION_LABEL_NL, NULL,
+        RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_NL,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_NL, NULL,
+        RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_NL,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", RPCS3_DISABLE_ZCULL_QUERIES_LABEL_NL, NULL,
+        RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_NL,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", RPCS3_VBLANK_NTSC_LABEL_NL, NULL,
+        RPCS3_VBLANK_NTSC_INFO_0_NL,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
 
     // ==================== CORE OPTIONS ====================
     {
@@ -20300,6 +21164,7 @@ struct retro_core_options_v2 options_nl = {
 #define OPTION_VAL_1024_NO NULL
 #define RPCS3_FRAME_LIMIT_LABEL_NO NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_NO NULL
+#define OPTION_VAL_PS3_NO NULL
 #define OPTION_VAL_30_NO NULL
 #define OPTION_VAL_50_O21_NO NULL
 #define OPTION_VAL_60_NO NULL
@@ -20317,18 +21182,17 @@ struct retro_core_options_v2 options_nl = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_NO NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_NO NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_NO NULL
-#define OPTION_VAL_1_O24_NO NULL
 #define OPTION_VAL_2_NO NULL
 #define OPTION_VAL_4_NO NULL
 #define OPTION_VAL_8_NO NULL
 #define OPTION_VAL_16_O24_NO NULL
 #define RPCS3_MSAA_LABEL_NO NULL
 #define RPCS3_MSAA_INFO_0_NO NULL
-#define RPCS3_SHADER_PRECISION_LABEL_NO NULL
-#define RPCS3_SHADER_PRECISION_INFO_0_NO NULL
+#define RPCS3_SHADER_QUALITY_LABEL_NO NULL
+#define RPCS3_SHADER_QUALITY_INFO_0_NO NULL
 #define OPTION_VAL_LOW_NO NULL
-#define OPTION_VAL_NORMAL_NO NULL
 #define OPTION_VAL_HIGH_NO NULL
+#define OPTION_VAL_ULTRA_O26_NO NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_NO NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_NO NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_NO NULL
@@ -20448,6 +21312,14 @@ struct retro_core_options_v2 options_nl = {
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_NO NULL
 #define RPCS3_PPU_SET_FPCC_LABEL_NO NULL
 #define RPCS3_PPU_SET_FPCC_INFO_0_NO NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_NO NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_NO NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_NO NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_NO NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_NO NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_NO NULL
+#define RPCS3_VBLANK_NTSC_LABEL_NO NULL
+#define RPCS3_VBLANK_NTSC_INFO_0_NO NULL
 #define RPCS3_LANGUAGE_LABEL_NO NULL
 #define RPCS3_LANGUAGE_INFO_0_NO NULL
 #define OPTION_VAL_ENGLISH_NO NULL
@@ -20654,7 +21526,7 @@ struct retro_core_option_v2_definition option_defs_no[] = {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_NO, NULL,
         RPCS3_FRAME_LIMIT_INFO_0_NO,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_NO}, {"off", "Off"}, {"30", OPTION_VAL_30_NO}, {"50", OPTION_VAL_50_O21_NO}, {"60", OPTION_VAL_60_NO}, {"120", OPTION_VAL_120_O21_NO}, {"144", OPTION_VAL_144_NO}, {"240", OPTION_VAL_240_O21_NO}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_NO}, {"ps3", OPTION_VAL_PS3_NO}, {"off", "Off"}, {"30", OPTION_VAL_30_NO}, {"50", OPTION_VAL_50_O21_NO}, {"60", OPTION_VAL_60_NO}, {"120", OPTION_VAL_120_O21_NO}, {"144", OPTION_VAL_144_NO}, {"240", OPTION_VAL_240_O21_NO}, {NULL, NULL} },
         "auto"
     },
     {
@@ -20675,22 +21547,22 @@ struct retro_core_option_v2_definition option_defs_no[] = {
         "rpcs3_anisotropic_filter", RPCS3_ANISOTROPIC_FILTER_LABEL_NO, NULL,
         RPCS3_ANISOTROPIC_FILTER_INFO_0_NO,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_NO}, {"1", OPTION_VAL_1_O24_NO}, {"2", OPTION_VAL_2_NO}, {"4", OPTION_VAL_4_NO}, {"8", OPTION_VAL_8_NO}, {"16", OPTION_VAL_16_O24_NO}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_NO}, {"2", OPTION_VAL_2_NO}, {"4", OPTION_VAL_4_NO}, {"8", OPTION_VAL_8_NO}, {"16", OPTION_VAL_16_O24_NO}, {NULL, NULL} },
         "auto"
     },
     {
         "rpcs3_msaa", RPCS3_MSAA_LABEL_NO, NULL,
         RPCS3_MSAA_INFO_0_NO,
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", OPTION_VAL_2_NO}, {"4", OPTION_VAL_4_NO}, {"8", OPTION_VAL_8_NO}, {"16", OPTION_VAL_16_O24_NO}, {NULL, NULL} },
-        "disabled"
+        { {"auto", OPTION_VAL_0_NO}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", RPCS3_SHADER_PRECISION_LABEL_NO, NULL,
-        RPCS3_SHADER_PRECISION_INFO_0_NO,
+        "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_NO, NULL,
+        RPCS3_SHADER_QUALITY_INFO_0_NO,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_NO}, {"normal", OPTION_VAL_NORMAL_NO}, {"high", OPTION_VAL_HIGH_NO}, {NULL, NULL} },
-        "normal"
+        { {"low", OPTION_VAL_LOW_NO}, {"high", OPTION_VAL_HIGH_NO}, {"ultra", OPTION_VAL_ULTRA_O26_NO}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", RPCS3_WRITE_COLOR_BUFFERS_LABEL_NO, NULL,
@@ -20957,6 +21829,34 @@ struct retro_core_option_v2_definition option_defs_no[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    {
+        "rpcs3_accurate_rsx_reservation", RPCS3_ACCURATE_RSX_RESERVATION_LABEL_NO, NULL,
+        RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_NO,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_NO, NULL,
+        RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_NO,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", RPCS3_DISABLE_ZCULL_QUERIES_LABEL_NO, NULL,
+        RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_NO,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", RPCS3_VBLANK_NTSC_LABEL_NO, NULL,
+        RPCS3_VBLANK_NTSC_INFO_0_NO,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
 
     // ==================== CORE OPTIONS ====================
     {
@@ -21140,6 +22040,7 @@ struct retro_core_options_v2 options_no = {
 #define OPTION_VAL_1024_PL NULL
 #define RPCS3_FRAME_LIMIT_LABEL_PL NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_PL NULL
+#define OPTION_VAL_PS3_PL NULL
 #define OPTION_VAL_30_PL NULL
 #define OPTION_VAL_50_O21_PL NULL
 #define OPTION_VAL_60_PL NULL
@@ -21157,18 +22058,17 @@ struct retro_core_options_v2 options_no = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_PL NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_PL NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_PL NULL
-#define OPTION_VAL_1_O24_PL NULL
 #define OPTION_VAL_2_PL NULL
 #define OPTION_VAL_4_PL NULL
 #define OPTION_VAL_8_PL NULL
 #define OPTION_VAL_16_O24_PL NULL
 #define RPCS3_MSAA_LABEL_PL NULL
 #define RPCS3_MSAA_INFO_0_PL NULL
-#define RPCS3_SHADER_PRECISION_LABEL_PL NULL
-#define RPCS3_SHADER_PRECISION_INFO_0_PL NULL
+#define RPCS3_SHADER_QUALITY_LABEL_PL NULL
+#define RPCS3_SHADER_QUALITY_INFO_0_PL NULL
 #define OPTION_VAL_LOW_PL NULL
-#define OPTION_VAL_NORMAL_PL NULL
 #define OPTION_VAL_HIGH_PL NULL
+#define OPTION_VAL_ULTRA_O26_PL NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_PL NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_PL NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_PL NULL
@@ -21288,6 +22188,14 @@ struct retro_core_options_v2 options_no = {
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_PL NULL
 #define RPCS3_PPU_SET_FPCC_LABEL_PL NULL
 #define RPCS3_PPU_SET_FPCC_INFO_0_PL NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_PL NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_PL NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_PL NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_PL NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_PL NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_PL NULL
+#define RPCS3_VBLANK_NTSC_LABEL_PL NULL
+#define RPCS3_VBLANK_NTSC_INFO_0_PL NULL
 #define RPCS3_LANGUAGE_LABEL_PL NULL
 #define RPCS3_LANGUAGE_INFO_0_PL NULL
 #define OPTION_VAL_ENGLISH_PL NULL
@@ -21494,7 +22402,7 @@ struct retro_core_option_v2_definition option_defs_pl[] = {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_PL, NULL,
         RPCS3_FRAME_LIMIT_INFO_0_PL,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_PL}, {"off", "Off"}, {"30", OPTION_VAL_30_PL}, {"50", OPTION_VAL_50_O21_PL}, {"60", OPTION_VAL_60_PL}, {"120", OPTION_VAL_120_O21_PL}, {"144", OPTION_VAL_144_PL}, {"240", OPTION_VAL_240_O21_PL}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_PL}, {"ps3", OPTION_VAL_PS3_PL}, {"off", "Off"}, {"30", OPTION_VAL_30_PL}, {"50", OPTION_VAL_50_O21_PL}, {"60", OPTION_VAL_60_PL}, {"120", OPTION_VAL_120_O21_PL}, {"144", OPTION_VAL_144_PL}, {"240", OPTION_VAL_240_O21_PL}, {NULL, NULL} },
         "auto"
     },
     {
@@ -21515,22 +22423,22 @@ struct retro_core_option_v2_definition option_defs_pl[] = {
         "rpcs3_anisotropic_filter", RPCS3_ANISOTROPIC_FILTER_LABEL_PL, NULL,
         RPCS3_ANISOTROPIC_FILTER_INFO_0_PL,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_PL}, {"1", OPTION_VAL_1_O24_PL}, {"2", OPTION_VAL_2_PL}, {"4", OPTION_VAL_4_PL}, {"8", OPTION_VAL_8_PL}, {"16", OPTION_VAL_16_O24_PL}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_PL}, {"2", OPTION_VAL_2_PL}, {"4", OPTION_VAL_4_PL}, {"8", OPTION_VAL_8_PL}, {"16", OPTION_VAL_16_O24_PL}, {NULL, NULL} },
         "auto"
     },
     {
         "rpcs3_msaa", RPCS3_MSAA_LABEL_PL, NULL,
         RPCS3_MSAA_INFO_0_PL,
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", OPTION_VAL_2_PL}, {"4", OPTION_VAL_4_PL}, {"8", OPTION_VAL_8_PL}, {"16", OPTION_VAL_16_O24_PL}, {NULL, NULL} },
-        "disabled"
+        { {"auto", OPTION_VAL_0_PL}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", RPCS3_SHADER_PRECISION_LABEL_PL, NULL,
-        RPCS3_SHADER_PRECISION_INFO_0_PL,
+        "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_PL, NULL,
+        RPCS3_SHADER_QUALITY_INFO_0_PL,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_PL}, {"normal", OPTION_VAL_NORMAL_PL}, {"high", OPTION_VAL_HIGH_PL}, {NULL, NULL} },
-        "normal"
+        { {"low", OPTION_VAL_LOW_PL}, {"high", OPTION_VAL_HIGH_PL}, {"ultra", OPTION_VAL_ULTRA_O26_PL}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", RPCS3_WRITE_COLOR_BUFFERS_LABEL_PL, NULL,
@@ -21797,6 +22705,34 @@ struct retro_core_option_v2_definition option_defs_pl[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    {
+        "rpcs3_accurate_rsx_reservation", RPCS3_ACCURATE_RSX_RESERVATION_LABEL_PL, NULL,
+        RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_PL,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_PL, NULL,
+        RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_PL,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", RPCS3_DISABLE_ZCULL_QUERIES_LABEL_PL, NULL,
+        RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_PL,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", RPCS3_VBLANK_NTSC_LABEL_PL, NULL,
+        RPCS3_VBLANK_NTSC_INFO_0_PL,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
 
     // ==================== CORE OPTIONS ====================
     {
@@ -21980,6 +22916,7 @@ struct retro_core_options_v2 options_pl = {
 #define OPTION_VAL_1024_PT_BR NULL
 #define RPCS3_FRAME_LIMIT_LABEL_PT_BR NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_PT_BR NULL
+#define OPTION_VAL_PS3_PT_BR NULL
 #define OPTION_VAL_30_PT_BR NULL
 #define OPTION_VAL_50_O21_PT_BR NULL
 #define OPTION_VAL_60_PT_BR NULL
@@ -21997,18 +22934,17 @@ struct retro_core_options_v2 options_pl = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_PT_BR NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_PT_BR NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_PT_BR NULL
-#define OPTION_VAL_1_O24_PT_BR NULL
 #define OPTION_VAL_2_PT_BR NULL
 #define OPTION_VAL_4_PT_BR NULL
 #define OPTION_VAL_8_PT_BR NULL
 #define OPTION_VAL_16_O24_PT_BR NULL
 #define RPCS3_MSAA_LABEL_PT_BR NULL
 #define RPCS3_MSAA_INFO_0_PT_BR NULL
-#define RPCS3_SHADER_PRECISION_LABEL_PT_BR NULL
-#define RPCS3_SHADER_PRECISION_INFO_0_PT_BR NULL
+#define RPCS3_SHADER_QUALITY_LABEL_PT_BR NULL
+#define RPCS3_SHADER_QUALITY_INFO_0_PT_BR NULL
 #define OPTION_VAL_LOW_PT_BR NULL
-#define OPTION_VAL_NORMAL_PT_BR NULL
 #define OPTION_VAL_HIGH_PT_BR NULL
+#define OPTION_VAL_ULTRA_O26_PT_BR NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_PT_BR NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_PT_BR NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_PT_BR NULL
@@ -22128,6 +23064,14 @@ struct retro_core_options_v2 options_pl = {
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_PT_BR NULL
 #define RPCS3_PPU_SET_FPCC_LABEL_PT_BR NULL
 #define RPCS3_PPU_SET_FPCC_INFO_0_PT_BR NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_PT_BR NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_PT_BR NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_PT_BR NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_PT_BR NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_PT_BR NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_PT_BR NULL
+#define RPCS3_VBLANK_NTSC_LABEL_PT_BR NULL
+#define RPCS3_VBLANK_NTSC_INFO_0_PT_BR NULL
 #define RPCS3_LANGUAGE_LABEL_PT_BR NULL
 #define RPCS3_LANGUAGE_INFO_0_PT_BR NULL
 #define OPTION_VAL_ENGLISH_PT_BR NULL
@@ -22334,7 +23278,7 @@ struct retro_core_option_v2_definition option_defs_pt_br[] = {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_PT_BR, NULL,
         RPCS3_FRAME_LIMIT_INFO_0_PT_BR,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_PT_BR}, {"off", "Off"}, {"30", OPTION_VAL_30_PT_BR}, {"50", OPTION_VAL_50_O21_PT_BR}, {"60", OPTION_VAL_60_PT_BR}, {"120", OPTION_VAL_120_O21_PT_BR}, {"144", OPTION_VAL_144_PT_BR}, {"240", OPTION_VAL_240_O21_PT_BR}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_PT_BR}, {"ps3", OPTION_VAL_PS3_PT_BR}, {"off", "Off"}, {"30", OPTION_VAL_30_PT_BR}, {"50", OPTION_VAL_50_O21_PT_BR}, {"60", OPTION_VAL_60_PT_BR}, {"120", OPTION_VAL_120_O21_PT_BR}, {"144", OPTION_VAL_144_PT_BR}, {"240", OPTION_VAL_240_O21_PT_BR}, {NULL, NULL} },
         "auto"
     },
     {
@@ -22355,22 +23299,22 @@ struct retro_core_option_v2_definition option_defs_pt_br[] = {
         "rpcs3_anisotropic_filter", RPCS3_ANISOTROPIC_FILTER_LABEL_PT_BR, NULL,
         RPCS3_ANISOTROPIC_FILTER_INFO_0_PT_BR,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_PT_BR}, {"1", OPTION_VAL_1_O24_PT_BR}, {"2", OPTION_VAL_2_PT_BR}, {"4", OPTION_VAL_4_PT_BR}, {"8", OPTION_VAL_8_PT_BR}, {"16", OPTION_VAL_16_O24_PT_BR}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_PT_BR}, {"2", OPTION_VAL_2_PT_BR}, {"4", OPTION_VAL_4_PT_BR}, {"8", OPTION_VAL_8_PT_BR}, {"16", OPTION_VAL_16_O24_PT_BR}, {NULL, NULL} },
         "auto"
     },
     {
         "rpcs3_msaa", RPCS3_MSAA_LABEL_PT_BR, NULL,
         RPCS3_MSAA_INFO_0_PT_BR,
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", OPTION_VAL_2_PT_BR}, {"4", OPTION_VAL_4_PT_BR}, {"8", OPTION_VAL_8_PT_BR}, {"16", OPTION_VAL_16_O24_PT_BR}, {NULL, NULL} },
-        "disabled"
+        { {"auto", OPTION_VAL_0_PT_BR}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", RPCS3_SHADER_PRECISION_LABEL_PT_BR, NULL,
-        RPCS3_SHADER_PRECISION_INFO_0_PT_BR,
+        "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_PT_BR, NULL,
+        RPCS3_SHADER_QUALITY_INFO_0_PT_BR,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_PT_BR}, {"normal", OPTION_VAL_NORMAL_PT_BR}, {"high", OPTION_VAL_HIGH_PT_BR}, {NULL, NULL} },
-        "normal"
+        { {"low", OPTION_VAL_LOW_PT_BR}, {"high", OPTION_VAL_HIGH_PT_BR}, {"ultra", OPTION_VAL_ULTRA_O26_PT_BR}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", RPCS3_WRITE_COLOR_BUFFERS_LABEL_PT_BR, NULL,
@@ -22637,6 +23581,34 @@ struct retro_core_option_v2_definition option_defs_pt_br[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    {
+        "rpcs3_accurate_rsx_reservation", RPCS3_ACCURATE_RSX_RESERVATION_LABEL_PT_BR, NULL,
+        RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_PT_BR,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_PT_BR, NULL,
+        RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_PT_BR,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", RPCS3_DISABLE_ZCULL_QUERIES_LABEL_PT_BR, NULL,
+        RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_PT_BR,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", RPCS3_VBLANK_NTSC_LABEL_PT_BR, NULL,
+        RPCS3_VBLANK_NTSC_INFO_0_PT_BR,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
 
     // ==================== CORE OPTIONS ====================
     {
@@ -22820,6 +23792,7 @@ struct retro_core_options_v2 options_pt_br = {
 #define OPTION_VAL_1024_PT_PT NULL
 #define RPCS3_FRAME_LIMIT_LABEL_PT_PT NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_PT_PT NULL
+#define OPTION_VAL_PS3_PT_PT NULL
 #define OPTION_VAL_30_PT_PT NULL
 #define OPTION_VAL_50_O21_PT_PT NULL
 #define OPTION_VAL_60_PT_PT NULL
@@ -22837,18 +23810,17 @@ struct retro_core_options_v2 options_pt_br = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_PT_PT NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_PT_PT NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_PT_PT NULL
-#define OPTION_VAL_1_O24_PT_PT NULL
 #define OPTION_VAL_2_PT_PT NULL
 #define OPTION_VAL_4_PT_PT NULL
 #define OPTION_VAL_8_PT_PT NULL
 #define OPTION_VAL_16_O24_PT_PT NULL
 #define RPCS3_MSAA_LABEL_PT_PT NULL
 #define RPCS3_MSAA_INFO_0_PT_PT NULL
-#define RPCS3_SHADER_PRECISION_LABEL_PT_PT NULL
-#define RPCS3_SHADER_PRECISION_INFO_0_PT_PT NULL
+#define RPCS3_SHADER_QUALITY_LABEL_PT_PT NULL
+#define RPCS3_SHADER_QUALITY_INFO_0_PT_PT NULL
 #define OPTION_VAL_LOW_PT_PT NULL
-#define OPTION_VAL_NORMAL_PT_PT NULL
 #define OPTION_VAL_HIGH_PT_PT NULL
+#define OPTION_VAL_ULTRA_O26_PT_PT NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_PT_PT NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_PT_PT NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_PT_PT NULL
@@ -22968,6 +23940,14 @@ struct retro_core_options_v2 options_pt_br = {
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_PT_PT NULL
 #define RPCS3_PPU_SET_FPCC_LABEL_PT_PT NULL
 #define RPCS3_PPU_SET_FPCC_INFO_0_PT_PT NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_PT_PT NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_PT_PT NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_PT_PT NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_PT_PT NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_PT_PT NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_PT_PT NULL
+#define RPCS3_VBLANK_NTSC_LABEL_PT_PT NULL
+#define RPCS3_VBLANK_NTSC_INFO_0_PT_PT NULL
 #define RPCS3_LANGUAGE_LABEL_PT_PT NULL
 #define RPCS3_LANGUAGE_INFO_0_PT_PT NULL
 #define OPTION_VAL_ENGLISH_PT_PT NULL
@@ -23174,7 +24154,7 @@ struct retro_core_option_v2_definition option_defs_pt_pt[] = {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_PT_PT, NULL,
         RPCS3_FRAME_LIMIT_INFO_0_PT_PT,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_PT_PT}, {"off", "Off"}, {"30", OPTION_VAL_30_PT_PT}, {"50", OPTION_VAL_50_O21_PT_PT}, {"60", OPTION_VAL_60_PT_PT}, {"120", OPTION_VAL_120_O21_PT_PT}, {"144", OPTION_VAL_144_PT_PT}, {"240", OPTION_VAL_240_O21_PT_PT}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_PT_PT}, {"ps3", OPTION_VAL_PS3_PT_PT}, {"off", "Off"}, {"30", OPTION_VAL_30_PT_PT}, {"50", OPTION_VAL_50_O21_PT_PT}, {"60", OPTION_VAL_60_PT_PT}, {"120", OPTION_VAL_120_O21_PT_PT}, {"144", OPTION_VAL_144_PT_PT}, {"240", OPTION_VAL_240_O21_PT_PT}, {NULL, NULL} },
         "auto"
     },
     {
@@ -23195,22 +24175,22 @@ struct retro_core_option_v2_definition option_defs_pt_pt[] = {
         "rpcs3_anisotropic_filter", RPCS3_ANISOTROPIC_FILTER_LABEL_PT_PT, NULL,
         RPCS3_ANISOTROPIC_FILTER_INFO_0_PT_PT,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_PT_PT}, {"1", OPTION_VAL_1_O24_PT_PT}, {"2", OPTION_VAL_2_PT_PT}, {"4", OPTION_VAL_4_PT_PT}, {"8", OPTION_VAL_8_PT_PT}, {"16", OPTION_VAL_16_O24_PT_PT}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_PT_PT}, {"2", OPTION_VAL_2_PT_PT}, {"4", OPTION_VAL_4_PT_PT}, {"8", OPTION_VAL_8_PT_PT}, {"16", OPTION_VAL_16_O24_PT_PT}, {NULL, NULL} },
         "auto"
     },
     {
         "rpcs3_msaa", RPCS3_MSAA_LABEL_PT_PT, NULL,
         RPCS3_MSAA_INFO_0_PT_PT,
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", OPTION_VAL_2_PT_PT}, {"4", OPTION_VAL_4_PT_PT}, {"8", OPTION_VAL_8_PT_PT}, {"16", OPTION_VAL_16_O24_PT_PT}, {NULL, NULL} },
-        "disabled"
+        { {"auto", OPTION_VAL_0_PT_PT}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", RPCS3_SHADER_PRECISION_LABEL_PT_PT, NULL,
-        RPCS3_SHADER_PRECISION_INFO_0_PT_PT,
+        "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_PT_PT, NULL,
+        RPCS3_SHADER_QUALITY_INFO_0_PT_PT,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_PT_PT}, {"normal", OPTION_VAL_NORMAL_PT_PT}, {"high", OPTION_VAL_HIGH_PT_PT}, {NULL, NULL} },
-        "normal"
+        { {"low", OPTION_VAL_LOW_PT_PT}, {"high", OPTION_VAL_HIGH_PT_PT}, {"ultra", OPTION_VAL_ULTRA_O26_PT_PT}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", RPCS3_WRITE_COLOR_BUFFERS_LABEL_PT_PT, NULL,
@@ -23477,6 +24457,34 @@ struct retro_core_option_v2_definition option_defs_pt_pt[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    {
+        "rpcs3_accurate_rsx_reservation", RPCS3_ACCURATE_RSX_RESERVATION_LABEL_PT_PT, NULL,
+        RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_PT_PT,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_PT_PT, NULL,
+        RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_PT_PT,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", RPCS3_DISABLE_ZCULL_QUERIES_LABEL_PT_PT, NULL,
+        RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_PT_PT,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", RPCS3_VBLANK_NTSC_LABEL_PT_PT, NULL,
+        RPCS3_VBLANK_NTSC_INFO_0_PT_PT,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
 
     // ==================== CORE OPTIONS ====================
     {
@@ -23660,6 +24668,7 @@ struct retro_core_options_v2 options_pt_pt = {
 #define OPTION_VAL_1024_RU NULL
 #define RPCS3_FRAME_LIMIT_LABEL_RU NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_RU NULL
+#define OPTION_VAL_PS3_RU NULL
 #define OPTION_VAL_30_RU NULL
 #define OPTION_VAL_50_O21_RU NULL
 #define OPTION_VAL_60_RU NULL
@@ -23677,18 +24686,17 @@ struct retro_core_options_v2 options_pt_pt = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_RU NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_RU NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_RU NULL
-#define OPTION_VAL_1_O24_RU NULL
 #define OPTION_VAL_2_RU NULL
 #define OPTION_VAL_4_RU NULL
 #define OPTION_VAL_8_RU NULL
 #define OPTION_VAL_16_O24_RU NULL
 #define RPCS3_MSAA_LABEL_RU NULL
 #define RPCS3_MSAA_INFO_0_RU NULL
-#define RPCS3_SHADER_PRECISION_LABEL_RU NULL
-#define RPCS3_SHADER_PRECISION_INFO_0_RU NULL
+#define RPCS3_SHADER_QUALITY_LABEL_RU NULL
+#define RPCS3_SHADER_QUALITY_INFO_0_RU NULL
 #define OPTION_VAL_LOW_RU NULL
-#define OPTION_VAL_NORMAL_RU NULL
 #define OPTION_VAL_HIGH_RU NULL
+#define OPTION_VAL_ULTRA_O26_RU NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_RU NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_RU NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_RU NULL
@@ -23808,6 +24816,14 @@ struct retro_core_options_v2 options_pt_pt = {
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_RU NULL
 #define RPCS3_PPU_SET_FPCC_LABEL_RU NULL
 #define RPCS3_PPU_SET_FPCC_INFO_0_RU NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_RU NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_RU NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_RU NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_RU NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_RU NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_RU NULL
+#define RPCS3_VBLANK_NTSC_LABEL_RU NULL
+#define RPCS3_VBLANK_NTSC_INFO_0_RU NULL
 #define RPCS3_LANGUAGE_LABEL_RU NULL
 #define RPCS3_LANGUAGE_INFO_0_RU NULL
 #define OPTION_VAL_ENGLISH_RU NULL
@@ -24014,7 +25030,7 @@ struct retro_core_option_v2_definition option_defs_ru[] = {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_RU, NULL,
         RPCS3_FRAME_LIMIT_INFO_0_RU,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_RU}, {"off", "Off"}, {"30", OPTION_VAL_30_RU}, {"50", OPTION_VAL_50_O21_RU}, {"60", OPTION_VAL_60_RU}, {"120", OPTION_VAL_120_O21_RU}, {"144", OPTION_VAL_144_RU}, {"240", OPTION_VAL_240_O21_RU}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_RU}, {"ps3", OPTION_VAL_PS3_RU}, {"off", "Off"}, {"30", OPTION_VAL_30_RU}, {"50", OPTION_VAL_50_O21_RU}, {"60", OPTION_VAL_60_RU}, {"120", OPTION_VAL_120_O21_RU}, {"144", OPTION_VAL_144_RU}, {"240", OPTION_VAL_240_O21_RU}, {NULL, NULL} },
         "auto"
     },
     {
@@ -24035,22 +25051,22 @@ struct retro_core_option_v2_definition option_defs_ru[] = {
         "rpcs3_anisotropic_filter", RPCS3_ANISOTROPIC_FILTER_LABEL_RU, NULL,
         RPCS3_ANISOTROPIC_FILTER_INFO_0_RU,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_RU}, {"1", OPTION_VAL_1_O24_RU}, {"2", OPTION_VAL_2_RU}, {"4", OPTION_VAL_4_RU}, {"8", OPTION_VAL_8_RU}, {"16", OPTION_VAL_16_O24_RU}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_RU}, {"2", OPTION_VAL_2_RU}, {"4", OPTION_VAL_4_RU}, {"8", OPTION_VAL_8_RU}, {"16", OPTION_VAL_16_O24_RU}, {NULL, NULL} },
         "auto"
     },
     {
         "rpcs3_msaa", RPCS3_MSAA_LABEL_RU, NULL,
         RPCS3_MSAA_INFO_0_RU,
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", OPTION_VAL_2_RU}, {"4", OPTION_VAL_4_RU}, {"8", OPTION_VAL_8_RU}, {"16", OPTION_VAL_16_O24_RU}, {NULL, NULL} },
-        "disabled"
+        { {"auto", OPTION_VAL_0_RU}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", RPCS3_SHADER_PRECISION_LABEL_RU, NULL,
-        RPCS3_SHADER_PRECISION_INFO_0_RU,
+        "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_RU, NULL,
+        RPCS3_SHADER_QUALITY_INFO_0_RU,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_RU}, {"normal", OPTION_VAL_NORMAL_RU}, {"high", OPTION_VAL_HIGH_RU}, {NULL, NULL} },
-        "normal"
+        { {"low", OPTION_VAL_LOW_RU}, {"high", OPTION_VAL_HIGH_RU}, {"ultra", OPTION_VAL_ULTRA_O26_RU}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", RPCS3_WRITE_COLOR_BUFFERS_LABEL_RU, NULL,
@@ -24317,6 +25333,34 @@ struct retro_core_option_v2_definition option_defs_ru[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    {
+        "rpcs3_accurate_rsx_reservation", RPCS3_ACCURATE_RSX_RESERVATION_LABEL_RU, NULL,
+        RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_RU,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_RU, NULL,
+        RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_RU,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", RPCS3_DISABLE_ZCULL_QUERIES_LABEL_RU, NULL,
+        RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_RU,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", RPCS3_VBLANK_NTSC_LABEL_RU, NULL,
+        RPCS3_VBLANK_NTSC_INFO_0_RU,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
 
     // ==================== CORE OPTIONS ====================
     {
@@ -24500,6 +25544,7 @@ struct retro_core_options_v2 options_ru = {
 #define OPTION_VAL_1024_SK NULL
 #define RPCS3_FRAME_LIMIT_LABEL_SK NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_SK NULL
+#define OPTION_VAL_PS3_SK NULL
 #define OPTION_VAL_30_SK NULL
 #define OPTION_VAL_50_O21_SK NULL
 #define OPTION_VAL_60_SK NULL
@@ -24517,18 +25562,17 @@ struct retro_core_options_v2 options_ru = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_SK NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_SK NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_SK NULL
-#define OPTION_VAL_1_O24_SK NULL
 #define OPTION_VAL_2_SK NULL
 #define OPTION_VAL_4_SK NULL
 #define OPTION_VAL_8_SK NULL
 #define OPTION_VAL_16_O24_SK NULL
 #define RPCS3_MSAA_LABEL_SK NULL
 #define RPCS3_MSAA_INFO_0_SK NULL
-#define RPCS3_SHADER_PRECISION_LABEL_SK NULL
-#define RPCS3_SHADER_PRECISION_INFO_0_SK NULL
+#define RPCS3_SHADER_QUALITY_LABEL_SK NULL
+#define RPCS3_SHADER_QUALITY_INFO_0_SK NULL
 #define OPTION_VAL_LOW_SK NULL
-#define OPTION_VAL_NORMAL_SK NULL
 #define OPTION_VAL_HIGH_SK NULL
+#define OPTION_VAL_ULTRA_O26_SK NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_SK NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_SK NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_SK NULL
@@ -24648,6 +25692,14 @@ struct retro_core_options_v2 options_ru = {
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_SK NULL
 #define RPCS3_PPU_SET_FPCC_LABEL_SK NULL
 #define RPCS3_PPU_SET_FPCC_INFO_0_SK NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_SK NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_SK NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_SK NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_SK NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_SK NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_SK NULL
+#define RPCS3_VBLANK_NTSC_LABEL_SK NULL
+#define RPCS3_VBLANK_NTSC_INFO_0_SK NULL
 #define RPCS3_LANGUAGE_LABEL_SK NULL
 #define RPCS3_LANGUAGE_INFO_0_SK NULL
 #define OPTION_VAL_ENGLISH_SK NULL
@@ -24854,7 +25906,7 @@ struct retro_core_option_v2_definition option_defs_sk[] = {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_SK, NULL,
         RPCS3_FRAME_LIMIT_INFO_0_SK,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_SK}, {"off", "Off"}, {"30", OPTION_VAL_30_SK}, {"50", OPTION_VAL_50_O21_SK}, {"60", OPTION_VAL_60_SK}, {"120", OPTION_VAL_120_O21_SK}, {"144", OPTION_VAL_144_SK}, {"240", OPTION_VAL_240_O21_SK}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_SK}, {"ps3", OPTION_VAL_PS3_SK}, {"off", "Off"}, {"30", OPTION_VAL_30_SK}, {"50", OPTION_VAL_50_O21_SK}, {"60", OPTION_VAL_60_SK}, {"120", OPTION_VAL_120_O21_SK}, {"144", OPTION_VAL_144_SK}, {"240", OPTION_VAL_240_O21_SK}, {NULL, NULL} },
         "auto"
     },
     {
@@ -24875,22 +25927,22 @@ struct retro_core_option_v2_definition option_defs_sk[] = {
         "rpcs3_anisotropic_filter", RPCS3_ANISOTROPIC_FILTER_LABEL_SK, NULL,
         RPCS3_ANISOTROPIC_FILTER_INFO_0_SK,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_SK}, {"1", OPTION_VAL_1_O24_SK}, {"2", OPTION_VAL_2_SK}, {"4", OPTION_VAL_4_SK}, {"8", OPTION_VAL_8_SK}, {"16", OPTION_VAL_16_O24_SK}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_SK}, {"2", OPTION_VAL_2_SK}, {"4", OPTION_VAL_4_SK}, {"8", OPTION_VAL_8_SK}, {"16", OPTION_VAL_16_O24_SK}, {NULL, NULL} },
         "auto"
     },
     {
         "rpcs3_msaa", RPCS3_MSAA_LABEL_SK, NULL,
         RPCS3_MSAA_INFO_0_SK,
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", OPTION_VAL_2_SK}, {"4", OPTION_VAL_4_SK}, {"8", OPTION_VAL_8_SK}, {"16", OPTION_VAL_16_O24_SK}, {NULL, NULL} },
-        "disabled"
+        { {"auto", OPTION_VAL_0_SK}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", RPCS3_SHADER_PRECISION_LABEL_SK, NULL,
-        RPCS3_SHADER_PRECISION_INFO_0_SK,
+        "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_SK, NULL,
+        RPCS3_SHADER_QUALITY_INFO_0_SK,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_SK}, {"normal", OPTION_VAL_NORMAL_SK}, {"high", OPTION_VAL_HIGH_SK}, {NULL, NULL} },
-        "normal"
+        { {"low", OPTION_VAL_LOW_SK}, {"high", OPTION_VAL_HIGH_SK}, {"ultra", OPTION_VAL_ULTRA_O26_SK}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", RPCS3_WRITE_COLOR_BUFFERS_LABEL_SK, NULL,
@@ -25157,6 +26209,34 @@ struct retro_core_option_v2_definition option_defs_sk[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    {
+        "rpcs3_accurate_rsx_reservation", RPCS3_ACCURATE_RSX_RESERVATION_LABEL_SK, NULL,
+        RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_SK,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_SK, NULL,
+        RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_SK,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", RPCS3_DISABLE_ZCULL_QUERIES_LABEL_SK, NULL,
+        RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_SK,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", RPCS3_VBLANK_NTSC_LABEL_SK, NULL,
+        RPCS3_VBLANK_NTSC_INFO_0_SK,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
 
     // ==================== CORE OPTIONS ====================
     {
@@ -25340,6 +26420,7 @@ struct retro_core_options_v2 options_sk = {
 #define OPTION_VAL_1024_SV NULL
 #define RPCS3_FRAME_LIMIT_LABEL_SV NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_SV NULL
+#define OPTION_VAL_PS3_SV NULL
 #define OPTION_VAL_30_SV NULL
 #define OPTION_VAL_50_O21_SV NULL
 #define OPTION_VAL_60_SV NULL
@@ -25357,18 +26438,17 @@ struct retro_core_options_v2 options_sk = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_SV NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_SV NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_SV NULL
-#define OPTION_VAL_1_O24_SV NULL
 #define OPTION_VAL_2_SV NULL
 #define OPTION_VAL_4_SV NULL
 #define OPTION_VAL_8_SV NULL
 #define OPTION_VAL_16_O24_SV NULL
 #define RPCS3_MSAA_LABEL_SV NULL
 #define RPCS3_MSAA_INFO_0_SV NULL
-#define RPCS3_SHADER_PRECISION_LABEL_SV NULL
-#define RPCS3_SHADER_PRECISION_INFO_0_SV NULL
+#define RPCS3_SHADER_QUALITY_LABEL_SV NULL
+#define RPCS3_SHADER_QUALITY_INFO_0_SV NULL
 #define OPTION_VAL_LOW_SV NULL
-#define OPTION_VAL_NORMAL_SV NULL
 #define OPTION_VAL_HIGH_SV NULL
+#define OPTION_VAL_ULTRA_O26_SV NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_SV NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_SV NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_SV NULL
@@ -25488,6 +26568,14 @@ struct retro_core_options_v2 options_sk = {
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_SV NULL
 #define RPCS3_PPU_SET_FPCC_LABEL_SV NULL
 #define RPCS3_PPU_SET_FPCC_INFO_0_SV NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_SV NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_SV NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_SV NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_SV NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_SV NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_SV NULL
+#define RPCS3_VBLANK_NTSC_LABEL_SV NULL
+#define RPCS3_VBLANK_NTSC_INFO_0_SV NULL
 #define RPCS3_LANGUAGE_LABEL_SV NULL
 #define RPCS3_LANGUAGE_INFO_0_SV NULL
 #define OPTION_VAL_ENGLISH_SV NULL
@@ -25694,7 +26782,7 @@ struct retro_core_option_v2_definition option_defs_sv[] = {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_SV, NULL,
         RPCS3_FRAME_LIMIT_INFO_0_SV,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_SV}, {"off", "Off"}, {"30", OPTION_VAL_30_SV}, {"50", OPTION_VAL_50_O21_SV}, {"60", OPTION_VAL_60_SV}, {"120", OPTION_VAL_120_O21_SV}, {"144", OPTION_VAL_144_SV}, {"240", OPTION_VAL_240_O21_SV}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_SV}, {"ps3", OPTION_VAL_PS3_SV}, {"off", "Off"}, {"30", OPTION_VAL_30_SV}, {"50", OPTION_VAL_50_O21_SV}, {"60", OPTION_VAL_60_SV}, {"120", OPTION_VAL_120_O21_SV}, {"144", OPTION_VAL_144_SV}, {"240", OPTION_VAL_240_O21_SV}, {NULL, NULL} },
         "auto"
     },
     {
@@ -25715,22 +26803,22 @@ struct retro_core_option_v2_definition option_defs_sv[] = {
         "rpcs3_anisotropic_filter", RPCS3_ANISOTROPIC_FILTER_LABEL_SV, NULL,
         RPCS3_ANISOTROPIC_FILTER_INFO_0_SV,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_SV}, {"1", OPTION_VAL_1_O24_SV}, {"2", OPTION_VAL_2_SV}, {"4", OPTION_VAL_4_SV}, {"8", OPTION_VAL_8_SV}, {"16", OPTION_VAL_16_O24_SV}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_SV}, {"2", OPTION_VAL_2_SV}, {"4", OPTION_VAL_4_SV}, {"8", OPTION_VAL_8_SV}, {"16", OPTION_VAL_16_O24_SV}, {NULL, NULL} },
         "auto"
     },
     {
         "rpcs3_msaa", RPCS3_MSAA_LABEL_SV, NULL,
         RPCS3_MSAA_INFO_0_SV,
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", OPTION_VAL_2_SV}, {"4", OPTION_VAL_4_SV}, {"8", OPTION_VAL_8_SV}, {"16", OPTION_VAL_16_O24_SV}, {NULL, NULL} },
-        "disabled"
+        { {"auto", OPTION_VAL_0_SV}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", RPCS3_SHADER_PRECISION_LABEL_SV, NULL,
-        RPCS3_SHADER_PRECISION_INFO_0_SV,
+        "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_SV, NULL,
+        RPCS3_SHADER_QUALITY_INFO_0_SV,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_SV}, {"normal", OPTION_VAL_NORMAL_SV}, {"high", OPTION_VAL_HIGH_SV}, {NULL, NULL} },
-        "normal"
+        { {"low", OPTION_VAL_LOW_SV}, {"high", OPTION_VAL_HIGH_SV}, {"ultra", OPTION_VAL_ULTRA_O26_SV}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", RPCS3_WRITE_COLOR_BUFFERS_LABEL_SV, NULL,
@@ -25997,6 +27085,34 @@ struct retro_core_option_v2_definition option_defs_sv[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    {
+        "rpcs3_accurate_rsx_reservation", RPCS3_ACCURATE_RSX_RESERVATION_LABEL_SV, NULL,
+        RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_SV,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_SV, NULL,
+        RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_SV,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", RPCS3_DISABLE_ZCULL_QUERIES_LABEL_SV, NULL,
+        RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_SV,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", RPCS3_VBLANK_NTSC_LABEL_SV, NULL,
+        RPCS3_VBLANK_NTSC_INFO_0_SV,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
 
     // ==================== CORE OPTIONS ====================
     {
@@ -26180,6 +27296,7 @@ struct retro_core_options_v2 options_sv = {
 #define OPTION_VAL_1024_TR NULL
 #define RPCS3_FRAME_LIMIT_LABEL_TR NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_TR NULL
+#define OPTION_VAL_PS3_TR NULL
 #define OPTION_VAL_30_TR NULL
 #define OPTION_VAL_50_O21_TR NULL
 #define OPTION_VAL_60_TR NULL
@@ -26197,18 +27314,17 @@ struct retro_core_options_v2 options_sv = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_TR NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_TR NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_TR NULL
-#define OPTION_VAL_1_O24_TR NULL
 #define OPTION_VAL_2_TR NULL
 #define OPTION_VAL_4_TR NULL
 #define OPTION_VAL_8_TR NULL
 #define OPTION_VAL_16_O24_TR NULL
 #define RPCS3_MSAA_LABEL_TR NULL
 #define RPCS3_MSAA_INFO_0_TR NULL
-#define RPCS3_SHADER_PRECISION_LABEL_TR NULL
-#define RPCS3_SHADER_PRECISION_INFO_0_TR NULL
+#define RPCS3_SHADER_QUALITY_LABEL_TR NULL
+#define RPCS3_SHADER_QUALITY_INFO_0_TR NULL
 #define OPTION_VAL_LOW_TR NULL
-#define OPTION_VAL_NORMAL_TR NULL
 #define OPTION_VAL_HIGH_TR NULL
+#define OPTION_VAL_ULTRA_O26_TR NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_TR NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_TR NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_TR NULL
@@ -26328,6 +27444,14 @@ struct retro_core_options_v2 options_sv = {
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_TR NULL
 #define RPCS3_PPU_SET_FPCC_LABEL_TR NULL
 #define RPCS3_PPU_SET_FPCC_INFO_0_TR NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_TR NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_TR NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_TR NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_TR NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_TR NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_TR NULL
+#define RPCS3_VBLANK_NTSC_LABEL_TR NULL
+#define RPCS3_VBLANK_NTSC_INFO_0_TR NULL
 #define RPCS3_LANGUAGE_LABEL_TR NULL
 #define RPCS3_LANGUAGE_INFO_0_TR NULL
 #define OPTION_VAL_ENGLISH_TR NULL
@@ -26534,7 +27658,7 @@ struct retro_core_option_v2_definition option_defs_tr[] = {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_TR, NULL,
         RPCS3_FRAME_LIMIT_INFO_0_TR,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_TR}, {"off", "Off"}, {"30", OPTION_VAL_30_TR}, {"50", OPTION_VAL_50_O21_TR}, {"60", OPTION_VAL_60_TR}, {"120", OPTION_VAL_120_O21_TR}, {"144", OPTION_VAL_144_TR}, {"240", OPTION_VAL_240_O21_TR}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_TR}, {"ps3", OPTION_VAL_PS3_TR}, {"off", "Off"}, {"30", OPTION_VAL_30_TR}, {"50", OPTION_VAL_50_O21_TR}, {"60", OPTION_VAL_60_TR}, {"120", OPTION_VAL_120_O21_TR}, {"144", OPTION_VAL_144_TR}, {"240", OPTION_VAL_240_O21_TR}, {NULL, NULL} },
         "auto"
     },
     {
@@ -26555,22 +27679,22 @@ struct retro_core_option_v2_definition option_defs_tr[] = {
         "rpcs3_anisotropic_filter", RPCS3_ANISOTROPIC_FILTER_LABEL_TR, NULL,
         RPCS3_ANISOTROPIC_FILTER_INFO_0_TR,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_TR}, {"1", OPTION_VAL_1_O24_TR}, {"2", OPTION_VAL_2_TR}, {"4", OPTION_VAL_4_TR}, {"8", OPTION_VAL_8_TR}, {"16", OPTION_VAL_16_O24_TR}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_TR}, {"2", OPTION_VAL_2_TR}, {"4", OPTION_VAL_4_TR}, {"8", OPTION_VAL_8_TR}, {"16", OPTION_VAL_16_O24_TR}, {NULL, NULL} },
         "auto"
     },
     {
         "rpcs3_msaa", RPCS3_MSAA_LABEL_TR, NULL,
         RPCS3_MSAA_INFO_0_TR,
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", OPTION_VAL_2_TR}, {"4", OPTION_VAL_4_TR}, {"8", OPTION_VAL_8_TR}, {"16", OPTION_VAL_16_O24_TR}, {NULL, NULL} },
-        "disabled"
+        { {"auto", OPTION_VAL_0_TR}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", RPCS3_SHADER_PRECISION_LABEL_TR, NULL,
-        RPCS3_SHADER_PRECISION_INFO_0_TR,
+        "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_TR, NULL,
+        RPCS3_SHADER_QUALITY_INFO_0_TR,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_TR}, {"normal", OPTION_VAL_NORMAL_TR}, {"high", OPTION_VAL_HIGH_TR}, {NULL, NULL} },
-        "normal"
+        { {"low", OPTION_VAL_LOW_TR}, {"high", OPTION_VAL_HIGH_TR}, {"ultra", OPTION_VAL_ULTRA_O26_TR}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", RPCS3_WRITE_COLOR_BUFFERS_LABEL_TR, NULL,
@@ -26837,6 +27961,34 @@ struct retro_core_option_v2_definition option_defs_tr[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    {
+        "rpcs3_accurate_rsx_reservation", RPCS3_ACCURATE_RSX_RESERVATION_LABEL_TR, NULL,
+        RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_TR,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_TR, NULL,
+        RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_TR,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", RPCS3_DISABLE_ZCULL_QUERIES_LABEL_TR, NULL,
+        RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_TR,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", RPCS3_VBLANK_NTSC_LABEL_TR, NULL,
+        RPCS3_VBLANK_NTSC_INFO_0_TR,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
 
     // ==================== CORE OPTIONS ====================
     {
@@ -27020,6 +28172,7 @@ struct retro_core_options_v2 options_tr = {
 #define OPTION_VAL_1024_UK NULL
 #define RPCS3_FRAME_LIMIT_LABEL_UK NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_UK NULL
+#define OPTION_VAL_PS3_UK NULL
 #define OPTION_VAL_30_UK NULL
 #define OPTION_VAL_50_O21_UK NULL
 #define OPTION_VAL_60_UK NULL
@@ -27037,18 +28190,17 @@ struct retro_core_options_v2 options_tr = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_UK NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_UK NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_UK NULL
-#define OPTION_VAL_1_O24_UK NULL
 #define OPTION_VAL_2_UK NULL
 #define OPTION_VAL_4_UK NULL
 #define OPTION_VAL_8_UK NULL
 #define OPTION_VAL_16_O24_UK NULL
 #define RPCS3_MSAA_LABEL_UK NULL
 #define RPCS3_MSAA_INFO_0_UK NULL
-#define RPCS3_SHADER_PRECISION_LABEL_UK NULL
-#define RPCS3_SHADER_PRECISION_INFO_0_UK NULL
+#define RPCS3_SHADER_QUALITY_LABEL_UK NULL
+#define RPCS3_SHADER_QUALITY_INFO_0_UK NULL
 #define OPTION_VAL_LOW_UK NULL
-#define OPTION_VAL_NORMAL_UK NULL
 #define OPTION_VAL_HIGH_UK NULL
+#define OPTION_VAL_ULTRA_O26_UK NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_UK NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_UK NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_UK NULL
@@ -27168,6 +28320,14 @@ struct retro_core_options_v2 options_tr = {
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_UK NULL
 #define RPCS3_PPU_SET_FPCC_LABEL_UK NULL
 #define RPCS3_PPU_SET_FPCC_INFO_0_UK NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_UK NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_UK NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_UK NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_UK NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_UK NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_UK NULL
+#define RPCS3_VBLANK_NTSC_LABEL_UK NULL
+#define RPCS3_VBLANK_NTSC_INFO_0_UK NULL
 #define RPCS3_LANGUAGE_LABEL_UK NULL
 #define RPCS3_LANGUAGE_INFO_0_UK NULL
 #define OPTION_VAL_ENGLISH_UK NULL
@@ -27374,7 +28534,7 @@ struct retro_core_option_v2_definition option_defs_uk[] = {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_UK, NULL,
         RPCS3_FRAME_LIMIT_INFO_0_UK,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_UK}, {"off", "Off"}, {"30", OPTION_VAL_30_UK}, {"50", OPTION_VAL_50_O21_UK}, {"60", OPTION_VAL_60_UK}, {"120", OPTION_VAL_120_O21_UK}, {"144", OPTION_VAL_144_UK}, {"240", OPTION_VAL_240_O21_UK}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_UK}, {"ps3", OPTION_VAL_PS3_UK}, {"off", "Off"}, {"30", OPTION_VAL_30_UK}, {"50", OPTION_VAL_50_O21_UK}, {"60", OPTION_VAL_60_UK}, {"120", OPTION_VAL_120_O21_UK}, {"144", OPTION_VAL_144_UK}, {"240", OPTION_VAL_240_O21_UK}, {NULL, NULL} },
         "auto"
     },
     {
@@ -27395,22 +28555,22 @@ struct retro_core_option_v2_definition option_defs_uk[] = {
         "rpcs3_anisotropic_filter", RPCS3_ANISOTROPIC_FILTER_LABEL_UK, NULL,
         RPCS3_ANISOTROPIC_FILTER_INFO_0_UK,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_UK}, {"1", OPTION_VAL_1_O24_UK}, {"2", OPTION_VAL_2_UK}, {"4", OPTION_VAL_4_UK}, {"8", OPTION_VAL_8_UK}, {"16", OPTION_VAL_16_O24_UK}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_UK}, {"2", OPTION_VAL_2_UK}, {"4", OPTION_VAL_4_UK}, {"8", OPTION_VAL_8_UK}, {"16", OPTION_VAL_16_O24_UK}, {NULL, NULL} },
         "auto"
     },
     {
         "rpcs3_msaa", RPCS3_MSAA_LABEL_UK, NULL,
         RPCS3_MSAA_INFO_0_UK,
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", OPTION_VAL_2_UK}, {"4", OPTION_VAL_4_UK}, {"8", OPTION_VAL_8_UK}, {"16", OPTION_VAL_16_O24_UK}, {NULL, NULL} },
-        "disabled"
+        { {"auto", OPTION_VAL_0_UK}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", RPCS3_SHADER_PRECISION_LABEL_UK, NULL,
-        RPCS3_SHADER_PRECISION_INFO_0_UK,
+        "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_UK, NULL,
+        RPCS3_SHADER_QUALITY_INFO_0_UK,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_UK}, {"normal", OPTION_VAL_NORMAL_UK}, {"high", OPTION_VAL_HIGH_UK}, {NULL, NULL} },
-        "normal"
+        { {"low", OPTION_VAL_LOW_UK}, {"high", OPTION_VAL_HIGH_UK}, {"ultra", OPTION_VAL_ULTRA_O26_UK}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", RPCS3_WRITE_COLOR_BUFFERS_LABEL_UK, NULL,
@@ -27677,6 +28837,34 @@ struct retro_core_option_v2_definition option_defs_uk[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    {
+        "rpcs3_accurate_rsx_reservation", RPCS3_ACCURATE_RSX_RESERVATION_LABEL_UK, NULL,
+        RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_UK,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_UK, NULL,
+        RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_UK,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", RPCS3_DISABLE_ZCULL_QUERIES_LABEL_UK, NULL,
+        RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_UK,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", RPCS3_VBLANK_NTSC_LABEL_UK, NULL,
+        RPCS3_VBLANK_NTSC_INFO_0_UK,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
 
     // ==================== CORE OPTIONS ====================
     {
@@ -27860,6 +29048,7 @@ struct retro_core_options_v2 options_uk = {
 #define OPTION_VAL_1024_VAL NULL
 #define RPCS3_FRAME_LIMIT_LABEL_VAL NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_VAL NULL
+#define OPTION_VAL_PS3_VAL NULL
 #define OPTION_VAL_30_VAL NULL
 #define OPTION_VAL_50_O21_VAL NULL
 #define OPTION_VAL_60_VAL NULL
@@ -27877,18 +29066,17 @@ struct retro_core_options_v2 options_uk = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_VAL NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_VAL NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_VAL NULL
-#define OPTION_VAL_1_O24_VAL NULL
 #define OPTION_VAL_2_VAL NULL
 #define OPTION_VAL_4_VAL NULL
 #define OPTION_VAL_8_VAL NULL
 #define OPTION_VAL_16_O24_VAL NULL
 #define RPCS3_MSAA_LABEL_VAL NULL
 #define RPCS3_MSAA_INFO_0_VAL NULL
-#define RPCS3_SHADER_PRECISION_LABEL_VAL NULL
-#define RPCS3_SHADER_PRECISION_INFO_0_VAL NULL
+#define RPCS3_SHADER_QUALITY_LABEL_VAL NULL
+#define RPCS3_SHADER_QUALITY_INFO_0_VAL NULL
 #define OPTION_VAL_LOW_VAL NULL
-#define OPTION_VAL_NORMAL_VAL NULL
 #define OPTION_VAL_HIGH_VAL NULL
+#define OPTION_VAL_ULTRA_O26_VAL NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_VAL NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_VAL NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_VAL NULL
@@ -28008,6 +29196,14 @@ struct retro_core_options_v2 options_uk = {
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_VAL NULL
 #define RPCS3_PPU_SET_FPCC_LABEL_VAL NULL
 #define RPCS3_PPU_SET_FPCC_INFO_0_VAL NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_VAL NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_VAL NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_VAL NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_VAL NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_VAL NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_VAL NULL
+#define RPCS3_VBLANK_NTSC_LABEL_VAL NULL
+#define RPCS3_VBLANK_NTSC_INFO_0_VAL NULL
 #define RPCS3_LANGUAGE_LABEL_VAL NULL
 #define RPCS3_LANGUAGE_INFO_0_VAL NULL
 #define OPTION_VAL_ENGLISH_VAL NULL
@@ -28214,7 +29410,7 @@ struct retro_core_option_v2_definition option_defs_val[] = {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_VAL, NULL,
         RPCS3_FRAME_LIMIT_INFO_0_VAL,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_VAL}, {"off", "Off"}, {"30", OPTION_VAL_30_VAL}, {"50", OPTION_VAL_50_O21_VAL}, {"60", OPTION_VAL_60_VAL}, {"120", OPTION_VAL_120_O21_VAL}, {"144", OPTION_VAL_144_VAL}, {"240", OPTION_VAL_240_O21_VAL}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_VAL}, {"ps3", OPTION_VAL_PS3_VAL}, {"off", "Off"}, {"30", OPTION_VAL_30_VAL}, {"50", OPTION_VAL_50_O21_VAL}, {"60", OPTION_VAL_60_VAL}, {"120", OPTION_VAL_120_O21_VAL}, {"144", OPTION_VAL_144_VAL}, {"240", OPTION_VAL_240_O21_VAL}, {NULL, NULL} },
         "auto"
     },
     {
@@ -28235,22 +29431,22 @@ struct retro_core_option_v2_definition option_defs_val[] = {
         "rpcs3_anisotropic_filter", RPCS3_ANISOTROPIC_FILTER_LABEL_VAL, NULL,
         RPCS3_ANISOTROPIC_FILTER_INFO_0_VAL,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_VAL}, {"1", OPTION_VAL_1_O24_VAL}, {"2", OPTION_VAL_2_VAL}, {"4", OPTION_VAL_4_VAL}, {"8", OPTION_VAL_8_VAL}, {"16", OPTION_VAL_16_O24_VAL}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_VAL}, {"2", OPTION_VAL_2_VAL}, {"4", OPTION_VAL_4_VAL}, {"8", OPTION_VAL_8_VAL}, {"16", OPTION_VAL_16_O24_VAL}, {NULL, NULL} },
         "auto"
     },
     {
         "rpcs3_msaa", RPCS3_MSAA_LABEL_VAL, NULL,
         RPCS3_MSAA_INFO_0_VAL,
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", OPTION_VAL_2_VAL}, {"4", OPTION_VAL_4_VAL}, {"8", OPTION_VAL_8_VAL}, {"16", OPTION_VAL_16_O24_VAL}, {NULL, NULL} },
-        "disabled"
+        { {"auto", OPTION_VAL_0_VAL}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", RPCS3_SHADER_PRECISION_LABEL_VAL, NULL,
-        RPCS3_SHADER_PRECISION_INFO_0_VAL,
+        "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_VAL, NULL,
+        RPCS3_SHADER_QUALITY_INFO_0_VAL,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_VAL}, {"normal", OPTION_VAL_NORMAL_VAL}, {"high", OPTION_VAL_HIGH_VAL}, {NULL, NULL} },
-        "normal"
+        { {"low", OPTION_VAL_LOW_VAL}, {"high", OPTION_VAL_HIGH_VAL}, {"ultra", OPTION_VAL_ULTRA_O26_VAL}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", RPCS3_WRITE_COLOR_BUFFERS_LABEL_VAL, NULL,
@@ -28517,6 +29713,34 @@ struct retro_core_option_v2_definition option_defs_val[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    {
+        "rpcs3_accurate_rsx_reservation", RPCS3_ACCURATE_RSX_RESERVATION_LABEL_VAL, NULL,
+        RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_VAL,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_VAL, NULL,
+        RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_VAL,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", RPCS3_DISABLE_ZCULL_QUERIES_LABEL_VAL, NULL,
+        RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_VAL,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", RPCS3_VBLANK_NTSC_LABEL_VAL, NULL,
+        RPCS3_VBLANK_NTSC_INFO_0_VAL,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
 
     // ==================== CORE OPTIONS ====================
     {
@@ -28700,6 +29924,7 @@ struct retro_core_options_v2 options_val = {
 #define OPTION_VAL_1024_VN NULL
 #define RPCS3_FRAME_LIMIT_LABEL_VN NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_VN NULL
+#define OPTION_VAL_PS3_VN NULL
 #define OPTION_VAL_30_VN NULL
 #define OPTION_VAL_50_O21_VN NULL
 #define OPTION_VAL_60_VN NULL
@@ -28717,18 +29942,17 @@ struct retro_core_options_v2 options_val = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_VN NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_VN NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_VN NULL
-#define OPTION_VAL_1_O24_VN NULL
 #define OPTION_VAL_2_VN NULL
 #define OPTION_VAL_4_VN NULL
 #define OPTION_VAL_8_VN NULL
 #define OPTION_VAL_16_O24_VN NULL
 #define RPCS3_MSAA_LABEL_VN NULL
 #define RPCS3_MSAA_INFO_0_VN NULL
-#define RPCS3_SHADER_PRECISION_LABEL_VN NULL
-#define RPCS3_SHADER_PRECISION_INFO_0_VN NULL
+#define RPCS3_SHADER_QUALITY_LABEL_VN NULL
+#define RPCS3_SHADER_QUALITY_INFO_0_VN NULL
 #define OPTION_VAL_LOW_VN NULL
-#define OPTION_VAL_NORMAL_VN NULL
 #define OPTION_VAL_HIGH_VN NULL
+#define OPTION_VAL_ULTRA_O26_VN NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_VN NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_VN NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_VN NULL
@@ -28848,6 +30072,14 @@ struct retro_core_options_v2 options_val = {
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_VN NULL
 #define RPCS3_PPU_SET_FPCC_LABEL_VN NULL
 #define RPCS3_PPU_SET_FPCC_INFO_0_VN NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_VN NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_VN NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_VN NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_VN NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_VN NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_VN NULL
+#define RPCS3_VBLANK_NTSC_LABEL_VN NULL
+#define RPCS3_VBLANK_NTSC_INFO_0_VN NULL
 #define RPCS3_LANGUAGE_LABEL_VN NULL
 #define RPCS3_LANGUAGE_INFO_0_VN NULL
 #define OPTION_VAL_ENGLISH_VN NULL
@@ -29054,7 +30286,7 @@ struct retro_core_option_v2_definition option_defs_vn[] = {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_VN, NULL,
         RPCS3_FRAME_LIMIT_INFO_0_VN,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_VN}, {"off", "Off"}, {"30", OPTION_VAL_30_VN}, {"50", OPTION_VAL_50_O21_VN}, {"60", OPTION_VAL_60_VN}, {"120", OPTION_VAL_120_O21_VN}, {"144", OPTION_VAL_144_VN}, {"240", OPTION_VAL_240_O21_VN}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_VN}, {"ps3", OPTION_VAL_PS3_VN}, {"off", "Off"}, {"30", OPTION_VAL_30_VN}, {"50", OPTION_VAL_50_O21_VN}, {"60", OPTION_VAL_60_VN}, {"120", OPTION_VAL_120_O21_VN}, {"144", OPTION_VAL_144_VN}, {"240", OPTION_VAL_240_O21_VN}, {NULL, NULL} },
         "auto"
     },
     {
@@ -29075,22 +30307,22 @@ struct retro_core_option_v2_definition option_defs_vn[] = {
         "rpcs3_anisotropic_filter", RPCS3_ANISOTROPIC_FILTER_LABEL_VN, NULL,
         RPCS3_ANISOTROPIC_FILTER_INFO_0_VN,
         NULL, "gpu",
-        { {"auto", OPTION_VAL_0_VN}, {"1", OPTION_VAL_1_O24_VN}, {"2", OPTION_VAL_2_VN}, {"4", OPTION_VAL_4_VN}, {"8", OPTION_VAL_8_VN}, {"16", OPTION_VAL_16_O24_VN}, {NULL, NULL} },
+        { {"auto", OPTION_VAL_0_VN}, {"2", OPTION_VAL_2_VN}, {"4", OPTION_VAL_4_VN}, {"8", OPTION_VAL_8_VN}, {"16", OPTION_VAL_16_O24_VN}, {NULL, NULL} },
         "auto"
     },
     {
         "rpcs3_msaa", RPCS3_MSAA_LABEL_VN, NULL,
         RPCS3_MSAA_INFO_0_VN,
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", OPTION_VAL_2_VN}, {"4", OPTION_VAL_4_VN}, {"8", OPTION_VAL_8_VN}, {"16", OPTION_VAL_16_O24_VN}, {NULL, NULL} },
-        "disabled"
+        { {"auto", OPTION_VAL_0_VN}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", RPCS3_SHADER_PRECISION_LABEL_VN, NULL,
-        RPCS3_SHADER_PRECISION_INFO_0_VN,
+        "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_VN, NULL,
+        RPCS3_SHADER_QUALITY_INFO_0_VN,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_VN}, {"normal", OPTION_VAL_NORMAL_VN}, {"high", OPTION_VAL_HIGH_VN}, {NULL, NULL} },
-        "normal"
+        { {"low", OPTION_VAL_LOW_VN}, {"high", OPTION_VAL_HIGH_VN}, {"ultra", OPTION_VAL_ULTRA_O26_VN}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", RPCS3_WRITE_COLOR_BUFFERS_LABEL_VN, NULL,
@@ -29353,6 +30585,34 @@ struct retro_core_option_v2_definition option_defs_vn[] = {
     {
         "rpcs3_ppu_set_fpcc", RPCS3_PPU_SET_FPCC_LABEL_VN, NULL,
         RPCS3_PPU_SET_FPCC_INFO_0_VN,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_accurate_rsx_reservation", RPCS3_ACCURATE_RSX_RESERVATION_LABEL_VN, NULL,
+        RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_VN,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_VN, NULL,
+        RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_VN,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", RPCS3_DISABLE_ZCULL_QUERIES_LABEL_VN, NULL,
+        RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_VN,
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", RPCS3_VBLANK_NTSC_LABEL_VN, NULL,
+        RPCS3_VBLANK_NTSC_INFO_0_VN,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
