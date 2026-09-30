@@ -177,6 +177,17 @@ void VKGSRender::queue_swap_request()
 		m_swapchain->end_frame(*m_current_command_buffer, m_current_frame->present_image);
 		close_and_submit_command_buffer();
 	}
+#ifdef LIBRETRO_CORE
+	else if (dynamic_cast<vk::swapchain_LIBRETRO*>(m_swapchain.get()))
+	{
+		// The libretro swapchain hands out images without signalling the
+		// acquire semaphore and never waits on the present one. Submitting
+		// with them waits on a semaphore nothing will signal: NVIDIA lets it
+		// through, RADV stalls the queue for good after the first frame
+		// (ozzfreak: one frame, then a black screen and a hang on exit).
+		close_and_submit_command_buffer();
+	}
+#endif
 	else
 	{
 		close_and_submit_command_buffer(nullptr,
