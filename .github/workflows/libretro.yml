@@ -93,11 +93,19 @@ jobs:
             exit 1
           fi
 
+      # The core info file goes with every core, not only with a release:
+      # a test build's core can take content types the published .info does
+      # not list yet, and the frontend's file browser goes by the .info (NNshi).
+      - name: Add the core info file
+        run: cp rpcs3/libretro/rpcs3_libretro.info "${{ env.BUILD_ARTIFACTSTAGINGDIRECTORY }}/"
+
       - name: Upload artifacts
         uses: actions/upload-artifact@main
         with:
           name: rpcs3_libretro-linux-${{ matrix.arch }}
-          path: ${{ env.BUILD_ARTIFACTSTAGINGDIRECTORY }}/*.so
+          path: |
+            ${{ env.BUILD_ARTIFACTSTAGINGDIRECTORY }}/*.so
+            ${{ env.BUILD_ARTIFACTSTAGINGDIRECTORY }}/*.info
           compression-level: 0
 
       - name: Save build Ccache
@@ -158,11 +166,17 @@ jobs:
       - name: Build
         run: .ci/build-windows-clang-libretro.sh
 
+      - name: Add the core info file
+        shell: bash
+        run: cp rpcs3/libretro/rpcs3_libretro.info artifacts/
+
       - name: Upload artifacts
         uses: actions/upload-artifact@main
         with:
           name: rpcs3_libretro-windows-x86_64
-          path: artifacts/*.dll
+          path: |
+            artifacts/*.dll
+            artifacts/*.info
           compression-level: 0
 
   Android:
@@ -275,11 +289,16 @@ jobs:
           echo "after:  $(stat -c %s artifacts/rpcs3_libretro_android_arm64.so) bytes"
           ls -la artifacts
 
+      - name: Add the core info file
+        run: cp rpcs3/libretro/rpcs3_libretro.info artifacts/
+
       - name: Upload artifacts
         uses: actions/upload-artifact@main
         with:
           name: rpcs3_libretro-android-arm64
-          path: artifacts/*.so
+          path: |
+            artifacts/*.so
+            artifacts/*.info
           compression-level: 0
 
   Release:
