@@ -2399,7 +2399,24 @@ static void init_emu_callbacks()
     callbacks.enable_display_sleep = [](bool) {};
 
     callbacks.check_microphone_permissions = []() {};
-    callbacks.make_video_source = []() { return nullptr; };
+    // Save data dialogs play a game's animated icon (ICON1.PAM) through a
+    // video source, and overlay_video ensure()s it gets one: returning none
+    // killed the game's thread the moment such a dialog opened, and the game
+    // waited on it for good - Project Diva F 2nd's "Pick from list" (NNshi).
+    // Standalone decodes it with Qt; here the source never has a frame, so
+    // the entry keeps its still icon.
+    callbacks.make_video_source = []() -> std::unique_ptr<video_source>
+    {
+        struct still_video_source final : video_source
+        {
+            void set_video_path(const std::string&) override {}
+            void set_active(bool) override {}
+            bool get_active() const override { return false; }
+            bool has_new() const override { return false; }
+            void get_image(std::vector<u8>&, int&, int&, int&, int&) override {}
+        };
+        return std::make_unique<still_video_source>();
+    };
 
     // Standalone resolves paths with Qt's canonicalFilePath: absolute, links
     // followed, no trailing separator. Without this the default passed paths
