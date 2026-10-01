@@ -879,7 +879,7 @@ struct retro_core_option_v2_definition option_defs_ar[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_AR,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_AR}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_AR, NULL,
@@ -1766,7 +1766,7 @@ struct retro_core_option_v2_definition option_defs_ast[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_AST,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_AST}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_AST, NULL,
@@ -2653,7 +2653,7 @@ struct retro_core_option_v2_definition option_defs_be[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_BE,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_BE}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_BE, NULL,
@@ -3540,7 +3540,7 @@ struct retro_core_option_v2_definition option_defs_bg[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_BG,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_BG}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_BG, NULL,
@@ -4427,7 +4427,7 @@ struct retro_core_option_v2_definition option_defs_ca[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_CA,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_CA}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_CA, NULL,
@@ -5314,7 +5314,7 @@ struct retro_core_option_v2_definition option_defs_chs[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_CHS,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_CHS}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_CHS, NULL,
@@ -6201,7 +6201,7 @@ struct retro_core_option_v2_definition option_defs_cht[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_CHT,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_CHT}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_CHT, NULL,
@@ -7088,7 +7088,7 @@ struct retro_core_option_v2_definition option_defs_cs[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_CS,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_CS}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_CS, NULL,
@@ -7975,7 +7975,7 @@ struct retro_core_option_v2_definition option_defs_cy[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_CY,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_CY}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_CY, NULL,
@@ -8862,7 +8862,7 @@ struct retro_core_option_v2_definition option_defs_da[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_DA,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_DA}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_DA, NULL,
@@ -9749,7 +9749,7 @@ struct retro_core_option_v2_definition option_defs_de[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_DE,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_DE}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_DE, NULL,
@@ -10636,7 +10636,7 @@ struct retro_core_option_v2_definition option_defs_el[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_EL,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_EL}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_EL, NULL,
@@ -11523,7 +11523,7 @@ struct retro_core_option_v2_definition option_defs_en[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_EN,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_EN}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_EN, NULL,
@@ -12410,7 +12410,7 @@ struct retro_core_option_v2_definition option_defs_eo[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_EO,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_EO}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_EO, NULL,
@@ -13297,7 +13297,7 @@ struct retro_core_option_v2_definition option_defs_es[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_ES,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_ES}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_ES, NULL,
@@ -14184,7 +14184,7 @@ struct retro_core_option_v2_definition option_defs_fa[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_FA,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_FA}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_FA, NULL,
@@ -15071,7 +15071,7 @@ struct retro_core_option_v2_definition option_defs_fi[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_FI,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_FI}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_FI, NULL,
@@ -15958,7 +15958,7 @@ struct retro_core_option_v2_definition option_defs_fr[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_FR,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_FR}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_FR, NULL,
@@ -16845,7 +16845,7 @@ struct retro_core_option_v2_definition option_defs_ga[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_GA,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_GA}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_GA, NULL,
@@ -17732,7 +17732,7 @@ struct retro_core_option_v2_definition option_defs_gl[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_GL,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_GL}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_GL, NULL,
@@ -18619,7 +18619,7 @@ struct retro_core_option_v2_definition option_defs_he[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_HE,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_HE}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_HE, NULL,
@@ -19506,7 +19506,7 @@ struct retro_core_option_v2_definition option_defs_hr[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_HR,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_HR}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_HR, NULL,
@@ -20393,7 +20393,7 @@ struct retro_core_option_v2_definition option_defs_hu[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_HU,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_HU}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_HU, NULL,
@@ -21280,7 +21280,7 @@ struct retro_core_option_v2_definition option_defs_id[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_ID,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_ID}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_ID, NULL,
@@ -22167,7 +22167,7 @@ struct retro_core_option_v2_definition option_defs_it[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_IT,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_IT}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_IT, NULL,
@@ -23054,7 +23054,7 @@ struct retro_core_option_v2_definition option_defs_ja[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_JA,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_JA}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_JA, NULL,
@@ -23941,7 +23941,7 @@ struct retro_core_option_v2_definition option_defs_ko[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_KO,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_KO}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_KO, NULL,
@@ -24828,7 +24828,7 @@ struct retro_core_option_v2_definition option_defs_nl[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_NL,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_NL}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_NL, NULL,
@@ -25715,7 +25715,7 @@ struct retro_core_option_v2_definition option_defs_no[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_NO,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_NO}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_NO, NULL,
@@ -26602,7 +26602,7 @@ struct retro_core_option_v2_definition option_defs_or[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_OR,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_OR}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_OR, NULL,
@@ -27489,7 +27489,7 @@ struct retro_core_option_v2_definition option_defs_pl[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_PL,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_PL}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_PL, NULL,
@@ -28376,7 +28376,7 @@ struct retro_core_option_v2_definition option_defs_pt_br[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_PT_BR,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_PT_BR}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_PT_BR, NULL,
@@ -29263,7 +29263,7 @@ struct retro_core_option_v2_definition option_defs_pt_pt[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_PT_PT,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_PT_PT}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_PT_PT, NULL,
@@ -30150,7 +30150,7 @@ struct retro_core_option_v2_definition option_defs_ru[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_RU,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_RU}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_RU, NULL,
@@ -31037,7 +31037,7 @@ struct retro_core_option_v2_definition option_defs_sk[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_SK,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_SK}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_SK, NULL,
@@ -31924,7 +31924,7 @@ struct retro_core_option_v2_definition option_defs_sr[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_SR,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_SR}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_SR, NULL,
@@ -32811,7 +32811,7 @@ struct retro_core_option_v2_definition option_defs_sv[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_SV,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_SV}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_SV, NULL,
@@ -33698,7 +33698,7 @@ struct retro_core_option_v2_definition option_defs_th[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_TH,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_TH}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_TH, NULL,
@@ -34585,7 +34585,7 @@ struct retro_core_option_v2_definition option_defs_tr[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_TR,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_TR}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_TR, NULL,
@@ -35472,7 +35472,7 @@ struct retro_core_option_v2_definition option_defs_tt[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_TT,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_TT}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_TT, NULL,
@@ -36359,7 +36359,7 @@ struct retro_core_option_v2_definition option_defs_uk[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_UK,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_UK}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_UK, NULL,
@@ -37246,7 +37246,7 @@ struct retro_core_option_v2_definition option_defs_val[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_VAL,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_VAL}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_VAL, NULL,
@@ -38133,7 +38133,7 @@ struct retro_core_option_v2_definition option_defs_vn[] = {
         RPCS3_SAVEDATA_SLOT_INFO_0_VN,
         NULL, "core",
         { {"list", OPTION_VAL_LIST_VN}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_VN, NULL,
