@@ -589,7 +589,7 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "A PS3 game shows a list of its save data and lets the player pick. 'Pick from list' shows that list in the game picture, to be used with the controller. A number has the core pick for you instead: saving overwrites the entry at this position in the game's list, or makes a new save when the list is shorter; loading takes the entry at this position, and finds nothing when the list is shorter. 0 is the first entry. Games that keep a single save of their own do not show a list, so this does not apply to them.",
         NULL, "core",
         { {"list", "Pick from list"}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "0"
+        "list"
     },
     {
         "rpcs3_show_ppu_compilation_hint", "Show PPU Compilation Hint", NULL,

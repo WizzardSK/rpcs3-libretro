@@ -470,7 +470,7 @@ static std::string install_pkg_file(const std::string& pkg_path)
 }
 
 // The Save Data Slot core option, for the save dialog (see libretro_save_dialog)
-static std::atomic<int> s_savedata_slot{0}; // -1: let the player pick from the game's list
+static std::atomic<int> s_savedata_slot{-1}; // -1: let the player pick from the game's list
 
 static std::string get_option_value(const char* key, const char* default_val = "")
 {
@@ -708,7 +708,7 @@ static void libretro_apply_core_options()
     // Save Data Slot (read here, on the frontend's thread, and kept for the
     // save dialog, which runs on the game's)
     {
-        const std::string slot = get_option_value("rpcs3_savedata_slot", "0");
+        const std::string slot = get_option_value("rpcs3_savedata_slot", "list");
         s_savedata_slot = slot == "list" ? -1 : std::clamp(std::atoi(slot.c_str()), 0, 9);
     }
 
