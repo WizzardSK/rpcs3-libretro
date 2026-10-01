@@ -99,3 +99,4 @@ rpcs3/Input/sdl_camera_video_sink.h
 .github/parameters
 .github/workflows/pr-labels.yml
 scripts/win_build.ps1
+bin/fonts
