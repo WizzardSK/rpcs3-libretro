@@ -530,7 +530,7 @@ void GLGSRender::flip(const rsx::display_flip_info_t& info)
 					static_cast<GLenum>(image_to_flip->get_internal_format()), image_to_flip->format_class());
 			}
 			static const position3u crop_offset{};
-			gl::g_hw_blitter->copy_image(cmd, image_to_flip, s_crop_tex.get(), 0, 0, crop_offset, crop_offset, { crop_width, crop_height, 1 });
+			gl::g_hw_blitter->copy_image(cmd, image_to_flip, s_crop_tex.get(), crop_offset, crop_offset, size3u{ crop_width, crop_height, 1 });
 			image_to_flip = s_crop_tex.get();
 		}
 #endif

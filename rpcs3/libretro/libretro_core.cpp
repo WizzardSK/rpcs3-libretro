@@ -40,6 +40,8 @@
 #include "Emu/RSX/Null/NullGSRender.h"
 #include "Emu/IdManager.h"
 #include "Emu/VFS.h"
+#include "Emu/emu_callbacks.h"
+#include "Emu/Audio/audio_device_enumerator.h"
 #include "Emu/RSX/RSXThread.h"
 #include "Input/pad_thread.h"
 #include "util/video_source.h"
@@ -59,6 +61,7 @@
 
 #include <clocale>
 #include <chrono>
+#include <ctime>
 #include <atomic>
 #include <thread>
 #include <mutex>
@@ -337,7 +340,7 @@ static std::string install_pkg_file(const std::string& pkg_path)
     std::atomic<bool> extraction_success{false};
     std::thread extraction_thread([&]()
     {
-        auto result = package_reader::extract_data(readers, bootable_paths);
+        auto result = package_reader::extract_data(readers, bootable_paths, false);
         extraction_success = (result.error == package_install_result::error_type::no_error);
         extraction_done = true;
     });
@@ -520,7 +523,7 @@ static void libretro_apply_core_options()
 
     // Frame Limit
     std::string limit = get_option_value("rpcs3_frame_limit", "auto");
-    g_cfg.video.vsync.set(false);  // Disable RPCS3 vsync, RetroArch controls timing
+    g_cfg.video.vsync.set(vsync_mode::off);  // Disable RPCS3 vsync, RetroArch controls timing
 
     // Auto is RPCS3's own default: at most one flip per PS3 refresh (the
     // VBlank Rate). Leaving the limiter off for it, as this used to, let
@@ -1273,6 +1276,18 @@ void retro_init(void)
     else
     {
     }
+
+    // RPCS3 replaces a renderer it was not told about with the default (Null),
+    // and standalone tells it by probing the GPU. Here the frontend's context is
+    // what decides, so every renderer this build has is allowed.
+    std::set<video_renderer> supported_renderers{video_renderer::null};
+#ifndef WITHOUT_OPENGL
+    supported_renderers.insert(video_renderer::opengl);
+#endif
+#ifdef HAVE_VULKAN
+    supported_renderers.insert(video_renderer::vulkan);
+#endif
+    Emu.SetSupportedRenderers(std::move(supported_renderers));
 
     // Initialize the emulator
     Emu.SetHasGui(false);
@@ -2216,7 +2231,7 @@ namespace
 // Initialize emulator callbacks for libretro integration
 static void init_emu_callbacks()
 {
-    EmuCallbacks callbacks{};
+    emu_callbacks callbacks{};
 
     callbacks.call_from_main_thread = [](std::function<void()> func, atomic_t<u32>* wake_up)
     {
@@ -2242,7 +2257,7 @@ static void init_emu_callbacks()
             std::thread([f = std::move(func)]() mutable { f = nullptr; }).detach();
     };
 
-    callbacks.on_install_pkgs = [](const std::vector<std::string>& pkgs) -> bool
+    callbacks.on_install_pkgs = [](const std::vector<std::string>& pkgs, bool /*from_optical_drive*/) -> bool
     {
         // A disc that carries packages in PS3_GAME/INSDIR asks the frontend to
         // install them before the game runs. There is no package installer here
@@ -2427,7 +2442,9 @@ static void init_emu_callbacks()
     {
         struct still_video_source final : video_source
         {
-            void set_video_path(const std::string&) override {}
+            void set_iso_path(const std::string&) override {}
+            void set_video_path(const std::string&, bool) override {}
+            void set_audio_path(const std::string&, bool) override {}
             void set_active(bool) override {}
             bool get_active() const override { return false; }
             bool has_new() const override { return false; }
@@ -2470,6 +2487,66 @@ static void init_emu_callbacks()
     callbacks.update_emu_settings = []() {};
     callbacks.save_emu_settings = []() {};
 
-    Emu.SetCallbacks(std::move(callbacks));
+    // Three more since upstream build 20147, the first of which ended every
+    // boot right after the title was logged.
+    //
+    // Standalone downloads a per-game config from RPCS3's database here. A core
+    // does not fetch anything at run time, so there is none.
+    callbacks.get_database_config = [](const std::string&) { return std::string(); };
+
+    // Standalone's, without Qt: the photo goes to dev_hdd0/photo/<date>/ under
+    // the title and the time, with a counter when that name is taken.
+    callbacks.get_photo_path = [](std::string_view title) -> std::string
+    {
+        const std::time_t now = std::time(nullptr);
+        std::tm tm{};
+#ifdef _WIN32
+        localtime_s(&tm, &now);
+#else
+        localtime_r(&now, &tm);
+#endif
+        std::string_view extension = ".png";
+        if (const auto extension_start = title.find_last_of('.'); extension_start != umax)
+        {
+            extension = title.substr(extension_start);
+            title = title.substr(0, extension_start);
+        }
+
+        std::string suffix = std::string(extension);
+        const std::string path = vfs::get(fmt::format("/dev_hdd0/photo/%04d/%02d/%02d/%s %02d-%02d-%04d %02d-%02d-%02d",
+            tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, vfs::escape(title, true),
+            tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900, tm.tm_hour, tm.tm_min, tm.tm_sec));
+
+        u32 counter = 0;
+        while (!Emu.IsStopped() && fs::is_file(path + suffix))
+        {
+            suffix = fmt::format(" %d%s", ++counter, extension);
+        }
+
+        return path + suffix;
+    };
+
+    // Like resolve_path, for a path that may not exist yet: the part that does
+    // is made canonical, the rest is appended as written. The default passed
+    // the text through untouched.
+    callbacks.resolve_path_may_not_exist = [](std::string_view path) -> std::string
+    {
+        std::error_code ec;
+        const std::filesystem::path resolved = std::filesystem::weakly_canonical(std::filesystem::path(std::u8string(path.begin(), path.end())), ec);
+        if (ec)
+            return std::string(path);
+        std::u8string text = resolved.generic_u8string();
+        while (text.size() > 1 && text.back() == u8'/')
+            text.pop_back();
+#ifdef _WIN32
+        // A path that was absolute without a drive stays without one, as in
+        // standalone.
+        if (path.starts_with("/") && !path.starts_with("//") && text.size() >= 3 && text[1] == u8':' && text[2] == u8'/')
+            text.erase(0, 2);
+#endif
+        return std::string(text.begin(), text.end());
+    };
+
+    g_emu_callbacks = std::move(callbacks);
 }
 

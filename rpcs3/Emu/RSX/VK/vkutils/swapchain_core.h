@@ -7,6 +7,7 @@
 #include "../../display.h"
 #include "../VulkanAPI.h"
 #include "image.h"
+#include "util/logs.hpp"
 
 #include <memory>
 

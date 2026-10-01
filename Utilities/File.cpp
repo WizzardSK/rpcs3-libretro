@@ -199,7 +199,6 @@ static fs::error to_error(int e)
 	case EINVAL: return fs::error::inval;
 	case EACCES: return fs::error::acces;
 	case ENOTEMPTY: return fs::error::notempty;
-	case ENOTDIR: return fs::error::notdir;
 	case EROFS: return fs::error::readonly;
 	case EISDIR: return fs::error::isdir;
 	case ENOTDIR: return fs::error::notdir;

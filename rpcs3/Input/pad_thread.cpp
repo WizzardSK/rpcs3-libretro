@@ -65,9 +65,6 @@ void pad_thread::Init()
 {
 	std::lock_guard lock(pad::g_pad_mutex);
 
-	// Reset mouse-based gyro state
-	m_mouse_gyro.set_enabled(g_cfg.io.mouse_based_gyro_enabled.get());
-
 	// Cache old settings if possible
 	std::array<pad_setting, CELL_PAD_MAX_PORT_NUM> pad_settings;
 	for (u32 i = 0; i < CELL_PAD_MAX_PORT_NUM; i++) // max 7 pads
@@ -641,10 +638,6 @@ void pad_thread::operator()()
 		if (Emu.IsRunning())
 		{
 			update_pad_states();
-
-			// Apply mouse-based gyro emulation.
-			// Intentionally bound to Player 1 only.
-			m_mouse_gyro.apply_gyro(m_pads[0]);
 		}
 
 		m_info.now_connect = connected_devices + num_ldd_pad;

@@ -629,7 +629,7 @@ void VKGSRender::flip(const rsx::display_flip_info_t& info)
 		// is not that large and keeps its size.
 		if (g_libretro_software_present && image_to_flip)
 		{
-			const auto [scaled_width, scaled_height] = rsx::apply_resolution_scale<true>(buffer_width, buffer_height);
+			const auto [scaled_width, scaled_height] = rsx::apply_resolution_scale<true>(resolution_scaling_config, buffer_width, buffer_height);
 			const bool scaled_source = scaled_width > buffer_width &&
 				image_to_flip->width() >= scaled_width && image_to_flip->height() >= scaled_height;
 
@@ -1026,7 +1026,7 @@ void VKGSRender::flip(const rsx::display_flip_info_t& info)
 		// never sees, and the game waited on it for good. Draw it over black.
 		u32 width = buffer_width ? buffer_width : 1280;
 		u32 height = buffer_height ? buffer_height : 720;
-		std::tie(width, height) = rsx::apply_resolution_scale<true>(width, height);
+		std::tie(width, height) = rsx::apply_resolution_scale<true>(resolution_scaling_config, width, height);
 
 		const VkFormat format = m_swapchain->get_surface_format();
 		if (!m_overlay_recording_img ||

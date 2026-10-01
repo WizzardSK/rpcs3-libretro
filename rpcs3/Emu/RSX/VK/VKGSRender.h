@@ -210,12 +210,17 @@ private:
 		bool is_bgra = false;
 		bool pending = false;
 	};
-	std::array<libretro_readback_t, VK_MAX_ASYNC_FRAMES> m_libretro_readback;
+	std::vector<libretro_readback_t> m_libretro_readback;
 
 	libretro_readback_t* libretro_readback_for(const vk::frame_context_t* ctx)
 	{
-		const auto index = ctx - frame_context_storage.data();
-		return (index >= 0 && index < VK_MAX_ASYNC_FRAMES) ? &m_libretro_readback[index] : nullptr;
+		// The number of frame contexts is chosen at init, so follow it.
+		const auto index = ctx - m_frame_context_storage.data();
+		if (index < 0 || static_cast<usz>(index) >= m_frame_context_storage.size())
+			return nullptr;
+		if (m_libretro_readback.size() < m_frame_context_storage.size())
+			m_libretro_readback.resize(m_frame_context_storage.size());
+		return &m_libretro_readback[index];
 	}
 
 	void libretro_deliver_readback(vk::frame_context_t* ctx);

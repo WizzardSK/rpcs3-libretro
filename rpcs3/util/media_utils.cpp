@@ -348,29 +348,45 @@ namespace utils
 		return ch_layout_buf.data();
 	}
 
-	// ffmpeg 7.1 removed AVCodec::sample_fmts, ::supported_samplerates and
-	// ::ch_layouts in favour of avcodec_get_supported_config. The prebuilt
-	// ffmpeg this project downloads still predates that; a system one - MSYS2's
-	// on the Windows core build, say - does not. Both have to compile, so ask
-	// through these and let the version decide.
-#if LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(61, 13, 100)
-	template <typename T>
-	static const T* codec_supported_config(const AVCodec* codec, AVCodecConfig config)
+#if LIBAVCODEC_VERSION_INT < AV_VERSION_INT(61, 13, 100)
+	// ffmpeg 7.1 replaced AVCodec::sample_fmts, ::supported_samplerates and
+	// ::ch_layouts with avcodec_get_supported_config, which the code below
+	// uses. The prebuilt ffmpeg the Android core is built with predates it, so
+	// there the same call reads the old fields. Only what this file asks for.
+	enum class AVCodecConfig
 	{
-		const void* values = nullptr;
-		int count = 0;
-		if (avcodec_get_supported_config(nullptr, codec, config, 0, &values, &count) < 0)
-			return nullptr;
-		return static_cast<const T*>(values);
-	}
+		AV_CODEC_CONFIG_SAMPLE_RATE,
+		AV_CODEC_CONFIG_SAMPLE_FORMAT,
+		AV_CODEC_CONFIG_CHANNEL_LAYOUT,
+	};
 
-	static const AVSampleFormat* codec_sample_fmts(const AVCodec* codec) { return codec_supported_config<AVSampleFormat>(codec, AV_CODEC_CONFIG_SAMPLE_FORMAT); }
-	static const int* codec_sample_rates(const AVCodec* codec) { return codec_supported_config<int>(codec, AV_CODEC_CONFIG_SAMPLE_RATE); }
-	static const AVChannelLayout* codec_ch_layouts(const AVCodec* codec) { return codec_supported_config<AVChannelLayout>(codec, AV_CODEC_CONFIG_CHANNEL_LAYOUT); }
-#else
-	static const AVSampleFormat* codec_sample_fmts(const AVCodec* codec) { return codec->sample_fmts; }
-	static const int* codec_sample_rates(const AVCodec* codec) { return codec->supported_samplerates; }
-	static const AVChannelLayout* codec_ch_layouts(const AVCodec* codec) { return codec->ch_layouts; }
+	static int avcodec_get_supported_config(const AVCodecContext*, const AVCodec* codec, AVCodecConfig config, unsigned, const void** out_configs, int* out_num_configs)
+	{
+		const auto count = [](const auto* values, auto&& is_end)
+		{
+			int num = 0;
+			while (values && !is_end(values[num])) num++;
+			return num;
+		};
+
+		switch (config)
+		{
+		case AVCodecConfig::AV_CODEC_CONFIG_SAMPLE_RATE:
+			*out_configs = codec->supported_samplerates;
+			*out_num_configs = count(codec->supported_samplerates, [](int v) { return v == 0; });
+			break;
+		case AVCodecConfig::AV_CODEC_CONFIG_SAMPLE_FORMAT:
+			*out_configs = codec->sample_fmts;
+			*out_num_configs = count(codec->sample_fmts, [](AVSampleFormat v) { return v == AV_SAMPLE_FMT_NONE; });
+			break;
+		case AVCodecConfig::AV_CODEC_CONFIG_CHANNEL_LAYOUT:
+			*out_configs = codec->ch_layouts;
+			*out_num_configs = count(codec->ch_layouts, [](const AVChannelLayout& v) { return v.nb_channels == 0; });
+			break;
+		}
+
+		return 0;
+	}
 #endif
 
 	// check that a given sample format is supported by the encoder
@@ -378,7 +394,10 @@ namespace utils
 	{
 		if (!codec) return false;
 
-		for (const AVSampleFormat* p = codec_sample_fmts(codec); p && *p != AV_SAMPLE_FMT_NONE; p++)
+		const void* sample_formats = nullptr;
+		int num = 0;
+
+		if (const int err = avcodec_get_supported_config(nullptr, codec, AVCodecConfig::AV_CODEC_CONFIG_SAMPLE_FORMAT, 0, &sample_formats, &num))
 		{
 			media_log.error("check_sample_fmt: avcodec_get_supported_config error: %d='%s'", err, av_error_to_string(err));
 			return false;
@@ -401,15 +420,15 @@ namespace utils
 	// just pick the highest supported samplerate
 	static int select_sample_rate(const AVCodec* codec)
 	{
+		constexpr int default_sample_rate = 48000;
+
 		if (!codec)
-			return 48000;
+			return default_sample_rate;
 
-		const int* supported_samplerates = codec_sample_rates(codec);
-		if (!supported_samplerates)
-			return 48000;
+		const void* sample_rates = nullptr;
+		int num = 0;
 
-		int best_samplerate = 0;
-		for (const int* samplerate = supported_samplerates; samplerate && *samplerate != 0; samplerate++)
+		if (const int err = avcodec_get_supported_config(nullptr, codec, AVCodecConfig::AV_CODEC_CONFIG_SAMPLE_RATE, 0, &sample_rates, &num))
 		{
 			media_log.error("select_sample_rate: avcodec_get_supported_config error: %d='%s'", err, av_error_to_string(err));
 			return default_sample_rate;
@@ -502,9 +521,10 @@ namespace utils
 		const AVChannelLayout preferred_ch_layout = get_preferred_channel_layout(channels);
 		const AVChannelLayout* found_ch_layout = nullptr;
 
-		for (const AVChannelLayout* ch_layout = codec_ch_layouts(codec);
-			 ch_layout && memcmp(ch_layout, &empty_ch_layout, sizeof(AVChannelLayout)) != 0;
-			 ch_layout++)
+		int i = 0;
+		for (const AVChannelLayout* ch_layout = static_cast<const AVChannelLayout*>(ch_layouts);
+			 i < num && ch_layout && memcmp(ch_layout, &empty_ch_layout, sizeof(AVChannelLayout)) != 0;
+			 ch_layout++, i++)
 		{
 			media_log.notice("select_channel_layout: listing channel layout '%s' with %d channels", channel_layout_name(*ch_layout), ch_layout->nb_channels);
 

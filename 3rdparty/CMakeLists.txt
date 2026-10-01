@@ -243,6 +243,8 @@ if(NOT MSVC AND NOT ANDROID AND NOT APPLE)
 	if(GLEW_STATIC_ARCHIVE)
 		message(STATUS "GLEW: linking statically against ${GLEW_STATIC_ARCHIVE}")
 		target_link_libraries(3rdparty_glew INTERFACE ${GLEW_STATIC_ARCHIVE})
+		# The archive is a bare path, so its headers do not come along with it.
+		target_include_directories(3rdparty_glew INTERFACE ${GLEW_INCLUDE_DIRS})
 		target_compile_definitions(3rdparty_glew INTERFACE GLEW_STATIC)
 	else()
 		message(STATUS "GLEW: no static archive found, linking the shared library")

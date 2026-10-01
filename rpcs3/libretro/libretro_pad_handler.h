@@ -49,8 +49,8 @@ private:
 
     std::shared_ptr<PadDevice> get_device(const std::string& device) override;
     connection update_connection(const std::shared_ptr<PadDevice>& device) override;
-    std::unordered_map<u64, u16> get_button_values(const std::shared_ptr<PadDevice>& device) override;
-    pad_preview_values get_preview_values(const std::unordered_map<u64, u16>& data) override;
+    std::unordered_map<u32, u16> get_button_values(const std::shared_ptr<PadDevice>& device) override;
+    pad_preview_values get_preview_values(const std::unordered_map<u32, u16>& data, const std::vector<std::string>& buttons) override;
 
     // Convert libretro analog value (-32768 to 32767) to 0-255 range
     static u16 ConvertAnalogValue(int16_t value);

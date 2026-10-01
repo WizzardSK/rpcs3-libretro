@@ -120,31 +120,31 @@ bool LibretroPadHandler::bindPadToDevice(std::shared_ptr<Pad> pad)
     pad->m_buttons.clear();
     pad->m_buttons.reserve(17);
 
-    // Button constructor: Button(u32 offset, std::set<u32> key_codes, u32 outKeyCode)
+    // Button constructor: Button(u32 offset, std::vector<std::set<u32>> key_combos, u32 outKeyCode)
     // We pass empty set for key_codes since we handle input directly in process()
 
     // Digital buttons - DIGITAL1 group (directly from cellPad)
-    pad->m_buttons.emplace_back(CELL_PAD_BTN_OFFSET_DIGITAL1, std::set<u32>{}, CELL_PAD_CTRL_UP);
-    pad->m_buttons.emplace_back(CELL_PAD_BTN_OFFSET_DIGITAL1, std::set<u32>{}, CELL_PAD_CTRL_DOWN);
-    pad->m_buttons.emplace_back(CELL_PAD_BTN_OFFSET_DIGITAL1, std::set<u32>{}, CELL_PAD_CTRL_LEFT);
-    pad->m_buttons.emplace_back(CELL_PAD_BTN_OFFSET_DIGITAL1, std::set<u32>{}, CELL_PAD_CTRL_RIGHT);
-    pad->m_buttons.emplace_back(CELL_PAD_BTN_OFFSET_DIGITAL1, std::set<u32>{}, CELL_PAD_CTRL_SELECT);
-    pad->m_buttons.emplace_back(CELL_PAD_BTN_OFFSET_DIGITAL1, std::set<u32>{}, CELL_PAD_CTRL_START);
-    pad->m_buttons.emplace_back(CELL_PAD_BTN_OFFSET_DIGITAL1, std::set<u32>{}, CELL_PAD_CTRL_L3);
-    pad->m_buttons.emplace_back(CELL_PAD_BTN_OFFSET_DIGITAL1, std::set<u32>{}, CELL_PAD_CTRL_R3);
+    pad->m_buttons.emplace_back(CELL_PAD_BTN_OFFSET_DIGITAL1, std::vector<std::set<u32>>{}, CELL_PAD_CTRL_UP);
+    pad->m_buttons.emplace_back(CELL_PAD_BTN_OFFSET_DIGITAL1, std::vector<std::set<u32>>{}, CELL_PAD_CTRL_DOWN);
+    pad->m_buttons.emplace_back(CELL_PAD_BTN_OFFSET_DIGITAL1, std::vector<std::set<u32>>{}, CELL_PAD_CTRL_LEFT);
+    pad->m_buttons.emplace_back(CELL_PAD_BTN_OFFSET_DIGITAL1, std::vector<std::set<u32>>{}, CELL_PAD_CTRL_RIGHT);
+    pad->m_buttons.emplace_back(CELL_PAD_BTN_OFFSET_DIGITAL1, std::vector<std::set<u32>>{}, CELL_PAD_CTRL_SELECT);
+    pad->m_buttons.emplace_back(CELL_PAD_BTN_OFFSET_DIGITAL1, std::vector<std::set<u32>>{}, CELL_PAD_CTRL_START);
+    pad->m_buttons.emplace_back(CELL_PAD_BTN_OFFSET_DIGITAL1, std::vector<std::set<u32>>{}, CELL_PAD_CTRL_L3);
+    pad->m_buttons.emplace_back(CELL_PAD_BTN_OFFSET_DIGITAL1, std::vector<std::set<u32>>{}, CELL_PAD_CTRL_R3);
 
     // Digital buttons - DIGITAL2 group
-    pad->m_buttons.emplace_back(CELL_PAD_BTN_OFFSET_DIGITAL2, std::set<u32>{}, CELL_PAD_CTRL_CROSS);
-    pad->m_buttons.emplace_back(CELL_PAD_BTN_OFFSET_DIGITAL2, std::set<u32>{}, CELL_PAD_CTRL_CIRCLE);
-    pad->m_buttons.emplace_back(CELL_PAD_BTN_OFFSET_DIGITAL2, std::set<u32>{}, CELL_PAD_CTRL_SQUARE);
-    pad->m_buttons.emplace_back(CELL_PAD_BTN_OFFSET_DIGITAL2, std::set<u32>{}, CELL_PAD_CTRL_TRIANGLE);
-    pad->m_buttons.emplace_back(CELL_PAD_BTN_OFFSET_DIGITAL2, std::set<u32>{}, CELL_PAD_CTRL_L1);
-    pad->m_buttons.emplace_back(CELL_PAD_BTN_OFFSET_DIGITAL2, std::set<u32>{}, CELL_PAD_CTRL_R1);
-    pad->m_buttons.emplace_back(CELL_PAD_BTN_OFFSET_DIGITAL2, std::set<u32>{}, CELL_PAD_CTRL_L2);
-    pad->m_buttons.emplace_back(CELL_PAD_BTN_OFFSET_DIGITAL2, std::set<u32>{}, CELL_PAD_CTRL_R2);
+    pad->m_buttons.emplace_back(CELL_PAD_BTN_OFFSET_DIGITAL2, std::vector<std::set<u32>>{}, CELL_PAD_CTRL_CROSS);
+    pad->m_buttons.emplace_back(CELL_PAD_BTN_OFFSET_DIGITAL2, std::vector<std::set<u32>>{}, CELL_PAD_CTRL_CIRCLE);
+    pad->m_buttons.emplace_back(CELL_PAD_BTN_OFFSET_DIGITAL2, std::vector<std::set<u32>>{}, CELL_PAD_CTRL_SQUARE);
+    pad->m_buttons.emplace_back(CELL_PAD_BTN_OFFSET_DIGITAL2, std::vector<std::set<u32>>{}, CELL_PAD_CTRL_TRIANGLE);
+    pad->m_buttons.emplace_back(CELL_PAD_BTN_OFFSET_DIGITAL2, std::vector<std::set<u32>>{}, CELL_PAD_CTRL_L1);
+    pad->m_buttons.emplace_back(CELL_PAD_BTN_OFFSET_DIGITAL2, std::vector<std::set<u32>>{}, CELL_PAD_CTRL_R1);
+    pad->m_buttons.emplace_back(CELL_PAD_BTN_OFFSET_DIGITAL2, std::vector<std::set<u32>>{}, CELL_PAD_CTRL_L2);
+    pad->m_buttons.emplace_back(CELL_PAD_BTN_OFFSET_DIGITAL2, std::vector<std::set<u32>>{}, CELL_PAD_CTRL_R2);
 
     // PS button (optional)
-    pad->m_buttons.emplace_back(CELL_PAD_BTN_OFFSET_DIGITAL2, std::set<u32>{}, CELL_PAD_CTRL_PS);
+    pad->m_buttons.emplace_back(CELL_PAD_BTN_OFFSET_DIGITAL2, std::vector<std::set<u32>>{}, CELL_PAD_CTRL_PS);
 
     // Initialize analog sticks (center position = 128, default value)
     pad->m_sticks[0].m_offset = CELL_PAD_BTN_OFFSET_ANALOG_LEFT_X;
@@ -184,9 +184,9 @@ u16 LibretroPadHandler::ConvertAnalogValue(int16_t value)
     return static_cast<u16>((normalized * 255) / 65535);
 }
 
-std::unordered_map<u64, u16> LibretroPadHandler::get_button_values(const std::shared_ptr<PadDevice>& device)
+std::unordered_map<u32, u16> LibretroPadHandler::get_button_values(const std::shared_ptr<PadDevice>& device)
 {
-    std::unordered_map<u64, u16> values;
+    std::unordered_map<u32, u16> values;
 
     if (!device)
         return values;
@@ -239,7 +239,7 @@ std::unordered_map<u64, u16> LibretroPadHandler::get_button_values(const std::sh
     return values;
 }
 
-pad_preview_values LibretroPadHandler::get_preview_values(const std::unordered_map<u64, u16>& data)
+pad_preview_values LibretroPadHandler::get_preview_values(const std::unordered_map<u32, u16>& data, const std::vector<std::string>& /*buttons*/)
 {
     return {
         data.at(static_cast<u64>(LibretroButton::LSXNeg)) - data.at(static_cast<u64>(LibretroButton::LSXPos)),

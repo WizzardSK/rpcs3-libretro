@@ -32,7 +32,6 @@ namespace rpcs3::utils
 	std::vector<std::pair<std::string, u64>> get_vfs_disk_usage();
 	std::string get_emu_dir();
 	std::string get_hdd0_dir();
-	std::string get_redump_key_dir();
 	std::string get_hdd1_dir();
 	std::string get_flash_dir();
 	std::string get_flash2_dir();
