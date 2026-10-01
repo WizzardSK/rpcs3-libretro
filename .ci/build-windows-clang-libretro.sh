@@ -7,14 +7,17 @@
 # with CMake does not work either - the LLVM on the runner image is the client
 # distribution, with no CMake package and no static libraries, so
 # find_package(LLVM) finds nothing. clang64 has all of it as packages: LLVM
-# with its CMake config, and ffmpeg, OpenCV, curl and GLEW besides, which is
-# why this asks for the system copies of those.
+# with its CMake config, and ffmpeg, OpenCV and GLEW besides, which is why
+# this asks for the system copies of those. Not curl: since RPCN and clans
+# went into the emulator itself it links libcurl, and clang64's is a DLL, so
+# curl and wolfSSL come from the submodules and are linked in. protobuf, for
+# RPCN, would take clang64's abseil, DLLs again; it fetches and builds its own.
 
 git config --global --add safe.directory '*'
 
 # The ones clang64 provides as packages are left out, as is LLVM.
 # shellcheck disable=SC2046
-git submodule -q update --init --depth 1 $(awk '/path/ && !/llvm/ && !/opencv/ && !/ffmpeg/ && !/curl/ && !/FAudio/ && !/zlib/ { print $3 }' .gitmodules)
+git submodule -q update --init --depth 1 $(awk '/path/ && !/llvm/ && !/opencv/ && !/ffmpeg/ && !/FAudio/ && !/zlib/ { print $3 }' .gitmodules)
 
 # The core has to be one DLL that needs nothing but Windows, the Vulkan loader
 # and OpenGL. RetroArch loads it with LoadLibraryW on its full path, so Windows
@@ -87,7 +90,8 @@ cmake ..                                               \
     -DCMAKE_SHARED_LINKER_FLAGS="${LINKER_FLAG}"       \
     -DCMAKE_AR="$AR"                                   \
     -DCMAKE_RANLIB="$RANLIB"                           \
-    -DUSE_SYSTEM_CURL=ON                               \
+    -DUSE_SYSTEM_CURL=OFF                              \
+    -Dprotobuf_FORCE_FETCH_DEPENDENCIES=ON             \
     -DUSE_FAUDIO=OFF                                   \
     -DUSE_SDL=OFF                                      \
     -DUSE_SYSTEM_FFMPEG=ON                             \
