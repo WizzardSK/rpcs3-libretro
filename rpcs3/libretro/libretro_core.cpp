@@ -294,6 +294,11 @@ static void libretro_report_progress()
     if (title.empty() && !ptotal && !ftotal)
         return;
 
+    // RPCS3 leaves finished counts standing until its dialog server gets to
+    // them, if it does; a notice of "module 3 of 3" then stayed up for good.
+    if ((ptotal || ftotal) && pdone >= ptotal && fdone >= ftotal)
+        return;
+
     // Often enough to follow the count, not every frame.
     static std::string s_last;
     static u64 s_last_us = 0;
@@ -1103,6 +1108,9 @@ static void install_ui_icons()
         const std::string path = dir + icon.name;
 
         fs::stat_t info{};
+        // The home menu's are in a subdirectory (home/32/).
+        if (const std::string parent = fs::get_parent_dir(path); !fs::is_dir(parent))
+            fs::create_path(parent);
         if (fs::get_stat(path, info) && info.size == icon.size)
             continue;
 

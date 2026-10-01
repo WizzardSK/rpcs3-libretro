@@ -1,15 +1,16 @@
 # Compiles bin/Icons/ui into the core. RPCS3's in-game overlays (message and
-# save data dialogs, the on-screen keyboard) draw these, and standalone RPCS3
-# ships them next to the executable - a core is a single file, so it carries
-# them itself and installs them into the config dir (libretro_ui_icons.h).
+# save data dialogs, the on-screen keyboard, the home menu from home/32) draw
+# these, and standalone RPCS3 ships them next to the executable - a core is a
+# single file, so it carries them itself and installs them into the config dir
+# (libretro_ui_icons.h). home/256 is for the standalone's Big Picture mode.
 function(libretro_embed_ui_icons out_file)
-    file(GLOB icons CONFIGURE_DEPENDS "${CMAKE_SOURCE_DIR}/bin/Icons/ui/*.png")
+    file(GLOB icons CONFIGURE_DEPENDS "${CMAKE_SOURCE_DIR}/bin/Icons/ui/*.png" "${CMAKE_SOURCE_DIR}/bin/Icons/ui/home/32/*.png")
     list(SORT icons)
     set(data "")
     set(table "")
     set(index 0)
     foreach(icon IN LISTS icons)
-        get_filename_component(name "${icon}" NAME)
+        file(RELATIVE_PATH name "${CMAKE_SOURCE_DIR}/bin/Icons/ui" "${icon}")
         file(READ "${icon}" hex HEX)
         string(LENGTH "${hex}" hex_len)
         math(EXPR size "${hex_len} / 2")
