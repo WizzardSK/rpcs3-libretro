@@ -715,6 +715,60 @@ static void libretro_apply_core_options()
     g_cfg.video.disable_zcull_queries.set(get_option_value("rpcs3_disable_zcull_queries", "disabled") == "enabled");
     g_cfg.video.vblank_ntsc.set(get_option_value("rpcs3_vblank_ntsc", "disabled") == "enabled");
     g_cfg.core.rsx_accurate_res_access.set(get_option_value("rpcs3_accurate_rsx_reservation", "disabled") == "enabled");
+
+    // These had core options since the port, which nothing ever read: setting
+    // them changed nothing. Each goes to the RPCS3 setting it is named after.
+    const auto enabled = [](const char* key, const char* def) { return get_option_value(key, def) == "enabled"; };
+
+    g_cfg.core.spu_verification.set(enabled("rpcs3_spu_verification", "enabled"));
+    g_cfg.core.accurate_cache_line_stores.set(enabled("rpcs3_spu_cache_line_stores", "disabled"));
+    g_cfg.core.mfc_shuffling_in_steps.set(enabled("rpcs3_mfc_shuffling", "disabled"));
+    g_cfg.core.spu_delay_penalty.set(std::clamp(std::atoi(get_option_value("rpcs3_spu_delay_penalty", "3").c_str()), 0, 16));
+    g_cfg.core.ppu_use_nj_bit.set(enabled("rpcs3_ppu_nj_mode", "disabled"));
+    g_cfg.core.ppu_set_sat_bit.set(enabled("rpcs3_ppu_set_sat_bit", "disabled"));
+    g_cfg.core.ppu_set_vnan.set(enabled("rpcs3_ppu_accurate_vector_nan", "disabled"));
+    g_cfg.core.ppu_set_fpcc.set(enabled("rpcs3_ppu_set_fpcc", "disabled"));
+    g_cfg.core.hook_functions.set(enabled("rpcs3_hook_static_funcs", "disabled"));
+    g_cfg.core.hle_lwmutex.set(enabled("rpcs3_hle_lwmutex", "disabled"));
+
+    const std::string xfloat = get_option_value("rpcs3_spu_xfloat_accuracy", "approximate");
+    g_cfg.core.spu_xfloat_accuracy.set(xfloat == "accurate" ? xfloat_accuracy::accurate :
+        xfloat == "relaxed" ? xfloat_accuracy::relaxed :
+        xfloat == "inaccurate" ? xfloat_accuracy::inaccurate : xfloat_accuracy::approximate);
+
+    const std::string fifo = get_option_value("rpcs3_rsx_fifo_accuracy", "atomic");
+    g_cfg.core.rsx_fifo_accuracy.set(fifo == "fast" ? rsx_fifo_mode::fast :
+        fifo == "atomic_ordered" ? rsx_fifo_mode::atomic_ordered :
+        fifo == "as_ps3" ? rsx_fifo_mode::as_ps3 : rsx_fifo_mode::atomic);
+
+    // "Automatic" is RPCS3's own default, which depends on the host OS.
+    const std::string sleep_timers = get_option_value("rpcs3_sleep_timers_accuracy", "auto");
+    if (sleep_timers == "as_host")
+        g_cfg.core.sleep_timers_accuracy.set(sleep_timers_accuracy_level::_as_host);
+    else if (sleep_timers == "usleep")
+        g_cfg.core.sleep_timers_accuracy.set(sleep_timers_accuracy_level::_usleep);
+    else if (sleep_timers == "all_timers")
+        g_cfg.core.sleep_timers_accuracy.set(sleep_timers_accuracy_level::_all_timers);
+    else
+        g_cfg.core.sleep_timers_accuracy.from_default();
+
+    g_cfg.video.disable_vertex_cache.set(!enabled("rpcs3_vertex_cache", "enabled"));
+    g_cfg.video.force_cpu_blit_processing.set(enabled("rpcs3_cpu_blit", "disabled"));
+    g_cfg.video.stretch_to_display_area.set(enabled("rpcs3_stretch_to_display", "disabled"));
+    g_cfg.video.vk.asynchronous_texture_streaming.set(enabled("rpcs3_async_texture_streaming", "disabled"));
+    // The option is in milliseconds, the setting in microseconds.
+    g_cfg.video.driver_recovery_timeout.set(std::clamp(std::atoi(get_option_value("rpcs3_driver_recovery_timeout", "1000").c_str()), 0, 30000) * 1000);
+
+    const std::string area = get_option_value("rpcs3_license_area", "usa");
+    g_cfg.sys.license_area.set(area == "eu" ? CELL_SYSUTIL_LICENSE_AREA_E :
+        area == "jp" ? CELL_SYSUTIL_LICENSE_AREA_J :
+        area == "hk" ? CELL_SYSUTIL_LICENSE_AREA_H :
+        area == "kr" ? CELL_SYSUTIL_LICENSE_AREA_K :
+        area == "cn" ? CELL_SYSUTIL_LICENSE_AREA_C : CELL_SYSUTIL_LICENSE_AREA_A);
+
+    g_cfg.misc.show_shader_compilation_hint.set(enabled("rpcs3_show_shader_compilation_hint", "disabled"));
+    g_cfg.misc.show_ppu_compilation_hint.set(enabled("rpcs3_show_ppu_compilation_hint", "disabled"));
+    g_cfg.misc.silence_all_logs.set(enabled("rpcs3_silence_all_logs", "disabled"));
     g_cfg.core.spu_getllar_spin_optimization_disabled.set(get_option_value("rpcs3_disable_getllar_spin_opt", "disabled") == "enabled");
 
     // Write Color Buffers

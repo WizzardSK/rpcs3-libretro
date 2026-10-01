@@ -120,20 +120,6 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", "PPU Thread Reservations", NULL,
-        "Use PPU thread reservations for accurate locking.",
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", "Accurate XFLOAT", NULL,
-        "More accurate SPU floating-point. May fix some games.",
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", "Clocks Scale", NULL,
         "Scale PS3 clock speed percentage.",
         NULL, "cpu",
@@ -144,8 +130,8 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "rpcs3_sleep_timers_accuracy", "Sleep Timers Accuracy", NULL,
         "Sleep timers accuracy level.",
         NULL, "cpu",
-        { {"usleep", "Usleep"}, {"all_timers", "All Timers"}, {"as_host", "As Host"}, {NULL, NULL} },
-        "usleep"
+        { {"auto", "Automatic"}, {"as_host", "As Host"}, {"usleep", "Usleep Only"}, {"all_timers", "All Timers"}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", "Max SPURS Threads", NULL,
@@ -155,32 +141,11 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", "Enable TSX", NULL,
-        "Enable Intel TSX hardware acceleration if available.",
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", "Forced"}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", "SPU XFloat Accuracy", NULL,
         "SPU floating-point accuracy level.",
         NULL, "cpu",
-        { {"relaxed", "Relaxed (Fastest)"}, {"accurate", "Accurate"}, {"ultra", "Ultra (Slowest)"}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", "SPU DMA Busy Waiting", NULL,
-        "Enable SPU DMA busy waiting for timing accuracy.",
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", "PPU LLVM Java Mode Handling", NULL,
-        "PPU LLVM Java mode compliance level.",
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", "Accurate"}, {"approximate", "Approximate"}, {"relaxed", "Relaxed"}, {"inaccurate", "Inaccurate"}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -376,13 +341,6 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "disabled"
     },
     {
-        "rpcs3_microphone_type", "Microphone Type", NULL,
-        "Microphone device type.",
-        NULL, "audio",
-        { {"null", "Null (Disabled)"}, {"standard", "Standard"}, {"singstar", "SingStar"}, {"real_singstar", "Real SingStar"}, {"rocksmith", "Rocksmith"}, {NULL, NULL} },
-        "null"
-    },
-    {
         "rpcs3_master_volume", "Master Volume", NULL,
         "Master audio volume percentage.",
         NULL, "audio",
@@ -453,8 +411,8 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "rpcs3_rsx_fifo_accuracy", "RSX FIFO Accuracy", NULL,
         "RSX FIFO command accuracy level.",
         NULL, "advanced",
-        { {"fast", "Fast"}, {"balanced", "Balanced"}, {"accurate", "Accurate"}, {NULL, NULL} },
-        "fast"
+        { {"fast", "Fast"}, {"atomic", "Atomic"}, {"atomic_ordered", "Ordered & Atomic"}, {"as_ps3", "PS3"}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", "Driver Recovery Timeout", NULL,
@@ -480,20 +438,6 @@ struct retro_core_option_v2_definition option_defs_us[] = {
     {
         "rpcs3_async_texture_streaming", "Async Texture Streaming", NULL,
         "Enable asynchronous texture streaming.",
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", "PPU LLVM Greedy Mode", NULL,
-        "Use greedy PPU LLVM compilation.",
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", "SPU NJ Fixup", NULL,
-        "Apply SPU non-Java mode fixup.",
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -574,7 +518,7 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "rpcs3_license_area", "License Area", NULL,
         "PS3 license region.",
         NULL, "core",
-        { {"usa", "USA"}, {"eu", "Europe"}, {"jp", "Japan"}, {"hk", "Hong Kong"}, {"kr", "Korea"}, {NULL, NULL} },
+        { {"usa", "SCEA (Americas)"}, {"eu", "SCEE (Europe, Oceania)"}, {"jp", "SCEJ (Japan)"}, {"hk", "SCEH (Hong Kong, Southeast Asia)"}, {"kr", "SCEK (Korea)"}, {"cn", "SCH (China)"}, {NULL, NULL} },
         "usa"
     },
     {
@@ -597,13 +541,6 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", "VFS Initialize Mode", NULL,
-        "Virtual file system initialization mode.",
-        NULL, "core",
-        { {"auto", "Auto"}, {"reset", "Reset"}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", "Silence All Logs", NULL,
