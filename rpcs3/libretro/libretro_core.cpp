@@ -41,6 +41,9 @@
 #include "Emu/IdManager.h"
 #include "Emu/VFS.h"
 #include "Emu/emu_callbacks.h"
+#include "Emu/system_progress.hpp"
+#include "Emu/RSX/Overlays/overlay_utils.h"
+#include "libretro_localized_strings.h"
 #include "Emu/Audio/audio_device_enumerator.h"
 #include "Emu/RSX/RSXThread.h"
 #include "Input/pad_thread.h"
@@ -268,6 +271,66 @@ static void libretro_show_message(const char* msg, unsigned frames = 180)
     rm.msg = msg;
     rm.frames = frames;
     environ_cb(RETRO_ENVIRONMENT_SET_MESSAGE, &rm);
+}
+
+// Long compilations - PPU modules on a first boot, the SPU cache - leave the
+// picture black or frozen for minutes, and a user cannot tell that from a hang
+// (ozzfreak). RPCS3 reports their progress through g_progr_*, for its own
+// dialog; this puts the same in front of the frontend's notifications, renewed
+// while the work goes on so it stays up exactly that long.
+static void libretro_report_progress()
+{
+    static int s_message_interface = -1;
+    if (s_message_interface < 0)
+    {
+        unsigned version = 0;
+        s_message_interface = environ_cb(RETRO_ENVIRONMENT_GET_MESSAGE_INTERFACE_VERSION, &version) ? static_cast<int>(version) : 0;
+    }
+
+    const std::string title = g_progr_text;
+    const u32 ptotal = g_progr_ptotal, pdone = g_progr_pdone;
+    const u32 ftotal = g_progr_ftotal, fdone = g_progr_fdone;
+
+    if (title.empty() && !ptotal && !ftotal)
+        return;
+
+    // Often enough to follow the count, not every frame.
+    static std::string s_last;
+    static u64 s_last_us = 0;
+    std::string msg = title.empty() ? std::string("Please wait") : title;
+    while (!msg.empty() && (msg.back() == '.' || msg.back() == ' ' || msg.back() == '\n'))
+        msg.pop_back();
+    std::replace(msg.begin(), msg.end(), '\n', ' ');
+    if (ftotal)
+        fmt::append(msg, " - file %u of %u", fdone, ftotal);
+    if (ptotal)
+        fmt::append(msg, " - module %u of %u", pdone, ptotal);
+
+    const u64 now = lr_now_us();
+    if (msg == s_last && now - s_last_us < 1'000'000)
+        return;
+    s_last = msg;
+    s_last_us = now;
+
+    const u32 total = ptotal ? ptotal : ftotal;
+    const u32 done = ptotal ? pdone : fdone;
+
+    if (s_message_interface >= 1)
+    {
+        retro_message_ext rm{};
+        rm.msg = msg.c_str();
+        rm.duration = 2000;
+        rm.priority = 1;
+        rm.level = RETRO_LOG_INFO;
+        rm.target = RETRO_MESSAGE_TARGET_OSD;
+        rm.type = RETRO_MESSAGE_TYPE_PROGRESS;
+        rm.progress = total ? static_cast<int8_t>(std::min<u64>(100, u64{done} * 100 / total)) : -1;
+        environ_cb(RETRO_ENVIRONMENT_SET_MESSAGE_EXT, &rm);
+    }
+    else
+    {
+        libretro_show_message(msg.c_str(), 120);
+    }
 }
 
 // Check if a file path has a PKG extension
@@ -2018,6 +2081,8 @@ void retro_run(void)
     // Update watchdog timestamp.
     s_last_retro_run_us.store(lr_now_us());
 
+    libretro_report_progress();
+
     // Check for variable updates
     bool updated = false;
     if (environ_cb(RETRO_ENVIRONMENT_GET_VARIABLE_UPDATE, &updated) && updated)
@@ -2421,8 +2486,23 @@ static void init_emu_callbacks()
     callbacks.on_missing_fw = []() {};
     callbacks.handle_taskbar_progress = [](s32, s32) {};
 
-    callbacks.get_localized_string = [](localized_string_id, const char*) -> std::string { return {}; };
-    callbacks.get_localized_u32string = [](localized_string_id, const char*) -> std::u32string { return {}; };
+    // Standalone's English texts (libretro_localized_strings.h), with the
+    // argument where standalone puts it. These were empty: the progress dialog
+    // for PPU and SPU compilation had no text, nor had message and save dialogs.
+    callbacks.get_localized_string = [](localized_string_id id, const char* arg) -> std::string
+    {
+        const char* text = libretro_localized_template(id);
+        if (!text)
+            return {};
+        std::string result = text;
+        if (const usz pos = result.find("%0"); pos != umax)
+            result.replace(pos, 2, arg ? arg : "");
+        return result;
+    };
+    callbacks.get_localized_u32string = [](localized_string_id id, const char* arg) -> std::u32string
+    {
+        return utf8_to_u32string(g_emu_callbacks.get_localized_string(id, arg));
+    };
     callbacks.get_localized_setting = [](const cfg::_base*, u32) -> std::string { return {}; };
 
     callbacks.play_sound = [](const std::string&, std::optional<f32>) {};
