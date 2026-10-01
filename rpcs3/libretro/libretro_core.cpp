@@ -333,6 +333,65 @@ static void libretro_report_progress()
     }
 }
 
+// A picture that stops while the game runs on - GT5's menu froze with its
+// music and cursor going on until a pause and resume, inFamous went black
+// after its intro (ozzfreak) - left nothing in the log to say where the frames
+// stopped. Say it when it happens: after a few seconds without a new frame
+// while the emulator runs, log what moved since the last one. No RSX flips:
+// the game or the renderer stopped. Flips but no frames handed over: the
+// renderer flipped without copying a frame out. Frames handed over but none
+// taken: the handoff to retro_run. VBLANKs posted behind those requested: the
+// frontend-paced VBLANK thread.
+static void libretro_check_frame_stall(bool new_frame)
+{
+    struct counters
+    {
+        u64 flips = 0, handed = 0, vblanks = 0, requested = 0;
+    };
+
+    const auto now_counters = []()
+    {
+        counters c{};
+        if (rsx::thread* rsx = rsx::get_current_renderer())
+        {
+            c.flips = rsx->int_flip_index;
+            c.vblanks = rsx->vblank_count;
+        }
+        c.handed = libretro_sw_frames_presented();
+        c.requested = g_libretro_vblank_requests;
+        return c;
+    };
+
+    static counters s_at_frame{};
+    static u64 s_frame_us = 0;
+    static u64 s_report_us = 0;
+    static bool s_reported = false;
+
+    const u64 now = lr_now_us();
+
+    if (new_frame || !Emu.IsRunning() || !s_frame_us)
+    {
+        if (new_frame && s_reported)
+            rsx_log.warning("libretro: frames again after %.1fs", (now - s_frame_us) / 1e6);
+        s_at_frame = now_counters();
+        s_frame_us = now;
+        s_reported = false;
+        return;
+    }
+
+    if (now - s_frame_us < 3'000'000 || now - s_report_us < 10'000'000)
+        return;
+
+    const counters c = now_counters();
+    rsx_log.error("libretro: no new frame for %.1fs while running: RSX flips +%u, frames handed over +%u, "
+        "VBLANKs +%u of +%u requested (frontend pacing %s), progress dialog '%s'",
+        (now - s_frame_us) / 1e6, c.flips - s_at_frame.flips, c.handed - s_at_frame.handed,
+        c.vblanks - s_at_frame.vblanks, c.requested - s_at_frame.requested,
+        g_libretro_frontend_vblank ? "on" : "off", std::string(g_progr_text));
+    s_report_us = now;
+    s_reported = true;
+}
+
 // Check if a file path has a PKG extension
 static bool is_pkg_file(const std::string& path)
 {
@@ -2137,7 +2196,9 @@ void retro_run(void)
         const void* pixels = nullptr;
         u32 sw_width = 0, sw_height = 0, sw_pitch = 0;
         static u32 s_sw_width = 1280, s_sw_height = 720;
-        if (libretro_take_software_frame(&pixels, &sw_width, &sw_height, &sw_pitch))
+        const bool new_frame = libretro_take_software_frame(&pixels, &sw_width, &sw_height, &sw_pitch);
+        libretro_check_frame_stall(new_frame);
+        if (new_frame)
         {
             report_frame_size(sw_width, sw_height);
             s_sw_width = sw_width;
@@ -2175,6 +2236,8 @@ void retro_run(void)
     // emulator is drawing something else now, say so, or it keeps scaling to
     // the old shape.
     report_frame_size(frame_width, frame_height);
+
+    libretro_check_frame_stall(has_new_frame);
 
     if (has_new_frame)
     {
