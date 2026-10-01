@@ -74,10 +74,6 @@ extern "C" {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_AR NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_AR NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_AR "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_AR NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_AR NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_AR NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_AR NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_AR NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_AR NULL
 #define OPTION_VAL_50_AR NULL
@@ -88,23 +84,18 @@ extern "C" {
 #define OPTION_VAL_300_AR NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_AR NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_AR NULL
-#define OPTION_VAL_USLEEP_AR NULL
-#define OPTION_VAL_ALL_TIMERS_AR NULL
+#define OPTION_VAL_AUTO_AR NULL
 #define OPTION_VAL_AS_HOST_AR NULL
+#define OPTION_VAL_USLEEP_AR "Usleep"
+#define OPTION_VAL_ALL_TIMERS_AR NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_AR NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_AR NULL
-#define RPCS3_ENABLE_TSX_LABEL_AR NULL
-#define RPCS3_ENABLE_TSX_INFO_0_AR NULL
-#define OPTION_VAL_FORCED_AR NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_AR NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_AR NULL
-#define OPTION_VAL_RELAXED_AR NULL
 #define OPTION_VAL_ACCURATE_AR "دقيق"
-#define OPTION_VAL_ULTRA_AR NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_AR NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_AR NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_AR NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_AR NULL
+#define OPTION_VAL_APPROXIMATE_AR NULL
+#define OPTION_VAL_RELAXED_AR "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_AR NULL
 #define RPCS3_RENDERER_LABEL_AR NULL
 #define RPCS3_RENDERER_INFO_0_AR NULL
 #define OPTION_VAL_OPENGL_AR NULL
@@ -172,7 +163,7 @@ extern "C" {
 #define RPCS3_SHADER_QUALITY_INFO_0_AR NULL
 #define OPTION_VAL_LOW_AR "Low (Fastest)"
 #define OPTION_VAL_HIGH_AR "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_AR NULL
+#define OPTION_VAL_ULTRA_AR "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_AR NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_AR NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_AR NULL
@@ -190,7 +181,7 @@ extern "C" {
 #define RPCS3_ZCULL_ACCURACY_LABEL_AR NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_AR "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_AR "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_AR NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_AR NULL
 #define RPCS3_CPU_BLIT_LABEL_AR NULL
 #define RPCS3_CPU_BLIT_INFO_0_AR NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_AR NULL
@@ -224,13 +215,6 @@ extern "C" {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_AR NULL
 #define RPCS3_TIME_STRETCHING_LABEL_AR NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_AR NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_AR NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_AR NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_AR NULL
-#define OPTION_VAL_STANDARD_AR NULL
-#define OPTION_VAL_SINGSTAR_AR NULL
-#define OPTION_VAL_REAL_SINGSTAR_AR NULL
-#define OPTION_VAL_ROCKSMITH_AR NULL
 #define RPCS3_MASTER_VOLUME_LABEL_AR NULL
 #define RPCS3_MASTER_VOLUME_INFO_0_AR NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_AR NULL
@@ -266,7 +250,9 @@ extern "C" {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_AR NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_AR NULL
 #define OPTION_VAL_FAST_AR "سريع"
-#define OPTION_VAL_BALANCED_AR "متوازن"
+#define OPTION_VAL_ATOMIC_AR NULL
+#define OPTION_VAL_ATOMIC_ORDERED_AR NULL
+#define OPTION_VAL_AS_PS3_AR NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_AR NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_AR NULL
 #define OPTION_VAL_1000_AR NULL
@@ -280,10 +266,6 @@ extern "C" {
 #define OPTION_VAL_3_AR NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_AR NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_AR NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_AR NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_AR NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_AR NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_AR NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_AR NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_AR NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_AR NULL
@@ -320,11 +302,12 @@ extern "C" {
 #define OPTION_VAL_CIRCLE_AR NULL
 #define RPCS3_LICENSE_AREA_LABEL_AR NULL
 #define RPCS3_LICENSE_AREA_INFO_0_AR NULL
-#define OPTION_VAL_USA_AR NULL
-#define OPTION_VAL_EU_AR NULL
-#define OPTION_VAL_JP_AR NULL
-#define OPTION_VAL_HK_AR NULL
-#define OPTION_VAL_KR_AR NULL
+#define OPTION_VAL_USA_AR "USA"
+#define OPTION_VAL_EU_AR "Europe"
+#define OPTION_VAL_JP_AR "Japan"
+#define OPTION_VAL_HK_AR "Hong Kong"
+#define OPTION_VAL_KR_AR "Korea"
+#define OPTION_VAL_CN_AR NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_AR NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_AR NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_AR NULL
@@ -332,9 +315,6 @@ extern "C" {
 #define OPTION_VAL_LIST_AR NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_AR NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_AR NULL
-#define RPCS3_VFS_INIT_LABEL_AR NULL
-#define RPCS3_VFS_INIT_INFO_0_AR NULL
-#define OPTION_VAL_RESET_AR "إعادة تعيين"
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_AR NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_AR NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_AR NULL
@@ -410,20 +390,6 @@ struct retro_core_option_v2_definition option_defs_ar[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_AR, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_AR,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_AR, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_AR,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_AR, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_AR,
         NULL, "cpu",
@@ -434,8 +400,8 @@ struct retro_core_option_v2_definition option_defs_ar[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_AR, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_AR,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_AR}, {"all_timers", OPTION_VAL_ALL_TIMERS_AR}, {"as_host", OPTION_VAL_AS_HOST_AR}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_AR}, {"as_host", OPTION_VAL_AS_HOST_AR}, {"usleep", OPTION_VAL_USLEEP_AR}, {"all_timers", OPTION_VAL_ALL_TIMERS_AR}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_AR, NULL,
@@ -445,32 +411,11 @@ struct retro_core_option_v2_definition option_defs_ar[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_AR, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_AR,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_AR}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_AR, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_AR,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_AR}, {"accurate", OPTION_VAL_ACCURATE_AR}, {"ultra", OPTION_VAL_ULTRA_AR}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_AR, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_AR,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_AR, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_AR,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_AR}, {"approximate", OPTION_VAL_APPROXIMATE_AR}, {"relaxed", OPTION_VAL_RELAXED_AR}, {"inaccurate", OPTION_VAL_INACCURATE_AR}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -548,7 +493,7 @@ struct retro_core_option_v2_definition option_defs_ar[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_AR, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_AR,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_AR}, {"high", OPTION_VAL_HIGH_AR}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_AR}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_AR}, {"high", OPTION_VAL_HIGH_AR}, {"ultra", OPTION_VAL_ULTRA_AR}, {NULL, NULL} },
         "high"
     },
     {
@@ -604,7 +549,7 @@ struct retro_core_option_v2_definition option_defs_ar[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_AR, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_AR,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_AR}, {"approximate", OPTION_VAL_APPROXIMATE_AR}, {"relaxed", OPTION_VAL_RELAXED_AR}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_AR}, {"approximate", OPTION_VAL_APPROXIMATE_AR}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_AR}, {NULL, NULL} },
         "precise"
     },
     {
@@ -664,13 +609,6 @@ struct retro_core_option_v2_definition option_defs_ar[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_AR, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_AR,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_AR}, {"standard", OPTION_VAL_STANDARD_AR}, {"singstar", OPTION_VAL_SINGSTAR_AR}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_AR}, {"rocksmith", OPTION_VAL_ROCKSMITH_AR}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_AR, NULL,
@@ -743,8 +681,8 @@ struct retro_core_option_v2_definition option_defs_ar[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_AR, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_AR,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_AR}, {"balanced", OPTION_VAL_BALANCED_AR}, {"accurate", OPTION_VAL_ACCURATE_AR}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_AR}, {"atomic", OPTION_VAL_ATOMIC_AR}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_AR}, {"as_ps3", OPTION_VAL_AS_PS3_AR}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_AR, NULL,
@@ -770,20 +708,6 @@ struct retro_core_option_v2_definition option_defs_ar[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_AR, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_AR,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_AR, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_AR,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_AR, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_AR,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -864,7 +788,7 @@ struct retro_core_option_v2_definition option_defs_ar[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_AR, NULL,
         RPCS3_LICENSE_AREA_INFO_0_AR,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_AR}, {"eu", OPTION_VAL_EU_AR}, {"jp", OPTION_VAL_JP_AR}, {"hk", OPTION_VAL_HK_AR}, {"kr", OPTION_VAL_KR_AR}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_AR}, {"eu", OPTION_VAL_EU_AR}, {"jp", OPTION_VAL_JP_AR}, {"hk", OPTION_VAL_HK_AR}, {"kr", OPTION_VAL_KR_AR}, {"cn", OPTION_VAL_CN_AR}, {NULL, NULL} },
         "usa"
     },
     {
@@ -887,13 +811,6 @@ struct retro_core_option_v2_definition option_defs_ar[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_AR, NULL,
-        RPCS3_VFS_INIT_INFO_0_AR,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_AR}, {"reset", OPTION_VAL_RESET_AR}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_AR, NULL,
@@ -961,10 +878,6 @@ struct retro_core_options_v2 options_ar = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_AST NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_AST NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_AST "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_AST NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_AST NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_AST NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_AST NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_AST NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_AST NULL
 #define OPTION_VAL_50_AST NULL
@@ -975,23 +888,18 @@ struct retro_core_options_v2 options_ar = {
 #define OPTION_VAL_300_AST NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_AST NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_AST NULL
-#define OPTION_VAL_USLEEP_AST NULL
-#define OPTION_VAL_ALL_TIMERS_AST NULL
+#define OPTION_VAL_AUTO_AST NULL
 #define OPTION_VAL_AS_HOST_AST NULL
+#define OPTION_VAL_USLEEP_AST "Usleep"
+#define OPTION_VAL_ALL_TIMERS_AST NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_AST NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_AST NULL
-#define RPCS3_ENABLE_TSX_LABEL_AST NULL
-#define RPCS3_ENABLE_TSX_INFO_0_AST NULL
-#define OPTION_VAL_FORCED_AST NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_AST NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_AST NULL
-#define OPTION_VAL_RELAXED_AST NULL
 #define OPTION_VAL_ACCURATE_AST NULL
-#define OPTION_VAL_ULTRA_AST NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_AST NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_AST NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_AST NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_AST NULL
+#define OPTION_VAL_APPROXIMATE_AST NULL
+#define OPTION_VAL_RELAXED_AST "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_AST NULL
 #define RPCS3_RENDERER_LABEL_AST NULL
 #define RPCS3_RENDERER_INFO_0_AST NULL
 #define OPTION_VAL_OPENGL_AST NULL
@@ -1059,7 +967,7 @@ struct retro_core_options_v2 options_ar = {
 #define RPCS3_SHADER_QUALITY_INFO_0_AST NULL
 #define OPTION_VAL_LOW_AST "Low (Fastest)"
 #define OPTION_VAL_HIGH_AST "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_AST NULL
+#define OPTION_VAL_ULTRA_AST "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_AST NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_AST NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_AST NULL
@@ -1077,7 +985,7 @@ struct retro_core_options_v2 options_ar = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_AST NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_AST "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_AST "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_AST NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_AST NULL
 #define RPCS3_CPU_BLIT_LABEL_AST NULL
 #define RPCS3_CPU_BLIT_INFO_0_AST NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_AST NULL
@@ -1111,13 +1019,6 @@ struct retro_core_options_v2 options_ar = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_AST NULL
 #define RPCS3_TIME_STRETCHING_LABEL_AST NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_AST NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_AST NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_AST NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_AST NULL
-#define OPTION_VAL_STANDARD_AST NULL
-#define OPTION_VAL_SINGSTAR_AST NULL
-#define OPTION_VAL_REAL_SINGSTAR_AST NULL
-#define OPTION_VAL_ROCKSMITH_AST NULL
 #define RPCS3_MASTER_VOLUME_LABEL_AST NULL
 #define RPCS3_MASTER_VOLUME_INFO_0_AST NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_AST NULL
@@ -1153,7 +1054,9 @@ struct retro_core_options_v2 options_ar = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_AST NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_AST NULL
 #define OPTION_VAL_FAST_AST NULL
-#define OPTION_VAL_BALANCED_AST NULL
+#define OPTION_VAL_ATOMIC_AST NULL
+#define OPTION_VAL_ATOMIC_ORDERED_AST NULL
+#define OPTION_VAL_AS_PS3_AST NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_AST NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_AST NULL
 #define OPTION_VAL_1000_AST NULL
@@ -1167,10 +1070,6 @@ struct retro_core_options_v2 options_ar = {
 #define OPTION_VAL_3_AST "3 (por defeutu)"
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_AST NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_AST NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_AST NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_AST NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_AST NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_AST NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_AST NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_AST NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_AST NULL
@@ -1210,8 +1109,9 @@ struct retro_core_options_v2 options_ar = {
 #define OPTION_VAL_USA_AST "Estaos Xuníos"
 #define OPTION_VAL_EU_AST "Europa"
 #define OPTION_VAL_JP_AST "Xapón"
-#define OPTION_VAL_HK_AST NULL
-#define OPTION_VAL_KR_AST NULL
+#define OPTION_VAL_HK_AST "Hong Kong"
+#define OPTION_VAL_KR_AST "Korea"
+#define OPTION_VAL_CN_AST NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_AST NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_AST NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_AST NULL
@@ -1219,9 +1119,6 @@ struct retro_core_options_v2 options_ar = {
 #define OPTION_VAL_LIST_AST NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_AST NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_AST NULL
-#define RPCS3_VFS_INIT_LABEL_AST NULL
-#define RPCS3_VFS_INIT_INFO_0_AST NULL
-#define OPTION_VAL_RESET_AST NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_AST NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_AST NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_AST NULL
@@ -1297,20 +1194,6 @@ struct retro_core_option_v2_definition option_defs_ast[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_AST, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_AST,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_AST, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_AST,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_AST, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_AST,
         NULL, "cpu",
@@ -1321,8 +1204,8 @@ struct retro_core_option_v2_definition option_defs_ast[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_AST, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_AST,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_AST}, {"all_timers", OPTION_VAL_ALL_TIMERS_AST}, {"as_host", OPTION_VAL_AS_HOST_AST}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_AST}, {"as_host", OPTION_VAL_AS_HOST_AST}, {"usleep", OPTION_VAL_USLEEP_AST}, {"all_timers", OPTION_VAL_ALL_TIMERS_AST}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_AST, NULL,
@@ -1332,32 +1215,11 @@ struct retro_core_option_v2_definition option_defs_ast[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_AST, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_AST,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_AST}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_AST, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_AST,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_AST}, {"accurate", OPTION_VAL_ACCURATE_AST}, {"ultra", OPTION_VAL_ULTRA_AST}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_AST, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_AST,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_AST, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_AST,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_AST}, {"approximate", OPTION_VAL_APPROXIMATE_AST}, {"relaxed", OPTION_VAL_RELAXED_AST}, {"inaccurate", OPTION_VAL_INACCURATE_AST}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -1435,7 +1297,7 @@ struct retro_core_option_v2_definition option_defs_ast[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_AST, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_AST,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_AST}, {"high", OPTION_VAL_HIGH_AST}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_AST}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_AST}, {"high", OPTION_VAL_HIGH_AST}, {"ultra", OPTION_VAL_ULTRA_AST}, {NULL, NULL} },
         "high"
     },
     {
@@ -1491,7 +1353,7 @@ struct retro_core_option_v2_definition option_defs_ast[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_AST, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_AST,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_AST}, {"approximate", OPTION_VAL_APPROXIMATE_AST}, {"relaxed", OPTION_VAL_RELAXED_AST}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_AST}, {"approximate", OPTION_VAL_APPROXIMATE_AST}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_AST}, {NULL, NULL} },
         "precise"
     },
     {
@@ -1551,13 +1413,6 @@ struct retro_core_option_v2_definition option_defs_ast[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_AST, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_AST,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_AST}, {"standard", OPTION_VAL_STANDARD_AST}, {"singstar", OPTION_VAL_SINGSTAR_AST}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_AST}, {"rocksmith", OPTION_VAL_ROCKSMITH_AST}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_AST, NULL,
@@ -1630,8 +1485,8 @@ struct retro_core_option_v2_definition option_defs_ast[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_AST, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_AST,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_AST}, {"balanced", OPTION_VAL_BALANCED_AST}, {"accurate", OPTION_VAL_ACCURATE_AST}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_AST}, {"atomic", OPTION_VAL_ATOMIC_AST}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_AST}, {"as_ps3", OPTION_VAL_AS_PS3_AST}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_AST, NULL,
@@ -1657,20 +1512,6 @@ struct retro_core_option_v2_definition option_defs_ast[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_AST, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_AST,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_AST, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_AST,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_AST, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_AST,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -1751,7 +1592,7 @@ struct retro_core_option_v2_definition option_defs_ast[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_AST, NULL,
         RPCS3_LICENSE_AREA_INFO_0_AST,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_AST}, {"eu", OPTION_VAL_EU_AST}, {"jp", OPTION_VAL_JP_AST}, {"hk", OPTION_VAL_HK_AST}, {"kr", OPTION_VAL_KR_AST}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_AST}, {"eu", OPTION_VAL_EU_AST}, {"jp", OPTION_VAL_JP_AST}, {"hk", OPTION_VAL_HK_AST}, {"kr", OPTION_VAL_KR_AST}, {"cn", OPTION_VAL_CN_AST}, {NULL, NULL} },
         "usa"
     },
     {
@@ -1774,13 +1615,6 @@ struct retro_core_option_v2_definition option_defs_ast[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_AST, NULL,
-        RPCS3_VFS_INIT_INFO_0_AST,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_AST}, {"reset", OPTION_VAL_RESET_AST}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_AST, NULL,
@@ -1848,10 +1682,6 @@ struct retro_core_options_v2 options_ast = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_BE NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_BE NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_BE "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_BE NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_BE NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_BE NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_BE NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_BE NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_BE NULL
 #define OPTION_VAL_50_BE "50 %"
@@ -1862,23 +1692,18 @@ struct retro_core_options_v2 options_ast = {
 #define OPTION_VAL_300_BE "300 %"
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_BE NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_BE NULL
-#define OPTION_VAL_USLEEP_BE NULL
-#define OPTION_VAL_ALL_TIMERS_BE NULL
+#define OPTION_VAL_AUTO_BE NULL
 #define OPTION_VAL_AS_HOST_BE NULL
+#define OPTION_VAL_USLEEP_BE "Usleep"
+#define OPTION_VAL_ALL_TIMERS_BE NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_BE NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_BE NULL
-#define RPCS3_ENABLE_TSX_LABEL_BE NULL
-#define RPCS3_ENABLE_TSX_INFO_0_BE NULL
-#define OPTION_VAL_FORCED_BE NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_BE NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_BE NULL
-#define OPTION_VAL_RELAXED_BE NULL
 #define OPTION_VAL_ACCURATE_BE "Дакладны"
-#define OPTION_VAL_ULTRA_BE NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_BE NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_BE NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_BE NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_BE NULL
+#define OPTION_VAL_APPROXIMATE_BE NULL
+#define OPTION_VAL_RELAXED_BE "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_BE NULL
 #define RPCS3_RENDERER_LABEL_BE NULL
 #define RPCS3_RENDERER_INFO_0_BE NULL
 #define OPTION_VAL_OPENGL_BE NULL
@@ -1946,7 +1771,7 @@ struct retro_core_options_v2 options_ast = {
 #define RPCS3_SHADER_QUALITY_INFO_0_BE NULL
 #define OPTION_VAL_LOW_BE "Low (Fastest)"
 #define OPTION_VAL_HIGH_BE "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_BE NULL
+#define OPTION_VAL_ULTRA_BE "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_BE NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_BE NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_BE NULL
@@ -1964,7 +1789,7 @@ struct retro_core_options_v2 options_ast = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_BE NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_BE "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_BE "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_BE NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_BE NULL
 #define RPCS3_CPU_BLIT_LABEL_BE NULL
 #define RPCS3_CPU_BLIT_INFO_0_BE NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_BE NULL
@@ -1998,13 +1823,6 @@ struct retro_core_options_v2 options_ast = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_BE NULL
 #define RPCS3_TIME_STRETCHING_LABEL_BE NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_BE NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_BE NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_BE NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_BE NULL
-#define OPTION_VAL_STANDARD_BE NULL
-#define OPTION_VAL_SINGSTAR_BE NULL
-#define OPTION_VAL_REAL_SINGSTAR_BE NULL
-#define OPTION_VAL_ROCKSMITH_BE NULL
 #define RPCS3_MASTER_VOLUME_LABEL_BE "Агульная гучнасць"
 #define RPCS3_MASTER_VOLUME_INFO_0_BE NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_BE NULL
@@ -2040,7 +1858,9 @@ struct retro_core_options_v2 options_ast = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_BE NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_BE NULL
 #define OPTION_VAL_FAST_BE "Хутка"
-#define OPTION_VAL_BALANCED_BE "Збалансаваны"
+#define OPTION_VAL_ATOMIC_BE NULL
+#define OPTION_VAL_ATOMIC_ORDERED_BE NULL
+#define OPTION_VAL_AS_PS3_BE NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_BE NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_BE NULL
 #define OPTION_VAL_1000_BE NULL
@@ -2054,10 +1874,6 @@ struct retro_core_options_v2 options_ast = {
 #define OPTION_VAL_3_BE "3 % (прадвызначана)"
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_BE NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_BE NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_BE NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_BE NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_BE NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_BE NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_BE NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_BE NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_BE NULL
@@ -2097,8 +1913,9 @@ struct retro_core_options_v2 options_ast = {
 #define OPTION_VAL_USA_BE "ЗША"
 #define OPTION_VAL_EU_BE "Еўропа"
 #define OPTION_VAL_JP_BE "Японія"
-#define OPTION_VAL_HK_BE NULL
-#define OPTION_VAL_KR_BE NULL
+#define OPTION_VAL_HK_BE "Hong Kong"
+#define OPTION_VAL_KR_BE "Korea"
+#define OPTION_VAL_CN_BE NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_BE NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_BE NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_BE NULL
@@ -2106,9 +1923,6 @@ struct retro_core_options_v2 options_ast = {
 #define OPTION_VAL_LIST_BE NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_BE NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_BE NULL
-#define RPCS3_VFS_INIT_LABEL_BE NULL
-#define RPCS3_VFS_INIT_INFO_0_BE NULL
-#define OPTION_VAL_RESET_BE "Скінуць"
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_BE NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_BE NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_BE NULL
@@ -2184,20 +1998,6 @@ struct retro_core_option_v2_definition option_defs_be[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_BE, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_BE,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_BE, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_BE,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_BE, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_BE,
         NULL, "cpu",
@@ -2208,8 +2008,8 @@ struct retro_core_option_v2_definition option_defs_be[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_BE, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_BE,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_BE}, {"all_timers", OPTION_VAL_ALL_TIMERS_BE}, {"as_host", OPTION_VAL_AS_HOST_BE}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_BE}, {"as_host", OPTION_VAL_AS_HOST_BE}, {"usleep", OPTION_VAL_USLEEP_BE}, {"all_timers", OPTION_VAL_ALL_TIMERS_BE}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_BE, NULL,
@@ -2219,32 +2019,11 @@ struct retro_core_option_v2_definition option_defs_be[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_BE, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_BE,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_BE}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_BE, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_BE,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_BE}, {"accurate", OPTION_VAL_ACCURATE_BE}, {"ultra", OPTION_VAL_ULTRA_BE}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_BE, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_BE,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_BE, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_BE,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_BE}, {"approximate", OPTION_VAL_APPROXIMATE_BE}, {"relaxed", OPTION_VAL_RELAXED_BE}, {"inaccurate", OPTION_VAL_INACCURATE_BE}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -2322,7 +2101,7 @@ struct retro_core_option_v2_definition option_defs_be[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_BE, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_BE,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_BE}, {"high", OPTION_VAL_HIGH_BE}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_BE}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_BE}, {"high", OPTION_VAL_HIGH_BE}, {"ultra", OPTION_VAL_ULTRA_BE}, {NULL, NULL} },
         "high"
     },
     {
@@ -2378,7 +2157,7 @@ struct retro_core_option_v2_definition option_defs_be[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_BE, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_BE,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_BE}, {"approximate", OPTION_VAL_APPROXIMATE_BE}, {"relaxed", OPTION_VAL_RELAXED_BE}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_BE}, {"approximate", OPTION_VAL_APPROXIMATE_BE}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_BE}, {NULL, NULL} },
         "precise"
     },
     {
@@ -2438,13 +2217,6 @@ struct retro_core_option_v2_definition option_defs_be[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_BE, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_BE,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_BE}, {"standard", OPTION_VAL_STANDARD_BE}, {"singstar", OPTION_VAL_SINGSTAR_BE}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_BE}, {"rocksmith", OPTION_VAL_ROCKSMITH_BE}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_BE, NULL,
@@ -2517,8 +2289,8 @@ struct retro_core_option_v2_definition option_defs_be[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_BE, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_BE,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_BE}, {"balanced", OPTION_VAL_BALANCED_BE}, {"accurate", OPTION_VAL_ACCURATE_BE}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_BE}, {"atomic", OPTION_VAL_ATOMIC_BE}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_BE}, {"as_ps3", OPTION_VAL_AS_PS3_BE}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_BE, NULL,
@@ -2544,20 +2316,6 @@ struct retro_core_option_v2_definition option_defs_be[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_BE, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_BE,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_BE, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_BE,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_BE, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_BE,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -2638,7 +2396,7 @@ struct retro_core_option_v2_definition option_defs_be[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_BE, NULL,
         RPCS3_LICENSE_AREA_INFO_0_BE,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_BE}, {"eu", OPTION_VAL_EU_BE}, {"jp", OPTION_VAL_JP_BE}, {"hk", OPTION_VAL_HK_BE}, {"kr", OPTION_VAL_KR_BE}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_BE}, {"eu", OPTION_VAL_EU_BE}, {"jp", OPTION_VAL_JP_BE}, {"hk", OPTION_VAL_HK_BE}, {"kr", OPTION_VAL_KR_BE}, {"cn", OPTION_VAL_CN_BE}, {NULL, NULL} },
         "usa"
     },
     {
@@ -2661,13 +2419,6 @@ struct retro_core_option_v2_definition option_defs_be[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_BE, NULL,
-        RPCS3_VFS_INIT_INFO_0_BE,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_BE}, {"reset", OPTION_VAL_RESET_BE}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_BE, NULL,
@@ -2735,10 +2486,6 @@ struct retro_core_options_v2 options_be = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_BG NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_BG NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_BG "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_BG NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_BG NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_BG NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_BG NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_BG NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_BG NULL
 #define OPTION_VAL_50_BG NULL
@@ -2749,23 +2496,18 @@ struct retro_core_options_v2 options_be = {
 #define OPTION_VAL_300_BG NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_BG NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_BG NULL
-#define OPTION_VAL_USLEEP_BG NULL
-#define OPTION_VAL_ALL_TIMERS_BG NULL
+#define OPTION_VAL_AUTO_BG NULL
 #define OPTION_VAL_AS_HOST_BG NULL
+#define OPTION_VAL_USLEEP_BG "Usleep"
+#define OPTION_VAL_ALL_TIMERS_BG NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_BG NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_BG NULL
-#define RPCS3_ENABLE_TSX_LABEL_BG NULL
-#define RPCS3_ENABLE_TSX_INFO_0_BG NULL
-#define OPTION_VAL_FORCED_BG NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_BG NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_BG NULL
-#define OPTION_VAL_RELAXED_BG NULL
 #define OPTION_VAL_ACCURATE_BG NULL
-#define OPTION_VAL_ULTRA_BG NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_BG NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_BG NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_BG NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_BG NULL
+#define OPTION_VAL_APPROXIMATE_BG NULL
+#define OPTION_VAL_RELAXED_BG "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_BG NULL
 #define RPCS3_RENDERER_LABEL_BG NULL
 #define RPCS3_RENDERER_INFO_0_BG NULL
 #define OPTION_VAL_OPENGL_BG NULL
@@ -2833,7 +2575,7 @@ struct retro_core_options_v2 options_be = {
 #define RPCS3_SHADER_QUALITY_INFO_0_BG NULL
 #define OPTION_VAL_LOW_BG "Low (Fastest)"
 #define OPTION_VAL_HIGH_BG "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_BG NULL
+#define OPTION_VAL_ULTRA_BG "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_BG NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_BG NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_BG NULL
@@ -2851,7 +2593,7 @@ struct retro_core_options_v2 options_be = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_BG NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_BG "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_BG "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_BG NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_BG NULL
 #define RPCS3_CPU_BLIT_LABEL_BG NULL
 #define RPCS3_CPU_BLIT_INFO_0_BG NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_BG NULL
@@ -2885,13 +2627,6 @@ struct retro_core_options_v2 options_be = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_BG NULL
 #define RPCS3_TIME_STRETCHING_LABEL_BG NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_BG NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_BG NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_BG NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_BG NULL
-#define OPTION_VAL_STANDARD_BG NULL
-#define OPTION_VAL_SINGSTAR_BG NULL
-#define OPTION_VAL_REAL_SINGSTAR_BG NULL
-#define OPTION_VAL_ROCKSMITH_BG NULL
 #define RPCS3_MASTER_VOLUME_LABEL_BG NULL
 #define RPCS3_MASTER_VOLUME_INFO_0_BG NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_BG NULL
@@ -2927,7 +2662,9 @@ struct retro_core_options_v2 options_be = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_BG NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_BG NULL
 #define OPTION_VAL_FAST_BG NULL
-#define OPTION_VAL_BALANCED_BG NULL
+#define OPTION_VAL_ATOMIC_BG NULL
+#define OPTION_VAL_ATOMIC_ORDERED_BG NULL
+#define OPTION_VAL_AS_PS3_BG NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_BG NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_BG NULL
 #define OPTION_VAL_1000_BG NULL
@@ -2941,10 +2678,6 @@ struct retro_core_options_v2 options_be = {
 #define OPTION_VAL_3_BG NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_BG NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_BG NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_BG NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_BG NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_BG NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_BG NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_BG NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_BG NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_BG NULL
@@ -2981,11 +2714,12 @@ struct retro_core_options_v2 options_be = {
 #define OPTION_VAL_CIRCLE_BG NULL
 #define RPCS3_LICENSE_AREA_LABEL_BG NULL
 #define RPCS3_LICENSE_AREA_INFO_0_BG NULL
-#define OPTION_VAL_USA_BG NULL
-#define OPTION_VAL_EU_BG NULL
-#define OPTION_VAL_JP_BG NULL
-#define OPTION_VAL_HK_BG NULL
-#define OPTION_VAL_KR_BG NULL
+#define OPTION_VAL_USA_BG "USA"
+#define OPTION_VAL_EU_BG "Europe"
+#define OPTION_VAL_JP_BG "Japan"
+#define OPTION_VAL_HK_BG "Hong Kong"
+#define OPTION_VAL_KR_BG "Korea"
+#define OPTION_VAL_CN_BG NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_BG NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_BG NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_BG NULL
@@ -2993,9 +2727,6 @@ struct retro_core_options_v2 options_be = {
 #define OPTION_VAL_LIST_BG NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_BG NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_BG NULL
-#define RPCS3_VFS_INIT_LABEL_BG NULL
-#define RPCS3_VFS_INIT_INFO_0_BG NULL
-#define OPTION_VAL_RESET_BG NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_BG NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_BG NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_BG NULL
@@ -3071,20 +2802,6 @@ struct retro_core_option_v2_definition option_defs_bg[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_BG, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_BG,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_BG, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_BG,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_BG, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_BG,
         NULL, "cpu",
@@ -3095,8 +2812,8 @@ struct retro_core_option_v2_definition option_defs_bg[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_BG, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_BG,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_BG}, {"all_timers", OPTION_VAL_ALL_TIMERS_BG}, {"as_host", OPTION_VAL_AS_HOST_BG}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_BG}, {"as_host", OPTION_VAL_AS_HOST_BG}, {"usleep", OPTION_VAL_USLEEP_BG}, {"all_timers", OPTION_VAL_ALL_TIMERS_BG}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_BG, NULL,
@@ -3106,32 +2823,11 @@ struct retro_core_option_v2_definition option_defs_bg[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_BG, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_BG,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_BG}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_BG, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_BG,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_BG}, {"accurate", OPTION_VAL_ACCURATE_BG}, {"ultra", OPTION_VAL_ULTRA_BG}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_BG, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_BG,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_BG, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_BG,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_BG}, {"approximate", OPTION_VAL_APPROXIMATE_BG}, {"relaxed", OPTION_VAL_RELAXED_BG}, {"inaccurate", OPTION_VAL_INACCURATE_BG}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -3209,7 +2905,7 @@ struct retro_core_option_v2_definition option_defs_bg[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_BG, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_BG,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_BG}, {"high", OPTION_VAL_HIGH_BG}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_BG}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_BG}, {"high", OPTION_VAL_HIGH_BG}, {"ultra", OPTION_VAL_ULTRA_BG}, {NULL, NULL} },
         "high"
     },
     {
@@ -3265,7 +2961,7 @@ struct retro_core_option_v2_definition option_defs_bg[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_BG, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_BG,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_BG}, {"approximate", OPTION_VAL_APPROXIMATE_BG}, {"relaxed", OPTION_VAL_RELAXED_BG}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_BG}, {"approximate", OPTION_VAL_APPROXIMATE_BG}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_BG}, {NULL, NULL} },
         "precise"
     },
     {
@@ -3325,13 +3021,6 @@ struct retro_core_option_v2_definition option_defs_bg[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_BG, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_BG,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_BG}, {"standard", OPTION_VAL_STANDARD_BG}, {"singstar", OPTION_VAL_SINGSTAR_BG}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_BG}, {"rocksmith", OPTION_VAL_ROCKSMITH_BG}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_BG, NULL,
@@ -3404,8 +3093,8 @@ struct retro_core_option_v2_definition option_defs_bg[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_BG, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_BG,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_BG}, {"balanced", OPTION_VAL_BALANCED_BG}, {"accurate", OPTION_VAL_ACCURATE_BG}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_BG}, {"atomic", OPTION_VAL_ATOMIC_BG}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_BG}, {"as_ps3", OPTION_VAL_AS_PS3_BG}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_BG, NULL,
@@ -3431,20 +3120,6 @@ struct retro_core_option_v2_definition option_defs_bg[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_BG, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_BG,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_BG, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_BG,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_BG, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_BG,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -3525,7 +3200,7 @@ struct retro_core_option_v2_definition option_defs_bg[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_BG, NULL,
         RPCS3_LICENSE_AREA_INFO_0_BG,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_BG}, {"eu", OPTION_VAL_EU_BG}, {"jp", OPTION_VAL_JP_BG}, {"hk", OPTION_VAL_HK_BG}, {"kr", OPTION_VAL_KR_BG}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_BG}, {"eu", OPTION_VAL_EU_BG}, {"jp", OPTION_VAL_JP_BG}, {"hk", OPTION_VAL_HK_BG}, {"kr", OPTION_VAL_KR_BG}, {"cn", OPTION_VAL_CN_BG}, {NULL, NULL} },
         "usa"
     },
     {
@@ -3548,13 +3223,6 @@ struct retro_core_option_v2_definition option_defs_bg[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_BG, NULL,
-        RPCS3_VFS_INIT_INFO_0_BG,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_BG}, {"reset", OPTION_VAL_RESET_BG}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_BG, NULL,
@@ -3622,10 +3290,6 @@ struct retro_core_options_v2 options_bg = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_CA NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_CA NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_CA "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_CA NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_CA NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_CA NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_CA NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_CA NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_CA NULL
 #define OPTION_VAL_50_CA NULL
@@ -3636,23 +3300,18 @@ struct retro_core_options_v2 options_bg = {
 #define OPTION_VAL_300_CA NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_CA NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_CA NULL
-#define OPTION_VAL_USLEEP_CA NULL
-#define OPTION_VAL_ALL_TIMERS_CA NULL
+#define OPTION_VAL_AUTO_CA NULL
 #define OPTION_VAL_AS_HOST_CA NULL
+#define OPTION_VAL_USLEEP_CA "Usleep"
+#define OPTION_VAL_ALL_TIMERS_CA NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_CA NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_CA NULL
-#define RPCS3_ENABLE_TSX_LABEL_CA NULL
-#define RPCS3_ENABLE_TSX_INFO_0_CA NULL
-#define OPTION_VAL_FORCED_CA "Forçar"
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_CA NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_CA NULL
-#define OPTION_VAL_RELAXED_CA NULL
 #define OPTION_VAL_ACCURATE_CA "Precís"
-#define OPTION_VAL_ULTRA_CA NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_CA NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_CA NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_CA NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_CA NULL
+#define OPTION_VAL_APPROXIMATE_CA NULL
+#define OPTION_VAL_RELAXED_CA "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_CA NULL
 #define RPCS3_RENDERER_LABEL_CA "Renderitzador"
 #define RPCS3_RENDERER_INFO_0_CA NULL
 #define OPTION_VAL_OPENGL_CA NULL
@@ -3720,7 +3379,7 @@ struct retro_core_options_v2 options_bg = {
 #define RPCS3_SHADER_QUALITY_INFO_0_CA NULL
 #define OPTION_VAL_LOW_CA "Low (Fastest)"
 #define OPTION_VAL_HIGH_CA "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_CA NULL
+#define OPTION_VAL_ULTRA_CA "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_CA NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_CA NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_CA NULL
@@ -3738,7 +3397,7 @@ struct retro_core_options_v2 options_bg = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_CA NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_CA "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_CA "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_CA NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_CA NULL
 #define RPCS3_CPU_BLIT_LABEL_CA NULL
 #define RPCS3_CPU_BLIT_INFO_0_CA NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_CA NULL
@@ -3772,13 +3431,6 @@ struct retro_core_options_v2 options_bg = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_CA NULL
 #define RPCS3_TIME_STRETCHING_LABEL_CA NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_CA NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_CA NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_CA NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_CA NULL
-#define OPTION_VAL_STANDARD_CA NULL
-#define OPTION_VAL_SINGSTAR_CA NULL
-#define OPTION_VAL_REAL_SINGSTAR_CA NULL
-#define OPTION_VAL_ROCKSMITH_CA NULL
 #define RPCS3_MASTER_VOLUME_LABEL_CA "Volum principal"
 #define RPCS3_MASTER_VOLUME_INFO_0_CA NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_CA NULL
@@ -3814,7 +3466,9 @@ struct retro_core_options_v2 options_bg = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_CA NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_CA NULL
 #define OPTION_VAL_FAST_CA "Ràpida"
-#define OPTION_VAL_BALANCED_CA "Equilibrat"
+#define OPTION_VAL_ATOMIC_CA NULL
+#define OPTION_VAL_ATOMIC_ORDERED_CA NULL
+#define OPTION_VAL_AS_PS3_CA NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_CA NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_CA NULL
 #define OPTION_VAL_1000_CA NULL
@@ -3828,10 +3482,6 @@ struct retro_core_options_v2 options_bg = {
 #define OPTION_VAL_3_CA "3 (Per defecte)"
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_CA NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_CA NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_CA NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_CA NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_CA NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_CA NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_CA NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_CA NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_CA NULL
@@ -3868,11 +3518,12 @@ struct retro_core_options_v2 options_bg = {
 #define OPTION_VAL_CIRCLE_CA NULL
 #define RPCS3_LICENSE_AREA_LABEL_CA NULL
 #define RPCS3_LICENSE_AREA_INFO_0_CA NULL
-#define OPTION_VAL_USA_CA NULL
+#define OPTION_VAL_USA_CA "USA"
 #define OPTION_VAL_EU_CA "Europa"
 #define OPTION_VAL_JP_CA "Japó"
-#define OPTION_VAL_HK_CA NULL
-#define OPTION_VAL_KR_CA NULL
+#define OPTION_VAL_HK_CA "Hong Kong"
+#define OPTION_VAL_KR_CA "Korea"
+#define OPTION_VAL_CN_CA NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_CA NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_CA NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_CA NULL
@@ -3880,9 +3531,6 @@ struct retro_core_options_v2 options_bg = {
 #define OPTION_VAL_LIST_CA NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_CA NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_CA NULL
-#define RPCS3_VFS_INIT_LABEL_CA NULL
-#define RPCS3_VFS_INIT_INFO_0_CA NULL
-#define OPTION_VAL_RESET_CA "Reiniciar"
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_CA NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_CA NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_CA NULL
@@ -3958,20 +3606,6 @@ struct retro_core_option_v2_definition option_defs_ca[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_CA, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_CA,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_CA, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_CA,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_CA, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_CA,
         NULL, "cpu",
@@ -3982,8 +3616,8 @@ struct retro_core_option_v2_definition option_defs_ca[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_CA, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_CA,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_CA}, {"all_timers", OPTION_VAL_ALL_TIMERS_CA}, {"as_host", OPTION_VAL_AS_HOST_CA}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_CA}, {"as_host", OPTION_VAL_AS_HOST_CA}, {"usleep", OPTION_VAL_USLEEP_CA}, {"all_timers", OPTION_VAL_ALL_TIMERS_CA}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_CA, NULL,
@@ -3993,32 +3627,11 @@ struct retro_core_option_v2_definition option_defs_ca[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_CA, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_CA,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_CA}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_CA, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_CA,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_CA}, {"accurate", OPTION_VAL_ACCURATE_CA}, {"ultra", OPTION_VAL_ULTRA_CA}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_CA, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_CA,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_CA, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_CA,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_CA}, {"approximate", OPTION_VAL_APPROXIMATE_CA}, {"relaxed", OPTION_VAL_RELAXED_CA}, {"inaccurate", OPTION_VAL_INACCURATE_CA}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -4096,7 +3709,7 @@ struct retro_core_option_v2_definition option_defs_ca[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_CA, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_CA,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_CA}, {"high", OPTION_VAL_HIGH_CA}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_CA}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_CA}, {"high", OPTION_VAL_HIGH_CA}, {"ultra", OPTION_VAL_ULTRA_CA}, {NULL, NULL} },
         "high"
     },
     {
@@ -4152,7 +3765,7 @@ struct retro_core_option_v2_definition option_defs_ca[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_CA, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_CA,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_CA}, {"approximate", OPTION_VAL_APPROXIMATE_CA}, {"relaxed", OPTION_VAL_RELAXED_CA}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_CA}, {"approximate", OPTION_VAL_APPROXIMATE_CA}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_CA}, {NULL, NULL} },
         "precise"
     },
     {
@@ -4212,13 +3825,6 @@ struct retro_core_option_v2_definition option_defs_ca[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_CA, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_CA,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_CA}, {"standard", OPTION_VAL_STANDARD_CA}, {"singstar", OPTION_VAL_SINGSTAR_CA}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_CA}, {"rocksmith", OPTION_VAL_ROCKSMITH_CA}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_CA, NULL,
@@ -4291,8 +3897,8 @@ struct retro_core_option_v2_definition option_defs_ca[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_CA, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_CA,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_CA}, {"balanced", OPTION_VAL_BALANCED_CA}, {"accurate", OPTION_VAL_ACCURATE_CA}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_CA}, {"atomic", OPTION_VAL_ATOMIC_CA}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_CA}, {"as_ps3", OPTION_VAL_AS_PS3_CA}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_CA, NULL,
@@ -4318,20 +3924,6 @@ struct retro_core_option_v2_definition option_defs_ca[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_CA, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_CA,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_CA, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_CA,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_CA, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_CA,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -4412,7 +4004,7 @@ struct retro_core_option_v2_definition option_defs_ca[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_CA, NULL,
         RPCS3_LICENSE_AREA_INFO_0_CA,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_CA}, {"eu", OPTION_VAL_EU_CA}, {"jp", OPTION_VAL_JP_CA}, {"hk", OPTION_VAL_HK_CA}, {"kr", OPTION_VAL_KR_CA}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_CA}, {"eu", OPTION_VAL_EU_CA}, {"jp", OPTION_VAL_JP_CA}, {"hk", OPTION_VAL_HK_CA}, {"kr", OPTION_VAL_KR_CA}, {"cn", OPTION_VAL_CN_CA}, {NULL, NULL} },
         "usa"
     },
     {
@@ -4435,13 +4027,6 @@ struct retro_core_option_v2_definition option_defs_ca[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_CA, NULL,
-        RPCS3_VFS_INIT_INFO_0_CA,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_CA}, {"reset", OPTION_VAL_RESET_CA}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_CA, NULL,
@@ -4509,10 +4094,6 @@ struct retro_core_options_v2 options_ca = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_CHS NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_CHS NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_CHS "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_CHS NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_CHS NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_CHS NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_CHS NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_CHS NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_CHS NULL
 #define OPTION_VAL_50_CHS NULL
@@ -4523,23 +4104,18 @@ struct retro_core_options_v2 options_ca = {
 #define OPTION_VAL_300_CHS NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_CHS NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_CHS NULL
-#define OPTION_VAL_USLEEP_CHS NULL
-#define OPTION_VAL_ALL_TIMERS_CHS NULL
+#define OPTION_VAL_AUTO_CHS NULL
 #define OPTION_VAL_AS_HOST_CHS NULL
+#define OPTION_VAL_USLEEP_CHS "Usleep"
+#define OPTION_VAL_ALL_TIMERS_CHS NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_CHS NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_CHS NULL
-#define RPCS3_ENABLE_TSX_LABEL_CHS NULL
-#define RPCS3_ENABLE_TSX_INFO_0_CHS NULL
-#define OPTION_VAL_FORCED_CHS "强制"
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_CHS NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_CHS NULL
-#define OPTION_VAL_RELAXED_CHS NULL
 #define OPTION_VAL_ACCURATE_CHS "精确"
-#define OPTION_VAL_ULTRA_CHS NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_CHS NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_CHS NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_CHS NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_CHS NULL
+#define OPTION_VAL_APPROXIMATE_CHS NULL
+#define OPTION_VAL_RELAXED_CHS "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_CHS NULL
 #define RPCS3_RENDERER_LABEL_CHS "渲染器"
 #define RPCS3_RENDERER_INFO_0_CHS NULL
 #define OPTION_VAL_OPENGL_CHS NULL
@@ -4607,7 +4183,7 @@ struct retro_core_options_v2 options_ca = {
 #define RPCS3_SHADER_QUALITY_INFO_0_CHS NULL
 #define OPTION_VAL_LOW_CHS "Low (Fastest)"
 #define OPTION_VAL_HIGH_CHS "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_CHS NULL
+#define OPTION_VAL_ULTRA_CHS "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_CHS NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_CHS NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_CHS NULL
@@ -4625,7 +4201,7 @@ struct retro_core_options_v2 options_ca = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_CHS NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_CHS "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_CHS "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_CHS NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_CHS NULL
 #define RPCS3_CPU_BLIT_LABEL_CHS NULL
 #define RPCS3_CPU_BLIT_INFO_0_CHS NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_CHS NULL
@@ -4659,13 +4235,6 @@ struct retro_core_options_v2 options_ca = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_CHS NULL
 #define RPCS3_TIME_STRETCHING_LABEL_CHS NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_CHS NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_CHS NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_CHS NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_CHS NULL
-#define OPTION_VAL_STANDARD_CHS NULL
-#define OPTION_VAL_SINGSTAR_CHS NULL
-#define OPTION_VAL_REAL_SINGSTAR_CHS NULL
-#define OPTION_VAL_ROCKSMITH_CHS NULL
 #define RPCS3_MASTER_VOLUME_LABEL_CHS "主音量"
 #define RPCS3_MASTER_VOLUME_INFO_0_CHS NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_CHS NULL
@@ -4701,7 +4270,9 @@ struct retro_core_options_v2 options_ca = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_CHS NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_CHS NULL
 #define OPTION_VAL_FAST_CHS "快"
-#define OPTION_VAL_BALANCED_CHS "平衡"
+#define OPTION_VAL_ATOMIC_CHS NULL
+#define OPTION_VAL_ATOMIC_ORDERED_CHS NULL
+#define OPTION_VAL_AS_PS3_CHS NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_CHS NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_CHS NULL
 #define OPTION_VAL_1000_CHS NULL
@@ -4715,10 +4286,6 @@ struct retro_core_options_v2 options_ca = {
 #define OPTION_VAL_3_CHS "3（默认）"
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_CHS NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_CHS NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_CHS NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_CHS NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_CHS NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_CHS NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_CHS NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_CHS NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_CHS NULL
@@ -4758,8 +4325,9 @@ struct retro_core_options_v2 options_ca = {
 #define OPTION_VAL_USA_CHS "美国"
 #define OPTION_VAL_EU_CHS "欧洲"
 #define OPTION_VAL_JP_CHS "日本"
-#define OPTION_VAL_HK_CHS NULL
-#define OPTION_VAL_KR_CHS NULL
+#define OPTION_VAL_HK_CHS "Hong Kong"
+#define OPTION_VAL_KR_CHS "Korea"
+#define OPTION_VAL_CN_CHS NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_CHS NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_CHS NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_CHS NULL
@@ -4767,9 +4335,6 @@ struct retro_core_options_v2 options_ca = {
 #define OPTION_VAL_LIST_CHS NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_CHS NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_CHS NULL
-#define RPCS3_VFS_INIT_LABEL_CHS NULL
-#define RPCS3_VFS_INIT_INFO_0_CHS NULL
-#define OPTION_VAL_RESET_CHS "重置"
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_CHS NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_CHS NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_CHS NULL
@@ -4845,20 +4410,6 @@ struct retro_core_option_v2_definition option_defs_chs[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_CHS, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_CHS,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_CHS, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_CHS,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_CHS, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_CHS,
         NULL, "cpu",
@@ -4869,8 +4420,8 @@ struct retro_core_option_v2_definition option_defs_chs[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_CHS, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_CHS,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_CHS}, {"all_timers", OPTION_VAL_ALL_TIMERS_CHS}, {"as_host", OPTION_VAL_AS_HOST_CHS}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_CHS}, {"as_host", OPTION_VAL_AS_HOST_CHS}, {"usleep", OPTION_VAL_USLEEP_CHS}, {"all_timers", OPTION_VAL_ALL_TIMERS_CHS}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_CHS, NULL,
@@ -4880,32 +4431,11 @@ struct retro_core_option_v2_definition option_defs_chs[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_CHS, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_CHS,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_CHS}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_CHS, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_CHS,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_CHS}, {"accurate", OPTION_VAL_ACCURATE_CHS}, {"ultra", OPTION_VAL_ULTRA_CHS}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_CHS, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_CHS,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_CHS, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_CHS,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_CHS}, {"approximate", OPTION_VAL_APPROXIMATE_CHS}, {"relaxed", OPTION_VAL_RELAXED_CHS}, {"inaccurate", OPTION_VAL_INACCURATE_CHS}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -4983,7 +4513,7 @@ struct retro_core_option_v2_definition option_defs_chs[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_CHS, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_CHS,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_CHS}, {"high", OPTION_VAL_HIGH_CHS}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_CHS}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_CHS}, {"high", OPTION_VAL_HIGH_CHS}, {"ultra", OPTION_VAL_ULTRA_CHS}, {NULL, NULL} },
         "high"
     },
     {
@@ -5039,7 +4569,7 @@ struct retro_core_option_v2_definition option_defs_chs[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_CHS, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_CHS,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_CHS}, {"approximate", OPTION_VAL_APPROXIMATE_CHS}, {"relaxed", OPTION_VAL_RELAXED_CHS}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_CHS}, {"approximate", OPTION_VAL_APPROXIMATE_CHS}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_CHS}, {NULL, NULL} },
         "precise"
     },
     {
@@ -5099,13 +4629,6 @@ struct retro_core_option_v2_definition option_defs_chs[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_CHS, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_CHS,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_CHS}, {"standard", OPTION_VAL_STANDARD_CHS}, {"singstar", OPTION_VAL_SINGSTAR_CHS}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_CHS}, {"rocksmith", OPTION_VAL_ROCKSMITH_CHS}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_CHS, NULL,
@@ -5178,8 +4701,8 @@ struct retro_core_option_v2_definition option_defs_chs[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_CHS, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_CHS,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_CHS}, {"balanced", OPTION_VAL_BALANCED_CHS}, {"accurate", OPTION_VAL_ACCURATE_CHS}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_CHS}, {"atomic", OPTION_VAL_ATOMIC_CHS}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_CHS}, {"as_ps3", OPTION_VAL_AS_PS3_CHS}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_CHS, NULL,
@@ -5205,20 +4728,6 @@ struct retro_core_option_v2_definition option_defs_chs[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_CHS, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_CHS,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_CHS, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_CHS,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_CHS, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_CHS,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -5299,7 +4808,7 @@ struct retro_core_option_v2_definition option_defs_chs[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_CHS, NULL,
         RPCS3_LICENSE_AREA_INFO_0_CHS,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_CHS}, {"eu", OPTION_VAL_EU_CHS}, {"jp", OPTION_VAL_JP_CHS}, {"hk", OPTION_VAL_HK_CHS}, {"kr", OPTION_VAL_KR_CHS}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_CHS}, {"eu", OPTION_VAL_EU_CHS}, {"jp", OPTION_VAL_JP_CHS}, {"hk", OPTION_VAL_HK_CHS}, {"kr", OPTION_VAL_KR_CHS}, {"cn", OPTION_VAL_CN_CHS}, {NULL, NULL} },
         "usa"
     },
     {
@@ -5322,13 +4831,6 @@ struct retro_core_option_v2_definition option_defs_chs[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_CHS, NULL,
-        RPCS3_VFS_INIT_INFO_0_CHS,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_CHS}, {"reset", OPTION_VAL_RESET_CHS}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_CHS, NULL,
@@ -5396,10 +4898,6 @@ struct retro_core_options_v2 options_chs = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_CHT NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_CHT NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_CHT "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_CHT NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_CHT NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_CHT NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_CHT NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_CHT NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_CHT NULL
 #define OPTION_VAL_50_CHT NULL
@@ -5410,23 +4908,18 @@ struct retro_core_options_v2 options_chs = {
 #define OPTION_VAL_300_CHT NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_CHT NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_CHT NULL
-#define OPTION_VAL_USLEEP_CHT NULL
-#define OPTION_VAL_ALL_TIMERS_CHT NULL
+#define OPTION_VAL_AUTO_CHT NULL
 #define OPTION_VAL_AS_HOST_CHT NULL
+#define OPTION_VAL_USLEEP_CHT "Usleep"
+#define OPTION_VAL_ALL_TIMERS_CHT NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_CHT NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_CHT NULL
-#define RPCS3_ENABLE_TSX_LABEL_CHT NULL
-#define RPCS3_ENABLE_TSX_INFO_0_CHT NULL
-#define OPTION_VAL_FORCED_CHT NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_CHT NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_CHT NULL
-#define OPTION_VAL_RELAXED_CHT NULL
 #define OPTION_VAL_ACCURATE_CHT "準確"
-#define OPTION_VAL_ULTRA_CHT NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_CHT NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_CHT NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_CHT NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_CHT NULL
+#define OPTION_VAL_APPROXIMATE_CHT NULL
+#define OPTION_VAL_RELAXED_CHT "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_CHT NULL
 #define RPCS3_RENDERER_LABEL_CHT NULL
 #define RPCS3_RENDERER_INFO_0_CHT NULL
 #define OPTION_VAL_OPENGL_CHT NULL
@@ -5494,7 +4987,7 @@ struct retro_core_options_v2 options_chs = {
 #define RPCS3_SHADER_QUALITY_INFO_0_CHT NULL
 #define OPTION_VAL_LOW_CHT "Low (Fastest)"
 #define OPTION_VAL_HIGH_CHT "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_CHT NULL
+#define OPTION_VAL_ULTRA_CHT "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_CHT NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_CHT NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_CHT NULL
@@ -5512,7 +5005,7 @@ struct retro_core_options_v2 options_chs = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_CHT NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_CHT "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_CHT "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_CHT NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_CHT NULL
 #define RPCS3_CPU_BLIT_LABEL_CHT NULL
 #define RPCS3_CPU_BLIT_INFO_0_CHT NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_CHT NULL
@@ -5546,13 +5039,6 @@ struct retro_core_options_v2 options_chs = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_CHT NULL
 #define RPCS3_TIME_STRETCHING_LABEL_CHT NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_CHT NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_CHT NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_CHT NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_CHT NULL
-#define OPTION_VAL_STANDARD_CHT NULL
-#define OPTION_VAL_SINGSTAR_CHT NULL
-#define OPTION_VAL_REAL_SINGSTAR_CHT NULL
-#define OPTION_VAL_ROCKSMITH_CHT NULL
 #define RPCS3_MASTER_VOLUME_LABEL_CHT "主音量"
 #define RPCS3_MASTER_VOLUME_INFO_0_CHT NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_CHT NULL
@@ -5588,7 +5074,9 @@ struct retro_core_options_v2 options_chs = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_CHT NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_CHT NULL
 #define OPTION_VAL_FAST_CHT "快速"
-#define OPTION_VAL_BALANCED_CHT "平均"
+#define OPTION_VAL_ATOMIC_CHT NULL
+#define OPTION_VAL_ATOMIC_ORDERED_CHT NULL
+#define OPTION_VAL_AS_PS3_CHT NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_CHT NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_CHT NULL
 #define OPTION_VAL_1000_CHT NULL
@@ -5602,10 +5090,6 @@ struct retro_core_options_v2 options_chs = {
 #define OPTION_VAL_3_CHT "3 (預設)"
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_CHT NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_CHT NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_CHT NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_CHT NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_CHT NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_CHT NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_CHT NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_CHT NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_CHT NULL
@@ -5642,11 +5126,12 @@ struct retro_core_options_v2 options_chs = {
 #define OPTION_VAL_CIRCLE_CHT NULL
 #define RPCS3_LICENSE_AREA_LABEL_CHT NULL
 #define RPCS3_LICENSE_AREA_INFO_0_CHT NULL
-#define OPTION_VAL_USA_CHT NULL
-#define OPTION_VAL_EU_CHT NULL
-#define OPTION_VAL_JP_CHT NULL
-#define OPTION_VAL_HK_CHT NULL
-#define OPTION_VAL_KR_CHT NULL
+#define OPTION_VAL_USA_CHT "USA"
+#define OPTION_VAL_EU_CHT "Europe"
+#define OPTION_VAL_JP_CHT "Japan"
+#define OPTION_VAL_HK_CHT "Hong Kong"
+#define OPTION_VAL_KR_CHT "Korea"
+#define OPTION_VAL_CN_CHT NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_CHT NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_CHT NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_CHT NULL
@@ -5654,9 +5139,6 @@ struct retro_core_options_v2 options_chs = {
 #define OPTION_VAL_LIST_CHT NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_CHT NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_CHT NULL
-#define RPCS3_VFS_INIT_LABEL_CHT NULL
-#define RPCS3_VFS_INIT_INFO_0_CHT NULL
-#define OPTION_VAL_RESET_CHT "重置"
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_CHT NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_CHT NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_CHT NULL
@@ -5732,20 +5214,6 @@ struct retro_core_option_v2_definition option_defs_cht[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_CHT, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_CHT,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_CHT, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_CHT,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_CHT, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_CHT,
         NULL, "cpu",
@@ -5756,8 +5224,8 @@ struct retro_core_option_v2_definition option_defs_cht[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_CHT, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_CHT,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_CHT}, {"all_timers", OPTION_VAL_ALL_TIMERS_CHT}, {"as_host", OPTION_VAL_AS_HOST_CHT}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_CHT}, {"as_host", OPTION_VAL_AS_HOST_CHT}, {"usleep", OPTION_VAL_USLEEP_CHT}, {"all_timers", OPTION_VAL_ALL_TIMERS_CHT}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_CHT, NULL,
@@ -5767,32 +5235,11 @@ struct retro_core_option_v2_definition option_defs_cht[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_CHT, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_CHT,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_CHT}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_CHT, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_CHT,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_CHT}, {"accurate", OPTION_VAL_ACCURATE_CHT}, {"ultra", OPTION_VAL_ULTRA_CHT}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_CHT, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_CHT,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_CHT, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_CHT,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_CHT}, {"approximate", OPTION_VAL_APPROXIMATE_CHT}, {"relaxed", OPTION_VAL_RELAXED_CHT}, {"inaccurate", OPTION_VAL_INACCURATE_CHT}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -5870,7 +5317,7 @@ struct retro_core_option_v2_definition option_defs_cht[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_CHT, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_CHT,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_CHT}, {"high", OPTION_VAL_HIGH_CHT}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_CHT}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_CHT}, {"high", OPTION_VAL_HIGH_CHT}, {"ultra", OPTION_VAL_ULTRA_CHT}, {NULL, NULL} },
         "high"
     },
     {
@@ -5926,7 +5373,7 @@ struct retro_core_option_v2_definition option_defs_cht[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_CHT, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_CHT,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_CHT}, {"approximate", OPTION_VAL_APPROXIMATE_CHT}, {"relaxed", OPTION_VAL_RELAXED_CHT}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_CHT}, {"approximate", OPTION_VAL_APPROXIMATE_CHT}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_CHT}, {NULL, NULL} },
         "precise"
     },
     {
@@ -5986,13 +5433,6 @@ struct retro_core_option_v2_definition option_defs_cht[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_CHT, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_CHT,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_CHT}, {"standard", OPTION_VAL_STANDARD_CHT}, {"singstar", OPTION_VAL_SINGSTAR_CHT}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_CHT}, {"rocksmith", OPTION_VAL_ROCKSMITH_CHT}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_CHT, NULL,
@@ -6065,8 +5505,8 @@ struct retro_core_option_v2_definition option_defs_cht[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_CHT, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_CHT,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_CHT}, {"balanced", OPTION_VAL_BALANCED_CHT}, {"accurate", OPTION_VAL_ACCURATE_CHT}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_CHT}, {"atomic", OPTION_VAL_ATOMIC_CHT}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_CHT}, {"as_ps3", OPTION_VAL_AS_PS3_CHT}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_CHT, NULL,
@@ -6092,20 +5532,6 @@ struct retro_core_option_v2_definition option_defs_cht[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_CHT, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_CHT,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_CHT, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_CHT,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_CHT, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_CHT,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -6186,7 +5612,7 @@ struct retro_core_option_v2_definition option_defs_cht[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_CHT, NULL,
         RPCS3_LICENSE_AREA_INFO_0_CHT,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_CHT}, {"eu", OPTION_VAL_EU_CHT}, {"jp", OPTION_VAL_JP_CHT}, {"hk", OPTION_VAL_HK_CHT}, {"kr", OPTION_VAL_KR_CHT}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_CHT}, {"eu", OPTION_VAL_EU_CHT}, {"jp", OPTION_VAL_JP_CHT}, {"hk", OPTION_VAL_HK_CHT}, {"kr", OPTION_VAL_KR_CHT}, {"cn", OPTION_VAL_CN_CHT}, {NULL, NULL} },
         "usa"
     },
     {
@@ -6209,13 +5635,6 @@ struct retro_core_option_v2_definition option_defs_cht[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_CHT, NULL,
-        RPCS3_VFS_INIT_INFO_0_CHT,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_CHT}, {"reset", OPTION_VAL_RESET_CHT}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_CHT, NULL,
@@ -6283,10 +5702,6 @@ struct retro_core_options_v2 options_cht = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_CS NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_CS NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_CS "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_CS NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_CS NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_CS NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_CS NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_CS NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_CS NULL
 #define OPTION_VAL_50_CS NULL
@@ -6297,23 +5712,18 @@ struct retro_core_options_v2 options_cht = {
 #define OPTION_VAL_300_CS NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_CS NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_CS NULL
-#define OPTION_VAL_USLEEP_CS NULL
-#define OPTION_VAL_ALL_TIMERS_CS NULL
+#define OPTION_VAL_AUTO_CS NULL
 #define OPTION_VAL_AS_HOST_CS NULL
+#define OPTION_VAL_USLEEP_CS "Usleep"
+#define OPTION_VAL_ALL_TIMERS_CS NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_CS NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_CS NULL
-#define RPCS3_ENABLE_TSX_LABEL_CS NULL
-#define RPCS3_ENABLE_TSX_INFO_0_CS NULL
-#define OPTION_VAL_FORCED_CS NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_CS NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_CS NULL
-#define OPTION_VAL_RELAXED_CS NULL
 #define OPTION_VAL_ACCURATE_CS "Přesné"
-#define OPTION_VAL_ULTRA_CS NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_CS NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_CS NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_CS NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_CS NULL
+#define OPTION_VAL_APPROXIMATE_CS NULL
+#define OPTION_VAL_RELAXED_CS "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_CS NULL
 #define RPCS3_RENDERER_LABEL_CS NULL
 #define RPCS3_RENDERER_INFO_0_CS NULL
 #define OPTION_VAL_OPENGL_CS NULL
@@ -6381,7 +5791,7 @@ struct retro_core_options_v2 options_cht = {
 #define RPCS3_SHADER_QUALITY_INFO_0_CS NULL
 #define OPTION_VAL_LOW_CS "Low (Fastest)"
 #define OPTION_VAL_HIGH_CS "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_CS NULL
+#define OPTION_VAL_ULTRA_CS "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_CS NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_CS NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_CS NULL
@@ -6399,7 +5809,7 @@ struct retro_core_options_v2 options_cht = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_CS NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_CS "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_CS "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_CS NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_CS NULL
 #define RPCS3_CPU_BLIT_LABEL_CS NULL
 #define RPCS3_CPU_BLIT_INFO_0_CS NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_CS NULL
@@ -6433,13 +5843,6 @@ struct retro_core_options_v2 options_cht = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_CS NULL
 #define RPCS3_TIME_STRETCHING_LABEL_CS NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_CS NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_CS NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_CS NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_CS NULL
-#define OPTION_VAL_STANDARD_CS NULL
-#define OPTION_VAL_SINGSTAR_CS NULL
-#define OPTION_VAL_REAL_SINGSTAR_CS NULL
-#define OPTION_VAL_ROCKSMITH_CS NULL
 #define RPCS3_MASTER_VOLUME_LABEL_CS "Hlavní Hlasitost"
 #define RPCS3_MASTER_VOLUME_INFO_0_CS NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_CS NULL
@@ -6475,7 +5878,9 @@ struct retro_core_options_v2 options_cht = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_CS NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_CS NULL
 #define OPTION_VAL_FAST_CS "Rychle"
-#define OPTION_VAL_BALANCED_CS "Vyvážená"
+#define OPTION_VAL_ATOMIC_CS NULL
+#define OPTION_VAL_ATOMIC_ORDERED_CS NULL
+#define OPTION_VAL_AS_PS3_CS NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_CS NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_CS NULL
 #define OPTION_VAL_1000_CS NULL
@@ -6489,10 +5894,6 @@ struct retro_core_options_v2 options_cht = {
 #define OPTION_VAL_3_CS "3 (výchozí)"
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_CS NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_CS NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_CS NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_CS NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_CS NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_CS NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_CS NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_CS NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_CS NULL
@@ -6529,11 +5930,12 @@ struct retro_core_options_v2 options_cht = {
 #define OPTION_VAL_CIRCLE_CS NULL
 #define RPCS3_LICENSE_AREA_LABEL_CS NULL
 #define RPCS3_LICENSE_AREA_INFO_0_CS NULL
-#define OPTION_VAL_USA_CS NULL
+#define OPTION_VAL_USA_CS "USA"
 #define OPTION_VAL_EU_CS "Evropa"
 #define OPTION_VAL_JP_CS "Japonsko"
-#define OPTION_VAL_HK_CS NULL
-#define OPTION_VAL_KR_CS NULL
+#define OPTION_VAL_HK_CS "Hong Kong"
+#define OPTION_VAL_KR_CS "Korea"
+#define OPTION_VAL_CN_CS NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_CS NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_CS NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_CS NULL
@@ -6541,9 +5943,6 @@ struct retro_core_options_v2 options_cht = {
 #define OPTION_VAL_LIST_CS NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_CS NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_CS NULL
-#define RPCS3_VFS_INIT_LABEL_CS NULL
-#define RPCS3_VFS_INIT_INFO_0_CS NULL
-#define OPTION_VAL_RESET_CS "Resetovat"
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_CS NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_CS NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_CS NULL
@@ -6619,20 +6018,6 @@ struct retro_core_option_v2_definition option_defs_cs[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_CS, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_CS,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_CS, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_CS,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_CS, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_CS,
         NULL, "cpu",
@@ -6643,8 +6028,8 @@ struct retro_core_option_v2_definition option_defs_cs[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_CS, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_CS,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_CS}, {"all_timers", OPTION_VAL_ALL_TIMERS_CS}, {"as_host", OPTION_VAL_AS_HOST_CS}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_CS}, {"as_host", OPTION_VAL_AS_HOST_CS}, {"usleep", OPTION_VAL_USLEEP_CS}, {"all_timers", OPTION_VAL_ALL_TIMERS_CS}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_CS, NULL,
@@ -6654,32 +6039,11 @@ struct retro_core_option_v2_definition option_defs_cs[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_CS, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_CS,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_CS}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_CS, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_CS,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_CS}, {"accurate", OPTION_VAL_ACCURATE_CS}, {"ultra", OPTION_VAL_ULTRA_CS}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_CS, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_CS,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_CS, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_CS,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_CS}, {"approximate", OPTION_VAL_APPROXIMATE_CS}, {"relaxed", OPTION_VAL_RELAXED_CS}, {"inaccurate", OPTION_VAL_INACCURATE_CS}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -6757,7 +6121,7 @@ struct retro_core_option_v2_definition option_defs_cs[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_CS, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_CS,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_CS}, {"high", OPTION_VAL_HIGH_CS}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_CS}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_CS}, {"high", OPTION_VAL_HIGH_CS}, {"ultra", OPTION_VAL_ULTRA_CS}, {NULL, NULL} },
         "high"
     },
     {
@@ -6813,7 +6177,7 @@ struct retro_core_option_v2_definition option_defs_cs[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_CS, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_CS,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_CS}, {"approximate", OPTION_VAL_APPROXIMATE_CS}, {"relaxed", OPTION_VAL_RELAXED_CS}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_CS}, {"approximate", OPTION_VAL_APPROXIMATE_CS}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_CS}, {NULL, NULL} },
         "precise"
     },
     {
@@ -6873,13 +6237,6 @@ struct retro_core_option_v2_definition option_defs_cs[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_CS, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_CS,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_CS}, {"standard", OPTION_VAL_STANDARD_CS}, {"singstar", OPTION_VAL_SINGSTAR_CS}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_CS}, {"rocksmith", OPTION_VAL_ROCKSMITH_CS}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_CS, NULL,
@@ -6952,8 +6309,8 @@ struct retro_core_option_v2_definition option_defs_cs[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_CS, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_CS,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_CS}, {"balanced", OPTION_VAL_BALANCED_CS}, {"accurate", OPTION_VAL_ACCURATE_CS}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_CS}, {"atomic", OPTION_VAL_ATOMIC_CS}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_CS}, {"as_ps3", OPTION_VAL_AS_PS3_CS}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_CS, NULL,
@@ -6979,20 +6336,6 @@ struct retro_core_option_v2_definition option_defs_cs[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_CS, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_CS,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_CS, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_CS,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_CS, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_CS,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -7073,7 +6416,7 @@ struct retro_core_option_v2_definition option_defs_cs[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_CS, NULL,
         RPCS3_LICENSE_AREA_INFO_0_CS,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_CS}, {"eu", OPTION_VAL_EU_CS}, {"jp", OPTION_VAL_JP_CS}, {"hk", OPTION_VAL_HK_CS}, {"kr", OPTION_VAL_KR_CS}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_CS}, {"eu", OPTION_VAL_EU_CS}, {"jp", OPTION_VAL_JP_CS}, {"hk", OPTION_VAL_HK_CS}, {"kr", OPTION_VAL_KR_CS}, {"cn", OPTION_VAL_CN_CS}, {NULL, NULL} },
         "usa"
     },
     {
@@ -7096,13 +6439,6 @@ struct retro_core_option_v2_definition option_defs_cs[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_CS, NULL,
-        RPCS3_VFS_INIT_INFO_0_CS,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_CS}, {"reset", OPTION_VAL_RESET_CS}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_CS, NULL,
@@ -7170,10 +6506,6 @@ struct retro_core_options_v2 options_cs = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_CY NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_CY NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_CY "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_CY NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_CY NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_CY NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_CY NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_CY NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_CY NULL
 #define OPTION_VAL_50_CY NULL
@@ -7184,23 +6516,18 @@ struct retro_core_options_v2 options_cs = {
 #define OPTION_VAL_300_CY NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_CY NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_CY NULL
-#define OPTION_VAL_USLEEP_CY NULL
-#define OPTION_VAL_ALL_TIMERS_CY NULL
+#define OPTION_VAL_AUTO_CY NULL
 #define OPTION_VAL_AS_HOST_CY NULL
+#define OPTION_VAL_USLEEP_CY "Usleep"
+#define OPTION_VAL_ALL_TIMERS_CY NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_CY NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_CY NULL
-#define RPCS3_ENABLE_TSX_LABEL_CY NULL
-#define RPCS3_ENABLE_TSX_INFO_0_CY NULL
-#define OPTION_VAL_FORCED_CY NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_CY NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_CY NULL
-#define OPTION_VAL_RELAXED_CY NULL
 #define OPTION_VAL_ACCURATE_CY NULL
-#define OPTION_VAL_ULTRA_CY NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_CY NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_CY NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_CY NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_CY NULL
+#define OPTION_VAL_APPROXIMATE_CY NULL
+#define OPTION_VAL_RELAXED_CY "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_CY NULL
 #define RPCS3_RENDERER_LABEL_CY NULL
 #define RPCS3_RENDERER_INFO_0_CY NULL
 #define OPTION_VAL_OPENGL_CY NULL
@@ -7268,7 +6595,7 @@ struct retro_core_options_v2 options_cs = {
 #define RPCS3_SHADER_QUALITY_INFO_0_CY NULL
 #define OPTION_VAL_LOW_CY "Low (Fastest)"
 #define OPTION_VAL_HIGH_CY "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_CY NULL
+#define OPTION_VAL_ULTRA_CY "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_CY NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_CY NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_CY NULL
@@ -7286,7 +6613,7 @@ struct retro_core_options_v2 options_cs = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_CY NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_CY "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_CY "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_CY NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_CY NULL
 #define RPCS3_CPU_BLIT_LABEL_CY NULL
 #define RPCS3_CPU_BLIT_INFO_0_CY NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_CY NULL
@@ -7320,13 +6647,6 @@ struct retro_core_options_v2 options_cs = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_CY NULL
 #define RPCS3_TIME_STRETCHING_LABEL_CY NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_CY NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_CY NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_CY NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_CY NULL
-#define OPTION_VAL_STANDARD_CY NULL
-#define OPTION_VAL_SINGSTAR_CY NULL
-#define OPTION_VAL_REAL_SINGSTAR_CY NULL
-#define OPTION_VAL_ROCKSMITH_CY NULL
 #define RPCS3_MASTER_VOLUME_LABEL_CY NULL
 #define RPCS3_MASTER_VOLUME_INFO_0_CY NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_CY NULL
@@ -7362,7 +6682,9 @@ struct retro_core_options_v2 options_cs = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_CY NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_CY NULL
 #define OPTION_VAL_FAST_CY NULL
-#define OPTION_VAL_BALANCED_CY NULL
+#define OPTION_VAL_ATOMIC_CY NULL
+#define OPTION_VAL_ATOMIC_ORDERED_CY NULL
+#define OPTION_VAL_AS_PS3_CY NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_CY NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_CY NULL
 #define OPTION_VAL_1000_CY NULL
@@ -7376,10 +6698,6 @@ struct retro_core_options_v2 options_cs = {
 #define OPTION_VAL_3_CY NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_CY NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_CY NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_CY NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_CY NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_CY NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_CY NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_CY NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_CY NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_CY NULL
@@ -7416,11 +6734,12 @@ struct retro_core_options_v2 options_cs = {
 #define OPTION_VAL_CIRCLE_CY NULL
 #define RPCS3_LICENSE_AREA_LABEL_CY NULL
 #define RPCS3_LICENSE_AREA_INFO_0_CY NULL
-#define OPTION_VAL_USA_CY NULL
-#define OPTION_VAL_EU_CY NULL
-#define OPTION_VAL_JP_CY NULL
-#define OPTION_VAL_HK_CY NULL
-#define OPTION_VAL_KR_CY NULL
+#define OPTION_VAL_USA_CY "USA"
+#define OPTION_VAL_EU_CY "Europe"
+#define OPTION_VAL_JP_CY "Japan"
+#define OPTION_VAL_HK_CY "Hong Kong"
+#define OPTION_VAL_KR_CY "Korea"
+#define OPTION_VAL_CN_CY NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_CY NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_CY NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_CY NULL
@@ -7428,9 +6747,6 @@ struct retro_core_options_v2 options_cs = {
 #define OPTION_VAL_LIST_CY NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_CY NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_CY NULL
-#define RPCS3_VFS_INIT_LABEL_CY NULL
-#define RPCS3_VFS_INIT_INFO_0_CY NULL
-#define OPTION_VAL_RESET_CY NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_CY NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_CY NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_CY NULL
@@ -7506,20 +6822,6 @@ struct retro_core_option_v2_definition option_defs_cy[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_CY, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_CY,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_CY, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_CY,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_CY, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_CY,
         NULL, "cpu",
@@ -7530,8 +6832,8 @@ struct retro_core_option_v2_definition option_defs_cy[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_CY, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_CY,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_CY}, {"all_timers", OPTION_VAL_ALL_TIMERS_CY}, {"as_host", OPTION_VAL_AS_HOST_CY}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_CY}, {"as_host", OPTION_VAL_AS_HOST_CY}, {"usleep", OPTION_VAL_USLEEP_CY}, {"all_timers", OPTION_VAL_ALL_TIMERS_CY}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_CY, NULL,
@@ -7541,32 +6843,11 @@ struct retro_core_option_v2_definition option_defs_cy[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_CY, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_CY,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_CY}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_CY, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_CY,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_CY}, {"accurate", OPTION_VAL_ACCURATE_CY}, {"ultra", OPTION_VAL_ULTRA_CY}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_CY, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_CY,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_CY, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_CY,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_CY}, {"approximate", OPTION_VAL_APPROXIMATE_CY}, {"relaxed", OPTION_VAL_RELAXED_CY}, {"inaccurate", OPTION_VAL_INACCURATE_CY}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -7644,7 +6925,7 @@ struct retro_core_option_v2_definition option_defs_cy[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_CY, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_CY,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_CY}, {"high", OPTION_VAL_HIGH_CY}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_CY}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_CY}, {"high", OPTION_VAL_HIGH_CY}, {"ultra", OPTION_VAL_ULTRA_CY}, {NULL, NULL} },
         "high"
     },
     {
@@ -7700,7 +6981,7 @@ struct retro_core_option_v2_definition option_defs_cy[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_CY, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_CY,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_CY}, {"approximate", OPTION_VAL_APPROXIMATE_CY}, {"relaxed", OPTION_VAL_RELAXED_CY}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_CY}, {"approximate", OPTION_VAL_APPROXIMATE_CY}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_CY}, {NULL, NULL} },
         "precise"
     },
     {
@@ -7760,13 +7041,6 @@ struct retro_core_option_v2_definition option_defs_cy[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_CY, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_CY,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_CY}, {"standard", OPTION_VAL_STANDARD_CY}, {"singstar", OPTION_VAL_SINGSTAR_CY}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_CY}, {"rocksmith", OPTION_VAL_ROCKSMITH_CY}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_CY, NULL,
@@ -7839,8 +7113,8 @@ struct retro_core_option_v2_definition option_defs_cy[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_CY, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_CY,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_CY}, {"balanced", OPTION_VAL_BALANCED_CY}, {"accurate", OPTION_VAL_ACCURATE_CY}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_CY}, {"atomic", OPTION_VAL_ATOMIC_CY}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_CY}, {"as_ps3", OPTION_VAL_AS_PS3_CY}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_CY, NULL,
@@ -7866,20 +7140,6 @@ struct retro_core_option_v2_definition option_defs_cy[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_CY, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_CY,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_CY, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_CY,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_CY, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_CY,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -7960,7 +7220,7 @@ struct retro_core_option_v2_definition option_defs_cy[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_CY, NULL,
         RPCS3_LICENSE_AREA_INFO_0_CY,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_CY}, {"eu", OPTION_VAL_EU_CY}, {"jp", OPTION_VAL_JP_CY}, {"hk", OPTION_VAL_HK_CY}, {"kr", OPTION_VAL_KR_CY}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_CY}, {"eu", OPTION_VAL_EU_CY}, {"jp", OPTION_VAL_JP_CY}, {"hk", OPTION_VAL_HK_CY}, {"kr", OPTION_VAL_KR_CY}, {"cn", OPTION_VAL_CN_CY}, {NULL, NULL} },
         "usa"
     },
     {
@@ -7983,13 +7243,6 @@ struct retro_core_option_v2_definition option_defs_cy[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_CY, NULL,
-        RPCS3_VFS_INIT_INFO_0_CY,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_CY}, {"reset", OPTION_VAL_RESET_CY}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_CY, NULL,
@@ -8057,10 +7310,6 @@ struct retro_core_options_v2 options_cy = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_DA NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_DA NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_DA "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_DA NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_DA NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_DA NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_DA NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_DA NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_DA NULL
 #define OPTION_VAL_50_DA NULL
@@ -8071,23 +7320,18 @@ struct retro_core_options_v2 options_cy = {
 #define OPTION_VAL_300_DA NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_DA NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_DA NULL
-#define OPTION_VAL_USLEEP_DA NULL
-#define OPTION_VAL_ALL_TIMERS_DA NULL
+#define OPTION_VAL_AUTO_DA NULL
 #define OPTION_VAL_AS_HOST_DA NULL
+#define OPTION_VAL_USLEEP_DA "Usleep"
+#define OPTION_VAL_ALL_TIMERS_DA NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_DA NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_DA NULL
-#define RPCS3_ENABLE_TSX_LABEL_DA NULL
-#define RPCS3_ENABLE_TSX_INFO_0_DA NULL
-#define OPTION_VAL_FORCED_DA NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_DA NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_DA NULL
-#define OPTION_VAL_RELAXED_DA NULL
 #define OPTION_VAL_ACCURATE_DA NULL
-#define OPTION_VAL_ULTRA_DA NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_DA NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_DA NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_DA NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_DA NULL
+#define OPTION_VAL_APPROXIMATE_DA NULL
+#define OPTION_VAL_RELAXED_DA "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_DA NULL
 #define RPCS3_RENDERER_LABEL_DA NULL
 #define RPCS3_RENDERER_INFO_0_DA NULL
 #define OPTION_VAL_OPENGL_DA NULL
@@ -8155,7 +7399,7 @@ struct retro_core_options_v2 options_cy = {
 #define RPCS3_SHADER_QUALITY_INFO_0_DA NULL
 #define OPTION_VAL_LOW_DA "Low (Fastest)"
 #define OPTION_VAL_HIGH_DA "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_DA NULL
+#define OPTION_VAL_ULTRA_DA "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_DA NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_DA NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_DA NULL
@@ -8173,7 +7417,7 @@ struct retro_core_options_v2 options_cy = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_DA NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_DA "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_DA "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_DA NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_DA NULL
 #define RPCS3_CPU_BLIT_LABEL_DA NULL
 #define RPCS3_CPU_BLIT_INFO_0_DA NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_DA NULL
@@ -8207,13 +7451,6 @@ struct retro_core_options_v2 options_cy = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_DA NULL
 #define RPCS3_TIME_STRETCHING_LABEL_DA NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_DA NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_DA NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_DA NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_DA NULL
-#define OPTION_VAL_STANDARD_DA NULL
-#define OPTION_VAL_SINGSTAR_DA NULL
-#define OPTION_VAL_REAL_SINGSTAR_DA NULL
-#define OPTION_VAL_ROCKSMITH_DA NULL
 #define RPCS3_MASTER_VOLUME_LABEL_DA NULL
 #define RPCS3_MASTER_VOLUME_INFO_0_DA NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_DA NULL
@@ -8249,7 +7486,9 @@ struct retro_core_options_v2 options_cy = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_DA NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_DA NULL
 #define OPTION_VAL_FAST_DA NULL
-#define OPTION_VAL_BALANCED_DA NULL
+#define OPTION_VAL_ATOMIC_DA NULL
+#define OPTION_VAL_ATOMIC_ORDERED_DA NULL
+#define OPTION_VAL_AS_PS3_DA NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_DA NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_DA NULL
 #define OPTION_VAL_1000_DA NULL
@@ -8263,10 +7502,6 @@ struct retro_core_options_v2 options_cy = {
 #define OPTION_VAL_3_DA NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_DA NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_DA NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_DA NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_DA NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_DA NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_DA NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_DA NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_DA NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_DA NULL
@@ -8303,11 +7538,12 @@ struct retro_core_options_v2 options_cy = {
 #define OPTION_VAL_CIRCLE_DA NULL
 #define RPCS3_LICENSE_AREA_LABEL_DA NULL
 #define RPCS3_LICENSE_AREA_INFO_0_DA NULL
-#define OPTION_VAL_USA_DA NULL
-#define OPTION_VAL_EU_DA NULL
-#define OPTION_VAL_JP_DA NULL
-#define OPTION_VAL_HK_DA NULL
-#define OPTION_VAL_KR_DA NULL
+#define OPTION_VAL_USA_DA "USA"
+#define OPTION_VAL_EU_DA "Europe"
+#define OPTION_VAL_JP_DA "Japan"
+#define OPTION_VAL_HK_DA "Hong Kong"
+#define OPTION_VAL_KR_DA "Korea"
+#define OPTION_VAL_CN_DA NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_DA NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_DA NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_DA NULL
@@ -8315,9 +7551,6 @@ struct retro_core_options_v2 options_cy = {
 #define OPTION_VAL_LIST_DA NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_DA NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_DA NULL
-#define RPCS3_VFS_INIT_LABEL_DA NULL
-#define RPCS3_VFS_INIT_INFO_0_DA NULL
-#define OPTION_VAL_RESET_DA NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_DA NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_DA NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_DA NULL
@@ -8393,20 +7626,6 @@ struct retro_core_option_v2_definition option_defs_da[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_DA, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_DA,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_DA, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_DA,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_DA, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_DA,
         NULL, "cpu",
@@ -8417,8 +7636,8 @@ struct retro_core_option_v2_definition option_defs_da[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_DA, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_DA,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_DA}, {"all_timers", OPTION_VAL_ALL_TIMERS_DA}, {"as_host", OPTION_VAL_AS_HOST_DA}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_DA}, {"as_host", OPTION_VAL_AS_HOST_DA}, {"usleep", OPTION_VAL_USLEEP_DA}, {"all_timers", OPTION_VAL_ALL_TIMERS_DA}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_DA, NULL,
@@ -8428,32 +7647,11 @@ struct retro_core_option_v2_definition option_defs_da[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_DA, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_DA,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_DA}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_DA, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_DA,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_DA}, {"accurate", OPTION_VAL_ACCURATE_DA}, {"ultra", OPTION_VAL_ULTRA_DA}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_DA, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_DA,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_DA, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_DA,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_DA}, {"approximate", OPTION_VAL_APPROXIMATE_DA}, {"relaxed", OPTION_VAL_RELAXED_DA}, {"inaccurate", OPTION_VAL_INACCURATE_DA}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -8531,7 +7729,7 @@ struct retro_core_option_v2_definition option_defs_da[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_DA, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_DA,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_DA}, {"high", OPTION_VAL_HIGH_DA}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_DA}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_DA}, {"high", OPTION_VAL_HIGH_DA}, {"ultra", OPTION_VAL_ULTRA_DA}, {NULL, NULL} },
         "high"
     },
     {
@@ -8587,7 +7785,7 @@ struct retro_core_option_v2_definition option_defs_da[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_DA, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_DA,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_DA}, {"approximate", OPTION_VAL_APPROXIMATE_DA}, {"relaxed", OPTION_VAL_RELAXED_DA}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_DA}, {"approximate", OPTION_VAL_APPROXIMATE_DA}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_DA}, {NULL, NULL} },
         "precise"
     },
     {
@@ -8647,13 +7845,6 @@ struct retro_core_option_v2_definition option_defs_da[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_DA, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_DA,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_DA}, {"standard", OPTION_VAL_STANDARD_DA}, {"singstar", OPTION_VAL_SINGSTAR_DA}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_DA}, {"rocksmith", OPTION_VAL_ROCKSMITH_DA}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_DA, NULL,
@@ -8726,8 +7917,8 @@ struct retro_core_option_v2_definition option_defs_da[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_DA, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_DA,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_DA}, {"balanced", OPTION_VAL_BALANCED_DA}, {"accurate", OPTION_VAL_ACCURATE_DA}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_DA}, {"atomic", OPTION_VAL_ATOMIC_DA}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_DA}, {"as_ps3", OPTION_VAL_AS_PS3_DA}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_DA, NULL,
@@ -8753,20 +7944,6 @@ struct retro_core_option_v2_definition option_defs_da[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_DA, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_DA,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_DA, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_DA,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_DA, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_DA,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -8847,7 +8024,7 @@ struct retro_core_option_v2_definition option_defs_da[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_DA, NULL,
         RPCS3_LICENSE_AREA_INFO_0_DA,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_DA}, {"eu", OPTION_VAL_EU_DA}, {"jp", OPTION_VAL_JP_DA}, {"hk", OPTION_VAL_HK_DA}, {"kr", OPTION_VAL_KR_DA}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_DA}, {"eu", OPTION_VAL_EU_DA}, {"jp", OPTION_VAL_JP_DA}, {"hk", OPTION_VAL_HK_DA}, {"kr", OPTION_VAL_KR_DA}, {"cn", OPTION_VAL_CN_DA}, {NULL, NULL} },
         "usa"
     },
     {
@@ -8870,13 +8047,6 @@ struct retro_core_option_v2_definition option_defs_da[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_DA, NULL,
-        RPCS3_VFS_INIT_INFO_0_DA,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_DA}, {"reset", OPTION_VAL_RESET_DA}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_DA, NULL,
@@ -8944,10 +8114,6 @@ struct retro_core_options_v2 options_da = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_DE NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_DE NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_DE "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_DE NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_DE NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_DE NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_DE NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_DE NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_DE NULL
 #define OPTION_VAL_50_DE "50 %"
@@ -8958,23 +8124,18 @@ struct retro_core_options_v2 options_da = {
 #define OPTION_VAL_300_DE "300 %"
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_DE NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_DE NULL
-#define OPTION_VAL_USLEEP_DE NULL
-#define OPTION_VAL_ALL_TIMERS_DE NULL
+#define OPTION_VAL_AUTO_DE NULL
 #define OPTION_VAL_AS_HOST_DE NULL
+#define OPTION_VAL_USLEEP_DE "Usleep"
+#define OPTION_VAL_ALL_TIMERS_DE NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_DE NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_DE NULL
-#define RPCS3_ENABLE_TSX_LABEL_DE NULL
-#define RPCS3_ENABLE_TSX_INFO_0_DE NULL
-#define OPTION_VAL_FORCED_DE "Erzwungen"
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_DE NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_DE NULL
-#define OPTION_VAL_RELAXED_DE NULL
 #define OPTION_VAL_ACCURATE_DE "Genau"
-#define OPTION_VAL_ULTRA_DE NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_DE NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_DE NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_DE NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_DE NULL
+#define OPTION_VAL_APPROXIMATE_DE NULL
+#define OPTION_VAL_RELAXED_DE "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_DE NULL
 #define RPCS3_RENDERER_LABEL_DE NULL
 #define RPCS3_RENDERER_INFO_0_DE NULL
 #define OPTION_VAL_OPENGL_DE NULL
@@ -9042,7 +8203,7 @@ struct retro_core_options_v2 options_da = {
 #define RPCS3_SHADER_QUALITY_INFO_0_DE NULL
 #define OPTION_VAL_LOW_DE "Low (Fastest)"
 #define OPTION_VAL_HIGH_DE "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_DE NULL
+#define OPTION_VAL_ULTRA_DE "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_DE NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_DE NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_DE NULL
@@ -9060,7 +8221,7 @@ struct retro_core_options_v2 options_da = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_DE NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_DE "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_DE "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_DE NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_DE NULL
 #define RPCS3_CPU_BLIT_LABEL_DE NULL
 #define RPCS3_CPU_BLIT_INFO_0_DE NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_DE NULL
@@ -9094,13 +8255,6 @@ struct retro_core_options_v2 options_da = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_DE NULL
 #define RPCS3_TIME_STRETCHING_LABEL_DE NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_DE NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_DE NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_DE NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_DE NULL
-#define OPTION_VAL_STANDARD_DE NULL
-#define OPTION_VAL_SINGSTAR_DE NULL
-#define OPTION_VAL_REAL_SINGSTAR_DE NULL
-#define OPTION_VAL_ROCKSMITH_DE NULL
 #define RPCS3_MASTER_VOLUME_LABEL_DE "Gesamtlautstärke"
 #define RPCS3_MASTER_VOLUME_INFO_0_DE NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_DE "0 %"
@@ -9136,7 +8290,9 @@ struct retro_core_options_v2 options_da = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_DE NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_DE NULL
 #define OPTION_VAL_FAST_DE "Schnell"
-#define OPTION_VAL_BALANCED_DE "Ausgewogen"
+#define OPTION_VAL_ATOMIC_DE NULL
+#define OPTION_VAL_ATOMIC_ORDERED_DE NULL
+#define OPTION_VAL_AS_PS3_DE NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_DE NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_DE NULL
 #define OPTION_VAL_1000_DE NULL
@@ -9150,10 +8306,6 @@ struct retro_core_options_v2 options_da = {
 #define OPTION_VAL_3_DE "3 (Standard)"
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_DE NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_DE NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_DE NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_DE NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_DE NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_DE NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_DE NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_DE NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_DE NULL
@@ -9190,11 +8342,12 @@ struct retro_core_options_v2 options_da = {
 #define OPTION_VAL_CIRCLE_DE NULL
 #define RPCS3_LICENSE_AREA_LABEL_DE NULL
 #define RPCS3_LICENSE_AREA_INFO_0_DE NULL
-#define OPTION_VAL_USA_DE NULL
+#define OPTION_VAL_USA_DE "USA"
 #define OPTION_VAL_EU_DE "Europa"
-#define OPTION_VAL_JP_DE NULL
-#define OPTION_VAL_HK_DE NULL
-#define OPTION_VAL_KR_DE NULL
+#define OPTION_VAL_JP_DE "Japan"
+#define OPTION_VAL_HK_DE "Hong Kong"
+#define OPTION_VAL_KR_DE "Korea"
+#define OPTION_VAL_CN_DE NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_DE NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_DE NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_DE NULL
@@ -9202,9 +8355,6 @@ struct retro_core_options_v2 options_da = {
 #define OPTION_VAL_LIST_DE NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_DE NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_DE NULL
-#define RPCS3_VFS_INIT_LABEL_DE NULL
-#define RPCS3_VFS_INIT_INFO_0_DE NULL
-#define OPTION_VAL_RESET_DE "Zurücksetzen"
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_DE NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_DE NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_DE NULL
@@ -9280,20 +8430,6 @@ struct retro_core_option_v2_definition option_defs_de[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_DE, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_DE,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_DE, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_DE,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_DE, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_DE,
         NULL, "cpu",
@@ -9304,8 +8440,8 @@ struct retro_core_option_v2_definition option_defs_de[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_DE, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_DE,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_DE}, {"all_timers", OPTION_VAL_ALL_TIMERS_DE}, {"as_host", OPTION_VAL_AS_HOST_DE}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_DE}, {"as_host", OPTION_VAL_AS_HOST_DE}, {"usleep", OPTION_VAL_USLEEP_DE}, {"all_timers", OPTION_VAL_ALL_TIMERS_DE}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_DE, NULL,
@@ -9315,32 +8451,11 @@ struct retro_core_option_v2_definition option_defs_de[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_DE, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_DE,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_DE}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_DE, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_DE,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_DE}, {"accurate", OPTION_VAL_ACCURATE_DE}, {"ultra", OPTION_VAL_ULTRA_DE}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_DE, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_DE,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_DE, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_DE,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_DE}, {"approximate", OPTION_VAL_APPROXIMATE_DE}, {"relaxed", OPTION_VAL_RELAXED_DE}, {"inaccurate", OPTION_VAL_INACCURATE_DE}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -9418,7 +8533,7 @@ struct retro_core_option_v2_definition option_defs_de[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_DE, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_DE,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_DE}, {"high", OPTION_VAL_HIGH_DE}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_DE}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_DE}, {"high", OPTION_VAL_HIGH_DE}, {"ultra", OPTION_VAL_ULTRA_DE}, {NULL, NULL} },
         "high"
     },
     {
@@ -9474,7 +8589,7 @@ struct retro_core_option_v2_definition option_defs_de[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_DE, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_DE,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_DE}, {"approximate", OPTION_VAL_APPROXIMATE_DE}, {"relaxed", OPTION_VAL_RELAXED_DE}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_DE}, {"approximate", OPTION_VAL_APPROXIMATE_DE}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_DE}, {NULL, NULL} },
         "precise"
     },
     {
@@ -9534,13 +8649,6 @@ struct retro_core_option_v2_definition option_defs_de[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_DE, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_DE,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_DE}, {"standard", OPTION_VAL_STANDARD_DE}, {"singstar", OPTION_VAL_SINGSTAR_DE}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_DE}, {"rocksmith", OPTION_VAL_ROCKSMITH_DE}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_DE, NULL,
@@ -9613,8 +8721,8 @@ struct retro_core_option_v2_definition option_defs_de[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_DE, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_DE,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_DE}, {"balanced", OPTION_VAL_BALANCED_DE}, {"accurate", OPTION_VAL_ACCURATE_DE}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_DE}, {"atomic", OPTION_VAL_ATOMIC_DE}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_DE}, {"as_ps3", OPTION_VAL_AS_PS3_DE}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_DE, NULL,
@@ -9640,20 +8748,6 @@ struct retro_core_option_v2_definition option_defs_de[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_DE, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_DE,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_DE, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_DE,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_DE, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_DE,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -9734,7 +8828,7 @@ struct retro_core_option_v2_definition option_defs_de[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_DE, NULL,
         RPCS3_LICENSE_AREA_INFO_0_DE,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_DE}, {"eu", OPTION_VAL_EU_DE}, {"jp", OPTION_VAL_JP_DE}, {"hk", OPTION_VAL_HK_DE}, {"kr", OPTION_VAL_KR_DE}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_DE}, {"eu", OPTION_VAL_EU_DE}, {"jp", OPTION_VAL_JP_DE}, {"hk", OPTION_VAL_HK_DE}, {"kr", OPTION_VAL_KR_DE}, {"cn", OPTION_VAL_CN_DE}, {NULL, NULL} },
         "usa"
     },
     {
@@ -9757,13 +8851,6 @@ struct retro_core_option_v2_definition option_defs_de[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_DE, NULL,
-        RPCS3_VFS_INIT_INFO_0_DE,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_DE}, {"reset", OPTION_VAL_RESET_DE}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_DE, NULL,
@@ -9831,10 +8918,6 @@ struct retro_core_options_v2 options_de = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_EL NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_EL NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_EL "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_EL NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_EL NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_EL NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_EL NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_EL NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_EL NULL
 #define OPTION_VAL_50_EL NULL
@@ -9845,23 +8928,18 @@ struct retro_core_options_v2 options_de = {
 #define OPTION_VAL_300_EL NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_EL NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_EL NULL
-#define OPTION_VAL_USLEEP_EL NULL
-#define OPTION_VAL_ALL_TIMERS_EL NULL
+#define OPTION_VAL_AUTO_EL NULL
 #define OPTION_VAL_AS_HOST_EL NULL
+#define OPTION_VAL_USLEEP_EL "Usleep"
+#define OPTION_VAL_ALL_TIMERS_EL NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_EL NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_EL NULL
-#define RPCS3_ENABLE_TSX_LABEL_EL NULL
-#define RPCS3_ENABLE_TSX_INFO_0_EL NULL
-#define OPTION_VAL_FORCED_EL NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_EL NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_EL NULL
-#define OPTION_VAL_RELAXED_EL NULL
 #define OPTION_VAL_ACCURATE_EL "Ακριβής"
-#define OPTION_VAL_ULTRA_EL NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_EL NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_EL NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_EL NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_EL NULL
+#define OPTION_VAL_APPROXIMATE_EL NULL
+#define OPTION_VAL_RELAXED_EL "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_EL NULL
 #define RPCS3_RENDERER_LABEL_EL NULL
 #define RPCS3_RENDERER_INFO_0_EL NULL
 #define OPTION_VAL_OPENGL_EL NULL
@@ -9929,7 +9007,7 @@ struct retro_core_options_v2 options_de = {
 #define RPCS3_SHADER_QUALITY_INFO_0_EL NULL
 #define OPTION_VAL_LOW_EL "Low (Fastest)"
 #define OPTION_VAL_HIGH_EL "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_EL NULL
+#define OPTION_VAL_ULTRA_EL "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_EL NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_EL NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_EL NULL
@@ -9947,7 +9025,7 @@ struct retro_core_options_v2 options_de = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_EL NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_EL "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_EL "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_EL NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_EL NULL
 #define RPCS3_CPU_BLIT_LABEL_EL NULL
 #define RPCS3_CPU_BLIT_INFO_0_EL NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_EL NULL
@@ -9981,13 +9059,6 @@ struct retro_core_options_v2 options_de = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_EL NULL
 #define RPCS3_TIME_STRETCHING_LABEL_EL NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_EL NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_EL NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_EL NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_EL NULL
-#define OPTION_VAL_STANDARD_EL NULL
-#define OPTION_VAL_SINGSTAR_EL NULL
-#define OPTION_VAL_REAL_SINGSTAR_EL NULL
-#define OPTION_VAL_ROCKSMITH_EL NULL
 #define RPCS3_MASTER_VOLUME_LABEL_EL NULL
 #define RPCS3_MASTER_VOLUME_INFO_0_EL NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_EL NULL
@@ -10023,7 +9094,9 @@ struct retro_core_options_v2 options_de = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_EL NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_EL NULL
 #define OPTION_VAL_FAST_EL "Γρήγορη Ταχύτητα"
-#define OPTION_VAL_BALANCED_EL NULL
+#define OPTION_VAL_ATOMIC_EL NULL
+#define OPTION_VAL_ATOMIC_ORDERED_EL NULL
+#define OPTION_VAL_AS_PS3_EL NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_EL NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_EL NULL
 #define OPTION_VAL_1000_EL NULL
@@ -10037,10 +9110,6 @@ struct retro_core_options_v2 options_de = {
 #define OPTION_VAL_3_EL "3 (Προεπιλογή)"
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_EL NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_EL NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_EL NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_EL NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_EL NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_EL NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_EL NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_EL NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_EL NULL
@@ -10077,11 +9146,12 @@ struct retro_core_options_v2 options_de = {
 #define OPTION_VAL_CIRCLE_EL NULL
 #define RPCS3_LICENSE_AREA_LABEL_EL NULL
 #define RPCS3_LICENSE_AREA_INFO_0_EL NULL
-#define OPTION_VAL_USA_EL NULL
-#define OPTION_VAL_EU_EL NULL
-#define OPTION_VAL_JP_EL NULL
-#define OPTION_VAL_HK_EL NULL
-#define OPTION_VAL_KR_EL NULL
+#define OPTION_VAL_USA_EL "USA"
+#define OPTION_VAL_EU_EL "Europe"
+#define OPTION_VAL_JP_EL "Japan"
+#define OPTION_VAL_HK_EL "Hong Kong"
+#define OPTION_VAL_KR_EL "Korea"
+#define OPTION_VAL_CN_EL NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_EL NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_EL NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_EL NULL
@@ -10089,9 +9159,6 @@ struct retro_core_options_v2 options_de = {
 #define OPTION_VAL_LIST_EL NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_EL NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_EL NULL
-#define RPCS3_VFS_INIT_LABEL_EL NULL
-#define RPCS3_VFS_INIT_INFO_0_EL NULL
-#define OPTION_VAL_RESET_EL NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_EL NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_EL NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_EL NULL
@@ -10167,20 +9234,6 @@ struct retro_core_option_v2_definition option_defs_el[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_EL, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_EL,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_EL, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_EL,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_EL, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_EL,
         NULL, "cpu",
@@ -10191,8 +9244,8 @@ struct retro_core_option_v2_definition option_defs_el[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_EL, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_EL,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_EL}, {"all_timers", OPTION_VAL_ALL_TIMERS_EL}, {"as_host", OPTION_VAL_AS_HOST_EL}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_EL}, {"as_host", OPTION_VAL_AS_HOST_EL}, {"usleep", OPTION_VAL_USLEEP_EL}, {"all_timers", OPTION_VAL_ALL_TIMERS_EL}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_EL, NULL,
@@ -10202,32 +9255,11 @@ struct retro_core_option_v2_definition option_defs_el[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_EL, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_EL,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_EL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_EL, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_EL,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_EL}, {"accurate", OPTION_VAL_ACCURATE_EL}, {"ultra", OPTION_VAL_ULTRA_EL}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_EL, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_EL,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_EL, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_EL,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_EL}, {"approximate", OPTION_VAL_APPROXIMATE_EL}, {"relaxed", OPTION_VAL_RELAXED_EL}, {"inaccurate", OPTION_VAL_INACCURATE_EL}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -10305,7 +9337,7 @@ struct retro_core_option_v2_definition option_defs_el[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_EL, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_EL,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_EL}, {"high", OPTION_VAL_HIGH_EL}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_EL}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_EL}, {"high", OPTION_VAL_HIGH_EL}, {"ultra", OPTION_VAL_ULTRA_EL}, {NULL, NULL} },
         "high"
     },
     {
@@ -10361,7 +9393,7 @@ struct retro_core_option_v2_definition option_defs_el[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_EL, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_EL,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_EL}, {"approximate", OPTION_VAL_APPROXIMATE_EL}, {"relaxed", OPTION_VAL_RELAXED_EL}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_EL}, {"approximate", OPTION_VAL_APPROXIMATE_EL}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_EL}, {NULL, NULL} },
         "precise"
     },
     {
@@ -10421,13 +9453,6 @@ struct retro_core_option_v2_definition option_defs_el[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_EL, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_EL,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_EL}, {"standard", OPTION_VAL_STANDARD_EL}, {"singstar", OPTION_VAL_SINGSTAR_EL}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_EL}, {"rocksmith", OPTION_VAL_ROCKSMITH_EL}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_EL, NULL,
@@ -10500,8 +9525,8 @@ struct retro_core_option_v2_definition option_defs_el[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_EL, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_EL,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_EL}, {"balanced", OPTION_VAL_BALANCED_EL}, {"accurate", OPTION_VAL_ACCURATE_EL}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_EL}, {"atomic", OPTION_VAL_ATOMIC_EL}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_EL}, {"as_ps3", OPTION_VAL_AS_PS3_EL}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_EL, NULL,
@@ -10527,20 +9552,6 @@ struct retro_core_option_v2_definition option_defs_el[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_EL, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_EL,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_EL, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_EL,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_EL, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_EL,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -10621,7 +9632,7 @@ struct retro_core_option_v2_definition option_defs_el[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_EL, NULL,
         RPCS3_LICENSE_AREA_INFO_0_EL,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_EL}, {"eu", OPTION_VAL_EU_EL}, {"jp", OPTION_VAL_JP_EL}, {"hk", OPTION_VAL_HK_EL}, {"kr", OPTION_VAL_KR_EL}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_EL}, {"eu", OPTION_VAL_EU_EL}, {"jp", OPTION_VAL_JP_EL}, {"hk", OPTION_VAL_HK_EL}, {"kr", OPTION_VAL_KR_EL}, {"cn", OPTION_VAL_CN_EL}, {NULL, NULL} },
         "usa"
     },
     {
@@ -10644,13 +9655,6 @@ struct retro_core_option_v2_definition option_defs_el[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_EL, NULL,
-        RPCS3_VFS_INIT_INFO_0_EL,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_EL}, {"reset", OPTION_VAL_RESET_EL}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_EL, NULL,
@@ -10718,10 +9722,6 @@ struct retro_core_options_v2 options_el = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_EN NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_EN NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_EN "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_EN NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_EN NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_EN NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_EN NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_EN NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_EN NULL
 #define OPTION_VAL_50_EN NULL
@@ -10732,23 +9732,18 @@ struct retro_core_options_v2 options_el = {
 #define OPTION_VAL_300_EN NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_EN NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_EN NULL
-#define OPTION_VAL_USLEEP_EN NULL
-#define OPTION_VAL_ALL_TIMERS_EN NULL
+#define OPTION_VAL_AUTO_EN NULL
 #define OPTION_VAL_AS_HOST_EN NULL
+#define OPTION_VAL_USLEEP_EN "Usleep"
+#define OPTION_VAL_ALL_TIMERS_EN NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_EN NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_EN NULL
-#define RPCS3_ENABLE_TSX_LABEL_EN NULL
-#define RPCS3_ENABLE_TSX_INFO_0_EN NULL
-#define OPTION_VAL_FORCED_EN NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_EN NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_EN NULL
-#define OPTION_VAL_RELAXED_EN NULL
 #define OPTION_VAL_ACCURATE_EN NULL
-#define OPTION_VAL_ULTRA_EN NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_EN NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_EN NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_EN NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_EN NULL
+#define OPTION_VAL_APPROXIMATE_EN NULL
+#define OPTION_VAL_RELAXED_EN "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_EN NULL
 #define RPCS3_RENDERER_LABEL_EN NULL
 #define RPCS3_RENDERER_INFO_0_EN NULL
 #define OPTION_VAL_OPENGL_EN NULL
@@ -10816,7 +9811,7 @@ struct retro_core_options_v2 options_el = {
 #define RPCS3_SHADER_QUALITY_INFO_0_EN NULL
 #define OPTION_VAL_LOW_EN "Low (Fastest)"
 #define OPTION_VAL_HIGH_EN "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_EN NULL
+#define OPTION_VAL_ULTRA_EN "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_EN NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_EN NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_EN NULL
@@ -10834,7 +9829,7 @@ struct retro_core_options_v2 options_el = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_EN NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_EN "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_EN "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_EN NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_EN NULL
 #define RPCS3_CPU_BLIT_LABEL_EN NULL
 #define RPCS3_CPU_BLIT_INFO_0_EN NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_EN NULL
@@ -10868,13 +9863,6 @@ struct retro_core_options_v2 options_el = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_EN NULL
 #define RPCS3_TIME_STRETCHING_LABEL_EN NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_EN NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_EN NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_EN NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_EN NULL
-#define OPTION_VAL_STANDARD_EN NULL
-#define OPTION_VAL_SINGSTAR_EN NULL
-#define OPTION_VAL_REAL_SINGSTAR_EN NULL
-#define OPTION_VAL_ROCKSMITH_EN NULL
 #define RPCS3_MASTER_VOLUME_LABEL_EN NULL
 #define RPCS3_MASTER_VOLUME_INFO_0_EN NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_EN NULL
@@ -10910,7 +9898,9 @@ struct retro_core_options_v2 options_el = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_EN NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_EN NULL
 #define OPTION_VAL_FAST_EN NULL
-#define OPTION_VAL_BALANCED_EN NULL
+#define OPTION_VAL_ATOMIC_EN NULL
+#define OPTION_VAL_ATOMIC_ORDERED_EN NULL
+#define OPTION_VAL_AS_PS3_EN NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_EN NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_EN NULL
 #define OPTION_VAL_1000_EN NULL
@@ -10924,10 +9914,6 @@ struct retro_core_options_v2 options_el = {
 #define OPTION_VAL_3_EN NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_EN NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_EN NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_EN NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_EN NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_EN NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_EN NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_EN NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_EN NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_EN NULL
@@ -10964,11 +9950,12 @@ struct retro_core_options_v2 options_el = {
 #define OPTION_VAL_CIRCLE_EN NULL
 #define RPCS3_LICENSE_AREA_LABEL_EN NULL
 #define RPCS3_LICENSE_AREA_INFO_0_EN NULL
-#define OPTION_VAL_USA_EN NULL
-#define OPTION_VAL_EU_EN NULL
-#define OPTION_VAL_JP_EN NULL
-#define OPTION_VAL_HK_EN NULL
-#define OPTION_VAL_KR_EN NULL
+#define OPTION_VAL_USA_EN "USA"
+#define OPTION_VAL_EU_EN "Europe"
+#define OPTION_VAL_JP_EN "Japan"
+#define OPTION_VAL_HK_EN "Hong Kong"
+#define OPTION_VAL_KR_EN "Korea"
+#define OPTION_VAL_CN_EN NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_EN NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_EN NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_EN NULL
@@ -10976,9 +9963,6 @@ struct retro_core_options_v2 options_el = {
 #define OPTION_VAL_LIST_EN NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_EN NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_EN NULL
-#define RPCS3_VFS_INIT_LABEL_EN NULL
-#define RPCS3_VFS_INIT_INFO_0_EN NULL
-#define OPTION_VAL_RESET_EN NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_EN NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_EN NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_EN NULL
@@ -11054,20 +10038,6 @@ struct retro_core_option_v2_definition option_defs_en[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_EN, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_EN,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_EN, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_EN,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_EN, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_EN,
         NULL, "cpu",
@@ -11078,8 +10048,8 @@ struct retro_core_option_v2_definition option_defs_en[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_EN, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_EN,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_EN}, {"all_timers", OPTION_VAL_ALL_TIMERS_EN}, {"as_host", OPTION_VAL_AS_HOST_EN}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_EN}, {"as_host", OPTION_VAL_AS_HOST_EN}, {"usleep", OPTION_VAL_USLEEP_EN}, {"all_timers", OPTION_VAL_ALL_TIMERS_EN}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_EN, NULL,
@@ -11089,32 +10059,11 @@ struct retro_core_option_v2_definition option_defs_en[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_EN, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_EN,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_EN}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_EN, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_EN,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_EN}, {"accurate", OPTION_VAL_ACCURATE_EN}, {"ultra", OPTION_VAL_ULTRA_EN}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_EN, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_EN,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_EN, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_EN,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_EN}, {"approximate", OPTION_VAL_APPROXIMATE_EN}, {"relaxed", OPTION_VAL_RELAXED_EN}, {"inaccurate", OPTION_VAL_INACCURATE_EN}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -11192,7 +10141,7 @@ struct retro_core_option_v2_definition option_defs_en[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_EN, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_EN,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_EN}, {"high", OPTION_VAL_HIGH_EN}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_EN}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_EN}, {"high", OPTION_VAL_HIGH_EN}, {"ultra", OPTION_VAL_ULTRA_EN}, {NULL, NULL} },
         "high"
     },
     {
@@ -11248,7 +10197,7 @@ struct retro_core_option_v2_definition option_defs_en[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_EN, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_EN,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_EN}, {"approximate", OPTION_VAL_APPROXIMATE_EN}, {"relaxed", OPTION_VAL_RELAXED_EN}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_EN}, {"approximate", OPTION_VAL_APPROXIMATE_EN}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_EN}, {NULL, NULL} },
         "precise"
     },
     {
@@ -11308,13 +10257,6 @@ struct retro_core_option_v2_definition option_defs_en[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_EN, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_EN,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_EN}, {"standard", OPTION_VAL_STANDARD_EN}, {"singstar", OPTION_VAL_SINGSTAR_EN}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_EN}, {"rocksmith", OPTION_VAL_ROCKSMITH_EN}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_EN, NULL,
@@ -11387,8 +10329,8 @@ struct retro_core_option_v2_definition option_defs_en[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_EN, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_EN,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_EN}, {"balanced", OPTION_VAL_BALANCED_EN}, {"accurate", OPTION_VAL_ACCURATE_EN}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_EN}, {"atomic", OPTION_VAL_ATOMIC_EN}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_EN}, {"as_ps3", OPTION_VAL_AS_PS3_EN}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_EN, NULL,
@@ -11414,20 +10356,6 @@ struct retro_core_option_v2_definition option_defs_en[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_EN, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_EN,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_EN, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_EN,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_EN, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_EN,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -11508,7 +10436,7 @@ struct retro_core_option_v2_definition option_defs_en[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_EN, NULL,
         RPCS3_LICENSE_AREA_INFO_0_EN,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_EN}, {"eu", OPTION_VAL_EU_EN}, {"jp", OPTION_VAL_JP_EN}, {"hk", OPTION_VAL_HK_EN}, {"kr", OPTION_VAL_KR_EN}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_EN}, {"eu", OPTION_VAL_EU_EN}, {"jp", OPTION_VAL_JP_EN}, {"hk", OPTION_VAL_HK_EN}, {"kr", OPTION_VAL_KR_EN}, {"cn", OPTION_VAL_CN_EN}, {NULL, NULL} },
         "usa"
     },
     {
@@ -11531,13 +10459,6 @@ struct retro_core_option_v2_definition option_defs_en[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_EN, NULL,
-        RPCS3_VFS_INIT_INFO_0_EN,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_EN}, {"reset", OPTION_VAL_RESET_EN}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_EN, NULL,
@@ -11605,10 +10526,6 @@ struct retro_core_options_v2 options_en = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_EO NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_EO NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_EO "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_EO NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_EO NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_EO NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_EO NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_EO NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_EO NULL
 #define OPTION_VAL_50_EO NULL
@@ -11619,23 +10536,18 @@ struct retro_core_options_v2 options_en = {
 #define OPTION_VAL_300_EO NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_EO NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_EO NULL
-#define OPTION_VAL_USLEEP_EO NULL
-#define OPTION_VAL_ALL_TIMERS_EO NULL
+#define OPTION_VAL_AUTO_EO NULL
 #define OPTION_VAL_AS_HOST_EO NULL
+#define OPTION_VAL_USLEEP_EO "Usleep"
+#define OPTION_VAL_ALL_TIMERS_EO NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_EO NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_EO NULL
-#define RPCS3_ENABLE_TSX_LABEL_EO NULL
-#define RPCS3_ENABLE_TSX_INFO_0_EO NULL
-#define OPTION_VAL_FORCED_EO NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_EO NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_EO NULL
-#define OPTION_VAL_RELAXED_EO NULL
 #define OPTION_VAL_ACCURATE_EO "Preciza"
-#define OPTION_VAL_ULTRA_EO NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_EO NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_EO NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_EO NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_EO NULL
+#define OPTION_VAL_APPROXIMATE_EO NULL
+#define OPTION_VAL_RELAXED_EO "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_EO NULL
 #define RPCS3_RENDERER_LABEL_EO "Bildigilo"
 #define RPCS3_RENDERER_INFO_0_EO NULL
 #define OPTION_VAL_OPENGL_EO NULL
@@ -11703,7 +10615,7 @@ struct retro_core_options_v2 options_en = {
 #define RPCS3_SHADER_QUALITY_INFO_0_EO NULL
 #define OPTION_VAL_LOW_EO "Low (Fastest)"
 #define OPTION_VAL_HIGH_EO "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_EO NULL
+#define OPTION_VAL_ULTRA_EO "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_EO NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_EO NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_EO NULL
@@ -11721,7 +10633,7 @@ struct retro_core_options_v2 options_en = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_EO NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_EO "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_EO "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_EO NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_EO NULL
 #define RPCS3_CPU_BLIT_LABEL_EO NULL
 #define RPCS3_CPU_BLIT_INFO_0_EO NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_EO NULL
@@ -11755,13 +10667,6 @@ struct retro_core_options_v2 options_en = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_EO NULL
 #define RPCS3_TIME_STRETCHING_LABEL_EO NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_EO NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_EO NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_EO NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_EO NULL
-#define OPTION_VAL_STANDARD_EO NULL
-#define OPTION_VAL_SINGSTAR_EO NULL
-#define OPTION_VAL_REAL_SINGSTAR_EO NULL
-#define OPTION_VAL_ROCKSMITH_EO NULL
 #define RPCS3_MASTER_VOLUME_LABEL_EO "Ĉefa volumeno"
 #define RPCS3_MASTER_VOLUME_INFO_0_EO NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_EO NULL
@@ -11797,7 +10702,9 @@ struct retro_core_options_v2 options_en = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_EO NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_EO NULL
 #define OPTION_VAL_FAST_EO "Rapida"
-#define OPTION_VAL_BALANCED_EO "Ekvilibrigita"
+#define OPTION_VAL_ATOMIC_EO NULL
+#define OPTION_VAL_ATOMIC_ORDERED_EO NULL
+#define OPTION_VAL_AS_PS3_EO NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_EO NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_EO NULL
 #define OPTION_VAL_1000_EO NULL
@@ -11811,10 +10718,6 @@ struct retro_core_options_v2 options_en = {
 #define OPTION_VAL_3_EO "3 (defaŭlte)"
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_EO NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_EO NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_EO NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_EO NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_EO NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_EO NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_EO NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_EO NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_EO NULL
@@ -11854,8 +10757,9 @@ struct retro_core_options_v2 options_en = {
 #define OPTION_VAL_USA_EO "Usono"
 #define OPTION_VAL_EU_EO "Eŭropo"
 #define OPTION_VAL_JP_EO "Japanio"
-#define OPTION_VAL_HK_EO NULL
-#define OPTION_VAL_KR_EO NULL
+#define OPTION_VAL_HK_EO "Hong Kong"
+#define OPTION_VAL_KR_EO "Korea"
+#define OPTION_VAL_CN_EO NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_EO NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_EO NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_EO NULL
@@ -11863,9 +10767,6 @@ struct retro_core_options_v2 options_en = {
 #define OPTION_VAL_LIST_EO NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_EO NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_EO NULL
-#define RPCS3_VFS_INIT_LABEL_EO NULL
-#define RPCS3_VFS_INIT_INFO_0_EO NULL
-#define OPTION_VAL_RESET_EO "Rekomencigi"
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_EO NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_EO NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_EO NULL
@@ -11941,20 +10842,6 @@ struct retro_core_option_v2_definition option_defs_eo[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_EO, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_EO,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_EO, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_EO,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_EO, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_EO,
         NULL, "cpu",
@@ -11965,8 +10852,8 @@ struct retro_core_option_v2_definition option_defs_eo[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_EO, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_EO,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_EO}, {"all_timers", OPTION_VAL_ALL_TIMERS_EO}, {"as_host", OPTION_VAL_AS_HOST_EO}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_EO}, {"as_host", OPTION_VAL_AS_HOST_EO}, {"usleep", OPTION_VAL_USLEEP_EO}, {"all_timers", OPTION_VAL_ALL_TIMERS_EO}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_EO, NULL,
@@ -11976,32 +10863,11 @@ struct retro_core_option_v2_definition option_defs_eo[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_EO, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_EO,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_EO}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_EO, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_EO,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_EO}, {"accurate", OPTION_VAL_ACCURATE_EO}, {"ultra", OPTION_VAL_ULTRA_EO}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_EO, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_EO,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_EO, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_EO,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_EO}, {"approximate", OPTION_VAL_APPROXIMATE_EO}, {"relaxed", OPTION_VAL_RELAXED_EO}, {"inaccurate", OPTION_VAL_INACCURATE_EO}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -12079,7 +10945,7 @@ struct retro_core_option_v2_definition option_defs_eo[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_EO, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_EO,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_EO}, {"high", OPTION_VAL_HIGH_EO}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_EO}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_EO}, {"high", OPTION_VAL_HIGH_EO}, {"ultra", OPTION_VAL_ULTRA_EO}, {NULL, NULL} },
         "high"
     },
     {
@@ -12135,7 +11001,7 @@ struct retro_core_option_v2_definition option_defs_eo[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_EO, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_EO,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_EO}, {"approximate", OPTION_VAL_APPROXIMATE_EO}, {"relaxed", OPTION_VAL_RELAXED_EO}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_EO}, {"approximate", OPTION_VAL_APPROXIMATE_EO}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_EO}, {NULL, NULL} },
         "precise"
     },
     {
@@ -12195,13 +11061,6 @@ struct retro_core_option_v2_definition option_defs_eo[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_EO, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_EO,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_EO}, {"standard", OPTION_VAL_STANDARD_EO}, {"singstar", OPTION_VAL_SINGSTAR_EO}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_EO}, {"rocksmith", OPTION_VAL_ROCKSMITH_EO}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_EO, NULL,
@@ -12274,8 +11133,8 @@ struct retro_core_option_v2_definition option_defs_eo[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_EO, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_EO,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_EO}, {"balanced", OPTION_VAL_BALANCED_EO}, {"accurate", OPTION_VAL_ACCURATE_EO}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_EO}, {"atomic", OPTION_VAL_ATOMIC_EO}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_EO}, {"as_ps3", OPTION_VAL_AS_PS3_EO}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_EO, NULL,
@@ -12301,20 +11160,6 @@ struct retro_core_option_v2_definition option_defs_eo[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_EO, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_EO,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_EO, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_EO,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_EO, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_EO,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -12395,7 +11240,7 @@ struct retro_core_option_v2_definition option_defs_eo[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_EO, NULL,
         RPCS3_LICENSE_AREA_INFO_0_EO,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_EO}, {"eu", OPTION_VAL_EU_EO}, {"jp", OPTION_VAL_JP_EO}, {"hk", OPTION_VAL_HK_EO}, {"kr", OPTION_VAL_KR_EO}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_EO}, {"eu", OPTION_VAL_EU_EO}, {"jp", OPTION_VAL_JP_EO}, {"hk", OPTION_VAL_HK_EO}, {"kr", OPTION_VAL_KR_EO}, {"cn", OPTION_VAL_CN_EO}, {NULL, NULL} },
         "usa"
     },
     {
@@ -12418,13 +11263,6 @@ struct retro_core_option_v2_definition option_defs_eo[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_EO, NULL,
-        RPCS3_VFS_INIT_INFO_0_EO,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_EO}, {"reset", OPTION_VAL_RESET_EO}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_EO, NULL,
@@ -12492,10 +11330,6 @@ struct retro_core_options_v2 options_eo = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_ES NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_ES NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_ES "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_ES NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_ES NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_ES NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_ES NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_ES NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_ES NULL
 #define OPTION_VAL_50_ES "50 %"
@@ -12506,23 +11340,18 @@ struct retro_core_options_v2 options_eo = {
 #define OPTION_VAL_300_ES "300 %"
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_ES NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_ES NULL
-#define OPTION_VAL_USLEEP_ES NULL
-#define OPTION_VAL_ALL_TIMERS_ES NULL
+#define OPTION_VAL_AUTO_ES NULL
 #define OPTION_VAL_AS_HOST_ES NULL
+#define OPTION_VAL_USLEEP_ES "Usleep"
+#define OPTION_VAL_ALL_TIMERS_ES NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_ES NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_ES NULL
-#define RPCS3_ENABLE_TSX_LABEL_ES NULL
-#define RPCS3_ENABLE_TSX_INFO_0_ES NULL
-#define OPTION_VAL_FORCED_ES "Forzar"
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_ES NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_ES NULL
-#define OPTION_VAL_RELAXED_ES NULL
 #define OPTION_VAL_ACCURATE_ES "Preciso"
-#define OPTION_VAL_ULTRA_ES NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_ES NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_ES NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_ES NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_ES NULL
+#define OPTION_VAL_APPROXIMATE_ES NULL
+#define OPTION_VAL_RELAXED_ES "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_ES NULL
 #define RPCS3_RENDERER_LABEL_ES "Renderizador"
 #define RPCS3_RENDERER_INFO_0_ES NULL
 #define OPTION_VAL_OPENGL_ES NULL
@@ -12590,7 +11419,7 @@ struct retro_core_options_v2 options_eo = {
 #define RPCS3_SHADER_QUALITY_INFO_0_ES NULL
 #define OPTION_VAL_LOW_ES "Low (Fastest)"
 #define OPTION_VAL_HIGH_ES "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_ES NULL
+#define OPTION_VAL_ULTRA_ES "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_ES NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_ES NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_ES NULL
@@ -12608,7 +11437,7 @@ struct retro_core_options_v2 options_eo = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_ES NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_ES "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_ES "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_ES NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_ES NULL
 #define RPCS3_CPU_BLIT_LABEL_ES NULL
 #define RPCS3_CPU_BLIT_INFO_0_ES NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_ES NULL
@@ -12642,13 +11471,6 @@ struct retro_core_options_v2 options_eo = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_ES NULL
 #define RPCS3_TIME_STRETCHING_LABEL_ES NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_ES NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_ES NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_ES NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_ES NULL
-#define OPTION_VAL_STANDARD_ES NULL
-#define OPTION_VAL_SINGSTAR_ES NULL
-#define OPTION_VAL_REAL_SINGSTAR_ES NULL
-#define OPTION_VAL_ROCKSMITH_ES NULL
 #define RPCS3_MASTER_VOLUME_LABEL_ES "Volumen general"
 #define RPCS3_MASTER_VOLUME_INFO_0_ES NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_ES "0 %"
@@ -12684,7 +11506,9 @@ struct retro_core_options_v2 options_eo = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_ES NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_ES NULL
 #define OPTION_VAL_FAST_ES "Rápida"
-#define OPTION_VAL_BALANCED_ES "Equilibrado"
+#define OPTION_VAL_ATOMIC_ES NULL
+#define OPTION_VAL_ATOMIC_ORDERED_ES NULL
+#define OPTION_VAL_AS_PS3_ES NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_ES NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_ES NULL
 #define OPTION_VAL_1000_ES NULL
@@ -12698,10 +11522,6 @@ struct retro_core_options_v2 options_eo = {
 #define OPTION_VAL_3_ES "3 (por defecto)"
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_ES NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_ES NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_ES NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_ES NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_ES NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_ES NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_ES NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_ES NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_ES NULL
@@ -12741,8 +11561,9 @@ struct retro_core_options_v2 options_eo = {
 #define OPTION_VAL_USA_ES "Estados Unidos"
 #define OPTION_VAL_EU_ES "Europa"
 #define OPTION_VAL_JP_ES "Japón"
-#define OPTION_VAL_HK_ES NULL
-#define OPTION_VAL_KR_ES NULL
+#define OPTION_VAL_HK_ES "Hong Kong"
+#define OPTION_VAL_KR_ES "Korea"
+#define OPTION_VAL_CN_ES NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_ES NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_ES NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_ES NULL
@@ -12750,9 +11571,6 @@ struct retro_core_options_v2 options_eo = {
 #define OPTION_VAL_LIST_ES NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_ES NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_ES NULL
-#define RPCS3_VFS_INIT_LABEL_ES NULL
-#define RPCS3_VFS_INIT_INFO_0_ES NULL
-#define OPTION_VAL_RESET_ES "Reiniciar"
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_ES NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_ES NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_ES NULL
@@ -12828,20 +11646,6 @@ struct retro_core_option_v2_definition option_defs_es[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_ES, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_ES,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_ES, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_ES,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_ES, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_ES,
         NULL, "cpu",
@@ -12852,8 +11656,8 @@ struct retro_core_option_v2_definition option_defs_es[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_ES, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_ES,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_ES}, {"all_timers", OPTION_VAL_ALL_TIMERS_ES}, {"as_host", OPTION_VAL_AS_HOST_ES}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_ES}, {"as_host", OPTION_VAL_AS_HOST_ES}, {"usleep", OPTION_VAL_USLEEP_ES}, {"all_timers", OPTION_VAL_ALL_TIMERS_ES}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_ES, NULL,
@@ -12863,32 +11667,11 @@ struct retro_core_option_v2_definition option_defs_es[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_ES, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_ES,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_ES}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_ES, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_ES,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_ES}, {"accurate", OPTION_VAL_ACCURATE_ES}, {"ultra", OPTION_VAL_ULTRA_ES}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_ES, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_ES,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_ES, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_ES,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_ES}, {"approximate", OPTION_VAL_APPROXIMATE_ES}, {"relaxed", OPTION_VAL_RELAXED_ES}, {"inaccurate", OPTION_VAL_INACCURATE_ES}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -12966,7 +11749,7 @@ struct retro_core_option_v2_definition option_defs_es[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_ES, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_ES,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_ES}, {"high", OPTION_VAL_HIGH_ES}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_ES}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_ES}, {"high", OPTION_VAL_HIGH_ES}, {"ultra", OPTION_VAL_ULTRA_ES}, {NULL, NULL} },
         "high"
     },
     {
@@ -13022,7 +11805,7 @@ struct retro_core_option_v2_definition option_defs_es[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_ES, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_ES,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_ES}, {"approximate", OPTION_VAL_APPROXIMATE_ES}, {"relaxed", OPTION_VAL_RELAXED_ES}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_ES}, {"approximate", OPTION_VAL_APPROXIMATE_ES}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_ES}, {NULL, NULL} },
         "precise"
     },
     {
@@ -13082,13 +11865,6 @@ struct retro_core_option_v2_definition option_defs_es[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_ES, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_ES,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_ES}, {"standard", OPTION_VAL_STANDARD_ES}, {"singstar", OPTION_VAL_SINGSTAR_ES}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_ES}, {"rocksmith", OPTION_VAL_ROCKSMITH_ES}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_ES, NULL,
@@ -13161,8 +11937,8 @@ struct retro_core_option_v2_definition option_defs_es[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_ES, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_ES,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_ES}, {"balanced", OPTION_VAL_BALANCED_ES}, {"accurate", OPTION_VAL_ACCURATE_ES}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_ES}, {"atomic", OPTION_VAL_ATOMIC_ES}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_ES}, {"as_ps3", OPTION_VAL_AS_PS3_ES}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_ES, NULL,
@@ -13188,20 +11964,6 @@ struct retro_core_option_v2_definition option_defs_es[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_ES, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_ES,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_ES, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_ES,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_ES, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_ES,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -13282,7 +12044,7 @@ struct retro_core_option_v2_definition option_defs_es[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_ES, NULL,
         RPCS3_LICENSE_AREA_INFO_0_ES,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_ES}, {"eu", OPTION_VAL_EU_ES}, {"jp", OPTION_VAL_JP_ES}, {"hk", OPTION_VAL_HK_ES}, {"kr", OPTION_VAL_KR_ES}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_ES}, {"eu", OPTION_VAL_EU_ES}, {"jp", OPTION_VAL_JP_ES}, {"hk", OPTION_VAL_HK_ES}, {"kr", OPTION_VAL_KR_ES}, {"cn", OPTION_VAL_CN_ES}, {NULL, NULL} },
         "usa"
     },
     {
@@ -13305,13 +12067,6 @@ struct retro_core_option_v2_definition option_defs_es[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_ES, NULL,
-        RPCS3_VFS_INIT_INFO_0_ES,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_ES}, {"reset", OPTION_VAL_RESET_ES}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_ES, NULL,
@@ -13379,10 +12134,6 @@ struct retro_core_options_v2 options_es = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_FA NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_FA NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_FA "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_FA NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_FA NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_FA NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_FA NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_FA NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_FA NULL
 #define OPTION_VAL_50_FA NULL
@@ -13393,23 +12144,18 @@ struct retro_core_options_v2 options_es = {
 #define OPTION_VAL_300_FA NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_FA NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_FA NULL
-#define OPTION_VAL_USLEEP_FA NULL
-#define OPTION_VAL_ALL_TIMERS_FA NULL
+#define OPTION_VAL_AUTO_FA NULL
 #define OPTION_VAL_AS_HOST_FA NULL
+#define OPTION_VAL_USLEEP_FA "Usleep"
+#define OPTION_VAL_ALL_TIMERS_FA NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_FA NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_FA NULL
-#define RPCS3_ENABLE_TSX_LABEL_FA NULL
-#define RPCS3_ENABLE_TSX_INFO_0_FA NULL
-#define OPTION_VAL_FORCED_FA NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_FA NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_FA NULL
-#define OPTION_VAL_RELAXED_FA NULL
 #define OPTION_VAL_ACCURATE_FA NULL
-#define OPTION_VAL_ULTRA_FA NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_FA NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_FA NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_FA NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_FA NULL
+#define OPTION_VAL_APPROXIMATE_FA NULL
+#define OPTION_VAL_RELAXED_FA "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_FA NULL
 #define RPCS3_RENDERER_LABEL_FA NULL
 #define RPCS3_RENDERER_INFO_0_FA NULL
 #define OPTION_VAL_OPENGL_FA NULL
@@ -13477,7 +12223,7 @@ struct retro_core_options_v2 options_es = {
 #define RPCS3_SHADER_QUALITY_INFO_0_FA NULL
 #define OPTION_VAL_LOW_FA "Low (Fastest)"
 #define OPTION_VAL_HIGH_FA "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_FA NULL
+#define OPTION_VAL_ULTRA_FA "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_FA NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_FA NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_FA NULL
@@ -13495,7 +12241,7 @@ struct retro_core_options_v2 options_es = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_FA NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_FA "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_FA "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_FA NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_FA NULL
 #define RPCS3_CPU_BLIT_LABEL_FA NULL
 #define RPCS3_CPU_BLIT_INFO_0_FA NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_FA NULL
@@ -13529,13 +12275,6 @@ struct retro_core_options_v2 options_es = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_FA NULL
 #define RPCS3_TIME_STRETCHING_LABEL_FA NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_FA NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_FA NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_FA NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_FA NULL
-#define OPTION_VAL_STANDARD_FA NULL
-#define OPTION_VAL_SINGSTAR_FA NULL
-#define OPTION_VAL_REAL_SINGSTAR_FA NULL
-#define OPTION_VAL_ROCKSMITH_FA NULL
 #define RPCS3_MASTER_VOLUME_LABEL_FA NULL
 #define RPCS3_MASTER_VOLUME_INFO_0_FA NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_FA NULL
@@ -13571,7 +12310,9 @@ struct retro_core_options_v2 options_es = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_FA NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_FA NULL
 #define OPTION_VAL_FAST_FA NULL
-#define OPTION_VAL_BALANCED_FA NULL
+#define OPTION_VAL_ATOMIC_FA NULL
+#define OPTION_VAL_ATOMIC_ORDERED_FA NULL
+#define OPTION_VAL_AS_PS3_FA NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_FA NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_FA NULL
 #define OPTION_VAL_1000_FA NULL
@@ -13585,10 +12326,6 @@ struct retro_core_options_v2 options_es = {
 #define OPTION_VAL_3_FA NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_FA NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_FA NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_FA NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_FA NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_FA NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_FA NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_FA NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_FA NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_FA NULL
@@ -13625,11 +12362,12 @@ struct retro_core_options_v2 options_es = {
 #define OPTION_VAL_CIRCLE_FA NULL
 #define RPCS3_LICENSE_AREA_LABEL_FA NULL
 #define RPCS3_LICENSE_AREA_INFO_0_FA NULL
-#define OPTION_VAL_USA_FA NULL
-#define OPTION_VAL_EU_FA NULL
-#define OPTION_VAL_JP_FA NULL
-#define OPTION_VAL_HK_FA NULL
-#define OPTION_VAL_KR_FA NULL
+#define OPTION_VAL_USA_FA "USA"
+#define OPTION_VAL_EU_FA "Europe"
+#define OPTION_VAL_JP_FA "Japan"
+#define OPTION_VAL_HK_FA "Hong Kong"
+#define OPTION_VAL_KR_FA "Korea"
+#define OPTION_VAL_CN_FA NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_FA NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_FA NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_FA NULL
@@ -13637,9 +12375,6 @@ struct retro_core_options_v2 options_es = {
 #define OPTION_VAL_LIST_FA NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_FA NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_FA NULL
-#define RPCS3_VFS_INIT_LABEL_FA NULL
-#define RPCS3_VFS_INIT_INFO_0_FA NULL
-#define OPTION_VAL_RESET_FA NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_FA NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_FA NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_FA NULL
@@ -13715,20 +12450,6 @@ struct retro_core_option_v2_definition option_defs_fa[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_FA, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_FA,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_FA, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_FA,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_FA, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_FA,
         NULL, "cpu",
@@ -13739,8 +12460,8 @@ struct retro_core_option_v2_definition option_defs_fa[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_FA, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_FA,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_FA}, {"all_timers", OPTION_VAL_ALL_TIMERS_FA}, {"as_host", OPTION_VAL_AS_HOST_FA}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_FA}, {"as_host", OPTION_VAL_AS_HOST_FA}, {"usleep", OPTION_VAL_USLEEP_FA}, {"all_timers", OPTION_VAL_ALL_TIMERS_FA}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_FA, NULL,
@@ -13750,32 +12471,11 @@ struct retro_core_option_v2_definition option_defs_fa[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_FA, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_FA,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_FA}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_FA, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_FA,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_FA}, {"accurate", OPTION_VAL_ACCURATE_FA}, {"ultra", OPTION_VAL_ULTRA_FA}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_FA, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_FA,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_FA, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_FA,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_FA}, {"approximate", OPTION_VAL_APPROXIMATE_FA}, {"relaxed", OPTION_VAL_RELAXED_FA}, {"inaccurate", OPTION_VAL_INACCURATE_FA}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -13853,7 +12553,7 @@ struct retro_core_option_v2_definition option_defs_fa[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_FA, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_FA,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_FA}, {"high", OPTION_VAL_HIGH_FA}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_FA}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_FA}, {"high", OPTION_VAL_HIGH_FA}, {"ultra", OPTION_VAL_ULTRA_FA}, {NULL, NULL} },
         "high"
     },
     {
@@ -13909,7 +12609,7 @@ struct retro_core_option_v2_definition option_defs_fa[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_FA, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_FA,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_FA}, {"approximate", OPTION_VAL_APPROXIMATE_FA}, {"relaxed", OPTION_VAL_RELAXED_FA}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_FA}, {"approximate", OPTION_VAL_APPROXIMATE_FA}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_FA}, {NULL, NULL} },
         "precise"
     },
     {
@@ -13969,13 +12669,6 @@ struct retro_core_option_v2_definition option_defs_fa[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_FA, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_FA,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_FA}, {"standard", OPTION_VAL_STANDARD_FA}, {"singstar", OPTION_VAL_SINGSTAR_FA}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_FA}, {"rocksmith", OPTION_VAL_ROCKSMITH_FA}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_FA, NULL,
@@ -14048,8 +12741,8 @@ struct retro_core_option_v2_definition option_defs_fa[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_FA, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_FA,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_FA}, {"balanced", OPTION_VAL_BALANCED_FA}, {"accurate", OPTION_VAL_ACCURATE_FA}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_FA}, {"atomic", OPTION_VAL_ATOMIC_FA}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_FA}, {"as_ps3", OPTION_VAL_AS_PS3_FA}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_FA, NULL,
@@ -14075,20 +12768,6 @@ struct retro_core_option_v2_definition option_defs_fa[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_FA, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_FA,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_FA, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_FA,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_FA, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_FA,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -14169,7 +12848,7 @@ struct retro_core_option_v2_definition option_defs_fa[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_FA, NULL,
         RPCS3_LICENSE_AREA_INFO_0_FA,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_FA}, {"eu", OPTION_VAL_EU_FA}, {"jp", OPTION_VAL_JP_FA}, {"hk", OPTION_VAL_HK_FA}, {"kr", OPTION_VAL_KR_FA}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_FA}, {"eu", OPTION_VAL_EU_FA}, {"jp", OPTION_VAL_JP_FA}, {"hk", OPTION_VAL_HK_FA}, {"kr", OPTION_VAL_KR_FA}, {"cn", OPTION_VAL_CN_FA}, {NULL, NULL} },
         "usa"
     },
     {
@@ -14192,13 +12871,6 @@ struct retro_core_option_v2_definition option_defs_fa[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_FA, NULL,
-        RPCS3_VFS_INIT_INFO_0_FA,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_FA}, {"reset", OPTION_VAL_RESET_FA}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_FA, NULL,
@@ -14266,10 +12938,6 @@ struct retro_core_options_v2 options_fa = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_FI NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_FI NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_FI "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_FI NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_FI NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_FI NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_FI NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_FI NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_FI NULL
 #define OPTION_VAL_50_FI "50 %"
@@ -14280,23 +12948,18 @@ struct retro_core_options_v2 options_fa = {
 #define OPTION_VAL_300_FI "300 %"
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_FI NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_FI NULL
-#define OPTION_VAL_USLEEP_FI NULL
-#define OPTION_VAL_ALL_TIMERS_FI NULL
+#define OPTION_VAL_AUTO_FI NULL
 #define OPTION_VAL_AS_HOST_FI NULL
+#define OPTION_VAL_USLEEP_FI "Usleep"
+#define OPTION_VAL_ALL_TIMERS_FI NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_FI NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_FI NULL
-#define RPCS3_ENABLE_TSX_LABEL_FI NULL
-#define RPCS3_ENABLE_TSX_INFO_0_FI NULL
-#define OPTION_VAL_FORCED_FI NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_FI NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_FI NULL
-#define OPTION_VAL_RELAXED_FI NULL
 #define OPTION_VAL_ACCURATE_FI "Tarkka"
-#define OPTION_VAL_ULTRA_FI NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_FI NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_FI NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_FI NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_FI NULL
+#define OPTION_VAL_APPROXIMATE_FI NULL
+#define OPTION_VAL_RELAXED_FI "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_FI NULL
 #define RPCS3_RENDERER_LABEL_FI "Renderoija"
 #define RPCS3_RENDERER_INFO_0_FI NULL
 #define OPTION_VAL_OPENGL_FI NULL
@@ -14364,7 +13027,7 @@ struct retro_core_options_v2 options_fa = {
 #define RPCS3_SHADER_QUALITY_INFO_0_FI NULL
 #define OPTION_VAL_LOW_FI "Low (Fastest)"
 #define OPTION_VAL_HIGH_FI "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_FI NULL
+#define OPTION_VAL_ULTRA_FI "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_FI NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_FI NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_FI NULL
@@ -14382,7 +13045,7 @@ struct retro_core_options_v2 options_fa = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_FI NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_FI "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_FI "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_FI NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_FI NULL
 #define RPCS3_CPU_BLIT_LABEL_FI NULL
 #define RPCS3_CPU_BLIT_INFO_0_FI NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_FI NULL
@@ -14416,13 +13079,6 @@ struct retro_core_options_v2 options_fa = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_FI NULL
 #define RPCS3_TIME_STRETCHING_LABEL_FI NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_FI NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_FI NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_FI NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_FI NULL
-#define OPTION_VAL_STANDARD_FI NULL
-#define OPTION_VAL_SINGSTAR_FI NULL
-#define OPTION_VAL_REAL_SINGSTAR_FI NULL
-#define OPTION_VAL_ROCKSMITH_FI NULL
 #define RPCS3_MASTER_VOLUME_LABEL_FI NULL
 #define RPCS3_MASTER_VOLUME_INFO_0_FI NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_FI NULL
@@ -14458,7 +13114,9 @@ struct retro_core_options_v2 options_fa = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_FI NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_FI NULL
 #define OPTION_VAL_FAST_FI "Nopea"
-#define OPTION_VAL_BALANCED_FI "Tasapainotettu"
+#define OPTION_VAL_ATOMIC_FI NULL
+#define OPTION_VAL_ATOMIC_ORDERED_FI NULL
+#define OPTION_VAL_AS_PS3_FI NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_FI NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_FI NULL
 #define OPTION_VAL_1000_FI NULL
@@ -14472,10 +13130,6 @@ struct retro_core_options_v2 options_fa = {
 #define OPTION_VAL_3_FI "3 (Oletus)"
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_FI NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_FI NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_FI NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_FI NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_FI NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_FI NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_FI NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_FI NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_FI NULL
@@ -14512,11 +13166,12 @@ struct retro_core_options_v2 options_fa = {
 #define OPTION_VAL_CIRCLE_FI NULL
 #define RPCS3_LICENSE_AREA_LABEL_FI NULL
 #define RPCS3_LICENSE_AREA_INFO_0_FI NULL
-#define OPTION_VAL_USA_FI NULL
+#define OPTION_VAL_USA_FI "USA"
 #define OPTION_VAL_EU_FI "Eurooppa"
-#define OPTION_VAL_JP_FI NULL
-#define OPTION_VAL_HK_FI NULL
-#define OPTION_VAL_KR_FI NULL
+#define OPTION_VAL_JP_FI "Japan"
+#define OPTION_VAL_HK_FI "Hong Kong"
+#define OPTION_VAL_KR_FI "Korea"
+#define OPTION_VAL_CN_FI NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_FI NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_FI NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_FI NULL
@@ -14524,9 +13179,6 @@ struct retro_core_options_v2 options_fa = {
 #define OPTION_VAL_LIST_FI NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_FI NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_FI NULL
-#define RPCS3_VFS_INIT_LABEL_FI NULL
-#define RPCS3_VFS_INIT_INFO_0_FI NULL
-#define OPTION_VAL_RESET_FI "Palauta asetukset"
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_FI NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_FI NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_FI NULL
@@ -14602,20 +13254,6 @@ struct retro_core_option_v2_definition option_defs_fi[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_FI, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_FI,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_FI, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_FI,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_FI, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_FI,
         NULL, "cpu",
@@ -14626,8 +13264,8 @@ struct retro_core_option_v2_definition option_defs_fi[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_FI, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_FI,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_FI}, {"all_timers", OPTION_VAL_ALL_TIMERS_FI}, {"as_host", OPTION_VAL_AS_HOST_FI}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_FI}, {"as_host", OPTION_VAL_AS_HOST_FI}, {"usleep", OPTION_VAL_USLEEP_FI}, {"all_timers", OPTION_VAL_ALL_TIMERS_FI}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_FI, NULL,
@@ -14637,32 +13275,11 @@ struct retro_core_option_v2_definition option_defs_fi[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_FI, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_FI,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_FI}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_FI, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_FI,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_FI}, {"accurate", OPTION_VAL_ACCURATE_FI}, {"ultra", OPTION_VAL_ULTRA_FI}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_FI, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_FI,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_FI, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_FI,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_FI}, {"approximate", OPTION_VAL_APPROXIMATE_FI}, {"relaxed", OPTION_VAL_RELAXED_FI}, {"inaccurate", OPTION_VAL_INACCURATE_FI}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -14740,7 +13357,7 @@ struct retro_core_option_v2_definition option_defs_fi[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_FI, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_FI,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_FI}, {"high", OPTION_VAL_HIGH_FI}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_FI}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_FI}, {"high", OPTION_VAL_HIGH_FI}, {"ultra", OPTION_VAL_ULTRA_FI}, {NULL, NULL} },
         "high"
     },
     {
@@ -14796,7 +13413,7 @@ struct retro_core_option_v2_definition option_defs_fi[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_FI, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_FI,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_FI}, {"approximate", OPTION_VAL_APPROXIMATE_FI}, {"relaxed", OPTION_VAL_RELAXED_FI}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_FI}, {"approximate", OPTION_VAL_APPROXIMATE_FI}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_FI}, {NULL, NULL} },
         "precise"
     },
     {
@@ -14856,13 +13473,6 @@ struct retro_core_option_v2_definition option_defs_fi[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_FI, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_FI,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_FI}, {"standard", OPTION_VAL_STANDARD_FI}, {"singstar", OPTION_VAL_SINGSTAR_FI}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_FI}, {"rocksmith", OPTION_VAL_ROCKSMITH_FI}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_FI, NULL,
@@ -14935,8 +13545,8 @@ struct retro_core_option_v2_definition option_defs_fi[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_FI, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_FI,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_FI}, {"balanced", OPTION_VAL_BALANCED_FI}, {"accurate", OPTION_VAL_ACCURATE_FI}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_FI}, {"atomic", OPTION_VAL_ATOMIC_FI}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_FI}, {"as_ps3", OPTION_VAL_AS_PS3_FI}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_FI, NULL,
@@ -14962,20 +13572,6 @@ struct retro_core_option_v2_definition option_defs_fi[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_FI, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_FI,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_FI, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_FI,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_FI, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_FI,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -15056,7 +13652,7 @@ struct retro_core_option_v2_definition option_defs_fi[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_FI, NULL,
         RPCS3_LICENSE_AREA_INFO_0_FI,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_FI}, {"eu", OPTION_VAL_EU_FI}, {"jp", OPTION_VAL_JP_FI}, {"hk", OPTION_VAL_HK_FI}, {"kr", OPTION_VAL_KR_FI}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_FI}, {"eu", OPTION_VAL_EU_FI}, {"jp", OPTION_VAL_JP_FI}, {"hk", OPTION_VAL_HK_FI}, {"kr", OPTION_VAL_KR_FI}, {"cn", OPTION_VAL_CN_FI}, {NULL, NULL} },
         "usa"
     },
     {
@@ -15079,13 +13675,6 @@ struct retro_core_option_v2_definition option_defs_fi[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_FI, NULL,
-        RPCS3_VFS_INIT_INFO_0_FI,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_FI}, {"reset", OPTION_VAL_RESET_FI}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_FI, NULL,
@@ -15153,10 +13742,6 @@ struct retro_core_options_v2 options_fi = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_FR "Précompiler les modules PPU au démarrage pour accélérer les chargements ultérieurs."
 #define RPCS3_ACCURATE_DFMA_LABEL_FR "DFMA précises"
 #define RPCS3_ACCURATE_DFMA_INFO_0_FR "Utiliser les opérations de multiplication-addition fusionnée précises en double précision."
-#define RPCS3_PPU_RESERVATIONS_LABEL_FR "Réservations de fils d'exécution PPU"
-#define RPCS3_PPU_RESERVATIONS_INFO_0_FR "Utiliser les réservations de fils d'exécution PPU pour un verrouillage précis."
-#define RPCS3_ACCURATE_XFLOAT_LABEL_FR "XFLOAT précis"
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_FR "Calculs en virgule flottante SPU plus précis. Peut corriger certains jeux."
 #define RPCS3_CLOCKS_SCALE_LABEL_FR "Ajustement des horloges"
 #define RPCS3_CLOCKS_SCALE_INFO_0_FR "Ajuster le pourcentage de la vitesse d'horloge de la PS3."
 #define OPTION_VAL_50_FR NULL
@@ -15167,23 +13752,18 @@ struct retro_core_options_v2 options_fi = {
 #define OPTION_VAL_300_FR NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_FR "Précision des minuteurs de mise en veille"
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_FR "Niveau de précision de la minuterie de mise en veille."
-#define OPTION_VAL_USLEEP_FR NULL
-#define OPTION_VAL_ALL_TIMERS_FR "Tous les minuteurs"
+#define OPTION_VAL_AUTO_FR NULL
 #define OPTION_VAL_AS_HOST_FR "En tant qu'hôte"
+#define OPTION_VAL_USLEEP_FR "Usleep"
+#define OPTION_VAL_ALL_TIMERS_FR "Tous les minuteurs"
 #define RPCS3_MAX_SPURS_THREADS_LABEL_FR "Nombre maximal de fils d'exécution SPURS"
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_FR "Nombre maximal de fils d'exécution SPURS. Une valeur inférieure peut améliorer les performances."
-#define RPCS3_ENABLE_TSX_LABEL_FR "Activer TSX"
-#define RPCS3_ENABLE_TSX_INFO_0_FR "Activez l'accélération matérielle Intel TSX si elle est disponible."
-#define OPTION_VAL_FORCED_FR "Forcée"
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_FR "Précision du XFloat SPU"
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_FR "Niveau de précision en virgule flottante du SPU."
-#define OPTION_VAL_RELAXED_FR "Assoupli (le plus rapide)"
 #define OPTION_VAL_ACCURATE_FR "Précis"
-#define OPTION_VAL_ULTRA_FR "Ultra (le plus lent)"
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_FR "Attente active DMA du SPU"
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_FR "Activer l'attente active du DMA du SPU pour garantir la précision du timing."
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_FR "Gestion du mode Java LLVM pour le PPU"
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_FR "Niveau de conformité du mode Java LLVM pour le PPU."
+#define OPTION_VAL_APPROXIMATE_FR "Approximative"
+#define OPTION_VAL_RELAXED_FR "Assoupli (le plus rapide)"
+#define OPTION_VAL_INACCURATE_FR NULL
 #define RPCS3_RENDERER_LABEL_FR "Moteur de rendu"
 #define RPCS3_RENDERER_INFO_0_FR "Vulkan finalise chaque image en mémoire et l'interface graphique récupère les pixels ; cela tourne à une vitesse comparable à celle de la version autonome de RPCS3 et fonctionne lorsque OpenGL est absent ou défaillant. OpenGL effectue le rendu directement dans le contexte de l'interface graphique."
 #define OPTION_VAL_OPENGL_FR NULL
@@ -15251,7 +13831,7 @@ struct retro_core_options_v2 options_fi = {
 #define RPCS3_SHADER_QUALITY_INFO_0_FR NULL
 #define OPTION_VAL_LOW_FR "Basse (le plus rapide)"
 #define OPTION_VAL_HIGH_FR "Élevée (le plus précis)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_FR NULL
+#define OPTION_VAL_ULTRA_FR "Ultra (le plus lent)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_FR "Écrire les tampons de couleur"
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_FR "Écrire la mémoire tampon de couleur dans la mémoire principale. Corrige certains effets."
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_FR "Lire les tampons de couleur"
@@ -15269,7 +13849,7 @@ struct retro_core_options_v2 options_fi = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_FR "Précision ZCULL"
 #define RPCS3_ZCULL_ACCURACY_INFO_0_FR "Précision des requêtes d'occlusion ZCULL."
 #define OPTION_VAL_PRECISE_FR "Précise (le plus lent)"
-#define OPTION_VAL_APPROXIMATE_FR "Approximative"
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_FR NULL
 #define RPCS3_CPU_BLIT_LABEL_FR "Forcer le blit processeur"
 #define RPCS3_CPU_BLIT_INFO_0_FR "Forcer l'émulation du blit (block image transfer) par le processeur pour certains effets."
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_FR "Délai de réveil du pilote"
@@ -15303,13 +13883,6 @@ struct retro_core_options_v2 options_fi = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_FR "200 ms"
 #define RPCS3_TIME_STRETCHING_LABEL_FR "Étirement temporel"
 #define RPCS3_TIME_STRETCHING_INFO_0_FR "Activez l'étirement temporel audio pour réduire les saccades."
-#define RPCS3_MICROPHONE_TYPE_LABEL_FR "Type de microphone"
-#define RPCS3_MICROPHONE_TYPE_INFO_0_FR "Type de périphérique microphone."
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_FR "Null (désactivé)"
-#define OPTION_VAL_STANDARD_FR NULL
-#define OPTION_VAL_SINGSTAR_FR NULL
-#define OPTION_VAL_REAL_SINGSTAR_FR "SingStar physique"
-#define OPTION_VAL_ROCKSMITH_FR NULL
 #define RPCS3_MASTER_VOLUME_LABEL_FR "Volume principal"
 #define RPCS3_MASTER_VOLUME_INFO_0_FR "Pourcentage du volume audio général."
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_FR "0 %"
@@ -15345,7 +13918,9 @@ struct retro_core_options_v2 options_fi = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_FR "Précision du FIFO du RSX"
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_FR "Niveau de précision des commandes FIFO (premier entré, premier sorti) du processeur graphique RSX."
 #define OPTION_VAL_FAST_FR "Rapide"
-#define OPTION_VAL_BALANCED_FR "Equilibré"
+#define OPTION_VAL_ATOMIC_FR NULL
+#define OPTION_VAL_ATOMIC_ORDERED_FR NULL
+#define OPTION_VAL_AS_PS3_FR NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_FR "Délai d'expiration de la récupération du pilote"
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_FR "Délai d'expiration de la récupération du pilote de processeur graphique (en millisecondes)."
 #define OPTION_VAL_1000_FR "1 seconde"
@@ -15359,10 +13934,6 @@ struct retro_core_options_v2 options_fi = {
 #define OPTION_VAL_3_FR "3 (par défaut)"
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_FR "Streaming de textures asynchrone"
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_FR "Activer le streaming de textures asynchrone."
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_FR "Mode gourmand de LLVM pour le PPU"
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_FR "Utilisez la compilation LLVM gourmande pour le PPU."
-#define RPCS3_SPU_NJ_FIXUP_LABEL_FR "Correction NJ du SPU"
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_FR "Appliquer le correctif pour le mode non-Java du SPU."
 #define RPCS3_PPU_NJ_MODE_LABEL_FR "Mode de correction NJ du PPU"
 #define RPCS3_PPU_NJ_MODE_INFO_0_FR "Gestion du mode non-Java pour le PPU."
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_FR "Définir le bit de saturation"
@@ -15400,10 +13971,11 @@ struct retro_core_options_v2 options_fi = {
 #define RPCS3_LICENSE_AREA_LABEL_FR "Zone de licence"
 #define RPCS3_LICENSE_AREA_INFO_0_FR "Région de licence PS3."
 #define OPTION_VAL_USA_FR "États-Unis"
-#define OPTION_VAL_EU_FR NULL
+#define OPTION_VAL_EU_FR "Europe"
 #define OPTION_VAL_JP_FR "Japon"
-#define OPTION_VAL_HK_FR NULL
+#define OPTION_VAL_HK_FR "Hong Kong"
 #define OPTION_VAL_KR_FR "Corée"
+#define OPTION_VAL_CN_FR NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_FR "Afficher l'indication de compilation des shaders"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_FR "Afficher une indication lors de la compilation des shaders."
 #define RPCS3_SAVEDATA_SLOT_LABEL_FR "Emplacement de sauvegarde"
@@ -15411,9 +13983,6 @@ struct retro_core_options_v2 options_fi = {
 #define OPTION_VAL_LIST_FR "Choisir dans la liste"
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_FR "Afficher l'indication de compilation PPU"
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_FR "Afficher une indication lors de la compilation des modules PPU."
-#define RPCS3_VFS_INIT_LABEL_FR "Mode d'initialisation du VFS"
-#define RPCS3_VFS_INIT_INFO_0_FR "Mode d'initialisation du système de fichiers virtuel."
-#define OPTION_VAL_RESET_FR "Réinitialiser"
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_FR "Désactiver tous les journaux"
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_FR "Désactivez toutes les sorties de journalisation pour optimiser les performances."
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_FR "Intercepter les fonctions statiques"
@@ -15489,20 +14058,6 @@ struct retro_core_option_v2_definition option_defs_fr[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_FR, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_FR,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_FR, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_FR,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_FR, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_FR,
         NULL, "cpu",
@@ -15513,8 +14068,8 @@ struct retro_core_option_v2_definition option_defs_fr[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_FR, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_FR,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_FR}, {"all_timers", OPTION_VAL_ALL_TIMERS_FR}, {"as_host", OPTION_VAL_AS_HOST_FR}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_FR}, {"as_host", OPTION_VAL_AS_HOST_FR}, {"usleep", OPTION_VAL_USLEEP_FR}, {"all_timers", OPTION_VAL_ALL_TIMERS_FR}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_FR, NULL,
@@ -15524,32 +14079,11 @@ struct retro_core_option_v2_definition option_defs_fr[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_FR, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_FR,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_FR}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_FR, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_FR,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_FR}, {"accurate", OPTION_VAL_ACCURATE_FR}, {"ultra", OPTION_VAL_ULTRA_FR}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_FR, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_FR,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_FR, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_FR,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_FR}, {"approximate", OPTION_VAL_APPROXIMATE_FR}, {"relaxed", OPTION_VAL_RELAXED_FR}, {"inaccurate", OPTION_VAL_INACCURATE_FR}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -15627,7 +14161,7 @@ struct retro_core_option_v2_definition option_defs_fr[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_FR, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_FR,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_FR}, {"high", OPTION_VAL_HIGH_FR}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_FR}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_FR}, {"high", OPTION_VAL_HIGH_FR}, {"ultra", OPTION_VAL_ULTRA_FR}, {NULL, NULL} },
         "high"
     },
     {
@@ -15683,7 +14217,7 @@ struct retro_core_option_v2_definition option_defs_fr[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_FR, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_FR,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_FR}, {"approximate", OPTION_VAL_APPROXIMATE_FR}, {"relaxed", OPTION_VAL_RELAXED_FR}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_FR}, {"approximate", OPTION_VAL_APPROXIMATE_FR}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_FR}, {NULL, NULL} },
         "precise"
     },
     {
@@ -15743,13 +14277,6 @@ struct retro_core_option_v2_definition option_defs_fr[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_FR, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_FR,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_FR}, {"standard", OPTION_VAL_STANDARD_FR}, {"singstar", OPTION_VAL_SINGSTAR_FR}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_FR}, {"rocksmith", OPTION_VAL_ROCKSMITH_FR}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_FR, NULL,
@@ -15822,8 +14349,8 @@ struct retro_core_option_v2_definition option_defs_fr[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_FR, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_FR,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_FR}, {"balanced", OPTION_VAL_BALANCED_FR}, {"accurate", OPTION_VAL_ACCURATE_FR}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_FR}, {"atomic", OPTION_VAL_ATOMIC_FR}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_FR}, {"as_ps3", OPTION_VAL_AS_PS3_FR}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_FR, NULL,
@@ -15849,20 +14376,6 @@ struct retro_core_option_v2_definition option_defs_fr[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_FR, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_FR,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_FR, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_FR,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_FR, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_FR,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -15943,7 +14456,7 @@ struct retro_core_option_v2_definition option_defs_fr[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_FR, NULL,
         RPCS3_LICENSE_AREA_INFO_0_FR,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_FR}, {"eu", OPTION_VAL_EU_FR}, {"jp", OPTION_VAL_JP_FR}, {"hk", OPTION_VAL_HK_FR}, {"kr", OPTION_VAL_KR_FR}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_FR}, {"eu", OPTION_VAL_EU_FR}, {"jp", OPTION_VAL_JP_FR}, {"hk", OPTION_VAL_HK_FR}, {"kr", OPTION_VAL_KR_FR}, {"cn", OPTION_VAL_CN_FR}, {NULL, NULL} },
         "usa"
     },
     {
@@ -15966,13 +14479,6 @@ struct retro_core_option_v2_definition option_defs_fr[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_FR, NULL,
-        RPCS3_VFS_INIT_INFO_0_FR,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_FR}, {"reset", OPTION_VAL_RESET_FR}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_FR, NULL,
@@ -16040,10 +14546,6 @@ struct retro_core_options_v2 options_fr = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_GA NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_GA NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_GA "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_GA NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_GA NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_GA NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_GA NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_GA NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_GA NULL
 #define OPTION_VAL_50_GA NULL
@@ -16054,23 +14556,18 @@ struct retro_core_options_v2 options_fr = {
 #define OPTION_VAL_300_GA NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_GA NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_GA NULL
-#define OPTION_VAL_USLEEP_GA NULL
-#define OPTION_VAL_ALL_TIMERS_GA NULL
+#define OPTION_VAL_AUTO_GA NULL
 #define OPTION_VAL_AS_HOST_GA NULL
+#define OPTION_VAL_USLEEP_GA "Usleep"
+#define OPTION_VAL_ALL_TIMERS_GA NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_GA NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_GA NULL
-#define RPCS3_ENABLE_TSX_LABEL_GA NULL
-#define RPCS3_ENABLE_TSX_INFO_0_GA NULL
-#define OPTION_VAL_FORCED_GA "Éigeantach"
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_GA NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_GA NULL
-#define OPTION_VAL_RELAXED_GA NULL
 #define OPTION_VAL_ACCURATE_GA "Cruinn"
-#define OPTION_VAL_ULTRA_GA NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_GA NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_GA NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_GA NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_GA NULL
+#define OPTION_VAL_APPROXIMATE_GA NULL
+#define OPTION_VAL_RELAXED_GA "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_GA NULL
 #define RPCS3_RENDERER_LABEL_GA "Rindreálaí"
 #define RPCS3_RENDERER_INFO_0_GA NULL
 #define OPTION_VAL_OPENGL_GA NULL
@@ -16138,7 +14635,7 @@ struct retro_core_options_v2 options_fr = {
 #define RPCS3_SHADER_QUALITY_INFO_0_GA NULL
 #define OPTION_VAL_LOW_GA "Low (Fastest)"
 #define OPTION_VAL_HIGH_GA "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_GA NULL
+#define OPTION_VAL_ULTRA_GA "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_GA NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_GA NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_GA NULL
@@ -16156,7 +14653,7 @@ struct retro_core_options_v2 options_fr = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_GA NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_GA "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_GA "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_GA NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_GA NULL
 #define RPCS3_CPU_BLIT_LABEL_GA NULL
 #define RPCS3_CPU_BLIT_INFO_0_GA NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_GA NULL
@@ -16190,13 +14687,6 @@ struct retro_core_options_v2 options_fr = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_GA NULL
 #define RPCS3_TIME_STRETCHING_LABEL_GA NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_GA NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_GA NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_GA NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_GA NULL
-#define OPTION_VAL_STANDARD_GA NULL
-#define OPTION_VAL_SINGSTAR_GA NULL
-#define OPTION_VAL_REAL_SINGSTAR_GA NULL
-#define OPTION_VAL_ROCKSMITH_GA NULL
 #define RPCS3_MASTER_VOLUME_LABEL_GA "Imleabhar Máistir"
 #define RPCS3_MASTER_VOLUME_INFO_0_GA NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_GA NULL
@@ -16232,7 +14722,9 @@ struct retro_core_options_v2 options_fr = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_GA NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_GA NULL
 #define OPTION_VAL_FAST_GA "Tapa"
-#define OPTION_VAL_BALANCED_GA "Cothrom"
+#define OPTION_VAL_ATOMIC_GA NULL
+#define OPTION_VAL_ATOMIC_ORDERED_GA NULL
+#define OPTION_VAL_AS_PS3_GA NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_GA NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_GA NULL
 #define OPTION_VAL_1000_GA NULL
@@ -16246,10 +14738,6 @@ struct retro_core_options_v2 options_fr = {
 #define OPTION_VAL_3_GA "3 (Réamhshocrú)"
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_GA NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_GA NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_GA NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_GA NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_GA NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_GA NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_GA NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_GA NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_GA NULL
@@ -16289,8 +14777,9 @@ struct retro_core_options_v2 options_fr = {
 #define OPTION_VAL_USA_GA "Stáit Aontaithe Mheiriceá"
 #define OPTION_VAL_EU_GA "An Eoraip"
 #define OPTION_VAL_JP_GA "An tSeapáin"
-#define OPTION_VAL_HK_GA NULL
-#define OPTION_VAL_KR_GA NULL
+#define OPTION_VAL_HK_GA "Hong Kong"
+#define OPTION_VAL_KR_GA "Korea"
+#define OPTION_VAL_CN_GA NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_GA NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_GA NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_GA NULL
@@ -16298,9 +14787,6 @@ struct retro_core_options_v2 options_fr = {
 #define OPTION_VAL_LIST_GA NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_GA NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_GA NULL
-#define RPCS3_VFS_INIT_LABEL_GA NULL
-#define RPCS3_VFS_INIT_INFO_0_GA NULL
-#define OPTION_VAL_RESET_GA "Athshocraigh"
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_GA NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_GA NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_GA NULL
@@ -16376,20 +14862,6 @@ struct retro_core_option_v2_definition option_defs_ga[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_GA, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_GA,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_GA, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_GA,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_GA, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_GA,
         NULL, "cpu",
@@ -16400,8 +14872,8 @@ struct retro_core_option_v2_definition option_defs_ga[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_GA, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_GA,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_GA}, {"all_timers", OPTION_VAL_ALL_TIMERS_GA}, {"as_host", OPTION_VAL_AS_HOST_GA}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_GA}, {"as_host", OPTION_VAL_AS_HOST_GA}, {"usleep", OPTION_VAL_USLEEP_GA}, {"all_timers", OPTION_VAL_ALL_TIMERS_GA}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_GA, NULL,
@@ -16411,32 +14883,11 @@ struct retro_core_option_v2_definition option_defs_ga[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_GA, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_GA,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_GA}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_GA, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_GA,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_GA}, {"accurate", OPTION_VAL_ACCURATE_GA}, {"ultra", OPTION_VAL_ULTRA_GA}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_GA, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_GA,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_GA, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_GA,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_GA}, {"approximate", OPTION_VAL_APPROXIMATE_GA}, {"relaxed", OPTION_VAL_RELAXED_GA}, {"inaccurate", OPTION_VAL_INACCURATE_GA}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -16514,7 +14965,7 @@ struct retro_core_option_v2_definition option_defs_ga[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_GA, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_GA,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_GA}, {"high", OPTION_VAL_HIGH_GA}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_GA}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_GA}, {"high", OPTION_VAL_HIGH_GA}, {"ultra", OPTION_VAL_ULTRA_GA}, {NULL, NULL} },
         "high"
     },
     {
@@ -16570,7 +15021,7 @@ struct retro_core_option_v2_definition option_defs_ga[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_GA, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_GA,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_GA}, {"approximate", OPTION_VAL_APPROXIMATE_GA}, {"relaxed", OPTION_VAL_RELAXED_GA}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_GA}, {"approximate", OPTION_VAL_APPROXIMATE_GA}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_GA}, {NULL, NULL} },
         "precise"
     },
     {
@@ -16630,13 +15081,6 @@ struct retro_core_option_v2_definition option_defs_ga[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_GA, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_GA,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_GA}, {"standard", OPTION_VAL_STANDARD_GA}, {"singstar", OPTION_VAL_SINGSTAR_GA}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_GA}, {"rocksmith", OPTION_VAL_ROCKSMITH_GA}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_GA, NULL,
@@ -16709,8 +15153,8 @@ struct retro_core_option_v2_definition option_defs_ga[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_GA, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_GA,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_GA}, {"balanced", OPTION_VAL_BALANCED_GA}, {"accurate", OPTION_VAL_ACCURATE_GA}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_GA}, {"atomic", OPTION_VAL_ATOMIC_GA}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_GA}, {"as_ps3", OPTION_VAL_AS_PS3_GA}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_GA, NULL,
@@ -16736,20 +15180,6 @@ struct retro_core_option_v2_definition option_defs_ga[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_GA, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_GA,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_GA, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_GA,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_GA, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_GA,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -16830,7 +15260,7 @@ struct retro_core_option_v2_definition option_defs_ga[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_GA, NULL,
         RPCS3_LICENSE_AREA_INFO_0_GA,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_GA}, {"eu", OPTION_VAL_EU_GA}, {"jp", OPTION_VAL_JP_GA}, {"hk", OPTION_VAL_HK_GA}, {"kr", OPTION_VAL_KR_GA}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_GA}, {"eu", OPTION_VAL_EU_GA}, {"jp", OPTION_VAL_JP_GA}, {"hk", OPTION_VAL_HK_GA}, {"kr", OPTION_VAL_KR_GA}, {"cn", OPTION_VAL_CN_GA}, {NULL, NULL} },
         "usa"
     },
     {
@@ -16853,13 +15283,6 @@ struct retro_core_option_v2_definition option_defs_ga[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_GA, NULL,
-        RPCS3_VFS_INIT_INFO_0_GA,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_GA}, {"reset", OPTION_VAL_RESET_GA}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_GA, NULL,
@@ -16927,10 +15350,6 @@ struct retro_core_options_v2 options_ga = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_GL NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_GL NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_GL "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_GL NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_GL NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_GL NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_GL NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_GL NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_GL NULL
 #define OPTION_VAL_50_GL NULL
@@ -16941,23 +15360,18 @@ struct retro_core_options_v2 options_ga = {
 #define OPTION_VAL_300_GL NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_GL NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_GL NULL
-#define OPTION_VAL_USLEEP_GL NULL
-#define OPTION_VAL_ALL_TIMERS_GL NULL
+#define OPTION_VAL_AUTO_GL NULL
 #define OPTION_VAL_AS_HOST_GL NULL
+#define OPTION_VAL_USLEEP_GL "Usleep"
+#define OPTION_VAL_ALL_TIMERS_GL NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_GL NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_GL NULL
-#define RPCS3_ENABLE_TSX_LABEL_GL NULL
-#define RPCS3_ENABLE_TSX_INFO_0_GL NULL
-#define OPTION_VAL_FORCED_GL "Forzado"
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_GL NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_GL NULL
-#define OPTION_VAL_RELAXED_GL NULL
 #define OPTION_VAL_ACCURATE_GL "Precisión"
-#define OPTION_VAL_ULTRA_GL NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_GL NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_GL NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_GL NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_GL NULL
+#define OPTION_VAL_APPROXIMATE_GL NULL
+#define OPTION_VAL_RELAXED_GL "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_GL NULL
 #define RPCS3_RENDERER_LABEL_GL "Motor de renderizado"
 #define RPCS3_RENDERER_INFO_0_GL NULL
 #define OPTION_VAL_OPENGL_GL NULL
@@ -17025,7 +15439,7 @@ struct retro_core_options_v2 options_ga = {
 #define RPCS3_SHADER_QUALITY_INFO_0_GL NULL
 #define OPTION_VAL_LOW_GL "Low (Fastest)"
 #define OPTION_VAL_HIGH_GL "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_GL NULL
+#define OPTION_VAL_ULTRA_GL "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_GL NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_GL NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_GL NULL
@@ -17043,7 +15457,7 @@ struct retro_core_options_v2 options_ga = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_GL NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_GL "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_GL "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_GL NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_GL NULL
 #define RPCS3_CPU_BLIT_LABEL_GL NULL
 #define RPCS3_CPU_BLIT_INFO_0_GL NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_GL NULL
@@ -17077,13 +15491,6 @@ struct retro_core_options_v2 options_ga = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_GL NULL
 #define RPCS3_TIME_STRETCHING_LABEL_GL NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_GL NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_GL NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_GL NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_GL NULL
-#define OPTION_VAL_STANDARD_GL NULL
-#define OPTION_VAL_SINGSTAR_GL NULL
-#define OPTION_VAL_REAL_SINGSTAR_GL NULL
-#define OPTION_VAL_ROCKSMITH_GL NULL
 #define RPCS3_MASTER_VOLUME_LABEL_GL "Volume principal"
 #define RPCS3_MASTER_VOLUME_INFO_0_GL NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_GL NULL
@@ -17119,7 +15526,9 @@ struct retro_core_options_v2 options_ga = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_GL NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_GL NULL
 #define OPTION_VAL_FAST_GL "Rápido"
-#define OPTION_VAL_BALANCED_GL "Equilibrado"
+#define OPTION_VAL_ATOMIC_GL NULL
+#define OPTION_VAL_ATOMIC_ORDERED_GL NULL
+#define OPTION_VAL_AS_PS3_GL NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_GL NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_GL NULL
 #define OPTION_VAL_1000_GL NULL
@@ -17133,10 +15542,6 @@ struct retro_core_options_v2 options_ga = {
 #define OPTION_VAL_3_GL "3 (predeterminado)"
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_GL NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_GL NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_GL NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_GL NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_GL NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_GL NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_GL NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_GL NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_GL NULL
@@ -17173,11 +15578,12 @@ struct retro_core_options_v2 options_ga = {
 #define OPTION_VAL_CIRCLE_GL NULL
 #define RPCS3_LICENSE_AREA_LABEL_GL NULL
 #define RPCS3_LICENSE_AREA_INFO_0_GL NULL
-#define OPTION_VAL_USA_GL NULL
+#define OPTION_VAL_USA_GL "USA"
 #define OPTION_VAL_EU_GL "Europa"
 #define OPTION_VAL_JP_GL "Xapón"
-#define OPTION_VAL_HK_GL NULL
-#define OPTION_VAL_KR_GL NULL
+#define OPTION_VAL_HK_GL "Hong Kong"
+#define OPTION_VAL_KR_GL "Korea"
+#define OPTION_VAL_CN_GL NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_GL NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_GL NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_GL NULL
@@ -17185,9 +15591,6 @@ struct retro_core_options_v2 options_ga = {
 #define OPTION_VAL_LIST_GL NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_GL NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_GL NULL
-#define RPCS3_VFS_INIT_LABEL_GL NULL
-#define RPCS3_VFS_INIT_INFO_0_GL NULL
-#define OPTION_VAL_RESET_GL "Restablecer"
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_GL NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_GL NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_GL NULL
@@ -17263,20 +15666,6 @@ struct retro_core_option_v2_definition option_defs_gl[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_GL, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_GL,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_GL, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_GL,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_GL, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_GL,
         NULL, "cpu",
@@ -17287,8 +15676,8 @@ struct retro_core_option_v2_definition option_defs_gl[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_GL, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_GL,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_GL}, {"all_timers", OPTION_VAL_ALL_TIMERS_GL}, {"as_host", OPTION_VAL_AS_HOST_GL}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_GL}, {"as_host", OPTION_VAL_AS_HOST_GL}, {"usleep", OPTION_VAL_USLEEP_GL}, {"all_timers", OPTION_VAL_ALL_TIMERS_GL}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_GL, NULL,
@@ -17298,32 +15687,11 @@ struct retro_core_option_v2_definition option_defs_gl[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_GL, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_GL,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_GL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_GL, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_GL,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_GL}, {"accurate", OPTION_VAL_ACCURATE_GL}, {"ultra", OPTION_VAL_ULTRA_GL}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_GL, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_GL,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_GL, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_GL,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_GL}, {"approximate", OPTION_VAL_APPROXIMATE_GL}, {"relaxed", OPTION_VAL_RELAXED_GL}, {"inaccurate", OPTION_VAL_INACCURATE_GL}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -17401,7 +15769,7 @@ struct retro_core_option_v2_definition option_defs_gl[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_GL, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_GL,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_GL}, {"high", OPTION_VAL_HIGH_GL}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_GL}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_GL}, {"high", OPTION_VAL_HIGH_GL}, {"ultra", OPTION_VAL_ULTRA_GL}, {NULL, NULL} },
         "high"
     },
     {
@@ -17457,7 +15825,7 @@ struct retro_core_option_v2_definition option_defs_gl[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_GL, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_GL,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_GL}, {"approximate", OPTION_VAL_APPROXIMATE_GL}, {"relaxed", OPTION_VAL_RELAXED_GL}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_GL}, {"approximate", OPTION_VAL_APPROXIMATE_GL}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_GL}, {NULL, NULL} },
         "precise"
     },
     {
@@ -17517,13 +15885,6 @@ struct retro_core_option_v2_definition option_defs_gl[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_GL, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_GL,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_GL}, {"standard", OPTION_VAL_STANDARD_GL}, {"singstar", OPTION_VAL_SINGSTAR_GL}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_GL}, {"rocksmith", OPTION_VAL_ROCKSMITH_GL}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_GL, NULL,
@@ -17596,8 +15957,8 @@ struct retro_core_option_v2_definition option_defs_gl[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_GL, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_GL,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_GL}, {"balanced", OPTION_VAL_BALANCED_GL}, {"accurate", OPTION_VAL_ACCURATE_GL}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_GL}, {"atomic", OPTION_VAL_ATOMIC_GL}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_GL}, {"as_ps3", OPTION_VAL_AS_PS3_GL}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_GL, NULL,
@@ -17623,20 +15984,6 @@ struct retro_core_option_v2_definition option_defs_gl[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_GL, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_GL,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_GL, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_GL,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_GL, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_GL,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -17717,7 +16064,7 @@ struct retro_core_option_v2_definition option_defs_gl[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_GL, NULL,
         RPCS3_LICENSE_AREA_INFO_0_GL,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_GL}, {"eu", OPTION_VAL_EU_GL}, {"jp", OPTION_VAL_JP_GL}, {"hk", OPTION_VAL_HK_GL}, {"kr", OPTION_VAL_KR_GL}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_GL}, {"eu", OPTION_VAL_EU_GL}, {"jp", OPTION_VAL_JP_GL}, {"hk", OPTION_VAL_HK_GL}, {"kr", OPTION_VAL_KR_GL}, {"cn", OPTION_VAL_CN_GL}, {NULL, NULL} },
         "usa"
     },
     {
@@ -17740,13 +16087,6 @@ struct retro_core_option_v2_definition option_defs_gl[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_GL, NULL,
-        RPCS3_VFS_INIT_INFO_0_GL,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_GL}, {"reset", OPTION_VAL_RESET_GL}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_GL, NULL,
@@ -17814,10 +16154,6 @@ struct retro_core_options_v2 options_gl = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_HE NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_HE NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_HE "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_HE NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_HE NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_HE NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_HE NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_HE NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_HE NULL
 #define OPTION_VAL_50_HE NULL
@@ -17828,23 +16164,18 @@ struct retro_core_options_v2 options_gl = {
 #define OPTION_VAL_300_HE NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_HE NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_HE NULL
-#define OPTION_VAL_USLEEP_HE NULL
-#define OPTION_VAL_ALL_TIMERS_HE NULL
+#define OPTION_VAL_AUTO_HE NULL
 #define OPTION_VAL_AS_HOST_HE NULL
+#define OPTION_VAL_USLEEP_HE "Usleep"
+#define OPTION_VAL_ALL_TIMERS_HE NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_HE NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_HE NULL
-#define RPCS3_ENABLE_TSX_LABEL_HE NULL
-#define RPCS3_ENABLE_TSX_INFO_0_HE NULL
-#define OPTION_VAL_FORCED_HE NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_HE NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_HE NULL
-#define OPTION_VAL_RELAXED_HE NULL
 #define OPTION_VAL_ACCURATE_HE NULL
-#define OPTION_VAL_ULTRA_HE NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_HE NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_HE NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_HE NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_HE NULL
+#define OPTION_VAL_APPROXIMATE_HE NULL
+#define OPTION_VAL_RELAXED_HE "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_HE NULL
 #define RPCS3_RENDERER_LABEL_HE NULL
 #define RPCS3_RENDERER_INFO_0_HE NULL
 #define OPTION_VAL_OPENGL_HE NULL
@@ -17912,7 +16243,7 @@ struct retro_core_options_v2 options_gl = {
 #define RPCS3_SHADER_QUALITY_INFO_0_HE NULL
 #define OPTION_VAL_LOW_HE "Low (Fastest)"
 #define OPTION_VAL_HIGH_HE "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_HE NULL
+#define OPTION_VAL_ULTRA_HE "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_HE NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_HE NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_HE NULL
@@ -17930,7 +16261,7 @@ struct retro_core_options_v2 options_gl = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_HE NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_HE "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_HE "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_HE NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_HE NULL
 #define RPCS3_CPU_BLIT_LABEL_HE NULL
 #define RPCS3_CPU_BLIT_INFO_0_HE NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_HE NULL
@@ -17964,13 +16295,6 @@ struct retro_core_options_v2 options_gl = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_HE NULL
 #define RPCS3_TIME_STRETCHING_LABEL_HE NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_HE NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_HE NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_HE NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_HE NULL
-#define OPTION_VAL_STANDARD_HE NULL
-#define OPTION_VAL_SINGSTAR_HE NULL
-#define OPTION_VAL_REAL_SINGSTAR_HE NULL
-#define OPTION_VAL_ROCKSMITH_HE NULL
 #define RPCS3_MASTER_VOLUME_LABEL_HE NULL
 #define RPCS3_MASTER_VOLUME_INFO_0_HE NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_HE NULL
@@ -18006,7 +16330,9 @@ struct retro_core_options_v2 options_gl = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_HE NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_HE NULL
 #define OPTION_VAL_FAST_HE NULL
-#define OPTION_VAL_BALANCED_HE NULL
+#define OPTION_VAL_ATOMIC_HE NULL
+#define OPTION_VAL_ATOMIC_ORDERED_HE NULL
+#define OPTION_VAL_AS_PS3_HE NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_HE NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_HE NULL
 #define OPTION_VAL_1000_HE NULL
@@ -18020,10 +16346,6 @@ struct retro_core_options_v2 options_gl = {
 #define OPTION_VAL_3_HE NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_HE NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_HE NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_HE NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_HE NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_HE NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_HE NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_HE NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_HE NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_HE NULL
@@ -18060,11 +16382,12 @@ struct retro_core_options_v2 options_gl = {
 #define OPTION_VAL_CIRCLE_HE NULL
 #define RPCS3_LICENSE_AREA_LABEL_HE NULL
 #define RPCS3_LICENSE_AREA_INFO_0_HE NULL
-#define OPTION_VAL_USA_HE NULL
-#define OPTION_VAL_EU_HE NULL
-#define OPTION_VAL_JP_HE NULL
-#define OPTION_VAL_HK_HE NULL
-#define OPTION_VAL_KR_HE NULL
+#define OPTION_VAL_USA_HE "USA"
+#define OPTION_VAL_EU_HE "Europe"
+#define OPTION_VAL_JP_HE "Japan"
+#define OPTION_VAL_HK_HE "Hong Kong"
+#define OPTION_VAL_KR_HE "Korea"
+#define OPTION_VAL_CN_HE NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_HE NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_HE NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_HE NULL
@@ -18072,9 +16395,6 @@ struct retro_core_options_v2 options_gl = {
 #define OPTION_VAL_LIST_HE NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_HE NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_HE NULL
-#define RPCS3_VFS_INIT_LABEL_HE NULL
-#define RPCS3_VFS_INIT_INFO_0_HE NULL
-#define OPTION_VAL_RESET_HE NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_HE NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_HE NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_HE NULL
@@ -18150,20 +16470,6 @@ struct retro_core_option_v2_definition option_defs_he[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_HE, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_HE,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_HE, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_HE,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_HE, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_HE,
         NULL, "cpu",
@@ -18174,8 +16480,8 @@ struct retro_core_option_v2_definition option_defs_he[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_HE, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_HE,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_HE}, {"all_timers", OPTION_VAL_ALL_TIMERS_HE}, {"as_host", OPTION_VAL_AS_HOST_HE}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_HE}, {"as_host", OPTION_VAL_AS_HOST_HE}, {"usleep", OPTION_VAL_USLEEP_HE}, {"all_timers", OPTION_VAL_ALL_TIMERS_HE}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_HE, NULL,
@@ -18185,32 +16491,11 @@ struct retro_core_option_v2_definition option_defs_he[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_HE, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_HE,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_HE}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_HE, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_HE,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_HE}, {"accurate", OPTION_VAL_ACCURATE_HE}, {"ultra", OPTION_VAL_ULTRA_HE}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_HE, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_HE,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_HE, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_HE,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_HE}, {"approximate", OPTION_VAL_APPROXIMATE_HE}, {"relaxed", OPTION_VAL_RELAXED_HE}, {"inaccurate", OPTION_VAL_INACCURATE_HE}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -18288,7 +16573,7 @@ struct retro_core_option_v2_definition option_defs_he[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_HE, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_HE,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_HE}, {"high", OPTION_VAL_HIGH_HE}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_HE}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_HE}, {"high", OPTION_VAL_HIGH_HE}, {"ultra", OPTION_VAL_ULTRA_HE}, {NULL, NULL} },
         "high"
     },
     {
@@ -18344,7 +16629,7 @@ struct retro_core_option_v2_definition option_defs_he[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_HE, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_HE,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_HE}, {"approximate", OPTION_VAL_APPROXIMATE_HE}, {"relaxed", OPTION_VAL_RELAXED_HE}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_HE}, {"approximate", OPTION_VAL_APPROXIMATE_HE}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_HE}, {NULL, NULL} },
         "precise"
     },
     {
@@ -18404,13 +16689,6 @@ struct retro_core_option_v2_definition option_defs_he[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_HE, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_HE,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_HE}, {"standard", OPTION_VAL_STANDARD_HE}, {"singstar", OPTION_VAL_SINGSTAR_HE}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_HE}, {"rocksmith", OPTION_VAL_ROCKSMITH_HE}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_HE, NULL,
@@ -18483,8 +16761,8 @@ struct retro_core_option_v2_definition option_defs_he[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_HE, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_HE,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_HE}, {"balanced", OPTION_VAL_BALANCED_HE}, {"accurate", OPTION_VAL_ACCURATE_HE}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_HE}, {"atomic", OPTION_VAL_ATOMIC_HE}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_HE}, {"as_ps3", OPTION_VAL_AS_PS3_HE}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_HE, NULL,
@@ -18510,20 +16788,6 @@ struct retro_core_option_v2_definition option_defs_he[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_HE, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_HE,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_HE, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_HE,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_HE, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_HE,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -18604,7 +16868,7 @@ struct retro_core_option_v2_definition option_defs_he[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_HE, NULL,
         RPCS3_LICENSE_AREA_INFO_0_HE,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_HE}, {"eu", OPTION_VAL_EU_HE}, {"jp", OPTION_VAL_JP_HE}, {"hk", OPTION_VAL_HK_HE}, {"kr", OPTION_VAL_KR_HE}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_HE}, {"eu", OPTION_VAL_EU_HE}, {"jp", OPTION_VAL_JP_HE}, {"hk", OPTION_VAL_HK_HE}, {"kr", OPTION_VAL_KR_HE}, {"cn", OPTION_VAL_CN_HE}, {NULL, NULL} },
         "usa"
     },
     {
@@ -18627,13 +16891,6 @@ struct retro_core_option_v2_definition option_defs_he[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_HE, NULL,
-        RPCS3_VFS_INIT_INFO_0_HE,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_HE}, {"reset", OPTION_VAL_RESET_HE}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_HE, NULL,
@@ -18701,10 +16958,6 @@ struct retro_core_options_v2 options_he = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_HR NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_HR NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_HR "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_HR NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_HR NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_HR NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_HR NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_HR NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_HR NULL
 #define OPTION_VAL_50_HR NULL
@@ -18715,23 +16968,18 @@ struct retro_core_options_v2 options_he = {
 #define OPTION_VAL_300_HR NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_HR NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_HR NULL
-#define OPTION_VAL_USLEEP_HR NULL
-#define OPTION_VAL_ALL_TIMERS_HR NULL
+#define OPTION_VAL_AUTO_HR NULL
 #define OPTION_VAL_AS_HOST_HR NULL
+#define OPTION_VAL_USLEEP_HR "Usleep"
+#define OPTION_VAL_ALL_TIMERS_HR NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_HR NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_HR NULL
-#define RPCS3_ENABLE_TSX_LABEL_HR NULL
-#define RPCS3_ENABLE_TSX_INFO_0_HR NULL
-#define OPTION_VAL_FORCED_HR NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_HR NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_HR NULL
-#define OPTION_VAL_RELAXED_HR NULL
 #define OPTION_VAL_ACCURATE_HR NULL
-#define OPTION_VAL_ULTRA_HR NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_HR NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_HR NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_HR NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_HR NULL
+#define OPTION_VAL_APPROXIMATE_HR NULL
+#define OPTION_VAL_RELAXED_HR "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_HR NULL
 #define RPCS3_RENDERER_LABEL_HR NULL
 #define RPCS3_RENDERER_INFO_0_HR NULL
 #define OPTION_VAL_OPENGL_HR NULL
@@ -18799,7 +17047,7 @@ struct retro_core_options_v2 options_he = {
 #define RPCS3_SHADER_QUALITY_INFO_0_HR NULL
 #define OPTION_VAL_LOW_HR "Low (Fastest)"
 #define OPTION_VAL_HIGH_HR "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_HR NULL
+#define OPTION_VAL_ULTRA_HR "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_HR NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_HR NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_HR NULL
@@ -18817,7 +17065,7 @@ struct retro_core_options_v2 options_he = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_HR NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_HR "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_HR "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_HR NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_HR NULL
 #define RPCS3_CPU_BLIT_LABEL_HR NULL
 #define RPCS3_CPU_BLIT_INFO_0_HR NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_HR NULL
@@ -18851,13 +17099,6 @@ struct retro_core_options_v2 options_he = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_HR NULL
 #define RPCS3_TIME_STRETCHING_LABEL_HR NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_HR NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_HR NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_HR NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_HR NULL
-#define OPTION_VAL_STANDARD_HR NULL
-#define OPTION_VAL_SINGSTAR_HR NULL
-#define OPTION_VAL_REAL_SINGSTAR_HR NULL
-#define OPTION_VAL_ROCKSMITH_HR NULL
 #define RPCS3_MASTER_VOLUME_LABEL_HR "Glavna glasnoća"
 #define RPCS3_MASTER_VOLUME_INFO_0_HR NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_HR NULL
@@ -18893,7 +17134,9 @@ struct retro_core_options_v2 options_he = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_HR NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_HR NULL
 #define OPTION_VAL_FAST_HR NULL
-#define OPTION_VAL_BALANCED_HR NULL
+#define OPTION_VAL_ATOMIC_HR NULL
+#define OPTION_VAL_ATOMIC_ORDERED_HR NULL
+#define OPTION_VAL_AS_PS3_HR NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_HR NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_HR NULL
 #define OPTION_VAL_1000_HR NULL
@@ -18907,10 +17150,6 @@ struct retro_core_options_v2 options_he = {
 #define OPTION_VAL_3_HR NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_HR NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_HR NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_HR NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_HR NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_HR NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_HR NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_HR NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_HR NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_HR NULL
@@ -18949,9 +17188,10 @@ struct retro_core_options_v2 options_he = {
 #define RPCS3_LICENSE_AREA_INFO_0_HR NULL
 #define OPTION_VAL_USA_HR "SAD"
 #define OPTION_VAL_EU_HR "Europa"
-#define OPTION_VAL_JP_HR NULL
-#define OPTION_VAL_HK_HR NULL
-#define OPTION_VAL_KR_HR NULL
+#define OPTION_VAL_JP_HR "Japan"
+#define OPTION_VAL_HK_HR "Hong Kong"
+#define OPTION_VAL_KR_HR "Korea"
+#define OPTION_VAL_CN_HR NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_HR NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_HR NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_HR NULL
@@ -18959,9 +17199,6 @@ struct retro_core_options_v2 options_he = {
 #define OPTION_VAL_LIST_HR NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_HR NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_HR NULL
-#define RPCS3_VFS_INIT_LABEL_HR NULL
-#define RPCS3_VFS_INIT_INFO_0_HR NULL
-#define OPTION_VAL_RESET_HR NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_HR NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_HR NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_HR NULL
@@ -19037,20 +17274,6 @@ struct retro_core_option_v2_definition option_defs_hr[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_HR, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_HR,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_HR, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_HR,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_HR, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_HR,
         NULL, "cpu",
@@ -19061,8 +17284,8 @@ struct retro_core_option_v2_definition option_defs_hr[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_HR, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_HR,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_HR}, {"all_timers", OPTION_VAL_ALL_TIMERS_HR}, {"as_host", OPTION_VAL_AS_HOST_HR}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_HR}, {"as_host", OPTION_VAL_AS_HOST_HR}, {"usleep", OPTION_VAL_USLEEP_HR}, {"all_timers", OPTION_VAL_ALL_TIMERS_HR}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_HR, NULL,
@@ -19072,32 +17295,11 @@ struct retro_core_option_v2_definition option_defs_hr[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_HR, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_HR,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_HR}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_HR, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_HR,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_HR}, {"accurate", OPTION_VAL_ACCURATE_HR}, {"ultra", OPTION_VAL_ULTRA_HR}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_HR, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_HR,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_HR, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_HR,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_HR}, {"approximate", OPTION_VAL_APPROXIMATE_HR}, {"relaxed", OPTION_VAL_RELAXED_HR}, {"inaccurate", OPTION_VAL_INACCURATE_HR}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -19175,7 +17377,7 @@ struct retro_core_option_v2_definition option_defs_hr[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_HR, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_HR,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_HR}, {"high", OPTION_VAL_HIGH_HR}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_HR}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_HR}, {"high", OPTION_VAL_HIGH_HR}, {"ultra", OPTION_VAL_ULTRA_HR}, {NULL, NULL} },
         "high"
     },
     {
@@ -19231,7 +17433,7 @@ struct retro_core_option_v2_definition option_defs_hr[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_HR, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_HR,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_HR}, {"approximate", OPTION_VAL_APPROXIMATE_HR}, {"relaxed", OPTION_VAL_RELAXED_HR}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_HR}, {"approximate", OPTION_VAL_APPROXIMATE_HR}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_HR}, {NULL, NULL} },
         "precise"
     },
     {
@@ -19291,13 +17493,6 @@ struct retro_core_option_v2_definition option_defs_hr[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_HR, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_HR,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_HR}, {"standard", OPTION_VAL_STANDARD_HR}, {"singstar", OPTION_VAL_SINGSTAR_HR}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_HR}, {"rocksmith", OPTION_VAL_ROCKSMITH_HR}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_HR, NULL,
@@ -19370,8 +17565,8 @@ struct retro_core_option_v2_definition option_defs_hr[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_HR, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_HR,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_HR}, {"balanced", OPTION_VAL_BALANCED_HR}, {"accurate", OPTION_VAL_ACCURATE_HR}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_HR}, {"atomic", OPTION_VAL_ATOMIC_HR}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_HR}, {"as_ps3", OPTION_VAL_AS_PS3_HR}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_HR, NULL,
@@ -19397,20 +17592,6 @@ struct retro_core_option_v2_definition option_defs_hr[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_HR, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_HR,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_HR, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_HR,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_HR, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_HR,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -19491,7 +17672,7 @@ struct retro_core_option_v2_definition option_defs_hr[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_HR, NULL,
         RPCS3_LICENSE_AREA_INFO_0_HR,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_HR}, {"eu", OPTION_VAL_EU_HR}, {"jp", OPTION_VAL_JP_HR}, {"hk", OPTION_VAL_HK_HR}, {"kr", OPTION_VAL_KR_HR}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_HR}, {"eu", OPTION_VAL_EU_HR}, {"jp", OPTION_VAL_JP_HR}, {"hk", OPTION_VAL_HK_HR}, {"kr", OPTION_VAL_KR_HR}, {"cn", OPTION_VAL_CN_HR}, {NULL, NULL} },
         "usa"
     },
     {
@@ -19514,13 +17695,6 @@ struct retro_core_option_v2_definition option_defs_hr[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_HR, NULL,
-        RPCS3_VFS_INIT_INFO_0_HR,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_HR}, {"reset", OPTION_VAL_RESET_HR}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_HR, NULL,
@@ -19588,10 +17762,6 @@ struct retro_core_options_v2 options_hr = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_HU NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_HU NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_HU "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_HU NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_HU NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_HU NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_HU NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_HU NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_HU NULL
 #define OPTION_VAL_50_HU NULL
@@ -19602,23 +17772,18 @@ struct retro_core_options_v2 options_hr = {
 #define OPTION_VAL_300_HU NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_HU NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_HU NULL
-#define OPTION_VAL_USLEEP_HU NULL
-#define OPTION_VAL_ALL_TIMERS_HU NULL
+#define OPTION_VAL_AUTO_HU NULL
 #define OPTION_VAL_AS_HOST_HU NULL
+#define OPTION_VAL_USLEEP_HU "Usleep"
+#define OPTION_VAL_ALL_TIMERS_HU NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_HU NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_HU NULL
-#define RPCS3_ENABLE_TSX_LABEL_HU NULL
-#define RPCS3_ENABLE_TSX_INFO_0_HU NULL
-#define OPTION_VAL_FORCED_HU NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_HU NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_HU NULL
-#define OPTION_VAL_RELAXED_HU NULL
 #define OPTION_VAL_ACCURATE_HU "Pontos"
-#define OPTION_VAL_ULTRA_HU NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_HU NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_HU NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_HU NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_HU NULL
+#define OPTION_VAL_APPROXIMATE_HU NULL
+#define OPTION_VAL_RELAXED_HU "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_HU NULL
 #define RPCS3_RENDERER_LABEL_HU NULL
 #define RPCS3_RENDERER_INFO_0_HU NULL
 #define OPTION_VAL_OPENGL_HU NULL
@@ -19686,7 +17851,7 @@ struct retro_core_options_v2 options_hr = {
 #define RPCS3_SHADER_QUALITY_INFO_0_HU NULL
 #define OPTION_VAL_LOW_HU "Low (Fastest)"
 #define OPTION_VAL_HIGH_HU "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_HU NULL
+#define OPTION_VAL_ULTRA_HU "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_HU NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_HU NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_HU NULL
@@ -19704,7 +17869,7 @@ struct retro_core_options_v2 options_hr = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_HU NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_HU "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_HU "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_HU NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_HU NULL
 #define RPCS3_CPU_BLIT_LABEL_HU NULL
 #define RPCS3_CPU_BLIT_INFO_0_HU NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_HU NULL
@@ -19738,13 +17903,6 @@ struct retro_core_options_v2 options_hr = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_HU NULL
 #define RPCS3_TIME_STRETCHING_LABEL_HU NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_HU NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_HU NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_HU NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_HU NULL
-#define OPTION_VAL_STANDARD_HU NULL
-#define OPTION_VAL_SINGSTAR_HU NULL
-#define OPTION_VAL_REAL_SINGSTAR_HU NULL
-#define OPTION_VAL_ROCKSMITH_HU NULL
 #define RPCS3_MASTER_VOLUME_LABEL_HU "Fő hangerő"
 #define RPCS3_MASTER_VOLUME_INFO_0_HU NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_HU NULL
@@ -19780,7 +17938,9 @@ struct retro_core_options_v2 options_hr = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_HU NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_HU NULL
 #define OPTION_VAL_FAST_HU "Gyors"
-#define OPTION_VAL_BALANCED_HU "Kiegyensúlyozott"
+#define OPTION_VAL_ATOMIC_HU NULL
+#define OPTION_VAL_ATOMIC_ORDERED_HU NULL
+#define OPTION_VAL_AS_PS3_HU NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_HU NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_HU NULL
 #define OPTION_VAL_1000_HU NULL
@@ -19794,10 +17954,6 @@ struct retro_core_options_v2 options_hr = {
 #define OPTION_VAL_3_HU "3 (alapértelmezett)"
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_HU NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_HU NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_HU NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_HU NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_HU NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_HU NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_HU NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_HU NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_HU NULL
@@ -19834,11 +17990,12 @@ struct retro_core_options_v2 options_hr = {
 #define OPTION_VAL_CIRCLE_HU NULL
 #define RPCS3_LICENSE_AREA_LABEL_HU NULL
 #define RPCS3_LICENSE_AREA_INFO_0_HU NULL
-#define OPTION_VAL_USA_HU NULL
+#define OPTION_VAL_USA_HU "USA"
 #define OPTION_VAL_EU_HU "Európa"
 #define OPTION_VAL_JP_HU "Japán"
-#define OPTION_VAL_HK_HU NULL
-#define OPTION_VAL_KR_HU NULL
+#define OPTION_VAL_HK_HU "Hong Kong"
+#define OPTION_VAL_KR_HU "Korea"
+#define OPTION_VAL_CN_HU NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_HU NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_HU NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_HU NULL
@@ -19846,9 +18003,6 @@ struct retro_core_options_v2 options_hr = {
 #define OPTION_VAL_LIST_HU NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_HU NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_HU NULL
-#define RPCS3_VFS_INIT_LABEL_HU NULL
-#define RPCS3_VFS_INIT_INFO_0_HU NULL
-#define OPTION_VAL_RESET_HU "Visszaállítás"
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_HU NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_HU NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_HU NULL
@@ -19924,20 +18078,6 @@ struct retro_core_option_v2_definition option_defs_hu[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_HU, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_HU,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_HU, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_HU,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_HU, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_HU,
         NULL, "cpu",
@@ -19948,8 +18088,8 @@ struct retro_core_option_v2_definition option_defs_hu[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_HU, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_HU,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_HU}, {"all_timers", OPTION_VAL_ALL_TIMERS_HU}, {"as_host", OPTION_VAL_AS_HOST_HU}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_HU}, {"as_host", OPTION_VAL_AS_HOST_HU}, {"usleep", OPTION_VAL_USLEEP_HU}, {"all_timers", OPTION_VAL_ALL_TIMERS_HU}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_HU, NULL,
@@ -19959,32 +18099,11 @@ struct retro_core_option_v2_definition option_defs_hu[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_HU, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_HU,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_HU}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_HU, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_HU,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_HU}, {"accurate", OPTION_VAL_ACCURATE_HU}, {"ultra", OPTION_VAL_ULTRA_HU}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_HU, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_HU,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_HU, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_HU,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_HU}, {"approximate", OPTION_VAL_APPROXIMATE_HU}, {"relaxed", OPTION_VAL_RELAXED_HU}, {"inaccurate", OPTION_VAL_INACCURATE_HU}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -20062,7 +18181,7 @@ struct retro_core_option_v2_definition option_defs_hu[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_HU, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_HU,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_HU}, {"high", OPTION_VAL_HIGH_HU}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_HU}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_HU}, {"high", OPTION_VAL_HIGH_HU}, {"ultra", OPTION_VAL_ULTRA_HU}, {NULL, NULL} },
         "high"
     },
     {
@@ -20118,7 +18237,7 @@ struct retro_core_option_v2_definition option_defs_hu[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_HU, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_HU,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_HU}, {"approximate", OPTION_VAL_APPROXIMATE_HU}, {"relaxed", OPTION_VAL_RELAXED_HU}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_HU}, {"approximate", OPTION_VAL_APPROXIMATE_HU}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_HU}, {NULL, NULL} },
         "precise"
     },
     {
@@ -20178,13 +18297,6 @@ struct retro_core_option_v2_definition option_defs_hu[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_HU, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_HU,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_HU}, {"standard", OPTION_VAL_STANDARD_HU}, {"singstar", OPTION_VAL_SINGSTAR_HU}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_HU}, {"rocksmith", OPTION_VAL_ROCKSMITH_HU}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_HU, NULL,
@@ -20257,8 +18369,8 @@ struct retro_core_option_v2_definition option_defs_hu[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_HU, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_HU,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_HU}, {"balanced", OPTION_VAL_BALANCED_HU}, {"accurate", OPTION_VAL_ACCURATE_HU}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_HU}, {"atomic", OPTION_VAL_ATOMIC_HU}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_HU}, {"as_ps3", OPTION_VAL_AS_PS3_HU}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_HU, NULL,
@@ -20284,20 +18396,6 @@ struct retro_core_option_v2_definition option_defs_hu[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_HU, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_HU,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_HU, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_HU,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_HU, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_HU,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -20378,7 +18476,7 @@ struct retro_core_option_v2_definition option_defs_hu[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_HU, NULL,
         RPCS3_LICENSE_AREA_INFO_0_HU,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_HU}, {"eu", OPTION_VAL_EU_HU}, {"jp", OPTION_VAL_JP_HU}, {"hk", OPTION_VAL_HK_HU}, {"kr", OPTION_VAL_KR_HU}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_HU}, {"eu", OPTION_VAL_EU_HU}, {"jp", OPTION_VAL_JP_HU}, {"hk", OPTION_VAL_HK_HU}, {"kr", OPTION_VAL_KR_HU}, {"cn", OPTION_VAL_CN_HU}, {NULL, NULL} },
         "usa"
     },
     {
@@ -20401,13 +18499,6 @@ struct retro_core_option_v2_definition option_defs_hu[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_HU, NULL,
-        RPCS3_VFS_INIT_INFO_0_HU,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_HU}, {"reset", OPTION_VAL_RESET_HU}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_HU, NULL,
@@ -20475,10 +18566,6 @@ struct retro_core_options_v2 options_hu = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_ID NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_ID NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_ID "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_ID NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_ID NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_ID NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_ID NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_ID NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_ID NULL
 #define OPTION_VAL_50_ID NULL
@@ -20489,23 +18576,18 @@ struct retro_core_options_v2 options_hu = {
 #define OPTION_VAL_300_ID NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_ID NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_ID NULL
-#define OPTION_VAL_USLEEP_ID NULL
-#define OPTION_VAL_ALL_TIMERS_ID NULL
+#define OPTION_VAL_AUTO_ID NULL
 #define OPTION_VAL_AS_HOST_ID NULL
+#define OPTION_VAL_USLEEP_ID "Usleep"
+#define OPTION_VAL_ALL_TIMERS_ID NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_ID NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_ID NULL
-#define RPCS3_ENABLE_TSX_LABEL_ID NULL
-#define RPCS3_ENABLE_TSX_INFO_0_ID NULL
-#define OPTION_VAL_FORCED_ID NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_ID NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_ID NULL
-#define OPTION_VAL_RELAXED_ID NULL
 #define OPTION_VAL_ACCURATE_ID NULL
-#define OPTION_VAL_ULTRA_ID NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_ID NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_ID NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_ID NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_ID NULL
+#define OPTION_VAL_APPROXIMATE_ID NULL
+#define OPTION_VAL_RELAXED_ID "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_ID NULL
 #define RPCS3_RENDERER_LABEL_ID NULL
 #define RPCS3_RENDERER_INFO_0_ID NULL
 #define OPTION_VAL_OPENGL_ID NULL
@@ -20573,7 +18655,7 @@ struct retro_core_options_v2 options_hu = {
 #define RPCS3_SHADER_QUALITY_INFO_0_ID NULL
 #define OPTION_VAL_LOW_ID "Low (Fastest)"
 #define OPTION_VAL_HIGH_ID "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_ID NULL
+#define OPTION_VAL_ULTRA_ID "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_ID NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_ID NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_ID NULL
@@ -20591,7 +18673,7 @@ struct retro_core_options_v2 options_hu = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_ID NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_ID "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_ID "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_ID NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_ID NULL
 #define RPCS3_CPU_BLIT_LABEL_ID NULL
 #define RPCS3_CPU_BLIT_INFO_0_ID NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_ID NULL
@@ -20625,13 +18707,6 @@ struct retro_core_options_v2 options_hu = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_ID NULL
 #define RPCS3_TIME_STRETCHING_LABEL_ID NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_ID NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_ID NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_ID NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_ID NULL
-#define OPTION_VAL_STANDARD_ID NULL
-#define OPTION_VAL_SINGSTAR_ID NULL
-#define OPTION_VAL_REAL_SINGSTAR_ID NULL
-#define OPTION_VAL_ROCKSMITH_ID NULL
 #define RPCS3_MASTER_VOLUME_LABEL_ID NULL
 #define RPCS3_MASTER_VOLUME_INFO_0_ID NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_ID NULL
@@ -20667,7 +18742,9 @@ struct retro_core_options_v2 options_hu = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_ID NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_ID NULL
 #define OPTION_VAL_FAST_ID NULL
-#define OPTION_VAL_BALANCED_ID NULL
+#define OPTION_VAL_ATOMIC_ID NULL
+#define OPTION_VAL_ATOMIC_ORDERED_ID NULL
+#define OPTION_VAL_AS_PS3_ID NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_ID NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_ID NULL
 #define OPTION_VAL_1000_ID NULL
@@ -20681,10 +18758,6 @@ struct retro_core_options_v2 options_hu = {
 #define OPTION_VAL_3_ID NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_ID NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_ID NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_ID NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_ID NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_ID NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_ID NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_ID NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_ID NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_ID NULL
@@ -20721,11 +18794,12 @@ struct retro_core_options_v2 options_hu = {
 #define OPTION_VAL_CIRCLE_ID NULL
 #define RPCS3_LICENSE_AREA_LABEL_ID NULL
 #define RPCS3_LICENSE_AREA_INFO_0_ID NULL
-#define OPTION_VAL_USA_ID NULL
+#define OPTION_VAL_USA_ID "USA"
 #define OPTION_VAL_EU_ID "Eropa"
 #define OPTION_VAL_JP_ID "Jepang"
-#define OPTION_VAL_HK_ID NULL
-#define OPTION_VAL_KR_ID NULL
+#define OPTION_VAL_HK_ID "Hong Kong"
+#define OPTION_VAL_KR_ID "Korea"
+#define OPTION_VAL_CN_ID NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_ID NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_ID NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_ID NULL
@@ -20733,9 +18807,6 @@ struct retro_core_options_v2 options_hu = {
 #define OPTION_VAL_LIST_ID NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_ID NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_ID NULL
-#define RPCS3_VFS_INIT_LABEL_ID NULL
-#define RPCS3_VFS_INIT_INFO_0_ID NULL
-#define OPTION_VAL_RESET_ID NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_ID NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_ID NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_ID NULL
@@ -20811,20 +18882,6 @@ struct retro_core_option_v2_definition option_defs_id[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_ID, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_ID,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_ID, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_ID,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_ID, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_ID,
         NULL, "cpu",
@@ -20835,8 +18892,8 @@ struct retro_core_option_v2_definition option_defs_id[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_ID, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_ID,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_ID}, {"all_timers", OPTION_VAL_ALL_TIMERS_ID}, {"as_host", OPTION_VAL_AS_HOST_ID}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_ID}, {"as_host", OPTION_VAL_AS_HOST_ID}, {"usleep", OPTION_VAL_USLEEP_ID}, {"all_timers", OPTION_VAL_ALL_TIMERS_ID}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_ID, NULL,
@@ -20846,32 +18903,11 @@ struct retro_core_option_v2_definition option_defs_id[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_ID, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_ID,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_ID}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_ID, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_ID,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_ID}, {"accurate", OPTION_VAL_ACCURATE_ID}, {"ultra", OPTION_VAL_ULTRA_ID}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_ID, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_ID,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_ID, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_ID,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_ID}, {"approximate", OPTION_VAL_APPROXIMATE_ID}, {"relaxed", OPTION_VAL_RELAXED_ID}, {"inaccurate", OPTION_VAL_INACCURATE_ID}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -20949,7 +18985,7 @@ struct retro_core_option_v2_definition option_defs_id[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_ID, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_ID,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_ID}, {"high", OPTION_VAL_HIGH_ID}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_ID}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_ID}, {"high", OPTION_VAL_HIGH_ID}, {"ultra", OPTION_VAL_ULTRA_ID}, {NULL, NULL} },
         "high"
     },
     {
@@ -21005,7 +19041,7 @@ struct retro_core_option_v2_definition option_defs_id[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_ID, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_ID,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_ID}, {"approximate", OPTION_VAL_APPROXIMATE_ID}, {"relaxed", OPTION_VAL_RELAXED_ID}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_ID}, {"approximate", OPTION_VAL_APPROXIMATE_ID}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_ID}, {NULL, NULL} },
         "precise"
     },
     {
@@ -21065,13 +19101,6 @@ struct retro_core_option_v2_definition option_defs_id[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_ID, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_ID,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_ID}, {"standard", OPTION_VAL_STANDARD_ID}, {"singstar", OPTION_VAL_SINGSTAR_ID}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_ID}, {"rocksmith", OPTION_VAL_ROCKSMITH_ID}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_ID, NULL,
@@ -21144,8 +19173,8 @@ struct retro_core_option_v2_definition option_defs_id[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_ID, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_ID,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_ID}, {"balanced", OPTION_VAL_BALANCED_ID}, {"accurate", OPTION_VAL_ACCURATE_ID}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_ID}, {"atomic", OPTION_VAL_ATOMIC_ID}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_ID}, {"as_ps3", OPTION_VAL_AS_PS3_ID}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_ID, NULL,
@@ -21171,20 +19200,6 @@ struct retro_core_option_v2_definition option_defs_id[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_ID, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_ID,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_ID, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_ID,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_ID, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_ID,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -21265,7 +19280,7 @@ struct retro_core_option_v2_definition option_defs_id[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_ID, NULL,
         RPCS3_LICENSE_AREA_INFO_0_ID,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_ID}, {"eu", OPTION_VAL_EU_ID}, {"jp", OPTION_VAL_JP_ID}, {"hk", OPTION_VAL_HK_ID}, {"kr", OPTION_VAL_KR_ID}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_ID}, {"eu", OPTION_VAL_EU_ID}, {"jp", OPTION_VAL_JP_ID}, {"hk", OPTION_VAL_HK_ID}, {"kr", OPTION_VAL_KR_ID}, {"cn", OPTION_VAL_CN_ID}, {NULL, NULL} },
         "usa"
     },
     {
@@ -21288,13 +19303,6 @@ struct retro_core_option_v2_definition option_defs_id[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_ID, NULL,
-        RPCS3_VFS_INIT_INFO_0_ID,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_ID}, {"reset", OPTION_VAL_RESET_ID}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_ID, NULL,
@@ -21362,10 +19370,6 @@ struct retro_core_options_v2 options_id = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_IT NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_IT NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_IT "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_IT NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_IT NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_IT NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_IT NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_IT NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_IT NULL
 #define OPTION_VAL_50_IT NULL
@@ -21376,23 +19380,18 @@ struct retro_core_options_v2 options_id = {
 #define OPTION_VAL_300_IT NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_IT NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_IT NULL
-#define OPTION_VAL_USLEEP_IT NULL
-#define OPTION_VAL_ALL_TIMERS_IT NULL
+#define OPTION_VAL_AUTO_IT NULL
 #define OPTION_VAL_AS_HOST_IT NULL
+#define OPTION_VAL_USLEEP_IT "Usleep"
+#define OPTION_VAL_ALL_TIMERS_IT NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_IT NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_IT NULL
-#define RPCS3_ENABLE_TSX_LABEL_IT NULL
-#define RPCS3_ENABLE_TSX_INFO_0_IT NULL
-#define OPTION_VAL_FORCED_IT NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_IT NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_IT NULL
-#define OPTION_VAL_RELAXED_IT NULL
 #define OPTION_VAL_ACCURATE_IT "Preciso"
-#define OPTION_VAL_ULTRA_IT NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_IT NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_IT NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_IT NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_IT NULL
+#define OPTION_VAL_APPROXIMATE_IT NULL
+#define OPTION_VAL_RELAXED_IT "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_IT NULL
 #define RPCS3_RENDERER_LABEL_IT NULL
 #define RPCS3_RENDERER_INFO_0_IT NULL
 #define OPTION_VAL_OPENGL_IT NULL
@@ -21460,7 +19459,7 @@ struct retro_core_options_v2 options_id = {
 #define RPCS3_SHADER_QUALITY_INFO_0_IT NULL
 #define OPTION_VAL_LOW_IT "Low (Fastest)"
 #define OPTION_VAL_HIGH_IT "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_IT NULL
+#define OPTION_VAL_ULTRA_IT "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_IT NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_IT NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_IT NULL
@@ -21478,7 +19477,7 @@ struct retro_core_options_v2 options_id = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_IT NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_IT "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_IT "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_IT NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_IT NULL
 #define RPCS3_CPU_BLIT_LABEL_IT NULL
 #define RPCS3_CPU_BLIT_INFO_0_IT NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_IT NULL
@@ -21512,13 +19511,6 @@ struct retro_core_options_v2 options_id = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_IT NULL
 #define RPCS3_TIME_STRETCHING_LABEL_IT NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_IT NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_IT NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_IT NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_IT NULL
-#define OPTION_VAL_STANDARD_IT NULL
-#define OPTION_VAL_SINGSTAR_IT NULL
-#define OPTION_VAL_REAL_SINGSTAR_IT NULL
-#define OPTION_VAL_ROCKSMITH_IT NULL
 #define RPCS3_MASTER_VOLUME_LABEL_IT "Volume Principale"
 #define RPCS3_MASTER_VOLUME_INFO_0_IT NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_IT NULL
@@ -21554,7 +19546,9 @@ struct retro_core_options_v2 options_id = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_IT NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_IT NULL
 #define OPTION_VAL_FAST_IT "Veloce"
-#define OPTION_VAL_BALANCED_IT "Bilanciato"
+#define OPTION_VAL_ATOMIC_IT NULL
+#define OPTION_VAL_ATOMIC_ORDERED_IT NULL
+#define OPTION_VAL_AS_PS3_IT NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_IT NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_IT NULL
 #define OPTION_VAL_1000_IT NULL
@@ -21568,10 +19562,6 @@ struct retro_core_options_v2 options_id = {
 #define OPTION_VAL_3_IT "3 (Predefinito)"
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_IT NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_IT NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_IT NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_IT NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_IT NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_IT NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_IT NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_IT NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_IT NULL
@@ -21608,11 +19598,12 @@ struct retro_core_options_v2 options_id = {
 #define OPTION_VAL_CIRCLE_IT NULL
 #define RPCS3_LICENSE_AREA_LABEL_IT NULL
 #define RPCS3_LICENSE_AREA_INFO_0_IT NULL
-#define OPTION_VAL_USA_IT NULL
+#define OPTION_VAL_USA_IT "USA"
 #define OPTION_VAL_EU_IT "Europa"
 #define OPTION_VAL_JP_IT "Giappone"
-#define OPTION_VAL_HK_IT NULL
-#define OPTION_VAL_KR_IT NULL
+#define OPTION_VAL_HK_IT "Hong Kong"
+#define OPTION_VAL_KR_IT "Korea"
+#define OPTION_VAL_CN_IT NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_IT NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_IT NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_IT NULL
@@ -21620,9 +19611,6 @@ struct retro_core_options_v2 options_id = {
 #define OPTION_VAL_LIST_IT NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_IT NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_IT NULL
-#define RPCS3_VFS_INIT_LABEL_IT NULL
-#define RPCS3_VFS_INIT_INFO_0_IT NULL
-#define OPTION_VAL_RESET_IT "Resetta"
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_IT NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_IT NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_IT NULL
@@ -21698,20 +19686,6 @@ struct retro_core_option_v2_definition option_defs_it[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_IT, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_IT,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_IT, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_IT,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_IT, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_IT,
         NULL, "cpu",
@@ -21722,8 +19696,8 @@ struct retro_core_option_v2_definition option_defs_it[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_IT, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_IT,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_IT}, {"all_timers", OPTION_VAL_ALL_TIMERS_IT}, {"as_host", OPTION_VAL_AS_HOST_IT}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_IT}, {"as_host", OPTION_VAL_AS_HOST_IT}, {"usleep", OPTION_VAL_USLEEP_IT}, {"all_timers", OPTION_VAL_ALL_TIMERS_IT}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_IT, NULL,
@@ -21733,32 +19707,11 @@ struct retro_core_option_v2_definition option_defs_it[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_IT, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_IT,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_IT}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_IT, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_IT,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_IT}, {"accurate", OPTION_VAL_ACCURATE_IT}, {"ultra", OPTION_VAL_ULTRA_IT}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_IT, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_IT,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_IT, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_IT,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_IT}, {"approximate", OPTION_VAL_APPROXIMATE_IT}, {"relaxed", OPTION_VAL_RELAXED_IT}, {"inaccurate", OPTION_VAL_INACCURATE_IT}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -21836,7 +19789,7 @@ struct retro_core_option_v2_definition option_defs_it[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_IT, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_IT,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_IT}, {"high", OPTION_VAL_HIGH_IT}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_IT}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_IT}, {"high", OPTION_VAL_HIGH_IT}, {"ultra", OPTION_VAL_ULTRA_IT}, {NULL, NULL} },
         "high"
     },
     {
@@ -21892,7 +19845,7 @@ struct retro_core_option_v2_definition option_defs_it[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_IT, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_IT,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_IT}, {"approximate", OPTION_VAL_APPROXIMATE_IT}, {"relaxed", OPTION_VAL_RELAXED_IT}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_IT}, {"approximate", OPTION_VAL_APPROXIMATE_IT}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_IT}, {NULL, NULL} },
         "precise"
     },
     {
@@ -21952,13 +19905,6 @@ struct retro_core_option_v2_definition option_defs_it[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_IT, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_IT,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_IT}, {"standard", OPTION_VAL_STANDARD_IT}, {"singstar", OPTION_VAL_SINGSTAR_IT}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_IT}, {"rocksmith", OPTION_VAL_ROCKSMITH_IT}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_IT, NULL,
@@ -22031,8 +19977,8 @@ struct retro_core_option_v2_definition option_defs_it[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_IT, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_IT,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_IT}, {"balanced", OPTION_VAL_BALANCED_IT}, {"accurate", OPTION_VAL_ACCURATE_IT}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_IT}, {"atomic", OPTION_VAL_ATOMIC_IT}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_IT}, {"as_ps3", OPTION_VAL_AS_PS3_IT}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_IT, NULL,
@@ -22058,20 +20004,6 @@ struct retro_core_option_v2_definition option_defs_it[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_IT, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_IT,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_IT, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_IT,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_IT, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_IT,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -22152,7 +20084,7 @@ struct retro_core_option_v2_definition option_defs_it[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_IT, NULL,
         RPCS3_LICENSE_AREA_INFO_0_IT,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_IT}, {"eu", OPTION_VAL_EU_IT}, {"jp", OPTION_VAL_JP_IT}, {"hk", OPTION_VAL_HK_IT}, {"kr", OPTION_VAL_KR_IT}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_IT}, {"eu", OPTION_VAL_EU_IT}, {"jp", OPTION_VAL_JP_IT}, {"hk", OPTION_VAL_HK_IT}, {"kr", OPTION_VAL_KR_IT}, {"cn", OPTION_VAL_CN_IT}, {NULL, NULL} },
         "usa"
     },
     {
@@ -22175,13 +20107,6 @@ struct retro_core_option_v2_definition option_defs_it[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_IT, NULL,
-        RPCS3_VFS_INIT_INFO_0_IT,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_IT}, {"reset", OPTION_VAL_RESET_IT}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_IT, NULL,
@@ -22249,10 +20174,6 @@ struct retro_core_options_v2 options_it = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_JA NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_JA NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_JA "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_JA NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_JA NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_JA NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_JA NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_JA NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_JA NULL
 #define OPTION_VAL_50_JA NULL
@@ -22263,23 +20184,18 @@ struct retro_core_options_v2 options_it = {
 #define OPTION_VAL_300_JA NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_JA NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_JA NULL
-#define OPTION_VAL_USLEEP_JA NULL
-#define OPTION_VAL_ALL_TIMERS_JA NULL
+#define OPTION_VAL_AUTO_JA NULL
 #define OPTION_VAL_AS_HOST_JA NULL
+#define OPTION_VAL_USLEEP_JA "Usleep"
+#define OPTION_VAL_ALL_TIMERS_JA NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_JA NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_JA NULL
-#define RPCS3_ENABLE_TSX_LABEL_JA NULL
-#define RPCS3_ENABLE_TSX_INFO_0_JA NULL
-#define OPTION_VAL_FORCED_JA NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_JA NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_JA NULL
-#define OPTION_VAL_RELAXED_JA NULL
 #define OPTION_VAL_ACCURATE_JA "正確"
-#define OPTION_VAL_ULTRA_JA NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_JA NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_JA NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_JA NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_JA NULL
+#define OPTION_VAL_APPROXIMATE_JA NULL
+#define OPTION_VAL_RELAXED_JA "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_JA NULL
 #define RPCS3_RENDERER_LABEL_JA NULL
 #define RPCS3_RENDERER_INFO_0_JA NULL
 #define OPTION_VAL_OPENGL_JA NULL
@@ -22347,7 +20263,7 @@ struct retro_core_options_v2 options_it = {
 #define RPCS3_SHADER_QUALITY_INFO_0_JA NULL
 #define OPTION_VAL_LOW_JA "Low (Fastest)"
 #define OPTION_VAL_HIGH_JA "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_JA NULL
+#define OPTION_VAL_ULTRA_JA "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_JA NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_JA NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_JA NULL
@@ -22365,7 +20281,7 @@ struct retro_core_options_v2 options_it = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_JA NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_JA "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_JA "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_JA NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_JA NULL
 #define RPCS3_CPU_BLIT_LABEL_JA NULL
 #define RPCS3_CPU_BLIT_INFO_0_JA NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_JA NULL
@@ -22399,13 +20315,6 @@ struct retro_core_options_v2 options_it = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_JA NULL
 #define RPCS3_TIME_STRETCHING_LABEL_JA NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_JA NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_JA NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_JA NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_JA NULL
-#define OPTION_VAL_STANDARD_JA NULL
-#define OPTION_VAL_SINGSTAR_JA NULL
-#define OPTION_VAL_REAL_SINGSTAR_JA NULL
-#define OPTION_VAL_ROCKSMITH_JA NULL
 #define RPCS3_MASTER_VOLUME_LABEL_JA "マスター音量"
 #define RPCS3_MASTER_VOLUME_INFO_0_JA NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_JA NULL
@@ -22441,7 +20350,9 @@ struct retro_core_options_v2 options_it = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_JA NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_JA NULL
 #define OPTION_VAL_FAST_JA "高速"
-#define OPTION_VAL_BALANCED_JA "バランス"
+#define OPTION_VAL_ATOMIC_JA NULL
+#define OPTION_VAL_ATOMIC_ORDERED_JA NULL
+#define OPTION_VAL_AS_PS3_JA NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_JA NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_JA NULL
 #define OPTION_VAL_1000_JA NULL
@@ -22455,10 +20366,6 @@ struct retro_core_options_v2 options_it = {
 #define OPTION_VAL_3_JA "3 (デフォルト)"
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_JA NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_JA NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_JA NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_JA NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_JA NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_JA NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_JA NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_JA NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_JA NULL
@@ -22495,11 +20402,12 @@ struct retro_core_options_v2 options_it = {
 #define OPTION_VAL_CIRCLE_JA NULL
 #define RPCS3_LICENSE_AREA_LABEL_JA NULL
 #define RPCS3_LICENSE_AREA_INFO_0_JA NULL
-#define OPTION_VAL_USA_JA NULL
+#define OPTION_VAL_USA_JA "USA"
 #define OPTION_VAL_EU_JA "ヨーロッパ"
 #define OPTION_VAL_JP_JA "日本"
-#define OPTION_VAL_HK_JA NULL
-#define OPTION_VAL_KR_JA NULL
+#define OPTION_VAL_HK_JA "Hong Kong"
+#define OPTION_VAL_KR_JA "Korea"
+#define OPTION_VAL_CN_JA NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_JA NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_JA NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_JA NULL
@@ -22507,9 +20415,6 @@ struct retro_core_options_v2 options_it = {
 #define OPTION_VAL_LIST_JA NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_JA NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_JA NULL
-#define RPCS3_VFS_INIT_LABEL_JA NULL
-#define RPCS3_VFS_INIT_INFO_0_JA NULL
-#define OPTION_VAL_RESET_JA "リセット"
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_JA NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_JA NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_JA NULL
@@ -22585,20 +20490,6 @@ struct retro_core_option_v2_definition option_defs_ja[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_JA, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_JA,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_JA, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_JA,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_JA, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_JA,
         NULL, "cpu",
@@ -22609,8 +20500,8 @@ struct retro_core_option_v2_definition option_defs_ja[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_JA, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_JA,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_JA}, {"all_timers", OPTION_VAL_ALL_TIMERS_JA}, {"as_host", OPTION_VAL_AS_HOST_JA}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_JA}, {"as_host", OPTION_VAL_AS_HOST_JA}, {"usleep", OPTION_VAL_USLEEP_JA}, {"all_timers", OPTION_VAL_ALL_TIMERS_JA}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_JA, NULL,
@@ -22620,32 +20511,11 @@ struct retro_core_option_v2_definition option_defs_ja[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_JA, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_JA,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_JA}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_JA, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_JA,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_JA}, {"accurate", OPTION_VAL_ACCURATE_JA}, {"ultra", OPTION_VAL_ULTRA_JA}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_JA, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_JA,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_JA, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_JA,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_JA}, {"approximate", OPTION_VAL_APPROXIMATE_JA}, {"relaxed", OPTION_VAL_RELAXED_JA}, {"inaccurate", OPTION_VAL_INACCURATE_JA}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -22723,7 +20593,7 @@ struct retro_core_option_v2_definition option_defs_ja[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_JA, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_JA,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_JA}, {"high", OPTION_VAL_HIGH_JA}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_JA}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_JA}, {"high", OPTION_VAL_HIGH_JA}, {"ultra", OPTION_VAL_ULTRA_JA}, {NULL, NULL} },
         "high"
     },
     {
@@ -22779,7 +20649,7 @@ struct retro_core_option_v2_definition option_defs_ja[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_JA, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_JA,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_JA}, {"approximate", OPTION_VAL_APPROXIMATE_JA}, {"relaxed", OPTION_VAL_RELAXED_JA}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_JA}, {"approximate", OPTION_VAL_APPROXIMATE_JA}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_JA}, {NULL, NULL} },
         "precise"
     },
     {
@@ -22839,13 +20709,6 @@ struct retro_core_option_v2_definition option_defs_ja[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_JA, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_JA,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_JA}, {"standard", OPTION_VAL_STANDARD_JA}, {"singstar", OPTION_VAL_SINGSTAR_JA}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_JA}, {"rocksmith", OPTION_VAL_ROCKSMITH_JA}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_JA, NULL,
@@ -22918,8 +20781,8 @@ struct retro_core_option_v2_definition option_defs_ja[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_JA, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_JA,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_JA}, {"balanced", OPTION_VAL_BALANCED_JA}, {"accurate", OPTION_VAL_ACCURATE_JA}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_JA}, {"atomic", OPTION_VAL_ATOMIC_JA}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_JA}, {"as_ps3", OPTION_VAL_AS_PS3_JA}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_JA, NULL,
@@ -22945,20 +20808,6 @@ struct retro_core_option_v2_definition option_defs_ja[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_JA, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_JA,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_JA, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_JA,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_JA, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_JA,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -23039,7 +20888,7 @@ struct retro_core_option_v2_definition option_defs_ja[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_JA, NULL,
         RPCS3_LICENSE_AREA_INFO_0_JA,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_JA}, {"eu", OPTION_VAL_EU_JA}, {"jp", OPTION_VAL_JP_JA}, {"hk", OPTION_VAL_HK_JA}, {"kr", OPTION_VAL_KR_JA}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_JA}, {"eu", OPTION_VAL_EU_JA}, {"jp", OPTION_VAL_JP_JA}, {"hk", OPTION_VAL_HK_JA}, {"kr", OPTION_VAL_KR_JA}, {"cn", OPTION_VAL_CN_JA}, {NULL, NULL} },
         "usa"
     },
     {
@@ -23062,13 +20911,6 @@ struct retro_core_option_v2_definition option_defs_ja[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_JA, NULL,
-        RPCS3_VFS_INIT_INFO_0_JA,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_JA}, {"reset", OPTION_VAL_RESET_JA}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_JA, NULL,
@@ -23136,10 +20978,6 @@ struct retro_core_options_v2 options_ja = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_KO NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_KO NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_KO "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_KO NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_KO NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_KO NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_KO NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_KO NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_KO NULL
 #define OPTION_VAL_50_KO NULL
@@ -23150,23 +20988,18 @@ struct retro_core_options_v2 options_ja = {
 #define OPTION_VAL_300_KO NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_KO NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_KO NULL
-#define OPTION_VAL_USLEEP_KO NULL
-#define OPTION_VAL_ALL_TIMERS_KO NULL
+#define OPTION_VAL_AUTO_KO NULL
 #define OPTION_VAL_AS_HOST_KO NULL
+#define OPTION_VAL_USLEEP_KO "Usleep"
+#define OPTION_VAL_ALL_TIMERS_KO NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_KO NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_KO NULL
-#define RPCS3_ENABLE_TSX_LABEL_KO NULL
-#define RPCS3_ENABLE_TSX_INFO_0_KO NULL
-#define OPTION_VAL_FORCED_KO "강제로"
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_KO NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_KO NULL
-#define OPTION_VAL_RELAXED_KO NULL
 #define OPTION_VAL_ACCURATE_KO "정확하게"
-#define OPTION_VAL_ULTRA_KO NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_KO NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_KO NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_KO NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_KO NULL
+#define OPTION_VAL_APPROXIMATE_KO NULL
+#define OPTION_VAL_RELAXED_KO "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_KO NULL
 #define RPCS3_RENDERER_LABEL_KO "렌더러"
 #define RPCS3_RENDERER_INFO_0_KO NULL
 #define OPTION_VAL_OPENGL_KO NULL
@@ -23234,7 +21067,7 @@ struct retro_core_options_v2 options_ja = {
 #define RPCS3_SHADER_QUALITY_INFO_0_KO NULL
 #define OPTION_VAL_LOW_KO "Low (Fastest)"
 #define OPTION_VAL_HIGH_KO "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_KO NULL
+#define OPTION_VAL_ULTRA_KO "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_KO NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_KO NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_KO NULL
@@ -23252,7 +21085,7 @@ struct retro_core_options_v2 options_ja = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_KO NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_KO "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_KO "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_KO NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_KO NULL
 #define RPCS3_CPU_BLIT_LABEL_KO NULL
 #define RPCS3_CPU_BLIT_INFO_0_KO NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_KO NULL
@@ -23286,13 +21119,6 @@ struct retro_core_options_v2 options_ja = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_KO NULL
 #define RPCS3_TIME_STRETCHING_LABEL_KO NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_KO NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_KO NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_KO NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_KO NULL
-#define OPTION_VAL_STANDARD_KO NULL
-#define OPTION_VAL_SINGSTAR_KO NULL
-#define OPTION_VAL_REAL_SINGSTAR_KO NULL
-#define OPTION_VAL_ROCKSMITH_KO NULL
 #define RPCS3_MASTER_VOLUME_LABEL_KO "주 볼륨"
 #define RPCS3_MASTER_VOLUME_INFO_0_KO NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_KO NULL
@@ -23328,7 +21154,9 @@ struct retro_core_options_v2 options_ja = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_KO NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_KO NULL
 #define OPTION_VAL_FAST_KO "빠르게"
-#define OPTION_VAL_BALANCED_KO "균형"
+#define OPTION_VAL_ATOMIC_KO NULL
+#define OPTION_VAL_ATOMIC_ORDERED_KO NULL
+#define OPTION_VAL_AS_PS3_KO NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_KO NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_KO NULL
 #define OPTION_VAL_1000_KO NULL
@@ -23342,10 +21170,6 @@ struct retro_core_options_v2 options_ja = {
 #define OPTION_VAL_3_KO "3 (기본)"
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_KO NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_KO NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_KO NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_KO NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_KO NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_KO NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_KO NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_KO NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_KO NULL
@@ -23385,8 +21209,9 @@ struct retro_core_options_v2 options_ja = {
 #define OPTION_VAL_USA_KO "미국"
 #define OPTION_VAL_EU_KO "유럽"
 #define OPTION_VAL_JP_KO "일본"
-#define OPTION_VAL_HK_KO NULL
-#define OPTION_VAL_KR_KO NULL
+#define OPTION_VAL_HK_KO "Hong Kong"
+#define OPTION_VAL_KR_KO "Korea"
+#define OPTION_VAL_CN_KO NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_KO NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_KO NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_KO NULL
@@ -23394,9 +21219,6 @@ struct retro_core_options_v2 options_ja = {
 #define OPTION_VAL_LIST_KO NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_KO NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_KO NULL
-#define RPCS3_VFS_INIT_LABEL_KO NULL
-#define RPCS3_VFS_INIT_INFO_0_KO NULL
-#define OPTION_VAL_RESET_KO "초기화"
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_KO NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_KO NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_KO NULL
@@ -23472,20 +21294,6 @@ struct retro_core_option_v2_definition option_defs_ko[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_KO, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_KO,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_KO, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_KO,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_KO, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_KO,
         NULL, "cpu",
@@ -23496,8 +21304,8 @@ struct retro_core_option_v2_definition option_defs_ko[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_KO, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_KO,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_KO}, {"all_timers", OPTION_VAL_ALL_TIMERS_KO}, {"as_host", OPTION_VAL_AS_HOST_KO}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_KO}, {"as_host", OPTION_VAL_AS_HOST_KO}, {"usleep", OPTION_VAL_USLEEP_KO}, {"all_timers", OPTION_VAL_ALL_TIMERS_KO}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_KO, NULL,
@@ -23507,32 +21315,11 @@ struct retro_core_option_v2_definition option_defs_ko[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_KO, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_KO,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_KO}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_KO, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_KO,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_KO}, {"accurate", OPTION_VAL_ACCURATE_KO}, {"ultra", OPTION_VAL_ULTRA_KO}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_KO, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_KO,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_KO, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_KO,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_KO}, {"approximate", OPTION_VAL_APPROXIMATE_KO}, {"relaxed", OPTION_VAL_RELAXED_KO}, {"inaccurate", OPTION_VAL_INACCURATE_KO}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -23610,7 +21397,7 @@ struct retro_core_option_v2_definition option_defs_ko[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_KO, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_KO,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_KO}, {"high", OPTION_VAL_HIGH_KO}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_KO}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_KO}, {"high", OPTION_VAL_HIGH_KO}, {"ultra", OPTION_VAL_ULTRA_KO}, {NULL, NULL} },
         "high"
     },
     {
@@ -23666,7 +21453,7 @@ struct retro_core_option_v2_definition option_defs_ko[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_KO, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_KO,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_KO}, {"approximate", OPTION_VAL_APPROXIMATE_KO}, {"relaxed", OPTION_VAL_RELAXED_KO}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_KO}, {"approximate", OPTION_VAL_APPROXIMATE_KO}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_KO}, {NULL, NULL} },
         "precise"
     },
     {
@@ -23726,13 +21513,6 @@ struct retro_core_option_v2_definition option_defs_ko[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_KO, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_KO,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_KO}, {"standard", OPTION_VAL_STANDARD_KO}, {"singstar", OPTION_VAL_SINGSTAR_KO}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_KO}, {"rocksmith", OPTION_VAL_ROCKSMITH_KO}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_KO, NULL,
@@ -23805,8 +21585,8 @@ struct retro_core_option_v2_definition option_defs_ko[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_KO, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_KO,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_KO}, {"balanced", OPTION_VAL_BALANCED_KO}, {"accurate", OPTION_VAL_ACCURATE_KO}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_KO}, {"atomic", OPTION_VAL_ATOMIC_KO}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_KO}, {"as_ps3", OPTION_VAL_AS_PS3_KO}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_KO, NULL,
@@ -23832,20 +21612,6 @@ struct retro_core_option_v2_definition option_defs_ko[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_KO, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_KO,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_KO, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_KO,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_KO, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_KO,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -23926,7 +21692,7 @@ struct retro_core_option_v2_definition option_defs_ko[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_KO, NULL,
         RPCS3_LICENSE_AREA_INFO_0_KO,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_KO}, {"eu", OPTION_VAL_EU_KO}, {"jp", OPTION_VAL_JP_KO}, {"hk", OPTION_VAL_HK_KO}, {"kr", OPTION_VAL_KR_KO}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_KO}, {"eu", OPTION_VAL_EU_KO}, {"jp", OPTION_VAL_JP_KO}, {"hk", OPTION_VAL_HK_KO}, {"kr", OPTION_VAL_KR_KO}, {"cn", OPTION_VAL_CN_KO}, {NULL, NULL} },
         "usa"
     },
     {
@@ -23949,13 +21715,6 @@ struct retro_core_option_v2_definition option_defs_ko[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_KO, NULL,
-        RPCS3_VFS_INIT_INFO_0_KO,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_KO}, {"reset", OPTION_VAL_RESET_KO}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_KO, NULL,
@@ -24023,10 +21782,6 @@ struct retro_core_options_v2 options_ko = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_NL NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_NL NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_NL "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_NL NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_NL NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_NL NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_NL NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_NL NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_NL NULL
 #define OPTION_VAL_50_NL NULL
@@ -24037,23 +21792,18 @@ struct retro_core_options_v2 options_ko = {
 #define OPTION_VAL_300_NL NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_NL NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_NL NULL
-#define OPTION_VAL_USLEEP_NL NULL
-#define OPTION_VAL_ALL_TIMERS_NL NULL
+#define OPTION_VAL_AUTO_NL NULL
 #define OPTION_VAL_AS_HOST_NL NULL
+#define OPTION_VAL_USLEEP_NL "Usleep"
+#define OPTION_VAL_ALL_TIMERS_NL NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_NL NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_NL NULL
-#define RPCS3_ENABLE_TSX_LABEL_NL NULL
-#define RPCS3_ENABLE_TSX_INFO_0_NL NULL
-#define OPTION_VAL_FORCED_NL NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_NL NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_NL NULL
-#define OPTION_VAL_RELAXED_NL NULL
 #define OPTION_VAL_ACCURATE_NL NULL
-#define OPTION_VAL_ULTRA_NL NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_NL NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_NL NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_NL NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_NL NULL
+#define OPTION_VAL_APPROXIMATE_NL NULL
+#define OPTION_VAL_RELAXED_NL "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_NL NULL
 #define RPCS3_RENDERER_LABEL_NL NULL
 #define RPCS3_RENDERER_INFO_0_NL NULL
 #define OPTION_VAL_OPENGL_NL NULL
@@ -24121,7 +21871,7 @@ struct retro_core_options_v2 options_ko = {
 #define RPCS3_SHADER_QUALITY_INFO_0_NL NULL
 #define OPTION_VAL_LOW_NL "Low (Fastest)"
 #define OPTION_VAL_HIGH_NL "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_NL NULL
+#define OPTION_VAL_ULTRA_NL "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_NL NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_NL NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_NL NULL
@@ -24139,7 +21889,7 @@ struct retro_core_options_v2 options_ko = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_NL NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_NL "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_NL "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_NL NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_NL NULL
 #define RPCS3_CPU_BLIT_LABEL_NL NULL
 #define RPCS3_CPU_BLIT_INFO_0_NL NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_NL NULL
@@ -24173,13 +21923,6 @@ struct retro_core_options_v2 options_ko = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_NL NULL
 #define RPCS3_TIME_STRETCHING_LABEL_NL NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_NL NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_NL NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_NL NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_NL NULL
-#define OPTION_VAL_STANDARD_NL NULL
-#define OPTION_VAL_SINGSTAR_NL NULL
-#define OPTION_VAL_REAL_SINGSTAR_NL NULL
-#define OPTION_VAL_ROCKSMITH_NL NULL
 #define RPCS3_MASTER_VOLUME_LABEL_NL NULL
 #define RPCS3_MASTER_VOLUME_INFO_0_NL NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_NL NULL
@@ -24215,7 +21958,9 @@ struct retro_core_options_v2 options_ko = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_NL NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_NL NULL
 #define OPTION_VAL_FAST_NL "Snel"
-#define OPTION_VAL_BALANCED_NL "Gebalanceerd"
+#define OPTION_VAL_ATOMIC_NL NULL
+#define OPTION_VAL_ATOMIC_ORDERED_NL NULL
+#define OPTION_VAL_AS_PS3_NL NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_NL NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_NL NULL
 #define OPTION_VAL_1000_NL NULL
@@ -24229,10 +21974,6 @@ struct retro_core_options_v2 options_ko = {
 #define OPTION_VAL_3_NL NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_NL NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_NL NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_NL NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_NL NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_NL NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_NL NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_NL NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_NL NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_NL NULL
@@ -24269,11 +22010,12 @@ struct retro_core_options_v2 options_ko = {
 #define OPTION_VAL_CIRCLE_NL NULL
 #define RPCS3_LICENSE_AREA_LABEL_NL NULL
 #define RPCS3_LICENSE_AREA_INFO_0_NL NULL
-#define OPTION_VAL_USA_NL NULL
-#define OPTION_VAL_EU_NL NULL
-#define OPTION_VAL_JP_NL NULL
-#define OPTION_VAL_HK_NL NULL
-#define OPTION_VAL_KR_NL NULL
+#define OPTION_VAL_USA_NL "USA"
+#define OPTION_VAL_EU_NL "Europe"
+#define OPTION_VAL_JP_NL "Japan"
+#define OPTION_VAL_HK_NL "Hong Kong"
+#define OPTION_VAL_KR_NL "Korea"
+#define OPTION_VAL_CN_NL NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_NL NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_NL NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_NL NULL
@@ -24281,9 +22023,6 @@ struct retro_core_options_v2 options_ko = {
 #define OPTION_VAL_LIST_NL NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_NL NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_NL NULL
-#define RPCS3_VFS_INIT_LABEL_NL NULL
-#define RPCS3_VFS_INIT_INFO_0_NL NULL
-#define OPTION_VAL_RESET_NL NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_NL NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_NL NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_NL NULL
@@ -24359,20 +22098,6 @@ struct retro_core_option_v2_definition option_defs_nl[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_NL, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_NL,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_NL, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_NL,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_NL, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_NL,
         NULL, "cpu",
@@ -24383,8 +22108,8 @@ struct retro_core_option_v2_definition option_defs_nl[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_NL, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_NL,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_NL}, {"all_timers", OPTION_VAL_ALL_TIMERS_NL}, {"as_host", OPTION_VAL_AS_HOST_NL}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_NL}, {"as_host", OPTION_VAL_AS_HOST_NL}, {"usleep", OPTION_VAL_USLEEP_NL}, {"all_timers", OPTION_VAL_ALL_TIMERS_NL}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_NL, NULL,
@@ -24394,32 +22119,11 @@ struct retro_core_option_v2_definition option_defs_nl[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_NL, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_NL,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_NL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_NL, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_NL,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_NL}, {"accurate", OPTION_VAL_ACCURATE_NL}, {"ultra", OPTION_VAL_ULTRA_NL}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_NL, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_NL,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_NL, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_NL,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_NL}, {"approximate", OPTION_VAL_APPROXIMATE_NL}, {"relaxed", OPTION_VAL_RELAXED_NL}, {"inaccurate", OPTION_VAL_INACCURATE_NL}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -24497,7 +22201,7 @@ struct retro_core_option_v2_definition option_defs_nl[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_NL, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_NL,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_NL}, {"high", OPTION_VAL_HIGH_NL}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_NL}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_NL}, {"high", OPTION_VAL_HIGH_NL}, {"ultra", OPTION_VAL_ULTRA_NL}, {NULL, NULL} },
         "high"
     },
     {
@@ -24553,7 +22257,7 @@ struct retro_core_option_v2_definition option_defs_nl[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_NL, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_NL,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_NL}, {"approximate", OPTION_VAL_APPROXIMATE_NL}, {"relaxed", OPTION_VAL_RELAXED_NL}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_NL}, {"approximate", OPTION_VAL_APPROXIMATE_NL}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_NL}, {NULL, NULL} },
         "precise"
     },
     {
@@ -24613,13 +22317,6 @@ struct retro_core_option_v2_definition option_defs_nl[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_NL, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_NL,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_NL}, {"standard", OPTION_VAL_STANDARD_NL}, {"singstar", OPTION_VAL_SINGSTAR_NL}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_NL}, {"rocksmith", OPTION_VAL_ROCKSMITH_NL}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_NL, NULL,
@@ -24692,8 +22389,8 @@ struct retro_core_option_v2_definition option_defs_nl[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_NL, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_NL,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_NL}, {"balanced", OPTION_VAL_BALANCED_NL}, {"accurate", OPTION_VAL_ACCURATE_NL}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_NL}, {"atomic", OPTION_VAL_ATOMIC_NL}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_NL}, {"as_ps3", OPTION_VAL_AS_PS3_NL}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_NL, NULL,
@@ -24719,20 +22416,6 @@ struct retro_core_option_v2_definition option_defs_nl[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_NL, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_NL,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_NL, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_NL,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_NL, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_NL,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -24813,7 +22496,7 @@ struct retro_core_option_v2_definition option_defs_nl[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_NL, NULL,
         RPCS3_LICENSE_AREA_INFO_0_NL,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_NL}, {"eu", OPTION_VAL_EU_NL}, {"jp", OPTION_VAL_JP_NL}, {"hk", OPTION_VAL_HK_NL}, {"kr", OPTION_VAL_KR_NL}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_NL}, {"eu", OPTION_VAL_EU_NL}, {"jp", OPTION_VAL_JP_NL}, {"hk", OPTION_VAL_HK_NL}, {"kr", OPTION_VAL_KR_NL}, {"cn", OPTION_VAL_CN_NL}, {NULL, NULL} },
         "usa"
     },
     {
@@ -24836,13 +22519,6 @@ struct retro_core_option_v2_definition option_defs_nl[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_NL, NULL,
-        RPCS3_VFS_INIT_INFO_0_NL,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_NL}, {"reset", OPTION_VAL_RESET_NL}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_NL, NULL,
@@ -24910,10 +22586,6 @@ struct retro_core_options_v2 options_nl = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_NO NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_NO NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_NO "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_NO NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_NO NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_NO NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_NO NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_NO NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_NO NULL
 #define OPTION_VAL_50_NO NULL
@@ -24924,23 +22596,18 @@ struct retro_core_options_v2 options_nl = {
 #define OPTION_VAL_300_NO NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_NO NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_NO NULL
-#define OPTION_VAL_USLEEP_NO NULL
-#define OPTION_VAL_ALL_TIMERS_NO NULL
+#define OPTION_VAL_AUTO_NO NULL
 #define OPTION_VAL_AS_HOST_NO NULL
+#define OPTION_VAL_USLEEP_NO "Usleep"
+#define OPTION_VAL_ALL_TIMERS_NO NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_NO NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_NO NULL
-#define RPCS3_ENABLE_TSX_LABEL_NO NULL
-#define RPCS3_ENABLE_TSX_INFO_0_NO NULL
-#define OPTION_VAL_FORCED_NO NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_NO NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_NO NULL
-#define OPTION_VAL_RELAXED_NO NULL
 #define OPTION_VAL_ACCURATE_NO NULL
-#define OPTION_VAL_ULTRA_NO NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_NO NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_NO NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_NO NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_NO NULL
+#define OPTION_VAL_APPROXIMATE_NO NULL
+#define OPTION_VAL_RELAXED_NO "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_NO NULL
 #define RPCS3_RENDERER_LABEL_NO NULL
 #define RPCS3_RENDERER_INFO_0_NO NULL
 #define OPTION_VAL_OPENGL_NO NULL
@@ -25008,7 +22675,7 @@ struct retro_core_options_v2 options_nl = {
 #define RPCS3_SHADER_QUALITY_INFO_0_NO NULL
 #define OPTION_VAL_LOW_NO "Low (Fastest)"
 #define OPTION_VAL_HIGH_NO "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_NO NULL
+#define OPTION_VAL_ULTRA_NO "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_NO NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_NO NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_NO NULL
@@ -25026,7 +22693,7 @@ struct retro_core_options_v2 options_nl = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_NO NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_NO "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_NO "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_NO NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_NO NULL
 #define RPCS3_CPU_BLIT_LABEL_NO NULL
 #define RPCS3_CPU_BLIT_INFO_0_NO NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_NO NULL
@@ -25060,13 +22727,6 @@ struct retro_core_options_v2 options_nl = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_NO NULL
 #define RPCS3_TIME_STRETCHING_LABEL_NO NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_NO NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_NO NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_NO NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_NO NULL
-#define OPTION_VAL_STANDARD_NO NULL
-#define OPTION_VAL_SINGSTAR_NO NULL
-#define OPTION_VAL_REAL_SINGSTAR_NO NULL
-#define OPTION_VAL_ROCKSMITH_NO NULL
 #define RPCS3_MASTER_VOLUME_LABEL_NO NULL
 #define RPCS3_MASTER_VOLUME_INFO_0_NO NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_NO NULL
@@ -25102,7 +22762,9 @@ struct retro_core_options_v2 options_nl = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_NO NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_NO NULL
 #define OPTION_VAL_FAST_NO NULL
-#define OPTION_VAL_BALANCED_NO "Balansert"
+#define OPTION_VAL_ATOMIC_NO NULL
+#define OPTION_VAL_ATOMIC_ORDERED_NO NULL
+#define OPTION_VAL_AS_PS3_NO NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_NO NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_NO NULL
 #define OPTION_VAL_1000_NO NULL
@@ -25116,10 +22778,6 @@ struct retro_core_options_v2 options_nl = {
 #define OPTION_VAL_3_NO NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_NO NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_NO NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_NO NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_NO NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_NO NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_NO NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_NO NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_NO NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_NO NULL
@@ -25156,11 +22814,12 @@ struct retro_core_options_v2 options_nl = {
 #define OPTION_VAL_CIRCLE_NO NULL
 #define RPCS3_LICENSE_AREA_LABEL_NO NULL
 #define RPCS3_LICENSE_AREA_INFO_0_NO NULL
-#define OPTION_VAL_USA_NO NULL
-#define OPTION_VAL_EU_NO NULL
-#define OPTION_VAL_JP_NO NULL
-#define OPTION_VAL_HK_NO NULL
-#define OPTION_VAL_KR_NO NULL
+#define OPTION_VAL_USA_NO "USA"
+#define OPTION_VAL_EU_NO "Europe"
+#define OPTION_VAL_JP_NO "Japan"
+#define OPTION_VAL_HK_NO "Hong Kong"
+#define OPTION_VAL_KR_NO "Korea"
+#define OPTION_VAL_CN_NO NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_NO NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_NO NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_NO NULL
@@ -25168,9 +22827,6 @@ struct retro_core_options_v2 options_nl = {
 #define OPTION_VAL_LIST_NO NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_NO NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_NO NULL
-#define RPCS3_VFS_INIT_LABEL_NO NULL
-#define RPCS3_VFS_INIT_INFO_0_NO NULL
-#define OPTION_VAL_RESET_NO "Nullstill"
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_NO NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_NO NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_NO NULL
@@ -25246,20 +22902,6 @@ struct retro_core_option_v2_definition option_defs_no[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_NO, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_NO,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_NO, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_NO,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_NO, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_NO,
         NULL, "cpu",
@@ -25270,8 +22912,8 @@ struct retro_core_option_v2_definition option_defs_no[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_NO, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_NO,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_NO}, {"all_timers", OPTION_VAL_ALL_TIMERS_NO}, {"as_host", OPTION_VAL_AS_HOST_NO}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_NO}, {"as_host", OPTION_VAL_AS_HOST_NO}, {"usleep", OPTION_VAL_USLEEP_NO}, {"all_timers", OPTION_VAL_ALL_TIMERS_NO}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_NO, NULL,
@@ -25281,32 +22923,11 @@ struct retro_core_option_v2_definition option_defs_no[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_NO, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_NO,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_NO}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_NO, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_NO,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_NO}, {"accurate", OPTION_VAL_ACCURATE_NO}, {"ultra", OPTION_VAL_ULTRA_NO}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_NO, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_NO,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_NO, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_NO,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_NO}, {"approximate", OPTION_VAL_APPROXIMATE_NO}, {"relaxed", OPTION_VAL_RELAXED_NO}, {"inaccurate", OPTION_VAL_INACCURATE_NO}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -25384,7 +23005,7 @@ struct retro_core_option_v2_definition option_defs_no[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_NO, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_NO,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_NO}, {"high", OPTION_VAL_HIGH_NO}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_NO}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_NO}, {"high", OPTION_VAL_HIGH_NO}, {"ultra", OPTION_VAL_ULTRA_NO}, {NULL, NULL} },
         "high"
     },
     {
@@ -25440,7 +23061,7 @@ struct retro_core_option_v2_definition option_defs_no[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_NO, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_NO,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_NO}, {"approximate", OPTION_VAL_APPROXIMATE_NO}, {"relaxed", OPTION_VAL_RELAXED_NO}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_NO}, {"approximate", OPTION_VAL_APPROXIMATE_NO}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_NO}, {NULL, NULL} },
         "precise"
     },
     {
@@ -25500,13 +23121,6 @@ struct retro_core_option_v2_definition option_defs_no[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_NO, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_NO,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_NO}, {"standard", OPTION_VAL_STANDARD_NO}, {"singstar", OPTION_VAL_SINGSTAR_NO}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_NO}, {"rocksmith", OPTION_VAL_ROCKSMITH_NO}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_NO, NULL,
@@ -25579,8 +23193,8 @@ struct retro_core_option_v2_definition option_defs_no[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_NO, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_NO,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_NO}, {"balanced", OPTION_VAL_BALANCED_NO}, {"accurate", OPTION_VAL_ACCURATE_NO}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_NO}, {"atomic", OPTION_VAL_ATOMIC_NO}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_NO}, {"as_ps3", OPTION_VAL_AS_PS3_NO}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_NO, NULL,
@@ -25606,20 +23220,6 @@ struct retro_core_option_v2_definition option_defs_no[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_NO, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_NO,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_NO, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_NO,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_NO, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_NO,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -25700,7 +23300,7 @@ struct retro_core_option_v2_definition option_defs_no[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_NO, NULL,
         RPCS3_LICENSE_AREA_INFO_0_NO,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_NO}, {"eu", OPTION_VAL_EU_NO}, {"jp", OPTION_VAL_JP_NO}, {"hk", OPTION_VAL_HK_NO}, {"kr", OPTION_VAL_KR_NO}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_NO}, {"eu", OPTION_VAL_EU_NO}, {"jp", OPTION_VAL_JP_NO}, {"hk", OPTION_VAL_HK_NO}, {"kr", OPTION_VAL_KR_NO}, {"cn", OPTION_VAL_CN_NO}, {NULL, NULL} },
         "usa"
     },
     {
@@ -25723,13 +23323,6 @@ struct retro_core_option_v2_definition option_defs_no[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_NO, NULL,
-        RPCS3_VFS_INIT_INFO_0_NO,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_NO}, {"reset", OPTION_VAL_RESET_NO}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_NO, NULL,
@@ -25797,10 +23390,6 @@ struct retro_core_options_v2 options_no = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_OR NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_OR NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_OR "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_OR NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_OR NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_OR NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_OR NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_OR NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_OR NULL
 #define OPTION_VAL_50_OR NULL
@@ -25811,23 +23400,18 @@ struct retro_core_options_v2 options_no = {
 #define OPTION_VAL_300_OR NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_OR NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_OR NULL
-#define OPTION_VAL_USLEEP_OR NULL
-#define OPTION_VAL_ALL_TIMERS_OR NULL
+#define OPTION_VAL_AUTO_OR NULL
 #define OPTION_VAL_AS_HOST_OR NULL
+#define OPTION_VAL_USLEEP_OR "Usleep"
+#define OPTION_VAL_ALL_TIMERS_OR NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_OR NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_OR NULL
-#define RPCS3_ENABLE_TSX_LABEL_OR NULL
-#define RPCS3_ENABLE_TSX_INFO_0_OR NULL
-#define OPTION_VAL_FORCED_OR NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_OR NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_OR NULL
-#define OPTION_VAL_RELAXED_OR NULL
 #define OPTION_VAL_ACCURATE_OR NULL
-#define OPTION_VAL_ULTRA_OR NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_OR NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_OR NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_OR NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_OR NULL
+#define OPTION_VAL_APPROXIMATE_OR NULL
+#define OPTION_VAL_RELAXED_OR "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_OR NULL
 #define RPCS3_RENDERER_LABEL_OR NULL
 #define RPCS3_RENDERER_INFO_0_OR NULL
 #define OPTION_VAL_OPENGL_OR NULL
@@ -25895,7 +23479,7 @@ struct retro_core_options_v2 options_no = {
 #define RPCS3_SHADER_QUALITY_INFO_0_OR NULL
 #define OPTION_VAL_LOW_OR "Low (Fastest)"
 #define OPTION_VAL_HIGH_OR "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_OR NULL
+#define OPTION_VAL_ULTRA_OR "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_OR NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_OR NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_OR NULL
@@ -25913,7 +23497,7 @@ struct retro_core_options_v2 options_no = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_OR NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_OR "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_OR "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_OR NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_OR NULL
 #define RPCS3_CPU_BLIT_LABEL_OR NULL
 #define RPCS3_CPU_BLIT_INFO_0_OR NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_OR NULL
@@ -25947,13 +23531,6 @@ struct retro_core_options_v2 options_no = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_OR NULL
 #define RPCS3_TIME_STRETCHING_LABEL_OR NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_OR NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_OR NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_OR NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_OR NULL
-#define OPTION_VAL_STANDARD_OR NULL
-#define OPTION_VAL_SINGSTAR_OR NULL
-#define OPTION_VAL_REAL_SINGSTAR_OR NULL
-#define OPTION_VAL_ROCKSMITH_OR NULL
 #define RPCS3_MASTER_VOLUME_LABEL_OR NULL
 #define RPCS3_MASTER_VOLUME_INFO_0_OR NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_OR NULL
@@ -25989,7 +23566,9 @@ struct retro_core_options_v2 options_no = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_OR NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_OR NULL
 #define OPTION_VAL_FAST_OR NULL
-#define OPTION_VAL_BALANCED_OR NULL
+#define OPTION_VAL_ATOMIC_OR NULL
+#define OPTION_VAL_ATOMIC_ORDERED_OR NULL
+#define OPTION_VAL_AS_PS3_OR NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_OR NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_OR NULL
 #define OPTION_VAL_1000_OR NULL
@@ -26003,10 +23582,6 @@ struct retro_core_options_v2 options_no = {
 #define OPTION_VAL_3_OR NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_OR NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_OR NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_OR NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_OR NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_OR NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_OR NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_OR NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_OR NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_OR NULL
@@ -26043,11 +23618,12 @@ struct retro_core_options_v2 options_no = {
 #define OPTION_VAL_CIRCLE_OR NULL
 #define RPCS3_LICENSE_AREA_LABEL_OR NULL
 #define RPCS3_LICENSE_AREA_INFO_0_OR NULL
-#define OPTION_VAL_USA_OR NULL
-#define OPTION_VAL_EU_OR NULL
-#define OPTION_VAL_JP_OR NULL
-#define OPTION_VAL_HK_OR NULL
-#define OPTION_VAL_KR_OR NULL
+#define OPTION_VAL_USA_OR "USA"
+#define OPTION_VAL_EU_OR "Europe"
+#define OPTION_VAL_JP_OR "Japan"
+#define OPTION_VAL_HK_OR "Hong Kong"
+#define OPTION_VAL_KR_OR "Korea"
+#define OPTION_VAL_CN_OR NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_OR NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_OR NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_OR NULL
@@ -26055,9 +23631,6 @@ struct retro_core_options_v2 options_no = {
 #define OPTION_VAL_LIST_OR NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_OR NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_OR NULL
-#define RPCS3_VFS_INIT_LABEL_OR NULL
-#define RPCS3_VFS_INIT_INFO_0_OR NULL
-#define OPTION_VAL_RESET_OR NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_OR NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_OR NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_OR NULL
@@ -26133,20 +23706,6 @@ struct retro_core_option_v2_definition option_defs_or[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_OR, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_OR,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_OR, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_OR,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_OR, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_OR,
         NULL, "cpu",
@@ -26157,8 +23716,8 @@ struct retro_core_option_v2_definition option_defs_or[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_OR, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_OR,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_OR}, {"all_timers", OPTION_VAL_ALL_TIMERS_OR}, {"as_host", OPTION_VAL_AS_HOST_OR}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_OR}, {"as_host", OPTION_VAL_AS_HOST_OR}, {"usleep", OPTION_VAL_USLEEP_OR}, {"all_timers", OPTION_VAL_ALL_TIMERS_OR}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_OR, NULL,
@@ -26168,32 +23727,11 @@ struct retro_core_option_v2_definition option_defs_or[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_OR, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_OR,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_OR}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_OR, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_OR,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_OR}, {"accurate", OPTION_VAL_ACCURATE_OR}, {"ultra", OPTION_VAL_ULTRA_OR}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_OR, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_OR,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_OR, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_OR,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_OR}, {"approximate", OPTION_VAL_APPROXIMATE_OR}, {"relaxed", OPTION_VAL_RELAXED_OR}, {"inaccurate", OPTION_VAL_INACCURATE_OR}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -26271,7 +23809,7 @@ struct retro_core_option_v2_definition option_defs_or[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_OR, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_OR,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_OR}, {"high", OPTION_VAL_HIGH_OR}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_OR}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_OR}, {"high", OPTION_VAL_HIGH_OR}, {"ultra", OPTION_VAL_ULTRA_OR}, {NULL, NULL} },
         "high"
     },
     {
@@ -26327,7 +23865,7 @@ struct retro_core_option_v2_definition option_defs_or[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_OR, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_OR,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_OR}, {"approximate", OPTION_VAL_APPROXIMATE_OR}, {"relaxed", OPTION_VAL_RELAXED_OR}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_OR}, {"approximate", OPTION_VAL_APPROXIMATE_OR}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_OR}, {NULL, NULL} },
         "precise"
     },
     {
@@ -26387,13 +23925,6 @@ struct retro_core_option_v2_definition option_defs_or[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_OR, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_OR,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_OR}, {"standard", OPTION_VAL_STANDARD_OR}, {"singstar", OPTION_VAL_SINGSTAR_OR}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_OR}, {"rocksmith", OPTION_VAL_ROCKSMITH_OR}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_OR, NULL,
@@ -26466,8 +23997,8 @@ struct retro_core_option_v2_definition option_defs_or[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_OR, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_OR,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_OR}, {"balanced", OPTION_VAL_BALANCED_OR}, {"accurate", OPTION_VAL_ACCURATE_OR}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_OR}, {"atomic", OPTION_VAL_ATOMIC_OR}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_OR}, {"as_ps3", OPTION_VAL_AS_PS3_OR}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_OR, NULL,
@@ -26493,20 +24024,6 @@ struct retro_core_option_v2_definition option_defs_or[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_OR, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_OR,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_OR, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_OR,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_OR, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_OR,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -26587,7 +24104,7 @@ struct retro_core_option_v2_definition option_defs_or[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_OR, NULL,
         RPCS3_LICENSE_AREA_INFO_0_OR,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_OR}, {"eu", OPTION_VAL_EU_OR}, {"jp", OPTION_VAL_JP_OR}, {"hk", OPTION_VAL_HK_OR}, {"kr", OPTION_VAL_KR_OR}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_OR}, {"eu", OPTION_VAL_EU_OR}, {"jp", OPTION_VAL_JP_OR}, {"hk", OPTION_VAL_HK_OR}, {"kr", OPTION_VAL_KR_OR}, {"cn", OPTION_VAL_CN_OR}, {NULL, NULL} },
         "usa"
     },
     {
@@ -26610,13 +24127,6 @@ struct retro_core_option_v2_definition option_defs_or[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_OR, NULL,
-        RPCS3_VFS_INIT_INFO_0_OR,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_OR}, {"reset", OPTION_VAL_RESET_OR}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_OR, NULL,
@@ -26684,10 +24194,6 @@ struct retro_core_options_v2 options_or = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_PL NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_PL NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_PL "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_PL NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_PL NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_PL NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_PL NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_PL NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_PL NULL
 #define OPTION_VAL_50_PL "50 %"
@@ -26698,23 +24204,18 @@ struct retro_core_options_v2 options_or = {
 #define OPTION_VAL_300_PL NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_PL NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_PL NULL
-#define OPTION_VAL_USLEEP_PL NULL
-#define OPTION_VAL_ALL_TIMERS_PL NULL
+#define OPTION_VAL_AUTO_PL NULL
 #define OPTION_VAL_AS_HOST_PL NULL
+#define OPTION_VAL_USLEEP_PL "Usleep"
+#define OPTION_VAL_ALL_TIMERS_PL NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_PL NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_PL NULL
-#define RPCS3_ENABLE_TSX_LABEL_PL NULL
-#define RPCS3_ENABLE_TSX_INFO_0_PL NULL
-#define OPTION_VAL_FORCED_PL "Wymuszony"
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_PL NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_PL NULL
-#define OPTION_VAL_RELAXED_PL NULL
 #define OPTION_VAL_ACCURATE_PL "Dokładna"
-#define OPTION_VAL_ULTRA_PL NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_PL NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_PL NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_PL NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_PL NULL
+#define OPTION_VAL_APPROXIMATE_PL NULL
+#define OPTION_VAL_RELAXED_PL "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_PL NULL
 #define RPCS3_RENDERER_LABEL_PL NULL
 #define RPCS3_RENDERER_INFO_0_PL NULL
 #define OPTION_VAL_OPENGL_PL NULL
@@ -26782,7 +24283,7 @@ struct retro_core_options_v2 options_or = {
 #define RPCS3_SHADER_QUALITY_INFO_0_PL NULL
 #define OPTION_VAL_LOW_PL "Low (Fastest)"
 #define OPTION_VAL_HIGH_PL "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_PL NULL
+#define OPTION_VAL_ULTRA_PL "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_PL NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_PL NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_PL NULL
@@ -26800,7 +24301,7 @@ struct retro_core_options_v2 options_or = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_PL NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_PL "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_PL "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_PL NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_PL NULL
 #define RPCS3_CPU_BLIT_LABEL_PL NULL
 #define RPCS3_CPU_BLIT_INFO_0_PL NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_PL NULL
@@ -26834,13 +24335,6 @@ struct retro_core_options_v2 options_or = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_PL NULL
 #define RPCS3_TIME_STRETCHING_LABEL_PL NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_PL NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_PL NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_PL NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_PL NULL
-#define OPTION_VAL_STANDARD_PL NULL
-#define OPTION_VAL_SINGSTAR_PL NULL
-#define OPTION_VAL_REAL_SINGSTAR_PL NULL
-#define OPTION_VAL_ROCKSMITH_PL NULL
 #define RPCS3_MASTER_VOLUME_LABEL_PL "Ogólna głośność"
 #define RPCS3_MASTER_VOLUME_INFO_0_PL NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_PL NULL
@@ -26876,7 +24370,9 @@ struct retro_core_options_v2 options_or = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_PL NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_PL NULL
 #define OPTION_VAL_FAST_PL "Szybko"
-#define OPTION_VAL_BALANCED_PL "Zbalansowany"
+#define OPTION_VAL_ATOMIC_PL NULL
+#define OPTION_VAL_ATOMIC_ORDERED_PL NULL
+#define OPTION_VAL_AS_PS3_PL NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_PL NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_PL NULL
 #define OPTION_VAL_1000_PL NULL
@@ -26890,10 +24386,6 @@ struct retro_core_options_v2 options_or = {
 #define OPTION_VAL_3_PL "3 (domyślnie)"
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_PL NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_PL NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_PL NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_PL NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_PL NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_PL NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_PL NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_PL NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_PL NULL
@@ -26930,11 +24422,12 @@ struct retro_core_options_v2 options_or = {
 #define OPTION_VAL_CIRCLE_PL NULL
 #define RPCS3_LICENSE_AREA_LABEL_PL NULL
 #define RPCS3_LICENSE_AREA_INFO_0_PL NULL
-#define OPTION_VAL_USA_PL NULL
+#define OPTION_VAL_USA_PL "USA"
 #define OPTION_VAL_EU_PL "Europa"
 #define OPTION_VAL_JP_PL "Japonia"
-#define OPTION_VAL_HK_PL NULL
-#define OPTION_VAL_KR_PL NULL
+#define OPTION_VAL_HK_PL "Hong Kong"
+#define OPTION_VAL_KR_PL "Korea"
+#define OPTION_VAL_CN_PL NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_PL NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_PL NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_PL NULL
@@ -26942,9 +24435,6 @@ struct retro_core_options_v2 options_or = {
 #define OPTION_VAL_LIST_PL NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_PL NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_PL NULL
-#define RPCS3_VFS_INIT_LABEL_PL NULL
-#define RPCS3_VFS_INIT_INFO_0_PL NULL
-#define OPTION_VAL_RESET_PL NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_PL NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_PL NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_PL NULL
@@ -27020,20 +24510,6 @@ struct retro_core_option_v2_definition option_defs_pl[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_PL, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_PL,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_PL, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_PL,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_PL, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_PL,
         NULL, "cpu",
@@ -27044,8 +24520,8 @@ struct retro_core_option_v2_definition option_defs_pl[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_PL, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_PL,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_PL}, {"all_timers", OPTION_VAL_ALL_TIMERS_PL}, {"as_host", OPTION_VAL_AS_HOST_PL}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_PL}, {"as_host", OPTION_VAL_AS_HOST_PL}, {"usleep", OPTION_VAL_USLEEP_PL}, {"all_timers", OPTION_VAL_ALL_TIMERS_PL}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_PL, NULL,
@@ -27055,32 +24531,11 @@ struct retro_core_option_v2_definition option_defs_pl[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_PL, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_PL,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_PL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_PL, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_PL,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_PL}, {"accurate", OPTION_VAL_ACCURATE_PL}, {"ultra", OPTION_VAL_ULTRA_PL}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_PL, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_PL,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_PL, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_PL,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_PL}, {"approximate", OPTION_VAL_APPROXIMATE_PL}, {"relaxed", OPTION_VAL_RELAXED_PL}, {"inaccurate", OPTION_VAL_INACCURATE_PL}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -27158,7 +24613,7 @@ struct retro_core_option_v2_definition option_defs_pl[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_PL, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_PL,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_PL}, {"high", OPTION_VAL_HIGH_PL}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_PL}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_PL}, {"high", OPTION_VAL_HIGH_PL}, {"ultra", OPTION_VAL_ULTRA_PL}, {NULL, NULL} },
         "high"
     },
     {
@@ -27214,7 +24669,7 @@ struct retro_core_option_v2_definition option_defs_pl[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_PL, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_PL,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_PL}, {"approximate", OPTION_VAL_APPROXIMATE_PL}, {"relaxed", OPTION_VAL_RELAXED_PL}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_PL}, {"approximate", OPTION_VAL_APPROXIMATE_PL}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_PL}, {NULL, NULL} },
         "precise"
     },
     {
@@ -27274,13 +24729,6 @@ struct retro_core_option_v2_definition option_defs_pl[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_PL, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_PL,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_PL}, {"standard", OPTION_VAL_STANDARD_PL}, {"singstar", OPTION_VAL_SINGSTAR_PL}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_PL}, {"rocksmith", OPTION_VAL_ROCKSMITH_PL}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_PL, NULL,
@@ -27353,8 +24801,8 @@ struct retro_core_option_v2_definition option_defs_pl[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_PL, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_PL,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_PL}, {"balanced", OPTION_VAL_BALANCED_PL}, {"accurate", OPTION_VAL_ACCURATE_PL}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_PL}, {"atomic", OPTION_VAL_ATOMIC_PL}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_PL}, {"as_ps3", OPTION_VAL_AS_PS3_PL}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_PL, NULL,
@@ -27380,20 +24828,6 @@ struct retro_core_option_v2_definition option_defs_pl[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_PL, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_PL,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_PL, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_PL,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_PL, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_PL,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -27474,7 +24908,7 @@ struct retro_core_option_v2_definition option_defs_pl[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_PL, NULL,
         RPCS3_LICENSE_AREA_INFO_0_PL,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_PL}, {"eu", OPTION_VAL_EU_PL}, {"jp", OPTION_VAL_JP_PL}, {"hk", OPTION_VAL_HK_PL}, {"kr", OPTION_VAL_KR_PL}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_PL}, {"eu", OPTION_VAL_EU_PL}, {"jp", OPTION_VAL_JP_PL}, {"hk", OPTION_VAL_HK_PL}, {"kr", OPTION_VAL_KR_PL}, {"cn", OPTION_VAL_CN_PL}, {NULL, NULL} },
         "usa"
     },
     {
@@ -27497,13 +24931,6 @@ struct retro_core_option_v2_definition option_defs_pl[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_PL, NULL,
-        RPCS3_VFS_INIT_INFO_0_PL,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_PL}, {"reset", OPTION_VAL_RESET_PL}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_PL, NULL,
@@ -27571,10 +24998,6 @@ struct retro_core_options_v2 options_pl = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_PT_BR NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_PT_BR NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_PT_BR "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_PT_BR NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_PT_BR NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_PT_BR NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_PT_BR NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_PT_BR NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_PT_BR NULL
 #define OPTION_VAL_50_PT_BR NULL
@@ -27585,23 +25008,18 @@ struct retro_core_options_v2 options_pl = {
 #define OPTION_VAL_300_PT_BR NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_PT_BR NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_PT_BR NULL
-#define OPTION_VAL_USLEEP_PT_BR NULL
-#define OPTION_VAL_ALL_TIMERS_PT_BR NULL
+#define OPTION_VAL_AUTO_PT_BR NULL
 #define OPTION_VAL_AS_HOST_PT_BR NULL
+#define OPTION_VAL_USLEEP_PT_BR "Usleep"
+#define OPTION_VAL_ALL_TIMERS_PT_BR NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_PT_BR NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_PT_BR NULL
-#define RPCS3_ENABLE_TSX_LABEL_PT_BR NULL
-#define RPCS3_ENABLE_TSX_INFO_0_PT_BR NULL
-#define OPTION_VAL_FORCED_PT_BR NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_PT_BR NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_PT_BR NULL
-#define OPTION_VAL_RELAXED_PT_BR NULL
 #define OPTION_VAL_ACCURATE_PT_BR "Modo precisão"
-#define OPTION_VAL_ULTRA_PT_BR NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_PT_BR NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_PT_BR NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_PT_BR NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_PT_BR NULL
+#define OPTION_VAL_APPROXIMATE_PT_BR NULL
+#define OPTION_VAL_RELAXED_PT_BR "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_PT_BR NULL
 #define RPCS3_RENDERER_LABEL_PT_BR "Renderizador"
 #define RPCS3_RENDERER_INFO_0_PT_BR NULL
 #define OPTION_VAL_OPENGL_PT_BR NULL
@@ -27669,7 +25087,7 @@ struct retro_core_options_v2 options_pl = {
 #define RPCS3_SHADER_QUALITY_INFO_0_PT_BR NULL
 #define OPTION_VAL_LOW_PT_BR "Low (Fastest)"
 #define OPTION_VAL_HIGH_PT_BR "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_PT_BR NULL
+#define OPTION_VAL_ULTRA_PT_BR "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_PT_BR NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_PT_BR NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_PT_BR NULL
@@ -27687,7 +25105,7 @@ struct retro_core_options_v2 options_pl = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_PT_BR NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_PT_BR "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_PT_BR "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_PT_BR NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_PT_BR NULL
 #define RPCS3_CPU_BLIT_LABEL_PT_BR NULL
 #define RPCS3_CPU_BLIT_INFO_0_PT_BR NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_PT_BR NULL
@@ -27721,13 +25139,6 @@ struct retro_core_options_v2 options_pl = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_PT_BR NULL
 #define RPCS3_TIME_STRETCHING_LABEL_PT_BR NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_PT_BR NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_PT_BR NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_PT_BR NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_PT_BR NULL
-#define OPTION_VAL_STANDARD_PT_BR NULL
-#define OPTION_VAL_SINGSTAR_PT_BR NULL
-#define OPTION_VAL_REAL_SINGSTAR_PT_BR NULL
-#define OPTION_VAL_ROCKSMITH_PT_BR NULL
 #define RPCS3_MASTER_VOLUME_LABEL_PT_BR "Volume principal"
 #define RPCS3_MASTER_VOLUME_INFO_0_PT_BR NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_PT_BR NULL
@@ -27763,7 +25174,9 @@ struct retro_core_options_v2 options_pl = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_PT_BR NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_PT_BR NULL
 #define OPTION_VAL_FAST_PT_BR "Rápida"
-#define OPTION_VAL_BALANCED_PT_BR "Balanceado"
+#define OPTION_VAL_ATOMIC_PT_BR NULL
+#define OPTION_VAL_ATOMIC_ORDERED_PT_BR NULL
+#define OPTION_VAL_AS_PS3_PT_BR NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_PT_BR NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_PT_BR NULL
 #define OPTION_VAL_1000_PT_BR NULL
@@ -27777,10 +25190,6 @@ struct retro_core_options_v2 options_pl = {
 #define OPTION_VAL_3_PT_BR "3 (padrão)"
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_PT_BR NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_PT_BR NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_PT_BR NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_PT_BR NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_PT_BR NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_PT_BR NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_PT_BR NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_PT_BR NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_PT_BR NULL
@@ -27820,8 +25229,9 @@ struct retro_core_options_v2 options_pl = {
 #define OPTION_VAL_USA_PT_BR "EUA"
 #define OPTION_VAL_EU_PT_BR "Europa"
 #define OPTION_VAL_JP_PT_BR "Japão"
-#define OPTION_VAL_HK_PT_BR NULL
-#define OPTION_VAL_KR_PT_BR NULL
+#define OPTION_VAL_HK_PT_BR "Hong Kong"
+#define OPTION_VAL_KR_PT_BR "Korea"
+#define OPTION_VAL_CN_PT_BR NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_PT_BR NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_PT_BR NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_PT_BR NULL
@@ -27829,9 +25239,6 @@ struct retro_core_options_v2 options_pl = {
 #define OPTION_VAL_LIST_PT_BR NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_PT_BR NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_PT_BR NULL
-#define RPCS3_VFS_INIT_LABEL_PT_BR NULL
-#define RPCS3_VFS_INIT_INFO_0_PT_BR NULL
-#define OPTION_VAL_RESET_PT_BR "Reiniciar"
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_PT_BR NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_PT_BR NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_PT_BR NULL
@@ -27907,20 +25314,6 @@ struct retro_core_option_v2_definition option_defs_pt_br[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_PT_BR, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_PT_BR,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_PT_BR, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_PT_BR,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_PT_BR, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_PT_BR,
         NULL, "cpu",
@@ -27931,8 +25324,8 @@ struct retro_core_option_v2_definition option_defs_pt_br[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_PT_BR, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_PT_BR,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_PT_BR}, {"all_timers", OPTION_VAL_ALL_TIMERS_PT_BR}, {"as_host", OPTION_VAL_AS_HOST_PT_BR}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_PT_BR}, {"as_host", OPTION_VAL_AS_HOST_PT_BR}, {"usleep", OPTION_VAL_USLEEP_PT_BR}, {"all_timers", OPTION_VAL_ALL_TIMERS_PT_BR}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_PT_BR, NULL,
@@ -27942,32 +25335,11 @@ struct retro_core_option_v2_definition option_defs_pt_br[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_PT_BR, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_PT_BR,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_PT_BR}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_PT_BR, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_PT_BR,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_PT_BR}, {"accurate", OPTION_VAL_ACCURATE_PT_BR}, {"ultra", OPTION_VAL_ULTRA_PT_BR}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_PT_BR, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_PT_BR,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_PT_BR, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_PT_BR,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_PT_BR}, {"approximate", OPTION_VAL_APPROXIMATE_PT_BR}, {"relaxed", OPTION_VAL_RELAXED_PT_BR}, {"inaccurate", OPTION_VAL_INACCURATE_PT_BR}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -28045,7 +25417,7 @@ struct retro_core_option_v2_definition option_defs_pt_br[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_PT_BR, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_PT_BR,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_PT_BR}, {"high", OPTION_VAL_HIGH_PT_BR}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_PT_BR}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_PT_BR}, {"high", OPTION_VAL_HIGH_PT_BR}, {"ultra", OPTION_VAL_ULTRA_PT_BR}, {NULL, NULL} },
         "high"
     },
     {
@@ -28101,7 +25473,7 @@ struct retro_core_option_v2_definition option_defs_pt_br[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_PT_BR, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_PT_BR,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_PT_BR}, {"approximate", OPTION_VAL_APPROXIMATE_PT_BR}, {"relaxed", OPTION_VAL_RELAXED_PT_BR}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_PT_BR}, {"approximate", OPTION_VAL_APPROXIMATE_PT_BR}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_PT_BR}, {NULL, NULL} },
         "precise"
     },
     {
@@ -28161,13 +25533,6 @@ struct retro_core_option_v2_definition option_defs_pt_br[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_PT_BR, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_PT_BR,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_PT_BR}, {"standard", OPTION_VAL_STANDARD_PT_BR}, {"singstar", OPTION_VAL_SINGSTAR_PT_BR}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_PT_BR}, {"rocksmith", OPTION_VAL_ROCKSMITH_PT_BR}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_PT_BR, NULL,
@@ -28240,8 +25605,8 @@ struct retro_core_option_v2_definition option_defs_pt_br[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_PT_BR, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_PT_BR,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_PT_BR}, {"balanced", OPTION_VAL_BALANCED_PT_BR}, {"accurate", OPTION_VAL_ACCURATE_PT_BR}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_PT_BR}, {"atomic", OPTION_VAL_ATOMIC_PT_BR}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_PT_BR}, {"as_ps3", OPTION_VAL_AS_PS3_PT_BR}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_PT_BR, NULL,
@@ -28267,20 +25632,6 @@ struct retro_core_option_v2_definition option_defs_pt_br[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_PT_BR, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_PT_BR,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_PT_BR, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_PT_BR,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_PT_BR, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_PT_BR,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -28361,7 +25712,7 @@ struct retro_core_option_v2_definition option_defs_pt_br[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_PT_BR, NULL,
         RPCS3_LICENSE_AREA_INFO_0_PT_BR,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_PT_BR}, {"eu", OPTION_VAL_EU_PT_BR}, {"jp", OPTION_VAL_JP_PT_BR}, {"hk", OPTION_VAL_HK_PT_BR}, {"kr", OPTION_VAL_KR_PT_BR}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_PT_BR}, {"eu", OPTION_VAL_EU_PT_BR}, {"jp", OPTION_VAL_JP_PT_BR}, {"hk", OPTION_VAL_HK_PT_BR}, {"kr", OPTION_VAL_KR_PT_BR}, {"cn", OPTION_VAL_CN_PT_BR}, {NULL, NULL} },
         "usa"
     },
     {
@@ -28384,13 +25735,6 @@ struct retro_core_option_v2_definition option_defs_pt_br[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_PT_BR, NULL,
-        RPCS3_VFS_INIT_INFO_0_PT_BR,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_PT_BR}, {"reset", OPTION_VAL_RESET_PT_BR}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_PT_BR, NULL,
@@ -28458,10 +25802,6 @@ struct retro_core_options_v2 options_pt_br = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_PT_PT NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_PT_PT NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_PT_PT "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_PT_PT NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_PT_PT NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_PT_PT NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_PT_PT NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_PT_PT NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_PT_PT NULL
 #define OPTION_VAL_50_PT_PT NULL
@@ -28472,23 +25812,18 @@ struct retro_core_options_v2 options_pt_br = {
 #define OPTION_VAL_300_PT_PT NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_PT_PT NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_PT_PT NULL
-#define OPTION_VAL_USLEEP_PT_PT NULL
-#define OPTION_VAL_ALL_TIMERS_PT_PT NULL
+#define OPTION_VAL_AUTO_PT_PT NULL
 #define OPTION_VAL_AS_HOST_PT_PT NULL
+#define OPTION_VAL_USLEEP_PT_PT "Usleep"
+#define OPTION_VAL_ALL_TIMERS_PT_PT NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_PT_PT NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_PT_PT NULL
-#define RPCS3_ENABLE_TSX_LABEL_PT_PT NULL
-#define RPCS3_ENABLE_TSX_INFO_0_PT_PT NULL
-#define OPTION_VAL_FORCED_PT_PT NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_PT_PT NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_PT_PT NULL
-#define OPTION_VAL_RELAXED_PT_PT NULL
 #define OPTION_VAL_ACCURATE_PT_PT NULL
-#define OPTION_VAL_ULTRA_PT_PT NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_PT_PT NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_PT_PT NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_PT_PT NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_PT_PT NULL
+#define OPTION_VAL_APPROXIMATE_PT_PT NULL
+#define OPTION_VAL_RELAXED_PT_PT "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_PT_PT NULL
 #define RPCS3_RENDERER_LABEL_PT_PT NULL
 #define RPCS3_RENDERER_INFO_0_PT_PT NULL
 #define OPTION_VAL_OPENGL_PT_PT NULL
@@ -28556,7 +25891,7 @@ struct retro_core_options_v2 options_pt_br = {
 #define RPCS3_SHADER_QUALITY_INFO_0_PT_PT NULL
 #define OPTION_VAL_LOW_PT_PT "Low (Fastest)"
 #define OPTION_VAL_HIGH_PT_PT "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_PT_PT NULL
+#define OPTION_VAL_ULTRA_PT_PT "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_PT_PT NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_PT_PT NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_PT_PT NULL
@@ -28574,7 +25909,7 @@ struct retro_core_options_v2 options_pt_br = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_PT_PT NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_PT_PT "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_PT_PT "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_PT_PT NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_PT_PT NULL
 #define RPCS3_CPU_BLIT_LABEL_PT_PT NULL
 #define RPCS3_CPU_BLIT_INFO_0_PT_PT NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_PT_PT NULL
@@ -28608,13 +25943,6 @@ struct retro_core_options_v2 options_pt_br = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_PT_PT NULL
 #define RPCS3_TIME_STRETCHING_LABEL_PT_PT NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_PT_PT NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_PT_PT NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_PT_PT NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_PT_PT NULL
-#define OPTION_VAL_STANDARD_PT_PT NULL
-#define OPTION_VAL_SINGSTAR_PT_PT NULL
-#define OPTION_VAL_REAL_SINGSTAR_PT_PT NULL
-#define OPTION_VAL_ROCKSMITH_PT_PT NULL
 #define RPCS3_MASTER_VOLUME_LABEL_PT_PT NULL
 #define RPCS3_MASTER_VOLUME_INFO_0_PT_PT NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_PT_PT NULL
@@ -28650,7 +25978,9 @@ struct retro_core_options_v2 options_pt_br = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_PT_PT NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_PT_PT NULL
 #define OPTION_VAL_FAST_PT_PT NULL
-#define OPTION_VAL_BALANCED_PT_PT NULL
+#define OPTION_VAL_ATOMIC_PT_PT NULL
+#define OPTION_VAL_ATOMIC_ORDERED_PT_PT NULL
+#define OPTION_VAL_AS_PS3_PT_PT NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_PT_PT NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_PT_PT NULL
 #define OPTION_VAL_1000_PT_PT NULL
@@ -28664,10 +25994,6 @@ struct retro_core_options_v2 options_pt_br = {
 #define OPTION_VAL_3_PT_PT "3 (Padrão)"
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_PT_PT NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_PT_PT NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_PT_PT NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_PT_PT NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_PT_PT NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_PT_PT NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_PT_PT NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_PT_PT NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_PT_PT NULL
@@ -28704,11 +26030,12 @@ struct retro_core_options_v2 options_pt_br = {
 #define OPTION_VAL_CIRCLE_PT_PT NULL
 #define RPCS3_LICENSE_AREA_LABEL_PT_PT NULL
 #define RPCS3_LICENSE_AREA_INFO_0_PT_PT NULL
-#define OPTION_VAL_USA_PT_PT NULL
-#define OPTION_VAL_EU_PT_PT NULL
-#define OPTION_VAL_JP_PT_PT NULL
-#define OPTION_VAL_HK_PT_PT NULL
-#define OPTION_VAL_KR_PT_PT NULL
+#define OPTION_VAL_USA_PT_PT "USA"
+#define OPTION_VAL_EU_PT_PT "Europe"
+#define OPTION_VAL_JP_PT_PT "Japan"
+#define OPTION_VAL_HK_PT_PT "Hong Kong"
+#define OPTION_VAL_KR_PT_PT "Korea"
+#define OPTION_VAL_CN_PT_PT NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_PT_PT NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_PT_PT NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_PT_PT NULL
@@ -28716,9 +26043,6 @@ struct retro_core_options_v2 options_pt_br = {
 #define OPTION_VAL_LIST_PT_PT NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_PT_PT NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_PT_PT NULL
-#define RPCS3_VFS_INIT_LABEL_PT_PT NULL
-#define RPCS3_VFS_INIT_INFO_0_PT_PT NULL
-#define OPTION_VAL_RESET_PT_PT "Reiniciar (reset)"
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_PT_PT NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_PT_PT NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_PT_PT NULL
@@ -28794,20 +26118,6 @@ struct retro_core_option_v2_definition option_defs_pt_pt[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_PT_PT, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_PT_PT,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_PT_PT, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_PT_PT,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_PT_PT, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_PT_PT,
         NULL, "cpu",
@@ -28818,8 +26128,8 @@ struct retro_core_option_v2_definition option_defs_pt_pt[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_PT_PT, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_PT_PT,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_PT_PT}, {"all_timers", OPTION_VAL_ALL_TIMERS_PT_PT}, {"as_host", OPTION_VAL_AS_HOST_PT_PT}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_PT_PT}, {"as_host", OPTION_VAL_AS_HOST_PT_PT}, {"usleep", OPTION_VAL_USLEEP_PT_PT}, {"all_timers", OPTION_VAL_ALL_TIMERS_PT_PT}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_PT_PT, NULL,
@@ -28829,32 +26139,11 @@ struct retro_core_option_v2_definition option_defs_pt_pt[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_PT_PT, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_PT_PT,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_PT_PT}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_PT_PT, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_PT_PT,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_PT_PT}, {"accurate", OPTION_VAL_ACCURATE_PT_PT}, {"ultra", OPTION_VAL_ULTRA_PT_PT}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_PT_PT, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_PT_PT,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_PT_PT, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_PT_PT,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_PT_PT}, {"approximate", OPTION_VAL_APPROXIMATE_PT_PT}, {"relaxed", OPTION_VAL_RELAXED_PT_PT}, {"inaccurate", OPTION_VAL_INACCURATE_PT_PT}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -28932,7 +26221,7 @@ struct retro_core_option_v2_definition option_defs_pt_pt[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_PT_PT, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_PT_PT,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_PT_PT}, {"high", OPTION_VAL_HIGH_PT_PT}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_PT_PT}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_PT_PT}, {"high", OPTION_VAL_HIGH_PT_PT}, {"ultra", OPTION_VAL_ULTRA_PT_PT}, {NULL, NULL} },
         "high"
     },
     {
@@ -28988,7 +26277,7 @@ struct retro_core_option_v2_definition option_defs_pt_pt[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_PT_PT, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_PT_PT,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_PT_PT}, {"approximate", OPTION_VAL_APPROXIMATE_PT_PT}, {"relaxed", OPTION_VAL_RELAXED_PT_PT}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_PT_PT}, {"approximate", OPTION_VAL_APPROXIMATE_PT_PT}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_PT_PT}, {NULL, NULL} },
         "precise"
     },
     {
@@ -29048,13 +26337,6 @@ struct retro_core_option_v2_definition option_defs_pt_pt[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_PT_PT, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_PT_PT,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_PT_PT}, {"standard", OPTION_VAL_STANDARD_PT_PT}, {"singstar", OPTION_VAL_SINGSTAR_PT_PT}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_PT_PT}, {"rocksmith", OPTION_VAL_ROCKSMITH_PT_PT}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_PT_PT, NULL,
@@ -29127,8 +26409,8 @@ struct retro_core_option_v2_definition option_defs_pt_pt[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_PT_PT, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_PT_PT,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_PT_PT}, {"balanced", OPTION_VAL_BALANCED_PT_PT}, {"accurate", OPTION_VAL_ACCURATE_PT_PT}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_PT_PT}, {"atomic", OPTION_VAL_ATOMIC_PT_PT}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_PT_PT}, {"as_ps3", OPTION_VAL_AS_PS3_PT_PT}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_PT_PT, NULL,
@@ -29154,20 +26436,6 @@ struct retro_core_option_v2_definition option_defs_pt_pt[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_PT_PT, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_PT_PT,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_PT_PT, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_PT_PT,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_PT_PT, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_PT_PT,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -29248,7 +26516,7 @@ struct retro_core_option_v2_definition option_defs_pt_pt[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_PT_PT, NULL,
         RPCS3_LICENSE_AREA_INFO_0_PT_PT,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_PT_PT}, {"eu", OPTION_VAL_EU_PT_PT}, {"jp", OPTION_VAL_JP_PT_PT}, {"hk", OPTION_VAL_HK_PT_PT}, {"kr", OPTION_VAL_KR_PT_PT}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_PT_PT}, {"eu", OPTION_VAL_EU_PT_PT}, {"jp", OPTION_VAL_JP_PT_PT}, {"hk", OPTION_VAL_HK_PT_PT}, {"kr", OPTION_VAL_KR_PT_PT}, {"cn", OPTION_VAL_CN_PT_PT}, {NULL, NULL} },
         "usa"
     },
     {
@@ -29271,13 +26539,6 @@ struct retro_core_option_v2_definition option_defs_pt_pt[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_PT_PT, NULL,
-        RPCS3_VFS_INIT_INFO_0_PT_PT,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_PT_PT}, {"reset", OPTION_VAL_RESET_PT_PT}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_PT_PT, NULL,
@@ -29345,10 +26606,6 @@ struct retro_core_options_v2 options_pt_pt = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_RU NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_RU NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_RU "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_RU NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_RU NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_RU NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_RU NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_RU NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_RU NULL
 #define OPTION_VAL_50_RU NULL
@@ -29359,23 +26616,18 @@ struct retro_core_options_v2 options_pt_pt = {
 #define OPTION_VAL_300_RU NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_RU NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_RU NULL
-#define OPTION_VAL_USLEEP_RU NULL
-#define OPTION_VAL_ALL_TIMERS_RU NULL
+#define OPTION_VAL_AUTO_RU NULL
 #define OPTION_VAL_AS_HOST_RU NULL
+#define OPTION_VAL_USLEEP_RU "Usleep"
+#define OPTION_VAL_ALL_TIMERS_RU NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_RU NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_RU NULL
-#define RPCS3_ENABLE_TSX_LABEL_RU NULL
-#define RPCS3_ENABLE_TSX_INFO_0_RU NULL
-#define OPTION_VAL_FORCED_RU NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_RU NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_RU NULL
-#define OPTION_VAL_RELAXED_RU NULL
 #define OPTION_VAL_ACCURATE_RU "Точный"
-#define OPTION_VAL_ULTRA_RU NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_RU NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_RU NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_RU NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_RU NULL
+#define OPTION_VAL_APPROXIMATE_RU NULL
+#define OPTION_VAL_RELAXED_RU "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_RU NULL
 #define RPCS3_RENDERER_LABEL_RU "Графический движок"
 #define RPCS3_RENDERER_INFO_0_RU NULL
 #define OPTION_VAL_OPENGL_RU NULL
@@ -29443,7 +26695,7 @@ struct retro_core_options_v2 options_pt_pt = {
 #define RPCS3_SHADER_QUALITY_INFO_0_RU NULL
 #define OPTION_VAL_LOW_RU "Low (Fastest)"
 #define OPTION_VAL_HIGH_RU "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_RU NULL
+#define OPTION_VAL_ULTRA_RU "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_RU NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_RU NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_RU NULL
@@ -29461,7 +26713,7 @@ struct retro_core_options_v2 options_pt_pt = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_RU NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_RU "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_RU "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_RU NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_RU NULL
 #define RPCS3_CPU_BLIT_LABEL_RU NULL
 #define RPCS3_CPU_BLIT_INFO_0_RU NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_RU NULL
@@ -29495,13 +26747,6 @@ struct retro_core_options_v2 options_pt_pt = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_RU NULL
 #define RPCS3_TIME_STRETCHING_LABEL_RU NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_RU NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_RU NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_RU NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_RU NULL
-#define OPTION_VAL_STANDARD_RU NULL
-#define OPTION_VAL_SINGSTAR_RU NULL
-#define OPTION_VAL_REAL_SINGSTAR_RU NULL
-#define OPTION_VAL_ROCKSMITH_RU NULL
 #define RPCS3_MASTER_VOLUME_LABEL_RU "Общая громкость"
 #define RPCS3_MASTER_VOLUME_INFO_0_RU NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_RU NULL
@@ -29537,7 +26782,9 @@ struct retro_core_options_v2 options_pt_pt = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_RU NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_RU NULL
 #define OPTION_VAL_FAST_RU "Быстро"
-#define OPTION_VAL_BALANCED_RU "Оптимальный"
+#define OPTION_VAL_ATOMIC_RU NULL
+#define OPTION_VAL_ATOMIC_ORDERED_RU NULL
+#define OPTION_VAL_AS_PS3_RU NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_RU NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_RU NULL
 #define OPTION_VAL_1000_RU NULL
@@ -29551,10 +26798,6 @@ struct retro_core_options_v2 options_pt_pt = {
 #define OPTION_VAL_3_RU "3 (по умолчанию)"
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_RU NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_RU NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_RU NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_RU NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_RU NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_RU NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_RU NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_RU NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_RU NULL
@@ -29594,8 +26837,9 @@ struct retro_core_options_v2 options_pt_pt = {
 #define OPTION_VAL_USA_RU "США"
 #define OPTION_VAL_EU_RU "Европа"
 #define OPTION_VAL_JP_RU "Япония"
-#define OPTION_VAL_HK_RU NULL
-#define OPTION_VAL_KR_RU NULL
+#define OPTION_VAL_HK_RU "Hong Kong"
+#define OPTION_VAL_KR_RU "Korea"
+#define OPTION_VAL_CN_RU NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_RU NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_RU NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_RU NULL
@@ -29603,9 +26847,6 @@ struct retro_core_options_v2 options_pt_pt = {
 #define OPTION_VAL_LIST_RU NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_RU NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_RU NULL
-#define RPCS3_VFS_INIT_LABEL_RU NULL
-#define RPCS3_VFS_INIT_INFO_0_RU NULL
-#define OPTION_VAL_RESET_RU "Перезагрузка"
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_RU NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_RU NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_RU NULL
@@ -29681,20 +26922,6 @@ struct retro_core_option_v2_definition option_defs_ru[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_RU, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_RU,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_RU, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_RU,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_RU, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_RU,
         NULL, "cpu",
@@ -29705,8 +26932,8 @@ struct retro_core_option_v2_definition option_defs_ru[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_RU, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_RU,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_RU}, {"all_timers", OPTION_VAL_ALL_TIMERS_RU}, {"as_host", OPTION_VAL_AS_HOST_RU}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_RU}, {"as_host", OPTION_VAL_AS_HOST_RU}, {"usleep", OPTION_VAL_USLEEP_RU}, {"all_timers", OPTION_VAL_ALL_TIMERS_RU}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_RU, NULL,
@@ -29716,32 +26943,11 @@ struct retro_core_option_v2_definition option_defs_ru[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_RU, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_RU,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_RU}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_RU, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_RU,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_RU}, {"accurate", OPTION_VAL_ACCURATE_RU}, {"ultra", OPTION_VAL_ULTRA_RU}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_RU, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_RU,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_RU, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_RU,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_RU}, {"approximate", OPTION_VAL_APPROXIMATE_RU}, {"relaxed", OPTION_VAL_RELAXED_RU}, {"inaccurate", OPTION_VAL_INACCURATE_RU}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -29819,7 +27025,7 @@ struct retro_core_option_v2_definition option_defs_ru[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_RU, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_RU,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_RU}, {"high", OPTION_VAL_HIGH_RU}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_RU}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_RU}, {"high", OPTION_VAL_HIGH_RU}, {"ultra", OPTION_VAL_ULTRA_RU}, {NULL, NULL} },
         "high"
     },
     {
@@ -29875,7 +27081,7 @@ struct retro_core_option_v2_definition option_defs_ru[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_RU, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_RU,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_RU}, {"approximate", OPTION_VAL_APPROXIMATE_RU}, {"relaxed", OPTION_VAL_RELAXED_RU}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_RU}, {"approximate", OPTION_VAL_APPROXIMATE_RU}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_RU}, {NULL, NULL} },
         "precise"
     },
     {
@@ -29935,13 +27141,6 @@ struct retro_core_option_v2_definition option_defs_ru[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_RU, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_RU,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_RU}, {"standard", OPTION_VAL_STANDARD_RU}, {"singstar", OPTION_VAL_SINGSTAR_RU}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_RU}, {"rocksmith", OPTION_VAL_ROCKSMITH_RU}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_RU, NULL,
@@ -30014,8 +27213,8 @@ struct retro_core_option_v2_definition option_defs_ru[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_RU, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_RU,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_RU}, {"balanced", OPTION_VAL_BALANCED_RU}, {"accurate", OPTION_VAL_ACCURATE_RU}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_RU}, {"atomic", OPTION_VAL_ATOMIC_RU}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_RU}, {"as_ps3", OPTION_VAL_AS_PS3_RU}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_RU, NULL,
@@ -30041,20 +27240,6 @@ struct retro_core_option_v2_definition option_defs_ru[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_RU, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_RU,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_RU, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_RU,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_RU, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_RU,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -30135,7 +27320,7 @@ struct retro_core_option_v2_definition option_defs_ru[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_RU, NULL,
         RPCS3_LICENSE_AREA_INFO_0_RU,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_RU}, {"eu", OPTION_VAL_EU_RU}, {"jp", OPTION_VAL_JP_RU}, {"hk", OPTION_VAL_HK_RU}, {"kr", OPTION_VAL_KR_RU}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_RU}, {"eu", OPTION_VAL_EU_RU}, {"jp", OPTION_VAL_JP_RU}, {"hk", OPTION_VAL_HK_RU}, {"kr", OPTION_VAL_KR_RU}, {"cn", OPTION_VAL_CN_RU}, {NULL, NULL} },
         "usa"
     },
     {
@@ -30158,13 +27343,6 @@ struct retro_core_option_v2_definition option_defs_ru[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_RU, NULL,
-        RPCS3_VFS_INIT_INFO_0_RU,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_RU}, {"reset", OPTION_VAL_RESET_RU}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_RU, NULL,
@@ -30232,10 +27410,6 @@ struct retro_core_options_v2 options_ru = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_SK "Predkompiluje moduly PPU pri štarte pre rýchlejšie ďalšie načítania."
 #define RPCS3_ACCURATE_DFMA_LABEL_SK "Presné DFMA"
 #define RPCS3_ACCURATE_DFMA_INFO_0_SK "Použije presné násobenie so sčítaním (FMA) s dvojitou presnosťou."
-#define RPCS3_PPU_RESERVATIONS_LABEL_SK "Rezervácie vlákien PPU"
-#define RPCS3_PPU_RESERVATIONS_INFO_0_SK "Použije rezervácie vlákien PPU pre presné zamykanie."
-#define RPCS3_ACCURATE_XFLOAT_LABEL_SK "Presné XFLOAT"
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_SK "Presnejšie výpočty s pohyblivou čiarkou na SPU. Môže opraviť niektoré hry."
 #define RPCS3_CLOCKS_SCALE_LABEL_SK "Mierka taktov"
 #define RPCS3_CLOCKS_SCALE_INFO_0_SK "Percento rýchlosti taktov PS3."
 #define OPTION_VAL_50_SK NULL
@@ -30246,23 +27420,18 @@ struct retro_core_options_v2 options_ru = {
 #define OPTION_VAL_300_SK NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_SK "Presnosť časovačov spánku"
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_SK "Úroveň presnosti časovačov spánku."
-#define OPTION_VAL_USLEEP_SK NULL
-#define OPTION_VAL_ALL_TIMERS_SK "Všetky časovače"
+#define OPTION_VAL_AUTO_SK NULL
 #define OPTION_VAL_AS_HOST_SK "Ako hostiteľ"
+#define OPTION_VAL_USLEEP_SK "Usleep"
+#define OPTION_VAL_ALL_TIMERS_SK "Všetky časovače"
 #define RPCS3_MAX_SPURS_THREADS_LABEL_SK "Max. počet vlákien SPURS"
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_SK "Maximálny počet vlákien SPURS. Nižší môže zlepšiť výkon."
-#define RPCS3_ENABLE_TSX_LABEL_SK "Zapnúť TSX"
-#define RPCS3_ENABLE_TSX_INFO_0_SK "Zapne hardvérovú akceleráciu Intel TSX, ak je k dispozícii."
-#define OPTION_VAL_FORCED_SK "Vynútené"
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_SK "Presnosť XFloat na SPU"
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_SK "Úroveň presnosti výpočtov s pohyblivou čiarkou na SPU."
-#define OPTION_VAL_RELAXED_SK "Uvoľnená (najrýchlejšia)"
 #define OPTION_VAL_ACCURATE_SK "Presné"
-#define OPTION_VAL_ULTRA_SK "Ultra (najpomalšia)"
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_SK "Aktívne čakanie DMA na SPU"
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_SK "Zapne aktívne čakanie DMA na SPU kvôli presnosti časovania."
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_SK "Spracovanie režimu Java v PPU LLVM"
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_SK "Úroveň dodržiavania režimu Java v PPU LLVM."
+#define OPTION_VAL_APPROXIMATE_SK "Približná"
+#define OPTION_VAL_RELAXED_SK "Uvoľnená (najrýchlejšia)"
+#define OPTION_VAL_INACCURATE_SK NULL
 #define RPCS3_RENDERER_LABEL_SK "Vykreslenie"
 #define RPCS3_RENDERER_INFO_0_SK "Vulkan dokončí každú snímku do pamäte a frontend si prevezme pixely; beží približne tak rýchlo ako samostatné RPCS3 a funguje aj tam, kde OpenGL chýba alebo je pokazené. OpenGL kreslí priamo do kontextu frontendu."
 #define OPTION_VAL_OPENGL_SK NULL
@@ -30330,7 +27499,7 @@ struct retro_core_options_v2 options_ru = {
 #define RPCS3_SHADER_QUALITY_INFO_0_SK NULL
 #define OPTION_VAL_LOW_SK "Nízka (najrýchlejšia)"
 #define OPTION_VAL_HIGH_SK "Vysoká (najpresnejšia)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_SK NULL
+#define OPTION_VAL_ULTRA_SK "Ultra (najpomalšia)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_SK "Zapisovať farebné buffery"
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_SK "Zapisuje farebné buffery do hlavnej pamäte. Opravuje niektoré efekty."
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_SK "Čítať farebné buffery"
@@ -30348,7 +27517,7 @@ struct retro_core_options_v2 options_ru = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_SK "Presnosť ZCULL"
 #define RPCS3_ZCULL_ACCURACY_INFO_0_SK "Presnosť dotazov zakrytia ZCULL."
 #define OPTION_VAL_PRECISE_SK "Presná (najpomalšia)"
-#define OPTION_VAL_APPROXIMATE_SK "Približná"
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_SK NULL
 #define RPCS3_CPU_BLIT_LABEL_SK "Vynútiť blit na CPU"
 #define RPCS3_CPU_BLIT_INFO_0_SK "Vynúti emuláciu blitu na CPU pre niektoré efekty."
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_SK "Oneskorenie prebudenia ovládača"
@@ -30382,13 +27551,6 @@ struct retro_core_options_v2 options_ru = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_SK NULL
 #define RPCS3_TIME_STRETCHING_LABEL_SK "Časové naťahovanie"
 #define RPCS3_TIME_STRETCHING_INFO_0_SK "Zapne časové naťahovanie zvuku na zníženie trhania."
-#define RPCS3_MICROPHONE_TYPE_LABEL_SK "Typ mikrofónu"
-#define RPCS3_MICROPHONE_TYPE_INFO_0_SK "Typ mikrofónového zariadenia."
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_SK "Nulový (vypnutý)"
-#define OPTION_VAL_STANDARD_SK "Štandardný"
-#define OPTION_VAL_SINGSTAR_SK NULL
-#define OPTION_VAL_REAL_SINGSTAR_SK "Skutočný SingStar"
-#define OPTION_VAL_ROCKSMITH_SK NULL
 #define RPCS3_MASTER_VOLUME_LABEL_SK "Hlavná hlasitosť"
 #define RPCS3_MASTER_VOLUME_INFO_0_SK "Percento hlavnej hlasitosti zvuku."
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_SK NULL
@@ -30424,7 +27586,9 @@ struct retro_core_options_v2 options_ru = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_SK "Presnosť RSX FIFO"
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_SK "Úroveň presnosti príkazov RSX FIFO."
 #define OPTION_VAL_FAST_SK "Rýchlo"
-#define OPTION_VAL_BALANCED_SK "Vyvážené"
+#define OPTION_VAL_ATOMIC_SK NULL
+#define OPTION_VAL_ATOMIC_ORDERED_SK NULL
+#define OPTION_VAL_AS_PS3_SK NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_SK "Časový limit obnovy ovládača"
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_SK "Časový limit obnovy ovládača GPU v milisekundách."
 #define OPTION_VAL_1000_SK "1 sekunda"
@@ -30438,10 +27602,6 @@ struct retro_core_options_v2 options_ru = {
 #define OPTION_VAL_3_SK "3 (predvolené)"
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_SK "Asynchrónne streamovanie textúr"
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_SK "Zapne asynchrónne streamovanie textúr."
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_SK "Chamtivý režim PPU LLVM"
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_SK "Použije chamtivú kompiláciu PPU LLVM."
-#define RPCS3_SPU_NJ_FIXUP_LABEL_SK "Oprava NJ na SPU"
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_SK "Použije opravu režimu non-Java na SPU."
 #define RPCS3_PPU_NJ_MODE_LABEL_SK "Režim opravy NJ na PPU"
 #define RPCS3_PPU_NJ_MODE_INFO_0_SK "Spracovanie režimu non-Java na PPU."
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_SK "Nastavovať bit saturácie"
@@ -30478,11 +27638,12 @@ struct retro_core_options_v2 options_ru = {
 #define OPTION_VAL_CIRCLE_SK "Krúžok (japonské)"
 #define RPCS3_LICENSE_AREA_LABEL_SK "Licenčná oblasť"
 #define RPCS3_LICENSE_AREA_INFO_0_SK "Licenčný región PS3."
-#define OPTION_VAL_USA_SK NULL
+#define OPTION_VAL_USA_SK "USA"
 #define OPTION_VAL_EU_SK "Európa"
 #define OPTION_VAL_JP_SK "Japonsko"
 #define OPTION_VAL_HK_SK "Hongkong"
 #define OPTION_VAL_KR_SK "Kórea"
+#define OPTION_VAL_CN_SK NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_SK "Zobrazovať upozornenie na kompiláciu shaderov"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_SK "Zobrazí upozornenie, keď sa kompilujú shadery."
 #define RPCS3_SAVEDATA_SLOT_LABEL_SK "Slot uložených dát"
@@ -30490,9 +27651,6 @@ struct retro_core_options_v2 options_ru = {
 #define OPTION_VAL_LIST_SK "Vybrať zo zoznamu"
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_SK "Zobrazovať upozornenie na kompiláciu PPU"
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_SK "Zobrazí upozornenie, keď sa kompilujú moduly PPU."
-#define RPCS3_VFS_INIT_LABEL_SK "Režim inicializácie VFS"
-#define RPCS3_VFS_INIT_INFO_0_SK "Režim inicializácie virtuálneho súborového systému."
-#define OPTION_VAL_RESET_SK NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_SK "Stlmiť všetky záznamy"
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_SK "Stlmí všetok výstup záznamov kvôli výkonu."
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_SK "Zachytávať statické funkcie"
@@ -30568,20 +27726,6 @@ struct retro_core_option_v2_definition option_defs_sk[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_SK, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_SK,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_SK, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_SK,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_SK, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_SK,
         NULL, "cpu",
@@ -30592,8 +27736,8 @@ struct retro_core_option_v2_definition option_defs_sk[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_SK, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_SK,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_SK}, {"all_timers", OPTION_VAL_ALL_TIMERS_SK}, {"as_host", OPTION_VAL_AS_HOST_SK}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_SK}, {"as_host", OPTION_VAL_AS_HOST_SK}, {"usleep", OPTION_VAL_USLEEP_SK}, {"all_timers", OPTION_VAL_ALL_TIMERS_SK}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_SK, NULL,
@@ -30603,32 +27747,11 @@ struct retro_core_option_v2_definition option_defs_sk[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_SK, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_SK,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_SK}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_SK, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_SK,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_SK}, {"accurate", OPTION_VAL_ACCURATE_SK}, {"ultra", OPTION_VAL_ULTRA_SK}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_SK, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_SK,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_SK, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_SK,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_SK}, {"approximate", OPTION_VAL_APPROXIMATE_SK}, {"relaxed", OPTION_VAL_RELAXED_SK}, {"inaccurate", OPTION_VAL_INACCURATE_SK}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -30706,7 +27829,7 @@ struct retro_core_option_v2_definition option_defs_sk[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_SK, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_SK,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_SK}, {"high", OPTION_VAL_HIGH_SK}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_SK}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_SK}, {"high", OPTION_VAL_HIGH_SK}, {"ultra", OPTION_VAL_ULTRA_SK}, {NULL, NULL} },
         "high"
     },
     {
@@ -30762,7 +27885,7 @@ struct retro_core_option_v2_definition option_defs_sk[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_SK, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_SK,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_SK}, {"approximate", OPTION_VAL_APPROXIMATE_SK}, {"relaxed", OPTION_VAL_RELAXED_SK}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_SK}, {"approximate", OPTION_VAL_APPROXIMATE_SK}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_SK}, {NULL, NULL} },
         "precise"
     },
     {
@@ -30822,13 +27945,6 @@ struct retro_core_option_v2_definition option_defs_sk[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_SK, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_SK,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_SK}, {"standard", OPTION_VAL_STANDARD_SK}, {"singstar", OPTION_VAL_SINGSTAR_SK}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_SK}, {"rocksmith", OPTION_VAL_ROCKSMITH_SK}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_SK, NULL,
@@ -30901,8 +28017,8 @@ struct retro_core_option_v2_definition option_defs_sk[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_SK, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_SK,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_SK}, {"balanced", OPTION_VAL_BALANCED_SK}, {"accurate", OPTION_VAL_ACCURATE_SK}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_SK}, {"atomic", OPTION_VAL_ATOMIC_SK}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_SK}, {"as_ps3", OPTION_VAL_AS_PS3_SK}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_SK, NULL,
@@ -30928,20 +28044,6 @@ struct retro_core_option_v2_definition option_defs_sk[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_SK, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_SK,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_SK, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_SK,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_SK, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_SK,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -31022,7 +28124,7 @@ struct retro_core_option_v2_definition option_defs_sk[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_SK, NULL,
         RPCS3_LICENSE_AREA_INFO_0_SK,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_SK}, {"eu", OPTION_VAL_EU_SK}, {"jp", OPTION_VAL_JP_SK}, {"hk", OPTION_VAL_HK_SK}, {"kr", OPTION_VAL_KR_SK}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_SK}, {"eu", OPTION_VAL_EU_SK}, {"jp", OPTION_VAL_JP_SK}, {"hk", OPTION_VAL_HK_SK}, {"kr", OPTION_VAL_KR_SK}, {"cn", OPTION_VAL_CN_SK}, {NULL, NULL} },
         "usa"
     },
     {
@@ -31045,13 +28147,6 @@ struct retro_core_option_v2_definition option_defs_sk[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_SK, NULL,
-        RPCS3_VFS_INIT_INFO_0_SK,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_SK}, {"reset", OPTION_VAL_RESET_SK}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_SK, NULL,
@@ -31119,10 +28214,6 @@ struct retro_core_options_v2 options_sk = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_SR NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_SR NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_SR "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_SR NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_SR NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_SR NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_SR NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_SR NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_SR NULL
 #define OPTION_VAL_50_SR NULL
@@ -31133,23 +28224,18 @@ struct retro_core_options_v2 options_sk = {
 #define OPTION_VAL_300_SR NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_SR NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_SR NULL
-#define OPTION_VAL_USLEEP_SR NULL
-#define OPTION_VAL_ALL_TIMERS_SR NULL
+#define OPTION_VAL_AUTO_SR NULL
 #define OPTION_VAL_AS_HOST_SR NULL
+#define OPTION_VAL_USLEEP_SR "Usleep"
+#define OPTION_VAL_ALL_TIMERS_SR NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_SR NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_SR NULL
-#define RPCS3_ENABLE_TSX_LABEL_SR NULL
-#define RPCS3_ENABLE_TSX_INFO_0_SR NULL
-#define OPTION_VAL_FORCED_SR NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_SR NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_SR NULL
-#define OPTION_VAL_RELAXED_SR NULL
 #define OPTION_VAL_ACCURATE_SR NULL
-#define OPTION_VAL_ULTRA_SR NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_SR NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_SR NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_SR NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_SR NULL
+#define OPTION_VAL_APPROXIMATE_SR NULL
+#define OPTION_VAL_RELAXED_SR "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_SR NULL
 #define RPCS3_RENDERER_LABEL_SR NULL
 #define RPCS3_RENDERER_INFO_0_SR NULL
 #define OPTION_VAL_OPENGL_SR NULL
@@ -31217,7 +28303,7 @@ struct retro_core_options_v2 options_sk = {
 #define RPCS3_SHADER_QUALITY_INFO_0_SR NULL
 #define OPTION_VAL_LOW_SR "Low (Fastest)"
 #define OPTION_VAL_HIGH_SR "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_SR NULL
+#define OPTION_VAL_ULTRA_SR "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_SR NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_SR NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_SR NULL
@@ -31235,7 +28321,7 @@ struct retro_core_options_v2 options_sk = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_SR NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_SR "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_SR "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_SR NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_SR NULL
 #define RPCS3_CPU_BLIT_LABEL_SR NULL
 #define RPCS3_CPU_BLIT_INFO_0_SR NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_SR NULL
@@ -31269,13 +28355,6 @@ struct retro_core_options_v2 options_sk = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_SR NULL
 #define RPCS3_TIME_STRETCHING_LABEL_SR NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_SR NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_SR NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_SR NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_SR NULL
-#define OPTION_VAL_STANDARD_SR NULL
-#define OPTION_VAL_SINGSTAR_SR NULL
-#define OPTION_VAL_REAL_SINGSTAR_SR NULL
-#define OPTION_VAL_ROCKSMITH_SR NULL
 #define RPCS3_MASTER_VOLUME_LABEL_SR NULL
 #define RPCS3_MASTER_VOLUME_INFO_0_SR NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_SR NULL
@@ -31311,7 +28390,9 @@ struct retro_core_options_v2 options_sk = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_SR NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_SR NULL
 #define OPTION_VAL_FAST_SR NULL
-#define OPTION_VAL_BALANCED_SR NULL
+#define OPTION_VAL_ATOMIC_SR NULL
+#define OPTION_VAL_ATOMIC_ORDERED_SR NULL
+#define OPTION_VAL_AS_PS3_SR NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_SR NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_SR NULL
 #define OPTION_VAL_1000_SR NULL
@@ -31325,10 +28406,6 @@ struct retro_core_options_v2 options_sk = {
 #define OPTION_VAL_3_SR NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_SR NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_SR NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_SR NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_SR NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_SR NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_SR NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_SR NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_SR NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_SR NULL
@@ -31365,11 +28442,12 @@ struct retro_core_options_v2 options_sk = {
 #define OPTION_VAL_CIRCLE_SR NULL
 #define RPCS3_LICENSE_AREA_LABEL_SR NULL
 #define RPCS3_LICENSE_AREA_INFO_0_SR NULL
-#define OPTION_VAL_USA_SR NULL
-#define OPTION_VAL_EU_SR NULL
-#define OPTION_VAL_JP_SR NULL
-#define OPTION_VAL_HK_SR NULL
-#define OPTION_VAL_KR_SR NULL
+#define OPTION_VAL_USA_SR "USA"
+#define OPTION_VAL_EU_SR "Europe"
+#define OPTION_VAL_JP_SR "Japan"
+#define OPTION_VAL_HK_SR "Hong Kong"
+#define OPTION_VAL_KR_SR "Korea"
+#define OPTION_VAL_CN_SR NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_SR NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_SR NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_SR NULL
@@ -31377,9 +28455,6 @@ struct retro_core_options_v2 options_sk = {
 #define OPTION_VAL_LIST_SR NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_SR NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_SR NULL
-#define RPCS3_VFS_INIT_LABEL_SR NULL
-#define RPCS3_VFS_INIT_INFO_0_SR NULL
-#define OPTION_VAL_RESET_SR NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_SR NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_SR NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_SR NULL
@@ -31455,20 +28530,6 @@ struct retro_core_option_v2_definition option_defs_sr[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_SR, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_SR,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_SR, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_SR,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_SR, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_SR,
         NULL, "cpu",
@@ -31479,8 +28540,8 @@ struct retro_core_option_v2_definition option_defs_sr[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_SR, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_SR,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_SR}, {"all_timers", OPTION_VAL_ALL_TIMERS_SR}, {"as_host", OPTION_VAL_AS_HOST_SR}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_SR}, {"as_host", OPTION_VAL_AS_HOST_SR}, {"usleep", OPTION_VAL_USLEEP_SR}, {"all_timers", OPTION_VAL_ALL_TIMERS_SR}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_SR, NULL,
@@ -31490,32 +28551,11 @@ struct retro_core_option_v2_definition option_defs_sr[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_SR, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_SR,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_SR}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_SR, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_SR,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_SR}, {"accurate", OPTION_VAL_ACCURATE_SR}, {"ultra", OPTION_VAL_ULTRA_SR}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_SR, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_SR,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_SR, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_SR,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_SR}, {"approximate", OPTION_VAL_APPROXIMATE_SR}, {"relaxed", OPTION_VAL_RELAXED_SR}, {"inaccurate", OPTION_VAL_INACCURATE_SR}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -31593,7 +28633,7 @@ struct retro_core_option_v2_definition option_defs_sr[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_SR, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_SR,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_SR}, {"high", OPTION_VAL_HIGH_SR}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_SR}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_SR}, {"high", OPTION_VAL_HIGH_SR}, {"ultra", OPTION_VAL_ULTRA_SR}, {NULL, NULL} },
         "high"
     },
     {
@@ -31649,7 +28689,7 @@ struct retro_core_option_v2_definition option_defs_sr[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_SR, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_SR,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_SR}, {"approximate", OPTION_VAL_APPROXIMATE_SR}, {"relaxed", OPTION_VAL_RELAXED_SR}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_SR}, {"approximate", OPTION_VAL_APPROXIMATE_SR}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_SR}, {NULL, NULL} },
         "precise"
     },
     {
@@ -31709,13 +28749,6 @@ struct retro_core_option_v2_definition option_defs_sr[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_SR, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_SR,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_SR}, {"standard", OPTION_VAL_STANDARD_SR}, {"singstar", OPTION_VAL_SINGSTAR_SR}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_SR}, {"rocksmith", OPTION_VAL_ROCKSMITH_SR}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_SR, NULL,
@@ -31788,8 +28821,8 @@ struct retro_core_option_v2_definition option_defs_sr[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_SR, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_SR,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_SR}, {"balanced", OPTION_VAL_BALANCED_SR}, {"accurate", OPTION_VAL_ACCURATE_SR}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_SR}, {"atomic", OPTION_VAL_ATOMIC_SR}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_SR}, {"as_ps3", OPTION_VAL_AS_PS3_SR}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_SR, NULL,
@@ -31815,20 +28848,6 @@ struct retro_core_option_v2_definition option_defs_sr[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_SR, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_SR,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_SR, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_SR,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_SR, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_SR,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -31909,7 +28928,7 @@ struct retro_core_option_v2_definition option_defs_sr[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_SR, NULL,
         RPCS3_LICENSE_AREA_INFO_0_SR,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_SR}, {"eu", OPTION_VAL_EU_SR}, {"jp", OPTION_VAL_JP_SR}, {"hk", OPTION_VAL_HK_SR}, {"kr", OPTION_VAL_KR_SR}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_SR}, {"eu", OPTION_VAL_EU_SR}, {"jp", OPTION_VAL_JP_SR}, {"hk", OPTION_VAL_HK_SR}, {"kr", OPTION_VAL_KR_SR}, {"cn", OPTION_VAL_CN_SR}, {NULL, NULL} },
         "usa"
     },
     {
@@ -31932,13 +28951,6 @@ struct retro_core_option_v2_definition option_defs_sr[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_SR, NULL,
-        RPCS3_VFS_INIT_INFO_0_SR,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_SR}, {"reset", OPTION_VAL_RESET_SR}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_SR, NULL,
@@ -32006,10 +29018,6 @@ struct retro_core_options_v2 options_sr = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_SV NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_SV NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_SV "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_SV NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_SV NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_SV NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_SV NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_SV NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_SV NULL
 #define OPTION_VAL_50_SV NULL
@@ -32020,23 +29028,18 @@ struct retro_core_options_v2 options_sr = {
 #define OPTION_VAL_300_SV NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_SV NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_SV NULL
-#define OPTION_VAL_USLEEP_SV NULL
-#define OPTION_VAL_ALL_TIMERS_SV NULL
+#define OPTION_VAL_AUTO_SV NULL
 #define OPTION_VAL_AS_HOST_SV NULL
+#define OPTION_VAL_USLEEP_SV "Usleep"
+#define OPTION_VAL_ALL_TIMERS_SV NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_SV NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_SV NULL
-#define RPCS3_ENABLE_TSX_LABEL_SV NULL
-#define RPCS3_ENABLE_TSX_INFO_0_SV NULL
-#define OPTION_VAL_FORCED_SV "Tvingad"
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_SV NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_SV NULL
-#define OPTION_VAL_RELAXED_SV NULL
 #define OPTION_VAL_ACCURATE_SV "Exakt"
-#define OPTION_VAL_ULTRA_SV NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_SV NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_SV NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_SV NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_SV NULL
+#define OPTION_VAL_APPROXIMATE_SV NULL
+#define OPTION_VAL_RELAXED_SV "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_SV NULL
 #define RPCS3_RENDERER_LABEL_SV "Renderare"
 #define RPCS3_RENDERER_INFO_0_SV NULL
 #define OPTION_VAL_OPENGL_SV NULL
@@ -32104,7 +29107,7 @@ struct retro_core_options_v2 options_sr = {
 #define RPCS3_SHADER_QUALITY_INFO_0_SV NULL
 #define OPTION_VAL_LOW_SV "Low (Fastest)"
 #define OPTION_VAL_HIGH_SV "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_SV NULL
+#define OPTION_VAL_ULTRA_SV "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_SV NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_SV NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_SV NULL
@@ -32122,7 +29125,7 @@ struct retro_core_options_v2 options_sr = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_SV NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_SV "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_SV "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_SV NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_SV NULL
 #define RPCS3_CPU_BLIT_LABEL_SV NULL
 #define RPCS3_CPU_BLIT_INFO_0_SV NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_SV NULL
@@ -32156,13 +29159,6 @@ struct retro_core_options_v2 options_sr = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_SV NULL
 #define RPCS3_TIME_STRETCHING_LABEL_SV NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_SV NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_SV NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_SV NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_SV NULL
-#define OPTION_VAL_STANDARD_SV NULL
-#define OPTION_VAL_SINGSTAR_SV NULL
-#define OPTION_VAL_REAL_SINGSTAR_SV NULL
-#define OPTION_VAL_ROCKSMITH_SV NULL
 #define RPCS3_MASTER_VOLUME_LABEL_SV "Huvudvolym"
 #define RPCS3_MASTER_VOLUME_INFO_0_SV NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_SV NULL
@@ -32198,7 +29194,9 @@ struct retro_core_options_v2 options_sr = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_SV NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_SV NULL
 #define OPTION_VAL_FAST_SV "Snabb"
-#define OPTION_VAL_BALANCED_SV "Balanserad"
+#define OPTION_VAL_ATOMIC_SV NULL
+#define OPTION_VAL_ATOMIC_ORDERED_SV NULL
+#define OPTION_VAL_AS_PS3_SV NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_SV NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_SV NULL
 #define OPTION_VAL_1000_SV NULL
@@ -32212,10 +29210,6 @@ struct retro_core_options_v2 options_sr = {
 #define OPTION_VAL_3_SV "3 (Standard)"
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_SV NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_SV NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_SV NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_SV NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_SV NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_SV NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_SV NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_SV NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_SV NULL
@@ -32252,11 +29246,12 @@ struct retro_core_options_v2 options_sr = {
 #define OPTION_VAL_CIRCLE_SV NULL
 #define RPCS3_LICENSE_AREA_LABEL_SV NULL
 #define RPCS3_LICENSE_AREA_INFO_0_SV NULL
-#define OPTION_VAL_USA_SV NULL
+#define OPTION_VAL_USA_SV "USA"
 #define OPTION_VAL_EU_SV "Europa"
-#define OPTION_VAL_JP_SV NULL
-#define OPTION_VAL_HK_SV NULL
-#define OPTION_VAL_KR_SV NULL
+#define OPTION_VAL_JP_SV "Japan"
+#define OPTION_VAL_HK_SV "Hong Kong"
+#define OPTION_VAL_KR_SV "Korea"
+#define OPTION_VAL_CN_SV NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_SV NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_SV NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_SV NULL
@@ -32264,9 +29259,6 @@ struct retro_core_options_v2 options_sr = {
 #define OPTION_VAL_LIST_SV NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_SV NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_SV NULL
-#define RPCS3_VFS_INIT_LABEL_SV NULL
-#define RPCS3_VFS_INIT_INFO_0_SV NULL
-#define OPTION_VAL_RESET_SV "Återställ"
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_SV NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_SV NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_SV NULL
@@ -32342,20 +29334,6 @@ struct retro_core_option_v2_definition option_defs_sv[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_SV, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_SV,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_SV, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_SV,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_SV, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_SV,
         NULL, "cpu",
@@ -32366,8 +29344,8 @@ struct retro_core_option_v2_definition option_defs_sv[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_SV, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_SV,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_SV}, {"all_timers", OPTION_VAL_ALL_TIMERS_SV}, {"as_host", OPTION_VAL_AS_HOST_SV}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_SV}, {"as_host", OPTION_VAL_AS_HOST_SV}, {"usleep", OPTION_VAL_USLEEP_SV}, {"all_timers", OPTION_VAL_ALL_TIMERS_SV}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_SV, NULL,
@@ -32377,32 +29355,11 @@ struct retro_core_option_v2_definition option_defs_sv[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_SV, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_SV,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_SV}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_SV, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_SV,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_SV}, {"accurate", OPTION_VAL_ACCURATE_SV}, {"ultra", OPTION_VAL_ULTRA_SV}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_SV, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_SV,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_SV, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_SV,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_SV}, {"approximate", OPTION_VAL_APPROXIMATE_SV}, {"relaxed", OPTION_VAL_RELAXED_SV}, {"inaccurate", OPTION_VAL_INACCURATE_SV}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -32480,7 +29437,7 @@ struct retro_core_option_v2_definition option_defs_sv[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_SV, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_SV,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_SV}, {"high", OPTION_VAL_HIGH_SV}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_SV}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_SV}, {"high", OPTION_VAL_HIGH_SV}, {"ultra", OPTION_VAL_ULTRA_SV}, {NULL, NULL} },
         "high"
     },
     {
@@ -32536,7 +29493,7 @@ struct retro_core_option_v2_definition option_defs_sv[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_SV, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_SV,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_SV}, {"approximate", OPTION_VAL_APPROXIMATE_SV}, {"relaxed", OPTION_VAL_RELAXED_SV}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_SV}, {"approximate", OPTION_VAL_APPROXIMATE_SV}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_SV}, {NULL, NULL} },
         "precise"
     },
     {
@@ -32596,13 +29553,6 @@ struct retro_core_option_v2_definition option_defs_sv[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_SV, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_SV,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_SV}, {"standard", OPTION_VAL_STANDARD_SV}, {"singstar", OPTION_VAL_SINGSTAR_SV}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_SV}, {"rocksmith", OPTION_VAL_ROCKSMITH_SV}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_SV, NULL,
@@ -32675,8 +29625,8 @@ struct retro_core_option_v2_definition option_defs_sv[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_SV, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_SV,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_SV}, {"balanced", OPTION_VAL_BALANCED_SV}, {"accurate", OPTION_VAL_ACCURATE_SV}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_SV}, {"atomic", OPTION_VAL_ATOMIC_SV}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_SV}, {"as_ps3", OPTION_VAL_AS_PS3_SV}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_SV, NULL,
@@ -32702,20 +29652,6 @@ struct retro_core_option_v2_definition option_defs_sv[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_SV, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_SV,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_SV, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_SV,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_SV, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_SV,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -32796,7 +29732,7 @@ struct retro_core_option_v2_definition option_defs_sv[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_SV, NULL,
         RPCS3_LICENSE_AREA_INFO_0_SV,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_SV}, {"eu", OPTION_VAL_EU_SV}, {"jp", OPTION_VAL_JP_SV}, {"hk", OPTION_VAL_HK_SV}, {"kr", OPTION_VAL_KR_SV}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_SV}, {"eu", OPTION_VAL_EU_SV}, {"jp", OPTION_VAL_JP_SV}, {"hk", OPTION_VAL_HK_SV}, {"kr", OPTION_VAL_KR_SV}, {"cn", OPTION_VAL_CN_SV}, {NULL, NULL} },
         "usa"
     },
     {
@@ -32819,13 +29755,6 @@ struct retro_core_option_v2_definition option_defs_sv[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_SV, NULL,
-        RPCS3_VFS_INIT_INFO_0_SV,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_SV}, {"reset", OPTION_VAL_RESET_SV}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_SV, NULL,
@@ -32893,10 +29822,6 @@ struct retro_core_options_v2 options_sv = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_TH NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_TH NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_TH "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_TH NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_TH NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_TH NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_TH NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_TH NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_TH NULL
 #define OPTION_VAL_50_TH NULL
@@ -32907,23 +29832,18 @@ struct retro_core_options_v2 options_sv = {
 #define OPTION_VAL_300_TH NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_TH NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_TH NULL
-#define OPTION_VAL_USLEEP_TH NULL
-#define OPTION_VAL_ALL_TIMERS_TH NULL
+#define OPTION_VAL_AUTO_TH NULL
 #define OPTION_VAL_AS_HOST_TH NULL
+#define OPTION_VAL_USLEEP_TH "Usleep"
+#define OPTION_VAL_ALL_TIMERS_TH NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_TH NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_TH NULL
-#define RPCS3_ENABLE_TSX_LABEL_TH NULL
-#define RPCS3_ENABLE_TSX_INFO_0_TH NULL
-#define OPTION_VAL_FORCED_TH NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_TH NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_TH NULL
-#define OPTION_VAL_RELAXED_TH NULL
 #define OPTION_VAL_ACCURATE_TH "แม่นยำ"
-#define OPTION_VAL_ULTRA_TH NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_TH NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_TH NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_TH NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_TH NULL
+#define OPTION_VAL_APPROXIMATE_TH NULL
+#define OPTION_VAL_RELAXED_TH "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_TH NULL
 #define RPCS3_RENDERER_LABEL_TH "การเรนเดอร์"
 #define RPCS3_RENDERER_INFO_0_TH NULL
 #define OPTION_VAL_OPENGL_TH NULL
@@ -32991,7 +29911,7 @@ struct retro_core_options_v2 options_sv = {
 #define RPCS3_SHADER_QUALITY_INFO_0_TH NULL
 #define OPTION_VAL_LOW_TH "Low (Fastest)"
 #define OPTION_VAL_HIGH_TH "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_TH NULL
+#define OPTION_VAL_ULTRA_TH "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_TH NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_TH NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_TH NULL
@@ -33009,7 +29929,7 @@ struct retro_core_options_v2 options_sv = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_TH NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_TH "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_TH "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_TH NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_TH NULL
 #define RPCS3_CPU_BLIT_LABEL_TH NULL
 #define RPCS3_CPU_BLIT_INFO_0_TH NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_TH NULL
@@ -33043,13 +29963,6 @@ struct retro_core_options_v2 options_sv = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_TH NULL
 #define RPCS3_TIME_STRETCHING_LABEL_TH NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_TH NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_TH NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_TH NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_TH NULL
-#define OPTION_VAL_STANDARD_TH NULL
-#define OPTION_VAL_SINGSTAR_TH NULL
-#define OPTION_VAL_REAL_SINGSTAR_TH NULL
-#define OPTION_VAL_ROCKSMITH_TH NULL
 #define RPCS3_MASTER_VOLUME_LABEL_TH "ระดับเสียงหลัก"
 #define RPCS3_MASTER_VOLUME_INFO_0_TH NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_TH NULL
@@ -33085,7 +29998,9 @@ struct retro_core_options_v2 options_sv = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_TH NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_TH NULL
 #define OPTION_VAL_FAST_TH "เร็ว"
-#define OPTION_VAL_BALANCED_TH "สมดุล"
+#define OPTION_VAL_ATOMIC_TH NULL
+#define OPTION_VAL_ATOMIC_ORDERED_TH NULL
+#define OPTION_VAL_AS_PS3_TH NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_TH NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_TH NULL
 #define OPTION_VAL_1000_TH NULL
@@ -33099,10 +30014,6 @@ struct retro_core_options_v2 options_sv = {
 #define OPTION_VAL_3_TH "3 (ค่าเริ่มต้น)"
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_TH NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_TH NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_TH NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_TH NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_TH NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_TH NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_TH NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_TH NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_TH NULL
@@ -33139,11 +30050,12 @@ struct retro_core_options_v2 options_sv = {
 #define OPTION_VAL_CIRCLE_TH NULL
 #define RPCS3_LICENSE_AREA_LABEL_TH NULL
 #define RPCS3_LICENSE_AREA_INFO_0_TH NULL
-#define OPTION_VAL_USA_TH NULL
+#define OPTION_VAL_USA_TH "USA"
 #define OPTION_VAL_EU_TH "ยุโรป"
 #define OPTION_VAL_JP_TH "ญี่ปุ่น"
-#define OPTION_VAL_HK_TH NULL
-#define OPTION_VAL_KR_TH NULL
+#define OPTION_VAL_HK_TH "Hong Kong"
+#define OPTION_VAL_KR_TH "Korea"
+#define OPTION_VAL_CN_TH NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_TH NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_TH NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_TH NULL
@@ -33151,9 +30063,6 @@ struct retro_core_options_v2 options_sv = {
 #define OPTION_VAL_LIST_TH NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_TH NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_TH NULL
-#define RPCS3_VFS_INIT_LABEL_TH NULL
-#define RPCS3_VFS_INIT_INFO_0_TH NULL
-#define OPTION_VAL_RESET_TH "รีเซ็ต"
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_TH NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_TH NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_TH NULL
@@ -33229,20 +30138,6 @@ struct retro_core_option_v2_definition option_defs_th[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_TH, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_TH,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_TH, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_TH,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_TH, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_TH,
         NULL, "cpu",
@@ -33253,8 +30148,8 @@ struct retro_core_option_v2_definition option_defs_th[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_TH, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_TH,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_TH}, {"all_timers", OPTION_VAL_ALL_TIMERS_TH}, {"as_host", OPTION_VAL_AS_HOST_TH}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_TH}, {"as_host", OPTION_VAL_AS_HOST_TH}, {"usleep", OPTION_VAL_USLEEP_TH}, {"all_timers", OPTION_VAL_ALL_TIMERS_TH}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_TH, NULL,
@@ -33264,32 +30159,11 @@ struct retro_core_option_v2_definition option_defs_th[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_TH, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_TH,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_TH}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_TH, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_TH,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_TH}, {"accurate", OPTION_VAL_ACCURATE_TH}, {"ultra", OPTION_VAL_ULTRA_TH}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_TH, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_TH,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_TH, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_TH,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_TH}, {"approximate", OPTION_VAL_APPROXIMATE_TH}, {"relaxed", OPTION_VAL_RELAXED_TH}, {"inaccurate", OPTION_VAL_INACCURATE_TH}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -33367,7 +30241,7 @@ struct retro_core_option_v2_definition option_defs_th[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_TH, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_TH,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_TH}, {"high", OPTION_VAL_HIGH_TH}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_TH}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_TH}, {"high", OPTION_VAL_HIGH_TH}, {"ultra", OPTION_VAL_ULTRA_TH}, {NULL, NULL} },
         "high"
     },
     {
@@ -33423,7 +30297,7 @@ struct retro_core_option_v2_definition option_defs_th[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_TH, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_TH,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_TH}, {"approximate", OPTION_VAL_APPROXIMATE_TH}, {"relaxed", OPTION_VAL_RELAXED_TH}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_TH}, {"approximate", OPTION_VAL_APPROXIMATE_TH}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_TH}, {NULL, NULL} },
         "precise"
     },
     {
@@ -33483,13 +30357,6 @@ struct retro_core_option_v2_definition option_defs_th[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_TH, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_TH,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_TH}, {"standard", OPTION_VAL_STANDARD_TH}, {"singstar", OPTION_VAL_SINGSTAR_TH}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_TH}, {"rocksmith", OPTION_VAL_ROCKSMITH_TH}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_TH, NULL,
@@ -33562,8 +30429,8 @@ struct retro_core_option_v2_definition option_defs_th[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_TH, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_TH,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_TH}, {"balanced", OPTION_VAL_BALANCED_TH}, {"accurate", OPTION_VAL_ACCURATE_TH}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_TH}, {"atomic", OPTION_VAL_ATOMIC_TH}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_TH}, {"as_ps3", OPTION_VAL_AS_PS3_TH}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_TH, NULL,
@@ -33589,20 +30456,6 @@ struct retro_core_option_v2_definition option_defs_th[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_TH, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_TH,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_TH, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_TH,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_TH, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_TH,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -33683,7 +30536,7 @@ struct retro_core_option_v2_definition option_defs_th[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_TH, NULL,
         RPCS3_LICENSE_AREA_INFO_0_TH,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_TH}, {"eu", OPTION_VAL_EU_TH}, {"jp", OPTION_VAL_JP_TH}, {"hk", OPTION_VAL_HK_TH}, {"kr", OPTION_VAL_KR_TH}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_TH}, {"eu", OPTION_VAL_EU_TH}, {"jp", OPTION_VAL_JP_TH}, {"hk", OPTION_VAL_HK_TH}, {"kr", OPTION_VAL_KR_TH}, {"cn", OPTION_VAL_CN_TH}, {NULL, NULL} },
         "usa"
     },
     {
@@ -33706,13 +30559,6 @@ struct retro_core_option_v2_definition option_defs_th[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_TH, NULL,
-        RPCS3_VFS_INIT_INFO_0_TH,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_TH}, {"reset", OPTION_VAL_RESET_TH}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_TH, NULL,
@@ -33780,10 +30626,6 @@ struct retro_core_options_v2 options_th = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_TR NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_TR NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_TR "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_TR NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_TR NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_TR NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_TR NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_TR NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_TR NULL
 #define OPTION_VAL_50_TR "%50"
@@ -33794,23 +30636,18 @@ struct retro_core_options_v2 options_th = {
 #define OPTION_VAL_300_TR "%300"
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_TR NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_TR NULL
-#define OPTION_VAL_USLEEP_TR NULL
-#define OPTION_VAL_ALL_TIMERS_TR NULL
+#define OPTION_VAL_AUTO_TR NULL
 #define OPTION_VAL_AS_HOST_TR NULL
+#define OPTION_VAL_USLEEP_TR "Usleep"
+#define OPTION_VAL_ALL_TIMERS_TR NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_TR NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_TR NULL
-#define RPCS3_ENABLE_TSX_LABEL_TR NULL
-#define RPCS3_ENABLE_TSX_INFO_0_TR NULL
-#define OPTION_VAL_FORCED_TR NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_TR NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_TR NULL
-#define OPTION_VAL_RELAXED_TR NULL
 #define OPTION_VAL_ACCURATE_TR "Kesin"
-#define OPTION_VAL_ULTRA_TR NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_TR NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_TR NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_TR NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_TR NULL
+#define OPTION_VAL_APPROXIMATE_TR NULL
+#define OPTION_VAL_RELAXED_TR "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_TR NULL
 #define RPCS3_RENDERER_LABEL_TR NULL
 #define RPCS3_RENDERER_INFO_0_TR NULL
 #define OPTION_VAL_OPENGL_TR NULL
@@ -33878,7 +30715,7 @@ struct retro_core_options_v2 options_th = {
 #define RPCS3_SHADER_QUALITY_INFO_0_TR NULL
 #define OPTION_VAL_LOW_TR "Low (Fastest)"
 #define OPTION_VAL_HIGH_TR "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_TR NULL
+#define OPTION_VAL_ULTRA_TR "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_TR NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_TR NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_TR NULL
@@ -33896,7 +30733,7 @@ struct retro_core_options_v2 options_th = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_TR NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_TR "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_TR "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_TR NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_TR NULL
 #define RPCS3_CPU_BLIT_LABEL_TR NULL
 #define RPCS3_CPU_BLIT_INFO_0_TR NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_TR NULL
@@ -33930,13 +30767,6 @@ struct retro_core_options_v2 options_th = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_TR NULL
 #define RPCS3_TIME_STRETCHING_LABEL_TR NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_TR NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_TR NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_TR NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_TR NULL
-#define OPTION_VAL_STANDARD_TR NULL
-#define OPTION_VAL_SINGSTAR_TR NULL
-#define OPTION_VAL_REAL_SINGSTAR_TR NULL
-#define OPTION_VAL_ROCKSMITH_TR NULL
 #define RPCS3_MASTER_VOLUME_LABEL_TR "Ana Ses Seviyesi"
 #define RPCS3_MASTER_VOLUME_INFO_0_TR NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_TR NULL
@@ -33972,7 +30802,9 @@ struct retro_core_options_v2 options_th = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_TR NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_TR NULL
 #define OPTION_VAL_FAST_TR "Hızlı"
-#define OPTION_VAL_BALANCED_TR "Dengeli"
+#define OPTION_VAL_ATOMIC_TR NULL
+#define OPTION_VAL_ATOMIC_ORDERED_TR NULL
+#define OPTION_VAL_AS_PS3_TR NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_TR NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_TR NULL
 #define OPTION_VAL_1000_TR NULL
@@ -33986,10 +30818,6 @@ struct retro_core_options_v2 options_th = {
 #define OPTION_VAL_3_TR "3 (Varsayılan)"
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_TR NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_TR NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_TR NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_TR NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_TR NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_TR NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_TR NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_TR NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_TR NULL
@@ -34029,8 +30857,9 @@ struct retro_core_options_v2 options_th = {
 #define OPTION_VAL_USA_TR "ABD"
 #define OPTION_VAL_EU_TR "Avrupa"
 #define OPTION_VAL_JP_TR "Japonya"
-#define OPTION_VAL_HK_TR NULL
-#define OPTION_VAL_KR_TR NULL
+#define OPTION_VAL_HK_TR "Hong Kong"
+#define OPTION_VAL_KR_TR "Korea"
+#define OPTION_VAL_CN_TR NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_TR NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_TR NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_TR NULL
@@ -34038,9 +30867,6 @@ struct retro_core_options_v2 options_th = {
 #define OPTION_VAL_LIST_TR NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_TR NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_TR NULL
-#define RPCS3_VFS_INIT_LABEL_TR NULL
-#define RPCS3_VFS_INIT_INFO_0_TR NULL
-#define OPTION_VAL_RESET_TR "Sıfırla"
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_TR NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_TR NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_TR NULL
@@ -34116,20 +30942,6 @@ struct retro_core_option_v2_definition option_defs_tr[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_TR, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_TR,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_TR, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_TR,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_TR, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_TR,
         NULL, "cpu",
@@ -34140,8 +30952,8 @@ struct retro_core_option_v2_definition option_defs_tr[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_TR, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_TR,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_TR}, {"all_timers", OPTION_VAL_ALL_TIMERS_TR}, {"as_host", OPTION_VAL_AS_HOST_TR}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_TR}, {"as_host", OPTION_VAL_AS_HOST_TR}, {"usleep", OPTION_VAL_USLEEP_TR}, {"all_timers", OPTION_VAL_ALL_TIMERS_TR}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_TR, NULL,
@@ -34151,32 +30963,11 @@ struct retro_core_option_v2_definition option_defs_tr[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_TR, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_TR,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_TR}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_TR, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_TR,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_TR}, {"accurate", OPTION_VAL_ACCURATE_TR}, {"ultra", OPTION_VAL_ULTRA_TR}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_TR, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_TR,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_TR, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_TR,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_TR}, {"approximate", OPTION_VAL_APPROXIMATE_TR}, {"relaxed", OPTION_VAL_RELAXED_TR}, {"inaccurate", OPTION_VAL_INACCURATE_TR}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -34254,7 +31045,7 @@ struct retro_core_option_v2_definition option_defs_tr[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_TR, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_TR,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_TR}, {"high", OPTION_VAL_HIGH_TR}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_TR}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_TR}, {"high", OPTION_VAL_HIGH_TR}, {"ultra", OPTION_VAL_ULTRA_TR}, {NULL, NULL} },
         "high"
     },
     {
@@ -34310,7 +31101,7 @@ struct retro_core_option_v2_definition option_defs_tr[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_TR, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_TR,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_TR}, {"approximate", OPTION_VAL_APPROXIMATE_TR}, {"relaxed", OPTION_VAL_RELAXED_TR}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_TR}, {"approximate", OPTION_VAL_APPROXIMATE_TR}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_TR}, {NULL, NULL} },
         "precise"
     },
     {
@@ -34370,13 +31161,6 @@ struct retro_core_option_v2_definition option_defs_tr[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_TR, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_TR,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_TR}, {"standard", OPTION_VAL_STANDARD_TR}, {"singstar", OPTION_VAL_SINGSTAR_TR}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_TR}, {"rocksmith", OPTION_VAL_ROCKSMITH_TR}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_TR, NULL,
@@ -34449,8 +31233,8 @@ struct retro_core_option_v2_definition option_defs_tr[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_TR, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_TR,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_TR}, {"balanced", OPTION_VAL_BALANCED_TR}, {"accurate", OPTION_VAL_ACCURATE_TR}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_TR}, {"atomic", OPTION_VAL_ATOMIC_TR}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_TR}, {"as_ps3", OPTION_VAL_AS_PS3_TR}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_TR, NULL,
@@ -34476,20 +31260,6 @@ struct retro_core_option_v2_definition option_defs_tr[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_TR, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_TR,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_TR, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_TR,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_TR, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_TR,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -34570,7 +31340,7 @@ struct retro_core_option_v2_definition option_defs_tr[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_TR, NULL,
         RPCS3_LICENSE_AREA_INFO_0_TR,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_TR}, {"eu", OPTION_VAL_EU_TR}, {"jp", OPTION_VAL_JP_TR}, {"hk", OPTION_VAL_HK_TR}, {"kr", OPTION_VAL_KR_TR}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_TR}, {"eu", OPTION_VAL_EU_TR}, {"jp", OPTION_VAL_JP_TR}, {"hk", OPTION_VAL_HK_TR}, {"kr", OPTION_VAL_KR_TR}, {"cn", OPTION_VAL_CN_TR}, {NULL, NULL} },
         "usa"
     },
     {
@@ -34593,13 +31363,6 @@ struct retro_core_option_v2_definition option_defs_tr[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_TR, NULL,
-        RPCS3_VFS_INIT_INFO_0_TR,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_TR}, {"reset", OPTION_VAL_RESET_TR}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_TR, NULL,
@@ -34667,10 +31430,6 @@ struct retro_core_options_v2 options_tr = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_TT NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_TT NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_TT "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_TT NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_TT NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_TT NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_TT NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_TT NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_TT NULL
 #define OPTION_VAL_50_TT NULL
@@ -34681,23 +31440,18 @@ struct retro_core_options_v2 options_tr = {
 #define OPTION_VAL_300_TT NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_TT NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_TT NULL
-#define OPTION_VAL_USLEEP_TT NULL
-#define OPTION_VAL_ALL_TIMERS_TT NULL
+#define OPTION_VAL_AUTO_TT NULL
 #define OPTION_VAL_AS_HOST_TT NULL
+#define OPTION_VAL_USLEEP_TT "Usleep"
+#define OPTION_VAL_ALL_TIMERS_TT NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_TT NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_TT NULL
-#define RPCS3_ENABLE_TSX_LABEL_TT NULL
-#define RPCS3_ENABLE_TSX_INFO_0_TT NULL
-#define OPTION_VAL_FORCED_TT NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_TT NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_TT NULL
-#define OPTION_VAL_RELAXED_TT NULL
 #define OPTION_VAL_ACCURATE_TT NULL
-#define OPTION_VAL_ULTRA_TT NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_TT NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_TT NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_TT NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_TT NULL
+#define OPTION_VAL_APPROXIMATE_TT NULL
+#define OPTION_VAL_RELAXED_TT "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_TT NULL
 #define RPCS3_RENDERER_LABEL_TT NULL
 #define RPCS3_RENDERER_INFO_0_TT NULL
 #define OPTION_VAL_OPENGL_TT NULL
@@ -34765,7 +31519,7 @@ struct retro_core_options_v2 options_tr = {
 #define RPCS3_SHADER_QUALITY_INFO_0_TT NULL
 #define OPTION_VAL_LOW_TT "Low (Fastest)"
 #define OPTION_VAL_HIGH_TT "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_TT NULL
+#define OPTION_VAL_ULTRA_TT "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_TT NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_TT NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_TT NULL
@@ -34783,7 +31537,7 @@ struct retro_core_options_v2 options_tr = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_TT NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_TT "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_TT "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_TT NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_TT NULL
 #define RPCS3_CPU_BLIT_LABEL_TT NULL
 #define RPCS3_CPU_BLIT_INFO_0_TT NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_TT NULL
@@ -34817,13 +31571,6 @@ struct retro_core_options_v2 options_tr = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_TT NULL
 #define RPCS3_TIME_STRETCHING_LABEL_TT NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_TT NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_TT NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_TT NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_TT NULL
-#define OPTION_VAL_STANDARD_TT NULL
-#define OPTION_VAL_SINGSTAR_TT NULL
-#define OPTION_VAL_REAL_SINGSTAR_TT NULL
-#define OPTION_VAL_ROCKSMITH_TT NULL
 #define RPCS3_MASTER_VOLUME_LABEL_TT NULL
 #define RPCS3_MASTER_VOLUME_INFO_0_TT NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_TT NULL
@@ -34859,7 +31606,9 @@ struct retro_core_options_v2 options_tr = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_TT NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_TT NULL
 #define OPTION_VAL_FAST_TT NULL
-#define OPTION_VAL_BALANCED_TT NULL
+#define OPTION_VAL_ATOMIC_TT NULL
+#define OPTION_VAL_ATOMIC_ORDERED_TT NULL
+#define OPTION_VAL_AS_PS3_TT NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_TT NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_TT NULL
 #define OPTION_VAL_1000_TT NULL
@@ -34873,10 +31622,6 @@ struct retro_core_options_v2 options_tr = {
 #define OPTION_VAL_3_TT NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_TT NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_TT NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_TT NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_TT NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_TT NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_TT NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_TT NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_TT NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_TT NULL
@@ -34913,11 +31658,12 @@ struct retro_core_options_v2 options_tr = {
 #define OPTION_VAL_CIRCLE_TT NULL
 #define RPCS3_LICENSE_AREA_LABEL_TT NULL
 #define RPCS3_LICENSE_AREA_INFO_0_TT NULL
-#define OPTION_VAL_USA_TT NULL
+#define OPTION_VAL_USA_TT "USA"
 #define OPTION_VAL_EU_TT "Аурупа"
-#define OPTION_VAL_JP_TT NULL
-#define OPTION_VAL_HK_TT NULL
-#define OPTION_VAL_KR_TT NULL
+#define OPTION_VAL_JP_TT "Japan"
+#define OPTION_VAL_HK_TT "Hong Kong"
+#define OPTION_VAL_KR_TT "Korea"
+#define OPTION_VAL_CN_TT NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_TT NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_TT NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_TT NULL
@@ -34925,9 +31671,6 @@ struct retro_core_options_v2 options_tr = {
 #define OPTION_VAL_LIST_TT NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_TT NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_TT NULL
-#define RPCS3_VFS_INIT_LABEL_TT NULL
-#define RPCS3_VFS_INIT_INFO_0_TT NULL
-#define OPTION_VAL_RESET_TT NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_TT NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_TT NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_TT NULL
@@ -35003,20 +31746,6 @@ struct retro_core_option_v2_definition option_defs_tt[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_TT, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_TT,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_TT, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_TT,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_TT, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_TT,
         NULL, "cpu",
@@ -35027,8 +31756,8 @@ struct retro_core_option_v2_definition option_defs_tt[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_TT, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_TT,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_TT}, {"all_timers", OPTION_VAL_ALL_TIMERS_TT}, {"as_host", OPTION_VAL_AS_HOST_TT}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_TT}, {"as_host", OPTION_VAL_AS_HOST_TT}, {"usleep", OPTION_VAL_USLEEP_TT}, {"all_timers", OPTION_VAL_ALL_TIMERS_TT}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_TT, NULL,
@@ -35038,32 +31767,11 @@ struct retro_core_option_v2_definition option_defs_tt[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_TT, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_TT,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_TT}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_TT, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_TT,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_TT}, {"accurate", OPTION_VAL_ACCURATE_TT}, {"ultra", OPTION_VAL_ULTRA_TT}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_TT, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_TT,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_TT, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_TT,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_TT}, {"approximate", OPTION_VAL_APPROXIMATE_TT}, {"relaxed", OPTION_VAL_RELAXED_TT}, {"inaccurate", OPTION_VAL_INACCURATE_TT}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -35141,7 +31849,7 @@ struct retro_core_option_v2_definition option_defs_tt[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_TT, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_TT,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_TT}, {"high", OPTION_VAL_HIGH_TT}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_TT}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_TT}, {"high", OPTION_VAL_HIGH_TT}, {"ultra", OPTION_VAL_ULTRA_TT}, {NULL, NULL} },
         "high"
     },
     {
@@ -35197,7 +31905,7 @@ struct retro_core_option_v2_definition option_defs_tt[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_TT, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_TT,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_TT}, {"approximate", OPTION_VAL_APPROXIMATE_TT}, {"relaxed", OPTION_VAL_RELAXED_TT}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_TT}, {"approximate", OPTION_VAL_APPROXIMATE_TT}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_TT}, {NULL, NULL} },
         "precise"
     },
     {
@@ -35257,13 +31965,6 @@ struct retro_core_option_v2_definition option_defs_tt[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_TT, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_TT,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_TT}, {"standard", OPTION_VAL_STANDARD_TT}, {"singstar", OPTION_VAL_SINGSTAR_TT}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_TT}, {"rocksmith", OPTION_VAL_ROCKSMITH_TT}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_TT, NULL,
@@ -35336,8 +32037,8 @@ struct retro_core_option_v2_definition option_defs_tt[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_TT, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_TT,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_TT}, {"balanced", OPTION_VAL_BALANCED_TT}, {"accurate", OPTION_VAL_ACCURATE_TT}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_TT}, {"atomic", OPTION_VAL_ATOMIC_TT}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_TT}, {"as_ps3", OPTION_VAL_AS_PS3_TT}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_TT, NULL,
@@ -35363,20 +32064,6 @@ struct retro_core_option_v2_definition option_defs_tt[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_TT, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_TT,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_TT, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_TT,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_TT, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_TT,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -35457,7 +32144,7 @@ struct retro_core_option_v2_definition option_defs_tt[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_TT, NULL,
         RPCS3_LICENSE_AREA_INFO_0_TT,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_TT}, {"eu", OPTION_VAL_EU_TT}, {"jp", OPTION_VAL_JP_TT}, {"hk", OPTION_VAL_HK_TT}, {"kr", OPTION_VAL_KR_TT}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_TT}, {"eu", OPTION_VAL_EU_TT}, {"jp", OPTION_VAL_JP_TT}, {"hk", OPTION_VAL_HK_TT}, {"kr", OPTION_VAL_KR_TT}, {"cn", OPTION_VAL_CN_TT}, {NULL, NULL} },
         "usa"
     },
     {
@@ -35480,13 +32167,6 @@ struct retro_core_option_v2_definition option_defs_tt[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_TT, NULL,
-        RPCS3_VFS_INIT_INFO_0_TT,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_TT}, {"reset", OPTION_VAL_RESET_TT}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_TT, NULL,
@@ -35554,10 +32234,6 @@ struct retro_core_options_v2 options_tt = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_UK NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_UK NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_UK "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_UK NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_UK NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_UK NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_UK NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_UK NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_UK NULL
 #define OPTION_VAL_50_UK NULL
@@ -35568,23 +32244,18 @@ struct retro_core_options_v2 options_tt = {
 #define OPTION_VAL_300_UK NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_UK NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_UK NULL
-#define OPTION_VAL_USLEEP_UK NULL
-#define OPTION_VAL_ALL_TIMERS_UK NULL
+#define OPTION_VAL_AUTO_UK NULL
 #define OPTION_VAL_AS_HOST_UK NULL
+#define OPTION_VAL_USLEEP_UK "Usleep"
+#define OPTION_VAL_ALL_TIMERS_UK NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_UK NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_UK NULL
-#define RPCS3_ENABLE_TSX_LABEL_UK NULL
-#define RPCS3_ENABLE_TSX_INFO_0_UK NULL
-#define OPTION_VAL_FORCED_UK "Примусово"
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_UK NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_UK NULL
-#define OPTION_VAL_RELAXED_UK NULL
 #define OPTION_VAL_ACCURATE_UK "Точний"
-#define OPTION_VAL_ULTRA_UK NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_UK NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_UK NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_UK NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_UK NULL
+#define OPTION_VAL_APPROXIMATE_UK NULL
+#define OPTION_VAL_RELAXED_UK "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_UK NULL
 #define RPCS3_RENDERER_LABEL_UK "Рендерер"
 #define RPCS3_RENDERER_INFO_0_UK NULL
 #define OPTION_VAL_OPENGL_UK NULL
@@ -35652,7 +32323,7 @@ struct retro_core_options_v2 options_tt = {
 #define RPCS3_SHADER_QUALITY_INFO_0_UK NULL
 #define OPTION_VAL_LOW_UK "Low (Fastest)"
 #define OPTION_VAL_HIGH_UK "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_UK NULL
+#define OPTION_VAL_ULTRA_UK "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_UK NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_UK NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_UK NULL
@@ -35670,7 +32341,7 @@ struct retro_core_options_v2 options_tt = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_UK NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_UK "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_UK "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_UK NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_UK NULL
 #define RPCS3_CPU_BLIT_LABEL_UK NULL
 #define RPCS3_CPU_BLIT_INFO_0_UK NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_UK NULL
@@ -35704,13 +32375,6 @@ struct retro_core_options_v2 options_tt = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_UK NULL
 #define RPCS3_TIME_STRETCHING_LABEL_UK NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_UK NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_UK NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_UK NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_UK NULL
-#define OPTION_VAL_STANDARD_UK NULL
-#define OPTION_VAL_SINGSTAR_UK NULL
-#define OPTION_VAL_REAL_SINGSTAR_UK NULL
-#define OPTION_VAL_ROCKSMITH_UK NULL
 #define RPCS3_MASTER_VOLUME_LABEL_UK "Загальний звук"
 #define RPCS3_MASTER_VOLUME_INFO_0_UK NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_UK NULL
@@ -35746,7 +32410,9 @@ struct retro_core_options_v2 options_tt = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_UK NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_UK NULL
 #define OPTION_VAL_FAST_UK "Швидко"
-#define OPTION_VAL_BALANCED_UK "Збалансований"
+#define OPTION_VAL_ATOMIC_UK NULL
+#define OPTION_VAL_ATOMIC_ORDERED_UK NULL
+#define OPTION_VAL_AS_PS3_UK NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_UK NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_UK NULL
 #define OPTION_VAL_1000_UK NULL
@@ -35760,10 +32426,6 @@ struct retro_core_options_v2 options_tt = {
 #define OPTION_VAL_3_UK "3 (за замовчуванням)"
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_UK NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_UK NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_UK NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_UK NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_UK NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_UK NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_UK NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_UK NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_UK NULL
@@ -35803,8 +32465,9 @@ struct retro_core_options_v2 options_tt = {
 #define OPTION_VAL_USA_UK "США"
 #define OPTION_VAL_EU_UK "Європа"
 #define OPTION_VAL_JP_UK "Японія"
-#define OPTION_VAL_HK_UK NULL
-#define OPTION_VAL_KR_UK NULL
+#define OPTION_VAL_HK_UK "Hong Kong"
+#define OPTION_VAL_KR_UK "Korea"
+#define OPTION_VAL_CN_UK NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_UK NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_UK NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_UK NULL
@@ -35812,9 +32475,6 @@ struct retro_core_options_v2 options_tt = {
 #define OPTION_VAL_LIST_UK NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_UK NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_UK NULL
-#define RPCS3_VFS_INIT_LABEL_UK NULL
-#define RPCS3_VFS_INIT_INFO_0_UK NULL
-#define OPTION_VAL_RESET_UK "Скинути"
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_UK NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_UK NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_UK NULL
@@ -35890,20 +32550,6 @@ struct retro_core_option_v2_definition option_defs_uk[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_UK, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_UK,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_UK, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_UK,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_UK, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_UK,
         NULL, "cpu",
@@ -35914,8 +32560,8 @@ struct retro_core_option_v2_definition option_defs_uk[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_UK, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_UK,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_UK}, {"all_timers", OPTION_VAL_ALL_TIMERS_UK}, {"as_host", OPTION_VAL_AS_HOST_UK}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_UK}, {"as_host", OPTION_VAL_AS_HOST_UK}, {"usleep", OPTION_VAL_USLEEP_UK}, {"all_timers", OPTION_VAL_ALL_TIMERS_UK}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_UK, NULL,
@@ -35925,32 +32571,11 @@ struct retro_core_option_v2_definition option_defs_uk[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_UK, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_UK,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_UK}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_UK, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_UK,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_UK}, {"accurate", OPTION_VAL_ACCURATE_UK}, {"ultra", OPTION_VAL_ULTRA_UK}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_UK, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_UK,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_UK, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_UK,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_UK}, {"approximate", OPTION_VAL_APPROXIMATE_UK}, {"relaxed", OPTION_VAL_RELAXED_UK}, {"inaccurate", OPTION_VAL_INACCURATE_UK}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -36028,7 +32653,7 @@ struct retro_core_option_v2_definition option_defs_uk[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_UK, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_UK,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_UK}, {"high", OPTION_VAL_HIGH_UK}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_UK}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_UK}, {"high", OPTION_VAL_HIGH_UK}, {"ultra", OPTION_VAL_ULTRA_UK}, {NULL, NULL} },
         "high"
     },
     {
@@ -36084,7 +32709,7 @@ struct retro_core_option_v2_definition option_defs_uk[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_UK, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_UK,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_UK}, {"approximate", OPTION_VAL_APPROXIMATE_UK}, {"relaxed", OPTION_VAL_RELAXED_UK}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_UK}, {"approximate", OPTION_VAL_APPROXIMATE_UK}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_UK}, {NULL, NULL} },
         "precise"
     },
     {
@@ -36144,13 +32769,6 @@ struct retro_core_option_v2_definition option_defs_uk[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_UK, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_UK,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_UK}, {"standard", OPTION_VAL_STANDARD_UK}, {"singstar", OPTION_VAL_SINGSTAR_UK}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_UK}, {"rocksmith", OPTION_VAL_ROCKSMITH_UK}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_UK, NULL,
@@ -36223,8 +32841,8 @@ struct retro_core_option_v2_definition option_defs_uk[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_UK, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_UK,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_UK}, {"balanced", OPTION_VAL_BALANCED_UK}, {"accurate", OPTION_VAL_ACCURATE_UK}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_UK}, {"atomic", OPTION_VAL_ATOMIC_UK}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_UK}, {"as_ps3", OPTION_VAL_AS_PS3_UK}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_UK, NULL,
@@ -36250,20 +32868,6 @@ struct retro_core_option_v2_definition option_defs_uk[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_UK, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_UK,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_UK, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_UK,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_UK, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_UK,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -36344,7 +32948,7 @@ struct retro_core_option_v2_definition option_defs_uk[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_UK, NULL,
         RPCS3_LICENSE_AREA_INFO_0_UK,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_UK}, {"eu", OPTION_VAL_EU_UK}, {"jp", OPTION_VAL_JP_UK}, {"hk", OPTION_VAL_HK_UK}, {"kr", OPTION_VAL_KR_UK}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_UK}, {"eu", OPTION_VAL_EU_UK}, {"jp", OPTION_VAL_JP_UK}, {"hk", OPTION_VAL_HK_UK}, {"kr", OPTION_VAL_KR_UK}, {"cn", OPTION_VAL_CN_UK}, {NULL, NULL} },
         "usa"
     },
     {
@@ -36367,13 +32971,6 @@ struct retro_core_option_v2_definition option_defs_uk[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_UK, NULL,
-        RPCS3_VFS_INIT_INFO_0_UK,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_UK}, {"reset", OPTION_VAL_RESET_UK}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_UK, NULL,
@@ -36441,10 +33038,6 @@ struct retro_core_options_v2 options_uk = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_VAL NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_VAL NULL
 #define RPCS3_ACCURATE_DFMA_INFO_0_VAL "Use accurate double-precision fused multiply-add."
-#define RPCS3_PPU_RESERVATIONS_LABEL_VAL NULL
-#define RPCS3_PPU_RESERVATIONS_INFO_0_VAL NULL
-#define RPCS3_ACCURATE_XFLOAT_LABEL_VAL NULL
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_VAL NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_VAL NULL
 #define RPCS3_CLOCKS_SCALE_INFO_0_VAL NULL
 #define OPTION_VAL_50_VAL NULL
@@ -36455,23 +33048,18 @@ struct retro_core_options_v2 options_uk = {
 #define OPTION_VAL_300_VAL NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_VAL NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_VAL NULL
-#define OPTION_VAL_USLEEP_VAL NULL
-#define OPTION_VAL_ALL_TIMERS_VAL NULL
+#define OPTION_VAL_AUTO_VAL NULL
 #define OPTION_VAL_AS_HOST_VAL NULL
+#define OPTION_VAL_USLEEP_VAL "Usleep"
+#define OPTION_VAL_ALL_TIMERS_VAL NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_VAL NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_VAL NULL
-#define RPCS3_ENABLE_TSX_LABEL_VAL NULL
-#define RPCS3_ENABLE_TSX_INFO_0_VAL NULL
-#define OPTION_VAL_FORCED_VAL NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_VAL NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_VAL NULL
-#define OPTION_VAL_RELAXED_VAL NULL
 #define OPTION_VAL_ACCURATE_VAL NULL
-#define OPTION_VAL_ULTRA_VAL NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_VAL NULL
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_VAL NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_VAL NULL
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_VAL NULL
+#define OPTION_VAL_APPROXIMATE_VAL NULL
+#define OPTION_VAL_RELAXED_VAL "Relaxed (Fastest)"
+#define OPTION_VAL_INACCURATE_VAL NULL
 #define RPCS3_RENDERER_LABEL_VAL NULL
 #define RPCS3_RENDERER_INFO_0_VAL NULL
 #define OPTION_VAL_OPENGL_VAL NULL
@@ -36539,7 +33127,7 @@ struct retro_core_options_v2 options_uk = {
 #define RPCS3_SHADER_QUALITY_INFO_0_VAL NULL
 #define OPTION_VAL_LOW_VAL "Low (Fastest)"
 #define OPTION_VAL_HIGH_VAL "High (Most Accurate)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_VAL NULL
+#define OPTION_VAL_ULTRA_VAL "Ultra (Slowest)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_VAL NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_VAL NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_VAL NULL
@@ -36557,7 +33145,7 @@ struct retro_core_options_v2 options_uk = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_VAL NULL
 #define RPCS3_ZCULL_ACCURACY_INFO_0_VAL "ZCULL occlusion query accuracy."
 #define OPTION_VAL_PRECISE_VAL "Precise (Slowest)"
-#define OPTION_VAL_APPROXIMATE_VAL NULL
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_VAL NULL
 #define RPCS3_CPU_BLIT_LABEL_VAL NULL
 #define RPCS3_CPU_BLIT_INFO_0_VAL NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_VAL NULL
@@ -36591,13 +33179,6 @@ struct retro_core_options_v2 options_uk = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_VAL NULL
 #define RPCS3_TIME_STRETCHING_LABEL_VAL NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_VAL NULL
-#define RPCS3_MICROPHONE_TYPE_LABEL_VAL NULL
-#define RPCS3_MICROPHONE_TYPE_INFO_0_VAL NULL
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_VAL NULL
-#define OPTION_VAL_STANDARD_VAL NULL
-#define OPTION_VAL_SINGSTAR_VAL NULL
-#define OPTION_VAL_REAL_SINGSTAR_VAL NULL
-#define OPTION_VAL_ROCKSMITH_VAL NULL
 #define RPCS3_MASTER_VOLUME_LABEL_VAL NULL
 #define RPCS3_MASTER_VOLUME_INFO_0_VAL NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_VAL NULL
@@ -36633,7 +33214,9 @@ struct retro_core_options_v2 options_uk = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_VAL NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_VAL NULL
 #define OPTION_VAL_FAST_VAL NULL
-#define OPTION_VAL_BALANCED_VAL NULL
+#define OPTION_VAL_ATOMIC_VAL NULL
+#define OPTION_VAL_ATOMIC_ORDERED_VAL NULL
+#define OPTION_VAL_AS_PS3_VAL NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_VAL NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_VAL NULL
 #define OPTION_VAL_1000_VAL NULL
@@ -36647,10 +33230,6 @@ struct retro_core_options_v2 options_uk = {
 #define OPTION_VAL_3_VAL NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_VAL NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_VAL NULL
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_VAL NULL
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_VAL NULL
-#define RPCS3_SPU_NJ_FIXUP_LABEL_VAL NULL
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_VAL NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_VAL NULL
 #define RPCS3_PPU_NJ_MODE_INFO_0_VAL NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_VAL NULL
@@ -36687,11 +33266,12 @@ struct retro_core_options_v2 options_uk = {
 #define OPTION_VAL_CIRCLE_VAL NULL
 #define RPCS3_LICENSE_AREA_LABEL_VAL NULL
 #define RPCS3_LICENSE_AREA_INFO_0_VAL NULL
-#define OPTION_VAL_USA_VAL NULL
-#define OPTION_VAL_EU_VAL NULL
-#define OPTION_VAL_JP_VAL NULL
-#define OPTION_VAL_HK_VAL NULL
-#define OPTION_VAL_KR_VAL NULL
+#define OPTION_VAL_USA_VAL "USA"
+#define OPTION_VAL_EU_VAL "Europe"
+#define OPTION_VAL_JP_VAL "Japan"
+#define OPTION_VAL_HK_VAL "Hong Kong"
+#define OPTION_VAL_KR_VAL "Korea"
+#define OPTION_VAL_CN_VAL NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_VAL NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_VAL NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_VAL NULL
@@ -36699,9 +33279,6 @@ struct retro_core_options_v2 options_uk = {
 #define OPTION_VAL_LIST_VAL NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_VAL NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_VAL NULL
-#define RPCS3_VFS_INIT_LABEL_VAL NULL
-#define RPCS3_VFS_INIT_INFO_0_VAL NULL
-#define OPTION_VAL_RESET_VAL NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_VAL NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_VAL NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_VAL NULL
@@ -36777,20 +33354,6 @@ struct retro_core_option_v2_definition option_defs_val[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_VAL, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_VAL,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_VAL, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_VAL,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_VAL, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_VAL,
         NULL, "cpu",
@@ -36801,8 +33364,8 @@ struct retro_core_option_v2_definition option_defs_val[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_VAL, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_VAL,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_VAL}, {"all_timers", OPTION_VAL_ALL_TIMERS_VAL}, {"as_host", OPTION_VAL_AS_HOST_VAL}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_VAL}, {"as_host", OPTION_VAL_AS_HOST_VAL}, {"usleep", OPTION_VAL_USLEEP_VAL}, {"all_timers", OPTION_VAL_ALL_TIMERS_VAL}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_VAL, NULL,
@@ -36812,32 +33375,11 @@ struct retro_core_option_v2_definition option_defs_val[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_VAL, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_VAL,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_VAL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_VAL, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_VAL,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_VAL}, {"accurate", OPTION_VAL_ACCURATE_VAL}, {"ultra", OPTION_VAL_ULTRA_VAL}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_VAL, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_VAL,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_VAL, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_VAL,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_VAL}, {"approximate", OPTION_VAL_APPROXIMATE_VAL}, {"relaxed", OPTION_VAL_RELAXED_VAL}, {"inaccurate", OPTION_VAL_INACCURATE_VAL}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -36915,7 +33457,7 @@ struct retro_core_option_v2_definition option_defs_val[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_VAL, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_VAL,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_VAL}, {"high", OPTION_VAL_HIGH_VAL}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_VAL}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_VAL}, {"high", OPTION_VAL_HIGH_VAL}, {"ultra", OPTION_VAL_ULTRA_VAL}, {NULL, NULL} },
         "high"
     },
     {
@@ -36971,7 +33513,7 @@ struct retro_core_option_v2_definition option_defs_val[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_VAL, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_VAL,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_VAL}, {"approximate", OPTION_VAL_APPROXIMATE_VAL}, {"relaxed", OPTION_VAL_RELAXED_VAL}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_VAL}, {"approximate", OPTION_VAL_APPROXIMATE_VAL}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_VAL}, {NULL, NULL} },
         "precise"
     },
     {
@@ -37031,13 +33573,6 @@ struct retro_core_option_v2_definition option_defs_val[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_VAL, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_VAL,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_VAL}, {"standard", OPTION_VAL_STANDARD_VAL}, {"singstar", OPTION_VAL_SINGSTAR_VAL}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_VAL}, {"rocksmith", OPTION_VAL_ROCKSMITH_VAL}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_VAL, NULL,
@@ -37110,8 +33645,8 @@ struct retro_core_option_v2_definition option_defs_val[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_VAL, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_VAL,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_VAL}, {"balanced", OPTION_VAL_BALANCED_VAL}, {"accurate", OPTION_VAL_ACCURATE_VAL}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_VAL}, {"atomic", OPTION_VAL_ATOMIC_VAL}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_VAL}, {"as_ps3", OPTION_VAL_AS_PS3_VAL}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_VAL, NULL,
@@ -37137,20 +33672,6 @@ struct retro_core_option_v2_definition option_defs_val[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_VAL, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_VAL,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_VAL, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_VAL,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_VAL, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_VAL,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -37231,7 +33752,7 @@ struct retro_core_option_v2_definition option_defs_val[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_VAL, NULL,
         RPCS3_LICENSE_AREA_INFO_0_VAL,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_VAL}, {"eu", OPTION_VAL_EU_VAL}, {"jp", OPTION_VAL_JP_VAL}, {"hk", OPTION_VAL_HK_VAL}, {"kr", OPTION_VAL_KR_VAL}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_VAL}, {"eu", OPTION_VAL_EU_VAL}, {"jp", OPTION_VAL_JP_VAL}, {"hk", OPTION_VAL_HK_VAL}, {"kr", OPTION_VAL_KR_VAL}, {"cn", OPTION_VAL_CN_VAL}, {NULL, NULL} },
         "usa"
     },
     {
@@ -37254,13 +33775,6 @@ struct retro_core_option_v2_definition option_defs_val[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_VAL, NULL,
-        RPCS3_VFS_INIT_INFO_0_VAL,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_VAL}, {"reset", OPTION_VAL_RESET_VAL}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_VAL, NULL,
@@ -37328,10 +33842,6 @@ struct retro_core_options_v2 options_val = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_VN "Biên dịch trước các mô-đun PPU khi khởi động để tăng tốc các lần tải tiếp theo."
 #define RPCS3_ACCURATE_DFMA_LABEL_VN "DFMA chính xác"
 #define RPCS3_ACCURATE_DFMA_INFO_0_VN "Sử dụng phép nhân-cộng hợp nhất độ chính xác kép chính xác."
-#define RPCS3_PPU_RESERVATIONS_LABEL_VN "Phân bổ luồng PPU"
-#define RPCS3_PPU_RESERVATIONS_INFO_0_VN "Sử dụng cơ chế phân bổ luồng PPU để khóa chính xác."
-#define RPCS3_ACCURATE_XFLOAT_LABEL_VN "Độ chính xác XFLOAT"
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_VN "Độ chính xác số thực dấu phẩy động của SPU cao hơn. Có thể khắc phục một số trò chơi."
 #define RPCS3_CLOCKS_SCALE_LABEL_VN "Tỷ lệ xung nhịp"
 #define RPCS3_CLOCKS_SCALE_INFO_0_VN "Điều chỉnh tốc độ xung nhịp PS3 theo phần trăm."
 #define OPTION_VAL_50_VN NULL
@@ -37342,23 +33852,18 @@ struct retro_core_options_v2 options_val = {
 #define OPTION_VAL_300_VN NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_VN "Độ chính xác bộ hẹn giờ ngủ"
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_VN "Mức độ chính xác của bộ hẹn giờ ngủ."
-#define OPTION_VAL_USLEEP_VN NULL
-#define OPTION_VAL_ALL_TIMERS_VN "Tất cả bộ hẹn giờ"
+#define OPTION_VAL_AUTO_VN NULL
 #define OPTION_VAL_AS_HOST_VN "Theo máy chủ"
+#define OPTION_VAL_USLEEP_VN "Usleep"
+#define OPTION_VAL_ALL_TIMERS_VN "Tất cả bộ hẹn giờ"
 #define RPCS3_MAX_SPURS_THREADS_LABEL_VN "Số luồng SPURS tối đa"
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_VN "Số luồng SPURS tối đa. Giảm giá trị này có thể cải thiện hiệu suất."
-#define RPCS3_ENABLE_TSX_LABEL_VN "Bật TSX"
-#define RPCS3_ENABLE_TSX_INFO_0_VN "Bật tăng tốc phần cứng Intel TSX nếu có."
-#define OPTION_VAL_FORCED_VN "Bắt buộc"
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_VN "Độ chính xác XFloat của SPU"
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_VN "Mức độ chính xác số thực dấu phẩy động của SPU."
-#define OPTION_VAL_RELAXED_VN "Thả lỏng (Nhanh nhất)"
 #define OPTION_VAL_ACCURATE_VN "Chính xác"
-#define OPTION_VAL_ULTRA_VN "Cực cao (Chậm nhất)"
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_VN "Chờ bận SPU DMA"
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_VN "Bật chế độ chờ SPU DMA bận để tăng độ chính xác về thời gian."
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_VN "Mức tương thích chế độ Java của PPU LLVM"
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_VN "Mức độ tuân thủ chế độ Java của PPU LLVM."
+#define OPTION_VAL_APPROXIMATE_VN "Xấp xỉ"
+#define OPTION_VAL_RELAXED_VN "Thả lỏng (Nhanh nhất)"
+#define OPTION_VAL_INACCURATE_VN NULL
 #define RPCS3_RENDERER_LABEL_VN "Renderer (Trình kết xuất)"
 #define RPCS3_RENDERER_INFO_0_VN "Vulkan hoàn tất từng khung hình vào bộ nhớ rồi giao các điểm ảnh cho giao diện chính; tốc độ gần tương đương RPCS3 chạy độc lập và hoạt động trong trường hợp OpenGL không được hỗ trợ hoặc bị lỗi. OpenGL vẽ trực tiếp vào ngữ cảnh của giao diện chính."
 #define OPTION_VAL_OPENGL_VN NULL
@@ -37426,7 +33931,7 @@ struct retro_core_options_v2 options_val = {
 #define RPCS3_SHADER_QUALITY_INFO_0_VN NULL
 #define OPTION_VAL_LOW_VN "Thấp (Nhanh nhất)"
 #define OPTION_VAL_HIGH_VN "Cao (Chính xác nhất)"
-#define OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_VN NULL
+#define OPTION_VAL_ULTRA_VN "Cực cao (Chậm nhất)"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_VN "Ghi bộ đệm màu"
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_VN "Ghi bộ đệm màu vào bộ nhớ chính. Khắc phục một số hiệu ứng."
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_VN "Đọc bộ đệm màu"
@@ -37444,7 +33949,7 @@ struct retro_core_options_v2 options_val = {
 #define RPCS3_ZCULL_ACCURACY_LABEL_VN "Độ chính xác ZCULL"
 #define RPCS3_ZCULL_ACCURACY_INFO_0_VN "Độ chính xác của truy vấn che khuất ZCULL."
 #define OPTION_VAL_PRECISE_VN "Chính xác (Chậm nhất)"
-#define OPTION_VAL_APPROXIMATE_VN "Xấp xỉ"
+#define OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_VN NULL
 #define RPCS3_CPU_BLIT_LABEL_VN "Ép xử lý Blit bằng CPU"
 #define RPCS3_CPU_BLIT_INFO_0_VN "Ép mô phỏng xử lý Blit bằng CPU cho một số hiệu ứng nhất định."
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_VN "Độ trễ đánh thức trình điều khiển"
@@ -37478,13 +33983,6 @@ struct retro_core_options_v2 options_val = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_VN "200 mili giây"
 #define RPCS3_TIME_STRETCHING_LABEL_VN "Kéo giãn thời gian"
 #define RPCS3_TIME_STRETCHING_INFO_0_VN "Bật tính năng kéo giãn thời gian âm thanh để giảm hiện tượng giật âm thanh."
-#define RPCS3_MICROPHONE_TYPE_LABEL_VN "Loại micrô"
-#define RPCS3_MICROPHONE_TYPE_INFO_0_VN "Loại thiết bị micrô."
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_VN "Không có (Đã tắt)"
-#define OPTION_VAL_STANDARD_VN "Tiêu chuẩn"
-#define OPTION_VAL_SINGSTAR_VN NULL
-#define OPTION_VAL_REAL_SINGSTAR_VN "SingStar thật"
-#define OPTION_VAL_ROCKSMITH_VN NULL
 #define RPCS3_MASTER_VOLUME_LABEL_VN "Âm lượng Chính"
 #define RPCS3_MASTER_VOLUME_INFO_0_VN "Phần trăm âm lượng âm thanh chính."
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_VN NULL
@@ -37520,7 +34018,9 @@ struct retro_core_options_v2 options_val = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_VN "Độ chính xác hàng đợi FIFO của RSX"
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_VN "Mức độ chính xác của lệnh FIFO của RSX."
 #define OPTION_VAL_FAST_VN "Nhanh"
-#define OPTION_VAL_BALANCED_VN "Cân bằng"
+#define OPTION_VAL_ATOMIC_VN NULL
+#define OPTION_VAL_ATOMIC_ORDERED_VN NULL
+#define OPTION_VAL_AS_PS3_VN NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_VN "Thời gian chờ khôi phục trình điều khiển"
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_VN "Thời gian chờ khôi phục trình điều khiển GPU tính bằng mili giây."
 #define OPTION_VAL_1000_VN "1 giây"
@@ -37534,10 +34034,6 @@ struct retro_core_options_v2 options_val = {
 #define OPTION_VAL_3_VN "3 (Mặc định)"
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_VN "Truyền kết cấu bất đồng bộ"
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_VN "Bật truyền kết cấu bất đồng bộ."
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_VN "Chế độ tham lam LLVM của PPU"
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_VN "Sử dụng biên dịch LLVM tham lam cho PPU."
-#define RPCS3_SPU_NJ_FIXUP_LABEL_VN "Sửa lỗi chế độ NJ của SPU"
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_VN "Áp dụng xử lý sửa lỗi cho chế độ không phải Java của SPU."
 #define RPCS3_PPU_NJ_MODE_LABEL_VN "Chế độ sửa lỗi NJ của PPU"
 #define RPCS3_PPU_NJ_MODE_INFO_0_VN "Cách xử lý chế độ không phải Java của PPU."
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_VN "Thiết lập bit bão hòa"
@@ -37579,6 +34075,7 @@ struct retro_core_options_v2 options_val = {
 #define OPTION_VAL_JP_VN "Nhật Bản"
 #define OPTION_VAL_HK_VN "Hồng Kông"
 #define OPTION_VAL_KR_VN "Hàn Quốc"
+#define OPTION_VAL_CN_VN NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_VN "Hiển thị gợi ý biên dịch bộ đổ bóng"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_VN "Hiển thị gợi ý khi bộ đổ bóng đang được biên dịch."
 #define RPCS3_SAVEDATA_SLOT_LABEL_VN "Vị trí dữ liệu lưu"
@@ -37586,9 +34083,6 @@ struct retro_core_options_v2 options_val = {
 #define OPTION_VAL_LIST_VN "Chọn từ danh sách"
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_VN "Hiển thị gợi ý biên dịch PPU"
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_VN "Hiển thị gợi ý khi các mô-đun PPU đang được biên dịch."
-#define RPCS3_VFS_INIT_LABEL_VN "Chế độ khởi tạo hệ thống tệp ảo"
-#define RPCS3_VFS_INIT_INFO_0_VN "Chế độ khởi tạo hệ thống tệp ảo."
-#define OPTION_VAL_RESET_VN "Đặt lại"
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_VN "Tắt toàn bộ nhật ký"
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_VN "Tắt toàn bộ thông tin nhật ký để tăng hiệu suất."
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_VN "Hook các hàm tĩnh"
@@ -37664,20 +34158,6 @@ struct retro_core_option_v2_definition option_defs_vn[] = {
         "enabled"
     },
     {
-        "rpcs3_ppu_reservations", RPCS3_PPU_RESERVATIONS_LABEL_VN, NULL,
-        RPCS3_PPU_RESERVATIONS_INFO_0_VN,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", RPCS3_ACCURATE_XFLOAT_LABEL_VN, NULL,
-        RPCS3_ACCURATE_XFLOAT_INFO_0_VN,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_clocks_scale", RPCS3_CLOCKS_SCALE_LABEL_VN, NULL,
         RPCS3_CLOCKS_SCALE_INFO_0_VN,
         NULL, "cpu",
@@ -37688,8 +34168,8 @@ struct retro_core_option_v2_definition option_defs_vn[] = {
         "rpcs3_sleep_timers_accuracy", RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_VN, NULL,
         RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_VN,
         NULL, "cpu",
-        { {"usleep", OPTION_VAL_USLEEP_VN}, {"all_timers", OPTION_VAL_ALL_TIMERS_VN}, {"as_host", OPTION_VAL_AS_HOST_VN}, {NULL, NULL} },
-        "usleep"
+        { {"auto", OPTION_VAL_AUTO_VN}, {"as_host", OPTION_VAL_AS_HOST_VN}, {"usleep", OPTION_VAL_USLEEP_VN}, {"all_timers", OPTION_VAL_ALL_TIMERS_VN}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", RPCS3_MAX_SPURS_THREADS_LABEL_VN, NULL,
@@ -37699,32 +34179,11 @@ struct retro_core_option_v2_definition option_defs_vn[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", RPCS3_ENABLE_TSX_LABEL_VN, NULL,
-        RPCS3_ENABLE_TSX_INFO_0_VN,
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", OPTION_VAL_FORCED_VN}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", RPCS3_SPU_XFLOAT_ACCURACY_LABEL_VN, NULL,
         RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_VN,
         NULL, "cpu",
-        { {"relaxed", OPTION_VAL_RELAXED_VN}, {"accurate", OPTION_VAL_ACCURATE_VN}, {"ultra", OPTION_VAL_ULTRA_VN}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", RPCS3_SPU_DMA_BUSY_WAIT_LABEL_VN, NULL,
-        RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_VN,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", RPCS3_PPU_LLVM_JAVA_MODE_LABEL_VN, NULL,
-        RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_VN,
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", OPTION_VAL_ACCURATE_VN}, {"approximate", OPTION_VAL_APPROXIMATE_VN}, {"relaxed", OPTION_VAL_RELAXED_VN}, {"inaccurate", OPTION_VAL_INACCURATE_VN}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -37802,7 +34261,7 @@ struct retro_core_option_v2_definition option_defs_vn[] = {
         "rpcs3_shader_quality", RPCS3_SHADER_QUALITY_LABEL_VN, NULL,
         RPCS3_SHADER_QUALITY_INFO_0_VN,
         NULL, "gpu",
-        { {"low", OPTION_VAL_LOW_VN}, {"high", OPTION_VAL_HIGH_VN}, {"ultra", OPTION_VAL_ULTRA_RPCS3_SHADER_QUALITY_VN}, {NULL, NULL} },
+        { {"low", OPTION_VAL_LOW_VN}, {"high", OPTION_VAL_HIGH_VN}, {"ultra", OPTION_VAL_ULTRA_VN}, {NULL, NULL} },
         "high"
     },
     {
@@ -37858,7 +34317,7 @@ struct retro_core_option_v2_definition option_defs_vn[] = {
         "rpcs3_zcull_accuracy", RPCS3_ZCULL_ACCURACY_LABEL_VN, NULL,
         RPCS3_ZCULL_ACCURACY_INFO_0_VN,
         NULL, "gpu",
-        { {"precise", OPTION_VAL_PRECISE_VN}, {"approximate", OPTION_VAL_APPROXIMATE_VN}, {"relaxed", OPTION_VAL_RELAXED_VN}, {NULL, NULL} },
+        { {"precise", OPTION_VAL_PRECISE_VN}, {"approximate", OPTION_VAL_APPROXIMATE_VN}, {"relaxed", OPTION_VAL_RELAXED_RPCS3_ZCULL_ACCURACY_VN}, {NULL, NULL} },
         "precise"
     },
     {
@@ -37918,13 +34377,6 @@ struct retro_core_option_v2_definition option_defs_vn[] = {
         NULL, "audio",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_microphone_type", RPCS3_MICROPHONE_TYPE_LABEL_VN, NULL,
-        RPCS3_MICROPHONE_TYPE_INFO_0_VN,
-        NULL, "audio",
-        { {"null", OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_VN}, {"standard", OPTION_VAL_STANDARD_VN}, {"singstar", OPTION_VAL_SINGSTAR_VN}, {"real_singstar", OPTION_VAL_REAL_SINGSTAR_VN}, {"rocksmith", OPTION_VAL_ROCKSMITH_VN}, {NULL, NULL} },
-        "null"
     },
     {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_VN, NULL,
@@ -37997,8 +34449,8 @@ struct retro_core_option_v2_definition option_defs_vn[] = {
         "rpcs3_rsx_fifo_accuracy", RPCS3_RSX_FIFO_ACCURACY_LABEL_VN, NULL,
         RPCS3_RSX_FIFO_ACCURACY_INFO_0_VN,
         NULL, "advanced",
-        { {"fast", OPTION_VAL_FAST_VN}, {"balanced", OPTION_VAL_BALANCED_VN}, {"accurate", OPTION_VAL_ACCURATE_VN}, {NULL, NULL} },
-        "fast"
+        { {"fast", OPTION_VAL_FAST_VN}, {"atomic", OPTION_VAL_ATOMIC_VN}, {"atomic_ordered", OPTION_VAL_ATOMIC_ORDERED_VN}, {"as_ps3", OPTION_VAL_AS_PS3_VN}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_VN, NULL,
@@ -38024,20 +34476,6 @@ struct retro_core_option_v2_definition option_defs_vn[] = {
     {
         "rpcs3_async_texture_streaming", RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_VN, NULL,
         RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_VN,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", RPCS3_PPU_LLVM_GREEDY_LABEL_VN, NULL,
-        RPCS3_PPU_LLVM_GREEDY_INFO_0_VN,
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", RPCS3_SPU_NJ_FIXUP_LABEL_VN, NULL,
-        RPCS3_SPU_NJ_FIXUP_INFO_0_VN,
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -38118,7 +34556,7 @@ struct retro_core_option_v2_definition option_defs_vn[] = {
         "rpcs3_license_area", RPCS3_LICENSE_AREA_LABEL_VN, NULL,
         RPCS3_LICENSE_AREA_INFO_0_VN,
         NULL, "core",
-        { {"usa", OPTION_VAL_USA_VN}, {"eu", OPTION_VAL_EU_VN}, {"jp", OPTION_VAL_JP_VN}, {"hk", OPTION_VAL_HK_VN}, {"kr", OPTION_VAL_KR_VN}, {NULL, NULL} },
+        { {"usa", OPTION_VAL_USA_VN}, {"eu", OPTION_VAL_EU_VN}, {"jp", OPTION_VAL_JP_VN}, {"hk", OPTION_VAL_HK_VN}, {"kr", OPTION_VAL_KR_VN}, {"cn", OPTION_VAL_CN_VN}, {NULL, NULL} },
         "usa"
     },
     {
@@ -38141,13 +34579,6 @@ struct retro_core_option_v2_definition option_defs_vn[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", RPCS3_VFS_INIT_LABEL_VN, NULL,
-        RPCS3_VFS_INIT_INFO_0_VN,
-        NULL, "core",
-        { {"auto", OPTION_VAL_0_VN}, {"reset", OPTION_VAL_RESET_VN}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", RPCS3_SILENCE_ALL_LOGS_LABEL_VN, NULL,
