@@ -34,10 +34,10 @@ jobs:
         include:
           - os: ubuntu-24.04
             arch: x86_64
-            docker_img: "rpcs3/rpcs3-ci-jammy:1.7"
+            docker_img: "rpcs3/rpcs3-ci-jammy:2.1"
           - os: ubuntu-24.04-arm
             arch: aarch64
-            docker_img: "rpcs3/rpcs3-ci-jammy-aarch64:1.7"
+            docker_img: "rpcs3/rpcs3-ci-jammy-aarch64:2.1"
     name: libretro core ${{ matrix.arch }}
     runs-on: ${{ matrix.os }}
     env:
