@@ -3,7 +3,6 @@
 #include "ip_address.h"
 #include "Utilities/StrFmt.h"
 #include "Emu/IdManager.h"
-#include "util/endian.hpp"
 #include "util/types.hpp"
 #include "Emu/NP/rpcn_config.h"
 #include "Emu/Cell/lv2/sys_net/sys_net_helpers.h"
@@ -66,28 +65,30 @@ namespace np
 		return sockaddr_ipv6;
 	}
 
-	u32 register_ip(const flatbuffers::Vector<std::uint8_t>* vec)
+	u32 register_ip(std::string_view ip_bytes)
 	{
-		if (vec->size() == 4)
+		if (ip_bytes.size() == 4)
 		{
-			const u32 ip = static_cast<u32>(vec->Get(0)) << 24 | static_cast<u32>(vec->Get(1)) << 16 |
-			               static_cast<u32>(vec->Get(2)) << 8 | static_cast<u32>(vec->Get(3));
+			const u32 ip = static_cast<u32>(static_cast<u8>(ip_bytes[0])) << 24 |
+			               static_cast<u32>(static_cast<u8>(ip_bytes[1])) << 16 |
+			               static_cast<u32>(static_cast<u8>(ip_bytes[2])) << 8 |
+			               static_cast<u32>(static_cast<u8>(ip_bytes[3]));
 
 			u32 result_ip = std::bit_cast<u32, be_t<u32>>(ip);
 
 			return result_ip;
 		}
-		else if (vec->size() == 16)
+		else if (ip_bytes.size() == 16)
 		{
 			std::array<u8, 16> ipv6_addr{};
-			std::memcpy(ipv6_addr.data(), vec->Data(), 16);
+			std::memcpy(ipv6_addr.data(), ip_bytes.data(), 16);
 
 			auto& translator = g_fxo->get<np::ip_address_translator>();
 			return translator.register_ipv6(ipv6_addr);
 		}
 		else
 		{
-			fmt::throw_exception("Received ip address with size = %d", vec->size());
+			fmt::throw_exception("Received ip address with size = %d", ip_bytes.size());
 		}
 	}
 

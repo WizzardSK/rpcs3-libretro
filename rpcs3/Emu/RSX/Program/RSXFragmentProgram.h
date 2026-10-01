@@ -54,6 +54,14 @@ union OPDEST
 		u32                  : 9;
 		u32 write_mask       : 4;
 	};
+
+	static OPDEST from_be32(u32 be_word)
+	{
+		const u32 _hex =
+			((be_word & 0x00FF00FF) << 8) |
+			((be_word & 0xFF00FF00) >> 8);
+		return OPDEST{ .HEX = _hex };
+	}
 };
 
 union SRC0
@@ -115,7 +123,7 @@ union SRC1
 	struct
 	{
 		u32                  : 2;
-		u32 end_counter      : 8; // End counter value for LOOP or rep count for REP
+		u32 rep_count        : 8; // Repeat count for LOOP and REP
 		u32 init_counter     : 8; // Initial counter value for LOOP
 		u32                  : 1;
 		u32 increment        : 8; // Increment value for LOOP

@@ -1438,6 +1438,13 @@ s32 cellSpursInitializeWithAttribute2(ppu_thread& ppu, vm::ptr<CellSpurs> spurs,
 		attr->swlIsPreem);
 }
 
+// Initialise SPURS
+s32 cellSpursInitializeForSpuSharing()
+{
+	cellSpurs.todo("cellSpursInitializeForSpuSharing()");
+	return CELL_OK;
+}
+
 /// Initialise SPURS attribute
 s32 _cellSpursAttributeInitialize(vm::ptr<CellSpursAttribute> attr, u32 revision, u32 sdkVersion, u32 nSpus, s32 spuPriority, s32 ppuPriority, b8 exitIfNoWork)
 {
@@ -2476,6 +2483,9 @@ s32 _spurs::add_workload(ppu_thread& ppu, vm::ptr<CellSpurs> spurs, vm::ptr<u32>
 
 	u32 res_wkl;
 	const auto wkl = &spurs->wklInfo(wnum);
+
+	ppu.state += cpu_flag::wait;
+
 	vm::reservation_op(ppu, vm::unsafe_ptr_cast<spurs_wkl_state_op>(spurs.ptr(&CellSpurs::wklState1)), [&](spurs_wkl_state_op& op)
 	{
 		const u32 mask = op.wklMskB & ~(0x80000000u >> wnum);
@@ -2559,6 +2569,8 @@ s32 cellSpursShutdownWorkload(ppu_thread& ppu, vm::ptr<CellSpurs> spurs, u32 wid
 
 	if (spurs->exception)
 		return CELL_SPURS_POLICY_MODULE_ERROR_STAT;
+
+	ppu.state += cpu_flag::wait;
 
 	bool send_event;
 	s32 rc, old_state;
@@ -3087,6 +3099,8 @@ s32 _cellSpursWorkloadFlagReceiver(ppu_thread& ppu, vm::ptr<CellSpurs> spurs, u3
 
 	s32 res = CELL_OK;
 
+	ppu.state += cpu_flag::wait;
+
 	vm::reservation_op(ppu, vm::unsafe_ptr_cast<wklFlagOp>(spurs), [&](wklFlagOp& val)
 	{
 		if (is_set)
@@ -3335,6 +3349,8 @@ s32 cellSpursEventFlagSet(ppu_thread& ppu, vm::ptr<CellSpursEventFlag> eventFlag
 	u16  pendingRecv;
 	u16  pendingRecvTaskEvents[16];
 
+	ppu.state += cpu_flag::wait;
+
 	vm::reservation_op(ppu, vm::unsafe_ptr_cast<CellSpursEventFlag_x00>(eventFlag), [bits, &send, &ppuWaitSlot, &ppuEvents, &pendingRecv, &pendingRecvTaskEvents](CellSpursEventFlag_x00& eventFlag)
 	{
 		send        = false;
@@ -3399,6 +3415,8 @@ s32 cellSpursEventFlagSet(ppu_thread& ppu, vm::ptr<CellSpursEventFlag> eventFlag
 
 		//eventFlagControl = ((u64)events << 48) | ((u64)spuTaskPendingRecv << 32) | ((u64)ppuWaitMask << 16) | ((u64)ppuWaitSlotAndMode << 8) | (u64)ppuPendingRecv;
 	});
+
+	static_cast<void>(ppu.test_stopped());
 
 	if (send)
 	{
@@ -4250,6 +4268,8 @@ s32 _cellSpursSendSignal(ppu_thread& ppu, vm::ptr<CellSpursTaskset> taskset, u32
 
 	int signal;
 
+	ppu.state += cpu_flag::wait;
+
 	vm::reservation_op(ppu, vm::unsafe_ptr_cast<spurs_taskset_signal_op>(taskset), [&](spurs_taskset_signal_op& op)
 	{
 		const u32 signalled = op.signalled[taskId / 32];
@@ -4284,6 +4304,8 @@ s32 _cellSpursSendSignal(ppu_thread& ppu, vm::ptr<CellSpursTaskset> taskset, u32
 	case 1:
 	{
 		auto spurs = +taskset->spurs;
+
+		static_cast<void>(ppu.test_stopped());
 
 		ppu_execute<&cellSpursSendWorkloadSignal>(ppu, spurs, +taskset->wid);
 		auto rc = ppu_execute<&cellSpursWakeUp>(ppu, spurs);
@@ -5139,6 +5161,8 @@ s32 cellSpursJobGuardNotify(ppu_thread& ppu, vm::ptr<CellSpursJobGuard> jobGuard
 	u32 allow_jobchain_run = 0; // Affects cellSpursJobChainRun execution
 	u32 old = 0;
 
+	ppu.state += cpu_flag::wait;
+
 	const bool ok = vm::reservation_op(ppu, vm::unsafe_ptr_cast<CellSpursJobGuard_x00>(jobGuard), [&](CellSpursJobGuard_x00& jg)
 	{
 		allow_jobchain_run = jg.zero;
@@ -5162,6 +5186,8 @@ s32 cellSpursJobGuardNotify(ppu_thread& ppu, vm::ptr<CellSpursJobGuard> jobGuard
 	{
 		return CELL_OK;
 	}
+
+	static_cast<void>(ppu.test_stopped());
 
 	auto jobChain = +jobGuard->jobChain;
 
@@ -5303,6 +5329,8 @@ s32 cellSpursAddUrgentCommand(ppu_thread& ppu, vm::ptr<CellSpursJobChain> jobCha
 
 	s32 result = CELL_OK;
 
+	ppu.state += cpu_flag::wait;
+
 	vm::reservation_op(ppu, vm::unsafe_ptr_cast<CellSpursJobChain_x00>(jobChain), [&](CellSpursJobChain_x00& jch)
 	{
 		for (auto& cmd : jch.urgentCmds)
@@ -5390,6 +5418,7 @@ DECLARE(ppu_module_manager::cellSpurs)("cellSpurs", [](ppu_static_module* _this)
 	REG_FUNC(cellSpurs, cellSpursInitialize);
 	REG_FUNC(cellSpurs, cellSpursInitializeWithAttribute);
 	REG_FUNC(cellSpurs, cellSpursInitializeWithAttribute2);
+	REG_FUNC(cellSpurs, cellSpursInitializeForSpuSharing);
 	REG_FUNC(cellSpurs, cellSpursFinalize);
 	REG_FUNC(cellSpurs, _cellSpursAttributeInitialize);
 	REG_FUNC(cellSpurs, cellSpursAttributeSetMemoryContainerForSpuThread);

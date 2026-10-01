@@ -5,6 +5,7 @@
 #include "Emu/Io/pad_types.h"
 #include "Emu/Io/pad_config.h"
 #include "Emu/Io/pad_config_types.h"
+#include "Input/mouse_gyro_handler.h"
 #include "Utilities/mutex.h"
 
 #include <map>
@@ -77,6 +78,8 @@ private:
 	bool m_resume_emulation_flag = false;
 	bool m_ps_button_pressed = false;
 	atomic_t<bool> m_home_menu_open = false;
+
+	mouse_gyro_handler m_mouse_gyro;
 };
 
 namespace pad

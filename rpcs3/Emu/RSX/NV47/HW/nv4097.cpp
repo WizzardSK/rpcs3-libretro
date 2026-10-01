@@ -4,6 +4,7 @@
 
 #include "Emu/RSX/RSXThread.h"
 #include "Emu/RSX/Common/BufferUtils.h"
+#include "Emu/system_config.h"
 
 #define RSX(ctx) ctx->rsxthr
 #define REGS(ctx) (&rsx::method_registers)
@@ -183,11 +184,11 @@ namespace rsx
 				const usz first_index_off = 0;
 				const usz second_index_off = (((rcount / 4) - 1) / 2) * 4;
 
-				const u64 src_op1_2 = read_from_ptr<be_t<u64>>(fifo_span.data() + first_index_off);
-				const u64 src_op2_2 = read_from_ptr<be_t<u64>>(fifo_span.data() + second_index_off);
+				const u64 src_op1_2 = read_from_ptr<be_t<u64>>(fifo_span, first_index_off);
+				const u64 src_op2_2 = read_from_ptr<be_t<u64>>(fifo_span, second_index_off);
 
 				// Fast comparison
-				if (src_op1_2 != read_from_ptr<u64>(out_ptr + first_index_off) || src_op2_2 != read_from_ptr<u64>(out_ptr + second_index_off))
+				if (src_op1_2 != read_from_ptr_unsafe<u64>(out_ptr, first_index_off) || src_op2_2 != read_from_ptr_unsafe<u64>(out_ptr, second_index_off))
 				{
 					to_set_dirty = rsx::pipeline_state::vertex_program_ucode_dirty;
 				}
@@ -250,8 +251,26 @@ namespace rsx
 			const auto current = REGS(ctx)->decode<NV4097_SET_SURFACE_FORMAT>(arg);
 			const auto previous = REGS(ctx)->decode<NV4097_SET_SURFACE_FORMAT>(REGS(ctx)->latch);
 
-			if (*current.antialias() != *previous.antialias() ||                         // Antialias control has changed, update ROP parameters
-				current.is_integer_color_format() != previous.is_integer_color_format()) // The type of color format also requires ROP control update
+			// Check for different ROP emulation
+			if (current.is_integer_color_format() != previous.is_integer_color_format())
+			{
+				RSX(ctx)->m_graphics_state |= rsx::pipeline_state::fragment_program_state_dirty;
+			}
+
+			// If swizzle remap changed, we have to flag both the shader and the ROP parameters
+			if (current.is_remapped_format() != previous.is_remapped_format())
+			{
+				RSX(ctx)->m_graphics_state |=
+					rsx::pipeline_state::fragment_program_state_dirty |
+					rsx::pipeline_state::fragment_state_dirty;
+			}
+			// If we're still remapping outputs but the format changed, reload ROP params
+			else if ((current.is_remapped_format() && *current.color_fmt() != *previous.color_fmt()))
+			{
+				RSX(ctx)->m_graphics_state |= rsx::pipeline_state::fragment_state_dirty;
+			}
+			// If antialias control has changed, also update ROP parameters
+			else if (*current.antialias() != *previous.antialias())
 			{
 				RSX(ctx)->m_graphics_state |= rsx::pipeline_state::fragment_state_dirty;
 			}
@@ -300,6 +319,34 @@ namespace rsx
 
 			// Rollback
 			REGS(ctx)->decode(reg, REGS(ctx)->latch);
+		}
+
+		void set_aa_control(context* ctx, u32 /*reg*/, u32 arg)
+		{
+			const auto latch = REGS(ctx)->latch;
+			if (arg == latch)
+			{
+				return;
+			}
+
+			// Reconfigure pipeline.
+			RSX(ctx)->m_graphics_state |= rsx::pipeline_config_dirty;
+
+			// If we support A2C in hardware, leave the rest upto the hardware. The pipeline config should take care of it.
+			const auto& backend_config = RSX(ctx)->get_backend_config();
+			if (backend_config.supports_hw_a2c &&
+				backend_config.supports_hw_a2c_1spp)
+			{
+				return;
+			}
+
+			// No A2C hardware support or partial hardware support. Invalidate the current program if A2C state changed.
+			const auto a2c_old = REGS(ctx)->decode<NV4097_SET_ANTI_ALIASING_CONTROL>(latch).msaa_alpha_to_coverage();
+			const auto a2c_new = REGS(ctx)->decode<NV4097_SET_ANTI_ALIASING_CONTROL>(arg).msaa_alpha_to_coverage();
+			if (a2c_old != a2c_new)
+			{
+				RSX(ctx)->m_graphics_state |= rsx::fragment_program_state_dirty;
+			}
 		}
 
 		///// Draw call setup (vertex, etc)
@@ -601,8 +648,16 @@ namespace rsx
 			case 2:
 				break;
 			default:
-				rsx_log.error("Unknown render mode %d", mode);
+			{
+				struct logged_t
+				{
+					atomic_t<u8> logged_cause[256]{};
+				};
+
+				const auto& is_error = ::at32(g_fxo->get<logged_t>().logged_cause, mode).try_inc(10);
+				(is_error ? rsx_log.error : rsx_log.trace)("Unknown render mode %d", mode);
 				return;
+			}
 			}
 
 			const u32 offset = arg & 0xffffff;
@@ -616,6 +671,23 @@ namespace rsx
 
 			// Defer conditional render evaluation
 			RSX(ctx)->enable_conditional_rendering(vm::cast(address_ptr));
+		}
+
+		void set_shading_mode(context* ctx, u32 reg, u32 arg)
+		{
+			if (arg == REGS(ctx)->latch)
+			{
+				return;
+			}
+
+			if (to_shading_mode(arg))
+			{
+				RSX(ctx)->m_graphics_state |= rsx::vertex_program_state_dirty | rsx::fragment_program_state_dirty;
+				return;
+			}
+
+			// Rollback
+			REGS(ctx)->decode(reg, REGS(ctx)->latch);
 		}
 
 		void set_zcull_render_enable(context* ctx, u32, u32)
@@ -648,8 +720,10 @@ namespace rsx
 			}
 
 			const u32 addr = RSX(ctx)->iomap_table.get_addr(0xf100000 + (index * 0x40));
-
 			ensure(addr != umax);
+
+			// Notify ticks are strongly ordered
+			RSX(ctx)->sync();
 
 			vm::_ptr<atomic_t<RsxNotify>>(addr)->store(
 			{
@@ -658,7 +732,7 @@ namespace rsx
 			});
 		}
 
-		void texture_read_semaphore_release(context* ctx, u32 /*reg*/, u32 arg)
+		void texture_read_semaphore_release(context* ctx, u32 reg, u32 arg)
 		{
 			// Pipeline barrier seems to be equivalent to a SHADER_READ stage barrier.
 			// Ideally the GPU only needs to have cached all textures declared up to this point before writing the label.
@@ -683,15 +757,15 @@ namespace rsx
 
 			if (g_cfg.video.strict_rendering_mode) [[ unlikely ]]
 			{
-				util::write_gcm_label<true, true>(ctx, addr, arg);
+				util::write_gcm_label<true, true>(ctx, reg, addr, arg);
 			}
 			else
 			{
-				util::write_gcm_label<true, false>(ctx, addr, arg);
+				util::write_gcm_label<true, false>(ctx, reg, addr, arg);
 			}
 		}
 
-		void back_end_write_semaphore_release(context* ctx, u32 /*reg*/, u32 arg)
+		void back_end_write_semaphore_release(context* ctx, u32 reg, u32 arg)
 		{
 			// Full pipeline barrier. GPU must flush pipeline before writing the label
 
@@ -712,7 +786,7 @@ namespace rsx
 			}
 
 			const u32 val = (arg & 0xff00ff00) | ((arg & 0xff) << 16) | ((arg >> 16) & 0xff);
-			util::write_gcm_label<true, true>(ctx, addr, val);
+			util::write_gcm_label<true, true>(ctx, reg, addr, val);
 		}
 
 		void sync(context* ctx, u32, u32)

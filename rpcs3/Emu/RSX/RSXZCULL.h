@@ -6,7 +6,7 @@
 
 #include "Utilities/mutex.h"
 
-#include "rsx_utils.h"
+#include "Utils/rsx_utils.h"
 
 #include <vector>
 #include <stack>
@@ -46,6 +46,7 @@ namespace rsx
 		{
 			u32 type = CELL_GCM_ZPASS_PIXEL_CNT;
 			u32 counter_tag;
+			u64 sync_tag;
 			occlusion_query_info* query;
 			queued_report_write* forwarder;
 
@@ -109,7 +110,7 @@ namespace rsx
 		protected:
 
 			bool unit_enabled = false;           // The ZCULL unit is on
-			bool write_enabled = false;          // A surface in the ZCULL-monitored tile region has been loaded for rasterization
+			bool surface_active = false;         // A surface in the ZCULL-monitored tile region has been loaded for rasterization
 			bool stats_enabled = false;          // Collecting of ZCULL statistics is enabled (not same as pixels passing Z test!)
 			bool zpass_count_enabled = false;    // Collecting of ZPASS statistics is enabled. If this is off, the counter does not increment
 			bool host_queries_active = false;    // The backend/host is gathering Z data for the ZCULL unit

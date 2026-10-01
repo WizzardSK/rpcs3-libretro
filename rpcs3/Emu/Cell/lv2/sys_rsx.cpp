@@ -2,6 +2,7 @@
 #include "sys_rsx.h"
 
 #include "Emu/System.h"
+#include "Emu/system_config.h"
 #include "Emu/Cell/PPUModule.h"
 #include "Emu/Cell/ErrorCodes.h"
 #include "Emu/Cell/timers.hpp"
@@ -18,7 +19,7 @@ LOG_CHANNEL(sys_rsx);
 // Unknown error code returned by sys_rsx_context_attribute
 enum sys_rsx_error : s32
 {
-	SYS_RSX_CONTEXT_ATTRIBUTE_ERROR = -17
+	LV1_ILLEGAL_PARAMETER_VALUE = -17
 };
 
 template<>
@@ -28,7 +29,7 @@ void fmt_class_string<sys_rsx_error>::format(std::string& out, u64 arg)
 	{
 		switch (error)
 		{
-		STR_CASE(SYS_RSX_CONTEXT_ATTRIBUTE_ERROR);
+		STR_CASE(LV1_ILLEGAL_PARAMETER_VALUE);
 		}
 
 		return unknown;
@@ -141,6 +142,68 @@ bool rsx::thread::send_event(u64 data1, u64 event_flags, u64 data3)
 	return true;
 }
 
+void _sys_rsx_drain_event_queue(rsx::thread* rsxthr, u64 event_flags = umax, u64 wait_timeout_ms = 1000ull)
+{
+	const auto& driverInfo = *vm::_ptr<RsxDriverInfo>(rsxthr->driver_info);
+	const u32 rsx_queue_id = driverInfo.handler_queue;
+
+	if (const auto enabled_events = static_cast<u64>(driverInfo.handlers) | (0xffff'ffffull << 32);
+		!(enabled_events & event_flags))
+	{
+		// sys_rsx.trace("Event flag not set.");
+		return;
+	}
+
+	const auto queue = idm::get_unlocked<lv2_obj, lv2_event_queue>(rsx_queue_id);
+	if (!queue)
+	{
+		sys_rsx.error("Failed to get RSX event queue.");
+		return;
+	}
+
+	u64 start_ts = get_system_time();
+	while (true)
+	{
+		// First check if the queue is empty. This is the most likely scenario.
+		{
+			std::lock_guard lock(queue->mutex);
+			if (!queue->exists || (queue->events.empty() && queue->pq))
+			{
+				break;
+			}
+		}
+
+		// Emulator still running?
+		if (Emu.IsStopped())
+		{
+			break;
+		}
+
+		// Wait
+		thread_ctrl::wait_for(100);
+
+		// Check for timeout
+		if (wait_timeout_ms == umax)
+		{
+			continue;
+		}
+
+		// If paused, reset the timeout
+		if (Emu.IsPaused())
+		{
+			start_ts = get_system_time();
+			continue;
+		}
+
+		const auto elapsed_ms = (get_system_time() - start_ts) / 1000ull;
+		if (elapsed_ms > wait_timeout_ms)
+		{
+			sys_rsx.error("RSX queue appears to be stuck. We have been waiting for %llums already. Aborting wait...", elapsed_ms);
+			break;
+		}
+	}
+}
+
 error_code sys_rsx_device_open(cpu_thread& cpu)
 {
 	cpu.state += cpu_flag::wait;
@@ -169,19 +232,37 @@ error_code sys_rsx_device_close(cpu_thread& cpu)
  * @param a6 (IN): E.g. Immediate value passed in cellGcmSys is 16.
  * @param a7 (IN): E.g. Immediate value passed in cellGcmSys is 8.
  */
-error_code sys_rsx_memory_allocate(cpu_thread& cpu, vm::ptr<u32> mem_handle, vm::ptr<u64> mem_addr, u32 size, u64 flags, u64 a5, u64 a6, u64 a7)
+error_code sys_rsx_memory_allocate(cpu_thread& cpu, vm::ptr<u32> mem_handle, vm::ptr<u64> mem_addr, u64 size, u64 flags, u64 a5, u64 a6, u64 a7)
 {
-	cpu.state += cpu_flag::wait;
-
 	sys_rsx.warning("sys_rsx_memory_allocate(mem_handle=*0x%x, mem_addr=*0x%x, size=0x%x, flags=0x%llx, a5=0x%llx, a6=0x%llx, a7=0x%llx)", mem_handle, mem_addr, size, flags, a5, a6, a7);
 
-	if (vm::falloc(rsx::constants::local_mem_base, size, vm::video))
+	// size == 0 yields available size, unimplemented
+	ensure(size != 0);
+
+	if (size & 0xFFFFF)
 	{
-		rsx::get_current_renderer()->local_mem_size = size;
+		return LV1_ILLEGAL_PARAMETER_VALUE;
+	}
+
+	// This is a result from how the argument is treated internally
+	size %= 0x100000 * 0x1'0000'00000;
+
+	if (size > 0x1000'0000)
+	{
+		return LV1_ILLEGAL_PARAMETER_VALUE;
+	}
+
+	cpu.state += cpu_flag::wait;
+
+	const u32 mem_size = static_cast<u32>(size);
+
+	if (vm::falloc(rsx::constants::local_mem_base, mem_size, vm::video))
+	{
+		rsx::get_current_renderer()->local_mem_size = mem_size;
 
 		if (u32 addr = rsx::get_current_renderer()->driver_info)
 		{
-			vm::_ptr<RsxDriverInfo>(addr)->memory_size = size;
+			vm::_ptr<RsxDriverInfo>(addr)->memory_size = mem_size;
 		}
 
 		*mem_addr = rsx::constants::local_mem_base;
@@ -395,7 +476,7 @@ error_code sys_rsx_context_free(ppu_thread& ppu, u32 context_id)
  * @param size (IN): Size of mapping area in bytes. E.g. 0x00200000
  * @param flags (IN):
  */
-error_code sys_rsx_context_iomap(cpu_thread& cpu, u32 context_id, u32 io, u32 ea, u32 size, u64 flags)
+error_code sys_rsx_context_iomap(cpu_thread& cpu, u32 context_id, u64 io, u64 ea, u64 size, u64 flags)
 {
 	cpu.state += cpu_flag::wait;
 
@@ -403,8 +484,12 @@ error_code sys_rsx_context_iomap(cpu_thread& cpu, u32 context_id, u32 io, u32 ea
 
 	const auto render = rsx::get_current_renderer();
 
-	if (!size || io & 0xFFFFF || ea + u64{size} > rsx::constants::local_mem_base || ea & 0xFFFFF || size & 0xFFFFF ||
-		context_id != 0x55555555 || render->main_mem_size < io + u64{size})
+	if (!size || io & 0xFFFFF || size > 0x200'00000 || size > std::min<u64>(~io, ~ea) || ea & 0xFFFFF || size & 0xFFFFF)
+	{
+		return CELL_EINVAL;
+	}
+
+	if (context_id != 0x55555555 || render->main_mem_size < io + size)
 	{
 		return CELL_EINVAL;
 	}
@@ -415,18 +500,18 @@ error_code sys_rsx_context_iomap(cpu_thread& cpu, u32 context_id, u32 io, u32 ea
 	}
 
 	// Wait until we have no active RSX locks and reserve iomap for use. Must do so before acquiring vm lock to avoid deadlocks
-	rsx::reservation_lock<true> rsx_lock(ea, size);
+	rsx::reservation_lock<true> rsx_lock(::narrow<u32>(ea), static_cast<u32>(size));
 
 	vm::writer_lock rlock;
 
-	for (u32 addr = ea, end = ea + size; addr < end; addr += 0x100000)
+	for (u64 addr = ea, end = ea + size; addr < end; addr += 0x100000)
 	{
 		if (!vm::check_addr(addr, vm::page_readable | (addr < 0x20000000 ? 0 : vm::page_1m_size)))
 		{
 			return CELL_EINVAL;
 		}
 
-		if ((addr == ea || !(addr % 0x1000'0000)) && idm::check_unlocked<sys_vm_t>(sys_vm_t::find_id(addr)))
+		if ((addr == ea || !(addr % 0x1000'0000)) && idm::check_unlocked<sys_vm_t>(sys_vm_t::find_id(::narrow<u32>(addr))))
 		{
 			// Virtual memory is disallowed
 			return CELL_EINVAL;
@@ -444,9 +529,9 @@ error_code sys_rsx_context_iomap(cpu_thread& cpu, u32 context_id, u32 io, u32 ea
 
 		// TODO: Investigate relaxed memory ordering
 		const u32 prev_ea = table.ea[io + i];
-		table.ea[io + i].release((ea + i) << 20);
+		table.ea[io + i].release(static_cast<u32>(ea + i) << 20);
 		if (prev_ea + 1) table.io[prev_ea >> 20].release(-1); // Clear previous mapping if exists
-		table.io[ea + i].release((io + i) << 20);
+		table.io[ea + i].release(static_cast<u32>(io + i) << 20);
 	}
 
 	return CELL_OK;
@@ -458,7 +543,7 @@ error_code sys_rsx_context_iomap(cpu_thread& cpu, u32 context_id, u32 io, u32 ea
  * @param io (IN): IO address. E.g. 0x00600000 (Start page 6)
  * @param size (IN): Size to unmap in byte. E.g. 0x00200000
  */
-error_code sys_rsx_context_iounmap(cpu_thread& cpu, u32 context_id, u32 io, u32 size)
+error_code sys_rsx_context_iounmap(cpu_thread& cpu, u32 context_id, u64 io, u64 size)
 {
 	cpu.state += cpu_flag::wait;
 
@@ -466,8 +551,12 @@ error_code sys_rsx_context_iounmap(cpu_thread& cpu, u32 context_id, u32 io, u32 
 
 	const auto render = rsx::get_current_renderer();
 
-	if (!size || size & 0xFFFFF || io & 0xFFFFF || context_id != 0x55555555 ||
-			render->main_mem_size < io + u64{size})
+	if (!size || size & 0xFFFFF || io & 0xFFFFF || size > 0x200'00000 || size > ~io)
+	{
+		return CELL_EINVAL;
+	}
+
+	if (context_id != 0x55555555 || render->main_mem_size < io + size)
 	{
 		return CELL_EINVAL;
 	}
@@ -481,7 +570,7 @@ error_code sys_rsx_context_iounmap(cpu_thread& cpu, u32 context_id, u32 io, u32 
 
 	std::scoped_lock lock(render->sys_rsx_mtx);
 
-	for (const u32 end = (io >>= 20) + (size >>= 20); io < end;)
+	for (const u64 end = (io >>= 20) + (size >>= 20); io < end;)
 	{
 		auto& table = render->iomap_table;
 
@@ -626,7 +715,7 @@ error_code sys_rsx_context_attribute(u32 context_id, u32 package_id, u64 a3, u64
 		const u8 id = a3 & 0xFF;
 		if (id > 7)
 		{
-			return SYS_RSX_CONTEXT_ATTRIBUTE_ERROR;
+			return LV1_ILLEGAL_PARAMETER_VALUE;
 		}
 
 		std::lock_guard lock(render->sys_rsx_mtx);
@@ -676,7 +765,7 @@ error_code sys_rsx_context_attribute(u32 context_id, u32 package_id, u64 a3, u64
 	{
 		if (a3 > 7)
 		{
-			return SYS_RSX_CONTEXT_ATTRIBUTE_ERROR;
+			return LV1_ILLEGAL_PARAMETER_VALUE;
 		}
 
 		// NOTE: There currently seem to only be 2 active heads on PS3
@@ -784,7 +873,7 @@ error_code sys_rsx_context_attribute(u32 context_id, u32 package_id, u64 a3, u64
 
 		if (a3 >= std::size(render->zculls))
 		{
-			return SYS_RSX_CONTEXT_ATTRIBUTE_ERROR;
+			return LV1_ILLEGAL_PARAMETER_VALUE;
 		}
 
 		if (!render->is_fifo_idle())
@@ -906,10 +995,17 @@ error_code sys_rsx_context_attribute(u32 context_id, u32 package_id, u64 a3, u64
 
 	case 0xFEF: // hack: user command
 	{
-		// 'custom' invalid package id for now
-		// as i think we need custom lv1 interrupts to handle this accurately
-		// this also should probly be set by rsxthread
-		driverInfo.userCmdParam = static_cast<u32>(a4);
+		// NOTE: Hardware tests show that back-to-back user_cmd events execute in-order.
+		// The invocation is non-blocking but also very quick to fire.
+		const auto intr_cause = static_cast<u32>(a4);
+		if (intr_cause != driverInfo.userCmdParam)
+		{
+			// Drain the event queue to make sure any previous callbacks have fired.
+			// The userCmdParam object is shared and we do not want to clobber it.
+			_sys_rsx_drain_event_queue(render, SYS_RSX_EVENT_USER_CMD);
+			driverInfo.userCmdParam = intr_cause;
+		}
+
 		render->send_event(0, SYS_RSX_EVENT_USER_CMD, 0);
 		break;
 	}
