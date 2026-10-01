@@ -1048,7 +1048,8 @@ unsigned retro_api_version(void)
 void retro_get_system_info(struct retro_system_info* info)
 {
     info->library_name = "RPCS3";
-    info->library_version = "0.0.1";
+    // The upstream RPCS3 build this core is merged up to, from upstream.version
+    info->library_version = RPCS3_LIBRETRO_VERSION;
     info->valid_extensions = "bin|self|elf|pkg|iso|sfo|sfb";
     // The path, never the bytes. retro_load_game() reads game->path and hands
     // it to RPCS3, which opens the file itself - it never looks at game->data.

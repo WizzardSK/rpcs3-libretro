@@ -3,6 +3,7 @@ include(GNUInstallDirs)
 
 # Generate git-version.h at build time.
 include(${CMAKE_CURRENT_SOURCE_DIR}/git-version.cmake)
+include(${CMAKE_CURRENT_SOURCE_DIR}/libretro/upstream_version.cmake)
 
 # Check for a sufficient compiler and set build options
 include(ConfigureCompiler)
