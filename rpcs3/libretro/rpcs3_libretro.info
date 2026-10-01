@@ -6,7 +6,7 @@ corename = "RPCS3"
 categories = "Emulator"
 license = "GPLv2"
 permissions = ""
-display_version = "v0.0.43-20147"
+display_version = "v0.0.43-20149"
 
 # Hardware Information
 manufacturer = "Sony"
