@@ -3,6 +3,7 @@
 #include "libretro_video.h"
 #include "libretro_core.h"
 
+#include <atomic>
 #include <mutex>
 #include <vector>
 
@@ -29,6 +30,14 @@ namespace
 	// redraws a duplicated or paused frame - so it must stay alive until the
 	// next take, not only until the renderer delivers another one.
 	std::vector<u8> s_sw_frame_shown;
+
+	// Every frame the renderer handed over, for the stall report in retro_run.
+	std::atomic<u64> s_sw_frames_presented{0};
+}
+
+u64 libretro_sw_frames_presented()
+{
+	return s_sw_frames_presented.load();
 }
 
 bool libretro_take_software_frame(const void** data, u32* width, u32* height, u32* pitch)
@@ -127,6 +136,8 @@ void LibretroGSFrame::present_frame(std::vector<u8>&& data, u32 pitch, u32 width
 		}
 		return;
 	}
+
+	s_sw_frames_presented++;
 
 	std::lock_guard lock(s_sw_frame_mutex);
 	s_sw_frame = std::move(data);

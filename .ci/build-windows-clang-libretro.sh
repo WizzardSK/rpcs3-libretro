@@ -61,12 +61,13 @@ case "$FFMPEG_LIBS" in
     *) echo "pkg-config did not return the static ffmpeg built above"; exit 1 ;;
 esac
 
-# zlib and zstd come in through LLVM's CMake package, and libc++ and libunwind
-# through the compiler driver, each as clang64's import library. Neither lets
+# zlib and zstd come in through LLVM's CMake package, libc++ and libunwind
+# through the compiler driver, and winpthread with abseil's threads, each as
+# clang64's import library. Neither lets
 # the caller ask for the static archive instead, so the import libraries are
 # swapped for the archives here, on the runner only: the linker goes by what
 # is in the file, not by its name.
-for lib in z zstd c++ unwind; do
+for lib in z zstd c++ unwind winpthread; do
     cp "/clang64/lib/lib${lib}.a" "/clang64/lib/lib${lib}.dll.a"
 done
 
@@ -91,6 +92,9 @@ cmake ..                                               \
     -DCMAKE_AR="$AR"                                   \
     -DCMAKE_RANLIB="$RANLIB"                           \
     -DUSE_SYSTEM_CURL=OFF                              \
+    -DCURL_BROTLI=OFF                                  \
+    -DCURL_ZSTD=OFF                                    \
+    -DUSE_NGHTTP2=OFF                                  \
     -Dprotobuf_FORCE_FETCH_DEPENDENCIES=ON             \
     -DUSE_FAUDIO=OFF                                   \
     -DUSE_SDL=OFF                                      \
