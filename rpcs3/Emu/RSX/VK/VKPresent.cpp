@@ -1049,7 +1049,13 @@ void VKGSRender::flip(const rsx::display_flip_info_t& info)
 		m_overlay_recording_img->change_layout(*m_current_command_buffer, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
 		const VkClearColorValue black{};
 		vkCmdClearColorImage(*m_current_command_buffer, m_overlay_recording_img->value, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, &black, 1, &subresource_range);
-		m_overlay_recording_img->change_layout(*m_current_command_buffer, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
+		// The overlay pass begins and ends its render pass in
+		// COLOR_ATTACHMENT_OPTIMAL. Leaving the image in TRANSFER_SRC here
+		// started that pass on the wrong layout and left the tracked layout
+		// wrong after it, so the copy below, and the next frame's clear, ran
+		// on a layout the image was not in - for every flip of a first boot
+		// once the progress dialog had its text.
+		m_overlay_recording_img->change_layout(*m_current_command_buffer, VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL);
 
 		const auto key = vk::get_renderpass_key(format);
 		single_target_pass = vk::get_renderpass(*m_device, key);
