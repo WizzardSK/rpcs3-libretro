@@ -63,11 +63,12 @@ esac
 
 # zlib and zstd come in through LLVM's CMake package, libc++ and libunwind
 # through the compiler driver, and winpthread with abseil's threads, each as
-# clang64's import library. Neither lets
-# the caller ask for the static archive instead, so the import libraries are
-# swapped for the archives here, on the runner only: the linker goes by what
-# is in the file, not by its name.
-for lib in z zstd c++ unwind winpthread; do
+# clang64's import library. winpthread has two of them: libwinpthread.dll.a
+# and libpthread.dll.a, which is what -pthread (CMake's Threads::Threads)
+# links, so both go. Neither lets the caller ask for the static archive
+# instead, so the import libraries are swapped for the archives here, on the
+# runner only: the linker goes by what is in the file, not by its name.
+for lib in z zstd c++ unwind winpthread pthread; do
     cp "/clang64/lib/lib${lib}.a" "/clang64/lib/lib${lib}.dll.a"
 done
 
