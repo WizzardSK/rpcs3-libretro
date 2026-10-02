@@ -1188,6 +1188,8 @@ void retro_set_environment(retro_environment_t cb)
 
     }
 
+    libretro_input_init_rumble(cb);
+
     // Initialize sensor interface for gyro/accelerometer support
     if (libretro_input_init_sensors(cb))
     {
@@ -2139,6 +2141,8 @@ bool retro_load_game_special(unsigned game_type, const struct retro_game_info* i
 
 void retro_unload_game(void)
 {
+    // A motor left running would keep going after the game is gone.
+    libretro_input_stop_rumble();
 
     stop_pause_watchdog();
     if (game_loaded)

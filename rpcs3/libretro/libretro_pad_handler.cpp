@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "libretro_pad_handler.h"
 #include "libretro_input.h"
+#include "Input/pad_thread.h"
+#include "Emu/Cell/timers.hpp"
 
 LibretroPadHandler::LibretroPadHandler()
     : PadHandlerBase(pad_handler::keyboard)  // Use keyboard type as base since we're a custom handler
@@ -17,7 +19,7 @@ LibretroPadHandler::LibretroPadHandler()
     b_has_battery = false;
     b_has_battery_led = false;
     b_has_deadzones = true;
-    b_has_rumble = false;  // TODO: Could support via RETRO_ENVIRONMENT_GET_RUMBLE_INTERFACE
+    b_has_rumble = true;   // through the frontend's rumble interface
     b_has_motion = false;
     b_has_config = false;
     b_has_pressure_intensity_button = false;
@@ -251,6 +253,37 @@ pad_preview_values LibretroPadHandler::get_preview_values(const std::unordered_m
     };
 }
 
+// cellPadSetActDirect leaves the game's motor values in the pad
+// (pad_thread::SetRumble); hand them to the frontend the way upstream's
+// handlers drive a real controller: the large motor's lower range ignored and
+// the rest scaled to full, the small one only on or off. A game that stops
+// sending loses its rumble after 3 s, as PadHandlerBase::process does - this
+// handler has its own process().
+void LibretroPadHandler::apply_rumble(Pad& pad, unsigned port)
+{
+    u8 large = 0;
+    u8 small = 0;
+    {
+        std::lock_guard lock(pad::g_pad_mutex);
+
+        if (pad.m_last_rumble_time_us > 0 && get_system_time() - pad.m_last_rumble_time_us > 3'000'000)
+        {
+            for (VibrateMotor& motor : pad.m_vibrate_motors)
+            {
+                motor.value = 0;
+                motor.adjusted_value = 0;
+            }
+            pad.m_last_rumble_time_us = 0;
+        }
+
+        large = pad.m_vibrate_motors[0].value;
+        small = pad.m_vibrate_motors[1].value;
+    }
+
+    const f32 strong = ScaledInput(large, static_cast<f32>(MOTOR_THRESHOLD), 255.0f, 0.0f, 255.0f);
+    libretro_input_set_rumble(port, static_cast<u16>(std::clamp(strong, 0.0f, 255.0f) * 257.0f), small ? 0xffff : 0);
+}
+
 void LibretroPadHandler::process()
 {
     // Process each bound pad
@@ -274,6 +307,8 @@ void LibretroPadHandler::process()
             binding.pad->m_port_status &= ~CELL_PAD_STATUS_CONNECTED;
             continue;
         }
+
+        apply_rumble(*binding.pad, static_cast<unsigned>(i));
 
         // Get button values from libretro input
         auto button_values = get_button_values(binding.device);
