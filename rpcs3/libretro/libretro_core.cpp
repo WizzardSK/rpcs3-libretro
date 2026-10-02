@@ -1188,7 +1188,11 @@ void retro_set_environment(retro_environment_t cb)
 
     }
 
-    libretro_input_init_rumble(cb);
+    if (!libretro_input_init_rumble(cb))
+    {
+        if (log_cb)
+            log_cb(RETRO_LOG_WARN, "RPCS3: the frontend has no rumble interface, so the controller will not vibrate\n");
+    }
 
     // Initialize sensor interface for gyro/accelerometer support
     if (libretro_input_init_sensors(cb))
