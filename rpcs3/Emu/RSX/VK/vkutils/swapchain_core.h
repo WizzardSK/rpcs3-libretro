@@ -10,6 +10,7 @@
 #include "util/logs.hpp"
 
 #include <memory>
+#include <mutex>
 
 namespace vk
 {
@@ -163,17 +164,31 @@ namespace vk
 		void init_swapchain_images(render_device& dev, u32 preferred_count) override;
 	};
 
-	// The swapchain for a frontend that gives us no surface to present to.
-	// native_swapchain_base does the work already - it allocates images backed
-	// by host-visible memory and transfers each finished frame into them - but
-	// leaves creation and presentation to whoever needs them, throwing "not
-	// implemented yet" in the meantime. This is that implementation: there is
-	// nothing to create, and presenting happens elsewhere, in the readback in
-	// VKPresent that hands the pixels to GSFrameBase::present_frame.
+	// The swapchain of the libretro core. native_swapchain_base does the work
+	// already - device-local images the frame is drawn into - but leaves
+	// creation and presentation to whoever needs them, throwing "not
+	// implemented yet" in the meantime. This is that implementation, for both
+	// ways the core gets a frame to the frontend:
+	//
+	// - Without a hardware context there is nothing to create, and presenting
+	//   happens elsewhere, in the readback in VKPresent that hands the pixels to
+	//   GSFrameBase::present_frame. An image is free again once presented.
+	//
+	// - With the hardware Vulkan context (vk::libretro::hw_present) the image
+	//   itself goes to the frontend, which samples it in its own frame. It is
+	//   held from the flip until the core gives it back (release_image), which
+	//   it does once the frontend is done with it - so the images are taken
+	//   and returned on different threads, under a lock.
 	class swapchain_LIBRETRO : public native_swapchain_base
 	{
+		bool m_hw = false;
+		mutable std::mutex m_images_mutex;
+		std::vector<std::unique_ptr<image_view>> m_views;
+
 	public:
-		using native_swapchain_base::native_swapchain_base;
+		swapchain_LIBRETRO(physical_device& gpu, u32 present_queue, u32 graphics_queue, u32 transfer_queue, bool hw = false)
+			: native_swapchain_base(gpu, present_queue, graphics_queue, transfer_queue), m_hw(hw)
+		{}
 
 		bool init() override
 		{
@@ -183,8 +198,23 @@ namespace vk
 				return false;
 			}
 
-			// Two is enough to keep one in flight while the other is read.
-			init_swapchain_images(dev, 2);
+			std::lock_guard lock(m_images_mutex);
+			m_views.clear();
+
+			// Without a context two is enough to keep one in flight while the
+			// other is read. With one, the frontend holds the image it shows
+			// and one or two it is still sampling, besides the ones being drawn.
+			init_swapchain_images(dev, m_hw ? 5 : 2);
+
+			if (m_hw)
+			{
+				for (auto& image : swapchain_images)
+				{
+					m_views.emplace_back(std::make_unique<image_view>(dev, image.second->value, VK_IMAGE_VIEW_TYPE_2D, image.second->format(),
+						VkComponentMapping{ VK_COMPONENT_SWIZZLE_R, VK_COMPONENT_SWIZZLE_G, VK_COMPONENT_SWIZZLE_B, VK_COMPONENT_SWIZZLE_A },
+						VkImageSubresourceRange{ VK_IMAGE_ASPECT_COLOR_BIT, 0, 1, 0, 1 }));
+				}
+			}
 			return true;
 		}
 
@@ -195,31 +225,83 @@ namespace vk
 
 		void destroy(bool full = true) override
 		{
-			swapchain_images.clear();
+			{
+				std::lock_guard lock(m_images_mutex);
+				m_views.clear();
+				swapchain_images.clear();
+			}
 
 			// The device belongs to the swapchain, as with every other one.
 			// Left alive, VKGSRender destroyed the instance under it and
 			// g_render_device kept pointing at it, and NVIDIA's driver then
 			// crashed on a thread of its own at the same address every time
 			// the emulator stopped: on unloading the core, and when a
-			// multi-game disc restarts into the chosen game (NNshi).
+			// multi-game disc restarts into the chosen game (NNshi). With the
+			// hardware context the VkDevice is the frontend's: render_device
+			// frees what RPCS3 made on it and leaves the handle to the frontend.
 			if (full)
 				dev.destroy();
 		}
 
+		VkResult acquire_next_swapchain_image(VkSemaphore semaphore, u64 timeout, u32* result) override
+		{
+			std::lock_guard lock(m_images_mutex);
+			return native_swapchain_base::acquire_next_swapchain_image(semaphore, timeout, result);
+		}
+
 		VkResult present(VkSemaphore /*semaphore*/, u32 index) override
 		{
-			// The frame has already left through present_frame; all that
-			// remains is to put the image back in circulation, which is what
-			// acquire_next_swapchain_image looks at.
-			swapchain_images[index].first = false;
+			// Without a context the frame has already left through
+			// present_frame; all that remains is to put the image back in
+			// circulation, which is what acquire_next_swapchain_image looks at.
+			// With one it is on its way to the frontend and stays taken.
+			if (!m_hw)
+				release_image(index);
 			return VK_SUCCESS;
+		}
+
+		VkImageLayout get_optimal_present_layout() const override
+		{
+			// GENERAL is the one layout the frontend may not transition, so the
+			// layout the renderer tracks stays true while the frontend reads.
+			return m_hw ? VK_IMAGE_LAYOUT_GENERAL : VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL;
+		}
+
+		void release_image(u32 index)
+		{
+			std::lock_guard lock(m_images_mutex);
+			if (index < swapchain_images.size())
+				swapchain_images[index].first = false;
+		}
+
+		struct hw_image
+		{
+			VkImage image = VK_NULL_HANDLE;
+			VkImageView view = VK_NULL_HANDLE;
+			VkImageViewCreateInfo view_info{};
+			u32 width = 0;
+			u32 height = 0;
+		};
+
+		// What the frontend needs of image `index` for set_image
+		bool get_hw_image(u32 index, hw_image& out) const
+		{
+			std::lock_guard lock(m_images_mutex);
+			if (!m_hw || index >= m_views.size())
+				return false;
+			out.image = swapchain_images[index].second->value;
+			out.view = m_views[index]->value;
+			out.view_info = m_views[index]->info;
+			out.width = m_width;
+			out.height = m_height;
+			return true;
 		}
 
 		// For the flip's wait on a free image: which images are held, and a
 		// way out when nothing is ever going to give one back
 		std::string describe_images() const
 		{
+			std::lock_guard lock(m_images_mutex);
 			std::string result;
 			for (const auto& image : swapchain_images)
 				result += image.first ? 'H' : '-';
@@ -228,6 +310,7 @@ namespace vk
 
 		void release_all_images()
 		{
+			std::lock_guard lock(m_images_mutex);
 			for (auto& image : swapchain_images)
 				image.first = false;
 		}

@@ -42,6 +42,9 @@ namespace vk
 		VkDebugReportCallbackEXT m_debugger = nullptr;
 
 		bool extensions_loaded = false;
+		// False for an instance someone else created and destroys - the
+		// libretro frontend's, with the core's hardware Vulkan context.
+		bool m_owned = true;
 
 	public:
 
@@ -54,6 +57,9 @@ namespace vk
 		void enable_debugging();
 
 		bool create(const char* app_name, bool fast = false);
+
+		// Use an instance created elsewhere. It is not destroyed with this one.
+		void adopt(VkInstance handle);
 
 		void bind();
 

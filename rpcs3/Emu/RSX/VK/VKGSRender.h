@@ -209,6 +209,9 @@ private:
 		u32 height = 0;
 		bool is_bgra = false;
 		bool pending = false;
+		// With the hardware Vulkan context: the swapchain image this frame was
+		// drawn into, handed to the frontend once the frame has finished.
+		u32 hw_image = umax;
 	};
 	std::vector<libretro_readback_t> m_libretro_readback;
 

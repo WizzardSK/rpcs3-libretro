@@ -1,5 +1,8 @@
 #include "stdafx.h"
 #include "VKGSRender.h"
+#ifdef LIBRETRO_CORE
+#include "VKLibretro.h"
+#endif
 #include "vkutils/buffer_object.h"
 #include "vkutils/memory.h"
 #include "Emu/RSX/Overlays/overlay_manager.h"
@@ -81,7 +84,18 @@ bool VKGSRender::reinitialize_swapchain()
 	m_upscaler.reset();
 
 	// Drain all the queues
+	// Under the submit lock: waiting for the device to go idle needs every
+	// queue of it externally synchronized, the frontend's too when the libretro
+	// core shares it.
+	vk::acquire_global_submit_lock();
 	vkDeviceWaitIdle(*m_device);
+	vk::release_global_submit_lock();
+
+#ifdef LIBRETRO_CORE
+	// The images are about to be made anew; the frontend's are among them.
+	if (vk::libretro::hw_present())
+		vk::libretro::new_image_generation();
+#endif
 
 	// Clean the FBO caches
 	for (u32 i = 0; i < m_swapchain->get_swap_image_count(); ++i)
@@ -149,6 +163,16 @@ bool VKGSRender::reinitialize_swapchain()
 void VKGSRender::present(vk::frame_context_t *ctx)
 {
 	ensure(ctx->present_image != umax);
+
+#ifdef LIBRETRO_CORE
+	// The image stays taken until the frontend has shown it; which one it was
+	// is needed once the frame has finished, and present_image is reset below.
+	if (vk::libretro::hw_present())
+	{
+		if (auto* readback = libretro_readback_for(ctx))
+			readback->hw_image = ctx->present_image;
+	}
+#endif
 
 	// Partial CS flush
 	ctx->swap_command_buffer->flush();
@@ -275,7 +299,8 @@ void VKGSRender::frame_context_cleanup(vk::frame_context_t *ctx)
 	ensure(ctx->swap_command_buffer);
 
 	// Perform hard swap here
-	if (ctx->swap_command_buffer->wait(FRAME_PRESENT_TIMEOUT) != VK_SUCCESS)
+	const bool frame_finished = ctx->swap_command_buffer->wait(FRAME_PRESENT_TIMEOUT) == VK_SUCCESS;
+	if (!frame_finished)
 	{
 		// Lost surface/device, release swapchain
 		swapchain_unavailable = true;
@@ -287,7 +312,20 @@ void VKGSRender::frame_context_cleanup(vk::frame_context_t *ctx)
 	}
 
 	if (auto* readback = libretro_readback_for(ctx))
+	{
 		readback->pending = false;
+
+		// The frame is drawn: its image goes to the frontend. One that never
+		// finished is not shown, so it goes back to the swapchain instead.
+		if (readback->hw_image != umax)
+		{
+			if (frame_finished)
+				vk::libretro::frame_ready(readback->hw_image);
+			else if (auto* swapchain = dynamic_cast<vk::swapchain_LIBRETRO*>(m_swapchain.get()))
+				swapchain->release_image(readback->hw_image);
+			readback->hw_image = umax;
+		}
+	}
 #endif
 
 	// Resource cleanup.

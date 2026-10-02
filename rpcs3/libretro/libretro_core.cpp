@@ -2,6 +2,8 @@
 // Focuses on OpenGL rendering backend
 
 #include "stdafx.h"
+#include <bit>
+#include <deque>
 
 #include "libretro.h"
 #include "libretro_core.h"
@@ -36,6 +38,10 @@
 #endif
 #ifdef HAVE_VULKAN
 #include "Emu/RSX/VK/VKGSRender.h"
+#include "Emu/RSX/VK/VKLibretro.h"
+#include "Emu/RSX/VK/vkutils/instance.h"
+#include "Emu/RSX/VK/vkutils/swapchain.h"
+#include "libretro_vulkan.h"
 #endif
 #include "Emu/RSX/Null/NullGSRender.h"
 #include "Emu/IdManager.h"
@@ -158,6 +164,12 @@ bool g_libretro_software_present = true;
 bool g_libretro_software_present = false;
 #endif
 bool g_libretro_deferred_readback = false;
+
+// Vulkan with the frontend's hardware context: the device is made on the
+// frontend's instance during context negotiation and each finished frame goes
+// to it as an image (vk::libretro). Off, Vulkan draws on a device of its own
+// and the frame comes back through memory (g_libretro_software_present).
+bool g_libretro_vulkan_hw = false;
 
 // Core state
 static bool core_initialized = false;
@@ -1339,6 +1351,9 @@ static void report_frame_size(unsigned width, unsigned height)
 
 // Forward declarations
 static bool setup_hw_render();
+#ifdef HAVE_VULKAN
+static bool setup_vulkan_hw_render();
+#endif
 
 void retro_init(void)
 {
@@ -1498,13 +1513,25 @@ void retro_init(void)
     // path Android and the Apple embedded systems already take.
 #ifdef HAVE_VULKAN
     if (get_option_value("rpcs3_renderer", "vulkan") == "vulkan")
-        g_libretro_software_present = true;
+    {
+        // The frontend's hardware context first: no copy through the CPU.
+        // RPCS3_VK_READBACK=1 keeps the copy, for comparing the two.
+        const char* readback = std::getenv("RPCS3_VK_READBACK");
+        if (!(readback && *readback == '1') && setup_vulkan_hw_render())
+            g_libretro_vulkan_hw = true;
+        else
+        {
+            if (log_cb)
+                log_cb(RETRO_LOG_INFO, "RPCS3: Vulkan without a hardware context - frames are copied back through memory\n");
+            g_libretro_software_present = true;
+        }
+    }
 #else
     if (get_option_value("rpcs3_renderer", "vulkan") == "vulkan" && log_cb)
         log_cb(RETRO_LOG_WARN, "RPCS3: this core was built without Vulkan - using OpenGL\n");
 #endif
 
-    if (!g_libretro_software_present && !setup_hw_render())
+    if (!g_libretro_software_present && !g_libretro_vulkan_hw && !setup_hw_render())
     {
         // Every context this asked for was refused. Carrying on as if one had
         // been given is how a frontend with no OpenGL ends up with a core that
@@ -1709,6 +1736,287 @@ static bool setup_hw_render()
     return false;
 }
 
+#ifdef HAVE_VULKAN
+// ---- Vulkan hardware context -------------------------------------------------
+//
+// The frontend creates the VkInstance from the application info below and asks
+// the core for a device on it (create_device). That device is RPCS3's own -
+// render_device::create with its extensions and features, plus whatever the
+// frontend needs - made by building the libretro swapchain that owns it. The
+// renderer then takes that swapchain at boot instead of making its own
+// (VKGSRender's constructor), and retro_run hands each finished image to the
+// frontend with set_image. The device is the frontend's afterwards: it destroys
+// it after destroy_device, where the core frees what it made on it.
+
+static const struct retro_hw_render_interface_vulkan* s_vk_iface = nullptr;
+static retro_hw_render_callback s_vk_hw_render{};
+
+static const VkApplicationInfo* vk_get_application_info()
+{
+    // 1.2 is what RPCS3's own instance asks for, and what the renderer's
+    // physical device queries rely on.
+    static VkApplicationInfo info{};
+    info.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
+    info.pApplicationName = "RPCS3";
+    info.pEngineName = "RPCS3";
+    info.apiVersion = VK_API_VERSION_1_2;
+    return &info;
+}
+
+static bool vk_create_device(struct retro_vulkan_context* context, VkInstance instance, VkPhysicalDevice gpu,
+    VkSurfaceKHR surface, PFN_vkGetInstanceProcAddr /*get_instance_proc_addr*/,
+    const char** required_device_extensions, unsigned num_required_device_extensions,
+    const char** /*required_device_layers*/, unsigned /*num_required_device_layers*/,
+    const VkPhysicalDeviceFeatures* required_features)
+{
+    vk::instance& inst = vk::libretro::shared_instance();
+    inst.adopt(instance);
+    std::vector<vk::physical_device>& gpus = inst.enumerate_devices();
+    if (gpus.empty())
+    {
+        if (log_cb)
+            log_cb(RETRO_LOG_ERROR, "RPCS3: Vulkan: the frontend's instance has no GPU\n");
+        return false;
+    }
+
+    // The one the frontend picked, else the adapter the options name, else
+    // the first - the same order of preference as the renderer's own.
+    vk::physical_device* chosen = nullptr;
+    for (auto& candidate : gpus)
+        if (gpu && static_cast<VkPhysicalDevice>(candidate) == gpu)
+            chosen = &candidate;
+    if (!chosen)
+    {
+        const std::string adapter = g_cfg.video.vk.adapter;
+        for (auto& candidate : gpus)
+            if (!adapter.empty() && candidate.get_name() == adapter)
+                chosen = &candidate;
+    }
+    if (!chosen)
+        chosen = &gpus[0];
+
+    // The graphics queue the frontend shares, and a separate compute and
+    // transfer family for the renderer's async work where there is one - the
+    // choice the headless swapchain makes.
+    u32 graphics_family = umax;
+    u32 transfer_family = umax;
+    for (u32 i = 0, families = chosen->get_queue_count(); i < families; ++i)
+    {
+        const auto flags = chosen->get_queue_properties(i).queueFlags;
+        if (graphics_family == umax && (flags & (VK_QUEUE_GRAPHICS_BIT | VK_QUEUE_COMPUTE_BIT)) == (VK_QUEUE_GRAPHICS_BIT | VK_QUEUE_COMPUTE_BIT))
+            graphics_family = i;
+        else if (transfer_family == umax && (flags & (VK_QUEUE_COMPUTE_BIT | VK_QUEUE_TRANSFER_BIT)) == (VK_QUEUE_COMPUTE_BIT | VK_QUEUE_TRANSFER_BIT))
+            transfer_family = i;
+    }
+    if (graphics_family == umax)
+    {
+        if (log_cb)
+            log_cb(RETRO_LOG_ERROR, "RPCS3: Vulkan: %s has no graphics queue\n", chosen->get_name().c_str());
+        return false;
+    }
+
+    // The frontend presents from the queue it is given, so it has to be able to.
+    if (surface)
+    {
+        VkBool32 can_present = VK_FALSE;
+        vkGetPhysicalDeviceSurfaceSupportKHR(*chosen, graphics_family, surface, &can_present);
+        if (!can_present)
+        {
+            if (log_cb)
+                log_cb(RETRO_LOG_ERROR, "RPCS3: Vulkan: the graphics queue of %s cannot present to the frontend's window\n", chosen->get_name().c_str());
+            return false;
+        }
+    }
+
+    vk::libretro::set_frontend_requirements(required_device_extensions, num_required_device_extensions, required_features);
+    vk::libretro::set_hw_present(true);
+
+    vk::swapchain_LIBRETRO* swapchain = nullptr;
+    try
+    {
+        // Constructing it creates the device (swapchain_base -> render_device::create).
+        swapchain = new vk::swapchain_LIBRETRO(*chosen, graphics_family, graphics_family, transfer_family, true);
+    }
+    catch (const std::exception& e)
+    {
+        if (log_cb)
+            log_cb(RETRO_LOG_ERROR, "RPCS3: Vulkan: creating the device failed: %s\n", e.what());
+        vk::libretro::set_hw_present(false);
+        return false;
+    }
+
+    const vk::render_device& dev = swapchain->get_device();
+    vk::libretro::set_frontend_device(dev);
+    vk::libretro::set_shared_swapchain(swapchain);
+
+    context->gpu = *chosen;
+    context->device = dev;
+    context->queue = dev.get_graphics_queue();
+    context->queue_family_index = graphics_family;
+    context->presentation_queue = dev.get_graphics_queue();
+    context->presentation_queue_family_index = graphics_family;
+
+    if (log_cb)
+        log_cb(RETRO_LOG_INFO, "RPCS3: Vulkan device created on %s for the frontend's context (queue family %u)\n",
+            chosen->get_name().c_str(), graphics_family);
+    return true;
+}
+
+static void vk_destroy_device()
+{
+    // What RPCS3 made on the device - its allocator, the swapchain images - and
+    // not the device itself, which the frontend destroys next.
+    if (auto* swapchain = vk::libretro::shared_swapchain())
+    {
+        vk::libretro::drop_pending_frames();
+        swapchain->destroy(true);
+        delete swapchain;
+        vk::libretro::set_shared_swapchain(nullptr);
+    }
+    vk::libretro::set_frontend_device(VK_NULL_HANDLE);
+    vk::libretro::set_queue_lock(nullptr, nullptr, nullptr);
+    vk::libretro::shared_instance().destroy();
+    s_vk_iface = nullptr;
+}
+
+static const struct retro_hw_render_context_negotiation_interface_vulkan s_vk_negotiation{
+    RETRO_HW_RENDER_CONTEXT_NEGOTIATION_INTERFACE_VULKAN,
+    1, // create_device, not create_device2: the frontend's instance is enough
+    vk_get_application_info,
+    vk_create_device,
+    vk_destroy_device,
+};
+
+static void vk_fetch_interface()
+{
+    const struct retro_hw_render_interface* iface = nullptr;
+    if (environ_cb(RETRO_ENVIRONMENT_GET_HW_RENDER_INTERFACE, &iface) && iface &&
+        iface->interface_type == RETRO_HW_RENDER_INTERFACE_VULKAN)
+    {
+        s_vk_iface = reinterpret_cast<const struct retro_hw_render_interface_vulkan*>(iface);
+        vk::libretro::set_queue_lock(s_vk_iface->lock_queue, s_vk_iface->unlock_queue, s_vk_iface->handle);
+    }
+}
+
+static void vk_context_reset()
+{
+    vk_fetch_interface();
+    if (!s_vk_iface)
+    {
+        if (log_cb)
+            log_cb(RETRO_LOG_ERROR, "RPCS3: Vulkan: the frontend gave a context but no Vulkan interface\n");
+        return;
+    }
+
+    if (pending_game_boot && !game_loaded)
+    {
+        if (do_boot_game())
+        {
+            game_loaded = true;
+            start_pause_watchdog();
+        }
+        pending_game_boot = false;
+    }
+}
+
+static void vk_context_destroy()
+{
+    // The device goes in destroy_device, which the frontend calls next.
+}
+
+static bool setup_vulkan_hw_render()
+{
+    s_vk_hw_render.context_type = RETRO_HW_CONTEXT_VULKAN;
+    s_vk_hw_render.version_major = VK_API_VERSION_1_2;
+    s_vk_hw_render.version_minor = 0;
+    s_vk_hw_render.context_reset = vk_context_reset;
+    s_vk_hw_render.context_destroy = vk_context_destroy;
+    if (!environ_cb(RETRO_ENVIRONMENT_SET_HW_RENDER, &s_vk_hw_render))
+        return false;
+
+    if (!environ_cb(RETRO_ENVIRONMENT_SET_HW_RENDER_CONTEXT_NEGOTIATION_INTERFACE, const_cast<retro_hw_render_context_negotiation_interface_vulkan*>(&s_vk_negotiation)))
+    {
+        // Without it the frontend makes a device of its own, without the
+        // extensions and features RPCS3 needs. Take the readback path then,
+        // and take back the request for a context, which that path does not use.
+        if (log_cb)
+            log_cb(RETRO_LOG_WARN, "RPCS3: the frontend has no Vulkan context negotiation\n");
+        retro_hw_render_callback none{};
+        none.context_type = RETRO_HW_CONTEXT_NONE;
+        environ_cb(RETRO_ENVIRONMENT_SET_HW_RENDER, &none);
+        return false;
+    }
+
+    if (log_cb)
+        log_cb(RETRO_LOG_INFO, "RPCS3: Vulkan hardware context requested\n");
+    return true;
+}
+
+// Hand the newest finished frame to the frontend. An image it has been given
+// is held until it can no longer be using it: replaced, and then as many
+// frames gone by as the frontend has frames in flight.
+static void vk_present_frame()
+{
+    vk_fetch_interface();
+    auto* swapchain = dynamic_cast<vk::swapchain_LIBRETRO*>(vk::libretro::shared_swapchain());
+
+    static u32 s_shown = umax;
+    static u32 s_generation = 0;
+    static u64 s_frame = 0;
+    static unsigned s_width = 1280, s_height = 720;
+    static std::deque<std::pair<u32, u64>> s_replaced;
+    static struct retro_vulkan_image s_image{};
+    s_frame++;
+
+    // A resize made the images anew: the ones held are gone, and so is the
+    // one the frontend would show again.
+    if (const u32 generation = vk::libretro::image_generation(); generation != s_generation)
+    {
+        s_generation = generation;
+        s_replaced.clear();
+        s_shown = umax;
+    }
+
+    u32 index = umax;
+    vk::swapchain_LIBRETRO::hw_image image;
+    const bool new_frame = swapchain && s_vk_iface && vk::libretro::take_frame(index) && swapchain->get_hw_image(index, image);
+    libretro_check_frame_stall(new_frame);
+
+    if (new_frame)
+    {
+        s_image.image_view = image.view;
+        s_image.image_layout = VK_IMAGE_LAYOUT_GENERAL;
+        s_image.create_info = image.view_info;
+        s_vk_iface->set_image(s_vk_iface->handle, &s_image, 0, nullptr, VK_QUEUE_FAMILY_IGNORED);
+
+        if (s_shown != umax)
+            s_replaced.emplace_back(s_shown, s_frame);
+        s_shown = index;
+        s_width = image.width;
+        s_height = image.height;
+        report_frame_size(s_width, s_height);
+        video_cb(RETRO_HW_FRAME_BUFFER_VALID, s_width, s_height, 0);
+    }
+    else
+    {
+        // The frontend shows the last image again, or nothing yet.
+        video_cb(NULL, s_width, s_height, 0);
+    }
+
+    if (swapchain)
+    {
+        u32 in_flight = 3;
+        if (s_vk_iface && s_vk_iface->get_sync_index_mask)
+            in_flight = std::max(1, std::popcount(s_vk_iface->get_sync_index_mask(s_vk_iface->handle)));
+        while (!s_replaced.empty() && s_frame - s_replaced.front().second > in_flight)
+        {
+            swapchain->release_image(s_replaced.front().first);
+            s_replaced.pop_front();
+        }
+    }
+}
+#endif
+
 // The last component of a path, with either kind of separator
 static std::string_view path_leaf(std::string_view path)
 {
@@ -1897,7 +2205,7 @@ bool retro_load_game(const struct retro_game_info* game)
     // the question is whether the emulator runs rather than what it looks like.
     if (get_option_value("rpcs3_renderer", "vulkan") == "null")
         g_cfg.video.renderer.set(video_renderer::null);
-    else if (g_libretro_software_present)
+    else if (g_libretro_software_present || g_libretro_vulkan_hw)
         g_cfg.video.renderer.set(video_renderer::vulkan);
     else
         g_cfg.video.renderer.set(video_renderer::opengl);
@@ -2258,6 +2566,14 @@ void retro_run(void)
 
     // Process audio
     libretro_audio_process(audio_batch_cb);
+
+#ifdef HAVE_VULKAN
+    if (g_libretro_vulkan_hw)
+    {
+        vk_present_frame();
+        return;
+    }
+#endif
 
     // Without a hardware context there is no GL state to tidy and nothing to
     // blit: the renderer has already put the finished frame in memory.

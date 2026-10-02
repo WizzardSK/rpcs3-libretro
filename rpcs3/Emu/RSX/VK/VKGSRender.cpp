@@ -8,6 +8,9 @@
 #include "VKCommonPipelineLayout.h"
 #include "VKCompute.h"
 #include "VKGSRender.h"
+#ifdef LIBRETRO_CORE
+#include "VKLibretro.h"
+#endif
 #include "VKHelpers.h"
 #include "VKRenderPass.h"
 #include "VKResourceManager.h"
@@ -410,6 +413,26 @@ VKGSRender::VKGSRender(utils::serial* ar) noexcept : GSRender(ar)
 	g_fxo->need<rsx::dma_manager>();
 	g_fxo->need<vk::driver_manager_thread>();
 
+	bool shared_device = false;
+#ifdef LIBRETRO_CORE
+	if (vk::libretro::hw_present())
+	{
+		// The instance is the frontend's and the device and swapchain were made
+		// on it during context negotiation (libretro_core.cpp).
+		auto* shared = vk::libretro::shared_swapchain();
+		if (!shared)
+		{
+			rsx_log.fatal("libretro: the hardware Vulkan context has no device");
+			m_device = VK_NULL_HANDLE;
+			return;
+		}
+		m_swapchain.reset(shared);
+		shared_device = true;
+	}
+#endif
+
+	if (!shared_device)
+	{
 	if (!m_instance.create("RPCS3"))
 	{
 		rsx_log.fatal("Could not find a Vulkan compatible GPU driver. Your GPU(s) may not support Vulkan, or you need to install the Vulkan runtime and drivers");
@@ -469,6 +492,8 @@ VKGSRender::VKGSRender(utils::serial* ar) noexcept : GSRender(ar)
 		m_device = VK_NULL_HANDLE;
 		rsx_log.fatal("Could not successfully initialize a swapchain");
 		return;
+	}
+
 	}
 
 	m_device = const_cast<vk::render_device*>(&m_swapchain->get_device());
@@ -813,7 +838,12 @@ VKGSRender::~VKGSRender()
 	}
 
 	//Wait for device to finish up with resources
+	// Under the submit lock: waiting for the device to go idle needs every
+	// queue of it externally synchronized, the frontend's too when the libretro
+	// core shares it.
+	vk::acquire_global_submit_lock();
 	vkDeviceWaitIdle(*m_device);
+	vk::release_global_submit_lock();
 
 	// Globals. TODO: Refactor lifetime management
 	if (auto async_scheduler = g_fxo->try_get<vk::AsyncTaskScheduler>())
@@ -897,7 +927,22 @@ VKGSRender::~VKGSRender()
 	vk::destroy_global_resources();
 
 	// Device handles/contexts
-	m_swapchain->destroy();
+#ifdef LIBRETRO_CORE
+	if (vk::libretro::hw_present() && m_swapchain.get() == vk::libretro::shared_swapchain())
+	{
+		// The libretro core's hardware context: the swapchain and its device
+		// were made during context negotiation and outlive the emulator - the
+		// next boot draws on them again, and only the frontend's
+		// destroy_device ends them. Give back the images, keep the rest.
+		vk::libretro::drop_pending_frames();
+		m_swapchain->destroy(false);
+		m_swapchain.release();
+	}
+	else
+#endif
+	{
+		m_swapchain->destroy();
+	}
 	m_instance.destroy();
 
 #if defined(HAVE_X11) && defined(HAVE_VULKAN)

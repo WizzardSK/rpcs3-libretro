@@ -1,4 +1,7 @@
 #include "device.h"
+#ifdef LIBRETRO_CORE
+#include "../VKLibretro.h"
+#endif
 #include "instance.h"
 #include "util/logs.hpp"
 #include "Emu/system_config.h"
@@ -719,6 +722,12 @@ namespace vk
 			enabled_features.logicOp = VK_FALSE;
 		}
 
+#ifdef LIBRETRO_CORE
+		// With the core's hardware Vulkan context the frontend presents from
+		// this device as well, and says what it needs of it.
+		vk::libretro::apply_frontend_requirements(requested_extensions, enabled_features);
+#endif
+
 		VkDeviceCreateInfo device = {};
 		device.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
 		device.pNext = nullptr;
@@ -895,6 +904,10 @@ namespace vk
 				m_allocator.reset();
 			}
 
+#ifdef LIBRETRO_CORE
+			// The frontend's device: it destroys it itself, after destroy_device.
+			if (!vk::libretro::is_frontend_device(dev))
+#endif
 			vkDestroyDevice(dev, nullptr);
 			dev = nullptr;
 			memory_map = {};

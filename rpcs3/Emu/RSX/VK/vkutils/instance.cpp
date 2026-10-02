@@ -63,8 +63,19 @@ namespace vk
 			m_surface = VK_NULL_HANDLE;
 		}
 
-		vkDestroyInstance(m_instance, nullptr);
+		if (m_owned)
+			vkDestroyInstance(m_instance, nullptr);
 		m_instance = VK_NULL_HANDLE;
+		gpus.clear();
+	}
+
+	void instance::adopt(VkInstance handle)
+	{
+		m_instance = handle;
+		m_owned = false;
+		// The frontend asks for the Vulkan version the core's application
+		// info names (1.2), so the physical device queries need no extension.
+		extensions_loaded = true;
 	}
 
 	void instance::enable_debugging()
