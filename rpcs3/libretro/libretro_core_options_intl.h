@@ -67,13 +67,13 @@ extern "C" {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_AR NULL
 #define OPTION_VAL_0_AR "تلقائي"
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_AR NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_AR NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_AR "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_AR NULL
 #define RPCS3_SPU_CACHE_INFO_0_AR NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_AR NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_AR NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_AR NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_AR NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_AR "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_AR NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_AR NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_AR NULL
@@ -88,7 +88,7 @@ extern "C" {
 #define OPTION_VAL_300_AR NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_AR NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_AR NULL
-#define OPTION_VAL_USLEEP_AR NULL
+#define OPTION_VAL_USLEEP_AR "Usleep Only"
 #define OPTION_VAL_ALL_TIMERS_AR NULL
 #define OPTION_VAL_AS_HOST_AR NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_AR NULL
@@ -98,9 +98,9 @@ extern "C" {
 #define OPTION_VAL_FORCED_AR NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_AR NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_AR NULL
-#define OPTION_VAL_RELAXED_AR NULL
+#define OPTION_VAL_RELAXED_AR "Relaxed"
 #define OPTION_VAL_ACCURATE_AR "دقيق"
-#define OPTION_VAL_ULTRA_AR NULL
+#define OPTION_VAL_ULTRA_AR "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_AR NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_AR NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_AR NULL
@@ -111,14 +111,14 @@ extern "C" {
 #define OPTION_VAL_VULKAN_AR NULL
 #define OPTION_VAL_NULL_AR NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_AR NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_AR NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_AR "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_AR NULL
-#define OPTION_VAL_30_AR NULL
+#define OPTION_VAL_30_AR "30 FPS"
 #define OPTION_VAL_35_AR NULL
-#define OPTION_VAL_40_AR NULL
+#define OPTION_VAL_40_AR "40ms"
 #define OPTION_VAL_45_AR NULL
 #define OPTION_VAL_55_AR NULL
-#define OPTION_VAL_60_AR NULL
+#define OPTION_VAL_60_AR "60 FPS"
 #define OPTION_VAL_65_AR NULL
 #define OPTION_VAL_70_AR NULL
 #define OPTION_VAL_80_AR NULL
@@ -129,7 +129,7 @@ extern "C" {
 #define OPTION_VAL_105_AR NULL
 #define OPTION_VAL_110_AR NULL
 #define OPTION_VAL_115_AR NULL
-#define OPTION_VAL_120_AR NULL
+#define OPTION_VAL_120_AR "120x120"
 #define OPTION_VAL_125_AR NULL
 #define OPTION_VAL_130_AR NULL
 #define OPTION_VAL_135_AR NULL
@@ -138,13 +138,13 @@ extern "C" {
 #define OPTION_VAL_175_AR NULL
 #define OPTION_VAL_250_AR NULL
 #define RPCS3_FRAME_LIMIT_LABEL_AR NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_AR NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_AR "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_AR NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_AR NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_AR NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_AR NULL
 #define OPTION_VAL_144_AR NULL
-#define OPTION_VAL_240_AR NULL
+#define OPTION_VAL_240_AR "240x240"
 #define RPCS3_SHADER_MODE_LABEL_AR NULL
 #define RPCS3_SHADER_MODE_INFO_0_AR NULL
 #define OPTION_VAL_ASYNC_AR NULL
@@ -156,18 +156,18 @@ extern "C" {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_AR NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_AR NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_AR NULL
-#define OPTION_VAL_1_AR NULL
+#define OPTION_VAL_1_AR "1x1"
 #define OPTION_VAL_2_AR NULL
 #define OPTION_VAL_4_AR NULL
 #define OPTION_VAL_8_AR NULL
-#define OPTION_VAL_16_AR NULL
-#define RPCS3_MSAA_LABEL_AR NULL
-#define RPCS3_MSAA_INFO_0_AR NULL
+#define OPTION_VAL_16_AR "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_AR "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_AR "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_AR NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_AR NULL
-#define OPTION_VAL_LOW_AR NULL
-#define OPTION_VAL_NORMAL_AR "عادي"
-#define OPTION_VAL_HIGH_AR NULL
+#define OPTION_VAL_LOW_AR "Low"
+#define OPTION_VAL_NORMAL_AR NULL
+#define OPTION_VAL_HIGH_AR "High"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_AR NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_AR NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_AR NULL
@@ -181,16 +181,16 @@ extern "C" {
 #define RPCS3_VERTEX_CACHE_LABEL_AR NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_AR NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_AR NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_AR NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_AR "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_AR NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_AR NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_AR "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_AR NULL
-#define OPTION_VAL_PRECISE_AR NULL
+#define OPTION_VAL_PRECISE_AR "Precise (Default)"
 #define RPCS3_CPU_BLIT_LABEL_AR NULL
 #define RPCS3_CPU_BLIT_INFO_0_AR NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_AR NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_AR NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_AR NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_AR "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_AR "0 (Default)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_AR NULL
 #define RPCS3_VBLANK_RATE_LABEL_AR NULL
 #define RPCS3_VBLANK_RATE_INFO_0_AR NULL
@@ -233,9 +233,9 @@ extern "C" {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_AR NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_AR NULL
 #define RPCS3_NETWORK_ENABLED_LABEL_AR NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_AR NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_AR "Lets games reach the internet. Takes effect when content is loaded."
 #define RPCS3_PSN_STATUS_LABEL_AR NULL
-#define RPCS3_PSN_STATUS_INFO_0_AR NULL
+#define RPCS3_PSN_STATUS_INFO_0_AR "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_AR NULL
 #define OPTION_VAL_RPCN_AR NULL
 #define RPCS3_UPNP_LABEL_AR NULL
@@ -252,7 +252,7 @@ extern "C" {
 #define RPCS3_RPCN_SERVER_LABEL_AR NULL
 #define RPCS3_RPCN_SERVER_INFO_0_AR NULL
 #define OPTION_VAL_RPCN_RPCS3_NET_AR NULL
-#define OPTION_VAL_CUSTOM_AR "مخصص"
+#define OPTION_VAL_CUSTOM_AR NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_AR NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_AR NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_AR NULL
@@ -260,7 +260,7 @@ extern "C" {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_AR NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_AR NULL
 #define OPTION_VAL_FAST_AR "سريع"
-#define OPTION_VAL_BALANCED_AR "متوازن"
+#define OPTION_VAL_BALANCED_AR NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_AR NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_AR NULL
 #define OPTION_VAL_1000_AR NULL
@@ -308,11 +308,11 @@ extern "C" {
 #define OPTION_VAL_CIRCLE_AR NULL
 #define RPCS3_LICENSE_AREA_LABEL_AR NULL
 #define RPCS3_LICENSE_AREA_INFO_0_AR NULL
-#define OPTION_VAL_USA_AR NULL
-#define OPTION_VAL_EU_AR NULL
-#define OPTION_VAL_JP_AR NULL
-#define OPTION_VAL_HK_AR NULL
-#define OPTION_VAL_KR_AR NULL
+#define OPTION_VAL_USA_AR "SCEA (Americas)"
+#define OPTION_VAL_EU_AR "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_AR "SCEJ (Japan)"
+#define OPTION_VAL_HK_AR "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_AR "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_AR NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_AR NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_AR NULL
@@ -322,7 +322,7 @@ extern "C" {
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_AR NULL
 #define RPCS3_VFS_INIT_LABEL_AR NULL
 #define RPCS3_VFS_INIT_INFO_0_AR NULL
-#define OPTION_VAL_RESET_AR "إعادة تعيين"
+#define OPTION_VAL_RESET_AR NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_AR NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_AR NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_AR NULL
@@ -907,13 +907,13 @@ struct retro_core_options_v2 options_ar = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_AST NULL
 #define OPTION_VAL_0_AST NULL
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_AST NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_AST NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_AST "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_AST NULL
 #define RPCS3_SPU_CACHE_INFO_0_AST NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_AST NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_AST NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_AST NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_AST NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_AST "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_AST NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_AST NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_AST NULL
@@ -928,7 +928,7 @@ struct retro_core_options_v2 options_ar = {
 #define OPTION_VAL_300_AST NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_AST NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_AST NULL
-#define OPTION_VAL_USLEEP_AST NULL
+#define OPTION_VAL_USLEEP_AST "Usleep Only"
 #define OPTION_VAL_ALL_TIMERS_AST NULL
 #define OPTION_VAL_AS_HOST_AST NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_AST NULL
@@ -938,9 +938,9 @@ struct retro_core_options_v2 options_ar = {
 #define OPTION_VAL_FORCED_AST NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_AST NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_AST NULL
-#define OPTION_VAL_RELAXED_AST NULL
+#define OPTION_VAL_RELAXED_AST "Relaxed"
 #define OPTION_VAL_ACCURATE_AST NULL
-#define OPTION_VAL_ULTRA_AST NULL
+#define OPTION_VAL_ULTRA_AST "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_AST NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_AST NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_AST NULL
@@ -951,14 +951,14 @@ struct retro_core_options_v2 options_ar = {
 #define OPTION_VAL_VULKAN_AST NULL
 #define OPTION_VAL_NULL_AST NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_AST NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_AST NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_AST "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_AST NULL
-#define OPTION_VAL_30_AST NULL
+#define OPTION_VAL_30_AST "30 FPS"
 #define OPTION_VAL_35_AST NULL
-#define OPTION_VAL_40_AST NULL
+#define OPTION_VAL_40_AST "40ms"
 #define OPTION_VAL_45_AST NULL
 #define OPTION_VAL_55_AST NULL
-#define OPTION_VAL_60_AST NULL
+#define OPTION_VAL_60_AST "60 FPS"
 #define OPTION_VAL_65_AST NULL
 #define OPTION_VAL_70_AST NULL
 #define OPTION_VAL_80_AST NULL
@@ -969,7 +969,7 @@ struct retro_core_options_v2 options_ar = {
 #define OPTION_VAL_105_AST NULL
 #define OPTION_VAL_110_AST NULL
 #define OPTION_VAL_115_AST NULL
-#define OPTION_VAL_120_AST NULL
+#define OPTION_VAL_120_AST "120x120"
 #define OPTION_VAL_125_AST NULL
 #define OPTION_VAL_130_AST NULL
 #define OPTION_VAL_135_AST NULL
@@ -978,13 +978,13 @@ struct retro_core_options_v2 options_ar = {
 #define OPTION_VAL_175_AST NULL
 #define OPTION_VAL_250_AST NULL
 #define RPCS3_FRAME_LIMIT_LABEL_AST NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_AST NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_AST "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_AST NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_AST NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_AST NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_AST NULL
 #define OPTION_VAL_144_AST NULL
-#define OPTION_VAL_240_AST NULL
+#define OPTION_VAL_240_AST "240x240"
 #define RPCS3_SHADER_MODE_LABEL_AST NULL
 #define RPCS3_SHADER_MODE_INFO_0_AST NULL
 #define OPTION_VAL_ASYNC_AST NULL
@@ -996,18 +996,18 @@ struct retro_core_options_v2 options_ar = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_AST NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_AST "Filtru anisotrópicu"
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_AST NULL
-#define OPTION_VAL_1_AST NULL
+#define OPTION_VAL_1_AST "1x1"
 #define OPTION_VAL_2_AST "x2"
 #define OPTION_VAL_4_AST "x4"
 #define OPTION_VAL_8_AST "x8"
-#define OPTION_VAL_16_AST "x16"
-#define RPCS3_MSAA_LABEL_AST NULL
-#define RPCS3_MSAA_INFO_0_AST NULL
+#define OPTION_VAL_16_AST "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_AST "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_AST "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_AST NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_AST NULL
-#define OPTION_VAL_LOW_AST NULL
+#define OPTION_VAL_LOW_AST "Low"
 #define OPTION_VAL_NORMAL_AST NULL
-#define OPTION_VAL_HIGH_AST NULL
+#define OPTION_VAL_HIGH_AST "High"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_AST NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_AST NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_AST NULL
@@ -1021,16 +1021,16 @@ struct retro_core_options_v2 options_ar = {
 #define RPCS3_VERTEX_CACHE_LABEL_AST NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_AST NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_AST NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_AST NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_AST "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_AST NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_AST NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_AST "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_AST NULL
-#define OPTION_VAL_PRECISE_AST NULL
+#define OPTION_VAL_PRECISE_AST "Precise (Default)"
 #define RPCS3_CPU_BLIT_LABEL_AST NULL
 #define RPCS3_CPU_BLIT_INFO_0_AST NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_AST NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_AST NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_AST NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_AST "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_AST "0 (Default)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_AST NULL
 #define RPCS3_VBLANK_RATE_LABEL_AST NULL
 #define RPCS3_VBLANK_RATE_INFO_0_AST NULL
@@ -1073,9 +1073,9 @@ struct retro_core_options_v2 options_ar = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_AST NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_AST NULL
 #define RPCS3_NETWORK_ENABLED_LABEL_AST NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_AST NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_AST "Lets games reach the internet. Takes effect when content is loaded."
 #define RPCS3_PSN_STATUS_LABEL_AST NULL
-#define RPCS3_PSN_STATUS_INFO_0_AST NULL
+#define RPCS3_PSN_STATUS_INFO_0_AST "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_AST NULL
 #define OPTION_VAL_RPCN_AST NULL
 #define RPCS3_UPNP_LABEL_AST NULL
@@ -1148,11 +1148,11 @@ struct retro_core_options_v2 options_ar = {
 #define OPTION_VAL_CIRCLE_AST NULL
 #define RPCS3_LICENSE_AREA_LABEL_AST NULL
 #define RPCS3_LICENSE_AREA_INFO_0_AST NULL
-#define OPTION_VAL_USA_AST "Estaos Xuníos"
-#define OPTION_VAL_EU_AST "Europa"
-#define OPTION_VAL_JP_AST "Xapón"
-#define OPTION_VAL_HK_AST NULL
-#define OPTION_VAL_KR_AST NULL
+#define OPTION_VAL_USA_AST "SCEA (Americas)"
+#define OPTION_VAL_EU_AST "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_AST "SCEJ (Japan)"
+#define OPTION_VAL_HK_AST "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_AST "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_AST NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_AST NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_AST NULL
@@ -1747,13 +1747,13 @@ struct retro_core_options_v2 options_ast = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_BE NULL
 #define OPTION_VAL_0_BE "Аўта"
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_BE NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_BE NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_BE "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_BE NULL
 #define RPCS3_SPU_CACHE_INFO_0_BE NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_BE NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_BE NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_BE NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_BE NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_BE "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_BE NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_BE NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_BE NULL
@@ -1768,7 +1768,7 @@ struct retro_core_options_v2 options_ast = {
 #define OPTION_VAL_300_BE "300 %"
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_BE NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_BE NULL
-#define OPTION_VAL_USLEEP_BE NULL
+#define OPTION_VAL_USLEEP_BE "Usleep Only"
 #define OPTION_VAL_ALL_TIMERS_BE NULL
 #define OPTION_VAL_AS_HOST_BE NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_BE NULL
@@ -1778,9 +1778,9 @@ struct retro_core_options_v2 options_ast = {
 #define OPTION_VAL_FORCED_BE NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_BE NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_BE NULL
-#define OPTION_VAL_RELAXED_BE NULL
+#define OPTION_VAL_RELAXED_BE "Relaxed"
 #define OPTION_VAL_ACCURATE_BE "Дакладны"
-#define OPTION_VAL_ULTRA_BE NULL
+#define OPTION_VAL_ULTRA_BE "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_BE NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_BE NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_BE NULL
@@ -1791,40 +1791,40 @@ struct retro_core_options_v2 options_ast = {
 #define OPTION_VAL_VULKAN_BE NULL
 #define OPTION_VAL_NULL_BE NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_BE NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_BE NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_BE "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_BE NULL
-#define OPTION_VAL_30_BE "30 %"
-#define OPTION_VAL_35_BE "35 %"
-#define OPTION_VAL_40_BE "40 %"
+#define OPTION_VAL_30_BE "30 FPS"
+#define OPTION_VAL_35_BE NULL
+#define OPTION_VAL_40_BE "40ms"
 #define OPTION_VAL_45_BE NULL
-#define OPTION_VAL_55_BE "55 %"
-#define OPTION_VAL_60_BE "60 %"
-#define OPTION_VAL_65_BE "65 %"
+#define OPTION_VAL_55_BE NULL
+#define OPTION_VAL_60_BE "60 FPS"
+#define OPTION_VAL_65_BE NULL
 #define OPTION_VAL_70_BE "70 %"
 #define OPTION_VAL_80_BE "80 %"
-#define OPTION_VAL_85_BE "85 %"
+#define OPTION_VAL_85_BE NULL
 #define OPTION_VAL_90_BE "90 %"
-#define OPTION_VAL_95_BE "95 %"
+#define OPTION_VAL_95_BE NULL
 #define OPTION_VAL_100_RPCS3_RESOLUTION_SCALE_BE NULL
-#define OPTION_VAL_105_BE "105 %"
-#define OPTION_VAL_110_BE "110 %"
-#define OPTION_VAL_115_BE "115 %"
-#define OPTION_VAL_120_BE "120 %"
-#define OPTION_VAL_125_BE "125 %"
-#define OPTION_VAL_130_BE "130 %"
-#define OPTION_VAL_135_BE "135 %"
-#define OPTION_VAL_140_BE "140 %"
-#define OPTION_VAL_145_BE "145 %"
-#define OPTION_VAL_175_BE "175 %"
+#define OPTION_VAL_105_BE NULL
+#define OPTION_VAL_110_BE NULL
+#define OPTION_VAL_115_BE NULL
+#define OPTION_VAL_120_BE "120x120"
+#define OPTION_VAL_125_BE NULL
+#define OPTION_VAL_130_BE NULL
+#define OPTION_VAL_135_BE NULL
+#define OPTION_VAL_140_BE NULL
+#define OPTION_VAL_145_BE NULL
+#define OPTION_VAL_175_BE NULL
 #define OPTION_VAL_250_BE "250 %"
 #define RPCS3_FRAME_LIMIT_LABEL_BE NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_BE NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_BE "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_BE NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_BE NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_BE NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_BE NULL
 #define OPTION_VAL_144_BE NULL
-#define OPTION_VAL_240_BE NULL
+#define OPTION_VAL_240_BE "240x240"
 #define RPCS3_SHADER_MODE_LABEL_BE NULL
 #define RPCS3_SHADER_MODE_INFO_0_BE NULL
 #define OPTION_VAL_ASYNC_BE NULL
@@ -1836,18 +1836,18 @@ struct retro_core_options_v2 options_ast = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_BE NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_BE "Анізатропнае фільтраванне"
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_BE NULL
-#define OPTION_VAL_1_BE NULL
+#define OPTION_VAL_1_BE "1x1"
 #define OPTION_VAL_2_BE NULL
 #define OPTION_VAL_4_BE NULL
 #define OPTION_VAL_8_BE NULL
-#define OPTION_VAL_16_BE NULL
-#define RPCS3_MSAA_LABEL_BE NULL
-#define RPCS3_MSAA_INFO_0_BE NULL
+#define OPTION_VAL_16_BE "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_BE "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_BE "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_BE NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_BE NULL
-#define OPTION_VAL_LOW_BE NULL
-#define OPTION_VAL_NORMAL_BE "Звычайна"
-#define OPTION_VAL_HIGH_BE NULL
+#define OPTION_VAL_LOW_BE "Нізкая"
+#define OPTION_VAL_NORMAL_BE NULL
+#define OPTION_VAL_HIGH_BE "Высокая"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_BE NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_BE NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_BE NULL
@@ -1861,16 +1861,16 @@ struct retro_core_options_v2 options_ast = {
 #define RPCS3_VERTEX_CACHE_LABEL_BE NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_BE NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_BE NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_BE NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_BE "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_BE NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_BE NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_BE "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_BE NULL
-#define OPTION_VAL_PRECISE_BE NULL
+#define OPTION_VAL_PRECISE_BE "Precise (Default)"
 #define RPCS3_CPU_BLIT_LABEL_BE NULL
 #define RPCS3_CPU_BLIT_INFO_0_BE NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_BE NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_BE NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_BE NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_BE "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_BE "0 (Default)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_BE NULL
 #define RPCS3_VBLANK_RATE_LABEL_BE NULL
 #define RPCS3_VBLANK_RATE_INFO_0_BE NULL
@@ -1913,9 +1913,9 @@ struct retro_core_options_v2 options_ast = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_BE NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_BE "20 %"
 #define RPCS3_NETWORK_ENABLED_LABEL_BE NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_BE NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_BE "Lets games reach the internet. Takes effect when content is loaded."
 #define RPCS3_PSN_STATUS_LABEL_BE NULL
-#define RPCS3_PSN_STATUS_INFO_0_BE NULL
+#define RPCS3_PSN_STATUS_INFO_0_BE "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_BE NULL
 #define OPTION_VAL_RPCN_BE NULL
 #define RPCS3_UPNP_LABEL_BE NULL
@@ -1932,7 +1932,7 @@ struct retro_core_options_v2 options_ast = {
 #define RPCS3_RPCN_SERVER_LABEL_BE NULL
 #define RPCS3_RPCN_SERVER_INFO_0_BE NULL
 #define OPTION_VAL_RPCN_RPCS3_NET_BE NULL
-#define OPTION_VAL_CUSTOM_BE "Уласная"
+#define OPTION_VAL_CUSTOM_BE NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_BE NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_BE NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_BE NULL
@@ -1940,7 +1940,7 @@ struct retro_core_options_v2 options_ast = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_BE NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_BE NULL
 #define OPTION_VAL_FAST_BE "Хутка"
-#define OPTION_VAL_BALANCED_BE "Збалансаваны"
+#define OPTION_VAL_BALANCED_BE NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_BE NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_BE NULL
 #define OPTION_VAL_1000_BE NULL
@@ -1988,11 +1988,11 @@ struct retro_core_options_v2 options_ast = {
 #define OPTION_VAL_CIRCLE_BE NULL
 #define RPCS3_LICENSE_AREA_LABEL_BE NULL
 #define RPCS3_LICENSE_AREA_INFO_0_BE NULL
-#define OPTION_VAL_USA_BE "ЗША"
-#define OPTION_VAL_EU_BE "Еўропа"
-#define OPTION_VAL_JP_BE "Японія"
-#define OPTION_VAL_HK_BE NULL
-#define OPTION_VAL_KR_BE NULL
+#define OPTION_VAL_USA_BE "SCEA (Americas)"
+#define OPTION_VAL_EU_BE "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_BE "SCEJ (Japan)"
+#define OPTION_VAL_HK_BE "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_BE "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_BE NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_BE NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_BE NULL
@@ -2002,7 +2002,7 @@ struct retro_core_options_v2 options_ast = {
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_BE NULL
 #define RPCS3_VFS_INIT_LABEL_BE NULL
 #define RPCS3_VFS_INIT_INFO_0_BE NULL
-#define OPTION_VAL_RESET_BE "Скінуць"
+#define OPTION_VAL_RESET_BE NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_BE NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_BE NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_BE NULL
@@ -2587,13 +2587,13 @@ struct retro_core_options_v2 options_be = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_BG NULL
 #define OPTION_VAL_0_BG NULL
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_BG NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_BG NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_BG "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_BG NULL
 #define RPCS3_SPU_CACHE_INFO_0_BG NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_BG NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_BG NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_BG NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_BG NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_BG "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_BG NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_BG NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_BG NULL
@@ -2608,7 +2608,7 @@ struct retro_core_options_v2 options_be = {
 #define OPTION_VAL_300_BG NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_BG NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_BG NULL
-#define OPTION_VAL_USLEEP_BG NULL
+#define OPTION_VAL_USLEEP_BG "Usleep Only"
 #define OPTION_VAL_ALL_TIMERS_BG NULL
 #define OPTION_VAL_AS_HOST_BG NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_BG NULL
@@ -2618,9 +2618,9 @@ struct retro_core_options_v2 options_be = {
 #define OPTION_VAL_FORCED_BG NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_BG NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_BG NULL
-#define OPTION_VAL_RELAXED_BG NULL
+#define OPTION_VAL_RELAXED_BG "Relaxed"
 #define OPTION_VAL_ACCURATE_BG NULL
-#define OPTION_VAL_ULTRA_BG NULL
+#define OPTION_VAL_ULTRA_BG "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_BG NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_BG NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_BG NULL
@@ -2631,14 +2631,14 @@ struct retro_core_options_v2 options_be = {
 #define OPTION_VAL_VULKAN_BG NULL
 #define OPTION_VAL_NULL_BG NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_BG NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_BG NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_BG "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_BG NULL
-#define OPTION_VAL_30_BG NULL
+#define OPTION_VAL_30_BG "30 FPS"
 #define OPTION_VAL_35_BG NULL
-#define OPTION_VAL_40_BG NULL
+#define OPTION_VAL_40_BG "40ms"
 #define OPTION_VAL_45_BG NULL
 #define OPTION_VAL_55_BG NULL
-#define OPTION_VAL_60_BG NULL
+#define OPTION_VAL_60_BG "60 FPS"
 #define OPTION_VAL_65_BG NULL
 #define OPTION_VAL_70_BG NULL
 #define OPTION_VAL_80_BG NULL
@@ -2649,7 +2649,7 @@ struct retro_core_options_v2 options_be = {
 #define OPTION_VAL_105_BG NULL
 #define OPTION_VAL_110_BG NULL
 #define OPTION_VAL_115_BG NULL
-#define OPTION_VAL_120_BG NULL
+#define OPTION_VAL_120_BG "120x120"
 #define OPTION_VAL_125_BG NULL
 #define OPTION_VAL_130_BG NULL
 #define OPTION_VAL_135_BG NULL
@@ -2658,13 +2658,13 @@ struct retro_core_options_v2 options_be = {
 #define OPTION_VAL_175_BG NULL
 #define OPTION_VAL_250_BG NULL
 #define RPCS3_FRAME_LIMIT_LABEL_BG NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_BG NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_BG "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_BG NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_BG NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_BG NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_BG NULL
 #define OPTION_VAL_144_BG NULL
-#define OPTION_VAL_240_BG NULL
+#define OPTION_VAL_240_BG "240x240"
 #define RPCS3_SHADER_MODE_LABEL_BG NULL
 #define RPCS3_SHADER_MODE_INFO_0_BG NULL
 #define OPTION_VAL_ASYNC_BG NULL
@@ -2676,18 +2676,18 @@ struct retro_core_options_v2 options_be = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_BG NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_BG NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_BG NULL
-#define OPTION_VAL_1_BG NULL
+#define OPTION_VAL_1_BG "1x1"
 #define OPTION_VAL_2_BG NULL
 #define OPTION_VAL_4_BG NULL
 #define OPTION_VAL_8_BG NULL
-#define OPTION_VAL_16_BG NULL
-#define RPCS3_MSAA_LABEL_BG NULL
-#define RPCS3_MSAA_INFO_0_BG NULL
+#define OPTION_VAL_16_BG "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_BG "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_BG "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_BG NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_BG NULL
-#define OPTION_VAL_LOW_BG NULL
+#define OPTION_VAL_LOW_BG "Low"
 #define OPTION_VAL_NORMAL_BG NULL
-#define OPTION_VAL_HIGH_BG NULL
+#define OPTION_VAL_HIGH_BG "High"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_BG NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_BG NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_BG NULL
@@ -2701,16 +2701,16 @@ struct retro_core_options_v2 options_be = {
 #define RPCS3_VERTEX_CACHE_LABEL_BG NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_BG NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_BG NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_BG NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_BG "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_BG NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_BG NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_BG "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_BG NULL
-#define OPTION_VAL_PRECISE_BG NULL
+#define OPTION_VAL_PRECISE_BG "Precise (Default)"
 #define RPCS3_CPU_BLIT_LABEL_BG NULL
 #define RPCS3_CPU_BLIT_INFO_0_BG NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_BG NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_BG NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_BG NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_BG "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_BG "0 (Default)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_BG NULL
 #define RPCS3_VBLANK_RATE_LABEL_BG NULL
 #define RPCS3_VBLANK_RATE_INFO_0_BG NULL
@@ -2753,9 +2753,9 @@ struct retro_core_options_v2 options_be = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_BG NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_BG NULL
 #define RPCS3_NETWORK_ENABLED_LABEL_BG NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_BG NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_BG "Lets games reach the internet. Takes effect when content is loaded."
 #define RPCS3_PSN_STATUS_LABEL_BG NULL
-#define RPCS3_PSN_STATUS_INFO_0_BG NULL
+#define RPCS3_PSN_STATUS_INFO_0_BG "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_BG NULL
 #define OPTION_VAL_RPCN_BG NULL
 #define RPCS3_UPNP_LABEL_BG NULL
@@ -2828,11 +2828,11 @@ struct retro_core_options_v2 options_be = {
 #define OPTION_VAL_CIRCLE_BG NULL
 #define RPCS3_LICENSE_AREA_LABEL_BG NULL
 #define RPCS3_LICENSE_AREA_INFO_0_BG NULL
-#define OPTION_VAL_USA_BG NULL
-#define OPTION_VAL_EU_BG NULL
-#define OPTION_VAL_JP_BG NULL
-#define OPTION_VAL_HK_BG NULL
-#define OPTION_VAL_KR_BG NULL
+#define OPTION_VAL_USA_BG "SCEA (Americas)"
+#define OPTION_VAL_EU_BG "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_BG "SCEJ (Japan)"
+#define OPTION_VAL_HK_BG "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_BG "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_BG NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_BG NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_BG NULL
@@ -3407,38 +3407,38 @@ struct retro_core_options_v2 options_bg = {
 #define CATEGORY_AUDIO_INFO_0_CA NULL
 #define CATEGORY_NETWORK_LABEL_CA "Xarxa"
 #define CATEGORY_NETWORK_INFO_0_CA NULL
-#define CATEGORY_ADVANCED_LABEL_CA NULL
+#define CATEGORY_ADVANCED_LABEL_CA "Avançat"
 #define CATEGORY_ADVANCED_INFO_0_CA NULL
 #define CATEGORY_CORE_LABEL_CA "Nucli"
 #define CATEGORY_CORE_INFO_0_CA NULL
-#define RPCS3_PPU_DECODER_LABEL_CA NULL
+#define RPCS3_PPU_DECODER_LABEL_CA "Descodificador de PPU"
 #define RPCS3_PPU_DECODER_INFO_0_CA NULL
-#define OPTION_VAL_LLVM_CA NULL
+#define OPTION_VAL_LLVM_CA "Recompilador (LLVM)"
 #define OPTION_VAL_INTERPRETER_CA NULL
-#define RPCS3_SPU_DECODER_LABEL_CA NULL
+#define RPCS3_SPU_DECODER_LABEL_CA "Descodificador de SPU"
 #define RPCS3_SPU_DECODER_INFO_0_CA NULL
 #define OPTION_VAL_ASMJIT_CA NULL
-#define RPCS3_SPU_BLOCK_SIZE_LABEL_CA NULL
+#define RPCS3_SPU_BLOCK_SIZE_LABEL_CA "Mida del bloc de la SPU"
 #define RPCS3_SPU_BLOCK_SIZE_INFO_0_CA NULL
-#define OPTION_VAL_SAFE_CA NULL
+#define OPTION_VAL_SAFE_CA "Segur"
 #define OPTION_VAL_MEGA_CA NULL
 #define OPTION_VAL_GIGA_CA NULL
 #define RPCS3_PREFERRED_SPU_THREADS_LABEL_CA NULL
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_CA NULL
 #define OPTION_VAL_0_CA "Automàtic"
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_CA NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_CA NULL
-#define RPCS3_SPU_CACHE_LABEL_CA NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_CA "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
+#define RPCS3_SPU_CACHE_LABEL_CA "Memòria cau de SPU"
 #define RPCS3_SPU_CACHE_INFO_0_CA NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_CA NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_CA NULL
-#define RPCS3_ACCURATE_DFMA_LABEL_CA NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_CA NULL
+#define RPCS3_ACCURATE_DFMA_LABEL_CA "DFMA precís"
+#define RPCS3_ACCURATE_DFMA_INFO_0_CA "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_CA NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_CA NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_CA NULL
 #define RPCS3_ACCURATE_XFLOAT_INFO_0_CA NULL
-#define RPCS3_CLOCKS_SCALE_LABEL_CA NULL
+#define RPCS3_CLOCKS_SCALE_LABEL_CA "Escala del rellotge"
 #define RPCS3_CLOCKS_SCALE_INFO_0_CA NULL
 #define OPTION_VAL_50_CA NULL
 #define OPTION_VAL_75_CA NULL
@@ -3448,19 +3448,19 @@ struct retro_core_options_v2 options_bg = {
 #define OPTION_VAL_300_CA NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_CA NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_CA NULL
-#define OPTION_VAL_USLEEP_CA NULL
-#define OPTION_VAL_ALL_TIMERS_CA NULL
-#define OPTION_VAL_AS_HOST_CA NULL
-#define RPCS3_MAX_SPURS_THREADS_LABEL_CA NULL
+#define OPTION_VAL_USLEEP_CA "Només usleep"
+#define OPTION_VAL_ALL_TIMERS_CA "Tots els temporitzadors"
+#define OPTION_VAL_AS_HOST_CA "Igual que l'amfitrió"
+#define RPCS3_MAX_SPURS_THREADS_LABEL_CA "Nombre màxim de fils del SPURS"
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_CA NULL
 #define RPCS3_ENABLE_TSX_LABEL_CA NULL
 #define RPCS3_ENABLE_TSX_INFO_0_CA NULL
-#define OPTION_VAL_FORCED_CA "Forçar"
+#define OPTION_VAL_FORCED_CA NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_CA NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_CA NULL
-#define OPTION_VAL_RELAXED_CA NULL
+#define OPTION_VAL_RELAXED_CA "Relaxat"
 #define OPTION_VAL_ACCURATE_CA "Precís"
-#define OPTION_VAL_ULTRA_CA NULL
+#define OPTION_VAL_ULTRA_CA "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_CA NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_CA NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_CA NULL
@@ -3471,14 +3471,14 @@ struct retro_core_options_v2 options_bg = {
 #define OPTION_VAL_VULKAN_CA NULL
 #define OPTION_VAL_NULL_CA NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_CA NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_CA NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_CA "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_CA NULL
-#define OPTION_VAL_30_CA NULL
+#define OPTION_VAL_30_CA "30 FPS"
 #define OPTION_VAL_35_CA NULL
-#define OPTION_VAL_40_CA NULL
+#define OPTION_VAL_40_CA "40 ms"
 #define OPTION_VAL_45_CA NULL
 #define OPTION_VAL_55_CA NULL
-#define OPTION_VAL_60_CA NULL
+#define OPTION_VAL_60_CA "60 FPS"
 #define OPTION_VAL_65_CA NULL
 #define OPTION_VAL_70_CA NULL
 #define OPTION_VAL_80_CA NULL
@@ -3489,7 +3489,7 @@ struct retro_core_options_v2 options_bg = {
 #define OPTION_VAL_105_CA NULL
 #define OPTION_VAL_110_CA NULL
 #define OPTION_VAL_115_CA NULL
-#define OPTION_VAL_120_CA NULL
+#define OPTION_VAL_120_CA "120x120"
 #define OPTION_VAL_125_CA NULL
 #define OPTION_VAL_130_CA NULL
 #define OPTION_VAL_135_CA NULL
@@ -3497,15 +3497,15 @@ struct retro_core_options_v2 options_bg = {
 #define OPTION_VAL_145_CA NULL
 #define OPTION_VAL_175_CA NULL
 #define OPTION_VAL_250_CA NULL
-#define RPCS3_FRAME_LIMIT_LABEL_CA NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_CA NULL
+#define RPCS3_FRAME_LIMIT_LABEL_CA "Límit de fotogrames"
+#define RPCS3_FRAME_LIMIT_INFO_0_CA "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_CA NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_CA NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_CA NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_CA NULL
 #define OPTION_VAL_144_CA NULL
-#define OPTION_VAL_240_CA NULL
-#define RPCS3_SHADER_MODE_LABEL_CA NULL
+#define OPTION_VAL_240_CA "240x240"
+#define RPCS3_SHADER_MODE_LABEL_CA "Mode de shaders"
 #define RPCS3_SHADER_MODE_INFO_0_CA NULL
 #define OPTION_VAL_ASYNC_CA NULL
 #define OPTION_VAL_ASYNC_INTERPRETER_CA NULL
@@ -3516,18 +3516,18 @@ struct retro_core_options_v2 options_bg = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_CA NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_CA "Filtre anisotròpic"
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_CA NULL
-#define OPTION_VAL_1_CA NULL
+#define OPTION_VAL_1_CA "1x1"
 #define OPTION_VAL_2_CA NULL
 #define OPTION_VAL_4_CA NULL
 #define OPTION_VAL_8_CA NULL
-#define OPTION_VAL_16_CA NULL
-#define RPCS3_MSAA_LABEL_CA NULL
-#define RPCS3_MSAA_INFO_0_CA NULL
+#define OPTION_VAL_16_CA "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_CA "Suavitzat de vores"
+#define RPCS3_MSAA_INFO_0_CA "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_CA NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_CA NULL
-#define OPTION_VAL_LOW_CA NULL
+#define OPTION_VAL_LOW_CA "Baix"
 #define OPTION_VAL_NORMAL_CA NULL
-#define OPTION_VAL_HIGH_CA NULL
+#define OPTION_VAL_HIGH_CA "Alt"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_CA NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_CA NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_CA NULL
@@ -3538,46 +3538,46 @@ struct retro_core_options_v2 options_bg = {
 #define RPCS3_WRITE_DEPTH_BUFFERS_INFO_0_CA NULL
 #define RPCS3_STRICT_RENDERING_LABEL_CA NULL
 #define RPCS3_STRICT_RENDERING_INFO_0_CA NULL
-#define RPCS3_VERTEX_CACHE_LABEL_CA NULL
+#define RPCS3_VERTEX_CACHE_LABEL_CA "Memòria cau de vèrtexs"
 #define RPCS3_VERTEX_CACHE_INFO_0_CA NULL
-#define RPCS3_MULTITHREADED_RSX_LABEL_CA NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_CA NULL
-#define RPCS3_ZCULL_ACCURACY_LABEL_CA NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_CA NULL
-#define OPTION_VAL_APPROXIMATE_CA NULL
-#define OPTION_VAL_PRECISE_CA NULL
-#define RPCS3_CPU_BLIT_LABEL_CA NULL
+#define RPCS3_MULTITHREADED_RSX_LABEL_CA "Multifil RSX"
+#define RPCS3_MULTITHREADED_RSX_INFO_0_CA "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
+#define RPCS3_ZCULL_ACCURACY_LABEL_CA "Precisió de la ZCULL"
+#define RPCS3_ZCULL_ACCURACY_INFO_0_CA "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
+#define OPTION_VAL_APPROXIMATE_CA "Aproximat"
+#define OPTION_VAL_PRECISE_CA "Precís (per defecte)"
+#define RPCS3_CPU_BLIT_LABEL_CA "Forçar el blit de la CPU"
 #define RPCS3_CPU_BLIT_INFO_0_CA NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_CA NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_CA NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_CA NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_CA "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_CA "0 (Per defecte)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_CA NULL
-#define RPCS3_VBLANK_RATE_LABEL_CA NULL
+#define RPCS3_VBLANK_RATE_LABEL_CA "Taxa VBlank"
 #define RPCS3_VBLANK_RATE_INFO_0_CA NULL
 #define OPTION_VAL_50_RPCS3_VBLANK_RATE_CA NULL
 #define OPTION_VAL_60_RPCS3_VBLANK_RATE_CA NULL
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_CA NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_CA NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_CA NULL
-#define RPCS3_FRAME_PACING_LABEL_CA NULL
+#define RPCS3_FRAME_PACING_LABEL_CA "Omissió de fotogrames"
 #define RPCS3_FRAME_PACING_INFO_0_CA NULL
 #define OPTION_VAL_FRONTEND_CA NULL
-#define OPTION_VAL_EMULATOR_CA NULL
+#define OPTION_VAL_EMULATOR_CA "Emulació del rellotge"
 #define RPCS3_STRETCH_TO_DISPLAY_LABEL_CA NULL
 #define RPCS3_STRETCH_TO_DISPLAY_INFO_0_CA NULL
-#define RPCS3_AUDIO_BUFFERING_LABEL_CA NULL
+#define RPCS3_AUDIO_BUFFERING_LABEL_CA "Activa la memòria intermèdia"
 #define RPCS3_AUDIO_BUFFERING_INFO_0_CA NULL
 #define RPCS3_AUDIO_BUFFER_DURATION_LABEL_CA NULL
 #define RPCS3_AUDIO_BUFFER_DURATION_INFO_0_CA NULL
-#define OPTION_VAL_10_CA NULL
-#define OPTION_VAL_20_CA NULL
-#define OPTION_VAL_30_RPCS3_AUDIO_BUFFER_DURATION_CA NULL
+#define OPTION_VAL_10_CA "10 ms"
+#define OPTION_VAL_20_CA "20 ms"
+#define OPTION_VAL_30_RPCS3_AUDIO_BUFFER_DURATION_CA "30 ms"
 #define OPTION_VAL_40_RPCS3_AUDIO_BUFFER_DURATION_CA NULL
-#define OPTION_VAL_50_RPCS3_AUDIO_BUFFER_DURATION_CA NULL
-#define OPTION_VAL_75_RPCS3_AUDIO_BUFFER_DURATION_CA NULL
+#define OPTION_VAL_50_RPCS3_AUDIO_BUFFER_DURATION_CA "50 ms"
+#define OPTION_VAL_75_RPCS3_AUDIO_BUFFER_DURATION_CA "75 ms"
 #define OPTION_VAL_100_RPCS3_AUDIO_BUFFER_DURATION_CA NULL
-#define OPTION_VAL_150_RPCS3_AUDIO_BUFFER_DURATION_CA NULL
-#define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_CA NULL
+#define OPTION_VAL_150_RPCS3_AUDIO_BUFFER_DURATION_CA "150 ms"
+#define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_CA "200 ms"
 #define RPCS3_TIME_STRETCHING_LABEL_CA NULL
 #define RPCS3_TIME_STRETCHING_INFO_0_CA NULL
 #define RPCS3_MICROPHONE_TYPE_LABEL_CA NULL
@@ -3593,43 +3593,43 @@ struct retro_core_options_v2 options_bg = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_CA NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_CA NULL
 #define RPCS3_NETWORK_ENABLED_LABEL_CA NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_CA NULL
-#define RPCS3_PSN_STATUS_LABEL_CA NULL
-#define RPCS3_PSN_STATUS_INFO_0_CA NULL
-#define OPTION_VAL_SIMULATED_CA NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_CA "Lets games reach the internet. Takes effect when content is loaded."
+#define RPCS3_PSN_STATUS_LABEL_CA "Estat de PSN"
+#define RPCS3_PSN_STATUS_INFO_0_CA "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
+#define OPTION_VAL_SIMULATED_CA "Simulat"
 #define OPTION_VAL_RPCN_CA NULL
 #define RPCS3_UPNP_LABEL_CA NULL
 #define RPCS3_UPNP_INFO_0_CA NULL
-#define RPCS3_SHOW_RPCN_POPUPS_LABEL_CA NULL
+#define RPCS3_SHOW_RPCN_POPUPS_LABEL_CA "Mostra missatges emergents de RPCN"
 #define RPCS3_SHOW_RPCN_POPUPS_INFO_0_CA NULL
 #define RPCS3_SHOW_TROPHY_POPUPS_LABEL_CA NULL
 #define RPCS3_SHOW_TROPHY_POPUPS_INFO_0_CA NULL
-#define RPCS3_DNS_LABEL_CA NULL
+#define RPCS3_DNS_LABEL_CA "Servidor DNS"
 #define RPCS3_DNS_INFO_0_CA NULL
-#define OPTION_VAL_8_8_8_8_CA NULL
-#define OPTION_VAL_1_1_1_1_CA NULL
+#define OPTION_VAL_8_8_8_8_CA "DNS de Google"
+#define OPTION_VAL_1_1_1_1_CA "DNS de Cloudflare"
 #define OPTION_VAL_208_67_222_222_CA NULL
 #define RPCS3_RPCN_SERVER_LABEL_CA NULL
 #define RPCS3_RPCN_SERVER_INFO_0_CA NULL
 #define OPTION_VAL_RPCN_RPCS3_NET_CA NULL
-#define OPTION_VAL_CUSTOM_CA "Personalitzat"
-#define RPCS3_SPU_VERIFICATION_LABEL_CA NULL
+#define OPTION_VAL_CUSTOM_CA NULL
+#define RPCS3_SPU_VERIFICATION_LABEL_CA "Verificació SPU"
 #define RPCS3_SPU_VERIFICATION_INFO_0_CA NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_CA NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_INFO_0_CA NULL
-#define RPCS3_RSX_FIFO_ACCURACY_LABEL_CA NULL
+#define RPCS3_RSX_FIFO_ACCURACY_LABEL_CA "Precisió de FIFO del RSX"
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_CA NULL
 #define OPTION_VAL_FAST_CA "Ràpida"
-#define OPTION_VAL_BALANCED_CA "Equilibrat"
+#define OPTION_VAL_BALANCED_CA NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_CA NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_CA NULL
-#define OPTION_VAL_1000_CA NULL
-#define OPTION_VAL_2000_CA NULL
-#define OPTION_VAL_5000_CA NULL
-#define OPTION_VAL_10000_CA NULL
+#define OPTION_VAL_1000_CA "1 segon"
+#define OPTION_VAL_2000_CA "2 segons"
+#define OPTION_VAL_5000_CA "5 segons"
+#define OPTION_VAL_10000_CA "10 segons"
 #define RPCS3_MFC_SHUFFLING_LABEL_CA NULL
 #define RPCS3_MFC_SHUFFLING_INFO_0_CA NULL
-#define RPCS3_SPU_DELAY_PENALTY_LABEL_CA NULL
+#define RPCS3_SPU_DELAY_PENALTY_LABEL_CA "Penalització de retard de SPU"
 #define RPCS3_SPU_DELAY_PENALTY_INFO_0_CA NULL
 #define OPTION_VAL_3_CA "3 (Per defecte)"
 #define RPCS3_ZCULL_SYNC_LABEL_CA NULL
@@ -3640,13 +3640,13 @@ struct retro_core_options_v2 options_bg = {
 #define RPCS3_PPU_LLVM_GREEDY_INFO_0_CA NULL
 #define RPCS3_SPU_NJ_FIXUP_LABEL_CA NULL
 #define RPCS3_SPU_NJ_FIXUP_INFO_0_CA NULL
-#define RPCS3_PPU_NJ_MODE_LABEL_CA NULL
+#define RPCS3_PPU_NJ_MODE_LABEL_CA "Mode de correcció de PPU NJ"
 #define RPCS3_PPU_NJ_MODE_INFO_0_CA NULL
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_CA NULL
 #define RPCS3_PPU_SET_SAT_BIT_INFO_0_CA NULL
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_LABEL_CA NULL
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_CA NULL
-#define RPCS3_PPU_SET_FPCC_LABEL_CA NULL
+#define RPCS3_PPU_SET_FPCC_LABEL_CA "Estableix PPU FPCC"
 #define RPCS3_PPU_SET_FPCC_INFO_0_CA NULL
 #define RPCS3_LANGUAGE_LABEL_CA NULL
 #define RPCS3_LANGUAGE_INFO_0_CA NULL
@@ -3656,38 +3656,38 @@ struct retro_core_options_v2 options_bg = {
 #define OPTION_VAL_SPANISH_CA "Espanyol"
 #define OPTION_VAL_GERMAN_CA "Alemany"
 #define OPTION_VAL_ITALIAN_CA "Italià"
-#define OPTION_VAL_DUTCH_CA NULL
-#define OPTION_VAL_PORTUGUESE_CA NULL
-#define OPTION_VAL_RUSSIAN_CA NULL
-#define OPTION_VAL_KOREAN_CA NULL
+#define OPTION_VAL_DUTCH_CA "Neerlandès"
+#define OPTION_VAL_PORTUGUESE_CA "Portuguès"
+#define OPTION_VAL_RUSSIAN_CA "Rus"
+#define OPTION_VAL_KOREAN_CA "Coreà"
 #define OPTION_VAL_CHINESE_TRAD_CA NULL
 #define OPTION_VAL_CHINESE_SIMP_CA NULL
-#define RPCS3_ENTER_BUTTON_LABEL_CA NULL
+#define RPCS3_ENTER_BUTTON_LABEL_CA "Botó de confirmació"
 #define RPCS3_ENTER_BUTTON_INFO_0_CA NULL
 #define OPTION_VAL_CROSS_CA NULL
 #define OPTION_VAL_CIRCLE_CA NULL
-#define RPCS3_LICENSE_AREA_LABEL_CA NULL
+#define RPCS3_LICENSE_AREA_LABEL_CA "Àrea de la llicència"
 #define RPCS3_LICENSE_AREA_INFO_0_CA NULL
-#define OPTION_VAL_USA_CA NULL
-#define OPTION_VAL_EU_CA "Europa"
-#define OPTION_VAL_JP_CA "Japó"
-#define OPTION_VAL_HK_CA NULL
-#define OPTION_VAL_KR_CA NULL
+#define OPTION_VAL_USA_CA "SCEA (Americas)"
+#define OPTION_VAL_EU_CA "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_CA "SCEJ (Japó)"
+#define OPTION_VAL_HK_CA "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_CA "SCEK (Corea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_CA NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_CA NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_CA NULL
+#define RPCS3_SAVEDATA_SLOT_LABEL_CA "Ranura de dades desades"
 #define RPCS3_SAVEDATA_SLOT_INFO_0_CA NULL
 #define OPTION_VAL_LIST_CA NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_CA NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_CA NULL
 #define RPCS3_VFS_INIT_LABEL_CA NULL
 #define RPCS3_VFS_INIT_INFO_0_CA NULL
-#define OPTION_VAL_RESET_CA "Reiniciar"
-#define RPCS3_SILENCE_ALL_LOGS_LABEL_CA NULL
+#define OPTION_VAL_RESET_CA NULL
+#define RPCS3_SILENCE_ALL_LOGS_LABEL_CA "Silencia tots els registres"
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_CA NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_CA NULL
 #define RPCS3_HOOK_STATIC_FUNCS_INFO_0_CA NULL
-#define RPCS3_HLE_LWMUTEX_LABEL_CA NULL
+#define RPCS3_HLE_LWMUTEX_LABEL_CA "HLE Iwmutex"
 #define RPCS3_HLE_LWMUTEX_INFO_0_CA NULL
 
 struct retro_core_option_v2_category option_cats_ca[] = {
@@ -4267,13 +4267,13 @@ struct retro_core_options_v2 options_ca = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_CHS NULL
 #define OPTION_VAL_0_CHS "自动"
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_CHS NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_CHS NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_CHS "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_CHS NULL
 #define RPCS3_SPU_CACHE_INFO_0_CHS NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_CHS NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_CHS NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_CHS NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_CHS NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_CHS "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_CHS NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_CHS NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_CHS NULL
@@ -4288,19 +4288,19 @@ struct retro_core_options_v2 options_ca = {
 #define OPTION_VAL_300_CHS NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_CHS NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_CHS NULL
-#define OPTION_VAL_USLEEP_CHS NULL
+#define OPTION_VAL_USLEEP_CHS "Usleep Only"
 #define OPTION_VAL_ALL_TIMERS_CHS NULL
 #define OPTION_VAL_AS_HOST_CHS NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_CHS NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_CHS NULL
 #define RPCS3_ENABLE_TSX_LABEL_CHS NULL
 #define RPCS3_ENABLE_TSX_INFO_0_CHS NULL
-#define OPTION_VAL_FORCED_CHS "强制"
+#define OPTION_VAL_FORCED_CHS NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_CHS NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_CHS NULL
-#define OPTION_VAL_RELAXED_CHS NULL
+#define OPTION_VAL_RELAXED_CHS "宽松"
 #define OPTION_VAL_ACCURATE_CHS "精确"
-#define OPTION_VAL_ULTRA_CHS NULL
+#define OPTION_VAL_ULTRA_CHS "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_CHS NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_CHS NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_CHS NULL
@@ -4311,14 +4311,14 @@ struct retro_core_options_v2 options_ca = {
 #define OPTION_VAL_VULKAN_CHS NULL
 #define OPTION_VAL_NULL_CHS NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_CHS NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_CHS NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_CHS "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_CHS NULL
-#define OPTION_VAL_30_CHS NULL
+#define OPTION_VAL_30_CHS "30 FPS"
 #define OPTION_VAL_35_CHS NULL
-#define OPTION_VAL_40_CHS NULL
+#define OPTION_VAL_40_CHS "40ms"
 #define OPTION_VAL_45_CHS NULL
 #define OPTION_VAL_55_CHS NULL
-#define OPTION_VAL_60_CHS NULL
+#define OPTION_VAL_60_CHS "60 FPS"
 #define OPTION_VAL_65_CHS NULL
 #define OPTION_VAL_70_CHS NULL
 #define OPTION_VAL_80_CHS NULL
@@ -4329,22 +4329,22 @@ struct retro_core_options_v2 options_ca = {
 #define OPTION_VAL_105_CHS NULL
 #define OPTION_VAL_110_CHS NULL
 #define OPTION_VAL_115_CHS NULL
-#define OPTION_VAL_120_CHS NULL
+#define OPTION_VAL_120_CHS "120x120"
 #define OPTION_VAL_125_CHS NULL
 #define OPTION_VAL_130_CHS NULL
 #define OPTION_VAL_135_CHS NULL
 #define OPTION_VAL_140_CHS NULL
-#define OPTION_VAL_145_CHS "145%"
+#define OPTION_VAL_145_CHS NULL
 #define OPTION_VAL_175_CHS NULL
 #define OPTION_VAL_250_CHS NULL
 #define RPCS3_FRAME_LIMIT_LABEL_CHS NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_CHS NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_CHS "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_CHS NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_CHS NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_CHS NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_CHS NULL
 #define OPTION_VAL_144_CHS NULL
-#define OPTION_VAL_240_CHS NULL
+#define OPTION_VAL_240_CHS "240x240"
 #define RPCS3_SHADER_MODE_LABEL_CHS NULL
 #define RPCS3_SHADER_MODE_INFO_0_CHS NULL
 #define OPTION_VAL_ASYNC_CHS NULL
@@ -4356,18 +4356,18 @@ struct retro_core_options_v2 options_ca = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_CHS NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_CHS "各向异性过滤"
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_CHS NULL
-#define OPTION_VAL_1_CHS NULL
+#define OPTION_VAL_1_CHS "1x1"
 #define OPTION_VAL_2_CHS NULL
 #define OPTION_VAL_4_CHS NULL
 #define OPTION_VAL_8_CHS NULL
-#define OPTION_VAL_16_CHS NULL
-#define RPCS3_MSAA_LABEL_CHS NULL
-#define RPCS3_MSAA_INFO_0_CHS NULL
+#define OPTION_VAL_16_CHS "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_CHS "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_CHS "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_CHS NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_CHS NULL
-#define OPTION_VAL_LOW_CHS NULL
-#define OPTION_VAL_NORMAL_CHS "普通"
-#define OPTION_VAL_HIGH_CHS NULL
+#define OPTION_VAL_LOW_CHS "低"
+#define OPTION_VAL_NORMAL_CHS NULL
+#define OPTION_VAL_HIGH_CHS "高"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_CHS NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_CHS NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_CHS NULL
@@ -4381,16 +4381,16 @@ struct retro_core_options_v2 options_ca = {
 #define RPCS3_VERTEX_CACHE_LABEL_CHS NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_CHS NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_CHS NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_CHS NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_CHS "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_CHS NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_CHS NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_CHS "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_CHS NULL
-#define OPTION_VAL_PRECISE_CHS NULL
+#define OPTION_VAL_PRECISE_CHS "Precise (Default)"
 #define RPCS3_CPU_BLIT_LABEL_CHS NULL
 #define RPCS3_CPU_BLIT_INFO_0_CHS NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_CHS NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_CHS NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_CHS NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_CHS "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_CHS "0（默认）"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_CHS NULL
 #define RPCS3_VBLANK_RATE_LABEL_CHS NULL
 #define RPCS3_VBLANK_RATE_INFO_0_CHS NULL
@@ -4433,9 +4433,9 @@ struct retro_core_options_v2 options_ca = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_CHS NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_CHS NULL
 #define RPCS3_NETWORK_ENABLED_LABEL_CHS NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_CHS NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_CHS "Lets games reach the internet. Takes effect when content is loaded."
 #define RPCS3_PSN_STATUS_LABEL_CHS NULL
-#define RPCS3_PSN_STATUS_INFO_0_CHS NULL
+#define RPCS3_PSN_STATUS_INFO_0_CHS "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_CHS NULL
 #define OPTION_VAL_RPCN_CHS NULL
 #define RPCS3_UPNP_LABEL_CHS NULL
@@ -4452,7 +4452,7 @@ struct retro_core_options_v2 options_ca = {
 #define RPCS3_RPCN_SERVER_LABEL_CHS NULL
 #define RPCS3_RPCN_SERVER_INFO_0_CHS NULL
 #define OPTION_VAL_RPCN_RPCS3_NET_CHS NULL
-#define OPTION_VAL_CUSTOM_CHS "自定义"
+#define OPTION_VAL_CUSTOM_CHS NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_CHS NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_CHS NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_CHS NULL
@@ -4460,7 +4460,7 @@ struct retro_core_options_v2 options_ca = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_CHS NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_CHS NULL
 #define OPTION_VAL_FAST_CHS "快"
-#define OPTION_VAL_BALANCED_CHS "平衡"
+#define OPTION_VAL_BALANCED_CHS NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_CHS NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_CHS NULL
 #define OPTION_VAL_1000_CHS NULL
@@ -4508,11 +4508,11 @@ struct retro_core_options_v2 options_ca = {
 #define OPTION_VAL_CIRCLE_CHS NULL
 #define RPCS3_LICENSE_AREA_LABEL_CHS NULL
 #define RPCS3_LICENSE_AREA_INFO_0_CHS NULL
-#define OPTION_VAL_USA_CHS "美国"
-#define OPTION_VAL_EU_CHS "欧洲"
-#define OPTION_VAL_JP_CHS "日本"
-#define OPTION_VAL_HK_CHS NULL
-#define OPTION_VAL_KR_CHS NULL
+#define OPTION_VAL_USA_CHS "SCEA (Americas)"
+#define OPTION_VAL_EU_CHS "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_CHS "SCEJ (Japan)"
+#define OPTION_VAL_HK_CHS "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_CHS "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_CHS NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_CHS NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_CHS NULL
@@ -4522,7 +4522,7 @@ struct retro_core_options_v2 options_ca = {
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_CHS NULL
 #define RPCS3_VFS_INIT_LABEL_CHS NULL
 #define RPCS3_VFS_INIT_INFO_0_CHS NULL
-#define OPTION_VAL_RESET_CHS "重置"
+#define OPTION_VAL_RESET_CHS NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_CHS NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_CHS NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_CHS NULL
@@ -5107,13 +5107,13 @@ struct retro_core_options_v2 options_chs = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_CHT NULL
 #define OPTION_VAL_0_CHT "自動"
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_CHT NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_CHT NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_CHT "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_CHT NULL
 #define RPCS3_SPU_CACHE_INFO_0_CHT NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_CHT NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_CHT NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_CHT NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_CHT NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_CHT "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_CHT NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_CHT NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_CHT NULL
@@ -5128,7 +5128,7 @@ struct retro_core_options_v2 options_chs = {
 #define OPTION_VAL_300_CHT NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_CHT NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_CHT NULL
-#define OPTION_VAL_USLEEP_CHT NULL
+#define OPTION_VAL_USLEEP_CHT "Usleep Only"
 #define OPTION_VAL_ALL_TIMERS_CHT NULL
 #define OPTION_VAL_AS_HOST_CHT NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_CHT NULL
@@ -5138,9 +5138,9 @@ struct retro_core_options_v2 options_chs = {
 #define OPTION_VAL_FORCED_CHT NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_CHT NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_CHT NULL
-#define OPTION_VAL_RELAXED_CHT NULL
+#define OPTION_VAL_RELAXED_CHT "Relaxed"
 #define OPTION_VAL_ACCURATE_CHT "準確"
-#define OPTION_VAL_ULTRA_CHT NULL
+#define OPTION_VAL_ULTRA_CHT "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_CHT NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_CHT NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_CHT NULL
@@ -5151,14 +5151,14 @@ struct retro_core_options_v2 options_chs = {
 #define OPTION_VAL_VULKAN_CHT NULL
 #define OPTION_VAL_NULL_CHT NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_CHT NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_CHT NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_CHT "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_CHT NULL
-#define OPTION_VAL_30_CHT NULL
+#define OPTION_VAL_30_CHT "30 FPS"
 #define OPTION_VAL_35_CHT NULL
-#define OPTION_VAL_40_CHT NULL
+#define OPTION_VAL_40_CHT "40ms"
 #define OPTION_VAL_45_CHT NULL
 #define OPTION_VAL_55_CHT NULL
-#define OPTION_VAL_60_CHT NULL
+#define OPTION_VAL_60_CHT "60 FPS"
 #define OPTION_VAL_65_CHT NULL
 #define OPTION_VAL_70_CHT NULL
 #define OPTION_VAL_80_CHT NULL
@@ -5169,7 +5169,7 @@ struct retro_core_options_v2 options_chs = {
 #define OPTION_VAL_105_CHT NULL
 #define OPTION_VAL_110_CHT NULL
 #define OPTION_VAL_115_CHT NULL
-#define OPTION_VAL_120_CHT NULL
+#define OPTION_VAL_120_CHT "120x120"
 #define OPTION_VAL_125_CHT NULL
 #define OPTION_VAL_130_CHT NULL
 #define OPTION_VAL_135_CHT NULL
@@ -5178,13 +5178,13 @@ struct retro_core_options_v2 options_chs = {
 #define OPTION_VAL_175_CHT NULL
 #define OPTION_VAL_250_CHT NULL
 #define RPCS3_FRAME_LIMIT_LABEL_CHT NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_CHT NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_CHT "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_CHT NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_CHT NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_CHT NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_CHT NULL
 #define OPTION_VAL_144_CHT NULL
-#define OPTION_VAL_240_CHT NULL
+#define OPTION_VAL_240_CHT "240x240"
 #define RPCS3_SHADER_MODE_LABEL_CHT NULL
 #define RPCS3_SHADER_MODE_INFO_0_CHT NULL
 #define OPTION_VAL_ASYNC_CHT NULL
@@ -5196,18 +5196,18 @@ struct retro_core_options_v2 options_chs = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_CHT NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_CHT NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_CHT NULL
-#define OPTION_VAL_1_CHT NULL
+#define OPTION_VAL_1_CHT "1x1"
 #define OPTION_VAL_2_CHT "2倍"
 #define OPTION_VAL_4_CHT "4倍"
 #define OPTION_VAL_8_CHT "8倍"
-#define OPTION_VAL_16_CHT "16倍"
-#define RPCS3_MSAA_LABEL_CHT NULL
-#define RPCS3_MSAA_INFO_0_CHT NULL
+#define OPTION_VAL_16_CHT "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_CHT "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_CHT "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_CHT NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_CHT NULL
-#define OPTION_VAL_LOW_CHT NULL
-#define OPTION_VAL_NORMAL_CHT "正常"
-#define OPTION_VAL_HIGH_CHT NULL
+#define OPTION_VAL_LOW_CHT "低"
+#define OPTION_VAL_NORMAL_CHT NULL
+#define OPTION_VAL_HIGH_CHT "高"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_CHT NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_CHT NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_CHT NULL
@@ -5221,16 +5221,16 @@ struct retro_core_options_v2 options_chs = {
 #define RPCS3_VERTEX_CACHE_LABEL_CHT NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_CHT NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_CHT NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_CHT NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_CHT "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_CHT NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_CHT NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_CHT "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_CHT NULL
-#define OPTION_VAL_PRECISE_CHT NULL
+#define OPTION_VAL_PRECISE_CHT "Precise (Default)"
 #define RPCS3_CPU_BLIT_LABEL_CHT NULL
 #define RPCS3_CPU_BLIT_INFO_0_CHT NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_CHT NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_CHT NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_CHT NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_CHT "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_CHT "0 (Default)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_CHT NULL
 #define RPCS3_VBLANK_RATE_LABEL_CHT NULL
 #define RPCS3_VBLANK_RATE_INFO_0_CHT NULL
@@ -5273,9 +5273,9 @@ struct retro_core_options_v2 options_chs = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_CHT NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_CHT NULL
 #define RPCS3_NETWORK_ENABLED_LABEL_CHT NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_CHT NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_CHT "Lets games reach the internet. Takes effect when content is loaded."
 #define RPCS3_PSN_STATUS_LABEL_CHT NULL
-#define RPCS3_PSN_STATUS_INFO_0_CHT NULL
+#define RPCS3_PSN_STATUS_INFO_0_CHT "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_CHT NULL
 #define OPTION_VAL_RPCN_CHT NULL
 #define RPCS3_UPNP_LABEL_CHT NULL
@@ -5292,7 +5292,7 @@ struct retro_core_options_v2 options_chs = {
 #define RPCS3_RPCN_SERVER_LABEL_CHT NULL
 #define RPCS3_RPCN_SERVER_INFO_0_CHT NULL
 #define OPTION_VAL_RPCN_RPCS3_NET_CHT NULL
-#define OPTION_VAL_CUSTOM_CHT "自訂"
+#define OPTION_VAL_CUSTOM_CHT NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_CHT NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_CHT NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_CHT NULL
@@ -5300,7 +5300,7 @@ struct retro_core_options_v2 options_chs = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_CHT NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_CHT NULL
 #define OPTION_VAL_FAST_CHT "快速"
-#define OPTION_VAL_BALANCED_CHT "平均"
+#define OPTION_VAL_BALANCED_CHT NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_CHT NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_CHT NULL
 #define OPTION_VAL_1000_CHT NULL
@@ -5348,11 +5348,11 @@ struct retro_core_options_v2 options_chs = {
 #define OPTION_VAL_CIRCLE_CHT NULL
 #define RPCS3_LICENSE_AREA_LABEL_CHT NULL
 #define RPCS3_LICENSE_AREA_INFO_0_CHT NULL
-#define OPTION_VAL_USA_CHT NULL
-#define OPTION_VAL_EU_CHT NULL
-#define OPTION_VAL_JP_CHT NULL
-#define OPTION_VAL_HK_CHT NULL
-#define OPTION_VAL_KR_CHT NULL
+#define OPTION_VAL_USA_CHT "SCEA (Americas)"
+#define OPTION_VAL_EU_CHT "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_CHT "SCEJ (Japan)"
+#define OPTION_VAL_HK_CHT "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_CHT "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_CHT NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_CHT NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_CHT NULL
@@ -5362,7 +5362,7 @@ struct retro_core_options_v2 options_chs = {
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_CHT NULL
 #define RPCS3_VFS_INIT_LABEL_CHT NULL
 #define RPCS3_VFS_INIT_INFO_0_CHT NULL
-#define OPTION_VAL_RESET_CHT "重置"
+#define OPTION_VAL_RESET_CHT NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_CHT NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_CHT NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_CHT NULL
@@ -5947,13 +5947,13 @@ struct retro_core_options_v2 options_cht = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_CS NULL
 #define OPTION_VAL_0_CS NULL
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_CS NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_CS NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_CS "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_CS NULL
 #define RPCS3_SPU_CACHE_INFO_0_CS NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_CS NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_CS NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_CS NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_CS NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_CS "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_CS NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_CS NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_CS NULL
@@ -5968,7 +5968,7 @@ struct retro_core_options_v2 options_cht = {
 #define OPTION_VAL_300_CS NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_CS NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_CS NULL
-#define OPTION_VAL_USLEEP_CS NULL
+#define OPTION_VAL_USLEEP_CS "Usleep Only"
 #define OPTION_VAL_ALL_TIMERS_CS NULL
 #define OPTION_VAL_AS_HOST_CS NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_CS NULL
@@ -5978,9 +5978,9 @@ struct retro_core_options_v2 options_cht = {
 #define OPTION_VAL_FORCED_CS NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_CS NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_CS NULL
-#define OPTION_VAL_RELAXED_CS NULL
+#define OPTION_VAL_RELAXED_CS "Relaxed"
 #define OPTION_VAL_ACCURATE_CS "Přesné"
-#define OPTION_VAL_ULTRA_CS NULL
+#define OPTION_VAL_ULTRA_CS "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_CS NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_CS NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_CS NULL
@@ -5991,14 +5991,14 @@ struct retro_core_options_v2 options_cht = {
 #define OPTION_VAL_VULKAN_CS NULL
 #define OPTION_VAL_NULL_CS NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_CS NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_CS NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_CS "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_CS NULL
-#define OPTION_VAL_30_CS NULL
+#define OPTION_VAL_30_CS "30 FPS"
 #define OPTION_VAL_35_CS NULL
-#define OPTION_VAL_40_CS NULL
+#define OPTION_VAL_40_CS "40ms"
 #define OPTION_VAL_45_CS NULL
 #define OPTION_VAL_55_CS NULL
-#define OPTION_VAL_60_CS NULL
+#define OPTION_VAL_60_CS "60 FPS"
 #define OPTION_VAL_65_CS NULL
 #define OPTION_VAL_70_CS NULL
 #define OPTION_VAL_80_CS NULL
@@ -6009,7 +6009,7 @@ struct retro_core_options_v2 options_cht = {
 #define OPTION_VAL_105_CS NULL
 #define OPTION_VAL_110_CS NULL
 #define OPTION_VAL_115_CS NULL
-#define OPTION_VAL_120_CS NULL
+#define OPTION_VAL_120_CS "120x120"
 #define OPTION_VAL_125_CS NULL
 #define OPTION_VAL_130_CS NULL
 #define OPTION_VAL_135_CS NULL
@@ -6018,13 +6018,13 @@ struct retro_core_options_v2 options_cht = {
 #define OPTION_VAL_175_CS NULL
 #define OPTION_VAL_250_CS NULL
 #define RPCS3_FRAME_LIMIT_LABEL_CS NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_CS NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_CS "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_CS NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_CS NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_CS NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_CS NULL
 #define OPTION_VAL_144_CS NULL
-#define OPTION_VAL_240_CS NULL
+#define OPTION_VAL_240_CS "240x240"
 #define RPCS3_SHADER_MODE_LABEL_CS NULL
 #define RPCS3_SHADER_MODE_INFO_0_CS NULL
 #define OPTION_VAL_ASYNC_CS NULL
@@ -6036,18 +6036,18 @@ struct retro_core_options_v2 options_cht = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_CS NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_CS "Anizotropní Filtrování"
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_CS NULL
-#define OPTION_VAL_1_CS NULL
+#define OPTION_VAL_1_CS "1x1"
 #define OPTION_VAL_2_CS NULL
 #define OPTION_VAL_4_CS NULL
 #define OPTION_VAL_8_CS NULL
-#define OPTION_VAL_16_CS NULL
-#define RPCS3_MSAA_LABEL_CS NULL
-#define RPCS3_MSAA_INFO_0_CS NULL
+#define OPTION_VAL_16_CS "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_CS "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_CS "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_CS NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_CS NULL
-#define OPTION_VAL_LOW_CS NULL
-#define OPTION_VAL_NORMAL_CS "Normální"
-#define OPTION_VAL_HIGH_CS NULL
+#define OPTION_VAL_LOW_CS "Nízká"
+#define OPTION_VAL_NORMAL_CS NULL
+#define OPTION_VAL_HIGH_CS "Vysoká"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_CS NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_CS NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_CS NULL
@@ -6061,16 +6061,16 @@ struct retro_core_options_v2 options_cht = {
 #define RPCS3_VERTEX_CACHE_LABEL_CS NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_CS NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_CS NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_CS NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_CS "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_CS NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_CS NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_CS "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_CS NULL
-#define OPTION_VAL_PRECISE_CS NULL
+#define OPTION_VAL_PRECISE_CS "Precise (Default)"
 #define RPCS3_CPU_BLIT_LABEL_CS NULL
 #define RPCS3_CPU_BLIT_INFO_0_CS NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_CS NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_CS NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_CS NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_CS "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_CS "0 (Default)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_CS NULL
 #define RPCS3_VBLANK_RATE_LABEL_CS NULL
 #define RPCS3_VBLANK_RATE_INFO_0_CS NULL
@@ -6113,9 +6113,9 @@ struct retro_core_options_v2 options_cht = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_CS NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_CS NULL
 #define RPCS3_NETWORK_ENABLED_LABEL_CS NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_CS NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_CS "Lets games reach the internet. Takes effect when content is loaded."
 #define RPCS3_PSN_STATUS_LABEL_CS NULL
-#define RPCS3_PSN_STATUS_INFO_0_CS NULL
+#define RPCS3_PSN_STATUS_INFO_0_CS "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_CS NULL
 #define OPTION_VAL_RPCN_CS NULL
 #define RPCS3_UPNP_LABEL_CS NULL
@@ -6132,7 +6132,7 @@ struct retro_core_options_v2 options_cht = {
 #define RPCS3_RPCN_SERVER_LABEL_CS NULL
 #define RPCS3_RPCN_SERVER_INFO_0_CS NULL
 #define OPTION_VAL_RPCN_RPCS3_NET_CS NULL
-#define OPTION_VAL_CUSTOM_CS "Vlastní"
+#define OPTION_VAL_CUSTOM_CS NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_CS NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_CS NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_CS NULL
@@ -6140,7 +6140,7 @@ struct retro_core_options_v2 options_cht = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_CS NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_CS NULL
 #define OPTION_VAL_FAST_CS "Rychle"
-#define OPTION_VAL_BALANCED_CS "Vyvážená"
+#define OPTION_VAL_BALANCED_CS NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_CS NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_CS NULL
 #define OPTION_VAL_1000_CS NULL
@@ -6188,11 +6188,11 @@ struct retro_core_options_v2 options_cht = {
 #define OPTION_VAL_CIRCLE_CS NULL
 #define RPCS3_LICENSE_AREA_LABEL_CS NULL
 #define RPCS3_LICENSE_AREA_INFO_0_CS NULL
-#define OPTION_VAL_USA_CS NULL
-#define OPTION_VAL_EU_CS "Evropa"
-#define OPTION_VAL_JP_CS "Japonsko"
-#define OPTION_VAL_HK_CS NULL
-#define OPTION_VAL_KR_CS NULL
+#define OPTION_VAL_USA_CS "SCEA (Americas)"
+#define OPTION_VAL_EU_CS "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_CS "SCEJ (Japan)"
+#define OPTION_VAL_HK_CS "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_CS "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_CS NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_CS NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_CS NULL
@@ -6202,7 +6202,7 @@ struct retro_core_options_v2 options_cht = {
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_CS NULL
 #define RPCS3_VFS_INIT_LABEL_CS NULL
 #define RPCS3_VFS_INIT_INFO_0_CS NULL
-#define OPTION_VAL_RESET_CS "Resetovat"
+#define OPTION_VAL_RESET_CS NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_CS NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_CS NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_CS NULL
@@ -6787,13 +6787,13 @@ struct retro_core_options_v2 options_cs = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_CY NULL
 #define OPTION_VAL_0_CY NULL
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_CY NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_CY NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_CY "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_CY NULL
 #define RPCS3_SPU_CACHE_INFO_0_CY NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_CY NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_CY NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_CY NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_CY NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_CY "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_CY NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_CY NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_CY NULL
@@ -6808,7 +6808,7 @@ struct retro_core_options_v2 options_cs = {
 #define OPTION_VAL_300_CY NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_CY NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_CY NULL
-#define OPTION_VAL_USLEEP_CY NULL
+#define OPTION_VAL_USLEEP_CY "Usleep Only"
 #define OPTION_VAL_ALL_TIMERS_CY NULL
 #define OPTION_VAL_AS_HOST_CY NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_CY NULL
@@ -6818,9 +6818,9 @@ struct retro_core_options_v2 options_cs = {
 #define OPTION_VAL_FORCED_CY NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_CY NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_CY NULL
-#define OPTION_VAL_RELAXED_CY NULL
+#define OPTION_VAL_RELAXED_CY "Relaxed"
 #define OPTION_VAL_ACCURATE_CY NULL
-#define OPTION_VAL_ULTRA_CY NULL
+#define OPTION_VAL_ULTRA_CY "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_CY NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_CY NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_CY NULL
@@ -6831,14 +6831,14 @@ struct retro_core_options_v2 options_cs = {
 #define OPTION_VAL_VULKAN_CY NULL
 #define OPTION_VAL_NULL_CY NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_CY NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_CY NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_CY "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_CY NULL
-#define OPTION_VAL_30_CY NULL
+#define OPTION_VAL_30_CY "30 FPS"
 #define OPTION_VAL_35_CY NULL
-#define OPTION_VAL_40_CY NULL
+#define OPTION_VAL_40_CY "40ms"
 #define OPTION_VAL_45_CY NULL
 #define OPTION_VAL_55_CY NULL
-#define OPTION_VAL_60_CY NULL
+#define OPTION_VAL_60_CY "60 FPS"
 #define OPTION_VAL_65_CY NULL
 #define OPTION_VAL_70_CY NULL
 #define OPTION_VAL_80_CY NULL
@@ -6849,7 +6849,7 @@ struct retro_core_options_v2 options_cs = {
 #define OPTION_VAL_105_CY NULL
 #define OPTION_VAL_110_CY NULL
 #define OPTION_VAL_115_CY NULL
-#define OPTION_VAL_120_CY NULL
+#define OPTION_VAL_120_CY "120x120"
 #define OPTION_VAL_125_CY NULL
 #define OPTION_VAL_130_CY NULL
 #define OPTION_VAL_135_CY NULL
@@ -6858,13 +6858,13 @@ struct retro_core_options_v2 options_cs = {
 #define OPTION_VAL_175_CY NULL
 #define OPTION_VAL_250_CY NULL
 #define RPCS3_FRAME_LIMIT_LABEL_CY NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_CY NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_CY "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_CY NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_CY NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_CY NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_CY NULL
 #define OPTION_VAL_144_CY NULL
-#define OPTION_VAL_240_CY NULL
+#define OPTION_VAL_240_CY "240x240"
 #define RPCS3_SHADER_MODE_LABEL_CY NULL
 #define RPCS3_SHADER_MODE_INFO_0_CY NULL
 #define OPTION_VAL_ASYNC_CY NULL
@@ -6876,18 +6876,18 @@ struct retro_core_options_v2 options_cs = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_CY NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_CY NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_CY NULL
-#define OPTION_VAL_1_CY NULL
+#define OPTION_VAL_1_CY "1x1"
 #define OPTION_VAL_2_CY NULL
 #define OPTION_VAL_4_CY NULL
 #define OPTION_VAL_8_CY NULL
-#define OPTION_VAL_16_CY NULL
-#define RPCS3_MSAA_LABEL_CY NULL
-#define RPCS3_MSAA_INFO_0_CY NULL
+#define OPTION_VAL_16_CY "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_CY "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_CY "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_CY NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_CY NULL
-#define OPTION_VAL_LOW_CY NULL
+#define OPTION_VAL_LOW_CY "Low"
 #define OPTION_VAL_NORMAL_CY NULL
-#define OPTION_VAL_HIGH_CY NULL
+#define OPTION_VAL_HIGH_CY "High"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_CY NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_CY NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_CY NULL
@@ -6901,16 +6901,16 @@ struct retro_core_options_v2 options_cs = {
 #define RPCS3_VERTEX_CACHE_LABEL_CY NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_CY NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_CY NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_CY NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_CY "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_CY NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_CY NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_CY "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_CY NULL
-#define OPTION_VAL_PRECISE_CY NULL
+#define OPTION_VAL_PRECISE_CY "Precise (Default)"
 #define RPCS3_CPU_BLIT_LABEL_CY NULL
 #define RPCS3_CPU_BLIT_INFO_0_CY NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_CY NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_CY NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_CY NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_CY "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_CY "0 (Default)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_CY NULL
 #define RPCS3_VBLANK_RATE_LABEL_CY NULL
 #define RPCS3_VBLANK_RATE_INFO_0_CY NULL
@@ -6953,9 +6953,9 @@ struct retro_core_options_v2 options_cs = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_CY NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_CY NULL
 #define RPCS3_NETWORK_ENABLED_LABEL_CY NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_CY NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_CY "Lets games reach the internet. Takes effect when content is loaded."
 #define RPCS3_PSN_STATUS_LABEL_CY NULL
-#define RPCS3_PSN_STATUS_INFO_0_CY NULL
+#define RPCS3_PSN_STATUS_INFO_0_CY "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_CY NULL
 #define OPTION_VAL_RPCN_CY NULL
 #define RPCS3_UPNP_LABEL_CY NULL
@@ -7028,11 +7028,11 @@ struct retro_core_options_v2 options_cs = {
 #define OPTION_VAL_CIRCLE_CY NULL
 #define RPCS3_LICENSE_AREA_LABEL_CY NULL
 #define RPCS3_LICENSE_AREA_INFO_0_CY NULL
-#define OPTION_VAL_USA_CY NULL
-#define OPTION_VAL_EU_CY NULL
-#define OPTION_VAL_JP_CY NULL
-#define OPTION_VAL_HK_CY NULL
-#define OPTION_VAL_KR_CY NULL
+#define OPTION_VAL_USA_CY "SCEA (Americas)"
+#define OPTION_VAL_EU_CY "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_CY "SCEJ (Japan)"
+#define OPTION_VAL_HK_CY "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_CY "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_CY NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_CY NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_CY NULL
@@ -7627,13 +7627,13 @@ struct retro_core_options_v2 options_cy = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_DA NULL
 #define OPTION_VAL_0_DA NULL
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_DA NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_DA NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_DA "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_DA NULL
 #define RPCS3_SPU_CACHE_INFO_0_DA NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_DA NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_DA NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_DA NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_DA NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_DA "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_DA NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_DA NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_DA NULL
@@ -7648,7 +7648,7 @@ struct retro_core_options_v2 options_cy = {
 #define OPTION_VAL_300_DA NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_DA NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_DA NULL
-#define OPTION_VAL_USLEEP_DA NULL
+#define OPTION_VAL_USLEEP_DA "Usleep Only"
 #define OPTION_VAL_ALL_TIMERS_DA NULL
 #define OPTION_VAL_AS_HOST_DA NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_DA NULL
@@ -7658,9 +7658,9 @@ struct retro_core_options_v2 options_cy = {
 #define OPTION_VAL_FORCED_DA NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_DA NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_DA NULL
-#define OPTION_VAL_RELAXED_DA NULL
+#define OPTION_VAL_RELAXED_DA "Relaxed"
 #define OPTION_VAL_ACCURATE_DA NULL
-#define OPTION_VAL_ULTRA_DA NULL
+#define OPTION_VAL_ULTRA_DA "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_DA NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_DA NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_DA NULL
@@ -7671,14 +7671,14 @@ struct retro_core_options_v2 options_cy = {
 #define OPTION_VAL_VULKAN_DA NULL
 #define OPTION_VAL_NULL_DA NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_DA NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_DA NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_DA "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_DA NULL
-#define OPTION_VAL_30_DA NULL
+#define OPTION_VAL_30_DA "30 FPS"
 #define OPTION_VAL_35_DA NULL
-#define OPTION_VAL_40_DA NULL
+#define OPTION_VAL_40_DA "40ms"
 #define OPTION_VAL_45_DA NULL
 #define OPTION_VAL_55_DA NULL
-#define OPTION_VAL_60_DA NULL
+#define OPTION_VAL_60_DA "60 FPS"
 #define OPTION_VAL_65_DA NULL
 #define OPTION_VAL_70_DA NULL
 #define OPTION_VAL_80_DA NULL
@@ -7689,7 +7689,7 @@ struct retro_core_options_v2 options_cy = {
 #define OPTION_VAL_105_DA NULL
 #define OPTION_VAL_110_DA NULL
 #define OPTION_VAL_115_DA NULL
-#define OPTION_VAL_120_DA NULL
+#define OPTION_VAL_120_DA "120x120"
 #define OPTION_VAL_125_DA NULL
 #define OPTION_VAL_130_DA NULL
 #define OPTION_VAL_135_DA NULL
@@ -7698,13 +7698,13 @@ struct retro_core_options_v2 options_cy = {
 #define OPTION_VAL_175_DA NULL
 #define OPTION_VAL_250_DA NULL
 #define RPCS3_FRAME_LIMIT_LABEL_DA NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_DA NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_DA "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_DA NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_DA NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_DA NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_DA NULL
 #define OPTION_VAL_144_DA NULL
-#define OPTION_VAL_240_DA NULL
+#define OPTION_VAL_240_DA "240x240"
 #define RPCS3_SHADER_MODE_LABEL_DA NULL
 #define RPCS3_SHADER_MODE_INFO_0_DA NULL
 #define OPTION_VAL_ASYNC_DA NULL
@@ -7716,18 +7716,18 @@ struct retro_core_options_v2 options_cy = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_DA NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_DA NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_DA NULL
-#define OPTION_VAL_1_DA NULL
+#define OPTION_VAL_1_DA "1x1"
 #define OPTION_VAL_2_DA NULL
 #define OPTION_VAL_4_DA NULL
 #define OPTION_VAL_8_DA NULL
-#define OPTION_VAL_16_DA NULL
-#define RPCS3_MSAA_LABEL_DA NULL
-#define RPCS3_MSAA_INFO_0_DA NULL
+#define OPTION_VAL_16_DA "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_DA "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_DA "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_DA NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_DA NULL
-#define OPTION_VAL_LOW_DA NULL
+#define OPTION_VAL_LOW_DA "Low"
 #define OPTION_VAL_NORMAL_DA NULL
-#define OPTION_VAL_HIGH_DA NULL
+#define OPTION_VAL_HIGH_DA "High"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_DA NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_DA NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_DA NULL
@@ -7741,16 +7741,16 @@ struct retro_core_options_v2 options_cy = {
 #define RPCS3_VERTEX_CACHE_LABEL_DA NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_DA NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_DA NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_DA NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_DA "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_DA NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_DA NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_DA "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_DA NULL
-#define OPTION_VAL_PRECISE_DA NULL
+#define OPTION_VAL_PRECISE_DA "Precise (Default)"
 #define RPCS3_CPU_BLIT_LABEL_DA NULL
 #define RPCS3_CPU_BLIT_INFO_0_DA NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_DA NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_DA NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_DA NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_DA "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_DA "0 (Default)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_DA NULL
 #define RPCS3_VBLANK_RATE_LABEL_DA NULL
 #define RPCS3_VBLANK_RATE_INFO_0_DA NULL
@@ -7793,9 +7793,9 @@ struct retro_core_options_v2 options_cy = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_DA NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_DA NULL
 #define RPCS3_NETWORK_ENABLED_LABEL_DA NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_DA NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_DA "Lets games reach the internet. Takes effect when content is loaded."
 #define RPCS3_PSN_STATUS_LABEL_DA NULL
-#define RPCS3_PSN_STATUS_INFO_0_DA NULL
+#define RPCS3_PSN_STATUS_INFO_0_DA "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_DA NULL
 #define OPTION_VAL_RPCN_DA NULL
 #define RPCS3_UPNP_LABEL_DA NULL
@@ -7868,11 +7868,11 @@ struct retro_core_options_v2 options_cy = {
 #define OPTION_VAL_CIRCLE_DA NULL
 #define RPCS3_LICENSE_AREA_LABEL_DA NULL
 #define RPCS3_LICENSE_AREA_INFO_0_DA NULL
-#define OPTION_VAL_USA_DA NULL
-#define OPTION_VAL_EU_DA NULL
-#define OPTION_VAL_JP_DA NULL
-#define OPTION_VAL_HK_DA NULL
-#define OPTION_VAL_KR_DA NULL
+#define OPTION_VAL_USA_DA "SCEA (Americas)"
+#define OPTION_VAL_EU_DA "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_DA "SCEJ (Japan)"
+#define OPTION_VAL_HK_DA "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_DA "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_DA NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_DA NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_DA NULL
@@ -8467,13 +8467,13 @@ struct retro_core_options_v2 options_da = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_DE NULL
 #define OPTION_VAL_0_DE NULL
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_DE NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_DE NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_DE "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_DE NULL
 #define RPCS3_SPU_CACHE_INFO_0_DE NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_DE NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_DE NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_DE NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_DE NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_DE "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_DE NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_DE NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_DE NULL
@@ -8488,19 +8488,19 @@ struct retro_core_options_v2 options_da = {
 #define OPTION_VAL_300_DE "300 %"
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_DE NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_DE NULL
-#define OPTION_VAL_USLEEP_DE NULL
+#define OPTION_VAL_USLEEP_DE "Nur Usleep"
 #define OPTION_VAL_ALL_TIMERS_DE NULL
 #define OPTION_VAL_AS_HOST_DE NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_DE NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_DE NULL
 #define RPCS3_ENABLE_TSX_LABEL_DE NULL
 #define RPCS3_ENABLE_TSX_INFO_0_DE NULL
-#define OPTION_VAL_FORCED_DE "Erzwungen"
+#define OPTION_VAL_FORCED_DE NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_DE NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_DE NULL
-#define OPTION_VAL_RELAXED_DE NULL
+#define OPTION_VAL_RELAXED_DE "Locker"
 #define OPTION_VAL_ACCURATE_DE "Genau"
-#define OPTION_VAL_ULTRA_DE NULL
+#define OPTION_VAL_ULTRA_DE "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_DE NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_DE NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_DE NULL
@@ -8511,40 +8511,40 @@ struct retro_core_options_v2 options_da = {
 #define OPTION_VAL_VULKAN_DE NULL
 #define OPTION_VAL_NULL_DE NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_DE NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_DE NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_DE "Interne Rendering-Auflösung als Prozentsatz der Auflösung des Spiels. 200 % eines 720p-Spiels entsprechen 2560×1440, bei einem 1080p-Spiel 3840×2160."
 #define OPTION_VAL_25_DE "25 %"
-#define OPTION_VAL_30_DE "30 %"
-#define OPTION_VAL_35_DE "35 %"
-#define OPTION_VAL_40_DE "40 %"
-#define OPTION_VAL_45_DE "45 %"
-#define OPTION_VAL_55_DE "55 %"
-#define OPTION_VAL_60_DE "60 %"
-#define OPTION_VAL_65_DE "65 %"
+#define OPTION_VAL_30_DE "30 FPS"
+#define OPTION_VAL_35_DE NULL
+#define OPTION_VAL_40_DE "40 ms"
+#define OPTION_VAL_45_DE NULL
+#define OPTION_VAL_55_DE NULL
+#define OPTION_VAL_60_DE "60 FPS"
+#define OPTION_VAL_65_DE NULL
 #define OPTION_VAL_70_DE "70 %"
 #define OPTION_VAL_80_DE "80 %"
-#define OPTION_VAL_85_DE "85 %"
+#define OPTION_VAL_85_DE NULL
 #define OPTION_VAL_90_DE "90 %"
-#define OPTION_VAL_95_DE "95 %"
+#define OPTION_VAL_95_DE NULL
 #define OPTION_VAL_100_RPCS3_RESOLUTION_SCALE_DE "100 % (Nativ)"
-#define OPTION_VAL_105_DE "105 %"
-#define OPTION_VAL_110_DE "110 %"
-#define OPTION_VAL_115_DE "115 %"
-#define OPTION_VAL_120_DE "120 %"
-#define OPTION_VAL_125_DE "125 %"
-#define OPTION_VAL_130_DE "130 %"
-#define OPTION_VAL_135_DE "135 %"
-#define OPTION_VAL_140_DE "140 %"
-#define OPTION_VAL_145_DE "145 %"
-#define OPTION_VAL_175_DE "175 %"
+#define OPTION_VAL_105_DE NULL
+#define OPTION_VAL_110_DE NULL
+#define OPTION_VAL_115_DE NULL
+#define OPTION_VAL_120_DE "120×120"
+#define OPTION_VAL_125_DE NULL
+#define OPTION_VAL_130_DE NULL
+#define OPTION_VAL_135_DE NULL
+#define OPTION_VAL_140_DE NULL
+#define OPTION_VAL_145_DE NULL
+#define OPTION_VAL_175_DE NULL
 #define OPTION_VAL_250_DE "250 %"
 #define RPCS3_FRAME_LIMIT_LABEL_DE NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_DE NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_DE "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_DE NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_DE NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_DE NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_DE NULL
 #define OPTION_VAL_144_DE NULL
-#define OPTION_VAL_240_DE NULL
+#define OPTION_VAL_240_DE "240×240"
 #define RPCS3_SHADER_MODE_LABEL_DE NULL
 #define RPCS3_SHADER_MODE_INFO_0_DE NULL
 #define OPTION_VAL_ASYNC_DE NULL
@@ -8556,18 +8556,18 @@ struct retro_core_options_v2 options_da = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_DE NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_DE "Anisotrope Filterung"
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_DE NULL
-#define OPTION_VAL_1_DE NULL
+#define OPTION_VAL_1_DE "1×1"
 #define OPTION_VAL_2_DE NULL
 #define OPTION_VAL_4_DE NULL
 #define OPTION_VAL_8_DE NULL
-#define OPTION_VAL_16_DE NULL
-#define RPCS3_MSAA_LABEL_DE NULL
-#define RPCS3_MSAA_INFO_0_DE NULL
+#define OPTION_VAL_16_DE "16×16 (Standard)"
+#define RPCS3_MSAA_LABEL_DE "Kantenglättung"
+#define RPCS3_MSAA_INFO_0_DE "Multi-Sample-Kantenglättung, wenn es das Spiel erfordert, wie beispielsweise in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_DE NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_DE NULL
-#define OPTION_VAL_LOW_DE NULL
+#define OPTION_VAL_LOW_DE "Niedrig"
 #define OPTION_VAL_NORMAL_DE NULL
-#define OPTION_VAL_HIGH_DE NULL
+#define OPTION_VAL_HIGH_DE "Hoch"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_DE NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_DE NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_DE NULL
@@ -8581,16 +8581,16 @@ struct retro_core_options_v2 options_da = {
 #define RPCS3_VERTEX_CACHE_LABEL_DE NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_DE NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_DE NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_DE NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_DE "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_DE NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_DE NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_DE "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_DE NULL
-#define OPTION_VAL_PRECISE_DE NULL
+#define OPTION_VAL_PRECISE_DE "Präzise (Standard)"
 #define RPCS3_CPU_BLIT_LABEL_DE NULL
 #define RPCS3_CPU_BLIT_INFO_0_DE NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_DE NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_DE NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_DE NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_DE "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_DE "0 (Standard)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_DE NULL
 #define RPCS3_VBLANK_RATE_LABEL_DE NULL
 #define RPCS3_VBLANK_RATE_INFO_0_DE NULL
@@ -8633,9 +8633,9 @@ struct retro_core_options_v2 options_da = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_DE "10 %"
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_DE "20 %"
 #define RPCS3_NETWORK_ENABLED_LABEL_DE NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_DE NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_DE "Ermöglicht Spielen den Internetzugriff. Wird wirksam, wenn Inhalte geladen werden."
 #define RPCS3_PSN_STATUS_LABEL_DE NULL
-#define RPCS3_PSN_STATUS_INFO_0_DE NULL
+#define RPCS3_PSN_STATUS_INFO_0_DE "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_DE NULL
 #define OPTION_VAL_RPCN_DE NULL
 #define RPCS3_UPNP_LABEL_DE NULL
@@ -8652,7 +8652,7 @@ struct retro_core_options_v2 options_da = {
 #define RPCS3_RPCN_SERVER_LABEL_DE NULL
 #define RPCS3_RPCN_SERVER_INFO_0_DE NULL
 #define OPTION_VAL_RPCN_RPCS3_NET_DE NULL
-#define OPTION_VAL_CUSTOM_DE "Benutzerdefiniert"
+#define OPTION_VAL_CUSTOM_DE NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_DE NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_DE NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_DE NULL
@@ -8660,7 +8660,7 @@ struct retro_core_options_v2 options_da = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_DE NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_DE NULL
 #define OPTION_VAL_FAST_DE "Schnell"
-#define OPTION_VAL_BALANCED_DE "Ausgewogen"
+#define OPTION_VAL_BALANCED_DE NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_DE NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_DE NULL
 #define OPTION_VAL_1000_DE NULL
@@ -8708,11 +8708,11 @@ struct retro_core_options_v2 options_da = {
 #define OPTION_VAL_CIRCLE_DE NULL
 #define RPCS3_LICENSE_AREA_LABEL_DE NULL
 #define RPCS3_LICENSE_AREA_INFO_0_DE NULL
-#define OPTION_VAL_USA_DE NULL
-#define OPTION_VAL_EU_DE "Europa"
-#define OPTION_VAL_JP_DE NULL
-#define OPTION_VAL_HK_DE NULL
-#define OPTION_VAL_KR_DE NULL
+#define OPTION_VAL_USA_DE "SCEA (Amerika)"
+#define OPTION_VAL_EU_DE "SCEE (Europa, Ozeanien)"
+#define OPTION_VAL_JP_DE "SCEJ (Japan)"
+#define OPTION_VAL_HK_DE "SCEH (Hong Kong, Südostasien)"
+#define OPTION_VAL_KR_DE "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_DE NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_DE NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_DE NULL
@@ -8722,7 +8722,7 @@ struct retro_core_options_v2 options_da = {
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_DE NULL
 #define RPCS3_VFS_INIT_LABEL_DE NULL
 #define RPCS3_VFS_INIT_INFO_0_DE NULL
-#define OPTION_VAL_RESET_DE "Zurücksetzen"
+#define OPTION_VAL_RESET_DE NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_DE NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_DE NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_DE NULL
@@ -9307,13 +9307,13 @@ struct retro_core_options_v2 options_de = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_EL NULL
 #define OPTION_VAL_0_EL "Αυτόματο"
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_EL NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_EL NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_EL "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_EL NULL
 #define RPCS3_SPU_CACHE_INFO_0_EL NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_EL NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_EL NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_EL NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_EL NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_EL "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_EL NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_EL NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_EL NULL
@@ -9328,7 +9328,7 @@ struct retro_core_options_v2 options_de = {
 #define OPTION_VAL_300_EL NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_EL NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_EL NULL
-#define OPTION_VAL_USLEEP_EL NULL
+#define OPTION_VAL_USLEEP_EL "Usleep Only"
 #define OPTION_VAL_ALL_TIMERS_EL NULL
 #define OPTION_VAL_AS_HOST_EL NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_EL NULL
@@ -9338,9 +9338,9 @@ struct retro_core_options_v2 options_de = {
 #define OPTION_VAL_FORCED_EL NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_EL NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_EL NULL
-#define OPTION_VAL_RELAXED_EL NULL
+#define OPTION_VAL_RELAXED_EL "Relaxed"
 #define OPTION_VAL_ACCURATE_EL "Ακριβής"
-#define OPTION_VAL_ULTRA_EL NULL
+#define OPTION_VAL_ULTRA_EL "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_EL NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_EL NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_EL NULL
@@ -9351,14 +9351,14 @@ struct retro_core_options_v2 options_de = {
 #define OPTION_VAL_VULKAN_EL NULL
 #define OPTION_VAL_NULL_EL NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_EL NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_EL NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_EL "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_EL NULL
-#define OPTION_VAL_30_EL NULL
+#define OPTION_VAL_30_EL "30 FPS"
 #define OPTION_VAL_35_EL NULL
-#define OPTION_VAL_40_EL NULL
+#define OPTION_VAL_40_EL "40ms"
 #define OPTION_VAL_45_EL NULL
 #define OPTION_VAL_55_EL NULL
-#define OPTION_VAL_60_EL NULL
+#define OPTION_VAL_60_EL "60 FPS"
 #define OPTION_VAL_65_EL NULL
 #define OPTION_VAL_70_EL NULL
 #define OPTION_VAL_80_EL "το 80%"
@@ -9369,7 +9369,7 @@ struct retro_core_options_v2 options_de = {
 #define OPTION_VAL_105_EL NULL
 #define OPTION_VAL_110_EL NULL
 #define OPTION_VAL_115_EL NULL
-#define OPTION_VAL_120_EL NULL
+#define OPTION_VAL_120_EL "120x120"
 #define OPTION_VAL_125_EL NULL
 #define OPTION_VAL_130_EL NULL
 #define OPTION_VAL_135_EL NULL
@@ -9378,13 +9378,13 @@ struct retro_core_options_v2 options_de = {
 #define OPTION_VAL_175_EL NULL
 #define OPTION_VAL_250_EL NULL
 #define RPCS3_FRAME_LIMIT_LABEL_EL NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_EL NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_EL "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_EL NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_EL NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_EL NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_EL NULL
 #define OPTION_VAL_144_EL NULL
-#define OPTION_VAL_240_EL NULL
+#define OPTION_VAL_240_EL "240x240"
 #define RPCS3_SHADER_MODE_LABEL_EL NULL
 #define RPCS3_SHADER_MODE_INFO_0_EL NULL
 #define OPTION_VAL_ASYNC_EL NULL
@@ -9396,18 +9396,18 @@ struct retro_core_options_v2 options_de = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_EL NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_EL NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_EL NULL
-#define OPTION_VAL_1_EL NULL
+#define OPTION_VAL_1_EL "1x1"
 #define OPTION_VAL_2_EL NULL
 #define OPTION_VAL_4_EL NULL
 #define OPTION_VAL_8_EL NULL
-#define OPTION_VAL_16_EL NULL
-#define RPCS3_MSAA_LABEL_EL NULL
-#define RPCS3_MSAA_INFO_0_EL NULL
+#define OPTION_VAL_16_EL "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_EL "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_EL "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_EL NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_EL NULL
-#define OPTION_VAL_LOW_EL NULL
-#define OPTION_VAL_NORMAL_EL "Φυσιολογικά"
-#define OPTION_VAL_HIGH_EL NULL
+#define OPTION_VAL_LOW_EL "Low"
+#define OPTION_VAL_NORMAL_EL NULL
+#define OPTION_VAL_HIGH_EL "High"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_EL NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_EL NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_EL NULL
@@ -9421,16 +9421,16 @@ struct retro_core_options_v2 options_de = {
 #define RPCS3_VERTEX_CACHE_LABEL_EL NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_EL NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_EL NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_EL NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_EL "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_EL NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_EL NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_EL "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_EL NULL
-#define OPTION_VAL_PRECISE_EL NULL
+#define OPTION_VAL_PRECISE_EL "Precise (Default)"
 #define RPCS3_CPU_BLIT_LABEL_EL NULL
 #define RPCS3_CPU_BLIT_INFO_0_EL NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_EL NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_EL NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_EL NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_EL "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_EL "0 (Default)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_EL NULL
 #define RPCS3_VBLANK_RATE_LABEL_EL NULL
 #define RPCS3_VBLANK_RATE_INFO_0_EL NULL
@@ -9473,9 +9473,9 @@ struct retro_core_options_v2 options_de = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_EL NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_EL NULL
 #define RPCS3_NETWORK_ENABLED_LABEL_EL NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_EL NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_EL "Lets games reach the internet. Takes effect when content is loaded."
 #define RPCS3_PSN_STATUS_LABEL_EL NULL
-#define RPCS3_PSN_STATUS_INFO_0_EL NULL
+#define RPCS3_PSN_STATUS_INFO_0_EL "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_EL NULL
 #define OPTION_VAL_RPCN_EL NULL
 #define RPCS3_UPNP_LABEL_EL NULL
@@ -9548,11 +9548,11 @@ struct retro_core_options_v2 options_de = {
 #define OPTION_VAL_CIRCLE_EL NULL
 #define RPCS3_LICENSE_AREA_LABEL_EL NULL
 #define RPCS3_LICENSE_AREA_INFO_0_EL NULL
-#define OPTION_VAL_USA_EL NULL
-#define OPTION_VAL_EU_EL NULL
-#define OPTION_VAL_JP_EL NULL
-#define OPTION_VAL_HK_EL NULL
-#define OPTION_VAL_KR_EL NULL
+#define OPTION_VAL_USA_EL "SCEA (Americas)"
+#define OPTION_VAL_EU_EL "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_EL "SCEJ (Japan)"
+#define OPTION_VAL_HK_EL "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_EL "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_EL NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_EL NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_EL NULL
@@ -10147,13 +10147,13 @@ struct retro_core_options_v2 options_el = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_EN NULL
 #define OPTION_VAL_0_EN NULL
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_EN NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_EN NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_EN "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_EN NULL
 #define RPCS3_SPU_CACHE_INFO_0_EN NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_EN NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_EN NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_EN NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_EN NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_EN "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_EN NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_EN NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_EN NULL
@@ -10168,7 +10168,7 @@ struct retro_core_options_v2 options_el = {
 #define OPTION_VAL_300_EN NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_EN NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_EN NULL
-#define OPTION_VAL_USLEEP_EN NULL
+#define OPTION_VAL_USLEEP_EN "Usleep Only"
 #define OPTION_VAL_ALL_TIMERS_EN NULL
 #define OPTION_VAL_AS_HOST_EN NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_EN NULL
@@ -10178,9 +10178,9 @@ struct retro_core_options_v2 options_el = {
 #define OPTION_VAL_FORCED_EN NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_EN NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_EN NULL
-#define OPTION_VAL_RELAXED_EN NULL
+#define OPTION_VAL_RELAXED_EN "Relaxed"
 #define OPTION_VAL_ACCURATE_EN NULL
-#define OPTION_VAL_ULTRA_EN NULL
+#define OPTION_VAL_ULTRA_EN "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_EN NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_EN NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_EN NULL
@@ -10191,14 +10191,14 @@ struct retro_core_options_v2 options_el = {
 #define OPTION_VAL_VULKAN_EN NULL
 #define OPTION_VAL_NULL_EN NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_EN NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_EN NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_EN "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_EN NULL
-#define OPTION_VAL_30_EN NULL
+#define OPTION_VAL_30_EN "30 FPS"
 #define OPTION_VAL_35_EN NULL
-#define OPTION_VAL_40_EN NULL
+#define OPTION_VAL_40_EN "40ms"
 #define OPTION_VAL_45_EN NULL
 #define OPTION_VAL_55_EN NULL
-#define OPTION_VAL_60_EN NULL
+#define OPTION_VAL_60_EN "60 FPS"
 #define OPTION_VAL_65_EN NULL
 #define OPTION_VAL_70_EN NULL
 #define OPTION_VAL_80_EN NULL
@@ -10209,7 +10209,7 @@ struct retro_core_options_v2 options_el = {
 #define OPTION_VAL_105_EN NULL
 #define OPTION_VAL_110_EN NULL
 #define OPTION_VAL_115_EN NULL
-#define OPTION_VAL_120_EN NULL
+#define OPTION_VAL_120_EN "120x120"
 #define OPTION_VAL_125_EN NULL
 #define OPTION_VAL_130_EN NULL
 #define OPTION_VAL_135_EN NULL
@@ -10218,13 +10218,13 @@ struct retro_core_options_v2 options_el = {
 #define OPTION_VAL_175_EN NULL
 #define OPTION_VAL_250_EN NULL
 #define RPCS3_FRAME_LIMIT_LABEL_EN NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_EN NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_EN "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_EN NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_EN NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_EN NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_EN NULL
 #define OPTION_VAL_144_EN NULL
-#define OPTION_VAL_240_EN NULL
+#define OPTION_VAL_240_EN "240x240"
 #define RPCS3_SHADER_MODE_LABEL_EN NULL
 #define RPCS3_SHADER_MODE_INFO_0_EN NULL
 #define OPTION_VAL_ASYNC_EN NULL
@@ -10236,18 +10236,18 @@ struct retro_core_options_v2 options_el = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_EN NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_EN NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_EN NULL
-#define OPTION_VAL_1_EN NULL
+#define OPTION_VAL_1_EN "1x1"
 #define OPTION_VAL_2_EN NULL
 #define OPTION_VAL_4_EN NULL
 #define OPTION_VAL_8_EN NULL
-#define OPTION_VAL_16_EN NULL
-#define RPCS3_MSAA_LABEL_EN NULL
-#define RPCS3_MSAA_INFO_0_EN NULL
+#define OPTION_VAL_16_EN "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_EN "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_EN "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_EN NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_EN NULL
-#define OPTION_VAL_LOW_EN NULL
+#define OPTION_VAL_LOW_EN "Low"
 #define OPTION_VAL_NORMAL_EN NULL
-#define OPTION_VAL_HIGH_EN NULL
+#define OPTION_VAL_HIGH_EN "High"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_EN NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_EN NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_EN NULL
@@ -10261,16 +10261,16 @@ struct retro_core_options_v2 options_el = {
 #define RPCS3_VERTEX_CACHE_LABEL_EN NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_EN NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_EN NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_EN NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_EN "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_EN NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_EN NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_EN "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_EN NULL
-#define OPTION_VAL_PRECISE_EN NULL
+#define OPTION_VAL_PRECISE_EN "Precise (Default)"
 #define RPCS3_CPU_BLIT_LABEL_EN NULL
 #define RPCS3_CPU_BLIT_INFO_0_EN NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_EN NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_EN NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_EN NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_EN "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_EN "0 (Default)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_EN NULL
 #define RPCS3_VBLANK_RATE_LABEL_EN NULL
 #define RPCS3_VBLANK_RATE_INFO_0_EN NULL
@@ -10313,9 +10313,9 @@ struct retro_core_options_v2 options_el = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_EN NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_EN NULL
 #define RPCS3_NETWORK_ENABLED_LABEL_EN NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_EN NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_EN "Lets games reach the internet. Takes effect when content is loaded."
 #define RPCS3_PSN_STATUS_LABEL_EN NULL
-#define RPCS3_PSN_STATUS_INFO_0_EN NULL
+#define RPCS3_PSN_STATUS_INFO_0_EN "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_EN NULL
 #define OPTION_VAL_RPCN_EN NULL
 #define RPCS3_UPNP_LABEL_EN NULL
@@ -10388,11 +10388,11 @@ struct retro_core_options_v2 options_el = {
 #define OPTION_VAL_CIRCLE_EN NULL
 #define RPCS3_LICENSE_AREA_LABEL_EN NULL
 #define RPCS3_LICENSE_AREA_INFO_0_EN NULL
-#define OPTION_VAL_USA_EN NULL
-#define OPTION_VAL_EU_EN NULL
-#define OPTION_VAL_JP_EN NULL
-#define OPTION_VAL_HK_EN NULL
-#define OPTION_VAL_KR_EN NULL
+#define OPTION_VAL_USA_EN "SCEA (Americas)"
+#define OPTION_VAL_EU_EN "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_EN "SCEJ (Japan)"
+#define OPTION_VAL_HK_EN "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_EN "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_EN NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_EN NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_EN NULL
@@ -10987,13 +10987,13 @@ struct retro_core_options_v2 options_en = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_EO NULL
 #define OPTION_VAL_0_EO "Aŭtomata"
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_EO NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_EO NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_EO "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_EO NULL
 #define RPCS3_SPU_CACHE_INFO_0_EO NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_EO NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_EO NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_EO NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_EO NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_EO "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_EO NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_EO NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_EO NULL
@@ -11008,7 +11008,7 @@ struct retro_core_options_v2 options_en = {
 #define OPTION_VAL_300_EO NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_EO NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_EO NULL
-#define OPTION_VAL_USLEEP_EO NULL
+#define OPTION_VAL_USLEEP_EO "Usleep Only"
 #define OPTION_VAL_ALL_TIMERS_EO NULL
 #define OPTION_VAL_AS_HOST_EO NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_EO NULL
@@ -11018,9 +11018,9 @@ struct retro_core_options_v2 options_en = {
 #define OPTION_VAL_FORCED_EO NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_EO NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_EO NULL
-#define OPTION_VAL_RELAXED_EO NULL
+#define OPTION_VAL_RELAXED_EO "Relaxed"
 #define OPTION_VAL_ACCURATE_EO "Preciza"
-#define OPTION_VAL_ULTRA_EO NULL
+#define OPTION_VAL_ULTRA_EO "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_EO NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_EO NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_EO NULL
@@ -11031,14 +11031,14 @@ struct retro_core_options_v2 options_en = {
 #define OPTION_VAL_VULKAN_EO NULL
 #define OPTION_VAL_NULL_EO NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_EO NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_EO NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_EO "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_EO NULL
-#define OPTION_VAL_30_EO NULL
+#define OPTION_VAL_30_EO "30 FPS"
 #define OPTION_VAL_35_EO NULL
-#define OPTION_VAL_40_EO NULL
+#define OPTION_VAL_40_EO "40ms"
 #define OPTION_VAL_45_EO NULL
 #define OPTION_VAL_55_EO NULL
-#define OPTION_VAL_60_EO NULL
+#define OPTION_VAL_60_EO "60 FPS"
 #define OPTION_VAL_65_EO NULL
 #define OPTION_VAL_70_EO NULL
 #define OPTION_VAL_80_EO NULL
@@ -11049,7 +11049,7 @@ struct retro_core_options_v2 options_en = {
 #define OPTION_VAL_105_EO NULL
 #define OPTION_VAL_110_EO NULL
 #define OPTION_VAL_115_EO NULL
-#define OPTION_VAL_120_EO NULL
+#define OPTION_VAL_120_EO "120x120"
 #define OPTION_VAL_125_EO NULL
 #define OPTION_VAL_130_EO NULL
 #define OPTION_VAL_135_EO NULL
@@ -11058,13 +11058,13 @@ struct retro_core_options_v2 options_en = {
 #define OPTION_VAL_175_EO NULL
 #define OPTION_VAL_250_EO NULL
 #define RPCS3_FRAME_LIMIT_LABEL_EO NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_EO NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_EO "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_EO NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_EO NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_EO NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_EO NULL
 #define OPTION_VAL_144_EO NULL
-#define OPTION_VAL_240_EO NULL
+#define OPTION_VAL_240_EO "240x240"
 #define RPCS3_SHADER_MODE_LABEL_EO NULL
 #define RPCS3_SHADER_MODE_INFO_0_EO NULL
 #define OPTION_VAL_ASYNC_EO NULL
@@ -11076,18 +11076,18 @@ struct retro_core_options_v2 options_en = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_EO NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_EO "Neizotropeca filtrado"
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_EO NULL
-#define OPTION_VAL_1_EO NULL
+#define OPTION_VAL_1_EO "1x1"
 #define OPTION_VAL_2_EO NULL
 #define OPTION_VAL_4_EO NULL
 #define OPTION_VAL_8_EO NULL
-#define OPTION_VAL_16_EO NULL
-#define RPCS3_MSAA_LABEL_EO NULL
-#define RPCS3_MSAA_INFO_0_EO NULL
+#define OPTION_VAL_16_EO "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_EO "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_EO "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_EO NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_EO NULL
-#define OPTION_VAL_LOW_EO NULL
-#define OPTION_VAL_NORMAL_EO "Normala"
-#define OPTION_VAL_HIGH_EO NULL
+#define OPTION_VAL_LOW_EO "Malalta"
+#define OPTION_VAL_NORMAL_EO NULL
+#define OPTION_VAL_HIGH_EO "Alta"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_EO NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_EO NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_EO NULL
@@ -11101,16 +11101,16 @@ struct retro_core_options_v2 options_en = {
 #define RPCS3_VERTEX_CACHE_LABEL_EO NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_EO NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_EO NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_EO NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_EO "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_EO NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_EO NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_EO "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_EO NULL
-#define OPTION_VAL_PRECISE_EO NULL
+#define OPTION_VAL_PRECISE_EO "Precise (Default)"
 #define RPCS3_CPU_BLIT_LABEL_EO NULL
 #define RPCS3_CPU_BLIT_INFO_0_EO NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_EO NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_EO NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_EO NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_EO "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_EO "0 (Default)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_EO NULL
 #define RPCS3_VBLANK_RATE_LABEL_EO NULL
 #define RPCS3_VBLANK_RATE_INFO_0_EO NULL
@@ -11153,9 +11153,9 @@ struct retro_core_options_v2 options_en = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_EO NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_EO NULL
 #define RPCS3_NETWORK_ENABLED_LABEL_EO NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_EO NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_EO "Lets games reach the internet. Takes effect when content is loaded."
 #define RPCS3_PSN_STATUS_LABEL_EO NULL
-#define RPCS3_PSN_STATUS_INFO_0_EO NULL
+#define RPCS3_PSN_STATUS_INFO_0_EO "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_EO NULL
 #define OPTION_VAL_RPCN_EO NULL
 #define RPCS3_UPNP_LABEL_EO NULL
@@ -11172,7 +11172,7 @@ struct retro_core_options_v2 options_en = {
 #define RPCS3_RPCN_SERVER_LABEL_EO NULL
 #define RPCS3_RPCN_SERVER_INFO_0_EO NULL
 #define OPTION_VAL_RPCN_RPCS3_NET_EO NULL
-#define OPTION_VAL_CUSTOM_EO "Propra"
+#define OPTION_VAL_CUSTOM_EO NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_EO NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_EO NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_EO NULL
@@ -11180,7 +11180,7 @@ struct retro_core_options_v2 options_en = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_EO NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_EO NULL
 #define OPTION_VAL_FAST_EO "Rapida"
-#define OPTION_VAL_BALANCED_EO "Ekvilibrigita"
+#define OPTION_VAL_BALANCED_EO NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_EO NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_EO NULL
 #define OPTION_VAL_1000_EO NULL
@@ -11228,11 +11228,11 @@ struct retro_core_options_v2 options_en = {
 #define OPTION_VAL_CIRCLE_EO NULL
 #define RPCS3_LICENSE_AREA_LABEL_EO NULL
 #define RPCS3_LICENSE_AREA_INFO_0_EO NULL
-#define OPTION_VAL_USA_EO "Usono"
-#define OPTION_VAL_EU_EO "Eŭropo"
-#define OPTION_VAL_JP_EO "Japanio"
-#define OPTION_VAL_HK_EO NULL
-#define OPTION_VAL_KR_EO NULL
+#define OPTION_VAL_USA_EO "SCEA (Americas)"
+#define OPTION_VAL_EU_EO "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_EO "SCEJ (Japan)"
+#define OPTION_VAL_HK_EO "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_EO "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_EO NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_EO NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_EO NULL
@@ -11242,7 +11242,7 @@ struct retro_core_options_v2 options_en = {
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_EO NULL
 #define RPCS3_VFS_INIT_LABEL_EO NULL
 #define RPCS3_VFS_INIT_INFO_0_EO NULL
-#define OPTION_VAL_RESET_EO "Rekomencigi"
+#define OPTION_VAL_RESET_EO NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_EO NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_EO NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_EO NULL
@@ -11827,13 +11827,13 @@ struct retro_core_options_v2 options_eo = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_ES NULL
 #define OPTION_VAL_0_ES "Automático"
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_ES NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_ES NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_ES "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_ES NULL
 #define RPCS3_SPU_CACHE_INFO_0_ES NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_ES NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_ES NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_ES NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_ES NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_ES "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_ES NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_ES NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_ES NULL
@@ -11848,19 +11848,19 @@ struct retro_core_options_v2 options_eo = {
 #define OPTION_VAL_300_ES "300 %"
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_ES NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_ES NULL
-#define OPTION_VAL_USLEEP_ES NULL
+#define OPTION_VAL_USLEEP_ES "Usleep Only"
 #define OPTION_VAL_ALL_TIMERS_ES NULL
 #define OPTION_VAL_AS_HOST_ES NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_ES NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_ES NULL
 #define RPCS3_ENABLE_TSX_LABEL_ES NULL
 #define RPCS3_ENABLE_TSX_INFO_0_ES NULL
-#define OPTION_VAL_FORCED_ES "Forzar"
+#define OPTION_VAL_FORCED_ES NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_ES NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_ES NULL
-#define OPTION_VAL_RELAXED_ES NULL
+#define OPTION_VAL_RELAXED_ES "Relajada"
 #define OPTION_VAL_ACCURATE_ES "Preciso"
-#define OPTION_VAL_ULTRA_ES NULL
+#define OPTION_VAL_ULTRA_ES "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_ES NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_ES NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_ES NULL
@@ -11871,40 +11871,40 @@ struct retro_core_options_v2 options_eo = {
 #define OPTION_VAL_VULKAN_ES NULL
 #define OPTION_VAL_NULL_ES NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_ES NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_ES NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_ES "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_ES "25 %"
-#define OPTION_VAL_30_ES "30 %"
-#define OPTION_VAL_35_ES "35 %"
-#define OPTION_VAL_40_ES "40 %"
-#define OPTION_VAL_45_ES "45 %"
-#define OPTION_VAL_55_ES "55 %"
-#define OPTION_VAL_60_ES "60 %"
-#define OPTION_VAL_65_ES "65 %"
+#define OPTION_VAL_30_ES "30 FPS"
+#define OPTION_VAL_35_ES NULL
+#define OPTION_VAL_40_ES "40ms"
+#define OPTION_VAL_45_ES NULL
+#define OPTION_VAL_55_ES NULL
+#define OPTION_VAL_60_ES "60 FPS"
+#define OPTION_VAL_65_ES NULL
 #define OPTION_VAL_70_ES "70 %"
 #define OPTION_VAL_80_ES "80 %"
-#define OPTION_VAL_85_ES "85 %"
+#define OPTION_VAL_85_ES NULL
 #define OPTION_VAL_90_ES "90 %"
-#define OPTION_VAL_95_ES "95 %"
+#define OPTION_VAL_95_ES NULL
 #define OPTION_VAL_100_RPCS3_RESOLUTION_SCALE_ES "100 % (nativa)"
-#define OPTION_VAL_105_ES "105 %"
-#define OPTION_VAL_110_ES "110 %"
-#define OPTION_VAL_115_ES "115 %"
-#define OPTION_VAL_120_ES "120 %"
-#define OPTION_VAL_125_ES "125 %"
-#define OPTION_VAL_130_ES "130 %"
-#define OPTION_VAL_135_ES "135 %"
-#define OPTION_VAL_140_ES "140 %"
-#define OPTION_VAL_145_ES "145 %"
-#define OPTION_VAL_175_ES "175 %"
+#define OPTION_VAL_105_ES NULL
+#define OPTION_VAL_110_ES NULL
+#define OPTION_VAL_115_ES NULL
+#define OPTION_VAL_120_ES "120x120"
+#define OPTION_VAL_125_ES NULL
+#define OPTION_VAL_130_ES NULL
+#define OPTION_VAL_135_ES NULL
+#define OPTION_VAL_140_ES NULL
+#define OPTION_VAL_145_ES NULL
+#define OPTION_VAL_175_ES NULL
 #define OPTION_VAL_250_ES "250 %"
 #define RPCS3_FRAME_LIMIT_LABEL_ES NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_ES NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_ES "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_ES NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_ES NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_ES NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_ES NULL
 #define OPTION_VAL_144_ES NULL
-#define OPTION_VAL_240_ES NULL
+#define OPTION_VAL_240_ES "240x240"
 #define RPCS3_SHADER_MODE_LABEL_ES NULL
 #define RPCS3_SHADER_MODE_INFO_0_ES NULL
 #define OPTION_VAL_ASYNC_ES NULL
@@ -11916,18 +11916,18 @@ struct retro_core_options_v2 options_eo = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_ES NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_ES "Filtrado anisotrópico"
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_ES NULL
-#define OPTION_VAL_1_ES NULL
+#define OPTION_VAL_1_ES "1x1"
 #define OPTION_VAL_2_ES NULL
 #define OPTION_VAL_4_ES NULL
 #define OPTION_VAL_8_ES NULL
-#define OPTION_VAL_16_ES NULL
-#define RPCS3_MSAA_LABEL_ES NULL
-#define RPCS3_MSAA_INFO_0_ES NULL
+#define OPTION_VAL_16_ES "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_ES "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_ES "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_ES NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_ES NULL
-#define OPTION_VAL_LOW_ES NULL
+#define OPTION_VAL_LOW_ES "Baja"
 #define OPTION_VAL_NORMAL_ES NULL
-#define OPTION_VAL_HIGH_ES NULL
+#define OPTION_VAL_HIGH_ES "Alta"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_ES NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_ES NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_ES NULL
@@ -11941,16 +11941,16 @@ struct retro_core_options_v2 options_eo = {
 #define RPCS3_VERTEX_CACHE_LABEL_ES NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_ES NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_ES NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_ES NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_ES "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_ES NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_ES NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_ES "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_ES NULL
-#define OPTION_VAL_PRECISE_ES NULL
+#define OPTION_VAL_PRECISE_ES "Precise (Default)"
 #define RPCS3_CPU_BLIT_LABEL_ES NULL
 #define RPCS3_CPU_BLIT_INFO_0_ES NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_ES NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_ES NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_ES NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_ES "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_ES "0 (valor predeterminado)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_ES NULL
 #define RPCS3_VBLANK_RATE_LABEL_ES NULL
 #define RPCS3_VBLANK_RATE_INFO_0_ES NULL
@@ -11993,9 +11993,9 @@ struct retro_core_options_v2 options_eo = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_ES "10 %"
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_ES "20 %"
 #define RPCS3_NETWORK_ENABLED_LABEL_ES NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_ES NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_ES "Lets games reach the internet. Takes effect when content is loaded."
 #define RPCS3_PSN_STATUS_LABEL_ES NULL
-#define RPCS3_PSN_STATUS_INFO_0_ES NULL
+#define RPCS3_PSN_STATUS_INFO_0_ES "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_ES NULL
 #define OPTION_VAL_RPCN_ES NULL
 #define RPCS3_UPNP_LABEL_ES NULL
@@ -12012,7 +12012,7 @@ struct retro_core_options_v2 options_eo = {
 #define RPCS3_RPCN_SERVER_LABEL_ES NULL
 #define RPCS3_RPCN_SERVER_INFO_0_ES NULL
 #define OPTION_VAL_RPCN_RPCS3_NET_ES NULL
-#define OPTION_VAL_CUSTOM_ES "Personalizado"
+#define OPTION_VAL_CUSTOM_ES NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_ES NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_ES NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_ES NULL
@@ -12020,7 +12020,7 @@ struct retro_core_options_v2 options_eo = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_ES NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_ES NULL
 #define OPTION_VAL_FAST_ES "Rápida"
-#define OPTION_VAL_BALANCED_ES "Equilibrado"
+#define OPTION_VAL_BALANCED_ES NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_ES NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_ES NULL
 #define OPTION_VAL_1000_ES NULL
@@ -12068,11 +12068,11 @@ struct retro_core_options_v2 options_eo = {
 #define OPTION_VAL_CIRCLE_ES NULL
 #define RPCS3_LICENSE_AREA_LABEL_ES NULL
 #define RPCS3_LICENSE_AREA_INFO_0_ES NULL
-#define OPTION_VAL_USA_ES "Estados Unidos"
-#define OPTION_VAL_EU_ES "Europa"
-#define OPTION_VAL_JP_ES "Japón"
-#define OPTION_VAL_HK_ES NULL
-#define OPTION_VAL_KR_ES NULL
+#define OPTION_VAL_USA_ES "SCEA (Americas)"
+#define OPTION_VAL_EU_ES "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_ES "SCEJ (Japan)"
+#define OPTION_VAL_HK_ES "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_ES "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_ES NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_ES NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_ES NULL
@@ -12082,7 +12082,7 @@ struct retro_core_options_v2 options_eo = {
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_ES NULL
 #define RPCS3_VFS_INIT_LABEL_ES NULL
 #define RPCS3_VFS_INIT_INFO_0_ES NULL
-#define OPTION_VAL_RESET_ES "Reiniciar"
+#define OPTION_VAL_RESET_ES NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_ES NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_ES NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_ES NULL
@@ -12667,13 +12667,13 @@ struct retro_core_options_v2 options_es = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_FA NULL
 #define OPTION_VAL_0_FA "خودکار"
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_FA NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_FA NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_FA "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_FA NULL
 #define RPCS3_SPU_CACHE_INFO_0_FA NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_FA NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_FA NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_FA NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_FA NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_FA "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_FA NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_FA NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_FA NULL
@@ -12688,7 +12688,7 @@ struct retro_core_options_v2 options_es = {
 #define OPTION_VAL_300_FA NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_FA NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_FA NULL
-#define OPTION_VAL_USLEEP_FA NULL
+#define OPTION_VAL_USLEEP_FA "Usleep Only"
 #define OPTION_VAL_ALL_TIMERS_FA NULL
 #define OPTION_VAL_AS_HOST_FA NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_FA NULL
@@ -12698,9 +12698,9 @@ struct retro_core_options_v2 options_es = {
 #define OPTION_VAL_FORCED_FA NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_FA NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_FA NULL
-#define OPTION_VAL_RELAXED_FA NULL
+#define OPTION_VAL_RELAXED_FA "Relaxed"
 #define OPTION_VAL_ACCURATE_FA NULL
-#define OPTION_VAL_ULTRA_FA NULL
+#define OPTION_VAL_ULTRA_FA "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_FA NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_FA NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_FA NULL
@@ -12711,14 +12711,14 @@ struct retro_core_options_v2 options_es = {
 #define OPTION_VAL_VULKAN_FA NULL
 #define OPTION_VAL_NULL_FA NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_FA NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_FA NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_FA "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_FA NULL
-#define OPTION_VAL_30_FA NULL
+#define OPTION_VAL_30_FA "30 FPS"
 #define OPTION_VAL_35_FA NULL
-#define OPTION_VAL_40_FA NULL
+#define OPTION_VAL_40_FA "40ms"
 #define OPTION_VAL_45_FA NULL
 #define OPTION_VAL_55_FA NULL
-#define OPTION_VAL_60_FA NULL
+#define OPTION_VAL_60_FA "60 FPS"
 #define OPTION_VAL_65_FA NULL
 #define OPTION_VAL_70_FA NULL
 #define OPTION_VAL_80_FA NULL
@@ -12729,7 +12729,7 @@ struct retro_core_options_v2 options_es = {
 #define OPTION_VAL_105_FA NULL
 #define OPTION_VAL_110_FA NULL
 #define OPTION_VAL_115_FA NULL
-#define OPTION_VAL_120_FA NULL
+#define OPTION_VAL_120_FA "120x120"
 #define OPTION_VAL_125_FA NULL
 #define OPTION_VAL_130_FA NULL
 #define OPTION_VAL_135_FA NULL
@@ -12738,13 +12738,13 @@ struct retro_core_options_v2 options_es = {
 #define OPTION_VAL_175_FA NULL
 #define OPTION_VAL_250_FA NULL
 #define RPCS3_FRAME_LIMIT_LABEL_FA NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_FA NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_FA "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_FA NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_FA NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_FA NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_FA NULL
 #define OPTION_VAL_144_FA NULL
-#define OPTION_VAL_240_FA NULL
+#define OPTION_VAL_240_FA "240x240"
 #define RPCS3_SHADER_MODE_LABEL_FA NULL
 #define RPCS3_SHADER_MODE_INFO_0_FA NULL
 #define OPTION_VAL_ASYNC_FA NULL
@@ -12756,18 +12756,18 @@ struct retro_core_options_v2 options_es = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_FA NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_FA NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_FA NULL
-#define OPTION_VAL_1_FA NULL
+#define OPTION_VAL_1_FA "1x1"
 #define OPTION_VAL_2_FA NULL
 #define OPTION_VAL_4_FA NULL
 #define OPTION_VAL_8_FA NULL
-#define OPTION_VAL_16_FA NULL
-#define RPCS3_MSAA_LABEL_FA NULL
-#define RPCS3_MSAA_INFO_0_FA NULL
+#define OPTION_VAL_16_FA "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_FA "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_FA "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_FA NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_FA NULL
-#define OPTION_VAL_LOW_FA NULL
+#define OPTION_VAL_LOW_FA "Low"
 #define OPTION_VAL_NORMAL_FA NULL
-#define OPTION_VAL_HIGH_FA NULL
+#define OPTION_VAL_HIGH_FA "High"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_FA NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_FA NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_FA NULL
@@ -12781,16 +12781,16 @@ struct retro_core_options_v2 options_es = {
 #define RPCS3_VERTEX_CACHE_LABEL_FA NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_FA NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_FA NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_FA NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_FA "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_FA NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_FA NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_FA "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_FA NULL
-#define OPTION_VAL_PRECISE_FA NULL
+#define OPTION_VAL_PRECISE_FA "Precise (Default)"
 #define RPCS3_CPU_BLIT_LABEL_FA NULL
 #define RPCS3_CPU_BLIT_INFO_0_FA NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_FA NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_FA NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_FA NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_FA "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_FA "0 (Default)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_FA NULL
 #define RPCS3_VBLANK_RATE_LABEL_FA NULL
 #define RPCS3_VBLANK_RATE_INFO_0_FA NULL
@@ -12833,9 +12833,9 @@ struct retro_core_options_v2 options_es = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_FA NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_FA NULL
 #define RPCS3_NETWORK_ENABLED_LABEL_FA NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_FA NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_FA "Lets games reach the internet. Takes effect when content is loaded."
 #define RPCS3_PSN_STATUS_LABEL_FA NULL
-#define RPCS3_PSN_STATUS_INFO_0_FA NULL
+#define RPCS3_PSN_STATUS_INFO_0_FA "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_FA NULL
 #define OPTION_VAL_RPCN_FA NULL
 #define RPCS3_UPNP_LABEL_FA NULL
@@ -12852,7 +12852,7 @@ struct retro_core_options_v2 options_es = {
 #define RPCS3_RPCN_SERVER_LABEL_FA NULL
 #define RPCS3_RPCN_SERVER_INFO_0_FA NULL
 #define OPTION_VAL_RPCN_RPCS3_NET_FA NULL
-#define OPTION_VAL_CUSTOM_FA "سفارشی"
+#define OPTION_VAL_CUSTOM_FA NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_FA NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_FA NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_FA NULL
@@ -12908,11 +12908,11 @@ struct retro_core_options_v2 options_es = {
 #define OPTION_VAL_CIRCLE_FA NULL
 #define RPCS3_LICENSE_AREA_LABEL_FA NULL
 #define RPCS3_LICENSE_AREA_INFO_0_FA NULL
-#define OPTION_VAL_USA_FA NULL
-#define OPTION_VAL_EU_FA NULL
-#define OPTION_VAL_JP_FA NULL
-#define OPTION_VAL_HK_FA NULL
-#define OPTION_VAL_KR_FA NULL
+#define OPTION_VAL_USA_FA "SCEA (Americas)"
+#define OPTION_VAL_EU_FA "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_FA "SCEJ (Japan)"
+#define OPTION_VAL_HK_FA "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_FA "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_FA NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_FA NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_FA NULL
@@ -13507,13 +13507,13 @@ struct retro_core_options_v2 options_fa = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_FI NULL
 #define OPTION_VAL_0_FI "Automaattinen"
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_FI NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_FI NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_FI "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_FI NULL
 #define RPCS3_SPU_CACHE_INFO_0_FI NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_FI NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_FI NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_FI NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_FI NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_FI "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_FI NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_FI NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_FI NULL
@@ -13528,7 +13528,7 @@ struct retro_core_options_v2 options_fa = {
 #define OPTION_VAL_300_FI "300 %"
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_FI NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_FI NULL
-#define OPTION_VAL_USLEEP_FI NULL
+#define OPTION_VAL_USLEEP_FI "Usleep Only"
 #define OPTION_VAL_ALL_TIMERS_FI NULL
 #define OPTION_VAL_AS_HOST_FI NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_FI NULL
@@ -13538,9 +13538,9 @@ struct retro_core_options_v2 options_fa = {
 #define OPTION_VAL_FORCED_FI NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_FI NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_FI NULL
-#define OPTION_VAL_RELAXED_FI NULL
+#define OPTION_VAL_RELAXED_FI "Relaxed"
 #define OPTION_VAL_ACCURATE_FI "Tarkka"
-#define OPTION_VAL_ULTRA_FI NULL
+#define OPTION_VAL_ULTRA_FI "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_FI NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_FI NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_FI NULL
@@ -13551,40 +13551,40 @@ struct retro_core_options_v2 options_fa = {
 #define OPTION_VAL_VULKAN_FI NULL
 #define OPTION_VAL_NULL_FI NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_FI NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_FI NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_FI "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_FI NULL
-#define OPTION_VAL_30_FI "30 %"
-#define OPTION_VAL_35_FI "35 %"
-#define OPTION_VAL_40_FI "40 %"
+#define OPTION_VAL_30_FI "30 FPS"
+#define OPTION_VAL_35_FI NULL
+#define OPTION_VAL_40_FI "40ms"
 #define OPTION_VAL_45_FI NULL
-#define OPTION_VAL_55_FI "55 %"
-#define OPTION_VAL_60_FI "60 %"
-#define OPTION_VAL_65_FI "65 %"
+#define OPTION_VAL_55_FI NULL
+#define OPTION_VAL_60_FI "60 FPS"
+#define OPTION_VAL_65_FI NULL
 #define OPTION_VAL_70_FI "70 %"
 #define OPTION_VAL_80_FI "80 %"
-#define OPTION_VAL_85_FI "85 %"
+#define OPTION_VAL_85_FI NULL
 #define OPTION_VAL_90_FI "90 %"
-#define OPTION_VAL_95_FI "95 %"
+#define OPTION_VAL_95_FI NULL
 #define OPTION_VAL_100_RPCS3_RESOLUTION_SCALE_FI "100 % (Natiivi)"
-#define OPTION_VAL_105_FI "105 %"
-#define OPTION_VAL_110_FI "110 %"
-#define OPTION_VAL_115_FI "115 %"
-#define OPTION_VAL_120_FI "120 %"
-#define OPTION_VAL_125_FI "125 %"
-#define OPTION_VAL_130_FI "130 %"
-#define OPTION_VAL_135_FI "135 %"
-#define OPTION_VAL_140_FI "140 %"
-#define OPTION_VAL_145_FI "145 %"
-#define OPTION_VAL_175_FI "175 %"
+#define OPTION_VAL_105_FI NULL
+#define OPTION_VAL_110_FI NULL
+#define OPTION_VAL_115_FI NULL
+#define OPTION_VAL_120_FI "120x120"
+#define OPTION_VAL_125_FI NULL
+#define OPTION_VAL_130_FI NULL
+#define OPTION_VAL_135_FI NULL
+#define OPTION_VAL_140_FI NULL
+#define OPTION_VAL_145_FI NULL
+#define OPTION_VAL_175_FI NULL
 #define OPTION_VAL_250_FI "250 %"
 #define RPCS3_FRAME_LIMIT_LABEL_FI NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_FI NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_FI "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_FI NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_FI NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_FI NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_FI NULL
 #define OPTION_VAL_144_FI NULL
-#define OPTION_VAL_240_FI NULL
+#define OPTION_VAL_240_FI "240x240"
 #define RPCS3_SHADER_MODE_LABEL_FI NULL
 #define RPCS3_SHADER_MODE_INFO_0_FI NULL
 #define OPTION_VAL_ASYNC_FI NULL
@@ -13596,18 +13596,18 @@ struct retro_core_options_v2 options_fa = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_FI NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_FI "Anisotrooppinen suodatus"
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_FI NULL
-#define OPTION_VAL_1_FI NULL
+#define OPTION_VAL_1_FI "1x1"
 #define OPTION_VAL_2_FI NULL
 #define OPTION_VAL_4_FI NULL
 #define OPTION_VAL_8_FI NULL
-#define OPTION_VAL_16_FI NULL
-#define RPCS3_MSAA_LABEL_FI NULL
-#define RPCS3_MSAA_INFO_0_FI NULL
+#define OPTION_VAL_16_FI "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_FI "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_FI "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_FI NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_FI NULL
-#define OPTION_VAL_LOW_FI NULL
-#define OPTION_VAL_NORMAL_FI "Normaali"
-#define OPTION_VAL_HIGH_FI NULL
+#define OPTION_VAL_LOW_FI "Matala"
+#define OPTION_VAL_NORMAL_FI NULL
+#define OPTION_VAL_HIGH_FI "Korkea"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_FI NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_FI NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_FI NULL
@@ -13621,16 +13621,16 @@ struct retro_core_options_v2 options_fa = {
 #define RPCS3_VERTEX_CACHE_LABEL_FI NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_FI NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_FI NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_FI NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_FI "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_FI NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_FI NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_FI "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_FI NULL
-#define OPTION_VAL_PRECISE_FI NULL
+#define OPTION_VAL_PRECISE_FI "Precise (Default)"
 #define RPCS3_CPU_BLIT_LABEL_FI NULL
 #define RPCS3_CPU_BLIT_INFO_0_FI NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_FI NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_FI NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_FI NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_FI "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_FI "0 (Default)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_FI NULL
 #define RPCS3_VBLANK_RATE_LABEL_FI NULL
 #define RPCS3_VBLANK_RATE_INFO_0_FI NULL
@@ -13673,9 +13673,9 @@ struct retro_core_options_v2 options_fa = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_FI NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_FI "20 %"
 #define RPCS3_NETWORK_ENABLED_LABEL_FI NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_FI NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_FI "Lets games reach the internet. Takes effect when content is loaded."
 #define RPCS3_PSN_STATUS_LABEL_FI NULL
-#define RPCS3_PSN_STATUS_INFO_0_FI NULL
+#define RPCS3_PSN_STATUS_INFO_0_FI "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_FI NULL
 #define OPTION_VAL_RPCN_FI NULL
 #define RPCS3_UPNP_LABEL_FI NULL
@@ -13692,7 +13692,7 @@ struct retro_core_options_v2 options_fa = {
 #define RPCS3_RPCN_SERVER_LABEL_FI NULL
 #define RPCS3_RPCN_SERVER_INFO_0_FI NULL
 #define OPTION_VAL_RPCN_RPCS3_NET_FI NULL
-#define OPTION_VAL_CUSTOM_FI "Mukautettu"
+#define OPTION_VAL_CUSTOM_FI NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_FI NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_FI NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_FI NULL
@@ -13700,7 +13700,7 @@ struct retro_core_options_v2 options_fa = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_FI NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_FI NULL
 #define OPTION_VAL_FAST_FI "Nopea"
-#define OPTION_VAL_BALANCED_FI "Tasapainotettu"
+#define OPTION_VAL_BALANCED_FI NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_FI NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_FI NULL
 #define OPTION_VAL_1000_FI NULL
@@ -13748,11 +13748,11 @@ struct retro_core_options_v2 options_fa = {
 #define OPTION_VAL_CIRCLE_FI NULL
 #define RPCS3_LICENSE_AREA_LABEL_FI NULL
 #define RPCS3_LICENSE_AREA_INFO_0_FI NULL
-#define OPTION_VAL_USA_FI NULL
-#define OPTION_VAL_EU_FI "Eurooppa"
-#define OPTION_VAL_JP_FI NULL
-#define OPTION_VAL_HK_FI NULL
-#define OPTION_VAL_KR_FI NULL
+#define OPTION_VAL_USA_FI "SCEA (Americas)"
+#define OPTION_VAL_EU_FI "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_FI "SCEJ (Japan)"
+#define OPTION_VAL_HK_FI "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_FI "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_FI NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_FI NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_FI NULL
@@ -13762,7 +13762,7 @@ struct retro_core_options_v2 options_fa = {
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_FI NULL
 #define RPCS3_VFS_INIT_LABEL_FI NULL
 #define RPCS3_VFS_INIT_INFO_0_FI NULL
-#define OPTION_VAL_RESET_FI "Palauta asetukset"
+#define OPTION_VAL_RESET_FI NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_FI NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_FI NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_FI NULL
@@ -14320,85 +14320,85 @@ struct retro_core_options_v2 options_fi = {
 /* RETRO_LANGUAGE_FR */
 
 #define CATEGORY_CPU_LABEL_FR "Processeur"
-#define CATEGORY_CPU_INFO_0_FR NULL
-#define CATEGORY_GPU_LABEL_FR NULL
-#define CATEGORY_GPU_INFO_0_FR NULL
+#define CATEGORY_CPU_INFO_0_FR "Options de décodage PPU/SPU, de fils d'exécution, de cache et d'émulation du processeur."
+#define CATEGORY_GPU_LABEL_FR "Processeur graphique"
+#define CATEGORY_GPU_INFO_0_FR "Moteur de rendu, résolution, shaders et options graphiques."
 #define CATEGORY_AUDIO_LABEL_FR "Audio "
-#define CATEGORY_AUDIO_INFO_0_FR NULL
+#define CATEGORY_AUDIO_INFO_0_FR "Options de mise en mémoire tampon audio, de volume et de microphone."
 #define CATEGORY_NETWORK_LABEL_FR "Réseau"
-#define CATEGORY_NETWORK_INFO_0_FR NULL
-#define CATEGORY_ADVANCED_LABEL_FR NULL
-#define CATEGORY_ADVANCED_INFO_0_FR NULL
+#define CATEGORY_NETWORK_INFO_0_FR "Options de réseau, du PSN, de RPCN et du mode en ligne."
+#define CATEGORY_ADVANCED_LABEL_FR "Options avancées"
+#define CATEGORY_ADVANCED_INFO_0_FR "Options avancées de précision et d'optimisation des performances."
 #define CATEGORY_CORE_LABEL_FR "Cœurs"
-#define CATEGORY_CORE_INFO_0_FR NULL
-#define RPCS3_PPU_DECODER_LABEL_FR NULL
-#define RPCS3_PPU_DECODER_INFO_0_FR NULL
-#define OPTION_VAL_LLVM_FR NULL
-#define OPTION_VAL_INTERPRETER_FR NULL
-#define RPCS3_SPU_DECODER_LABEL_FR NULL
-#define RPCS3_SPU_DECODER_INFO_0_FR NULL
-#define OPTION_VAL_ASMJIT_FR NULL
-#define RPCS3_SPU_BLOCK_SIZE_LABEL_FR NULL
-#define RPCS3_SPU_BLOCK_SIZE_INFO_0_FR NULL
-#define OPTION_VAL_SAFE_FR NULL
-#define OPTION_VAL_MEGA_FR NULL
+#define CATEGORY_CORE_INFO_0_FR "Langue du système, région et diverses options du cœur."
+#define RPCS3_PPU_DECODER_LABEL_FR "Décodeur PPU"
+#define RPCS3_PPU_DECODER_INFO_0_FR "Décodeur PPU (processeur principal). Le recompilateur LLVM est le plus rapide."
+#define OPTION_VAL_LLVM_FR "Recompilateur (LLVM)"
+#define OPTION_VAL_INTERPRETER_FR "Interpréteur (lent)"
+#define RPCS3_SPU_DECODER_LABEL_FR "Décodeur SPU"
+#define RPCS3_SPU_DECODER_INFO_0_FR "Décodeur SPU (coprocesseur). Le recompilateur LLVM est le plus rapide."
+#define OPTION_VAL_ASMJIT_FR "Recompilateur (ASMJIT)"
+#define RPCS3_SPU_BLOCK_SIZE_LABEL_FR "Taille de bloc SPU"
+#define RPCS3_SPU_BLOCK_SIZE_INFO_0_FR "Taille de bloc du recompileur SPU. Utiliser Méga ou Giga peut améliorer les performances."
+#define OPTION_VAL_SAFE_FR "Sûr"
+#define OPTION_VAL_MEGA_FR "Méga"
 #define OPTION_VAL_GIGA_FR NULL
-#define RPCS3_PREFERRED_SPU_THREADS_LABEL_FR NULL
-#define RPCS3_PREFERRED_SPU_THREADS_INFO_0_FR NULL
+#define RPCS3_PREFERRED_SPU_THREADS_LABEL_FR "Fils d'exécution SPU privilégiés"
+#define RPCS3_PREFERRED_SPU_THREADS_INFO_0_FR "Nombre de fils d'exécution SPU. Le mode automatique est recommandé."
 #define OPTION_VAL_0_FR NULL
-#define RPCS3_SPU_LOOP_DETECTION_LABEL_FR NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_FR NULL
-#define RPCS3_SPU_CACHE_LABEL_FR NULL
-#define RPCS3_SPU_CACHE_INFO_0_FR NULL
-#define RPCS3_LLVM_PRECOMPILATION_LABEL_FR NULL
-#define RPCS3_LLVM_PRECOMPILATION_INFO_0_FR NULL
-#define RPCS3_ACCURATE_DFMA_LABEL_FR NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_FR NULL
+#define RPCS3_SPU_LOOP_DETECTION_LABEL_FR "Détection de boucles SPU"
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_FR "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
+#define RPCS3_SPU_CACHE_LABEL_FR "Cache SPU"
+#define RPCS3_SPU_CACHE_INFO_0_FR "Activez le cache SPU pour accélérer les chargements ultérieurs."
+#define RPCS3_LLVM_PRECOMPILATION_LABEL_FR "Précompilation LLVM"
+#define RPCS3_LLVM_PRECOMPILATION_INFO_0_FR "Précompiler les modules PPU au démarrage pour accélérer les chargements ultérieurs."
+#define RPCS3_ACCURATE_DFMA_LABEL_FR "DFMA précises"
+#define RPCS3_ACCURATE_DFMA_INFO_0_FR "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_FR NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_FR NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_FR NULL
 #define RPCS3_ACCURATE_XFLOAT_INFO_0_FR NULL
-#define RPCS3_CLOCKS_SCALE_LABEL_FR NULL
-#define RPCS3_CLOCKS_SCALE_INFO_0_FR NULL
+#define RPCS3_CLOCKS_SCALE_LABEL_FR "Ajustement des horloges"
+#define RPCS3_CLOCKS_SCALE_INFO_0_FR "Ajuster le pourcentage de la vitesse d'horloge de la PS3."
 #define OPTION_VAL_50_FR NULL
 #define OPTION_VAL_75_FR NULL
 #define OPTION_VAL_100_FR NULL
 #define OPTION_VAL_150_FR NULL
 #define OPTION_VAL_200_FR NULL
 #define OPTION_VAL_300_FR NULL
-#define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_FR NULL
-#define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_FR NULL
-#define OPTION_VAL_USLEEP_FR NULL
-#define OPTION_VAL_ALL_TIMERS_FR NULL
-#define OPTION_VAL_AS_HOST_FR NULL
-#define RPCS3_MAX_SPURS_THREADS_LABEL_FR NULL
-#define RPCS3_MAX_SPURS_THREADS_INFO_0_FR NULL
+#define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_FR "Précision des minuteurs de mise en veille"
+#define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_FR "Niveau de précision de la minuterie de mise en veille."
+#define OPTION_VAL_USLEEP_FR "Usleep Only"
+#define OPTION_VAL_ALL_TIMERS_FR "Tous les minuteurs"
+#define OPTION_VAL_AS_HOST_FR "En tant qu'hôte"
+#define RPCS3_MAX_SPURS_THREADS_LABEL_FR "Nombre maximal de fils d'exécution SPURS"
+#define RPCS3_MAX_SPURS_THREADS_INFO_0_FR "Nombre maximal de fils d'exécution SPURS. Une valeur inférieure peut améliorer les performances."
 #define RPCS3_ENABLE_TSX_LABEL_FR NULL
 #define RPCS3_ENABLE_TSX_INFO_0_FR NULL
-#define OPTION_VAL_FORCED_FR "Forcée"
-#define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_FR NULL
-#define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_FR NULL
-#define OPTION_VAL_RELAXED_FR NULL
+#define OPTION_VAL_FORCED_FR NULL
+#define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_FR "Précision du XFloat SPU"
+#define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_FR "Niveau de précision en virgule flottante du SPU."
+#define OPTION_VAL_RELAXED_FR "Assouplie"
 #define OPTION_VAL_ACCURATE_FR "Précis"
-#define OPTION_VAL_ULTRA_FR NULL
+#define OPTION_VAL_ULTRA_FR "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_FR NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_FR NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_FR NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_FR NULL
 #define RPCS3_RENDERER_LABEL_FR "Moteur de rendu"
-#define RPCS3_RENDERER_INFO_0_FR NULL
+#define RPCS3_RENDERER_INFO_0_FR "Vulkan finalise chaque image en mémoire et l'interface graphique récupère les pixels ; cela tourne à une vitesse comparable à celle de la version autonome de RPCS3 et fonctionne lorsque OpenGL est absent ou défaillant. OpenGL effectue le rendu directement dans le contexte de l'interface graphique."
 #define OPTION_VAL_OPENGL_FR NULL
-#define OPTION_VAL_VULKAN_FR NULL
-#define OPTION_VAL_NULL_FR NULL
-#define RPCS3_RESOLUTION_SCALE_LABEL_FR NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_FR NULL
+#define OPTION_VAL_VULKAN_FR "Vulkan (via la mémoire)"
+#define OPTION_VAL_NULL_FR "Null (pas de vidéo)"
+#define RPCS3_RESOLUTION_SCALE_LABEL_FR "Échelle de résolution"
+#define RPCS3_RESOLUTION_SCALE_INFO_0_FR "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_FR "25 %"
-#define OPTION_VAL_30_FR NULL
+#define OPTION_VAL_30_FR "30 FPS"
 #define OPTION_VAL_35_FR NULL
-#define OPTION_VAL_40_FR NULL
-#define OPTION_VAL_45_FR "45 %"
+#define OPTION_VAL_40_FR "40ms"
+#define OPTION_VAL_45_FR NULL
 #define OPTION_VAL_55_FR NULL
-#define OPTION_VAL_60_FR NULL
+#define OPTION_VAL_60_FR "60 FPS"
 #define OPTION_VAL_65_FR NULL
 #define OPTION_VAL_70_FR NULL
 #define OPTION_VAL_80_FR NULL
@@ -14409,7 +14409,7 @@ struct retro_core_options_v2 options_fi = {
 #define OPTION_VAL_105_FR NULL
 #define OPTION_VAL_110_FR NULL
 #define OPTION_VAL_115_FR NULL
-#define OPTION_VAL_120_FR NULL
+#define OPTION_VAL_120_FR "120x120"
 #define OPTION_VAL_125_FR NULL
 #define OPTION_VAL_130_FR NULL
 #define OPTION_VAL_135_FR NULL
@@ -14417,89 +14417,89 @@ struct retro_core_options_v2 options_fi = {
 #define OPTION_VAL_145_FR NULL
 #define OPTION_VAL_175_FR NULL
 #define OPTION_VAL_250_FR NULL
-#define RPCS3_FRAME_LIMIT_LABEL_FR NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_FR NULL
+#define RPCS3_FRAME_LIMIT_LABEL_FR "Limite d'images"
+#define RPCS3_FRAME_LIMIT_INFO_0_FR "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_FR NULL
-#define OPTION_VAL_50_RPCS3_FRAME_LIMIT_FR NULL
+#define OPTION_VAL_50_RPCS3_FRAME_LIMIT_FR "50 images/s"
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_FR NULL
-#define OPTION_VAL_120_RPCS3_FRAME_LIMIT_FR NULL
-#define OPTION_VAL_144_FR NULL
-#define OPTION_VAL_240_FR NULL
-#define RPCS3_SHADER_MODE_LABEL_FR NULL
-#define RPCS3_SHADER_MODE_INFO_0_FR NULL
-#define OPTION_VAL_ASYNC_FR NULL
-#define OPTION_VAL_ASYNC_INTERPRETER_FR NULL
-#define OPTION_VAL_ASYNC_RECOMPILER_FR NULL
-#define OPTION_VAL_INTERPRETER_RPCS3_SHADER_MODE_FR NULL
+#define OPTION_VAL_120_RPCS3_FRAME_LIMIT_FR "120 images/s"
+#define OPTION_VAL_144_FR "144 images/s"
+#define OPTION_VAL_240_FR "240x240"
+#define RPCS3_SHADER_MODE_LABEL_FR "Mode de shader"
+#define RPCS3_SHADER_MODE_INFO_0_FR "Comment les shaders sont compilés. La compilation asynchrone s'effectue en arrière-plan, mais l'image nécessitant le pipeline doit attendre que celui-ci soit prêt, c'est généralement ce qui provoque un blocage prolongé lors du chargement d'une nouvelle scène. Avec la compilation asynchrone couplée à un interpréteur de shaders, l'image est rendue via l'interpréteur en attendant que le shader compilé soit disponible et prenne le relais : il n'y a pas de blocages, bien que la vitesse soit réduite le temps que le système rattrape son retard."
+#define OPTION_VAL_ASYNC_FR "Asynchrone (recommandé)"
+#define OPTION_VAL_ASYNC_INTERPRETER_FR "Asynchrone avec interpréteur de shaders (sans blocages)"
+#define OPTION_VAL_ASYNC_RECOMPILER_FR "Asynchrone avec recompilateur"
+#define OPTION_VAL_INTERPRETER_RPCS3_SHADER_MODE_FR "Interpréteur de shaders uniquement"
 #define OPTION_VAL_SYNC_FR "Synchrone"
-#define RPCS3_SHADER_COMPILER_THREADS_LABEL_FR NULL
-#define RPCS3_SHADER_COMPILER_THREADS_INFO_0_FR NULL
+#define RPCS3_SHADER_COMPILER_THREADS_LABEL_FR "Fils d'exécution de compilation de shaders"
+#define RPCS3_SHADER_COMPILER_THREADS_INFO_0_FR "Combien de fils d'exécution compilent les shaders. Auto laisse RPCS3 décider en fonction du processeur détecté."
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_FR "Filtrage anisotrope"
-#define RPCS3_ANISOTROPIC_FILTER_INFO_0_FR NULL
-#define OPTION_VAL_1_FR NULL
+#define RPCS3_ANISOTROPIC_FILTER_INFO_0_FR "Qualité du filtrage de texture."
+#define OPTION_VAL_1_FR "1x1"
 #define OPTION_VAL_2_FR "x2"
 #define OPTION_VAL_4_FR "x4"
 #define OPTION_VAL_8_FR "x8"
-#define OPTION_VAL_16_FR "x16"
-#define RPCS3_MSAA_LABEL_FR NULL
-#define RPCS3_MSAA_INFO_0_FR NULL
+#define OPTION_VAL_16_FR "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_FR "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_FR "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_FR NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_FR NULL
-#define OPTION_VAL_LOW_FR NULL
-#define OPTION_VAL_NORMAL_FR "Normale"
-#define OPTION_VAL_HIGH_FR NULL
-#define RPCS3_WRITE_COLOR_BUFFERS_LABEL_FR NULL
-#define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_FR NULL
-#define RPCS3_READ_COLOR_BUFFERS_LABEL_FR NULL
-#define RPCS3_READ_COLOR_BUFFERS_INFO_0_FR NULL
-#define RPCS3_READ_DEPTH_BUFFERS_LABEL_FR NULL
-#define RPCS3_READ_DEPTH_BUFFERS_INFO_0_FR NULL
-#define RPCS3_WRITE_DEPTH_BUFFERS_LABEL_FR NULL
-#define RPCS3_WRITE_DEPTH_BUFFERS_INFO_0_FR NULL
-#define RPCS3_STRICT_RENDERING_LABEL_FR NULL
-#define RPCS3_STRICT_RENDERING_INFO_0_FR NULL
-#define RPCS3_VERTEX_CACHE_LABEL_FR NULL
-#define RPCS3_VERTEX_CACHE_INFO_0_FR NULL
-#define RPCS3_MULTITHREADED_RSX_LABEL_FR NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_FR NULL
-#define RPCS3_ZCULL_ACCURACY_LABEL_FR NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_FR NULL
-#define OPTION_VAL_APPROXIMATE_FR NULL
-#define OPTION_VAL_PRECISE_FR NULL
-#define RPCS3_CPU_BLIT_LABEL_FR NULL
-#define RPCS3_CPU_BLIT_INFO_0_FR NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_FR NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_FR NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_FR NULL
+#define OPTION_VAL_LOW_FR "Basse"
+#define OPTION_VAL_NORMAL_FR NULL
+#define OPTION_VAL_HIGH_FR "Élevée"
+#define RPCS3_WRITE_COLOR_BUFFERS_LABEL_FR "Écrire les tampons de couleur"
+#define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_FR "Écrire la mémoire tampon de couleur dans la mémoire principale. Corrige certains effets."
+#define RPCS3_READ_COLOR_BUFFERS_LABEL_FR "Lire les tampons de couleur"
+#define RPCS3_READ_COLOR_BUFFERS_INFO_0_FR "Lire la mémoire tampon de couleur depuis la mémoire principale."
+#define RPCS3_READ_DEPTH_BUFFERS_LABEL_FR "Lire les tampons de profondeur"
+#define RPCS3_READ_DEPTH_BUFFERS_INFO_0_FR "Lire la mémoire tampon de profondeur depuis la mémoire principale."
+#define RPCS3_WRITE_DEPTH_BUFFERS_LABEL_FR "Écriture les tampons de profondeur"
+#define RPCS3_WRITE_DEPTH_BUFFERS_INFO_0_FR "Écrire la mémoire tampon de profondeur dans la mémoire principale."
+#define RPCS3_STRICT_RENDERING_LABEL_FR "Mode de rendu strict"
+#define RPCS3_STRICT_RENDERING_INFO_0_FR "Activez le rendu strict pour plus de précision."
+#define RPCS3_VERTEX_CACHE_LABEL_FR "Cache de sommets (vertex)"
+#define RPCS3_VERTEX_CACHE_INFO_0_FR "Activez le cache de sommets (vertex) pour améliorer les performances."
+#define RPCS3_MULTITHREADED_RSX_LABEL_FR "RSX sur plusieurs fils d'exécution"
+#define RPCS3_MULTITHREADED_RSX_INFO_0_FR "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
+#define RPCS3_ZCULL_ACCURACY_LABEL_FR "Précision ZCULL"
+#define RPCS3_ZCULL_ACCURACY_INFO_0_FR "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
+#define OPTION_VAL_APPROXIMATE_FR "Approximative"
+#define OPTION_VAL_PRECISE_FR "Precise (Default)"
+#define RPCS3_CPU_BLIT_LABEL_FR "Forcer le blit processeur"
+#define RPCS3_CPU_BLIT_INFO_0_FR "Forcer l'émulation du blit (block image transfer) par le processeur pour certains effets."
+#define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_FR "Délai de réveil du pilote"
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_FR "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_FR "0 (par défaut)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_FR NULL
-#define RPCS3_VBLANK_RATE_LABEL_FR NULL
-#define RPCS3_VBLANK_RATE_INFO_0_FR NULL
+#define RPCS3_VBLANK_RATE_LABEL_FR "Fréquence de rafraîchissement vertical"
+#define RPCS3_VBLANK_RATE_INFO_0_FR "La fréquence de rafraîchissement de la PS3, exprimée en Hz. Il s'agit également de la cadence d'images que le cœur demande à RetroArch et qui s'applique au chargement de contenu ; les jeux capables de tourner à plus de 60 images/s nécessitent un écran offrant une telle fréquence de rafraîchissement."
 #define OPTION_VAL_50_RPCS3_VBLANK_RATE_FR NULL
 #define OPTION_VAL_60_RPCS3_VBLANK_RATE_FR NULL
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_FR NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_FR NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_FR NULL
-#define RPCS3_FRAME_PACING_LABEL_FR NULL
-#define RPCS3_FRAME_PACING_INFO_0_FR NULL
+#define RPCS3_FRAME_PACING_LABEL_FR "Cadence des images"
+#define RPCS3_FRAME_PACING_INFO_0_FR "Ce qui détermine la cadence des images du jeu. RetroArch attribue au jeu un cycle de rafraîchissement PS3 pour chaque image affichée, ainsi, chaque image est présentée exactement une fois et l'avance rapide augmente la vitesse du jeu ; ce dernier tourne à la fréquence de rafraîchissement vertical (VBlank) lorsque RetroArch affiche un nombre d'images par seconde correspondant à cette fréquence. L'horloge de l'émulateur est le minuteur interne de RPCS3, elle finit par se désynchroniser par rapport à l'affichage, ce qui entraîne occasionnellement la répétition ou le saut d'une image."
 #define OPTION_VAL_FRONTEND_FR NULL
-#define OPTION_VAL_EMULATOR_FR NULL
-#define RPCS3_STRETCH_TO_DISPLAY_LABEL_FR NULL
-#define RPCS3_STRETCH_TO_DISPLAY_INFO_0_FR NULL
-#define RPCS3_AUDIO_BUFFERING_LABEL_FR NULL
-#define RPCS3_AUDIO_BUFFERING_INFO_0_FR NULL
-#define RPCS3_AUDIO_BUFFER_DURATION_LABEL_FR NULL
-#define RPCS3_AUDIO_BUFFER_DURATION_INFO_0_FR NULL
-#define OPTION_VAL_10_FR NULL
-#define OPTION_VAL_20_FR NULL
-#define OPTION_VAL_30_RPCS3_AUDIO_BUFFER_DURATION_FR NULL
+#define OPTION_VAL_EMULATOR_FR "Horloge de l'émulateur"
+#define RPCS3_STRETCH_TO_DISPLAY_LABEL_FR "Étirer à l'écran"
+#define RPCS3_STRETCH_TO_DISPLAY_INFO_0_FR "Étirer l'affichage du jeu pour remplir l'écran."
+#define RPCS3_AUDIO_BUFFERING_LABEL_FR "Activer la mise en mémoire tampon"
+#define RPCS3_AUDIO_BUFFERING_INFO_0_FR "Activer la mise en mémoire tampon audio."
+#define RPCS3_AUDIO_BUFFER_DURATION_LABEL_FR "Durée de la mémoire tampon"
+#define RPCS3_AUDIO_BUFFER_DURATION_INFO_0_FR "Taille de la mémoire tampon audio en millisecondes."
+#define OPTION_VAL_10_FR "10 ms"
+#define OPTION_VAL_20_FR "20 ms"
+#define OPTION_VAL_30_RPCS3_AUDIO_BUFFER_DURATION_FR "30 ms"
 #define OPTION_VAL_40_RPCS3_AUDIO_BUFFER_DURATION_FR NULL
-#define OPTION_VAL_50_RPCS3_AUDIO_BUFFER_DURATION_FR NULL
-#define OPTION_VAL_75_RPCS3_AUDIO_BUFFER_DURATION_FR NULL
-#define OPTION_VAL_100_RPCS3_AUDIO_BUFFER_DURATION_FR NULL
-#define OPTION_VAL_150_RPCS3_AUDIO_BUFFER_DURATION_FR NULL
-#define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_FR NULL
-#define RPCS3_TIME_STRETCHING_LABEL_FR NULL
-#define RPCS3_TIME_STRETCHING_INFO_0_FR NULL
+#define OPTION_VAL_50_RPCS3_AUDIO_BUFFER_DURATION_FR "50 ms"
+#define OPTION_VAL_75_RPCS3_AUDIO_BUFFER_DURATION_FR "75 ms"
+#define OPTION_VAL_100_RPCS3_AUDIO_BUFFER_DURATION_FR "100 ms (par défaut)"
+#define OPTION_VAL_150_RPCS3_AUDIO_BUFFER_DURATION_FR "150 ms"
+#define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_FR "200 ms"
+#define RPCS3_TIME_STRETCHING_LABEL_FR "Étirement temporel"
+#define RPCS3_TIME_STRETCHING_INFO_0_FR "Activez l'étirement temporel audio pour réduire les saccades."
 #define RPCS3_MICROPHONE_TYPE_LABEL_FR NULL
 #define RPCS3_MICROPHONE_TYPE_INFO_0_FR NULL
 #define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_FR NULL
@@ -14508,68 +14508,68 @@ struct retro_core_options_v2 options_fi = {
 #define OPTION_VAL_REAL_SINGSTAR_FR NULL
 #define OPTION_VAL_ROCKSMITH_FR NULL
 #define RPCS3_MASTER_VOLUME_LABEL_FR "Volume principal"
-#define RPCS3_MASTER_VOLUME_INFO_0_FR NULL
+#define RPCS3_MASTER_VOLUME_INFO_0_FR "Pourcentage du volume audio général."
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_FR "0 %"
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_FR "10 %"
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_FR NULL
-#define RPCS3_NETWORK_ENABLED_LABEL_FR NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_FR NULL
-#define RPCS3_PSN_STATUS_LABEL_FR NULL
-#define RPCS3_PSN_STATUS_INFO_0_FR NULL
-#define OPTION_VAL_SIMULATED_FR NULL
+#define RPCS3_NETWORK_ENABLED_LABEL_FR "Réseau activé"
+#define RPCS3_NETWORK_ENABLED_INFO_0_FR "Lets games reach the internet. Takes effect when content is loaded."
+#define RPCS3_PSN_STATUS_LABEL_FR "État du PSN"
+#define RPCS3_PSN_STATUS_INFO_0_FR "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
+#define OPTION_VAL_SIMULATED_FR "Simulé"
 #define OPTION_VAL_RPCN_FR NULL
 #define RPCS3_UPNP_LABEL_FR NULL
-#define RPCS3_UPNP_INFO_0_FR NULL
-#define RPCS3_SHOW_RPCN_POPUPS_LABEL_FR NULL
-#define RPCS3_SHOW_RPCN_POPUPS_INFO_0_FR NULL
-#define RPCS3_SHOW_TROPHY_POPUPS_LABEL_FR NULL
-#define RPCS3_SHOW_TROPHY_POPUPS_INFO_0_FR NULL
-#define RPCS3_DNS_LABEL_FR NULL
-#define RPCS3_DNS_INFO_0_FR NULL
+#define RPCS3_UPNP_INFO_0_FR "Activez l'UPnP pour la redirection automatique des ports."
+#define RPCS3_SHOW_RPCN_POPUPS_LABEL_FR "Afficher les fenêtres contextuelles de RPCN"
+#define RPCS3_SHOW_RPCN_POPUPS_INFO_0_FR "Afficher les fenêtres contextuelles de notification du RPCN."
+#define RPCS3_SHOW_TROPHY_POPUPS_LABEL_FR "Afficher les fenêtres contextuelles de trophées"
+#define RPCS3_SHOW_TROPHY_POPUPS_INFO_0_FR "Afficher les notifications de déverrouillage de trophées."
+#define RPCS3_DNS_LABEL_FR "Serveur DNS"
+#define RPCS3_DNS_INFO_0_FR "Adresse du serveur DNS."
 #define OPTION_VAL_8_8_8_8_FR NULL
 #define OPTION_VAL_1_1_1_1_FR NULL
 #define OPTION_VAL_208_67_222_222_FR NULL
 #define RPCS3_RPCN_SERVER_LABEL_FR NULL
 #define RPCS3_RPCN_SERVER_INFO_0_FR NULL
 #define OPTION_VAL_RPCN_RPCS3_NET_FR NULL
-#define OPTION_VAL_CUSTOM_FR "Personnalisé"
-#define RPCS3_SPU_VERIFICATION_LABEL_FR NULL
-#define RPCS3_SPU_VERIFICATION_INFO_0_FR NULL
-#define RPCS3_SPU_CACHE_LINE_STORES_LABEL_FR NULL
-#define RPCS3_SPU_CACHE_LINE_STORES_INFO_0_FR NULL
-#define RPCS3_RSX_FIFO_ACCURACY_LABEL_FR NULL
-#define RPCS3_RSX_FIFO_ACCURACY_INFO_0_FR NULL
+#define OPTION_VAL_CUSTOM_FR NULL
+#define RPCS3_SPU_VERIFICATION_LABEL_FR "Vérification SPU"
+#define RPCS3_SPU_VERIFICATION_INFO_0_FR "Niveau de vérification du code SPU."
+#define RPCS3_SPU_CACHE_LINE_STORES_LABEL_FR "Écritures de lignes de cache SPU"
+#define RPCS3_SPU_CACHE_LINE_STORES_INFO_0_FR "Activer les écritures précises de lignes de cache."
+#define RPCS3_RSX_FIFO_ACCURACY_LABEL_FR "Précision du FIFO du RSX"
+#define RPCS3_RSX_FIFO_ACCURACY_INFO_0_FR "Niveau de précision des commandes FIFO (premier entré, premier sorti) du processeur graphique RSX."
 #define OPTION_VAL_FAST_FR "Rapide"
-#define OPTION_VAL_BALANCED_FR "Equilibré"
-#define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_FR NULL
-#define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_FR NULL
-#define OPTION_VAL_1000_FR NULL
-#define OPTION_VAL_2000_FR NULL
-#define OPTION_VAL_5000_FR NULL
-#define OPTION_VAL_10000_FR NULL
-#define RPCS3_MFC_SHUFFLING_LABEL_FR NULL
-#define RPCS3_MFC_SHUFFLING_INFO_0_FR NULL
-#define RPCS3_SPU_DELAY_PENALTY_LABEL_FR NULL
-#define RPCS3_SPU_DELAY_PENALTY_INFO_0_FR NULL
+#define OPTION_VAL_BALANCED_FR NULL
+#define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_FR "Délai d'expiration de la récupération du pilote"
+#define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_FR "Délai d'expiration de la récupération du pilote de processeur graphique (en millisecondes)."
+#define OPTION_VAL_1000_FR "1 seconde"
+#define OPTION_VAL_2000_FR "2 secondes"
+#define OPTION_VAL_5000_FR "5 secondes"
+#define OPTION_VAL_10000_FR "10 secondes"
+#define RPCS3_MFC_SHUFFLING_LABEL_FR "Réorganisation des commandes MFC"
+#define RPCS3_MFC_SHUFFLING_INFO_0_FR "Réorganiser les commandes MFC pour plus de précision."
+#define RPCS3_SPU_DELAY_PENALTY_LABEL_FR "Pénalité de retard SPU"
+#define RPCS3_SPU_DELAY_PENALTY_INFO_0_FR "Pénalité de retard SPU liée à la planification."
 #define OPTION_VAL_3_FR "3 (par défaut)"
 #define RPCS3_ZCULL_SYNC_LABEL_FR NULL
 #define RPCS3_ZCULL_SYNC_INFO_0_FR NULL
-#define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_FR NULL
-#define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_FR NULL
+#define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_FR "Streaming de textures asynchrone"
+#define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_FR "Activer le streaming de textures asynchrone."
 #define RPCS3_PPU_LLVM_GREEDY_LABEL_FR NULL
 #define RPCS3_PPU_LLVM_GREEDY_INFO_0_FR NULL
 #define RPCS3_SPU_NJ_FIXUP_LABEL_FR NULL
 #define RPCS3_SPU_NJ_FIXUP_INFO_0_FR NULL
-#define RPCS3_PPU_NJ_MODE_LABEL_FR NULL
-#define RPCS3_PPU_NJ_MODE_INFO_0_FR NULL
-#define RPCS3_PPU_SET_SAT_BIT_LABEL_FR NULL
-#define RPCS3_PPU_SET_SAT_BIT_INFO_0_FR NULL
-#define RPCS3_PPU_ACCURATE_VECTOR_NAN_LABEL_FR NULL
-#define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_FR NULL
-#define RPCS3_PPU_SET_FPCC_LABEL_FR NULL
-#define RPCS3_PPU_SET_FPCC_INFO_0_FR NULL
-#define RPCS3_LANGUAGE_LABEL_FR NULL
-#define RPCS3_LANGUAGE_INFO_0_FR NULL
+#define RPCS3_PPU_NJ_MODE_LABEL_FR "Mode de correction NJ du PPU"
+#define RPCS3_PPU_NJ_MODE_INFO_0_FR "Gestion du mode non-Java pour le PPU."
+#define RPCS3_PPU_SET_SAT_BIT_LABEL_FR "Définir le bit de saturation"
+#define RPCS3_PPU_SET_SAT_BIT_INFO_0_FR "Définir précisément le bit de saturation du PPU."
+#define RPCS3_PPU_ACCURATE_VECTOR_NAN_LABEL_FR "NaN vectoriel précis du PPU"
+#define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_FR "Gestion plus précise des NaN (pas un nombre) vectoriels."
+#define RPCS3_PPU_SET_FPCC_LABEL_FR "Ensemble PPU FPCC"
+#define RPCS3_PPU_SET_FPCC_INFO_0_FR "Configurez correctement les bits FPCC (code de condition à virgule flottante) du PPU."
+#define RPCS3_LANGUAGE_LABEL_FR "Langue du système"
+#define RPCS3_LANGUAGE_INFO_0_FR "Langue du système de la PS3."
 #define OPTION_VAL_ENGLISH_FR "Anglais"
 #define OPTION_VAL_JAPANESE_FR "Japonais"
 #define OPTION_VAL_FRENCH_FR "Français"
@@ -14580,35 +14580,35 @@ struct retro_core_options_v2 options_fi = {
 #define OPTION_VAL_PORTUGUESE_FR "Portugais"
 #define OPTION_VAL_RUSSIAN_FR "Russe"
 #define OPTION_VAL_KOREAN_FR "Coréen"
-#define OPTION_VAL_CHINESE_TRAD_FR NULL
-#define OPTION_VAL_CHINESE_SIMP_FR NULL
-#define RPCS3_ENTER_BUTTON_LABEL_FR NULL
-#define RPCS3_ENTER_BUTTON_INFO_0_FR NULL
-#define OPTION_VAL_CROSS_FR NULL
-#define OPTION_VAL_CIRCLE_FR NULL
-#define RPCS3_LICENSE_AREA_LABEL_FR NULL
-#define RPCS3_LICENSE_AREA_INFO_0_FR NULL
-#define OPTION_VAL_USA_FR "États-Unis"
-#define OPTION_VAL_EU_FR NULL
-#define OPTION_VAL_JP_FR "Japon"
-#define OPTION_VAL_HK_FR NULL
-#define OPTION_VAL_KR_FR NULL
-#define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_FR NULL
-#define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_FR NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_FR NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_FR NULL
-#define OPTION_VAL_LIST_FR NULL
-#define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_FR NULL
-#define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_FR NULL
+#define OPTION_VAL_CHINESE_TRAD_FR "Chinois (traditionnel)"
+#define OPTION_VAL_CHINESE_SIMP_FR "Chinois (simplifié)"
+#define RPCS3_ENTER_BUTTON_LABEL_FR "Touche de confirmation"
+#define RPCS3_ENTER_BUTTON_INFO_0_FR "Touche utilisée pour confirmer des actions."
+#define OPTION_VAL_CROSS_FR "Croix (occidental)"
+#define OPTION_VAL_CIRCLE_FR "Rond (japonais)"
+#define RPCS3_LICENSE_AREA_LABEL_FR "Zone de licence"
+#define RPCS3_LICENSE_AREA_INFO_0_FR "Région de licence PS3."
+#define OPTION_VAL_USA_FR "SCEA (Americas)"
+#define OPTION_VAL_EU_FR "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_FR "SCEJ (Japan)"
+#define OPTION_VAL_HK_FR "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_FR "SCEK (Korea)"
+#define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_FR "Afficher l'indication de compilation des shaders"
+#define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_FR "Afficher une indication lors de la compilation des shaders."
+#define RPCS3_SAVEDATA_SLOT_LABEL_FR "Emplacement de sauvegarde"
+#define RPCS3_SAVEDATA_SLOT_INFO_0_FR "Un jeu PS3 affiche une liste de ses données de sauvegarde et permet au joueur d'effectuer un choix. 'Choisir dans la liste' présente cette liste à l'écran du jeu pour une sélection à la manette. L'utilisation d'un numéro effectue la sélection automatiquement : la sauvegarde écrase l'entrée située à cette position dans la liste du jeu, ou en crée une nouvelle si la liste est plus courte ; le chargement utilise l'entrée à cette position, ou ne trouve rien si la liste est plus courte. 0 correspond à la première entrée. Les jeux qui ne gèrent qu'une seule sauvegarde interne n'affichent pas de liste, ce mécanisme ne s'applique donc pas à eux."
+#define OPTION_VAL_LIST_FR "Choisir dans la liste"
+#define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_FR "Afficher l'indication de compilation PPU"
+#define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_FR "Afficher une indication lors de la compilation des modules PPU."
 #define RPCS3_VFS_INIT_LABEL_FR NULL
 #define RPCS3_VFS_INIT_INFO_0_FR NULL
-#define OPTION_VAL_RESET_FR "Réinitialiser"
-#define RPCS3_SILENCE_ALL_LOGS_LABEL_FR NULL
-#define RPCS3_SILENCE_ALL_LOGS_INFO_0_FR NULL
-#define RPCS3_HOOK_STATIC_FUNCS_LABEL_FR NULL
-#define RPCS3_HOOK_STATIC_FUNCS_INFO_0_FR NULL
-#define RPCS3_HLE_LWMUTEX_LABEL_FR NULL
-#define RPCS3_HLE_LWMUTEX_INFO_0_FR NULL
+#define OPTION_VAL_RESET_FR NULL
+#define RPCS3_SILENCE_ALL_LOGS_LABEL_FR "Désactiver tous les journaux"
+#define RPCS3_SILENCE_ALL_LOGS_INFO_0_FR "Désactivez toutes les sorties de journalisation pour optimiser les performances."
+#define RPCS3_HOOK_STATIC_FUNCS_LABEL_FR "Intercepter les fonctions statiques"
+#define RPCS3_HOOK_STATIC_FUNCS_INFO_0_FR "Intercepter les fonctions statiques pour le HLE."
+#define RPCS3_HLE_LWMUTEX_LABEL_FR "LwMutex HLE"
+#define RPCS3_HLE_LWMUTEX_INFO_0_FR "Utiliser l'implémentation HLE (émulation de haut niveau) pour le LwMutex (mutex léger)."
 
 struct retro_core_option_v2_category option_cats_fr[] = {
     { "cpu", CATEGORY_CPU_LABEL_FR, CATEGORY_CPU_INFO_0_FR },
@@ -15160,85 +15160,85 @@ struct retro_core_options_v2 options_fr = {
 /* RETRO_LANGUAGE_GA */
 
 #define CATEGORY_CPU_LABEL_GA "LAP"
-#define CATEGORY_CPU_INFO_0_GA NULL
+#define CATEGORY_CPU_INFO_0_GA "Roghanna díchódóra PPU/SPU, snáitheanna, taisce agus aithrise CPU."
 #define CATEGORY_GPU_LABEL_GA NULL
-#define CATEGORY_GPU_INFO_0_GA NULL
+#define CATEGORY_GPU_INFO_0_GA "Rindreálaí, taifeach, scáthóirí agus roghanna grafaicí."
 #define CATEGORY_AUDIO_LABEL_GA "Fuaim"
-#define CATEGORY_AUDIO_INFO_0_GA NULL
+#define CATEGORY_AUDIO_INFO_0_GA "Roghanna maidir le maolánú fuaime, airde fuaime agus an micreafón."
 #define CATEGORY_NETWORK_LABEL_GA "Líonra"
-#define CATEGORY_NETWORK_INFO_0_GA NULL
-#define CATEGORY_ADVANCED_LABEL_GA NULL
-#define CATEGORY_ADVANCED_INFO_0_GA NULL
+#define CATEGORY_NETWORK_INFO_0_GA "Líonra, PSN, RPCN agus roghanna ar líne."
+#define CATEGORY_ADVANCED_LABEL_GA "Ardleibhéal"
+#define CATEGORY_ADVANCED_INFO_0_GA "Roghanna chun cruinneas agus feidhmíocht a mhionchoigeartú."
 #define CATEGORY_CORE_LABEL_GA "Croí"
-#define CATEGORY_CORE_INFO_0_GA NULL
-#define RPCS3_PPU_DECODER_LABEL_GA NULL
-#define RPCS3_PPU_DECODER_INFO_0_GA NULL
-#define OPTION_VAL_LLVM_GA NULL
-#define OPTION_VAL_INTERPRETER_GA NULL
-#define RPCS3_SPU_DECODER_LABEL_GA NULL
-#define RPCS3_SPU_DECODER_INFO_0_GA NULL
-#define OPTION_VAL_ASMJIT_GA NULL
-#define RPCS3_SPU_BLOCK_SIZE_LABEL_GA NULL
-#define RPCS3_SPU_BLOCK_SIZE_INFO_0_GA NULL
-#define OPTION_VAL_SAFE_GA NULL
+#define CATEGORY_CORE_INFO_0_GA "Teanga an chórais, réigiún, agus roghanna lárnacha éagsúla."
+#define RPCS3_PPU_DECODER_LABEL_GA "Díchódóir PPU"
+#define RPCS3_PPU_DECODER_INFO_0_GA "Díchódóir PPU (príomh-LAP). Is é an t-aththiomsaitheoir LLVM an ceann is tapúla."
+#define OPTION_VAL_LLVM_GA "Aththiomsaitheoir (LLVM)"
+#define OPTION_VAL_INTERPRETER_GA "Aistritheoir (Mall)"
+#define RPCS3_SPU_DECODER_LABEL_GA "Díchódóir SPU"
+#define RPCS3_SPU_DECODER_INFO_0_GA "Díchódóir SPU (comhphróiseálaí). Is é an t-aththiomsaitheoir LLVM an ceann is tapúla."
+#define OPTION_VAL_ASMJIT_GA "Aththiomsaitheoir (ASMJIT)"
+#define RPCS3_SPU_BLOCK_SIZE_LABEL_GA "Méid Bloc SPU"
+#define RPCS3_SPU_BLOCK_SIZE_INFO_0_GA "Méid an bhloic aththiomsaitheora SPU. D’fhéadfadh Mega/Giga feidhmíocht a fheabhsú."
+#define OPTION_VAL_SAFE_GA "Sábháilte"
 #define OPTION_VAL_MEGA_GA NULL
 #define OPTION_VAL_GIGA_GA NULL
-#define RPCS3_PREFERRED_SPU_THREADS_LABEL_GA NULL
-#define RPCS3_PREFERRED_SPU_THREADS_INFO_0_GA NULL
+#define RPCS3_PREFERRED_SPU_THREADS_LABEL_GA "Snáitheanna SPU Is Fearr Leis"
+#define RPCS3_PREFERRED_SPU_THREADS_INFO_0_GA "Líon na snáitheanna SPU. Moltar an socrú uathoibríoch."
 #define OPTION_VAL_0_GA "Uathoibríoch"
-#define RPCS3_SPU_LOOP_DETECTION_LABEL_GA NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_GA NULL
-#define RPCS3_SPU_CACHE_LABEL_GA NULL
-#define RPCS3_SPU_CACHE_INFO_0_GA NULL
-#define RPCS3_LLVM_PRECOMPILATION_LABEL_GA NULL
-#define RPCS3_LLVM_PRECOMPILATION_INFO_0_GA NULL
-#define RPCS3_ACCURATE_DFMA_LABEL_GA NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_GA NULL
+#define RPCS3_SPU_LOOP_DETECTION_LABEL_GA "Braite Lúibe SPU"
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_GA "Braitear lúba SPU nach ndéanann ach fanacht, agus déantar iad a sheachaint. Bíonn sé níos tapúla, ach teipeann ar chuid de na cluichí dá bharr; bíonn sé múchta de réir réamhshocraithe, mar atá in RPCS3. Is fiú é a chur ar siúl chun luas níos fearr a fháil ar fhóin."
+#define RPCS3_SPU_CACHE_LABEL_GA "Taisce SPU"
+#define RPCS3_SPU_CACHE_INFO_0_GA "Cumasaigh an taisce SPU chun luchtuithe ina dhiaidh sin a dhéanamh níos tapúla."
+#define RPCS3_LLVM_PRECOMPILATION_LABEL_GA "Réamhthiomsú LLVM"
+#define RPCS3_LLVM_PRECOMPILATION_INFO_0_GA "Réamhthiomsaigh modúil PPU ag am tosaithe chun ualaí ina dhiaidh sin a dhéanamh níos tapúla."
+#define RPCS3_ACCURATE_DFMA_LABEL_GA "DFMA cruinn"
+#define RPCS3_ACCURATE_DFMA_INFO_0_GA "Iolrú-suimiú comhleáite dúbailte-chruinnis déanta go díreach, mar atá i RPCS3 (ar siúl de réir réamhshocraithe ansin freisin). Costas beag ar LAPanna le FMA; is féidir le múchadh cabhrú ar fhón mall, agus cuireann sé isteach ar roinnt cluichí."
 #define RPCS3_PPU_RESERVATIONS_LABEL_GA NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_GA NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_GA NULL
 #define RPCS3_ACCURATE_XFLOAT_INFO_0_GA NULL
-#define RPCS3_CLOCKS_SCALE_LABEL_GA NULL
-#define RPCS3_CLOCKS_SCALE_INFO_0_GA NULL
+#define RPCS3_CLOCKS_SCALE_LABEL_GA "Scála na gCloig"
+#define RPCS3_CLOCKS_SCALE_INFO_0_GA "Scálaigh céatadán luas clog an PS3."
 #define OPTION_VAL_50_GA NULL
 #define OPTION_VAL_75_GA NULL
 #define OPTION_VAL_100_GA NULL
 #define OPTION_VAL_150_GA NULL
 #define OPTION_VAL_200_GA NULL
 #define OPTION_VAL_300_GA NULL
-#define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_GA NULL
-#define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_GA NULL
-#define OPTION_VAL_USLEEP_GA NULL
-#define OPTION_VAL_ALL_TIMERS_GA NULL
-#define OPTION_VAL_AS_HOST_GA NULL
-#define RPCS3_MAX_SPURS_THREADS_LABEL_GA NULL
-#define RPCS3_MAX_SPURS_THREADS_INFO_0_GA NULL
+#define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_GA "Cruinneas na n-amadóirí codlata"
+#define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_GA "Leibhéal cruinnis na n-amadóirí codlata."
+#define OPTION_VAL_USLEEP_GA "Usleep Amháin"
+#define OPTION_VAL_ALL_TIMERS_GA "Gach Amadóir"
+#define OPTION_VAL_AS_HOST_GA "Mar Óstach"
+#define RPCS3_MAX_SPURS_THREADS_LABEL_GA "Uaslíon snáitheanna SPURS"
+#define RPCS3_MAX_SPURS_THREADS_INFO_0_GA "Uaslíon snáitheanna SPURS. D’fhéadfadh feidhmíocht níos fearr a bheith mar thoradh ar líon níos ísle."
 #define RPCS3_ENABLE_TSX_LABEL_GA NULL
 #define RPCS3_ENABLE_TSX_INFO_0_GA NULL
-#define OPTION_VAL_FORCED_GA "Éigeantach"
-#define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_GA NULL
-#define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_GA NULL
-#define OPTION_VAL_RELAXED_GA NULL
+#define OPTION_VAL_FORCED_GA NULL
+#define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_GA "Cruinneas SPU XFloat"
+#define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_GA "Leibhéal cruinnis pointe snámha an SPU."
+#define OPTION_VAL_RELAXED_GA "Suaimhneach"
 #define OPTION_VAL_ACCURATE_GA "Cruinn"
-#define OPTION_VAL_ULTRA_GA NULL
+#define OPTION_VAL_ULTRA_GA "Antoisceach"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_GA NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_GA NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_GA NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_GA NULL
 #define RPCS3_RENDERER_LABEL_GA "Rindreálaí"
-#define RPCS3_RENDERER_INFO_0_GA NULL
+#define RPCS3_RENDERER_INFO_0_GA "Críochnaíonn Vulkan gach fráma sa chuimhne agus glacann an comhéadan tosaigh leis na picteilíní; ritheann sé chomh tapa céanna le RPCS3 ina aonar agus oibríonn sé i gcásanna nach bhfuil OpenGL ar fáil nó ina bhfuil sé lochtach. Tarraingíonn OpenGL go díreach i gcomhthéacs an chomhéadain tosaigh."
 #define OPTION_VAL_OPENGL_GA NULL
-#define OPTION_VAL_VULKAN_GA NULL
-#define OPTION_VAL_NULL_GA NULL
-#define RPCS3_RESOLUTION_SCALE_LABEL_GA NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_GA NULL
+#define OPTION_VAL_VULKAN_GA "Vulkan (tríd an gcuimhne)"
+#define OPTION_VAL_NULL_GA "Null (Gan Físeán)"
+#define RPCS3_RESOLUTION_SCALE_LABEL_GA "Scála Réitigh"
+#define RPCS3_RESOLUTION_SCALE_INFO_0_GA "Taifeach rindreála inmheánaí mar chéatadán de thaifeach dúchais an chluiche féin. Is ionann 200% de chluiche 720p agus 2560x1440, agus is ionann é agus 3840x2160 i gcás cluiche 1080p."
 #define OPTION_VAL_25_GA NULL
-#define OPTION_VAL_30_GA NULL
+#define OPTION_VAL_30_GA "30 FPS"
 #define OPTION_VAL_35_GA NULL
-#define OPTION_VAL_40_GA NULL
+#define OPTION_VAL_40_GA "40ms"
 #define OPTION_VAL_45_GA NULL
 #define OPTION_VAL_55_GA NULL
-#define OPTION_VAL_60_GA NULL
+#define OPTION_VAL_60_GA "60 FPS"
 #define OPTION_VAL_65_GA NULL
 #define OPTION_VAL_70_GA NULL
 #define OPTION_VAL_80_GA NULL
@@ -15249,7 +15249,7 @@ struct retro_core_options_v2 options_fr = {
 #define OPTION_VAL_105_GA NULL
 #define OPTION_VAL_110_GA NULL
 #define OPTION_VAL_115_GA NULL
-#define OPTION_VAL_120_GA NULL
+#define OPTION_VAL_120_GA "120x120"
 #define OPTION_VAL_125_GA NULL
 #define OPTION_VAL_130_GA NULL
 #define OPTION_VAL_135_GA NULL
@@ -15257,89 +15257,89 @@ struct retro_core_options_v2 options_fr = {
 #define OPTION_VAL_145_GA NULL
 #define OPTION_VAL_175_GA NULL
 #define OPTION_VAL_250_GA NULL
-#define RPCS3_FRAME_LIMIT_LABEL_GA NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_GA NULL
+#define RPCS3_FRAME_LIMIT_LABEL_GA "Teorainn Frámaí"
+#define RPCS3_FRAME_LIMIT_INFO_0_GA "An ráta frámaí is airde ar féidir leis an gcluiche rith air. Is é 'Auto' an ráta VBlank, mar atá in RPCS3; déanann 'PS3 Native' na frámaí a shioncronú ar an gcaoi chéanna leis an PS3; má roghnaítear 'Off', rithfidh cluichí nach bhfanann le hathnuachan an PS3 ró-thapa."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_GA NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_GA NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_GA NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_GA NULL
 #define OPTION_VAL_144_GA NULL
-#define OPTION_VAL_240_GA NULL
-#define RPCS3_SHADER_MODE_LABEL_GA NULL
-#define RPCS3_SHADER_MODE_INFO_0_GA NULL
-#define OPTION_VAL_ASYNC_GA NULL
-#define OPTION_VAL_ASYNC_INTERPRETER_GA NULL
-#define OPTION_VAL_ASYNC_RECOMPILER_GA NULL
-#define OPTION_VAL_INTERPRETER_RPCS3_SHADER_MODE_GA NULL
+#define OPTION_VAL_240_GA "240x240"
+#define RPCS3_SHADER_MODE_LABEL_GA "Modh Scáthaitheora"
+#define RPCS3_SHADER_MODE_INFO_0_GA "Conas a dhéantar scáthaitheoirí a thiomsú. Tiomsaíonn Async sa chúlra ach fanann an fráma a bhfuil píblíne de dhíth air ar dtús leis, agus is é sin a bhíonn i gceist le reo fada ar radharc nua de ghnáth. Tarraingíonn Async le Léirmhínitheoir Scáthaitheoirí an fráma sin tríd an léirmhínitheoir ina ionad sin agus malartaíonn sé an scáthaitheoir tiomsaithe nuair a bhíonn sé réidh: gan reo, luas níos ísle agus é ag teacht suas leis."
+#define OPTION_VAL_ASYNC_GA "Asincrónach (Molta)"
+#define OPTION_VAL_ASYNC_INTERPRETER_GA "Asincrónach le Léirmhínitheoir Scáthaitheora (gan stadanna)"
+#define OPTION_VAL_ASYNC_RECOMPILER_GA "Asincrónach le haththiomsaitheoir"
+#define OPTION_VAL_INTERPRETER_RPCS3_SHADER_MODE_GA "Léirmhínitheoir scáthóra amháin"
 #define OPTION_VAL_SYNC_GA "Sioncrónach"
-#define RPCS3_SHADER_COMPILER_THREADS_LABEL_GA NULL
-#define RPCS3_SHADER_COMPILER_THREADS_INFO_0_GA NULL
+#define RPCS3_SHADER_COMPILER_THREADS_LABEL_GA "Snáitheanna Tiomsaitheora Scáthaitheora"
+#define RPCS3_SHADER_COMPILER_THREADS_INFO_0_GA "Cé mhéad snáithe a úsáidtear chun scáthóirí a thiomsú? Ligeann an socrú 'Auto' do RPCS3 cinneadh a dhéanamh bunaithe ar an LAP a bhraitheann sé."
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_GA "Scagadh Ainiseatrópach"
-#define RPCS3_ANISOTROPIC_FILTER_INFO_0_GA NULL
-#define OPTION_VAL_1_GA NULL
+#define RPCS3_ANISOTROPIC_FILTER_INFO_0_GA "Caighdeán scagtha uigeachta."
+#define OPTION_VAL_1_GA "1x1"
 #define OPTION_VAL_2_GA NULL
 #define OPTION_VAL_4_GA NULL
 #define OPTION_VAL_8_GA NULL
-#define OPTION_VAL_16_GA NULL
-#define RPCS3_MSAA_LABEL_GA NULL
-#define RPCS3_MSAA_INFO_0_GA NULL
+#define OPTION_VAL_16_GA "16x16 (Réamhshocrú)"
+#define RPCS3_MSAA_LABEL_GA "Frith-ailiasáil"
+#define RPCS3_MSAA_INFO_0_GA "Frith-ailiasáil ilshamplach nuair a iarrann an cluiche í, mar atá in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_GA NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_GA NULL
-#define OPTION_VAL_LOW_GA NULL
-#define OPTION_VAL_NORMAL_GA "Gnáth"
-#define OPTION_VAL_HIGH_GA NULL
-#define RPCS3_WRITE_COLOR_BUFFERS_LABEL_GA NULL
-#define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_GA NULL
-#define RPCS3_READ_COLOR_BUFFERS_LABEL_GA NULL
-#define RPCS3_READ_COLOR_BUFFERS_INFO_0_GA NULL
-#define RPCS3_READ_DEPTH_BUFFERS_LABEL_GA NULL
-#define RPCS3_READ_DEPTH_BUFFERS_INFO_0_GA NULL
-#define RPCS3_WRITE_DEPTH_BUFFERS_LABEL_GA NULL
-#define RPCS3_WRITE_DEPTH_BUFFERS_INFO_0_GA NULL
-#define RPCS3_STRICT_RENDERING_LABEL_GA NULL
-#define RPCS3_STRICT_RENDERING_INFO_0_GA NULL
-#define RPCS3_VERTEX_CACHE_LABEL_GA NULL
-#define RPCS3_VERTEX_CACHE_INFO_0_GA NULL
-#define RPCS3_MULTITHREADED_RSX_LABEL_GA NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_GA NULL
-#define RPCS3_ZCULL_ACCURACY_LABEL_GA NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_GA NULL
-#define OPTION_VAL_APPROXIMATE_GA NULL
-#define OPTION_VAL_PRECISE_GA NULL
-#define RPCS3_CPU_BLIT_LABEL_GA NULL
-#define RPCS3_CPU_BLIT_INFO_0_GA NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_GA NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_GA NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_GA NULL
+#define OPTION_VAL_LOW_GA "Íseal"
+#define OPTION_VAL_NORMAL_GA NULL
+#define OPTION_VAL_HIGH_GA "Ard"
+#define RPCS3_WRITE_COLOR_BUFFERS_LABEL_GA "Scríobh Maoláin Datha"
+#define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_GA "Scríobh maoláin datha chuig an bpríomhchuimhne. Réitíonn sé seo roinnt éifeachtaí."
+#define RPCS3_READ_COLOR_BUFFERS_LABEL_GA "Léigh Maoláin Datha"
+#define RPCS3_READ_COLOR_BUFFERS_INFO_0_GA "Léigh maoláin datha ón bpríomhchuimhne."
+#define RPCS3_READ_DEPTH_BUFFERS_LABEL_GA "Maoláin Doimhneachta Léite"
+#define RPCS3_READ_DEPTH_BUFFERS_INFO_0_GA "Léigh maoláin doimhneachta ón bpríomhchuimhne."
+#define RPCS3_WRITE_DEPTH_BUFFERS_LABEL_GA "Scríobh Maoláin Doimhneachta"
+#define RPCS3_WRITE_DEPTH_BUFFERS_INFO_0_GA "Scríobh maoláin doimhneachta chuig an bpríomhchuimhne."
+#define RPCS3_STRICT_RENDERING_LABEL_GA "Modh Rindreála Dian"
+#define RPCS3_STRICT_RENDERING_INFO_0_GA "Cumasaigh rindreáil dhian ar mhaithe le cruinneas."
+#define RPCS3_VERTEX_CACHE_LABEL_GA "Taisce Veirteas"
+#define RPCS3_VERTEX_CACHE_INFO_0_GA "Cumasaigh an taisce veirteacs ar mhaithe le feidhmíocht."
+#define RPCS3_MULTITHREADED_RSX_LABEL_GA "RSX ilshnáitheach"
+#define RPCS3_MULTITHREADED_RSX_INFO_0_GA "Bogann sé cuid den obair RSX go dtí an dara snáithe. Bíonn sé múchta de réir réamhshocraithe, mar atá in RPCS3; féadfaidh sé cabhrú ar LAPanna a bhfuil líon beag croíleacán tapa acu, fóin san áireamh."
+#define RPCS3_ZCULL_ACCURACY_LABEL_GA "Cruinneas ZCULL"
+#define RPCS3_ZCULL_ACCURACY_INFO_0_GA "An chaoi go díreach a bhfreagraítear fiosrúcháin occlúis, mar atá in RPCS3. Is é Beacht an rogha cheart agus an réamhshocrú ann; bíonn Neas agus Socair níos tapúla, ach d’fhéadfaidís cur isteach ar éifeachtaí ar nós splancacha lionsa. Is fiú triail a bhaint as Socair ar fhóin."
+#define OPTION_VAL_APPROXIMATE_GA "Neas"
+#define OPTION_VAL_PRECISE_GA "Beacht (Réamhshocrú)"
+#define RPCS3_CPU_BLIT_LABEL_GA "Éignigh Blit an LAP"
+#define RPCS3_CPU_BLIT_INFO_0_GA "Cuir aithris 'blit' an LAP i bhfeidhm go héigeantach le haghaidh éifeachtaí áirithe."
+#define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_GA "Moill ar Dhúiseacht an Tiománaí"
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_GA "Moill mhúscailte an tiománaí i micreasoicindí. 0 de réir réamhshocraithe, mar atá in RPCS3; ná méadaigh é ach amháin nuair a bhíonn sé ag teastáil ó chluiche."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_GA "0 (Réamhshocrú)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_GA NULL
-#define RPCS3_VBLANK_RATE_LABEL_GA NULL
-#define RPCS3_VBLANK_RATE_INFO_0_GA NULL
+#define RPCS3_VBLANK_RATE_LABEL_GA "Ráta VBlank"
+#define RPCS3_VBLANK_RATE_INFO_0_GA "Ráta athnuachana an PS3 i Hz. Is é seo freisin an ráta frámaí a iarrann an croí-inneall ar RetroArch, rud a thagann i bhfeidhm nuair a luchtútar an t-ábhar; teastaíonn taispeáint a athnuaitear chomh tapa sin ó chluichí ar féidir leo rith ag níos mó ná 60 FPS."
 #define OPTION_VAL_50_RPCS3_VBLANK_RATE_GA NULL
 #define OPTION_VAL_60_RPCS3_VBLANK_RATE_GA NULL
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_GA NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_GA NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_GA NULL
-#define RPCS3_FRAME_PACING_LABEL_GA NULL
-#define RPCS3_FRAME_PACING_INFO_0_GA NULL
+#define RPCS3_FRAME_PACING_LABEL_GA "Luas na bhFrámaí"
+#define RPCS3_FRAME_PACING_INFO_0_GA "Is é an rud a chinneann uainiú fhrámaí an chluiche ná an ráta athnuachana. Soláthraíonn RetroArch athnuachan PS3 amháin don chluiche in aghaidh gach fráma a thaispeánann RetroArch; dá bhrí sin, taispeántar gach fráma uair amháin go díreach agus luasghéaraíonn an fheidhm \"fast-forward\" an cluiche. Ritheann an cluiche ag an ráta VBlank nuair a thaispeánann RetroArch an líon sin frámaí in aghaidh an tsoicind. Is é uaineadóir inmheánach RPCS3 a fheidhmíonn mar chlog don insamhlóir; bíonn diall idir é agus an taispeáint, rud a fhágann go dtaispeántar fráma faoi dhó nó go scipeáiltear fráma ó am go chéile."
 #define OPTION_VAL_FRONTEND_GA NULL
-#define OPTION_VAL_EMULATOR_GA NULL
+#define OPTION_VAL_EMULATOR_GA "Cloigín an insuladóra"
 #define RPCS3_STRETCH_TO_DISPLAY_LABEL_GA NULL
-#define RPCS3_STRETCH_TO_DISPLAY_INFO_0_GA NULL
-#define RPCS3_AUDIO_BUFFERING_LABEL_GA NULL
-#define RPCS3_AUDIO_BUFFERING_INFO_0_GA NULL
-#define RPCS3_AUDIO_BUFFER_DURATION_LABEL_GA NULL
-#define RPCS3_AUDIO_BUFFER_DURATION_INFO_0_GA NULL
+#define RPCS3_STRETCH_TO_DISPLAY_INFO_0_GA "Sín aschur an chluiche chun an scáileán a líonadh."
+#define RPCS3_AUDIO_BUFFERING_LABEL_GA "Cumasaigh maolánú"
+#define RPCS3_AUDIO_BUFFERING_INFO_0_GA "Cumasaigh maolánú fuaime."
+#define RPCS3_AUDIO_BUFFER_DURATION_LABEL_GA "Fad an Mhaoláin"
+#define RPCS3_AUDIO_BUFFER_DURATION_INFO_0_GA "Méid an mhaoldta fuaime i milleasoicindí."
 #define OPTION_VAL_10_GA NULL
 #define OPTION_VAL_20_GA NULL
 #define OPTION_VAL_30_RPCS3_AUDIO_BUFFER_DURATION_GA NULL
 #define OPTION_VAL_40_RPCS3_AUDIO_BUFFER_DURATION_GA NULL
 #define OPTION_VAL_50_RPCS3_AUDIO_BUFFER_DURATION_GA NULL
 #define OPTION_VAL_75_RPCS3_AUDIO_BUFFER_DURATION_GA NULL
-#define OPTION_VAL_100_RPCS3_AUDIO_BUFFER_DURATION_GA NULL
+#define OPTION_VAL_100_RPCS3_AUDIO_BUFFER_DURATION_GA "100ms (Réamhshocrú)"
 #define OPTION_VAL_150_RPCS3_AUDIO_BUFFER_DURATION_GA NULL
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_GA NULL
-#define RPCS3_TIME_STRETCHING_LABEL_GA NULL
-#define RPCS3_TIME_STRETCHING_INFO_0_GA NULL
+#define RPCS3_TIME_STRETCHING_LABEL_GA "Síneadh Ama"
+#define RPCS3_TIME_STRETCHING_INFO_0_GA "Cumasaigh síneadh ama fuaime chun stop-thosú a laghdú."
 #define RPCS3_MICROPHONE_TYPE_LABEL_GA NULL
 #define RPCS3_MICROPHONE_TYPE_INFO_0_GA NULL
 #define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_GA NULL
@@ -15348,107 +15348,107 @@ struct retro_core_options_v2 options_fr = {
 #define OPTION_VAL_REAL_SINGSTAR_GA NULL
 #define OPTION_VAL_ROCKSMITH_GA NULL
 #define RPCS3_MASTER_VOLUME_LABEL_GA "Imleabhar Máistir"
-#define RPCS3_MASTER_VOLUME_INFO_0_GA NULL
+#define RPCS3_MASTER_VOLUME_INFO_0_GA "Céatadán príomhleibhéil fuaime."
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_GA NULL
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_GA NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_GA NULL
-#define RPCS3_NETWORK_ENABLED_LABEL_GA NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_GA NULL
-#define RPCS3_PSN_STATUS_LABEL_GA NULL
-#define RPCS3_PSN_STATUS_INFO_0_GA NULL
-#define OPTION_VAL_SIMULATED_GA NULL
+#define RPCS3_NETWORK_ENABLED_LABEL_GA "Cumasaithe don Líonra"
+#define RPCS3_NETWORK_ENABLED_INFO_0_GA "Cuireann sé ar chumas cluichí rochtain a fháil ar an idirlíon. Tagann sé i bhfeidhm nuair a luchtútar an t-ábhar."
+#define RPCS3_PSN_STATUS_LABEL_GA "Stádas PSN"
+#define RPCS3_PSN_STATUS_INFO_0_GA "Seo an méid a fheiceann cluichí de chuid an PlayStation Network. Cuireann an insamhladh ina luí orthu go bhfuil siad logáilte isteach — rud a bhíonn ag teastáil ó chuid acu chun dul thar na roghchláir; nascann RPCN le freastalaí RPCS3 féin ag baint úsáide as an gcuntas atá cumraithe i rpcn.yml, agus teastaíonn go mbeadh an líonra cumasaithe. Tagann sé i bhfeidhm nuair a luchtútar an t-ábhar."
+#define OPTION_VAL_SIMULATED_GA "Insamhlatha"
 #define OPTION_VAL_RPCN_GA NULL
 #define RPCS3_UPNP_LABEL_GA NULL
-#define RPCS3_UPNP_INFO_0_GA NULL
-#define RPCS3_SHOW_RPCN_POPUPS_LABEL_GA NULL
-#define RPCS3_SHOW_RPCN_POPUPS_INFO_0_GA NULL
-#define RPCS3_SHOW_TROPHY_POPUPS_LABEL_GA NULL
-#define RPCS3_SHOW_TROPHY_POPUPS_INFO_0_GA NULL
-#define RPCS3_DNS_LABEL_GA NULL
-#define RPCS3_DNS_INFO_0_GA NULL
-#define OPTION_VAL_8_8_8_8_GA NULL
-#define OPTION_VAL_1_1_1_1_GA NULL
+#define RPCS3_UPNP_INFO_0_GA "Cumasaigh UPnP le haghaidh athsheoladh calafoirt uathoibríoch."
+#define RPCS3_SHOW_RPCN_POPUPS_LABEL_GA "Taispeáin aníos-fhuinneoga RPCN"
+#define RPCS3_SHOW_RPCN_POPUPS_INFO_0_GA "Taispeáin aníosfhuinneoga fógraí RPCN."
+#define RPCS3_SHOW_TROPHY_POPUPS_LABEL_GA "Taispeáin aníos-fhuinneoga trófaithe"
+#define RPCS3_SHOW_TROPHY_POPUPS_INFO_0_GA "Taispeáin fógraí faoi dhíghlasáil trófaithe."
+#define RPCS3_DNS_LABEL_GA "Freastalaí DNS"
+#define RPCS3_DNS_INFO_0_GA "Seoladh freastalaí DNS."
+#define OPTION_VAL_8_8_8_8_GA "DNS Google"
+#define OPTION_VAL_1_1_1_1_GA "DNS Cloudflare"
 #define OPTION_VAL_208_67_222_222_GA NULL
 #define RPCS3_RPCN_SERVER_LABEL_GA NULL
 #define RPCS3_RPCN_SERVER_INFO_0_GA NULL
 #define OPTION_VAL_RPCN_RPCS3_NET_GA NULL
-#define OPTION_VAL_CUSTOM_GA "Saincheaptha"
-#define RPCS3_SPU_VERIFICATION_LABEL_GA NULL
-#define RPCS3_SPU_VERIFICATION_INFO_0_GA NULL
-#define RPCS3_SPU_CACHE_LINE_STORES_LABEL_GA NULL
-#define RPCS3_SPU_CACHE_LINE_STORES_INFO_0_GA NULL
-#define RPCS3_RSX_FIFO_ACCURACY_LABEL_GA NULL
-#define RPCS3_RSX_FIFO_ACCURACY_INFO_0_GA NULL
+#define OPTION_VAL_CUSTOM_GA NULL
+#define RPCS3_SPU_VERIFICATION_LABEL_GA "Fíorú SPU"
+#define RPCS3_SPU_VERIFICATION_INFO_0_GA "Leibhéal fíoraithe cóid SPU."
+#define RPCS3_SPU_CACHE_LINE_STORES_LABEL_GA "Stórais Líne Taisce SPU"
+#define RPCS3_SPU_CACHE_LINE_STORES_INFO_0_GA "Cumasaigh stóráil chruinn ar línte taisce."
+#define RPCS3_RSX_FIFO_ACCURACY_LABEL_GA "Cruinneas FIFO RSX"
+#define RPCS3_RSX_FIFO_ACCURACY_INFO_0_GA "Leibhéal cruinnis ordaithe FIFO RSX."
 #define OPTION_VAL_FAST_GA "Tapa"
-#define OPTION_VAL_BALANCED_GA "Cothrom"
-#define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_GA NULL
-#define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_GA NULL
-#define OPTION_VAL_1000_GA NULL
-#define OPTION_VAL_2000_GA NULL
-#define OPTION_VAL_5000_GA NULL
-#define OPTION_VAL_10000_GA NULL
-#define RPCS3_MFC_SHUFFLING_LABEL_GA NULL
-#define RPCS3_MFC_SHUFFLING_INFO_0_GA NULL
-#define RPCS3_SPU_DELAY_PENALTY_LABEL_GA NULL
-#define RPCS3_SPU_DELAY_PENALTY_INFO_0_GA NULL
+#define OPTION_VAL_BALANCED_GA NULL
+#define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_GA "Teorainn Ama Aisghabhála an Tiománaí"
+#define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_GA "Teorainn ama aisghabhála tiománaí GPU i milleasoicindí."
+#define OPTION_VAL_1000_GA "1 soicind"
+#define OPTION_VAL_2000_GA "2 soicind"
+#define OPTION_VAL_5000_GA "5 soicind"
+#define OPTION_VAL_10000_GA "10 soicind"
+#define RPCS3_MFC_SHUFFLING_LABEL_GA "Athshocrú Orduithe MFC"
+#define RPCS3_MFC_SHUFFLING_INFO_0_GA "Measc orduithe MFC chun cruinneas a chinntiú."
+#define RPCS3_SPU_DELAY_PENALTY_LABEL_GA "Pionós Moille SPU"
+#define RPCS3_SPU_DELAY_PENALTY_INFO_0_GA "Pionós moille SPU maidir le sceidealú."
 #define OPTION_VAL_3_GA "3 (Réamhshocrú)"
 #define RPCS3_ZCULL_SYNC_LABEL_GA NULL
 #define RPCS3_ZCULL_SYNC_INFO_0_GA NULL
-#define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_GA NULL
-#define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_GA NULL
+#define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_GA "Sruthú Uigeachta Asincrónach"
+#define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_GA "Cumasaigh sruthú uigeachtaí asincrónach."
 #define RPCS3_PPU_LLVM_GREEDY_LABEL_GA NULL
 #define RPCS3_PPU_LLVM_GREEDY_INFO_0_GA NULL
 #define RPCS3_SPU_NJ_FIXUP_LABEL_GA NULL
 #define RPCS3_SPU_NJ_FIXUP_INFO_0_GA NULL
-#define RPCS3_PPU_NJ_MODE_LABEL_GA NULL
-#define RPCS3_PPU_NJ_MODE_INFO_0_GA NULL
-#define RPCS3_PPU_SET_SAT_BIT_LABEL_GA NULL
-#define RPCS3_PPU_SET_SAT_BIT_INFO_0_GA NULL
-#define RPCS3_PPU_ACCURATE_VECTOR_NAN_LABEL_GA NULL
-#define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_GA NULL
-#define RPCS3_PPU_SET_FPCC_LABEL_GA NULL
-#define RPCS3_PPU_SET_FPCC_INFO_0_GA NULL
-#define RPCS3_LANGUAGE_LABEL_GA NULL
-#define RPCS3_LANGUAGE_INFO_0_GA NULL
+#define RPCS3_PPU_NJ_MODE_LABEL_GA "Modh Ceartúcháin PPU NJ"
+#define RPCS3_PPU_NJ_MODE_INFO_0_GA "Láimhseáil mód neamh-Java an PPU."
+#define RPCS3_PPU_SET_SAT_BIT_LABEL_GA "Socraigh an Giotán Sáithiúcháin"
+#define RPCS3_PPU_SET_SAT_BIT_INFO_0_GA "Socraigh an giotán sáithiúcháin PPU go cruinn."
+#define RPCS3_PPU_ACCURATE_VECTOR_NAN_LABEL_GA "Veicteoir Cruinn PPU NaN"
+#define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_GA "Láimhseáil níos cruinne ar NaN i veicteoirí."
+#define RPCS3_PPU_SET_FPCC_LABEL_GA "Socraigh PPU FPCC"
+#define RPCS3_PPU_SET_FPCC_INFO_0_GA "Socraigh giotáin PPU FPCC go cruinn."
+#define RPCS3_LANGUAGE_LABEL_GA "Teanga an Chórais"
+#define RPCS3_LANGUAGE_INFO_0_GA "Teanga chórais PS3."
 #define OPTION_VAL_ENGLISH_GA "Béarla"
 #define OPTION_VAL_JAPANESE_GA "Seapáinis"
 #define OPTION_VAL_FRENCH_GA "Fraincis"
 #define OPTION_VAL_SPANISH_GA "Spáinnis"
 #define OPTION_VAL_GERMAN_GA "Gearmáinis"
 #define OPTION_VAL_ITALIAN_GA "Iodáilis"
-#define OPTION_VAL_DUTCH_GA NULL
-#define OPTION_VAL_PORTUGUESE_GA NULL
-#define OPTION_VAL_RUSSIAN_GA NULL
-#define OPTION_VAL_KOREAN_GA NULL
-#define OPTION_VAL_CHINESE_TRAD_GA NULL
-#define OPTION_VAL_CHINESE_SIMP_GA NULL
-#define RPCS3_ENTER_BUTTON_LABEL_GA NULL
-#define RPCS3_ENTER_BUTTON_INFO_0_GA NULL
-#define OPTION_VAL_CROSS_GA NULL
-#define OPTION_VAL_CIRCLE_GA NULL
-#define RPCS3_LICENSE_AREA_LABEL_GA NULL
-#define RPCS3_LICENSE_AREA_INFO_0_GA NULL
-#define OPTION_VAL_USA_GA "Stáit Aontaithe Mheiriceá"
-#define OPTION_VAL_EU_GA "An Eoraip"
-#define OPTION_VAL_JP_GA "An tSeapáin"
-#define OPTION_VAL_HK_GA NULL
-#define OPTION_VAL_KR_GA NULL
-#define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_GA NULL
-#define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_GA NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_GA NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_GA NULL
-#define OPTION_VAL_LIST_GA NULL
-#define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_GA NULL
-#define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_GA NULL
+#define OPTION_VAL_DUTCH_GA "Ollannais"
+#define OPTION_VAL_PORTUGUESE_GA "Portaingéilis"
+#define OPTION_VAL_RUSSIAN_GA "Rúisis"
+#define OPTION_VAL_KOREAN_GA "Cóiréis"
+#define OPTION_VAL_CHINESE_TRAD_GA "Sínis (Traidisiúnta)"
+#define OPTION_VAL_CHINESE_SIMP_GA "Sínis (Shimplithe)"
+#define RPCS3_ENTER_BUTTON_LABEL_GA "Cnaipe Deimhnithe"
+#define RPCS3_ENTER_BUTTON_INFO_0_GA "Cnaipe a úsáidtear chun gníomhartha a dhearbhú."
+#define OPTION_VAL_CROSS_GA "Cros (Iartharach)"
+#define OPTION_VAL_CIRCLE_GA "Ciorcal (Seapáinis)"
+#define RPCS3_LICENSE_AREA_LABEL_GA "Limistéar Ceadúnais"
+#define RPCS3_LICENSE_AREA_INFO_0_GA "Réigiún ceadúnais PS3."
+#define OPTION_VAL_USA_GA "SCEA (na Meiriceánna)"
+#define OPTION_VAL_EU_GA "SCEE (An Eoraip, an Aigéine)"
+#define OPTION_VAL_JP_GA "SCEJ (an tSeapáin)"
+#define OPTION_VAL_HK_GA "SCEH (Hong Cong, Oirdheisceart na hÁise)"
+#define OPTION_VAL_KR_GA "SCEK (An Chóiré)"
+#define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_GA "Taispeáin Leid maidir le Tiomsú Scáthóra"
+#define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_GA "Taispeáin leid nuair atá scáthóirí á gcur le chéile."
+#define RPCS3_SAVEDATA_SLOT_LABEL_GA "Sliotán Sábhála Sonraí"
+#define RPCS3_SAVEDATA_SLOT_INFO_0_GA "Taispeánann cluiche PS3 liosta dá shonraí sábhála agus tugann sé deis don imreoir rogha a dhéanamh. Trí 'Roghnú ón liosta' a úsáid, taispeántar an liosta sin ar an scáileán le go bhféadfar é a úsáid leis an rialtán. Ina áit sin, is uimhir a shocraíonn an príomhrogha duit: má shábhálann tú, scríobhtar thar an iontráil atá ag an suíomh sin ar liosta an chluiche, nó cruthaítear sábháil nua má tá an liosta níos giorra; má luchtar an cluiche, úsáidtear an iontráil ag an suíomh sin, ach ní aimsítear aon rud má tá an liosta níos giorra. Is í an uimhir 0 an chéad iontráil. Ní thaispeánann cluichí nach gcoinníonn ach aon chomhad sábhála amháin liosta ar bith, mar sin ní bhaineann sé seo leo."
+#define OPTION_VAL_LIST_GA "Roghnaigh ón liosta"
+#define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_GA "Taispeáin Leid Tiomsaithe PPU"
+#define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_GA "Taispeáin leid nuair atá modúil PPU á gcur le chéile."
 #define RPCS3_VFS_INIT_LABEL_GA NULL
 #define RPCS3_VFS_INIT_INFO_0_GA NULL
-#define OPTION_VAL_RESET_GA "Athshocraigh"
-#define RPCS3_SILENCE_ALL_LOGS_LABEL_GA NULL
-#define RPCS3_SILENCE_ALL_LOGS_INFO_0_GA NULL
-#define RPCS3_HOOK_STATIC_FUNCS_LABEL_GA NULL
-#define RPCS3_HOOK_STATIC_FUNCS_INFO_0_GA NULL
+#define OPTION_VAL_RESET_GA NULL
+#define RPCS3_SILENCE_ALL_LOGS_LABEL_GA "Cuir gach logchomhad ina thost"
+#define RPCS3_SILENCE_ALL_LOGS_INFO_0_GA "Cuir gach aschur logála ar tost ar mhaithe le feidhmíocht."
+#define RPCS3_HOOK_STATIC_FUNCS_LABEL_GA "Feidhmeanna Statacha a Nascadh"
+#define RPCS3_HOOK_STATIC_FUNCS_INFO_0_GA "Feidhmeanna statacha a nascadh le haghaidh HLE."
 #define RPCS3_HLE_LWMUTEX_LABEL_GA NULL
-#define RPCS3_HLE_LWMUTEX_INFO_0_GA NULL
+#define RPCS3_HLE_LWMUTEX_INFO_0_GA "Bain úsáid as cur i bhfeidhm HLE le haghaidh lwmutex."
 
 struct retro_core_option_v2_category option_cats_ga[] = {
     { "cpu", CATEGORY_CPU_LABEL_GA, CATEGORY_CPU_INFO_0_GA },
@@ -16027,13 +16027,13 @@ struct retro_core_options_v2 options_ga = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_GL NULL
 #define OPTION_VAL_0_GL NULL
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_GL NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_GL NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_GL "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_GL NULL
 #define RPCS3_SPU_CACHE_INFO_0_GL NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_GL NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_GL NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_GL NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_GL NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_GL "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_GL NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_GL NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_GL NULL
@@ -16048,19 +16048,19 @@ struct retro_core_options_v2 options_ga = {
 #define OPTION_VAL_300_GL NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_GL NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_GL NULL
-#define OPTION_VAL_USLEEP_GL NULL
+#define OPTION_VAL_USLEEP_GL "Usleep Only"
 #define OPTION_VAL_ALL_TIMERS_GL NULL
 #define OPTION_VAL_AS_HOST_GL NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_GL NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_GL NULL
 #define RPCS3_ENABLE_TSX_LABEL_GL NULL
 #define RPCS3_ENABLE_TSX_INFO_0_GL NULL
-#define OPTION_VAL_FORCED_GL "Forzado"
+#define OPTION_VAL_FORCED_GL NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_GL NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_GL NULL
-#define OPTION_VAL_RELAXED_GL NULL
+#define OPTION_VAL_RELAXED_GL "Relaxado"
 #define OPTION_VAL_ACCURATE_GL "Precisión"
-#define OPTION_VAL_ULTRA_GL NULL
+#define OPTION_VAL_ULTRA_GL "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_GL NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_GL NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_GL NULL
@@ -16071,14 +16071,14 @@ struct retro_core_options_v2 options_ga = {
 #define OPTION_VAL_VULKAN_GL NULL
 #define OPTION_VAL_NULL_GL NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_GL NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_GL NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_GL "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_GL NULL
-#define OPTION_VAL_30_GL NULL
+#define OPTION_VAL_30_GL "30 FPS"
 #define OPTION_VAL_35_GL NULL
-#define OPTION_VAL_40_GL NULL
+#define OPTION_VAL_40_GL "40ms"
 #define OPTION_VAL_45_GL NULL
 #define OPTION_VAL_55_GL NULL
-#define OPTION_VAL_60_GL NULL
+#define OPTION_VAL_60_GL "60 FPS"
 #define OPTION_VAL_65_GL NULL
 #define OPTION_VAL_70_GL NULL
 #define OPTION_VAL_80_GL NULL
@@ -16089,7 +16089,7 @@ struct retro_core_options_v2 options_ga = {
 #define OPTION_VAL_105_GL NULL
 #define OPTION_VAL_110_GL NULL
 #define OPTION_VAL_115_GL NULL
-#define OPTION_VAL_120_GL NULL
+#define OPTION_VAL_120_GL "120x120"
 #define OPTION_VAL_125_GL NULL
 #define OPTION_VAL_130_GL NULL
 #define OPTION_VAL_135_GL NULL
@@ -16098,13 +16098,13 @@ struct retro_core_options_v2 options_ga = {
 #define OPTION_VAL_175_GL NULL
 #define OPTION_VAL_250_GL NULL
 #define RPCS3_FRAME_LIMIT_LABEL_GL NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_GL NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_GL "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_GL NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_GL NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_GL NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_GL NULL
 #define OPTION_VAL_144_GL NULL
-#define OPTION_VAL_240_GL NULL
+#define OPTION_VAL_240_GL "240x240"
 #define RPCS3_SHADER_MODE_LABEL_GL NULL
 #define RPCS3_SHADER_MODE_INFO_0_GL NULL
 #define OPTION_VAL_ASYNC_GL NULL
@@ -16116,18 +16116,18 @@ struct retro_core_options_v2 options_ga = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_GL NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_GL "Filtrado anisotrópico"
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_GL NULL
-#define OPTION_VAL_1_GL NULL
+#define OPTION_VAL_1_GL "1x1"
 #define OPTION_VAL_2_GL NULL
 #define OPTION_VAL_4_GL NULL
 #define OPTION_VAL_8_GL NULL
-#define OPTION_VAL_16_GL NULL
-#define RPCS3_MSAA_LABEL_GL NULL
-#define RPCS3_MSAA_INFO_0_GL NULL
+#define OPTION_VAL_16_GL "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_GL "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_GL "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_GL NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_GL NULL
-#define OPTION_VAL_LOW_GL NULL
+#define OPTION_VAL_LOW_GL "Baixo"
 #define OPTION_VAL_NORMAL_GL NULL
-#define OPTION_VAL_HIGH_GL NULL
+#define OPTION_VAL_HIGH_GL "Alto"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_GL NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_GL NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_GL NULL
@@ -16141,16 +16141,16 @@ struct retro_core_options_v2 options_ga = {
 #define RPCS3_VERTEX_CACHE_LABEL_GL NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_GL NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_GL NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_GL NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_GL "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_GL NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_GL NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_GL "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_GL NULL
-#define OPTION_VAL_PRECISE_GL NULL
+#define OPTION_VAL_PRECISE_GL "Precise (Default)"
 #define RPCS3_CPU_BLIT_LABEL_GL NULL
 #define RPCS3_CPU_BLIT_INFO_0_GL NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_GL NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_GL NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_GL NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_GL "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_GL "0 (Default)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_GL NULL
 #define RPCS3_VBLANK_RATE_LABEL_GL NULL
 #define RPCS3_VBLANK_RATE_INFO_0_GL NULL
@@ -16193,9 +16193,9 @@ struct retro_core_options_v2 options_ga = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_GL NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_GL NULL
 #define RPCS3_NETWORK_ENABLED_LABEL_GL NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_GL NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_GL "Lets games reach the internet. Takes effect when content is loaded."
 #define RPCS3_PSN_STATUS_LABEL_GL NULL
-#define RPCS3_PSN_STATUS_INFO_0_GL NULL
+#define RPCS3_PSN_STATUS_INFO_0_GL "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_GL NULL
 #define OPTION_VAL_RPCN_GL NULL
 #define RPCS3_UPNP_LABEL_GL NULL
@@ -16212,7 +16212,7 @@ struct retro_core_options_v2 options_ga = {
 #define RPCS3_RPCN_SERVER_LABEL_GL NULL
 #define RPCS3_RPCN_SERVER_INFO_0_GL NULL
 #define OPTION_VAL_RPCN_RPCS3_NET_GL NULL
-#define OPTION_VAL_CUSTOM_GL "Personalizado"
+#define OPTION_VAL_CUSTOM_GL NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_GL NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_GL NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_GL NULL
@@ -16220,7 +16220,7 @@ struct retro_core_options_v2 options_ga = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_GL NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_GL NULL
 #define OPTION_VAL_FAST_GL "Rápido"
-#define OPTION_VAL_BALANCED_GL "Equilibrado"
+#define OPTION_VAL_BALANCED_GL NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_GL NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_GL NULL
 #define OPTION_VAL_1000_GL NULL
@@ -16268,11 +16268,11 @@ struct retro_core_options_v2 options_ga = {
 #define OPTION_VAL_CIRCLE_GL NULL
 #define RPCS3_LICENSE_AREA_LABEL_GL NULL
 #define RPCS3_LICENSE_AREA_INFO_0_GL NULL
-#define OPTION_VAL_USA_GL NULL
-#define OPTION_VAL_EU_GL "Europa"
-#define OPTION_VAL_JP_GL "Xapón"
-#define OPTION_VAL_HK_GL NULL
-#define OPTION_VAL_KR_GL NULL
+#define OPTION_VAL_USA_GL "SCEA (Americas)"
+#define OPTION_VAL_EU_GL "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_GL "SCEJ (Japan)"
+#define OPTION_VAL_HK_GL "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_GL "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_GL NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_GL NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_GL NULL
@@ -16282,7 +16282,7 @@ struct retro_core_options_v2 options_ga = {
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_GL NULL
 #define RPCS3_VFS_INIT_LABEL_GL NULL
 #define RPCS3_VFS_INIT_INFO_0_GL NULL
-#define OPTION_VAL_RESET_GL "Restablecer"
+#define OPTION_VAL_RESET_GL NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_GL NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_GL NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_GL NULL
@@ -16867,13 +16867,13 @@ struct retro_core_options_v2 options_gl = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_HE NULL
 #define OPTION_VAL_0_HE NULL
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_HE NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_HE NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_HE "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_HE NULL
 #define RPCS3_SPU_CACHE_INFO_0_HE NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_HE NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_HE NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_HE NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_HE NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_HE "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_HE NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_HE NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_HE NULL
@@ -16888,7 +16888,7 @@ struct retro_core_options_v2 options_gl = {
 #define OPTION_VAL_300_HE NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_HE NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_HE NULL
-#define OPTION_VAL_USLEEP_HE NULL
+#define OPTION_VAL_USLEEP_HE "Usleep Only"
 #define OPTION_VAL_ALL_TIMERS_HE NULL
 #define OPTION_VAL_AS_HOST_HE NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_HE NULL
@@ -16898,9 +16898,9 @@ struct retro_core_options_v2 options_gl = {
 #define OPTION_VAL_FORCED_HE NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_HE NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_HE NULL
-#define OPTION_VAL_RELAXED_HE NULL
+#define OPTION_VAL_RELAXED_HE "Relaxed"
 #define OPTION_VAL_ACCURATE_HE NULL
-#define OPTION_VAL_ULTRA_HE NULL
+#define OPTION_VAL_ULTRA_HE "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_HE NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_HE NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_HE NULL
@@ -16911,14 +16911,14 @@ struct retro_core_options_v2 options_gl = {
 #define OPTION_VAL_VULKAN_HE NULL
 #define OPTION_VAL_NULL_HE NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_HE NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_HE NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_HE "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_HE NULL
-#define OPTION_VAL_30_HE NULL
+#define OPTION_VAL_30_HE "30 FPS"
 #define OPTION_VAL_35_HE NULL
-#define OPTION_VAL_40_HE NULL
+#define OPTION_VAL_40_HE "40ms"
 #define OPTION_VAL_45_HE NULL
 #define OPTION_VAL_55_HE NULL
-#define OPTION_VAL_60_HE NULL
+#define OPTION_VAL_60_HE "60 FPS"
 #define OPTION_VAL_65_HE NULL
 #define OPTION_VAL_70_HE NULL
 #define OPTION_VAL_80_HE NULL
@@ -16929,7 +16929,7 @@ struct retro_core_options_v2 options_gl = {
 #define OPTION_VAL_105_HE NULL
 #define OPTION_VAL_110_HE NULL
 #define OPTION_VAL_115_HE NULL
-#define OPTION_VAL_120_HE NULL
+#define OPTION_VAL_120_HE "120x120"
 #define OPTION_VAL_125_HE NULL
 #define OPTION_VAL_130_HE NULL
 #define OPTION_VAL_135_HE NULL
@@ -16938,13 +16938,13 @@ struct retro_core_options_v2 options_gl = {
 #define OPTION_VAL_175_HE NULL
 #define OPTION_VAL_250_HE NULL
 #define RPCS3_FRAME_LIMIT_LABEL_HE NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_HE NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_HE "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_HE NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_HE NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_HE NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_HE NULL
 #define OPTION_VAL_144_HE NULL
-#define OPTION_VAL_240_HE NULL
+#define OPTION_VAL_240_HE "240x240"
 #define RPCS3_SHADER_MODE_LABEL_HE NULL
 #define RPCS3_SHADER_MODE_INFO_0_HE NULL
 #define OPTION_VAL_ASYNC_HE NULL
@@ -16956,18 +16956,18 @@ struct retro_core_options_v2 options_gl = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_HE NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_HE NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_HE NULL
-#define OPTION_VAL_1_HE NULL
+#define OPTION_VAL_1_HE "1x1"
 #define OPTION_VAL_2_HE NULL
 #define OPTION_VAL_4_HE NULL
 #define OPTION_VAL_8_HE NULL
-#define OPTION_VAL_16_HE NULL
-#define RPCS3_MSAA_LABEL_HE NULL
-#define RPCS3_MSAA_INFO_0_HE NULL
+#define OPTION_VAL_16_HE "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_HE "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_HE "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_HE NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_HE NULL
-#define OPTION_VAL_LOW_HE NULL
+#define OPTION_VAL_LOW_HE "Low"
 #define OPTION_VAL_NORMAL_HE NULL
-#define OPTION_VAL_HIGH_HE NULL
+#define OPTION_VAL_HIGH_HE "High"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_HE NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_HE NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_HE NULL
@@ -16981,16 +16981,16 @@ struct retro_core_options_v2 options_gl = {
 #define RPCS3_VERTEX_CACHE_LABEL_HE NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_HE NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_HE NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_HE NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_HE "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_HE NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_HE NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_HE "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_HE NULL
-#define OPTION_VAL_PRECISE_HE NULL
+#define OPTION_VAL_PRECISE_HE "Precise (Default)"
 #define RPCS3_CPU_BLIT_LABEL_HE NULL
 #define RPCS3_CPU_BLIT_INFO_0_HE NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_HE NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_HE NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_HE NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_HE "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_HE "0 (Default)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_HE NULL
 #define RPCS3_VBLANK_RATE_LABEL_HE NULL
 #define RPCS3_VBLANK_RATE_INFO_0_HE NULL
@@ -17033,9 +17033,9 @@ struct retro_core_options_v2 options_gl = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_HE NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_HE NULL
 #define RPCS3_NETWORK_ENABLED_LABEL_HE NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_HE NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_HE "Lets games reach the internet. Takes effect when content is loaded."
 #define RPCS3_PSN_STATUS_LABEL_HE NULL
-#define RPCS3_PSN_STATUS_INFO_0_HE NULL
+#define RPCS3_PSN_STATUS_INFO_0_HE "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_HE NULL
 #define OPTION_VAL_RPCN_HE NULL
 #define RPCS3_UPNP_LABEL_HE NULL
@@ -17108,11 +17108,11 @@ struct retro_core_options_v2 options_gl = {
 #define OPTION_VAL_CIRCLE_HE NULL
 #define RPCS3_LICENSE_AREA_LABEL_HE NULL
 #define RPCS3_LICENSE_AREA_INFO_0_HE NULL
-#define OPTION_VAL_USA_HE NULL
-#define OPTION_VAL_EU_HE NULL
-#define OPTION_VAL_JP_HE NULL
-#define OPTION_VAL_HK_HE NULL
-#define OPTION_VAL_KR_HE NULL
+#define OPTION_VAL_USA_HE "SCEA (Americas)"
+#define OPTION_VAL_EU_HE "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_HE "SCEJ (Japan)"
+#define OPTION_VAL_HK_HE "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_HE "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_HE NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_HE NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_HE NULL
@@ -17707,13 +17707,13 @@ struct retro_core_options_v2 options_he = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_HR NULL
 #define OPTION_VAL_0_HR NULL
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_HR NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_HR NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_HR "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_HR NULL
 #define RPCS3_SPU_CACHE_INFO_0_HR NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_HR NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_HR NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_HR NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_HR NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_HR "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_HR NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_HR NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_HR NULL
@@ -17728,7 +17728,7 @@ struct retro_core_options_v2 options_he = {
 #define OPTION_VAL_300_HR NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_HR NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_HR NULL
-#define OPTION_VAL_USLEEP_HR NULL
+#define OPTION_VAL_USLEEP_HR "Usleep Only"
 #define OPTION_VAL_ALL_TIMERS_HR NULL
 #define OPTION_VAL_AS_HOST_HR NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_HR NULL
@@ -17738,9 +17738,9 @@ struct retro_core_options_v2 options_he = {
 #define OPTION_VAL_FORCED_HR NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_HR NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_HR NULL
-#define OPTION_VAL_RELAXED_HR NULL
+#define OPTION_VAL_RELAXED_HR "Relaxed"
 #define OPTION_VAL_ACCURATE_HR NULL
-#define OPTION_VAL_ULTRA_HR NULL
+#define OPTION_VAL_ULTRA_HR "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_HR NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_HR NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_HR NULL
@@ -17751,14 +17751,14 @@ struct retro_core_options_v2 options_he = {
 #define OPTION_VAL_VULKAN_HR NULL
 #define OPTION_VAL_NULL_HR NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_HR NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_HR NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_HR "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_HR NULL
-#define OPTION_VAL_30_HR NULL
+#define OPTION_VAL_30_HR "30 FPS"
 #define OPTION_VAL_35_HR NULL
-#define OPTION_VAL_40_HR NULL
+#define OPTION_VAL_40_HR "40ms"
 #define OPTION_VAL_45_HR NULL
 #define OPTION_VAL_55_HR NULL
-#define OPTION_VAL_60_HR NULL
+#define OPTION_VAL_60_HR "60 FPS"
 #define OPTION_VAL_65_HR NULL
 #define OPTION_VAL_70_HR NULL
 #define OPTION_VAL_80_HR NULL
@@ -17769,7 +17769,7 @@ struct retro_core_options_v2 options_he = {
 #define OPTION_VAL_105_HR NULL
 #define OPTION_VAL_110_HR NULL
 #define OPTION_VAL_115_HR NULL
-#define OPTION_VAL_120_HR NULL
+#define OPTION_VAL_120_HR "120x120"
 #define OPTION_VAL_125_HR NULL
 #define OPTION_VAL_130_HR NULL
 #define OPTION_VAL_135_HR NULL
@@ -17778,13 +17778,13 @@ struct retro_core_options_v2 options_he = {
 #define OPTION_VAL_175_HR NULL
 #define OPTION_VAL_250_HR NULL
 #define RPCS3_FRAME_LIMIT_LABEL_HR NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_HR NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_HR "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_HR NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_HR NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_HR NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_HR NULL
 #define OPTION_VAL_144_HR NULL
-#define OPTION_VAL_240_HR NULL
+#define OPTION_VAL_240_HR "240x240"
 #define RPCS3_SHADER_MODE_LABEL_HR NULL
 #define RPCS3_SHADER_MODE_INFO_0_HR NULL
 #define OPTION_VAL_ASYNC_HR NULL
@@ -17796,18 +17796,18 @@ struct retro_core_options_v2 options_he = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_HR NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_HR "Anizotropno filtriranje"
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_HR NULL
-#define OPTION_VAL_1_HR NULL
+#define OPTION_VAL_1_HR "1x1"
 #define OPTION_VAL_2_HR NULL
 #define OPTION_VAL_4_HR NULL
 #define OPTION_VAL_8_HR NULL
-#define OPTION_VAL_16_HR NULL
-#define RPCS3_MSAA_LABEL_HR NULL
-#define RPCS3_MSAA_INFO_0_HR NULL
+#define OPTION_VAL_16_HR "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_HR "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_HR "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_HR NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_HR NULL
-#define OPTION_VAL_LOW_HR NULL
+#define OPTION_VAL_LOW_HR "Niska"
 #define OPTION_VAL_NORMAL_HR NULL
-#define OPTION_VAL_HIGH_HR NULL
+#define OPTION_VAL_HIGH_HR "Visoka"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_HR NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_HR NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_HR NULL
@@ -17821,16 +17821,16 @@ struct retro_core_options_v2 options_he = {
 #define RPCS3_VERTEX_CACHE_LABEL_HR NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_HR NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_HR NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_HR NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_HR "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_HR NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_HR NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_HR "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_HR NULL
-#define OPTION_VAL_PRECISE_HR NULL
+#define OPTION_VAL_PRECISE_HR "Precise (Default)"
 #define RPCS3_CPU_BLIT_LABEL_HR NULL
 #define RPCS3_CPU_BLIT_INFO_0_HR NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_HR NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_HR NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_HR NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_HR "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_HR "0 (Default)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_HR NULL
 #define RPCS3_VBLANK_RATE_LABEL_HR NULL
 #define RPCS3_VBLANK_RATE_INFO_0_HR NULL
@@ -17873,9 +17873,9 @@ struct retro_core_options_v2 options_he = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_HR NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_HR NULL
 #define RPCS3_NETWORK_ENABLED_LABEL_HR NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_HR NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_HR "Lets games reach the internet. Takes effect when content is loaded."
 #define RPCS3_PSN_STATUS_LABEL_HR NULL
-#define RPCS3_PSN_STATUS_INFO_0_HR NULL
+#define RPCS3_PSN_STATUS_INFO_0_HR "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_HR NULL
 #define OPTION_VAL_RPCN_HR NULL
 #define RPCS3_UPNP_LABEL_HR NULL
@@ -17948,11 +17948,11 @@ struct retro_core_options_v2 options_he = {
 #define OPTION_VAL_CIRCLE_HR NULL
 #define RPCS3_LICENSE_AREA_LABEL_HR NULL
 #define RPCS3_LICENSE_AREA_INFO_0_HR NULL
-#define OPTION_VAL_USA_HR "SAD"
-#define OPTION_VAL_EU_HR "Europa"
-#define OPTION_VAL_JP_HR NULL
-#define OPTION_VAL_HK_HR NULL
-#define OPTION_VAL_KR_HR NULL
+#define OPTION_VAL_USA_HR "SCEA (Americas)"
+#define OPTION_VAL_EU_HR "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_HR "SCEJ (Japan)"
+#define OPTION_VAL_HK_HR "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_HR "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_HR NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_HR NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_HR NULL
@@ -18547,13 +18547,13 @@ struct retro_core_options_v2 options_hr = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_HU NULL
 #define OPTION_VAL_0_HU "Automatikus"
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_HU NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_HU NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_HU "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_HU NULL
 #define RPCS3_SPU_CACHE_INFO_0_HU NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_HU NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_HU NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_HU NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_HU NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_HU "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_HU NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_HU NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_HU NULL
@@ -18568,7 +18568,7 @@ struct retro_core_options_v2 options_hr = {
 #define OPTION_VAL_300_HU NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_HU NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_HU NULL
-#define OPTION_VAL_USLEEP_HU NULL
+#define OPTION_VAL_USLEEP_HU "Usleep Only"
 #define OPTION_VAL_ALL_TIMERS_HU NULL
 #define OPTION_VAL_AS_HOST_HU NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_HU NULL
@@ -18578,9 +18578,9 @@ struct retro_core_options_v2 options_hr = {
 #define OPTION_VAL_FORCED_HU NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_HU NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_HU NULL
-#define OPTION_VAL_RELAXED_HU NULL
+#define OPTION_VAL_RELAXED_HU "Relaxed"
 #define OPTION_VAL_ACCURATE_HU "Pontos"
-#define OPTION_VAL_ULTRA_HU NULL
+#define OPTION_VAL_ULTRA_HU "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_HU NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_HU NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_HU NULL
@@ -18591,14 +18591,14 @@ struct retro_core_options_v2 options_hr = {
 #define OPTION_VAL_VULKAN_HU NULL
 #define OPTION_VAL_NULL_HU NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_HU NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_HU NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_HU "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_HU NULL
-#define OPTION_VAL_30_HU NULL
+#define OPTION_VAL_30_HU "30 FPS"
 #define OPTION_VAL_35_HU NULL
-#define OPTION_VAL_40_HU NULL
+#define OPTION_VAL_40_HU "40ms"
 #define OPTION_VAL_45_HU NULL
 #define OPTION_VAL_55_HU NULL
-#define OPTION_VAL_60_HU NULL
+#define OPTION_VAL_60_HU "60 FPS"
 #define OPTION_VAL_65_HU NULL
 #define OPTION_VAL_70_HU NULL
 #define OPTION_VAL_80_HU NULL
@@ -18609,7 +18609,7 @@ struct retro_core_options_v2 options_hr = {
 #define OPTION_VAL_105_HU NULL
 #define OPTION_VAL_110_HU NULL
 #define OPTION_VAL_115_HU NULL
-#define OPTION_VAL_120_HU NULL
+#define OPTION_VAL_120_HU "120x120"
 #define OPTION_VAL_125_HU NULL
 #define OPTION_VAL_130_HU NULL
 #define OPTION_VAL_135_HU NULL
@@ -18618,13 +18618,13 @@ struct retro_core_options_v2 options_hr = {
 #define OPTION_VAL_175_HU NULL
 #define OPTION_VAL_250_HU NULL
 #define RPCS3_FRAME_LIMIT_LABEL_HU NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_HU NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_HU "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_HU NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_HU NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_HU NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_HU NULL
 #define OPTION_VAL_144_HU NULL
-#define OPTION_VAL_240_HU NULL
+#define OPTION_VAL_240_HU "240x240"
 #define RPCS3_SHADER_MODE_LABEL_HU NULL
 #define RPCS3_SHADER_MODE_INFO_0_HU NULL
 #define OPTION_VAL_ASYNC_HU NULL
@@ -18636,18 +18636,18 @@ struct retro_core_options_v2 options_hr = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_HU NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_HU "Anizotróp szûrés"
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_HU NULL
-#define OPTION_VAL_1_HU NULL
+#define OPTION_VAL_1_HU "1x1"
 #define OPTION_VAL_2_HU NULL
 #define OPTION_VAL_4_HU NULL
 #define OPTION_VAL_8_HU NULL
-#define OPTION_VAL_16_HU NULL
-#define RPCS3_MSAA_LABEL_HU NULL
-#define RPCS3_MSAA_INFO_0_HU NULL
+#define OPTION_VAL_16_HU "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_HU "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_HU "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_HU NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_HU NULL
-#define OPTION_VAL_LOW_HU NULL
-#define OPTION_VAL_NORMAL_HU "Normál"
-#define OPTION_VAL_HIGH_HU NULL
+#define OPTION_VAL_LOW_HU "Alacsony"
+#define OPTION_VAL_NORMAL_HU NULL
+#define OPTION_VAL_HIGH_HU "Magas"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_HU NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_HU NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_HU NULL
@@ -18661,16 +18661,16 @@ struct retro_core_options_v2 options_hr = {
 #define RPCS3_VERTEX_CACHE_LABEL_HU NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_HU NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_HU NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_HU NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_HU "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_HU NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_HU NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_HU "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_HU NULL
-#define OPTION_VAL_PRECISE_HU NULL
+#define OPTION_VAL_PRECISE_HU "Precise (Default)"
 #define RPCS3_CPU_BLIT_LABEL_HU NULL
 #define RPCS3_CPU_BLIT_INFO_0_HU NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_HU NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_HU NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_HU NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_HU "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_HU "0 (Default)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_HU NULL
 #define RPCS3_VBLANK_RATE_LABEL_HU NULL
 #define RPCS3_VBLANK_RATE_INFO_0_HU NULL
@@ -18713,9 +18713,9 @@ struct retro_core_options_v2 options_hr = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_HU NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_HU NULL
 #define RPCS3_NETWORK_ENABLED_LABEL_HU NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_HU NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_HU "Lets games reach the internet. Takes effect when content is loaded."
 #define RPCS3_PSN_STATUS_LABEL_HU NULL
-#define RPCS3_PSN_STATUS_INFO_0_HU NULL
+#define RPCS3_PSN_STATUS_INFO_0_HU "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_HU NULL
 #define OPTION_VAL_RPCN_HU NULL
 #define RPCS3_UPNP_LABEL_HU NULL
@@ -18732,7 +18732,7 @@ struct retro_core_options_v2 options_hr = {
 #define RPCS3_RPCN_SERVER_LABEL_HU NULL
 #define RPCS3_RPCN_SERVER_INFO_0_HU NULL
 #define OPTION_VAL_RPCN_RPCS3_NET_HU NULL
-#define OPTION_VAL_CUSTOM_HU "Egyedi"
+#define OPTION_VAL_CUSTOM_HU NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_HU NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_HU NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_HU NULL
@@ -18740,7 +18740,7 @@ struct retro_core_options_v2 options_hr = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_HU NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_HU NULL
 #define OPTION_VAL_FAST_HU "Gyors"
-#define OPTION_VAL_BALANCED_HU "Kiegyensúlyozott"
+#define OPTION_VAL_BALANCED_HU NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_HU NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_HU NULL
 #define OPTION_VAL_1000_HU NULL
@@ -18788,11 +18788,11 @@ struct retro_core_options_v2 options_hr = {
 #define OPTION_VAL_CIRCLE_HU NULL
 #define RPCS3_LICENSE_AREA_LABEL_HU NULL
 #define RPCS3_LICENSE_AREA_INFO_0_HU NULL
-#define OPTION_VAL_USA_HU NULL
-#define OPTION_VAL_EU_HU "Európa"
-#define OPTION_VAL_JP_HU "Japán"
-#define OPTION_VAL_HK_HU NULL
-#define OPTION_VAL_KR_HU NULL
+#define OPTION_VAL_USA_HU "SCEA (Americas)"
+#define OPTION_VAL_EU_HU "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_HU "SCEJ (Japan)"
+#define OPTION_VAL_HK_HU "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_HU "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_HU NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_HU NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_HU NULL
@@ -18802,7 +18802,7 @@ struct retro_core_options_v2 options_hr = {
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_HU NULL
 #define RPCS3_VFS_INIT_LABEL_HU NULL
 #define RPCS3_VFS_INIT_INFO_0_HU NULL
-#define OPTION_VAL_RESET_HU "Visszaállítás"
+#define OPTION_VAL_RESET_HU NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_HU NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_HU NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_HU NULL
@@ -19387,13 +19387,13 @@ struct retro_core_options_v2 options_hu = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_ID NULL
 #define OPTION_VAL_0_ID "Otomatis"
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_ID NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_ID NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_ID "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_ID NULL
 #define RPCS3_SPU_CACHE_INFO_0_ID NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_ID NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_ID NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_ID NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_ID NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_ID "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_ID NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_ID NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_ID NULL
@@ -19408,7 +19408,7 @@ struct retro_core_options_v2 options_hu = {
 #define OPTION_VAL_300_ID NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_ID NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_ID NULL
-#define OPTION_VAL_USLEEP_ID NULL
+#define OPTION_VAL_USLEEP_ID "Usleep Only"
 #define OPTION_VAL_ALL_TIMERS_ID NULL
 #define OPTION_VAL_AS_HOST_ID NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_ID NULL
@@ -19418,9 +19418,9 @@ struct retro_core_options_v2 options_hu = {
 #define OPTION_VAL_FORCED_ID NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_ID NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_ID NULL
-#define OPTION_VAL_RELAXED_ID NULL
+#define OPTION_VAL_RELAXED_ID "Relaxed"
 #define OPTION_VAL_ACCURATE_ID NULL
-#define OPTION_VAL_ULTRA_ID NULL
+#define OPTION_VAL_ULTRA_ID "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_ID NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_ID NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_ID NULL
@@ -19431,14 +19431,14 @@ struct retro_core_options_v2 options_hu = {
 #define OPTION_VAL_VULKAN_ID NULL
 #define OPTION_VAL_NULL_ID NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_ID NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_ID NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_ID "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_ID NULL
-#define OPTION_VAL_30_ID NULL
+#define OPTION_VAL_30_ID "30 FPS"
 #define OPTION_VAL_35_ID NULL
-#define OPTION_VAL_40_ID NULL
+#define OPTION_VAL_40_ID "40ms"
 #define OPTION_VAL_45_ID NULL
 #define OPTION_VAL_55_ID NULL
-#define OPTION_VAL_60_ID NULL
+#define OPTION_VAL_60_ID "60 FPS"
 #define OPTION_VAL_65_ID NULL
 #define OPTION_VAL_70_ID NULL
 #define OPTION_VAL_80_ID NULL
@@ -19449,7 +19449,7 @@ struct retro_core_options_v2 options_hu = {
 #define OPTION_VAL_105_ID NULL
 #define OPTION_VAL_110_ID NULL
 #define OPTION_VAL_115_ID NULL
-#define OPTION_VAL_120_ID NULL
+#define OPTION_VAL_120_ID "120x120"
 #define OPTION_VAL_125_ID NULL
 #define OPTION_VAL_130_ID NULL
 #define OPTION_VAL_135_ID NULL
@@ -19458,13 +19458,13 @@ struct retro_core_options_v2 options_hu = {
 #define OPTION_VAL_175_ID NULL
 #define OPTION_VAL_250_ID NULL
 #define RPCS3_FRAME_LIMIT_LABEL_ID NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_ID NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_ID "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_ID NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_ID NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_ID NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_ID NULL
 #define OPTION_VAL_144_ID NULL
-#define OPTION_VAL_240_ID NULL
+#define OPTION_VAL_240_ID "240x240"
 #define RPCS3_SHADER_MODE_LABEL_ID NULL
 #define RPCS3_SHADER_MODE_INFO_0_ID NULL
 #define OPTION_VAL_ASYNC_ID NULL
@@ -19476,18 +19476,18 @@ struct retro_core_options_v2 options_hu = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_ID NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_ID "Penyaringan Anisotropic"
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_ID NULL
-#define OPTION_VAL_1_ID NULL
+#define OPTION_VAL_1_ID "1x1"
 #define OPTION_VAL_2_ID NULL
 #define OPTION_VAL_4_ID NULL
 #define OPTION_VAL_8_ID NULL
-#define OPTION_VAL_16_ID NULL
-#define RPCS3_MSAA_LABEL_ID NULL
-#define RPCS3_MSAA_INFO_0_ID NULL
+#define OPTION_VAL_16_ID "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_ID "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_ID "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_ID NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_ID NULL
-#define OPTION_VAL_LOW_ID NULL
+#define OPTION_VAL_LOW_ID "Low"
 #define OPTION_VAL_NORMAL_ID NULL
-#define OPTION_VAL_HIGH_ID NULL
+#define OPTION_VAL_HIGH_ID "High"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_ID NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_ID NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_ID NULL
@@ -19501,16 +19501,16 @@ struct retro_core_options_v2 options_hu = {
 #define RPCS3_VERTEX_CACHE_LABEL_ID NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_ID NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_ID NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_ID NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_ID "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_ID NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_ID NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_ID "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_ID NULL
-#define OPTION_VAL_PRECISE_ID NULL
+#define OPTION_VAL_PRECISE_ID "Precise (Default)"
 #define RPCS3_CPU_BLIT_LABEL_ID NULL
 #define RPCS3_CPU_BLIT_INFO_0_ID NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_ID NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_ID NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_ID NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_ID "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_ID "0 (Default)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_ID NULL
 #define RPCS3_VBLANK_RATE_LABEL_ID NULL
 #define RPCS3_VBLANK_RATE_INFO_0_ID NULL
@@ -19553,9 +19553,9 @@ struct retro_core_options_v2 options_hu = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_ID NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_ID NULL
 #define RPCS3_NETWORK_ENABLED_LABEL_ID NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_ID NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_ID "Lets games reach the internet. Takes effect when content is loaded."
 #define RPCS3_PSN_STATUS_LABEL_ID NULL
-#define RPCS3_PSN_STATUS_INFO_0_ID NULL
+#define RPCS3_PSN_STATUS_INFO_0_ID "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_ID NULL
 #define OPTION_VAL_RPCN_ID NULL
 #define RPCS3_UPNP_LABEL_ID NULL
@@ -19628,11 +19628,11 @@ struct retro_core_options_v2 options_hu = {
 #define OPTION_VAL_CIRCLE_ID NULL
 #define RPCS3_LICENSE_AREA_LABEL_ID NULL
 #define RPCS3_LICENSE_AREA_INFO_0_ID NULL
-#define OPTION_VAL_USA_ID NULL
-#define OPTION_VAL_EU_ID "Eropa"
-#define OPTION_VAL_JP_ID "Jepang"
-#define OPTION_VAL_HK_ID NULL
-#define OPTION_VAL_KR_ID NULL
+#define OPTION_VAL_USA_ID "SCEA (Americas)"
+#define OPTION_VAL_EU_ID "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_ID "SCEJ (Japan)"
+#define OPTION_VAL_HK_ID "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_ID "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_ID NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_ID NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_ID NULL
@@ -20227,13 +20227,13 @@ struct retro_core_options_v2 options_id = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_IT NULL
 #define OPTION_VAL_0_IT NULL
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_IT NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_IT NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_IT "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_IT NULL
 #define RPCS3_SPU_CACHE_INFO_0_IT NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_IT NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_IT NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_IT NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_IT NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_IT "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_IT NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_IT NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_IT NULL
@@ -20248,7 +20248,7 @@ struct retro_core_options_v2 options_id = {
 #define OPTION_VAL_300_IT NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_IT NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_IT NULL
-#define OPTION_VAL_USLEEP_IT NULL
+#define OPTION_VAL_USLEEP_IT "Usleep Only"
 #define OPTION_VAL_ALL_TIMERS_IT NULL
 #define OPTION_VAL_AS_HOST_IT NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_IT NULL
@@ -20258,9 +20258,9 @@ struct retro_core_options_v2 options_id = {
 #define OPTION_VAL_FORCED_IT NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_IT NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_IT NULL
-#define OPTION_VAL_RELAXED_IT NULL
+#define OPTION_VAL_RELAXED_IT "Relaxed"
 #define OPTION_VAL_ACCURATE_IT "Preciso"
-#define OPTION_VAL_ULTRA_IT NULL
+#define OPTION_VAL_ULTRA_IT "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_IT NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_IT NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_IT NULL
@@ -20271,14 +20271,14 @@ struct retro_core_options_v2 options_id = {
 #define OPTION_VAL_VULKAN_IT NULL
 #define OPTION_VAL_NULL_IT NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_IT NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_IT NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_IT "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_IT NULL
-#define OPTION_VAL_30_IT NULL
+#define OPTION_VAL_30_IT "30 FPS"
 #define OPTION_VAL_35_IT NULL
-#define OPTION_VAL_40_IT NULL
+#define OPTION_VAL_40_IT "40ms"
 #define OPTION_VAL_45_IT NULL
 #define OPTION_VAL_55_IT NULL
-#define OPTION_VAL_60_IT NULL
+#define OPTION_VAL_60_IT "60 FPS"
 #define OPTION_VAL_65_IT NULL
 #define OPTION_VAL_70_IT NULL
 #define OPTION_VAL_80_IT NULL
@@ -20289,7 +20289,7 @@ struct retro_core_options_v2 options_id = {
 #define OPTION_VAL_105_IT NULL
 #define OPTION_VAL_110_IT NULL
 #define OPTION_VAL_115_IT NULL
-#define OPTION_VAL_120_IT NULL
+#define OPTION_VAL_120_IT "120x120"
 #define OPTION_VAL_125_IT NULL
 #define OPTION_VAL_130_IT NULL
 #define OPTION_VAL_135_IT NULL
@@ -20298,13 +20298,13 @@ struct retro_core_options_v2 options_id = {
 #define OPTION_VAL_175_IT NULL
 #define OPTION_VAL_250_IT NULL
 #define RPCS3_FRAME_LIMIT_LABEL_IT NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_IT NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_IT "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_IT NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_IT NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_IT NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_IT NULL
 #define OPTION_VAL_144_IT NULL
-#define OPTION_VAL_240_IT NULL
+#define OPTION_VAL_240_IT "240x240"
 #define RPCS3_SHADER_MODE_LABEL_IT NULL
 #define RPCS3_SHADER_MODE_INFO_0_IT NULL
 #define OPTION_VAL_ASYNC_IT NULL
@@ -20316,18 +20316,18 @@ struct retro_core_options_v2 options_id = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_IT NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_IT "Filtro Anisotropico"
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_IT NULL
-#define OPTION_VAL_1_IT NULL
+#define OPTION_VAL_1_IT "1x1"
 #define OPTION_VAL_2_IT NULL
 #define OPTION_VAL_4_IT NULL
 #define OPTION_VAL_8_IT NULL
-#define OPTION_VAL_16_IT NULL
-#define RPCS3_MSAA_LABEL_IT NULL
-#define RPCS3_MSAA_INFO_0_IT NULL
+#define OPTION_VAL_16_IT "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_IT "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_IT "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_IT NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_IT NULL
-#define OPTION_VAL_LOW_IT NULL
-#define OPTION_VAL_NORMAL_IT "Normale"
-#define OPTION_VAL_HIGH_IT NULL
+#define OPTION_VAL_LOW_IT "Basso"
+#define OPTION_VAL_NORMAL_IT NULL
+#define OPTION_VAL_HIGH_IT "Alta"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_IT NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_IT NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_IT NULL
@@ -20341,16 +20341,16 @@ struct retro_core_options_v2 options_id = {
 #define RPCS3_VERTEX_CACHE_LABEL_IT NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_IT NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_IT NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_IT NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_IT "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_IT NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_IT NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_IT "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_IT NULL
-#define OPTION_VAL_PRECISE_IT NULL
+#define OPTION_VAL_PRECISE_IT "Precise (Default)"
 #define RPCS3_CPU_BLIT_LABEL_IT NULL
 #define RPCS3_CPU_BLIT_INFO_0_IT NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_IT NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_IT NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_IT NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_IT "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_IT "0 (Default)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_IT NULL
 #define RPCS3_VBLANK_RATE_LABEL_IT NULL
 #define RPCS3_VBLANK_RATE_INFO_0_IT NULL
@@ -20393,9 +20393,9 @@ struct retro_core_options_v2 options_id = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_IT NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_IT NULL
 #define RPCS3_NETWORK_ENABLED_LABEL_IT NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_IT NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_IT "Lets games reach the internet. Takes effect when content is loaded."
 #define RPCS3_PSN_STATUS_LABEL_IT NULL
-#define RPCS3_PSN_STATUS_INFO_0_IT NULL
+#define RPCS3_PSN_STATUS_INFO_0_IT "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_IT NULL
 #define OPTION_VAL_RPCN_IT NULL
 #define RPCS3_UPNP_LABEL_IT NULL
@@ -20412,7 +20412,7 @@ struct retro_core_options_v2 options_id = {
 #define RPCS3_RPCN_SERVER_LABEL_IT NULL
 #define RPCS3_RPCN_SERVER_INFO_0_IT NULL
 #define OPTION_VAL_RPCN_RPCS3_NET_IT NULL
-#define OPTION_VAL_CUSTOM_IT "Personalizzato"
+#define OPTION_VAL_CUSTOM_IT NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_IT NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_IT NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_IT NULL
@@ -20420,7 +20420,7 @@ struct retro_core_options_v2 options_id = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_IT NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_IT NULL
 #define OPTION_VAL_FAST_IT "Veloce"
-#define OPTION_VAL_BALANCED_IT "Bilanciato"
+#define OPTION_VAL_BALANCED_IT NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_IT NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_IT NULL
 #define OPTION_VAL_1000_IT NULL
@@ -20468,11 +20468,11 @@ struct retro_core_options_v2 options_id = {
 #define OPTION_VAL_CIRCLE_IT NULL
 #define RPCS3_LICENSE_AREA_LABEL_IT NULL
 #define RPCS3_LICENSE_AREA_INFO_0_IT NULL
-#define OPTION_VAL_USA_IT NULL
-#define OPTION_VAL_EU_IT "Europa"
-#define OPTION_VAL_JP_IT "Giappone"
-#define OPTION_VAL_HK_IT NULL
-#define OPTION_VAL_KR_IT NULL
+#define OPTION_VAL_USA_IT "SCEA (Americas)"
+#define OPTION_VAL_EU_IT "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_IT "SCEJ (Japan)"
+#define OPTION_VAL_HK_IT "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_IT "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_IT NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_IT NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_IT NULL
@@ -20482,7 +20482,7 @@ struct retro_core_options_v2 options_id = {
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_IT NULL
 #define RPCS3_VFS_INIT_LABEL_IT NULL
 #define RPCS3_VFS_INIT_INFO_0_IT NULL
-#define OPTION_VAL_RESET_IT "Resetta"
+#define OPTION_VAL_RESET_IT NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_IT NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_IT NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_IT NULL
@@ -21067,13 +21067,13 @@ struct retro_core_options_v2 options_it = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_JA NULL
 #define OPTION_VAL_0_JA "自動"
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_JA NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_JA NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_JA "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_JA NULL
 #define RPCS3_SPU_CACHE_INFO_0_JA NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_JA NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_JA NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_JA NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_JA NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_JA "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_JA NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_JA NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_JA NULL
@@ -21088,7 +21088,7 @@ struct retro_core_options_v2 options_it = {
 #define OPTION_VAL_300_JA NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_JA NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_JA NULL
-#define OPTION_VAL_USLEEP_JA NULL
+#define OPTION_VAL_USLEEP_JA "Usleep Only"
 #define OPTION_VAL_ALL_TIMERS_JA NULL
 #define OPTION_VAL_AS_HOST_JA NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_JA NULL
@@ -21098,9 +21098,9 @@ struct retro_core_options_v2 options_it = {
 #define OPTION_VAL_FORCED_JA NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_JA NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_JA NULL
-#define OPTION_VAL_RELAXED_JA NULL
+#define OPTION_VAL_RELAXED_JA "Relaxed"
 #define OPTION_VAL_ACCURATE_JA "正確"
-#define OPTION_VAL_ULTRA_JA NULL
+#define OPTION_VAL_ULTRA_JA "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_JA NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_JA NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_JA NULL
@@ -21111,14 +21111,14 @@ struct retro_core_options_v2 options_it = {
 #define OPTION_VAL_VULKAN_JA NULL
 #define OPTION_VAL_NULL_JA NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_JA NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_JA NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_JA "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_JA NULL
-#define OPTION_VAL_30_JA NULL
+#define OPTION_VAL_30_JA "30 FPS"
 #define OPTION_VAL_35_JA NULL
-#define OPTION_VAL_40_JA NULL
+#define OPTION_VAL_40_JA "40ms"
 #define OPTION_VAL_45_JA NULL
 #define OPTION_VAL_55_JA NULL
-#define OPTION_VAL_60_JA NULL
+#define OPTION_VAL_60_JA "60 FPS"
 #define OPTION_VAL_65_JA NULL
 #define OPTION_VAL_70_JA NULL
 #define OPTION_VAL_80_JA NULL
@@ -21129,7 +21129,7 @@ struct retro_core_options_v2 options_it = {
 #define OPTION_VAL_105_JA NULL
 #define OPTION_VAL_110_JA NULL
 #define OPTION_VAL_115_JA NULL
-#define OPTION_VAL_120_JA NULL
+#define OPTION_VAL_120_JA "120x120"
 #define OPTION_VAL_125_JA NULL
 #define OPTION_VAL_130_JA NULL
 #define OPTION_VAL_135_JA NULL
@@ -21138,13 +21138,13 @@ struct retro_core_options_v2 options_it = {
 #define OPTION_VAL_175_JA NULL
 #define OPTION_VAL_250_JA NULL
 #define RPCS3_FRAME_LIMIT_LABEL_JA NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_JA NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_JA "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_JA NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_JA NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_JA NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_JA NULL
 #define OPTION_VAL_144_JA NULL
-#define OPTION_VAL_240_JA NULL
+#define OPTION_VAL_240_JA "240x240"
 #define RPCS3_SHADER_MODE_LABEL_JA NULL
 #define RPCS3_SHADER_MODE_INFO_0_JA NULL
 #define OPTION_VAL_ASYNC_JA NULL
@@ -21156,18 +21156,18 @@ struct retro_core_options_v2 options_it = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_JA NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_JA "異方性フィルタリング"
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_JA NULL
-#define OPTION_VAL_1_JA NULL
+#define OPTION_VAL_1_JA "1x1"
 #define OPTION_VAL_2_JA NULL
 #define OPTION_VAL_4_JA NULL
 #define OPTION_VAL_8_JA NULL
-#define OPTION_VAL_16_JA NULL
-#define RPCS3_MSAA_LABEL_JA NULL
-#define RPCS3_MSAA_INFO_0_JA NULL
+#define OPTION_VAL_16_JA "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_JA "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_JA "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_JA NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_JA NULL
-#define OPTION_VAL_LOW_JA NULL
-#define OPTION_VAL_NORMAL_JA "通常"
-#define OPTION_VAL_HIGH_JA NULL
+#define OPTION_VAL_LOW_JA "低"
+#define OPTION_VAL_NORMAL_JA NULL
+#define OPTION_VAL_HIGH_JA "高"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_JA NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_JA NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_JA NULL
@@ -21181,16 +21181,16 @@ struct retro_core_options_v2 options_it = {
 #define RPCS3_VERTEX_CACHE_LABEL_JA NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_JA NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_JA NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_JA NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_JA "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_JA NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_JA NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_JA "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_JA NULL
-#define OPTION_VAL_PRECISE_JA NULL
+#define OPTION_VAL_PRECISE_JA "Precise (Default)"
 #define RPCS3_CPU_BLIT_LABEL_JA NULL
 #define RPCS3_CPU_BLIT_INFO_0_JA NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_JA NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_JA NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_JA NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_JA "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_JA "0 (Default)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_JA NULL
 #define RPCS3_VBLANK_RATE_LABEL_JA NULL
 #define RPCS3_VBLANK_RATE_INFO_0_JA NULL
@@ -21233,9 +21233,9 @@ struct retro_core_options_v2 options_it = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_JA NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_JA NULL
 #define RPCS3_NETWORK_ENABLED_LABEL_JA NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_JA NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_JA "Lets games reach the internet. Takes effect when content is loaded."
 #define RPCS3_PSN_STATUS_LABEL_JA NULL
-#define RPCS3_PSN_STATUS_INFO_0_JA NULL
+#define RPCS3_PSN_STATUS_INFO_0_JA "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_JA NULL
 #define OPTION_VAL_RPCN_JA NULL
 #define RPCS3_UPNP_LABEL_JA NULL
@@ -21252,7 +21252,7 @@ struct retro_core_options_v2 options_it = {
 #define RPCS3_RPCN_SERVER_LABEL_JA NULL
 #define RPCS3_RPCN_SERVER_INFO_0_JA NULL
 #define OPTION_VAL_RPCN_RPCS3_NET_JA NULL
-#define OPTION_VAL_CUSTOM_JA "カスタム"
+#define OPTION_VAL_CUSTOM_JA NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_JA NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_JA NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_JA NULL
@@ -21260,7 +21260,7 @@ struct retro_core_options_v2 options_it = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_JA NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_JA NULL
 #define OPTION_VAL_FAST_JA "高速"
-#define OPTION_VAL_BALANCED_JA "バランス"
+#define OPTION_VAL_BALANCED_JA NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_JA NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_JA NULL
 #define OPTION_VAL_1000_JA NULL
@@ -21308,11 +21308,11 @@ struct retro_core_options_v2 options_it = {
 #define OPTION_VAL_CIRCLE_JA NULL
 #define RPCS3_LICENSE_AREA_LABEL_JA NULL
 #define RPCS3_LICENSE_AREA_INFO_0_JA NULL
-#define OPTION_VAL_USA_JA NULL
-#define OPTION_VAL_EU_JA "ヨーロッパ"
-#define OPTION_VAL_JP_JA "日本"
-#define OPTION_VAL_HK_JA NULL
-#define OPTION_VAL_KR_JA NULL
+#define OPTION_VAL_USA_JA "SCEA (Americas)"
+#define OPTION_VAL_EU_JA "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_JA "SCEJ (Japan)"
+#define OPTION_VAL_HK_JA "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_JA "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_JA NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_JA NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_JA NULL
@@ -21322,7 +21322,7 @@ struct retro_core_options_v2 options_it = {
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_JA NULL
 #define RPCS3_VFS_INIT_LABEL_JA NULL
 #define RPCS3_VFS_INIT_INFO_0_JA NULL
-#define OPTION_VAL_RESET_JA "リセット"
+#define OPTION_VAL_RESET_JA NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_JA NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_JA NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_JA NULL
@@ -21907,13 +21907,13 @@ struct retro_core_options_v2 options_ja = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_KO NULL
 #define OPTION_VAL_0_KO "자동"
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_KO NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_KO NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_KO "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_KO NULL
 #define RPCS3_SPU_CACHE_INFO_0_KO NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_KO NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_KO NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_KO NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_KO NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_KO "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_KO NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_KO NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_KO NULL
@@ -21928,19 +21928,19 @@ struct retro_core_options_v2 options_ja = {
 #define OPTION_VAL_300_KO NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_KO NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_KO NULL
-#define OPTION_VAL_USLEEP_KO NULL
+#define OPTION_VAL_USLEEP_KO "Usleep Only"
 #define OPTION_VAL_ALL_TIMERS_KO NULL
 #define OPTION_VAL_AS_HOST_KO NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_KO NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_KO NULL
 #define RPCS3_ENABLE_TSX_LABEL_KO NULL
 #define RPCS3_ENABLE_TSX_INFO_0_KO NULL
-#define OPTION_VAL_FORCED_KO "강제로"
+#define OPTION_VAL_FORCED_KO NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_KO NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_KO NULL
-#define OPTION_VAL_RELAXED_KO NULL
+#define OPTION_VAL_RELAXED_KO "여유롭게"
 #define OPTION_VAL_ACCURATE_KO "정확하게"
-#define OPTION_VAL_ULTRA_KO NULL
+#define OPTION_VAL_ULTRA_KO "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_KO NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_KO NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_KO NULL
@@ -21951,14 +21951,14 @@ struct retro_core_options_v2 options_ja = {
 #define OPTION_VAL_VULKAN_KO NULL
 #define OPTION_VAL_NULL_KO NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_KO NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_KO NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_KO "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_KO NULL
-#define OPTION_VAL_30_KO NULL
+#define OPTION_VAL_30_KO "30 FPS"
 #define OPTION_VAL_35_KO NULL
-#define OPTION_VAL_40_KO NULL
+#define OPTION_VAL_40_KO "40ms"
 #define OPTION_VAL_45_KO NULL
 #define OPTION_VAL_55_KO NULL
-#define OPTION_VAL_60_KO NULL
+#define OPTION_VAL_60_KO "60 FPS"
 #define OPTION_VAL_65_KO NULL
 #define OPTION_VAL_70_KO NULL
 #define OPTION_VAL_80_KO NULL
@@ -21969,7 +21969,7 @@ struct retro_core_options_v2 options_ja = {
 #define OPTION_VAL_105_KO NULL
 #define OPTION_VAL_110_KO NULL
 #define OPTION_VAL_115_KO NULL
-#define OPTION_VAL_120_KO NULL
+#define OPTION_VAL_120_KO "120x120"
 #define OPTION_VAL_125_KO NULL
 #define OPTION_VAL_130_KO NULL
 #define OPTION_VAL_135_KO NULL
@@ -21978,13 +21978,13 @@ struct retro_core_options_v2 options_ja = {
 #define OPTION_VAL_175_KO NULL
 #define OPTION_VAL_250_KO NULL
 #define RPCS3_FRAME_LIMIT_LABEL_KO NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_KO NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_KO "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_KO NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_KO NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_KO NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_KO NULL
 #define OPTION_VAL_144_KO NULL
-#define OPTION_VAL_240_KO NULL
+#define OPTION_VAL_240_KO "240x240"
 #define RPCS3_SHADER_MODE_LABEL_KO NULL
 #define RPCS3_SHADER_MODE_INFO_0_KO NULL
 #define OPTION_VAL_ASYNC_KO NULL
@@ -21996,18 +21996,18 @@ struct retro_core_options_v2 options_ja = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_KO NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_KO "비등방성 필터링"
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_KO NULL
-#define OPTION_VAL_1_KO NULL
+#define OPTION_VAL_1_KO "1x1"
 #define OPTION_VAL_2_KO NULL
 #define OPTION_VAL_4_KO NULL
 #define OPTION_VAL_8_KO NULL
-#define OPTION_VAL_16_KO NULL
-#define RPCS3_MSAA_LABEL_KO NULL
-#define RPCS3_MSAA_INFO_0_KO NULL
+#define OPTION_VAL_16_KO "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_KO "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_KO "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_KO NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_KO NULL
-#define OPTION_VAL_LOW_KO NULL
-#define OPTION_VAL_NORMAL_KO "보통"
-#define OPTION_VAL_HIGH_KO NULL
+#define OPTION_VAL_LOW_KO "낮음"
+#define OPTION_VAL_NORMAL_KO NULL
+#define OPTION_VAL_HIGH_KO "높음"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_KO NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_KO NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_KO NULL
@@ -22021,16 +22021,16 @@ struct retro_core_options_v2 options_ja = {
 #define RPCS3_VERTEX_CACHE_LABEL_KO NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_KO NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_KO NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_KO NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_KO "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_KO NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_KO NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_KO "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_KO NULL
-#define OPTION_VAL_PRECISE_KO NULL
+#define OPTION_VAL_PRECISE_KO "Precise (Default)"
 #define RPCS3_CPU_BLIT_LABEL_KO NULL
 #define RPCS3_CPU_BLIT_INFO_0_KO NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_KO NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_KO NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_KO NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_KO "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_KO "0 (Default)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_KO NULL
 #define RPCS3_VBLANK_RATE_LABEL_KO NULL
 #define RPCS3_VBLANK_RATE_INFO_0_KO NULL
@@ -22073,9 +22073,9 @@ struct retro_core_options_v2 options_ja = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_KO NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_KO NULL
 #define RPCS3_NETWORK_ENABLED_LABEL_KO NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_KO NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_KO "Lets games reach the internet. Takes effect when content is loaded."
 #define RPCS3_PSN_STATUS_LABEL_KO NULL
-#define RPCS3_PSN_STATUS_INFO_0_KO NULL
+#define RPCS3_PSN_STATUS_INFO_0_KO "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_KO NULL
 #define OPTION_VAL_RPCN_KO NULL
 #define RPCS3_UPNP_LABEL_KO NULL
@@ -22092,7 +22092,7 @@ struct retro_core_options_v2 options_ja = {
 #define RPCS3_RPCN_SERVER_LABEL_KO NULL
 #define RPCS3_RPCN_SERVER_INFO_0_KO NULL
 #define OPTION_VAL_RPCN_RPCS3_NET_KO NULL
-#define OPTION_VAL_CUSTOM_KO "사용자"
+#define OPTION_VAL_CUSTOM_KO NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_KO NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_KO NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_KO NULL
@@ -22100,7 +22100,7 @@ struct retro_core_options_v2 options_ja = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_KO NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_KO NULL
 #define OPTION_VAL_FAST_KO "빠르게"
-#define OPTION_VAL_BALANCED_KO "균형"
+#define OPTION_VAL_BALANCED_KO NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_KO NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_KO NULL
 #define OPTION_VAL_1000_KO NULL
@@ -22148,11 +22148,11 @@ struct retro_core_options_v2 options_ja = {
 #define OPTION_VAL_CIRCLE_KO NULL
 #define RPCS3_LICENSE_AREA_LABEL_KO NULL
 #define RPCS3_LICENSE_AREA_INFO_0_KO NULL
-#define OPTION_VAL_USA_KO "미국"
-#define OPTION_VAL_EU_KO "유럽"
-#define OPTION_VAL_JP_KO "일본"
-#define OPTION_VAL_HK_KO NULL
-#define OPTION_VAL_KR_KO NULL
+#define OPTION_VAL_USA_KO "SCEA (Americas)"
+#define OPTION_VAL_EU_KO "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_KO "SCEJ (Japan)"
+#define OPTION_VAL_HK_KO "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_KO "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_KO NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_KO NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_KO NULL
@@ -22162,7 +22162,7 @@ struct retro_core_options_v2 options_ja = {
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_KO NULL
 #define RPCS3_VFS_INIT_LABEL_KO NULL
 #define RPCS3_VFS_INIT_INFO_0_KO NULL
-#define OPTION_VAL_RESET_KO "초기화"
+#define OPTION_VAL_RESET_KO NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_KO NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_KO NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_KO NULL
@@ -22747,13 +22747,13 @@ struct retro_core_options_v2 options_ko = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_NL NULL
 #define OPTION_VAL_0_NL "Automatisch"
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_NL NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_NL NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_NL "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_NL NULL
 #define RPCS3_SPU_CACHE_INFO_0_NL NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_NL NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_NL NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_NL NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_NL NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_NL "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_NL NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_NL NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_NL NULL
@@ -22768,7 +22768,7 @@ struct retro_core_options_v2 options_ko = {
 #define OPTION_VAL_300_NL NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_NL NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_NL NULL
-#define OPTION_VAL_USLEEP_NL NULL
+#define OPTION_VAL_USLEEP_NL "Usleep Only"
 #define OPTION_VAL_ALL_TIMERS_NL NULL
 #define OPTION_VAL_AS_HOST_NL NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_NL NULL
@@ -22778,9 +22778,9 @@ struct retro_core_options_v2 options_ko = {
 #define OPTION_VAL_FORCED_NL NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_NL NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_NL NULL
-#define OPTION_VAL_RELAXED_NL NULL
+#define OPTION_VAL_RELAXED_NL "Relaxed"
 #define OPTION_VAL_ACCURATE_NL NULL
-#define OPTION_VAL_ULTRA_NL NULL
+#define OPTION_VAL_ULTRA_NL "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_NL NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_NL NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_NL NULL
@@ -22791,14 +22791,14 @@ struct retro_core_options_v2 options_ko = {
 #define OPTION_VAL_VULKAN_NL NULL
 #define OPTION_VAL_NULL_NL NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_NL NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_NL NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_NL "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_NL NULL
-#define OPTION_VAL_30_NL NULL
+#define OPTION_VAL_30_NL "30 FPS"
 #define OPTION_VAL_35_NL NULL
-#define OPTION_VAL_40_NL NULL
+#define OPTION_VAL_40_NL "40ms"
 #define OPTION_VAL_45_NL NULL
 #define OPTION_VAL_55_NL NULL
-#define OPTION_VAL_60_NL NULL
+#define OPTION_VAL_60_NL "60 FPS"
 #define OPTION_VAL_65_NL NULL
 #define OPTION_VAL_70_NL NULL
 #define OPTION_VAL_80_NL NULL
@@ -22809,7 +22809,7 @@ struct retro_core_options_v2 options_ko = {
 #define OPTION_VAL_105_NL NULL
 #define OPTION_VAL_110_NL NULL
 #define OPTION_VAL_115_NL NULL
-#define OPTION_VAL_120_NL NULL
+#define OPTION_VAL_120_NL "120x120"
 #define OPTION_VAL_125_NL NULL
 #define OPTION_VAL_130_NL NULL
 #define OPTION_VAL_135_NL NULL
@@ -22818,13 +22818,13 @@ struct retro_core_options_v2 options_ko = {
 #define OPTION_VAL_175_NL NULL
 #define OPTION_VAL_250_NL NULL
 #define RPCS3_FRAME_LIMIT_LABEL_NL NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_NL NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_NL "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_NL NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_NL NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_NL NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_NL NULL
 #define OPTION_VAL_144_NL NULL
-#define OPTION_VAL_240_NL NULL
+#define OPTION_VAL_240_NL "240x240"
 #define RPCS3_SHADER_MODE_LABEL_NL NULL
 #define RPCS3_SHADER_MODE_INFO_0_NL NULL
 #define OPTION_VAL_ASYNC_NL NULL
@@ -22836,18 +22836,18 @@ struct retro_core_options_v2 options_ko = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_NL NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_NL NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_NL NULL
-#define OPTION_VAL_1_NL NULL
+#define OPTION_VAL_1_NL "1x1"
 #define OPTION_VAL_2_NL NULL
 #define OPTION_VAL_4_NL NULL
 #define OPTION_VAL_8_NL NULL
-#define OPTION_VAL_16_NL NULL
-#define RPCS3_MSAA_LABEL_NL NULL
-#define RPCS3_MSAA_INFO_0_NL NULL
+#define OPTION_VAL_16_NL "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_NL "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_NL "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_NL NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_NL NULL
-#define OPTION_VAL_LOW_NL NULL
-#define OPTION_VAL_NORMAL_NL "Normaal"
-#define OPTION_VAL_HIGH_NL NULL
+#define OPTION_VAL_LOW_NL "Low"
+#define OPTION_VAL_NORMAL_NL NULL
+#define OPTION_VAL_HIGH_NL "High"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_NL NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_NL NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_NL NULL
@@ -22861,16 +22861,16 @@ struct retro_core_options_v2 options_ko = {
 #define RPCS3_VERTEX_CACHE_LABEL_NL NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_NL NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_NL NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_NL NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_NL "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_NL NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_NL NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_NL "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_NL NULL
-#define OPTION_VAL_PRECISE_NL NULL
+#define OPTION_VAL_PRECISE_NL "Precise (Default)"
 #define RPCS3_CPU_BLIT_LABEL_NL NULL
 #define RPCS3_CPU_BLIT_INFO_0_NL NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_NL NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_NL NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_NL NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_NL "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_NL "0 (Default)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_NL NULL
 #define RPCS3_VBLANK_RATE_LABEL_NL NULL
 #define RPCS3_VBLANK_RATE_INFO_0_NL NULL
@@ -22913,9 +22913,9 @@ struct retro_core_options_v2 options_ko = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_NL NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_NL NULL
 #define RPCS3_NETWORK_ENABLED_LABEL_NL NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_NL NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_NL "Lets games reach the internet. Takes effect when content is loaded."
 #define RPCS3_PSN_STATUS_LABEL_NL NULL
-#define RPCS3_PSN_STATUS_INFO_0_NL NULL
+#define RPCS3_PSN_STATUS_INFO_0_NL "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_NL NULL
 #define OPTION_VAL_RPCN_NL NULL
 #define RPCS3_UPNP_LABEL_NL NULL
@@ -22932,7 +22932,7 @@ struct retro_core_options_v2 options_ko = {
 #define RPCS3_RPCN_SERVER_LABEL_NL NULL
 #define RPCS3_RPCN_SERVER_INFO_0_NL NULL
 #define OPTION_VAL_RPCN_RPCS3_NET_NL NULL
-#define OPTION_VAL_CUSTOM_NL "Aangepast"
+#define OPTION_VAL_CUSTOM_NL NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_NL NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_NL NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_NL NULL
@@ -22940,7 +22940,7 @@ struct retro_core_options_v2 options_ko = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_NL NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_NL NULL
 #define OPTION_VAL_FAST_NL "Snel"
-#define OPTION_VAL_BALANCED_NL "Gebalanceerd"
+#define OPTION_VAL_BALANCED_NL NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_NL NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_NL NULL
 #define OPTION_VAL_1000_NL NULL
@@ -22988,11 +22988,11 @@ struct retro_core_options_v2 options_ko = {
 #define OPTION_VAL_CIRCLE_NL NULL
 #define RPCS3_LICENSE_AREA_LABEL_NL NULL
 #define RPCS3_LICENSE_AREA_INFO_0_NL NULL
-#define OPTION_VAL_USA_NL NULL
-#define OPTION_VAL_EU_NL NULL
-#define OPTION_VAL_JP_NL NULL
-#define OPTION_VAL_HK_NL NULL
-#define OPTION_VAL_KR_NL NULL
+#define OPTION_VAL_USA_NL "SCEA (Americas)"
+#define OPTION_VAL_EU_NL "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_NL "SCEJ (Japan)"
+#define OPTION_VAL_HK_NL "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_NL "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_NL NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_NL NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_NL NULL
@@ -23587,13 +23587,13 @@ struct retro_core_options_v2 options_nl = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_NO NULL
 #define OPTION_VAL_0_NO NULL
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_NO NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_NO NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_NO "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_NO NULL
 #define RPCS3_SPU_CACHE_INFO_0_NO NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_NO NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_NO NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_NO NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_NO NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_NO "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_NO NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_NO NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_NO NULL
@@ -23608,7 +23608,7 @@ struct retro_core_options_v2 options_nl = {
 #define OPTION_VAL_300_NO NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_NO NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_NO NULL
-#define OPTION_VAL_USLEEP_NO NULL
+#define OPTION_VAL_USLEEP_NO "Usleep Only"
 #define OPTION_VAL_ALL_TIMERS_NO NULL
 #define OPTION_VAL_AS_HOST_NO NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_NO NULL
@@ -23618,9 +23618,9 @@ struct retro_core_options_v2 options_nl = {
 #define OPTION_VAL_FORCED_NO NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_NO NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_NO NULL
-#define OPTION_VAL_RELAXED_NO NULL
+#define OPTION_VAL_RELAXED_NO "Relaxed"
 #define OPTION_VAL_ACCURATE_NO NULL
-#define OPTION_VAL_ULTRA_NO NULL
+#define OPTION_VAL_ULTRA_NO "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_NO NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_NO NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_NO NULL
@@ -23631,14 +23631,14 @@ struct retro_core_options_v2 options_nl = {
 #define OPTION_VAL_VULKAN_NO NULL
 #define OPTION_VAL_NULL_NO NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_NO NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_NO NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_NO "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_NO NULL
-#define OPTION_VAL_30_NO NULL
+#define OPTION_VAL_30_NO "30 FPS"
 #define OPTION_VAL_35_NO NULL
-#define OPTION_VAL_40_NO NULL
+#define OPTION_VAL_40_NO "40ms"
 #define OPTION_VAL_45_NO NULL
 #define OPTION_VAL_55_NO NULL
-#define OPTION_VAL_60_NO NULL
+#define OPTION_VAL_60_NO "60 FPS"
 #define OPTION_VAL_65_NO NULL
 #define OPTION_VAL_70_NO NULL
 #define OPTION_VAL_80_NO NULL
@@ -23649,7 +23649,7 @@ struct retro_core_options_v2 options_nl = {
 #define OPTION_VAL_105_NO NULL
 #define OPTION_VAL_110_NO NULL
 #define OPTION_VAL_115_NO NULL
-#define OPTION_VAL_120_NO NULL
+#define OPTION_VAL_120_NO "120x120"
 #define OPTION_VAL_125_NO NULL
 #define OPTION_VAL_130_NO NULL
 #define OPTION_VAL_135_NO NULL
@@ -23658,13 +23658,13 @@ struct retro_core_options_v2 options_nl = {
 #define OPTION_VAL_175_NO NULL
 #define OPTION_VAL_250_NO NULL
 #define RPCS3_FRAME_LIMIT_LABEL_NO NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_NO NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_NO "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_NO NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_NO NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_NO NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_NO NULL
 #define OPTION_VAL_144_NO NULL
-#define OPTION_VAL_240_NO NULL
+#define OPTION_VAL_240_NO "240x240"
 #define RPCS3_SHADER_MODE_LABEL_NO NULL
 #define RPCS3_SHADER_MODE_INFO_0_NO NULL
 #define OPTION_VAL_ASYNC_NO NULL
@@ -23676,18 +23676,18 @@ struct retro_core_options_v2 options_nl = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_NO NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_NO NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_NO NULL
-#define OPTION_VAL_1_NO NULL
+#define OPTION_VAL_1_NO "1x1"
 #define OPTION_VAL_2_NO NULL
 #define OPTION_VAL_4_NO NULL
 #define OPTION_VAL_8_NO NULL
-#define OPTION_VAL_16_NO NULL
-#define RPCS3_MSAA_LABEL_NO NULL
-#define RPCS3_MSAA_INFO_0_NO NULL
+#define OPTION_VAL_16_NO "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_NO "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_NO "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_NO NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_NO NULL
-#define OPTION_VAL_LOW_NO NULL
+#define OPTION_VAL_LOW_NO "Low"
 #define OPTION_VAL_NORMAL_NO NULL
-#define OPTION_VAL_HIGH_NO NULL
+#define OPTION_VAL_HIGH_NO "High"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_NO NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_NO NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_NO NULL
@@ -23701,16 +23701,16 @@ struct retro_core_options_v2 options_nl = {
 #define RPCS3_VERTEX_CACHE_LABEL_NO NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_NO NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_NO NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_NO NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_NO "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_NO NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_NO NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_NO "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_NO NULL
-#define OPTION_VAL_PRECISE_NO NULL
+#define OPTION_VAL_PRECISE_NO "Precise (Default)"
 #define RPCS3_CPU_BLIT_LABEL_NO NULL
 #define RPCS3_CPU_BLIT_INFO_0_NO NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_NO NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_NO NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_NO NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_NO "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_NO "0 (Default)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_NO NULL
 #define RPCS3_VBLANK_RATE_LABEL_NO NULL
 #define RPCS3_VBLANK_RATE_INFO_0_NO NULL
@@ -23753,9 +23753,9 @@ struct retro_core_options_v2 options_nl = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_NO NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_NO NULL
 #define RPCS3_NETWORK_ENABLED_LABEL_NO NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_NO NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_NO "Lets games reach the internet. Takes effect when content is loaded."
 #define RPCS3_PSN_STATUS_LABEL_NO NULL
-#define RPCS3_PSN_STATUS_INFO_0_NO NULL
+#define RPCS3_PSN_STATUS_INFO_0_NO "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_NO NULL
 #define OPTION_VAL_RPCN_NO NULL
 #define RPCS3_UPNP_LABEL_NO NULL
@@ -23780,7 +23780,7 @@ struct retro_core_options_v2 options_nl = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_NO NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_NO NULL
 #define OPTION_VAL_FAST_NO NULL
-#define OPTION_VAL_BALANCED_NO "Balansert"
+#define OPTION_VAL_BALANCED_NO NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_NO NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_NO NULL
 #define OPTION_VAL_1000_NO NULL
@@ -23828,11 +23828,11 @@ struct retro_core_options_v2 options_nl = {
 #define OPTION_VAL_CIRCLE_NO NULL
 #define RPCS3_LICENSE_AREA_LABEL_NO NULL
 #define RPCS3_LICENSE_AREA_INFO_0_NO NULL
-#define OPTION_VAL_USA_NO NULL
-#define OPTION_VAL_EU_NO NULL
-#define OPTION_VAL_JP_NO NULL
-#define OPTION_VAL_HK_NO NULL
-#define OPTION_VAL_KR_NO NULL
+#define OPTION_VAL_USA_NO "SCEA (Americas)"
+#define OPTION_VAL_EU_NO "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_NO "SCEJ (Japan)"
+#define OPTION_VAL_HK_NO "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_NO "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_NO NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_NO NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_NO NULL
@@ -23842,7 +23842,7 @@ struct retro_core_options_v2 options_nl = {
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_NO NULL
 #define RPCS3_VFS_INIT_LABEL_NO NULL
 #define RPCS3_VFS_INIT_INFO_0_NO NULL
-#define OPTION_VAL_RESET_NO "Nullstill"
+#define OPTION_VAL_RESET_NO NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_NO NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_NO NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_NO NULL
@@ -24427,13 +24427,13 @@ struct retro_core_options_v2 options_no = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_OR NULL
 #define OPTION_VAL_0_OR NULL
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_OR NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_OR NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_OR "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_OR NULL
 #define RPCS3_SPU_CACHE_INFO_0_OR NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_OR NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_OR NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_OR NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_OR NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_OR "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_OR NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_OR NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_OR NULL
@@ -24448,7 +24448,7 @@ struct retro_core_options_v2 options_no = {
 #define OPTION_VAL_300_OR NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_OR NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_OR NULL
-#define OPTION_VAL_USLEEP_OR NULL
+#define OPTION_VAL_USLEEP_OR "Usleep Only"
 #define OPTION_VAL_ALL_TIMERS_OR NULL
 #define OPTION_VAL_AS_HOST_OR NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_OR NULL
@@ -24458,9 +24458,9 @@ struct retro_core_options_v2 options_no = {
 #define OPTION_VAL_FORCED_OR NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_OR NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_OR NULL
-#define OPTION_VAL_RELAXED_OR NULL
+#define OPTION_VAL_RELAXED_OR "Relaxed"
 #define OPTION_VAL_ACCURATE_OR NULL
-#define OPTION_VAL_ULTRA_OR NULL
+#define OPTION_VAL_ULTRA_OR "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_OR NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_OR NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_OR NULL
@@ -24471,14 +24471,14 @@ struct retro_core_options_v2 options_no = {
 #define OPTION_VAL_VULKAN_OR NULL
 #define OPTION_VAL_NULL_OR NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_OR NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_OR NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_OR "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_OR NULL
-#define OPTION_VAL_30_OR NULL
+#define OPTION_VAL_30_OR "30 FPS"
 #define OPTION_VAL_35_OR NULL
-#define OPTION_VAL_40_OR NULL
+#define OPTION_VAL_40_OR "40ms"
 #define OPTION_VAL_45_OR NULL
 #define OPTION_VAL_55_OR NULL
-#define OPTION_VAL_60_OR NULL
+#define OPTION_VAL_60_OR "60 FPS"
 #define OPTION_VAL_65_OR NULL
 #define OPTION_VAL_70_OR NULL
 #define OPTION_VAL_80_OR NULL
@@ -24489,7 +24489,7 @@ struct retro_core_options_v2 options_no = {
 #define OPTION_VAL_105_OR NULL
 #define OPTION_VAL_110_OR NULL
 #define OPTION_VAL_115_OR NULL
-#define OPTION_VAL_120_OR NULL
+#define OPTION_VAL_120_OR "120x120"
 #define OPTION_VAL_125_OR NULL
 #define OPTION_VAL_130_OR NULL
 #define OPTION_VAL_135_OR NULL
@@ -24498,13 +24498,13 @@ struct retro_core_options_v2 options_no = {
 #define OPTION_VAL_175_OR NULL
 #define OPTION_VAL_250_OR NULL
 #define RPCS3_FRAME_LIMIT_LABEL_OR NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_OR NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_OR "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_OR NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_OR NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_OR NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_OR NULL
 #define OPTION_VAL_144_OR NULL
-#define OPTION_VAL_240_OR NULL
+#define OPTION_VAL_240_OR "240x240"
 #define RPCS3_SHADER_MODE_LABEL_OR NULL
 #define RPCS3_SHADER_MODE_INFO_0_OR NULL
 #define OPTION_VAL_ASYNC_OR NULL
@@ -24516,18 +24516,18 @@ struct retro_core_options_v2 options_no = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_OR NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_OR NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_OR NULL
-#define OPTION_VAL_1_OR NULL
+#define OPTION_VAL_1_OR "1x1"
 #define OPTION_VAL_2_OR NULL
 #define OPTION_VAL_4_OR NULL
 #define OPTION_VAL_8_OR NULL
-#define OPTION_VAL_16_OR NULL
-#define RPCS3_MSAA_LABEL_OR NULL
-#define RPCS3_MSAA_INFO_0_OR NULL
+#define OPTION_VAL_16_OR "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_OR "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_OR "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_OR NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_OR NULL
-#define OPTION_VAL_LOW_OR NULL
+#define OPTION_VAL_LOW_OR "Low"
 #define OPTION_VAL_NORMAL_OR NULL
-#define OPTION_VAL_HIGH_OR NULL
+#define OPTION_VAL_HIGH_OR "High"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_OR NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_OR NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_OR NULL
@@ -24541,16 +24541,16 @@ struct retro_core_options_v2 options_no = {
 #define RPCS3_VERTEX_CACHE_LABEL_OR NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_OR NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_OR NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_OR NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_OR "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_OR NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_OR NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_OR "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_OR NULL
-#define OPTION_VAL_PRECISE_OR NULL
+#define OPTION_VAL_PRECISE_OR "Precise (Default)"
 #define RPCS3_CPU_BLIT_LABEL_OR NULL
 #define RPCS3_CPU_BLIT_INFO_0_OR NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_OR NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_OR NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_OR NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_OR "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_OR "0 (Default)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_OR NULL
 #define RPCS3_VBLANK_RATE_LABEL_OR NULL
 #define RPCS3_VBLANK_RATE_INFO_0_OR NULL
@@ -24593,9 +24593,9 @@ struct retro_core_options_v2 options_no = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_OR NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_OR NULL
 #define RPCS3_NETWORK_ENABLED_LABEL_OR NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_OR NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_OR "Lets games reach the internet. Takes effect when content is loaded."
 #define RPCS3_PSN_STATUS_LABEL_OR NULL
-#define RPCS3_PSN_STATUS_INFO_0_OR NULL
+#define RPCS3_PSN_STATUS_INFO_0_OR "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_OR NULL
 #define OPTION_VAL_RPCN_OR NULL
 #define RPCS3_UPNP_LABEL_OR NULL
@@ -24668,11 +24668,11 @@ struct retro_core_options_v2 options_no = {
 #define OPTION_VAL_CIRCLE_OR NULL
 #define RPCS3_LICENSE_AREA_LABEL_OR NULL
 #define RPCS3_LICENSE_AREA_INFO_0_OR NULL
-#define OPTION_VAL_USA_OR NULL
-#define OPTION_VAL_EU_OR NULL
-#define OPTION_VAL_JP_OR NULL
-#define OPTION_VAL_HK_OR NULL
-#define OPTION_VAL_KR_OR NULL
+#define OPTION_VAL_USA_OR "SCEA (Americas)"
+#define OPTION_VAL_EU_OR "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_OR "SCEJ (Japan)"
+#define OPTION_VAL_HK_OR "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_OR "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_OR NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_OR NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_OR NULL
@@ -25267,13 +25267,13 @@ struct retro_core_options_v2 options_or = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_PL NULL
 #define OPTION_VAL_0_PL "Automatyczny"
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_PL NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_PL NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_PL "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_PL NULL
 #define RPCS3_SPU_CACHE_INFO_0_PL NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_PL NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_PL NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_PL NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_PL NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_PL "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_PL NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_PL NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_PL NULL
@@ -25288,19 +25288,19 @@ struct retro_core_options_v2 options_or = {
 #define OPTION_VAL_300_PL NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_PL NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_PL NULL
-#define OPTION_VAL_USLEEP_PL NULL
+#define OPTION_VAL_USLEEP_PL "Usleep Only"
 #define OPTION_VAL_ALL_TIMERS_PL NULL
 #define OPTION_VAL_AS_HOST_PL NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_PL NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_PL NULL
 #define RPCS3_ENABLE_TSX_LABEL_PL NULL
 #define RPCS3_ENABLE_TSX_INFO_0_PL NULL
-#define OPTION_VAL_FORCED_PL "Wymuszony"
+#define OPTION_VAL_FORCED_PL NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_PL NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_PL NULL
-#define OPTION_VAL_RELAXED_PL NULL
+#define OPTION_VAL_RELAXED_PL "Relaxed"
 #define OPTION_VAL_ACCURATE_PL "Dokładna"
-#define OPTION_VAL_ULTRA_PL NULL
+#define OPTION_VAL_ULTRA_PL "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_PL NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_PL NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_PL NULL
@@ -25311,14 +25311,14 @@ struct retro_core_options_v2 options_or = {
 #define OPTION_VAL_VULKAN_PL NULL
 #define OPTION_VAL_NULL_PL NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_PL NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_PL NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_PL "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_PL NULL
-#define OPTION_VAL_30_PL "30 %"
+#define OPTION_VAL_30_PL "30 FPS"
 #define OPTION_VAL_35_PL NULL
-#define OPTION_VAL_40_PL NULL
+#define OPTION_VAL_40_PL "40ms"
 #define OPTION_VAL_45_PL NULL
 #define OPTION_VAL_55_PL NULL
-#define OPTION_VAL_60_PL "60 %"
+#define OPTION_VAL_60_PL "60 FPS"
 #define OPTION_VAL_65_PL NULL
 #define OPTION_VAL_70_PL NULL
 #define OPTION_VAL_80_PL "80 %"
@@ -25329,7 +25329,7 @@ struct retro_core_options_v2 options_or = {
 #define OPTION_VAL_105_PL NULL
 #define OPTION_VAL_110_PL NULL
 #define OPTION_VAL_115_PL NULL
-#define OPTION_VAL_120_PL NULL
+#define OPTION_VAL_120_PL "120x120"
 #define OPTION_VAL_125_PL NULL
 #define OPTION_VAL_130_PL NULL
 #define OPTION_VAL_135_PL NULL
@@ -25338,13 +25338,13 @@ struct retro_core_options_v2 options_or = {
 #define OPTION_VAL_175_PL NULL
 #define OPTION_VAL_250_PL NULL
 #define RPCS3_FRAME_LIMIT_LABEL_PL NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_PL NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_PL "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_PL NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_PL NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_PL NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_PL NULL
 #define OPTION_VAL_144_PL NULL
-#define OPTION_VAL_240_PL NULL
+#define OPTION_VAL_240_PL "240x240"
 #define RPCS3_SHADER_MODE_LABEL_PL NULL
 #define RPCS3_SHADER_MODE_INFO_0_PL NULL
 #define OPTION_VAL_ASYNC_PL NULL
@@ -25356,18 +25356,18 @@ struct retro_core_options_v2 options_or = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_PL NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_PL "Filtrowanie anizotropowe"
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_PL NULL
-#define OPTION_VAL_1_PL NULL
+#define OPTION_VAL_1_PL "1x1"
 #define OPTION_VAL_2_PL NULL
 #define OPTION_VAL_4_PL NULL
 #define OPTION_VAL_8_PL NULL
-#define OPTION_VAL_16_PL NULL
-#define RPCS3_MSAA_LABEL_PL NULL
-#define RPCS3_MSAA_INFO_0_PL NULL
+#define OPTION_VAL_16_PL "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_PL "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_PL "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_PL NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_PL NULL
-#define OPTION_VAL_LOW_PL NULL
-#define OPTION_VAL_NORMAL_PL "Normalnie"
-#define OPTION_VAL_HIGH_PL NULL
+#define OPTION_VAL_LOW_PL "Niski"
+#define OPTION_VAL_NORMAL_PL NULL
+#define OPTION_VAL_HIGH_PL "Wysoki"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_PL NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_PL NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_PL NULL
@@ -25381,16 +25381,16 @@ struct retro_core_options_v2 options_or = {
 #define RPCS3_VERTEX_CACHE_LABEL_PL NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_PL NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_PL NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_PL NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_PL "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_PL NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_PL NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_PL "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_PL NULL
-#define OPTION_VAL_PRECISE_PL NULL
+#define OPTION_VAL_PRECISE_PL "Precise (Default)"
 #define RPCS3_CPU_BLIT_LABEL_PL NULL
 #define RPCS3_CPU_BLIT_INFO_0_PL NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_PL NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_PL NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_PL NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_PL "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_PL "0 (domyślnie)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_PL NULL
 #define RPCS3_VBLANK_RATE_LABEL_PL NULL
 #define RPCS3_VBLANK_RATE_INFO_0_PL NULL
@@ -25433,9 +25433,9 @@ struct retro_core_options_v2 options_or = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_PL NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_PL NULL
 #define RPCS3_NETWORK_ENABLED_LABEL_PL NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_PL NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_PL "Lets games reach the internet. Takes effect when content is loaded."
 #define RPCS3_PSN_STATUS_LABEL_PL NULL
-#define RPCS3_PSN_STATUS_INFO_0_PL NULL
+#define RPCS3_PSN_STATUS_INFO_0_PL "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_PL NULL
 #define OPTION_VAL_RPCN_PL NULL
 #define RPCS3_UPNP_LABEL_PL NULL
@@ -25452,7 +25452,7 @@ struct retro_core_options_v2 options_or = {
 #define RPCS3_RPCN_SERVER_LABEL_PL NULL
 #define RPCS3_RPCN_SERVER_INFO_0_PL NULL
 #define OPTION_VAL_RPCN_RPCS3_NET_PL NULL
-#define OPTION_VAL_CUSTOM_PL "Niestandardowy"
+#define OPTION_VAL_CUSTOM_PL NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_PL NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_PL NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_PL NULL
@@ -25460,7 +25460,7 @@ struct retro_core_options_v2 options_or = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_PL NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_PL NULL
 #define OPTION_VAL_FAST_PL "Szybko"
-#define OPTION_VAL_BALANCED_PL "Zbalansowany"
+#define OPTION_VAL_BALANCED_PL NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_PL NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_PL NULL
 #define OPTION_VAL_1000_PL NULL
@@ -25508,11 +25508,11 @@ struct retro_core_options_v2 options_or = {
 #define OPTION_VAL_CIRCLE_PL NULL
 #define RPCS3_LICENSE_AREA_LABEL_PL NULL
 #define RPCS3_LICENSE_AREA_INFO_0_PL NULL
-#define OPTION_VAL_USA_PL NULL
-#define OPTION_VAL_EU_PL "Europa"
-#define OPTION_VAL_JP_PL "Japonia"
-#define OPTION_VAL_HK_PL NULL
-#define OPTION_VAL_KR_PL NULL
+#define OPTION_VAL_USA_PL "SCEA (Americas)"
+#define OPTION_VAL_EU_PL "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_PL "SCEJ (Japan)"
+#define OPTION_VAL_HK_PL "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_PL "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_PL NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_PL NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_PL NULL
@@ -26107,13 +26107,13 @@ struct retro_core_options_v2 options_pl = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_PT_BR NULL
 #define OPTION_VAL_0_PT_BR "Automático"
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_PT_BR NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_PT_BR NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_PT_BR "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_PT_BR NULL
 #define RPCS3_SPU_CACHE_INFO_0_PT_BR NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_PT_BR NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_PT_BR NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_PT_BR NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_PT_BR NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_PT_BR "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_PT_BR NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_PT_BR NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_PT_BR NULL
@@ -26128,7 +26128,7 @@ struct retro_core_options_v2 options_pl = {
 #define OPTION_VAL_300_PT_BR NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_PT_BR NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_PT_BR NULL
-#define OPTION_VAL_USLEEP_PT_BR NULL
+#define OPTION_VAL_USLEEP_PT_BR "Usleep Only"
 #define OPTION_VAL_ALL_TIMERS_PT_BR NULL
 #define OPTION_VAL_AS_HOST_PT_BR NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_PT_BR NULL
@@ -26138,9 +26138,9 @@ struct retro_core_options_v2 options_pl = {
 #define OPTION_VAL_FORCED_PT_BR NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_PT_BR NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_PT_BR NULL
-#define OPTION_VAL_RELAXED_PT_BR NULL
+#define OPTION_VAL_RELAXED_PT_BR "Relaxed"
 #define OPTION_VAL_ACCURATE_PT_BR "Modo precisão"
-#define OPTION_VAL_ULTRA_PT_BR NULL
+#define OPTION_VAL_ULTRA_PT_BR "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_PT_BR NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_PT_BR NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_PT_BR NULL
@@ -26151,14 +26151,14 @@ struct retro_core_options_v2 options_pl = {
 #define OPTION_VAL_VULKAN_PT_BR NULL
 #define OPTION_VAL_NULL_PT_BR NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_PT_BR NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_PT_BR NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_PT_BR "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_PT_BR NULL
-#define OPTION_VAL_30_PT_BR NULL
+#define OPTION_VAL_30_PT_BR "30 FPS"
 #define OPTION_VAL_35_PT_BR NULL
-#define OPTION_VAL_40_PT_BR NULL
+#define OPTION_VAL_40_PT_BR "40ms"
 #define OPTION_VAL_45_PT_BR NULL
 #define OPTION_VAL_55_PT_BR NULL
-#define OPTION_VAL_60_PT_BR NULL
+#define OPTION_VAL_60_PT_BR "60 FPS"
 #define OPTION_VAL_65_PT_BR NULL
 #define OPTION_VAL_70_PT_BR NULL
 #define OPTION_VAL_80_PT_BR NULL
@@ -26169,7 +26169,7 @@ struct retro_core_options_v2 options_pl = {
 #define OPTION_VAL_105_PT_BR NULL
 #define OPTION_VAL_110_PT_BR NULL
 #define OPTION_VAL_115_PT_BR NULL
-#define OPTION_VAL_120_PT_BR NULL
+#define OPTION_VAL_120_PT_BR "120x120"
 #define OPTION_VAL_125_PT_BR NULL
 #define OPTION_VAL_130_PT_BR NULL
 #define OPTION_VAL_135_PT_BR NULL
@@ -26178,13 +26178,13 @@ struct retro_core_options_v2 options_pl = {
 #define OPTION_VAL_175_PT_BR NULL
 #define OPTION_VAL_250_PT_BR NULL
 #define RPCS3_FRAME_LIMIT_LABEL_PT_BR NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_PT_BR NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_PT_BR "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_PT_BR NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_PT_BR NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_PT_BR NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_PT_BR NULL
 #define OPTION_VAL_144_PT_BR NULL
-#define OPTION_VAL_240_PT_BR NULL
+#define OPTION_VAL_240_PT_BR "240x240"
 #define RPCS3_SHADER_MODE_LABEL_PT_BR NULL
 #define RPCS3_SHADER_MODE_INFO_0_PT_BR NULL
 #define OPTION_VAL_ASYNC_PT_BR NULL
@@ -26196,18 +26196,18 @@ struct retro_core_options_v2 options_pl = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_PT_BR NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_PT_BR "Filtro anisotrópico"
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_PT_BR NULL
-#define OPTION_VAL_1_PT_BR NULL
+#define OPTION_VAL_1_PT_BR "1x1"
 #define OPTION_VAL_2_PT_BR NULL
 #define OPTION_VAL_4_PT_BR NULL
 #define OPTION_VAL_8_PT_BR NULL
-#define OPTION_VAL_16_PT_BR NULL
-#define RPCS3_MSAA_LABEL_PT_BR NULL
-#define RPCS3_MSAA_INFO_0_PT_BR NULL
+#define OPTION_VAL_16_PT_BR "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_PT_BR "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_PT_BR "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_PT_BR NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_PT_BR NULL
-#define OPTION_VAL_LOW_PT_BR NULL
+#define OPTION_VAL_LOW_PT_BR "Baixa"
 #define OPTION_VAL_NORMAL_PT_BR NULL
-#define OPTION_VAL_HIGH_PT_BR NULL
+#define OPTION_VAL_HIGH_PT_BR "Alta"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_PT_BR NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_PT_BR NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_PT_BR NULL
@@ -26221,16 +26221,16 @@ struct retro_core_options_v2 options_pl = {
 #define RPCS3_VERTEX_CACHE_LABEL_PT_BR NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_PT_BR NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_PT_BR NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_PT_BR NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_PT_BR "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_PT_BR NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_PT_BR NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_PT_BR "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_PT_BR NULL
-#define OPTION_VAL_PRECISE_PT_BR NULL
+#define OPTION_VAL_PRECISE_PT_BR "Precise (Default)"
 #define RPCS3_CPU_BLIT_LABEL_PT_BR NULL
 #define RPCS3_CPU_BLIT_INFO_0_PT_BR NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_PT_BR NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_PT_BR NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_PT_BR NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_PT_BR "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_PT_BR "0 (Default)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_PT_BR NULL
 #define RPCS3_VBLANK_RATE_LABEL_PT_BR NULL
 #define RPCS3_VBLANK_RATE_INFO_0_PT_BR NULL
@@ -26273,9 +26273,9 @@ struct retro_core_options_v2 options_pl = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_PT_BR NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_PT_BR NULL
 #define RPCS3_NETWORK_ENABLED_LABEL_PT_BR NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_PT_BR NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_PT_BR "Lets games reach the internet. Takes effect when content is loaded."
 #define RPCS3_PSN_STATUS_LABEL_PT_BR NULL
-#define RPCS3_PSN_STATUS_INFO_0_PT_BR NULL
+#define RPCS3_PSN_STATUS_INFO_0_PT_BR "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_PT_BR NULL
 #define OPTION_VAL_RPCN_PT_BR NULL
 #define RPCS3_UPNP_LABEL_PT_BR NULL
@@ -26292,7 +26292,7 @@ struct retro_core_options_v2 options_pl = {
 #define RPCS3_RPCN_SERVER_LABEL_PT_BR NULL
 #define RPCS3_RPCN_SERVER_INFO_0_PT_BR NULL
 #define OPTION_VAL_RPCN_RPCS3_NET_PT_BR NULL
-#define OPTION_VAL_CUSTOM_PT_BR "Personalizado"
+#define OPTION_VAL_CUSTOM_PT_BR NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_PT_BR NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_PT_BR NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_PT_BR NULL
@@ -26300,7 +26300,7 @@ struct retro_core_options_v2 options_pl = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_PT_BR NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_PT_BR NULL
 #define OPTION_VAL_FAST_PT_BR "Rápida"
-#define OPTION_VAL_BALANCED_PT_BR "Balanceado"
+#define OPTION_VAL_BALANCED_PT_BR NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_PT_BR NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_PT_BR NULL
 #define OPTION_VAL_1000_PT_BR NULL
@@ -26348,11 +26348,11 @@ struct retro_core_options_v2 options_pl = {
 #define OPTION_VAL_CIRCLE_PT_BR NULL
 #define RPCS3_LICENSE_AREA_LABEL_PT_BR NULL
 #define RPCS3_LICENSE_AREA_INFO_0_PT_BR NULL
-#define OPTION_VAL_USA_PT_BR "EUA"
-#define OPTION_VAL_EU_PT_BR "Europa"
-#define OPTION_VAL_JP_PT_BR "Japão"
-#define OPTION_VAL_HK_PT_BR NULL
-#define OPTION_VAL_KR_PT_BR NULL
+#define OPTION_VAL_USA_PT_BR "SCEA (Americas)"
+#define OPTION_VAL_EU_PT_BR "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_PT_BR "SCEJ (Japan)"
+#define OPTION_VAL_HK_PT_BR "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_PT_BR "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_PT_BR NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_PT_BR NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_PT_BR NULL
@@ -26362,7 +26362,7 @@ struct retro_core_options_v2 options_pl = {
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_PT_BR NULL
 #define RPCS3_VFS_INIT_LABEL_PT_BR NULL
 #define RPCS3_VFS_INIT_INFO_0_PT_BR NULL
-#define OPTION_VAL_RESET_PT_BR "Reiniciar"
+#define OPTION_VAL_RESET_PT_BR NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_PT_BR NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_PT_BR NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_PT_BR NULL
@@ -26947,13 +26947,13 @@ struct retro_core_options_v2 options_pt_br = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_PT_PT NULL
 #define OPTION_VAL_0_PT_PT "Automático"
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_PT_PT NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_PT_PT NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_PT_PT "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_PT_PT NULL
 #define RPCS3_SPU_CACHE_INFO_0_PT_PT NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_PT_PT NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_PT_PT NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_PT_PT NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_PT_PT NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_PT_PT "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_PT_PT NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_PT_PT NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_PT_PT NULL
@@ -26968,7 +26968,7 @@ struct retro_core_options_v2 options_pt_br = {
 #define OPTION_VAL_300_PT_PT NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_PT_PT NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_PT_PT NULL
-#define OPTION_VAL_USLEEP_PT_PT NULL
+#define OPTION_VAL_USLEEP_PT_PT "Usleep Only"
 #define OPTION_VAL_ALL_TIMERS_PT_PT NULL
 #define OPTION_VAL_AS_HOST_PT_PT NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_PT_PT NULL
@@ -26978,9 +26978,9 @@ struct retro_core_options_v2 options_pt_br = {
 #define OPTION_VAL_FORCED_PT_PT NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_PT_PT NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_PT_PT NULL
-#define OPTION_VAL_RELAXED_PT_PT NULL
+#define OPTION_VAL_RELAXED_PT_PT "Relaxed"
 #define OPTION_VAL_ACCURATE_PT_PT NULL
-#define OPTION_VAL_ULTRA_PT_PT NULL
+#define OPTION_VAL_ULTRA_PT_PT "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_PT_PT NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_PT_PT NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_PT_PT NULL
@@ -26991,14 +26991,14 @@ struct retro_core_options_v2 options_pt_br = {
 #define OPTION_VAL_VULKAN_PT_PT NULL
 #define OPTION_VAL_NULL_PT_PT NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_PT_PT NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_PT_PT NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_PT_PT "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_PT_PT NULL
-#define OPTION_VAL_30_PT_PT NULL
+#define OPTION_VAL_30_PT_PT "30 FPS"
 #define OPTION_VAL_35_PT_PT NULL
-#define OPTION_VAL_40_PT_PT NULL
+#define OPTION_VAL_40_PT_PT "40ms"
 #define OPTION_VAL_45_PT_PT NULL
 #define OPTION_VAL_55_PT_PT NULL
-#define OPTION_VAL_60_PT_PT NULL
+#define OPTION_VAL_60_PT_PT "60 FPS"
 #define OPTION_VAL_65_PT_PT NULL
 #define OPTION_VAL_70_PT_PT NULL
 #define OPTION_VAL_80_PT_PT NULL
@@ -27009,7 +27009,7 @@ struct retro_core_options_v2 options_pt_br = {
 #define OPTION_VAL_105_PT_PT NULL
 #define OPTION_VAL_110_PT_PT NULL
 #define OPTION_VAL_115_PT_PT NULL
-#define OPTION_VAL_120_PT_PT NULL
+#define OPTION_VAL_120_PT_PT "120x120"
 #define OPTION_VAL_125_PT_PT NULL
 #define OPTION_VAL_130_PT_PT NULL
 #define OPTION_VAL_135_PT_PT NULL
@@ -27018,13 +27018,13 @@ struct retro_core_options_v2 options_pt_br = {
 #define OPTION_VAL_175_PT_PT NULL
 #define OPTION_VAL_250_PT_PT NULL
 #define RPCS3_FRAME_LIMIT_LABEL_PT_PT NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_PT_PT NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_PT_PT "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_PT_PT NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_PT_PT NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_PT_PT NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_PT_PT NULL
 #define OPTION_VAL_144_PT_PT NULL
-#define OPTION_VAL_240_PT_PT NULL
+#define OPTION_VAL_240_PT_PT "240x240"
 #define RPCS3_SHADER_MODE_LABEL_PT_PT NULL
 #define RPCS3_SHADER_MODE_INFO_0_PT_PT NULL
 #define OPTION_VAL_ASYNC_PT_PT NULL
@@ -27036,18 +27036,18 @@ struct retro_core_options_v2 options_pt_br = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_PT_PT NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_PT_PT NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_PT_PT NULL
-#define OPTION_VAL_1_PT_PT NULL
+#define OPTION_VAL_1_PT_PT "1x1"
 #define OPTION_VAL_2_PT_PT NULL
 #define OPTION_VAL_4_PT_PT NULL
 #define OPTION_VAL_8_PT_PT NULL
-#define OPTION_VAL_16_PT_PT NULL
-#define RPCS3_MSAA_LABEL_PT_PT NULL
-#define RPCS3_MSAA_INFO_0_PT_PT NULL
+#define OPTION_VAL_16_PT_PT "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_PT_PT "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_PT_PT "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_PT_PT NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_PT_PT NULL
-#define OPTION_VAL_LOW_PT_PT NULL
+#define OPTION_VAL_LOW_PT_PT "Low"
 #define OPTION_VAL_NORMAL_PT_PT NULL
-#define OPTION_VAL_HIGH_PT_PT NULL
+#define OPTION_VAL_HIGH_PT_PT "High"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_PT_PT NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_PT_PT NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_PT_PT NULL
@@ -27061,16 +27061,16 @@ struct retro_core_options_v2 options_pt_br = {
 #define RPCS3_VERTEX_CACHE_LABEL_PT_PT NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_PT_PT NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_PT_PT NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_PT_PT NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_PT_PT "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_PT_PT NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_PT_PT NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_PT_PT "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_PT_PT NULL
-#define OPTION_VAL_PRECISE_PT_PT NULL
+#define OPTION_VAL_PRECISE_PT_PT "Precise (Default)"
 #define RPCS3_CPU_BLIT_LABEL_PT_PT NULL
 #define RPCS3_CPU_BLIT_INFO_0_PT_PT NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_PT_PT NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_PT_PT NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_PT_PT NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_PT_PT "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_PT_PT "0 (Default)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_PT_PT NULL
 #define RPCS3_VBLANK_RATE_LABEL_PT_PT NULL
 #define RPCS3_VBLANK_RATE_INFO_0_PT_PT NULL
@@ -27113,9 +27113,9 @@ struct retro_core_options_v2 options_pt_br = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_PT_PT NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_PT_PT NULL
 #define RPCS3_NETWORK_ENABLED_LABEL_PT_PT NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_PT_PT NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_PT_PT "Lets games reach the internet. Takes effect when content is loaded."
 #define RPCS3_PSN_STATUS_LABEL_PT_PT NULL
-#define RPCS3_PSN_STATUS_INFO_0_PT_PT NULL
+#define RPCS3_PSN_STATUS_INFO_0_PT_PT "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_PT_PT NULL
 #define OPTION_VAL_RPCN_PT_PT NULL
 #define RPCS3_UPNP_LABEL_PT_PT NULL
@@ -27132,7 +27132,7 @@ struct retro_core_options_v2 options_pt_br = {
 #define RPCS3_RPCN_SERVER_LABEL_PT_PT NULL
 #define RPCS3_RPCN_SERVER_INFO_0_PT_PT NULL
 #define OPTION_VAL_RPCN_RPCS3_NET_PT_PT NULL
-#define OPTION_VAL_CUSTOM_PT_PT "Personalizar"
+#define OPTION_VAL_CUSTOM_PT_PT NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_PT_PT NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_PT_PT NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_PT_PT NULL
@@ -27188,11 +27188,11 @@ struct retro_core_options_v2 options_pt_br = {
 #define OPTION_VAL_CIRCLE_PT_PT NULL
 #define RPCS3_LICENSE_AREA_LABEL_PT_PT NULL
 #define RPCS3_LICENSE_AREA_INFO_0_PT_PT NULL
-#define OPTION_VAL_USA_PT_PT NULL
-#define OPTION_VAL_EU_PT_PT NULL
-#define OPTION_VAL_JP_PT_PT NULL
-#define OPTION_VAL_HK_PT_PT NULL
-#define OPTION_VAL_KR_PT_PT NULL
+#define OPTION_VAL_USA_PT_PT "SCEA (Americas)"
+#define OPTION_VAL_EU_PT_PT "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_PT_PT "SCEJ (Japan)"
+#define OPTION_VAL_HK_PT_PT "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_PT_PT "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_PT_PT NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_PT_PT NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_PT_PT NULL
@@ -27202,7 +27202,7 @@ struct retro_core_options_v2 options_pt_br = {
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_PT_PT NULL
 #define RPCS3_VFS_INIT_LABEL_PT_PT NULL
 #define RPCS3_VFS_INIT_INFO_0_PT_PT NULL
-#define OPTION_VAL_RESET_PT_PT "Reiniciar (reset)"
+#define OPTION_VAL_RESET_PT_PT NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_PT_PT NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_PT_PT NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_PT_PT NULL
@@ -27787,13 +27787,13 @@ struct retro_core_options_v2 options_pt_pt = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_RU NULL
 #define OPTION_VAL_0_RU "Автоматически"
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_RU NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_RU NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_RU "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_RU NULL
 #define RPCS3_SPU_CACHE_INFO_0_RU NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_RU NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_RU NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_RU NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_RU NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_RU "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_RU NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_RU NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_RU NULL
@@ -27808,7 +27808,7 @@ struct retro_core_options_v2 options_pt_pt = {
 #define OPTION_VAL_300_RU NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_RU NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_RU NULL
-#define OPTION_VAL_USLEEP_RU NULL
+#define OPTION_VAL_USLEEP_RU "Usleep Only"
 #define OPTION_VAL_ALL_TIMERS_RU NULL
 #define OPTION_VAL_AS_HOST_RU NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_RU NULL
@@ -27818,9 +27818,9 @@ struct retro_core_options_v2 options_pt_pt = {
 #define OPTION_VAL_FORCED_RU NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_RU NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_RU NULL
-#define OPTION_VAL_RELAXED_RU NULL
+#define OPTION_VAL_RELAXED_RU "Relaxed"
 #define OPTION_VAL_ACCURATE_RU "Точный"
-#define OPTION_VAL_ULTRA_RU NULL
+#define OPTION_VAL_ULTRA_RU "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_RU NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_RU NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_RU NULL
@@ -27831,14 +27831,14 @@ struct retro_core_options_v2 options_pt_pt = {
 #define OPTION_VAL_VULKAN_RU NULL
 #define OPTION_VAL_NULL_RU NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_RU NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_RU NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_RU "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_RU NULL
-#define OPTION_VAL_30_RU NULL
+#define OPTION_VAL_30_RU "30 FPS"
 #define OPTION_VAL_35_RU NULL
-#define OPTION_VAL_40_RU NULL
+#define OPTION_VAL_40_RU "40ms"
 #define OPTION_VAL_45_RU NULL
 #define OPTION_VAL_55_RU NULL
-#define OPTION_VAL_60_RU NULL
+#define OPTION_VAL_60_RU "60 FPS"
 #define OPTION_VAL_65_RU NULL
 #define OPTION_VAL_70_RU NULL
 #define OPTION_VAL_80_RU NULL
@@ -27849,7 +27849,7 @@ struct retro_core_options_v2 options_pt_pt = {
 #define OPTION_VAL_105_RU NULL
 #define OPTION_VAL_110_RU NULL
 #define OPTION_VAL_115_RU NULL
-#define OPTION_VAL_120_RU NULL
+#define OPTION_VAL_120_RU "120x120"
 #define OPTION_VAL_125_RU NULL
 #define OPTION_VAL_130_RU NULL
 #define OPTION_VAL_135_RU NULL
@@ -27858,13 +27858,13 @@ struct retro_core_options_v2 options_pt_pt = {
 #define OPTION_VAL_175_RU NULL
 #define OPTION_VAL_250_RU NULL
 #define RPCS3_FRAME_LIMIT_LABEL_RU NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_RU NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_RU "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_RU NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_RU NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_RU NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_RU NULL
 #define OPTION_VAL_144_RU NULL
-#define OPTION_VAL_240_RU NULL
+#define OPTION_VAL_240_RU "240x240"
 #define RPCS3_SHADER_MODE_LABEL_RU NULL
 #define RPCS3_SHADER_MODE_INFO_0_RU NULL
 #define OPTION_VAL_ASYNC_RU NULL
@@ -27876,18 +27876,18 @@ struct retro_core_options_v2 options_pt_pt = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_RU NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_RU "Анизотропная фильтрация"
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_RU NULL
-#define OPTION_VAL_1_RU NULL
+#define OPTION_VAL_1_RU "1x1"
 #define OPTION_VAL_2_RU NULL
 #define OPTION_VAL_4_RU NULL
 #define OPTION_VAL_8_RU NULL
-#define OPTION_VAL_16_RU NULL
-#define RPCS3_MSAA_LABEL_RU NULL
-#define RPCS3_MSAA_INFO_0_RU NULL
+#define OPTION_VAL_16_RU "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_RU "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_RU "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_RU NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_RU NULL
-#define OPTION_VAL_LOW_RU NULL
-#define OPTION_VAL_NORMAL_RU "Нормально"
-#define OPTION_VAL_HIGH_RU NULL
+#define OPTION_VAL_LOW_RU "Низкое"
+#define OPTION_VAL_NORMAL_RU NULL
+#define OPTION_VAL_HIGH_RU "Высокое"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_RU NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_RU NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_RU NULL
@@ -27901,16 +27901,16 @@ struct retro_core_options_v2 options_pt_pt = {
 #define RPCS3_VERTEX_CACHE_LABEL_RU NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_RU NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_RU NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_RU NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_RU "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_RU NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_RU NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_RU "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_RU NULL
-#define OPTION_VAL_PRECISE_RU NULL
+#define OPTION_VAL_PRECISE_RU "Precise (Default)"
 #define RPCS3_CPU_BLIT_LABEL_RU NULL
 #define RPCS3_CPU_BLIT_INFO_0_RU NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_RU NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_RU NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_RU NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_RU "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_RU "0 (Default)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_RU NULL
 #define RPCS3_VBLANK_RATE_LABEL_RU NULL
 #define RPCS3_VBLANK_RATE_INFO_0_RU NULL
@@ -27953,9 +27953,9 @@ struct retro_core_options_v2 options_pt_pt = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_RU NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_RU NULL
 #define RPCS3_NETWORK_ENABLED_LABEL_RU NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_RU NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_RU "Lets games reach the internet. Takes effect when content is loaded."
 #define RPCS3_PSN_STATUS_LABEL_RU NULL
-#define RPCS3_PSN_STATUS_INFO_0_RU NULL
+#define RPCS3_PSN_STATUS_INFO_0_RU "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_RU NULL
 #define OPTION_VAL_RPCN_RU NULL
 #define RPCS3_UPNP_LABEL_RU NULL
@@ -27972,7 +27972,7 @@ struct retro_core_options_v2 options_pt_pt = {
 #define RPCS3_RPCN_SERVER_LABEL_RU NULL
 #define RPCS3_RPCN_SERVER_INFO_0_RU NULL
 #define OPTION_VAL_RPCN_RPCS3_NET_RU NULL
-#define OPTION_VAL_CUSTOM_RU "Ручная настройка"
+#define OPTION_VAL_CUSTOM_RU NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_RU NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_RU NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_RU NULL
@@ -27980,7 +27980,7 @@ struct retro_core_options_v2 options_pt_pt = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_RU NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_RU NULL
 #define OPTION_VAL_FAST_RU "Быстро"
-#define OPTION_VAL_BALANCED_RU "Оптимальный"
+#define OPTION_VAL_BALANCED_RU NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_RU NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_RU NULL
 #define OPTION_VAL_1000_RU NULL
@@ -28028,11 +28028,11 @@ struct retro_core_options_v2 options_pt_pt = {
 #define OPTION_VAL_CIRCLE_RU NULL
 #define RPCS3_LICENSE_AREA_LABEL_RU NULL
 #define RPCS3_LICENSE_AREA_INFO_0_RU NULL
-#define OPTION_VAL_USA_RU "США"
-#define OPTION_VAL_EU_RU "Европа"
-#define OPTION_VAL_JP_RU "Япония"
-#define OPTION_VAL_HK_RU NULL
-#define OPTION_VAL_KR_RU NULL
+#define OPTION_VAL_USA_RU "SCEA (Americas)"
+#define OPTION_VAL_EU_RU "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_RU "SCEJ (Japan)"
+#define OPTION_VAL_HK_RU "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_RU "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_RU NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_RU NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_RU NULL
@@ -28042,7 +28042,7 @@ struct retro_core_options_v2 options_pt_pt = {
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_RU NULL
 #define RPCS3_VFS_INIT_LABEL_RU NULL
 #define RPCS3_VFS_INIT_INFO_0_RU NULL
-#define OPTION_VAL_RESET_RU "Перезагрузка"
+#define OPTION_VAL_RESET_RU NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_RU NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_RU NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_RU NULL
@@ -28627,17 +28627,17 @@ struct retro_core_options_v2 options_ru = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_SK "Počet vlákien SPU. Odporúča sa Auto."
 #define OPTION_VAL_0_SK NULL
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_SK "Detekcia slučiek SPU"
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_SK "Zapne detekciu slučiek SPU kvôli výkonu."
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_SK "Rozpozná slučky SPU, ktoré len čakajú, a preskočí ich. Rýchlejšie, ale niektoré hry sa s tým pokazia; predvolene vypnuté, ako v RPCS3. Na telefónoch sa oplatí zapnúť kvôli rýchlosti."
 #define RPCS3_SPU_CACHE_LABEL_SK "Vyrovnávacia pamäť SPU"
 #define RPCS3_SPU_CACHE_INFO_0_SK "Zapne vyrovnávaciu pamäť SPU pre rýchlejšie ďalšie načítania."
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_SK "Predkompilácia LLVM"
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_SK "Predkompiluje moduly PPU pri štarte pre rýchlejšie ďalšie načítania."
 #define RPCS3_ACCURATE_DFMA_LABEL_SK "Presné DFMA"
-#define RPCS3_ACCURATE_DFMA_INFO_0_SK "Použije presné násobenie so sčítaním (FMA) s dvojitou presnosťou."
-#define RPCS3_PPU_RESERVATIONS_LABEL_SK "Rezervácie vlákien PPU"
-#define RPCS3_PPU_RESERVATIONS_INFO_0_SK "Použije rezervácie vlákien PPU pre presné zamykanie."
-#define RPCS3_ACCURATE_XFLOAT_LABEL_SK "Presné XFLOAT"
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_SK "Presnejšie výpočty s pohyblivou čiarkou na SPU. Môže opraviť niektoré hry."
+#define RPCS3_ACCURATE_DFMA_INFO_0_SK "Presné násobenie so sčítaním (FMA) v dvojitej presnosti, ako v RPCS3 (aj tam je predvolene zapnuté). Na CPU s FMA stojí málo; vypnutie môže pomôcť na pomalom telefóne a niektoré hry pokazí."
+#define RPCS3_PPU_RESERVATIONS_LABEL_SK NULL
+#define RPCS3_PPU_RESERVATIONS_INFO_0_SK NULL
+#define RPCS3_ACCURATE_XFLOAT_LABEL_SK NULL
+#define RPCS3_ACCURATE_XFLOAT_INFO_0_SK NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_SK "Mierka taktov"
 #define RPCS3_CLOCKS_SCALE_INFO_0_SK "Percento rýchlosti taktov PS3."
 #define OPTION_VAL_50_SK NULL
@@ -28648,37 +28648,37 @@ struct retro_core_options_v2 options_ru = {
 #define OPTION_VAL_300_SK NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_SK "Presnosť časovačov spánku"
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_SK "Úroveň presnosti časovačov spánku."
-#define OPTION_VAL_USLEEP_SK NULL
+#define OPTION_VAL_USLEEP_SK "Len usleep"
 #define OPTION_VAL_ALL_TIMERS_SK "Všetky časovače"
 #define OPTION_VAL_AS_HOST_SK "Ako hostiteľ"
 #define RPCS3_MAX_SPURS_THREADS_LABEL_SK "Max. počet vlákien SPURS"
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_SK "Maximálny počet vlákien SPURS. Nižší môže zlepšiť výkon."
-#define RPCS3_ENABLE_TSX_LABEL_SK "Zapnúť TSX"
-#define RPCS3_ENABLE_TSX_INFO_0_SK "Zapne hardvérovú akceleráciu Intel TSX, ak je k dispozícii."
-#define OPTION_VAL_FORCED_SK "Vynútené"
+#define RPCS3_ENABLE_TSX_LABEL_SK NULL
+#define RPCS3_ENABLE_TSX_INFO_0_SK NULL
+#define OPTION_VAL_FORCED_SK NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_SK "Presnosť XFloat na SPU"
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_SK "Úroveň presnosti výpočtov s pohyblivou čiarkou na SPU."
-#define OPTION_VAL_RELAXED_SK "Uvoľnená (najrýchlejšia)"
+#define OPTION_VAL_RELAXED_SK "Uvoľnené"
 #define OPTION_VAL_ACCURATE_SK "Presné"
-#define OPTION_VAL_ULTRA_SK "Ultra (najpomalšia)"
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_SK "Aktívne čakanie DMA na SPU"
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_SK "Zapne aktívne čakanie DMA na SPU kvôli presnosti časovania."
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_SK "Spracovanie režimu Java v PPU LLVM"
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_SK "Úroveň dodržiavania režimu Java v PPU LLVM."
+#define OPTION_VAL_ULTRA_SK "Ultra"
+#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_SK NULL
+#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_SK NULL
+#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_SK NULL
+#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_SK NULL
 #define RPCS3_RENDERER_LABEL_SK "Vykreslenie"
 #define RPCS3_RENDERER_INFO_0_SK "Vulkan dokončí každú snímku do pamäte a frontend si prevezme pixely; beží približne tak rýchlo ako samostatné RPCS3 a funguje aj tam, kde OpenGL chýba alebo je pokazené. OpenGL kreslí priamo do kontextu frontendu."
 #define OPTION_VAL_OPENGL_SK NULL
 #define OPTION_VAL_VULKAN_SK "Vulkan (cez pamäť)"
 #define OPTION_VAL_NULL_SK "Nulový (bez videa)"
 #define RPCS3_RESOLUTION_SCALE_LABEL_SK "Mierka rozlíšenia"
-#define RPCS3_RESOLUTION_SCALE_INFO_0_SK "Percento mierky vnútorného rozlíšenia vykresľovania."
+#define RPCS3_RESOLUTION_SCALE_INFO_0_SK "Vnútorné rozlíšenie vykresľovania v percentách vlastného rozlíšenia hry. 200 % z hry v 720p je 2560x1440, z hry v 1080p 3840x2160."
 #define OPTION_VAL_25_SK NULL
-#define OPTION_VAL_30_SK NULL
+#define OPTION_VAL_30_SK "30 FPS"
 #define OPTION_VAL_35_SK NULL
-#define OPTION_VAL_40_SK NULL
+#define OPTION_VAL_40_SK "40ms"
 #define OPTION_VAL_45_SK NULL
 #define OPTION_VAL_55_SK NULL
-#define OPTION_VAL_60_SK NULL
+#define OPTION_VAL_60_SK "60 FPS"
 #define OPTION_VAL_65_SK NULL
 #define OPTION_VAL_70_SK NULL
 #define OPTION_VAL_80_SK NULL
@@ -28689,7 +28689,7 @@ struct retro_core_options_v2 options_ru = {
 #define OPTION_VAL_105_SK NULL
 #define OPTION_VAL_110_SK NULL
 #define OPTION_VAL_115_SK NULL
-#define OPTION_VAL_120_SK NULL
+#define OPTION_VAL_120_SK "120x120"
 #define OPTION_VAL_125_SK NULL
 #define OPTION_VAL_130_SK NULL
 #define OPTION_VAL_135_SK NULL
@@ -28698,13 +28698,13 @@ struct retro_core_options_v2 options_ru = {
 #define OPTION_VAL_175_SK NULL
 #define OPTION_VAL_250_SK NULL
 #define RPCS3_FRAME_LIMIT_LABEL_SK "Obmedzenie snímok"
-#define RPCS3_FRAME_LIMIT_INFO_0_SK "Obmedzí snímkovú frekvenciu. Auto použije časovanie RetroArchu."
+#define RPCS3_FRAME_LIMIT_INFO_0_SK "Najvyššia snímková frekvencia, ktorou smie hra bežať. Auto je Frekvencia VBlank, ako v RPCS3; Natívne PS3 časuje prepínanie snímok tak ako PS3; Vypnuté nechá hry, ktoré samy nečakajú na obnovovanie PS3, bežať príliš rýchlo."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_SK NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_SK NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_SK NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_SK NULL
 #define OPTION_VAL_144_SK NULL
-#define OPTION_VAL_240_SK NULL
+#define OPTION_VAL_240_SK "240x240"
 #define RPCS3_SHADER_MODE_LABEL_SK "Režim shaderov"
 #define RPCS3_SHADER_MODE_INFO_0_SK "Ako sa kompilujú shadery. Asynchrónne kompiluje na pozadí, ale snímka, ktorá ako prvá potrebuje pipeline, na ňu čaká – to je zvyčajne dlhé zamrznutie pri novej scéne. Asynchrónne s interpreterom shaderov namiesto toho vykreslí túto snímku cez interpreter a skompilovaný shader nasadí, keď je hotový: bez zamrznutia, s nižšou rýchlosťou, kým to dobehne."
 #define OPTION_VAL_ASYNC_SK "Asynchrónne (odporúčané)"
@@ -28716,18 +28716,18 @@ struct retro_core_options_v2 options_ru = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_SK "Koľko vlákien kompiluje shadery. Auto nechá RPCS3 rozhodnúť podľa CPU, ktoré vidí."
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_SK "Anizotropné filtrovanie"
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_SK "Kvalita filtrovania textúr."
-#define OPTION_VAL_1_SK "1x (vypnuté)"
+#define OPTION_VAL_1_SK "1x1"
 #define OPTION_VAL_2_SK NULL
 #define OPTION_VAL_4_SK NULL
 #define OPTION_VAL_8_SK NULL
-#define OPTION_VAL_16_SK NULL
-#define RPCS3_MSAA_LABEL_SK "Vyhladzovanie hrán (MSAA)"
-#define RPCS3_MSAA_INFO_0_SK "Vyhladzovanie hrán viacnásobným vzorkovaním."
-#define RPCS3_SHADER_PRECISION_LABEL_SK "Presnosť shaderov"
-#define RPCS3_SHADER_PRECISION_INFO_0_SK "Presnosť výpočtov s pohyblivou čiarkou v shaderoch."
-#define OPTION_VAL_LOW_SK "Nízka (najrýchlejšia)"
-#define OPTION_VAL_NORMAL_SK "Normálne"
-#define OPTION_VAL_HIGH_SK "Vysoká (najpresnejšia)"
+#define OPTION_VAL_16_SK "16x16 (predvolené)"
+#define RPCS3_MSAA_LABEL_SK "Vyhladzovanie hrán"
+#define RPCS3_MSAA_INFO_0_SK "Viacvzorkové vyhladzovanie hrán tam, kde si ho hra vyžiada, ako v RPCS3."
+#define RPCS3_SHADER_PRECISION_LABEL_SK NULL
+#define RPCS3_SHADER_PRECISION_INFO_0_SK NULL
+#define OPTION_VAL_LOW_SK "Nízke"
+#define OPTION_VAL_NORMAL_SK NULL
+#define OPTION_VAL_HIGH_SK "Vysoké"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_SK "Zapisovať farebné buffery"
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_SK "Zapisuje farebné buffery do hlavnej pamäte. Opravuje niektoré efekty."
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_SK "Čítať farebné buffery"
@@ -28741,17 +28741,17 @@ struct retro_core_options_v2 options_ru = {
 #define RPCS3_VERTEX_CACHE_LABEL_SK "Vyrovnávacia pamäť vrcholov"
 #define RPCS3_VERTEX_CACHE_INFO_0_SK "Zapne vyrovnávaciu pamäť vrcholov kvôli výkonu."
 #define RPCS3_MULTITHREADED_RSX_LABEL_SK "Viacvláknové RSX"
-#define RPCS3_MULTITHREADED_RSX_INFO_0_SK "Zapne viacvláknové RSX pre lepší výkon."
+#define RPCS3_MULTITHREADED_RSX_INFO_0_SK "Presunie časť práce RSX do druhého vlákna. Predvolene vypnuté, ako v RPCS3; môže pomôcť na CPU s málo rýchlymi jadrami, aj na telefónoch."
 #define RPCS3_ZCULL_ACCURACY_LABEL_SK "Presnosť ZCULL"
-#define RPCS3_ZCULL_ACCURACY_INFO_0_SK "Presnosť dotazov zakrytia ZCULL."
+#define RPCS3_ZCULL_ACCURACY_INFO_0_SK "Ako presne sa odpovedá na dotazy zakrytia (occlusion queries), ako v RPCS3. Presná je správna a tam predvolená; Približná a Uvoľnené sú rýchlejšie a môžu pokaziť efekty, napríklad odlesky šošovky. Uvoľnené sa oplatí skúsiť na telefónoch."
 #define OPTION_VAL_APPROXIMATE_SK "Približná"
-#define OPTION_VAL_PRECISE_SK "Presná (najpomalšia)"
+#define OPTION_VAL_PRECISE_SK "Presná (predvolené)"
 #define RPCS3_CPU_BLIT_LABEL_SK "Vynútiť blit na CPU"
 #define RPCS3_CPU_BLIT_INFO_0_SK "Vynúti emuláciu blitu na CPU pre niektoré efekty."
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_SK "Oneskorenie prebudenia ovládača"
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_SK "Oneskorenie prebudenia ovládača v mikrosekundách."
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_SK "0 (minimum)"
-#define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_SK "200 (predvolené)"
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_SK "Oneskorenie prebudenia ovládača v mikrosekundách. Predvolene 0, ako v RPCS3; zvyšujte ho, len keď to hra potrebuje."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_SK "0 (predvolené)"
+#define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_SK NULL
 #define RPCS3_VBLANK_RATE_LABEL_SK "Frekvencia VBlank"
 #define RPCS3_VBLANK_RATE_INFO_0_SK "Obnovovacia frekvencia PS3 v Hz. Je to aj snímková frekvencia, ktorú jadro žiada od RetroArchu, a prejaví sa pri načítaní obsahu; hry, ktoré dokážu bežať nad 60 FPS, potrebujú displej s takou vysokou obnovovacou frekvenciou."
 #define OPTION_VAL_50_RPCS3_VBLANK_RATE_SK NULL
@@ -28780,12 +28780,12 @@ struct retro_core_options_v2 options_ru = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_SK NULL
 #define RPCS3_TIME_STRETCHING_LABEL_SK "Časové naťahovanie"
 #define RPCS3_TIME_STRETCHING_INFO_0_SK "Zapne časové naťahovanie zvuku na zníženie trhania."
-#define RPCS3_MICROPHONE_TYPE_LABEL_SK "Typ mikrofónu"
-#define RPCS3_MICROPHONE_TYPE_INFO_0_SK "Typ mikrofónového zariadenia."
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_SK "Nulový (vypnutý)"
-#define OPTION_VAL_STANDARD_SK "Štandardný"
+#define RPCS3_MICROPHONE_TYPE_LABEL_SK NULL
+#define RPCS3_MICROPHONE_TYPE_INFO_0_SK NULL
+#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_SK NULL
+#define OPTION_VAL_STANDARD_SK NULL
 #define OPTION_VAL_SINGSTAR_SK NULL
-#define OPTION_VAL_REAL_SINGSTAR_SK "Skutočný SingStar"
+#define OPTION_VAL_REAL_SINGSTAR_SK NULL
 #define OPTION_VAL_ROCKSMITH_SK NULL
 #define RPCS3_MASTER_VOLUME_LABEL_SK "Hlavná hlasitosť"
 #define RPCS3_MASTER_VOLUME_INFO_0_SK "Percento hlavnej hlasitosti zvuku."
@@ -28793,9 +28793,9 @@ struct retro_core_options_v2 options_ru = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_SK NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_SK NULL
 #define RPCS3_NETWORK_ENABLED_LABEL_SK "Sieť zapnutá"
-#define RPCS3_NETWORK_ENABLED_INFO_0_SK "Zapne sieťové funkcie."
+#define RPCS3_NETWORK_ENABLED_INFO_0_SK "Umožní hrám prístup na internet. Prejaví sa pri načítaní obsahu."
 #define RPCS3_PSN_STATUS_LABEL_SK "Stav PSN"
-#define RPCS3_PSN_STATUS_INFO_0_SK "Stav PlayStation Network."
+#define RPCS3_PSN_STATUS_INFO_0_SK "Čo hry vidia zo siete PlayStation Network. Simulovaný im nahovorí, že sú prihlásené, čo niektoré potrebujú, aby sa dostali cez svoje menu; RPCN sa pripojí na vlastný server RPCS3 s účtom nastaveným v rpcn.yml a vyžaduje voľbu Sieť zapnutá. Prejaví sa pri načítaní obsahu."
 #define OPTION_VAL_SIMULATED_SK "Simulovaný"
 #define OPTION_VAL_RPCN_SK NULL
 #define RPCS3_UPNP_LABEL_SK NULL
@@ -28809,10 +28809,10 @@ struct retro_core_options_v2 options_ru = {
 #define OPTION_VAL_8_8_8_8_SK NULL
 #define OPTION_VAL_1_1_1_1_SK NULL
 #define OPTION_VAL_208_67_222_222_SK NULL
-#define RPCS3_RPCN_SERVER_LABEL_SK "Server RPCN"
-#define RPCS3_RPCN_SERVER_INFO_0_SK "Adresa servera RPCN pre online hranie."
-#define OPTION_VAL_RPCN_RPCS3_NET_SK "Oficiálny RPCN"
-#define OPTION_VAL_CUSTOM_SK "Vlastné"
+#define RPCS3_RPCN_SERVER_LABEL_SK NULL
+#define RPCS3_RPCN_SERVER_INFO_0_SK NULL
+#define OPTION_VAL_RPCN_RPCS3_NET_SK NULL
+#define OPTION_VAL_CUSTOM_SK NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_SK "Overovanie SPU"
 #define RPCS3_SPU_VERIFICATION_INFO_0_SK "Úroveň overovania kódu SPU."
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_SK "Zápisy riadkov vyrovnávacej pamäte SPU"
@@ -28820,7 +28820,7 @@ struct retro_core_options_v2 options_ru = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_SK "Presnosť RSX FIFO"
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_SK "Úroveň presnosti príkazov RSX FIFO."
 #define OPTION_VAL_FAST_SK "Rýchlo"
-#define OPTION_VAL_BALANCED_SK "Vyvážené"
+#define OPTION_VAL_BALANCED_SK NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_SK "Časový limit obnovy ovládača"
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_SK "Časový limit obnovy ovládača GPU v milisekundách."
 #define OPTION_VAL_1000_SK "1 sekunda"
@@ -28832,14 +28832,14 @@ struct retro_core_options_v2 options_ru = {
 #define RPCS3_SPU_DELAY_PENALTY_LABEL_SK "Penalizácia oneskorenia SPU"
 #define RPCS3_SPU_DELAY_PENALTY_INFO_0_SK "Penalizácia oneskorenia SPU pri plánovaní."
 #define OPTION_VAL_3_SK "3 (predvolené)"
-#define RPCS3_ZCULL_SYNC_LABEL_SK "Uvoľnená synchronizácia ZCull"
-#define RPCS3_ZCULL_SYNC_INFO_0_SK "Použije uvoľnenú synchronizáciu ZCull."
+#define RPCS3_ZCULL_SYNC_LABEL_SK NULL
+#define RPCS3_ZCULL_SYNC_INFO_0_SK NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_SK "Asynchrónne streamovanie textúr"
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_SK "Zapne asynchrónne streamovanie textúr."
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_SK "Chamtivý režim PPU LLVM"
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_SK "Použije chamtivú kompiláciu PPU LLVM."
-#define RPCS3_SPU_NJ_FIXUP_LABEL_SK "Oprava NJ na SPU"
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_SK "Použije opravu režimu non-Java na SPU."
+#define RPCS3_PPU_LLVM_GREEDY_LABEL_SK NULL
+#define RPCS3_PPU_LLVM_GREEDY_INFO_0_SK NULL
+#define RPCS3_SPU_NJ_FIXUP_LABEL_SK NULL
+#define RPCS3_SPU_NJ_FIXUP_INFO_0_SK NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_SK "Režim opravy NJ na PPU"
 #define RPCS3_PPU_NJ_MODE_INFO_0_SK "Spracovanie režimu non-Java na PPU."
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_SK "Nastavovať bit saturácie"
@@ -28868,11 +28868,11 @@ struct retro_core_options_v2 options_ru = {
 #define OPTION_VAL_CIRCLE_SK "Krúžok (japonské)"
 #define RPCS3_LICENSE_AREA_LABEL_SK "Licenčná oblasť"
 #define RPCS3_LICENSE_AREA_INFO_0_SK "Licenčný región PS3."
-#define OPTION_VAL_USA_SK NULL
-#define OPTION_VAL_EU_SK "Európa"
-#define OPTION_VAL_JP_SK "Japonsko"
-#define OPTION_VAL_HK_SK "Hongkong"
-#define OPTION_VAL_KR_SK "Kórea"
+#define OPTION_VAL_USA_SK "SCEA (Amerika)"
+#define OPTION_VAL_EU_SK "SCEE (Európa, Oceánia)"
+#define OPTION_VAL_JP_SK "SCEJ (Japonsko)"
+#define OPTION_VAL_HK_SK "SCEH (Hongkong, juhovýchodná Ázia)"
+#define OPTION_VAL_KR_SK "SCEK (Kórea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_SK "Zobrazovať upozornenie na kompiláciu shaderov"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_SK "Zobrazí upozornenie, keď sa kompilujú shadery."
 #define RPCS3_SAVEDATA_SLOT_LABEL_SK "Slot uložených dát"
@@ -28880,8 +28880,8 @@ struct retro_core_options_v2 options_ru = {
 #define OPTION_VAL_LIST_SK "Vybrať zo zoznamu"
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_SK "Zobrazovať upozornenie na kompiláciu PPU"
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_SK "Zobrazí upozornenie, keď sa kompilujú moduly PPU."
-#define RPCS3_VFS_INIT_LABEL_SK "Režim inicializácie VFS"
-#define RPCS3_VFS_INIT_INFO_0_SK "Režim inicializácie virtuálneho súborového systému."
+#define RPCS3_VFS_INIT_LABEL_SK NULL
+#define RPCS3_VFS_INIT_INFO_0_SK NULL
 #define OPTION_VAL_RESET_SK NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_SK "Stlmiť všetky záznamy"
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_SK "Stlmí všetok výstup záznamov kvôli výkonu."
@@ -29467,13 +29467,13 @@ struct retro_core_options_v2 options_sk = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_SR NULL
 #define OPTION_VAL_0_SR NULL
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_SR NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_SR NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_SR "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_SR NULL
 #define RPCS3_SPU_CACHE_INFO_0_SR NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_SR NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_SR NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_SR NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_SR NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_SR "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_SR NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_SR NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_SR NULL
@@ -29488,7 +29488,7 @@ struct retro_core_options_v2 options_sk = {
 #define OPTION_VAL_300_SR NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_SR NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_SR NULL
-#define OPTION_VAL_USLEEP_SR NULL
+#define OPTION_VAL_USLEEP_SR "Usleep Only"
 #define OPTION_VAL_ALL_TIMERS_SR NULL
 #define OPTION_VAL_AS_HOST_SR NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_SR NULL
@@ -29498,9 +29498,9 @@ struct retro_core_options_v2 options_sk = {
 #define OPTION_VAL_FORCED_SR NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_SR NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_SR NULL
-#define OPTION_VAL_RELAXED_SR NULL
+#define OPTION_VAL_RELAXED_SR "Relaxed"
 #define OPTION_VAL_ACCURATE_SR NULL
-#define OPTION_VAL_ULTRA_SR NULL
+#define OPTION_VAL_ULTRA_SR "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_SR NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_SR NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_SR NULL
@@ -29511,14 +29511,14 @@ struct retro_core_options_v2 options_sk = {
 #define OPTION_VAL_VULKAN_SR NULL
 #define OPTION_VAL_NULL_SR NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_SR NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_SR NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_SR "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_SR NULL
-#define OPTION_VAL_30_SR NULL
+#define OPTION_VAL_30_SR "30 FPS"
 #define OPTION_VAL_35_SR NULL
-#define OPTION_VAL_40_SR NULL
+#define OPTION_VAL_40_SR "40ms"
 #define OPTION_VAL_45_SR NULL
 #define OPTION_VAL_55_SR NULL
-#define OPTION_VAL_60_SR NULL
+#define OPTION_VAL_60_SR "60 FPS"
 #define OPTION_VAL_65_SR NULL
 #define OPTION_VAL_70_SR NULL
 #define OPTION_VAL_80_SR NULL
@@ -29529,7 +29529,7 @@ struct retro_core_options_v2 options_sk = {
 #define OPTION_VAL_105_SR NULL
 #define OPTION_VAL_110_SR NULL
 #define OPTION_VAL_115_SR NULL
-#define OPTION_VAL_120_SR NULL
+#define OPTION_VAL_120_SR "120x120"
 #define OPTION_VAL_125_SR NULL
 #define OPTION_VAL_130_SR NULL
 #define OPTION_VAL_135_SR NULL
@@ -29538,13 +29538,13 @@ struct retro_core_options_v2 options_sk = {
 #define OPTION_VAL_175_SR NULL
 #define OPTION_VAL_250_SR NULL
 #define RPCS3_FRAME_LIMIT_LABEL_SR NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_SR NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_SR "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_SR NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_SR NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_SR NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_SR NULL
 #define OPTION_VAL_144_SR NULL
-#define OPTION_VAL_240_SR NULL
+#define OPTION_VAL_240_SR "240x240"
 #define RPCS3_SHADER_MODE_LABEL_SR NULL
 #define RPCS3_SHADER_MODE_INFO_0_SR NULL
 #define OPTION_VAL_ASYNC_SR NULL
@@ -29556,18 +29556,18 @@ struct retro_core_options_v2 options_sk = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_SR NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_SR NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_SR NULL
-#define OPTION_VAL_1_SR NULL
+#define OPTION_VAL_1_SR "1x1"
 #define OPTION_VAL_2_SR NULL
 #define OPTION_VAL_4_SR NULL
 #define OPTION_VAL_8_SR NULL
-#define OPTION_VAL_16_SR NULL
-#define RPCS3_MSAA_LABEL_SR NULL
-#define RPCS3_MSAA_INFO_0_SR NULL
+#define OPTION_VAL_16_SR "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_SR "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_SR "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_SR NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_SR NULL
-#define OPTION_VAL_LOW_SR NULL
+#define OPTION_VAL_LOW_SR "Low"
 #define OPTION_VAL_NORMAL_SR NULL
-#define OPTION_VAL_HIGH_SR NULL
+#define OPTION_VAL_HIGH_SR "High"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_SR NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_SR NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_SR NULL
@@ -29581,16 +29581,16 @@ struct retro_core_options_v2 options_sk = {
 #define RPCS3_VERTEX_CACHE_LABEL_SR NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_SR NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_SR NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_SR NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_SR "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_SR NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_SR NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_SR "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_SR NULL
-#define OPTION_VAL_PRECISE_SR NULL
+#define OPTION_VAL_PRECISE_SR "Precise (Default)"
 #define RPCS3_CPU_BLIT_LABEL_SR NULL
 #define RPCS3_CPU_BLIT_INFO_0_SR NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_SR NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_SR NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_SR NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_SR "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_SR "0 (Default)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_SR NULL
 #define RPCS3_VBLANK_RATE_LABEL_SR NULL
 #define RPCS3_VBLANK_RATE_INFO_0_SR NULL
@@ -29633,9 +29633,9 @@ struct retro_core_options_v2 options_sk = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_SR NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_SR NULL
 #define RPCS3_NETWORK_ENABLED_LABEL_SR NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_SR NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_SR "Lets games reach the internet. Takes effect when content is loaded."
 #define RPCS3_PSN_STATUS_LABEL_SR NULL
-#define RPCS3_PSN_STATUS_INFO_0_SR NULL
+#define RPCS3_PSN_STATUS_INFO_0_SR "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_SR NULL
 #define OPTION_VAL_RPCN_SR NULL
 #define RPCS3_UPNP_LABEL_SR NULL
@@ -29708,11 +29708,11 @@ struct retro_core_options_v2 options_sk = {
 #define OPTION_VAL_CIRCLE_SR NULL
 #define RPCS3_LICENSE_AREA_LABEL_SR NULL
 #define RPCS3_LICENSE_AREA_INFO_0_SR NULL
-#define OPTION_VAL_USA_SR NULL
-#define OPTION_VAL_EU_SR NULL
-#define OPTION_VAL_JP_SR NULL
-#define OPTION_VAL_HK_SR NULL
-#define OPTION_VAL_KR_SR NULL
+#define OPTION_VAL_USA_SR "SCEA (Americas)"
+#define OPTION_VAL_EU_SR "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_SR "SCEJ (Japan)"
+#define OPTION_VAL_HK_SR "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_SR "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_SR NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_SR NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_SR NULL
@@ -30280,85 +30280,85 @@ struct retro_core_options_v2 options_sr = {
 /* RETRO_LANGUAGE_SV */
 
 #define CATEGORY_CPU_LABEL_SV NULL
-#define CATEGORY_CPU_INFO_0_SV NULL
+#define CATEGORY_CPU_INFO_0_SV "PPU-/SPU-avkodare, trådar, cache och alternativ för CPU-emulering."
 #define CATEGORY_GPU_LABEL_SV NULL
-#define CATEGORY_GPU_INFO_0_SV NULL
+#define CATEGORY_GPU_INFO_0_SV "Renderare, upplösning, shaders och grafikalternativ."
 #define CATEGORY_AUDIO_LABEL_SV "Ljud"
-#define CATEGORY_AUDIO_INFO_0_SV NULL
+#define CATEGORY_AUDIO_INFO_0_SV "Ljudbuffring, volym och mikrofonalternativ."
 #define CATEGORY_NETWORK_LABEL_SV "Nätverk"
-#define CATEGORY_NETWORK_INFO_0_SV NULL
-#define CATEGORY_ADVANCED_LABEL_SV NULL
-#define CATEGORY_ADVANCED_INFO_0_SV NULL
+#define CATEGORY_NETWORK_INFO_0_SV "Nätverk, PSN, RPCN och nätverksalternativ."
+#define CATEGORY_ADVANCED_LABEL_SV "Avancerat"
+#define CATEGORY_ADVANCED_INFO_0_SV "Avancerade alternativ för justering av noggrannhet och prestanda."
 #define CATEGORY_CORE_LABEL_SV "Kärna"
-#define CATEGORY_CORE_INFO_0_SV NULL
-#define RPCS3_PPU_DECODER_LABEL_SV NULL
-#define RPCS3_PPU_DECODER_INFO_0_SV NULL
-#define OPTION_VAL_LLVM_SV NULL
-#define OPTION_VAL_INTERPRETER_SV NULL
-#define RPCS3_SPU_DECODER_LABEL_SV NULL
-#define RPCS3_SPU_DECODER_INFO_0_SV NULL
-#define OPTION_VAL_ASMJIT_SV NULL
-#define RPCS3_SPU_BLOCK_SIZE_LABEL_SV NULL
-#define RPCS3_SPU_BLOCK_SIZE_INFO_0_SV NULL
-#define OPTION_VAL_SAFE_SV NULL
+#define CATEGORY_CORE_INFO_0_SV "Systemspråk, region och övriga kärnalternativ."
+#define RPCS3_PPU_DECODER_LABEL_SV "PPU-avkodare"
+#define RPCS3_PPU_DECODER_INFO_0_SV "PPU-avkodare (huvudprocessorn). LLVM-omkompileraren är snabbast."
+#define OPTION_VAL_LLVM_SV "Omkompilerare (LLVM)"
+#define OPTION_VAL_INTERPRETER_SV "Tolk (långsam)"
+#define RPCS3_SPU_DECODER_LABEL_SV "SPU-avkodare"
+#define RPCS3_SPU_DECODER_INFO_0_SV "SPU-avkodare (samprocessor). LLVM-omkompileraren är snabbast."
+#define OPTION_VAL_ASMJIT_SV "Omkompilerare (ASMJIT)"
+#define RPCS3_SPU_BLOCK_SIZE_LABEL_SV "SPU-blockstorlek"
+#define RPCS3_SPU_BLOCK_SIZE_INFO_0_SV "Blockstorlek för SPU-omkompileraren. Mega/Giga kan förbättra prestandan."
+#define OPTION_VAL_SAFE_SV "Säker"
 #define OPTION_VAL_MEGA_SV NULL
 #define OPTION_VAL_GIGA_SV NULL
-#define RPCS3_PREFERRED_SPU_THREADS_LABEL_SV NULL
-#define RPCS3_PREFERRED_SPU_THREADS_INFO_0_SV NULL
+#define RPCS3_PREFERRED_SPU_THREADS_LABEL_SV "Föredragna SPU-trådar"
+#define RPCS3_PREFERRED_SPU_THREADS_INFO_0_SV "Antal SPU-trådar. Automatiskt rekommenderas."
 #define OPTION_VAL_0_SV NULL
-#define RPCS3_SPU_LOOP_DETECTION_LABEL_SV NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_SV NULL
-#define RPCS3_SPU_CACHE_LABEL_SV NULL
-#define RPCS3_SPU_CACHE_INFO_0_SV NULL
-#define RPCS3_LLVM_PRECOMPILATION_LABEL_SV NULL
-#define RPCS3_LLVM_PRECOMPILATION_INFO_0_SV NULL
-#define RPCS3_ACCURATE_DFMA_LABEL_SV NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_SV NULL
+#define RPCS3_SPU_LOOP_DETECTION_LABEL_SV "SPU-slingdetektering"
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_SV "Identifierar SPU-slingor som bara väntar och hoppar över dem. Snabbare, men vissa spel fungerar inte med det; av som standard, precis som i RPCS3."
+#define RPCS3_SPU_CACHE_LABEL_SV "SPU-cache"
+#define RPCS3_SPU_CACHE_INFO_0_SV "Aktivera SPU-cache för snabbare efterföljande inläsningar."
+#define RPCS3_LLVM_PRECOMPILATION_LABEL_SV "LLVM-förkompilering"
+#define RPCS3_LLVM_PRECOMPILATION_INFO_0_SV "Förkompilera PPU-moduler vid start för snabbare efterföljande inläsningar."
+#define RPCS3_ACCURATE_DFMA_LABEL_SV "Noggrann DFMA"
+#define RPCS3_ACCURATE_DFMA_INFO_0_SV "Fleroperation med dubbel precision utförs exakt som i RPCS3. Kostar lite på processorer med FMA; att stänga av kan hjälpa på en långsam telefon."
 #define RPCS3_PPU_RESERVATIONS_LABEL_SV NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_SV NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_SV NULL
 #define RPCS3_ACCURATE_XFLOAT_INFO_0_SV NULL
-#define RPCS3_CLOCKS_SCALE_LABEL_SV NULL
-#define RPCS3_CLOCKS_SCALE_INFO_0_SV NULL
-#define OPTION_VAL_50_SV NULL
-#define OPTION_VAL_75_SV NULL
-#define OPTION_VAL_100_SV NULL
-#define OPTION_VAL_150_SV NULL
-#define OPTION_VAL_200_SV NULL
-#define OPTION_VAL_300_SV NULL
-#define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_SV NULL
-#define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_SV NULL
-#define OPTION_VAL_USLEEP_SV NULL
-#define OPTION_VAL_ALL_TIMERS_SV NULL
-#define OPTION_VAL_AS_HOST_SV NULL
-#define RPCS3_MAX_SPURS_THREADS_LABEL_SV NULL
-#define RPCS3_MAX_SPURS_THREADS_INFO_0_SV NULL
+#define RPCS3_CLOCKS_SCALE_LABEL_SV "Klockskalning"
+#define RPCS3_CLOCKS_SCALE_INFO_0_SV "Justerar den emulerade processorns klockfrekvens. 100 % är standard."
+#define OPTION_VAL_50_SV "50 %"
+#define OPTION_VAL_75_SV "75 %"
+#define OPTION_VAL_100_SV "100 % (standard)"
+#define OPTION_VAL_150_SV "125 %"
+#define OPTION_VAL_200_SV "150 %"
+#define OPTION_VAL_300_SV "200 %"
+#define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_SV "GPU-renderare"
+#define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_SV "Vulkan är snabbast och rekommenderas."
+#define OPTION_VAL_USLEEP_SV "Endast usleep"
+#define OPTION_VAL_ALL_TIMERS_SV "Kompilerar shaders i bakgrunden för att minska hack."
+#define OPTION_VAL_AS_HOST_SV "Som värd"
+#define RPCS3_MAX_SPURS_THREADS_LABEL_SV "Maximalt antal SPURS-trådar"
+#define RPCS3_MAX_SPURS_THREADS_INFO_0_SV "Maximalt antal SPURS-trådar. Lägre värde kan förbättra prestandan."
 #define RPCS3_ENABLE_TSX_LABEL_SV NULL
 #define RPCS3_ENABLE_TSX_INFO_0_SV NULL
-#define OPTION_VAL_FORCED_SV "Tvingad"
-#define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_SV NULL
-#define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_SV NULL
-#define OPTION_VAL_RELAXED_SV NULL
+#define OPTION_VAL_FORCED_SV NULL
+#define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_SV "SPU XFloat-noggrannhet"
+#define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_SV "Noggrannhetsnivå för SPU-flyttal."
+#define OPTION_VAL_RELAXED_SV "Avslappnad"
 #define OPTION_VAL_ACCURATE_SV "Exakt"
-#define OPTION_VAL_ULTRA_SV NULL
+#define OPTION_VAL_ULTRA_SV "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_SV NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_SV NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_SV NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_SV NULL
 #define RPCS3_RENDERER_LABEL_SV "Renderare"
-#define RPCS3_RENDERER_INFO_0_SV NULL
+#define RPCS3_RENDERER_INFO_0_SV "Vulkan slutför varje bildruta i minnet och gränssnittet tar emot bildpunkterna. Den körs ungefär lika snabbt som fristående RPCS3 och fungerar där OpenGL saknas eller är trasigt."
 #define OPTION_VAL_OPENGL_SV NULL
-#define OPTION_VAL_VULKAN_SV NULL
-#define OPTION_VAL_NULL_SV NULL
-#define RPCS3_RESOLUTION_SCALE_LABEL_SV NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_SV NULL
+#define OPTION_VAL_VULKAN_SV "Vulkan (via minne)"
+#define OPTION_VAL_NULL_SV "Null (ingen video)"
+#define RPCS3_RESOLUTION_SCALE_LABEL_SV "Upplösningsskala"
+#define RPCS3_RESOLUTION_SCALE_INFO_0_SV "Anpassad upplösning"
 #define OPTION_VAL_25_SV NULL
-#define OPTION_VAL_30_SV NULL
+#define OPTION_VAL_30_SV "30 FPS"
 #define OPTION_VAL_35_SV NULL
-#define OPTION_VAL_40_SV NULL
+#define OPTION_VAL_40_SV "40 ms"
 #define OPTION_VAL_45_SV NULL
 #define OPTION_VAL_55_SV NULL
-#define OPTION_VAL_60_SV NULL
+#define OPTION_VAL_60_SV "60 FPS"
 #define OPTION_VAL_65_SV NULL
 #define OPTION_VAL_70_SV NULL
 #define OPTION_VAL_80_SV NULL
@@ -30369,7 +30369,7 @@ struct retro_core_options_v2 options_sr = {
 #define OPTION_VAL_105_SV NULL
 #define OPTION_VAL_110_SV NULL
 #define OPTION_VAL_115_SV NULL
-#define OPTION_VAL_120_SV NULL
+#define OPTION_VAL_120_SV "120 × 120"
 #define OPTION_VAL_125_SV NULL
 #define OPTION_VAL_130_SV NULL
 #define OPTION_VAL_135_SV NULL
@@ -30377,89 +30377,89 @@ struct retro_core_options_v2 options_sr = {
 #define OPTION_VAL_145_SV NULL
 #define OPTION_VAL_175_SV NULL
 #define OPTION_VAL_250_SV NULL
-#define RPCS3_FRAME_LIMIT_LABEL_SV NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_SV NULL
+#define RPCS3_FRAME_LIMIT_LABEL_SV "Bildfrekvensgräns"
+#define RPCS3_FRAME_LIMIT_INFO_0_SV "Högsta bildfrekvens som spelet får köras med. Automatiskt är VBlank-frekvensen, som i RPCS3; PS3 inbyggd tidsbestämmer växlingar som PS3:an gör."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_SV NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_SV NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_SV NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_SV NULL
 #define OPTION_VAL_144_SV NULL
-#define OPTION_VAL_240_SV NULL
-#define RPCS3_SHADER_MODE_LABEL_SV NULL
-#define RPCS3_SHADER_MODE_INFO_0_SV NULL
-#define OPTION_VAL_ASYNC_SV NULL
-#define OPTION_VAL_ASYNC_INTERPRETER_SV NULL
-#define OPTION_VAL_ASYNC_RECOMPILER_SV NULL
-#define OPTION_VAL_INTERPRETER_RPCS3_SHADER_MODE_SV NULL
+#define OPTION_VAL_240_SV "240 × 240"
+#define RPCS3_SHADER_MODE_LABEL_SV "Shaderläge"
+#define RPCS3_SHADER_MODE_INFO_0_SV "Hur shaders kompileras. Asynkront kompilerar i bakgrunden, men bildrutan som först behöver en pipeline väntar på den, vilket ger en lång frysning i en ny scen."
+#define OPTION_VAL_ASYNC_SV "Asynkront (rekommenderas)"
+#define OPTION_VAL_ASYNC_INTERPRETER_SV "Asynkront med shader-tolk (inga stopp)"
+#define OPTION_VAL_ASYNC_RECOMPILER_SV "Asynkront med omkompilerare"
+#define OPTION_VAL_INTERPRETER_RPCS3_SHADER_MODE_SV "Endast shader-tolk"
 #define OPTION_VAL_SYNC_SV "Synkron"
-#define RPCS3_SHADER_COMPILER_THREADS_LABEL_SV NULL
-#define RPCS3_SHADER_COMPILER_THREADS_INFO_0_SV NULL
+#define RPCS3_SHADER_COMPILER_THREADS_LABEL_SV "Trådar för shaderkompilering"
+#define RPCS3_SHADER_COMPILER_THREADS_INFO_0_SV "Hur många trådar som kompilerar shaders. Automatiskt låter RPCS3 avgöra efter den CPU som identifieras."
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_SV "Anisotropisk filtrering"
-#define RPCS3_ANISOTROPIC_FILTER_INFO_0_SV NULL
-#define OPTION_VAL_1_SV NULL
+#define RPCS3_ANISOTROPIC_FILTER_INFO_0_SV "Kvalitet för texturfiltrering."
+#define OPTION_VAL_1_SV "1 × 1"
 #define OPTION_VAL_2_SV NULL
 #define OPTION_VAL_4_SV NULL
 #define OPTION_VAL_8_SV NULL
-#define OPTION_VAL_16_SV NULL
-#define RPCS3_MSAA_LABEL_SV NULL
-#define RPCS3_MSAA_INFO_0_SV NULL
+#define OPTION_VAL_16_SV "16 × 16 (standard)"
+#define RPCS3_MSAA_LABEL_SV "Kantutjämning"
+#define RPCS3_MSAA_INFO_0_SV "Kantutjämning med flera samplingar där spelet begär det, som i RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_SV NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_SV NULL
-#define OPTION_VAL_LOW_SV NULL
+#define OPTION_VAL_LOW_SV "Låg"
 #define OPTION_VAL_NORMAL_SV NULL
-#define OPTION_VAL_HIGH_SV NULL
-#define RPCS3_WRITE_COLOR_BUFFERS_LABEL_SV NULL
-#define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_SV NULL
-#define RPCS3_READ_COLOR_BUFFERS_LABEL_SV NULL
-#define RPCS3_READ_COLOR_BUFFERS_INFO_0_SV NULL
-#define RPCS3_READ_DEPTH_BUFFERS_LABEL_SV NULL
-#define RPCS3_READ_DEPTH_BUFFERS_INFO_0_SV NULL
-#define RPCS3_WRITE_DEPTH_BUFFERS_LABEL_SV NULL
-#define RPCS3_WRITE_DEPTH_BUFFERS_INFO_0_SV NULL
-#define RPCS3_STRICT_RENDERING_LABEL_SV NULL
-#define RPCS3_STRICT_RENDERING_INFO_0_SV NULL
-#define RPCS3_VERTEX_CACHE_LABEL_SV NULL
-#define RPCS3_VERTEX_CACHE_INFO_0_SV NULL
-#define RPCS3_MULTITHREADED_RSX_LABEL_SV NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_SV NULL
-#define RPCS3_ZCULL_ACCURACY_LABEL_SV NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_SV NULL
-#define OPTION_VAL_APPROXIMATE_SV NULL
-#define OPTION_VAL_PRECISE_SV NULL
-#define RPCS3_CPU_BLIT_LABEL_SV NULL
-#define RPCS3_CPU_BLIT_INFO_0_SV NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_SV NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_SV NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_SV NULL
+#define OPTION_VAL_HIGH_SV "Hög"
+#define RPCS3_WRITE_COLOR_BUFFERS_LABEL_SV "Skriv färgbuffertar"
+#define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_SV "Skriv färgbuffertar till huvudminnet. Åtgärdar vissa effekter."
+#define RPCS3_READ_COLOR_BUFFERS_LABEL_SV "Läs färgbuffertar"
+#define RPCS3_READ_COLOR_BUFFERS_INFO_0_SV "Läs färgbuffertar från huvudminnet."
+#define RPCS3_READ_DEPTH_BUFFERS_LABEL_SV "Läs djupbuffertar"
+#define RPCS3_READ_DEPTH_BUFFERS_INFO_0_SV "Läs djupbuffertar från huvudminnet."
+#define RPCS3_WRITE_DEPTH_BUFFERS_LABEL_SV "Skriv djupbuffertar"
+#define RPCS3_WRITE_DEPTH_BUFFERS_INFO_0_SV "Skriv djupbuffertar till huvudminnet."
+#define RPCS3_STRICT_RENDERING_LABEL_SV "Strikt renderingsläge"
+#define RPCS3_STRICT_RENDERING_INFO_0_SV "Aktivera strikt rendering för noggrannhet."
+#define RPCS3_VERTEX_CACHE_LABEL_SV "Vertex-cache"
+#define RPCS3_VERTEX_CACHE_INFO_0_SV "Cachelagra vertexdata för snabbare rendering."
+#define RPCS3_MULTITHREADED_RSX_LABEL_SV "Mät fördröjning"
+#define RPCS3_MULTITHREADED_RSX_INFO_0_SV "Flyttar delar av RSX-arbetet till en andra tråd. Av som standard, precis som i RPCS3; kan hjälpa processorer med få snabba kärnor, även telefoner."
+#define RPCS3_ZCULL_ACCURACY_LABEL_SV "ZCULL-noggrannhet"
+#define RPCS3_ZCULL_ACCURACY_INFO_0_SV "Hur exakt ocklusionsfrågor besvaras, som i RPCS3. Precist är korrekt och standard där; ungefärligt och avslappnat är snabbare men kan förstöra effekter."
+#define OPTION_VAL_APPROXIMATE_SV "Ungefärlig"
+#define OPTION_VAL_PRECISE_SV "Precist (standard)"
+#define RPCS3_CPU_BLIT_LABEL_SV "Tvinga CPU-blit"
+#define RPCS3_CPU_BLIT_INFO_0_SV "Tvinga emulering av CPU-blit för vissa effekter."
+#define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_SV "Fördröjning för drivrutinens uppvaknande"
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_SV "Fördröjning för drivrutinens uppvaknande i mikrosekunder. 0 är standard, som i RPCS3; höj den bara när ett spel behöver det."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_SV "0 (Standard)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_SV NULL
-#define RPCS3_VBLANK_RATE_LABEL_SV NULL
-#define RPCS3_VBLANK_RATE_INFO_0_SV NULL
+#define RPCS3_VBLANK_RATE_LABEL_SV "VBlank-frekvens"
+#define RPCS3_VBLANK_RATE_INFO_0_SV "PS3:ans uppdateringsfrekvens i Hz. Det är också den bildfrekvens som kärnan begär från RetroArch och som tillämpas när innehåll läses in; spel som kan köras över 60 FPS påverkas."
 #define OPTION_VAL_50_RPCS3_VBLANK_RATE_SV NULL
 #define OPTION_VAL_60_RPCS3_VBLANK_RATE_SV NULL
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_SV NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_SV NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_SV NULL
-#define RPCS3_FRAME_PACING_LABEL_SV NULL
-#define RPCS3_FRAME_PACING_INFO_0_SV NULL
+#define RPCS3_FRAME_PACING_LABEL_SV "Bildtaktning"
+#define RPCS3_FRAME_PACING_INFO_0_SV "Vad som tidsbestämmer spelets bildrutor. RetroArch ger spelet en PS3-uppdatering för varje bildruta som RetroArch visar, så varje bildruta visas exakt en gång."
 #define OPTION_VAL_FRONTEND_SV NULL
-#define OPTION_VAL_EMULATOR_SV NULL
-#define RPCS3_STRETCH_TO_DISPLAY_LABEL_SV NULL
-#define RPCS3_STRETCH_TO_DISPLAY_INFO_0_SV NULL
-#define RPCS3_AUDIO_BUFFERING_LABEL_SV NULL
-#define RPCS3_AUDIO_BUFFERING_INFO_0_SV NULL
-#define RPCS3_AUDIO_BUFFER_DURATION_LABEL_SV NULL
-#define RPCS3_AUDIO_BUFFER_DURATION_INFO_0_SV NULL
-#define OPTION_VAL_10_SV NULL
-#define OPTION_VAL_20_SV NULL
-#define OPTION_VAL_30_RPCS3_AUDIO_BUFFER_DURATION_SV NULL
+#define OPTION_VAL_EMULATOR_SV "Emulatorns klocka"
+#define RPCS3_STRETCH_TO_DISPLAY_LABEL_SV "Sträck ut till skärmen"
+#define RPCS3_STRETCH_TO_DISPLAY_INFO_0_SV "Sträck ut spelets utdata för att fylla skärmen."
+#define RPCS3_AUDIO_BUFFERING_LABEL_SV "Aktivera buffring"
+#define RPCS3_AUDIO_BUFFERING_INFO_0_SV "Aktivera ljudbuffring."
+#define RPCS3_AUDIO_BUFFER_DURATION_LABEL_SV "Buffertlängd"
+#define RPCS3_AUDIO_BUFFER_DURATION_INFO_0_SV "Ljudbuffertens storlek i millisekunder."
+#define OPTION_VAL_10_SV "10 ms"
+#define OPTION_VAL_20_SV "20 ms"
+#define OPTION_VAL_30_RPCS3_AUDIO_BUFFER_DURATION_SV "30 ms"
 #define OPTION_VAL_40_RPCS3_AUDIO_BUFFER_DURATION_SV NULL
-#define OPTION_VAL_50_RPCS3_AUDIO_BUFFER_DURATION_SV NULL
-#define OPTION_VAL_75_RPCS3_AUDIO_BUFFER_DURATION_SV NULL
-#define OPTION_VAL_100_RPCS3_AUDIO_BUFFER_DURATION_SV NULL
-#define OPTION_VAL_150_RPCS3_AUDIO_BUFFER_DURATION_SV NULL
-#define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_SV NULL
-#define RPCS3_TIME_STRETCHING_LABEL_SV NULL
-#define RPCS3_TIME_STRETCHING_INFO_0_SV NULL
+#define OPTION_VAL_50_RPCS3_AUDIO_BUFFER_DURATION_SV "50 ms"
+#define OPTION_VAL_75_RPCS3_AUDIO_BUFFER_DURATION_SV "75 ms"
+#define OPTION_VAL_100_RPCS3_AUDIO_BUFFER_DURATION_SV "100 ms (standard)"
+#define OPTION_VAL_150_RPCS3_AUDIO_BUFFER_DURATION_SV "150 ms"
+#define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_SV "200 ms"
+#define RPCS3_TIME_STRETCHING_LABEL_SV "Tidsutsträckning"
+#define RPCS3_TIME_STRETCHING_INFO_0_SV "Aktivera tidsutsträckning av ljud för att minska hack."
 #define RPCS3_MICROPHONE_TYPE_LABEL_SV NULL
 #define RPCS3_MICROPHONE_TYPE_INFO_0_SV NULL
 #define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_SV NULL
@@ -30468,107 +30468,107 @@ struct retro_core_options_v2 options_sr = {
 #define OPTION_VAL_REAL_SINGSTAR_SV NULL
 #define OPTION_VAL_ROCKSMITH_SV NULL
 #define RPCS3_MASTER_VOLUME_LABEL_SV "Huvudvolym"
-#define RPCS3_MASTER_VOLUME_INFO_0_SV NULL
+#define RPCS3_MASTER_VOLUME_INFO_0_SV "Huvudljudvolym i procent."
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_SV NULL
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_SV NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_SV NULL
-#define RPCS3_NETWORK_ENABLED_LABEL_SV NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_SV NULL
-#define RPCS3_PSN_STATUS_LABEL_SV NULL
-#define RPCS3_PSN_STATUS_INFO_0_SV NULL
-#define OPTION_VAL_SIMULATED_SV NULL
-#define OPTION_VAL_RPCN_SV NULL
-#define RPCS3_UPNP_LABEL_SV NULL
-#define RPCS3_UPNP_INFO_0_SV NULL
-#define RPCS3_SHOW_RPCN_POPUPS_LABEL_SV NULL
-#define RPCS3_SHOW_RPCN_POPUPS_INFO_0_SV NULL
-#define RPCS3_SHOW_TROPHY_POPUPS_LABEL_SV NULL
-#define RPCS3_SHOW_TROPHY_POPUPS_INFO_0_SV NULL
-#define RPCS3_DNS_LABEL_SV NULL
-#define RPCS3_DNS_INFO_0_SV NULL
+#define RPCS3_NETWORK_ENABLED_LABEL_SV "Nätverk aktiverat"
+#define RPCS3_NETWORK_ENABLED_INFO_0_SV "Låter spel nå internet. Tillämpas när innehåll läses in."
+#define RPCS3_PSN_STATUS_LABEL_SV "PSN-status"
+#define RPCS3_PSN_STATUS_INFO_0_SV "Vad spel ser av PlayStation Network. Simulerad får dem att tro att de är inloggade, vilket vissa behöver för att ta sig förbi menyerna."
+#define OPTION_VAL_SIMULATED_SV "RPCN-värd"
+#define OPTION_VAL_RPCN_SV "RPCN-serverns värdnamn eller IP-adress."
+#define RPCS3_UPNP_LABEL_SV "RPCN-port"
+#define RPCS3_UPNP_INFO_0_SV "RPCN-serverns port."
+#define RPCS3_SHOW_RPCN_POPUPS_LABEL_SV "RPCN-kommunikations-id"
+#define RPCS3_SHOW_RPCN_POPUPS_INFO_0_SV "Kommunikations-id för RPCN."
+#define RPCS3_SHOW_TROPHY_POPUPS_LABEL_SV "Visa trofénotiser"
+#define RPCS3_SHOW_TROPHY_POPUPS_INFO_0_SV "Visa notiser när troféer låses upp."
+#define RPCS3_DNS_LABEL_SV "DNS-server"
+#define RPCS3_DNS_INFO_0_SV "DNS-serveradress."
 #define OPTION_VAL_8_8_8_8_SV NULL
 #define OPTION_VAL_1_1_1_1_SV NULL
 #define OPTION_VAL_208_67_222_222_SV NULL
 #define RPCS3_RPCN_SERVER_LABEL_SV NULL
 #define RPCS3_RPCN_SERVER_INFO_0_SV NULL
 #define OPTION_VAL_RPCN_RPCS3_NET_SV NULL
-#define OPTION_VAL_CUSTOM_SV "Anpassa"
-#define RPCS3_SPU_VERIFICATION_LABEL_SV NULL
-#define RPCS3_SPU_VERIFICATION_INFO_0_SV NULL
-#define RPCS3_SPU_CACHE_LINE_STORES_LABEL_SV NULL
-#define RPCS3_SPU_CACHE_LINE_STORES_INFO_0_SV NULL
-#define RPCS3_RSX_FIFO_ACCURACY_LABEL_SV NULL
-#define RPCS3_RSX_FIFO_ACCURACY_INFO_0_SV NULL
+#define OPTION_VAL_CUSTOM_SV NULL
+#define RPCS3_SPU_VERIFICATION_LABEL_SV "SPU-verifiering"
+#define RPCS3_SPU_VERIFICATION_INFO_0_SV "Verifieringsnivå för SPU-kod."
+#define RPCS3_SPU_CACHE_LINE_STORES_LABEL_SV "Lagring av SPU-cache-rader"
+#define RPCS3_SPU_CACHE_LINE_STORES_INFO_0_SV "Aktivera noggrann lagring av cache-rader."
+#define RPCS3_RSX_FIFO_ACCURACY_LABEL_SV "RSX FIFO-noggrannhet"
+#define RPCS3_RSX_FIFO_ACCURACY_INFO_0_SV "Noggrannhetsnivå för RSX FIFO-kommandon."
 #define OPTION_VAL_FAST_SV "Snabb"
-#define OPTION_VAL_BALANCED_SV "Balanserad"
-#define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_SV NULL
-#define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_SV NULL
-#define OPTION_VAL_1000_SV NULL
-#define OPTION_VAL_2000_SV NULL
-#define OPTION_VAL_5000_SV NULL
-#define OPTION_VAL_10000_SV NULL
-#define RPCS3_MFC_SHUFFLING_LABEL_SV NULL
-#define RPCS3_MFC_SHUFFLING_INFO_0_SV NULL
-#define RPCS3_SPU_DELAY_PENALTY_LABEL_SV NULL
-#define RPCS3_SPU_DELAY_PENALTY_INFO_0_SV NULL
+#define OPTION_VAL_BALANCED_SV NULL
+#define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_SV "Tidsgräns för återställning av drivrutin"
+#define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_SV "Tidsgräns i millisekunder för återställning av GPU-drivrutinen."
+#define OPTION_VAL_1000_SV "1 sekund"
+#define OPTION_VAL_2000_SV "2 sekunder"
+#define OPTION_VAL_5000_SV "5 sekunder"
+#define OPTION_VAL_10000_SV "10 sekunder"
+#define RPCS3_MFC_SHUFFLING_LABEL_SV "Blandning av MFC-kommandon"
+#define RPCS3_MFC_SHUFFLING_INFO_0_SV "Blanda MFC-kommandon för noggrannhet."
+#define RPCS3_SPU_DELAY_PENALTY_LABEL_SV "Fördröjningsstraff för SPU"
+#define RPCS3_SPU_DELAY_PENALTY_INFO_0_SV "Fördröjningsstraff för SPU vid schemaläggning."
 #define OPTION_VAL_3_SV "3 (Standard)"
 #define RPCS3_ZCULL_SYNC_LABEL_SV NULL
 #define RPCS3_ZCULL_SYNC_INFO_0_SV NULL
-#define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_SV NULL
-#define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_SV NULL
+#define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_SV "Asynkron texturströmning"
+#define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_SV "Aktivera asynkron texturströmning."
 #define RPCS3_PPU_LLVM_GREEDY_LABEL_SV NULL
 #define RPCS3_PPU_LLVM_GREEDY_INFO_0_SV NULL
 #define RPCS3_SPU_NJ_FIXUP_LABEL_SV NULL
 #define RPCS3_SPU_NJ_FIXUP_INFO_0_SV NULL
-#define RPCS3_PPU_NJ_MODE_LABEL_SV NULL
-#define RPCS3_PPU_NJ_MODE_INFO_0_SV NULL
-#define RPCS3_PPU_SET_SAT_BIT_LABEL_SV NULL
-#define RPCS3_PPU_SET_SAT_BIT_INFO_0_SV NULL
-#define RPCS3_PPU_ACCURATE_VECTOR_NAN_LABEL_SV NULL
-#define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_SV NULL
-#define RPCS3_PPU_SET_FPCC_LABEL_SV NULL
-#define RPCS3_PPU_SET_FPCC_INFO_0_SV NULL
-#define RPCS3_LANGUAGE_LABEL_SV NULL
-#define RPCS3_LANGUAGE_INFO_0_SV NULL
-#define OPTION_VAL_ENGLISH_SV "Engelska"
-#define OPTION_VAL_JAPANESE_SV "Japanska"
+#define RPCS3_PPU_NJ_MODE_LABEL_SV "PPU NJ-korrigeringsläge"
+#define RPCS3_PPU_NJ_MODE_INFO_0_SV "Hantering av PPU:s icke-Java-läge."
+#define RPCS3_PPU_SET_SAT_BIT_LABEL_SV "Ange mättnadsbit"
+#define RPCS3_PPU_SET_SAT_BIT_INFO_0_SV "Ange PPU:s mättnadsbit noggrant."
+#define RPCS3_PPU_ACCURATE_VECTOR_NAN_LABEL_SV "PPU: noggrann vektor-NaN"
+#define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_SV "Noggrannare hantering av vektor-NaN."
+#define RPCS3_PPU_SET_FPCC_LABEL_SV "PPU: ange FPCC"
+#define RPCS3_PPU_SET_FPCC_INFO_0_SV "Ange PPU:s FPCC-bitar noggrant."
+#define RPCS3_LANGUAGE_LABEL_SV "SPU: noggrann kontroll av denormala tal"
+#define RPCS3_LANGUAGE_INFO_0_SV "Aktivera noggrann hantering av SPU:s denormala tal."
+#define OPTION_VAL_ENGLISH_SV "RSX: noggrann ZCULL"
+#define OPTION_VAL_JAPANESE_SV "Aktivera noggrann ZCULL-hantering."
 #define OPTION_VAL_FRENCH_SV "Franska"
 #define OPTION_VAL_SPANISH_SV "Spanska"
 #define OPTION_VAL_GERMAN_SV "Tyska"
 #define OPTION_VAL_ITALIAN_SV "Italienska"
-#define OPTION_VAL_DUTCH_SV NULL
-#define OPTION_VAL_PORTUGUESE_SV NULL
-#define OPTION_VAL_RUSSIAN_SV NULL
-#define OPTION_VAL_KOREAN_SV NULL
-#define OPTION_VAL_CHINESE_TRAD_SV NULL
-#define OPTION_VAL_CHINESE_SIMP_SV NULL
-#define RPCS3_ENTER_BUTTON_LABEL_SV NULL
-#define RPCS3_ENTER_BUTTON_INFO_0_SV NULL
-#define OPTION_VAL_CROSS_SV NULL
-#define OPTION_VAL_CIRCLE_SV NULL
-#define RPCS3_LICENSE_AREA_LABEL_SV NULL
-#define RPCS3_LICENSE_AREA_INFO_0_SV NULL
-#define OPTION_VAL_USA_SV NULL
-#define OPTION_VAL_EU_SV "Europa"
-#define OPTION_VAL_JP_SV NULL
-#define OPTION_VAL_HK_SV NULL
-#define OPTION_VAL_KR_SV NULL
-#define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_SV NULL
-#define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_SV NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_SV NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_SV NULL
-#define OPTION_VAL_LIST_SV NULL
-#define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_SV NULL
-#define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_SV NULL
+#define OPTION_VAL_DUTCH_SV "Nederländska"
+#define OPTION_VAL_PORTUGUESE_SV "Portugisiska"
+#define OPTION_VAL_RUSSIAN_SV "Ryska"
+#define OPTION_VAL_KOREAN_SV "Koreanska"
+#define OPTION_VAL_CHINESE_TRAD_SV "Kinesiska (traditionell)"
+#define OPTION_VAL_CHINESE_SIMP_SV "Kinesiska (förenklad)"
+#define RPCS3_ENTER_BUTTON_LABEL_SV "Bekräftelseknapp"
+#define RPCS3_ENTER_BUTTON_INFO_0_SV "Knapp som används för att bekräfta åtgärder."
+#define OPTION_VAL_CROSS_SV "Kryss (västerländsk)"
+#define OPTION_VAL_CIRCLE_SV "Cirkel (japansk)"
+#define RPCS3_LICENSE_AREA_LABEL_SV "Licensområde"
+#define RPCS3_LICENSE_AREA_INFO_0_SV "PS3-licensregion."
+#define OPTION_VAL_USA_SV "Läs djupbuffertar"
+#define OPTION_VAL_EU_SV "Läs djupbuffertar från minnet."
+#define OPTION_VAL_JP_SV "SCEJ (Japan)"
+#define OPTION_VAL_HK_SV "SCEH (Hongkong, Sydostasien)"
+#define OPTION_VAL_KR_SV "SCEK (Korea)"
+#define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_SV "Visa tips om shaderkompilering"
+#define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_SV "Visa ett tips när shaders kompileras."
+#define RPCS3_SAVEDATA_SLOT_LABEL_SV "Plats för sparade data"
+#define RPCS3_SAVEDATA_SLOT_INFO_0_SV "Ett PS3-spel visar en lista över sina sparade data och låter spelaren välja. 'Välj från lista' visar listan i spelbilden för användning med handkontrollen."
+#define OPTION_VAL_LIST_SV "Välj från lista"
+#define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_SV "Visa tips om PPU-kompilering"
+#define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_SV "Visa ett tips när PPU-moduler kompileras."
 #define RPCS3_VFS_INIT_LABEL_SV NULL
 #define RPCS3_VFS_INIT_INFO_0_SV NULL
-#define OPTION_VAL_RESET_SV "Återställ"
-#define RPCS3_SILENCE_ALL_LOGS_LABEL_SV NULL
-#define RPCS3_SILENCE_ALL_LOGS_INFO_0_SV NULL
-#define RPCS3_HOOK_STATIC_FUNCS_LABEL_SV NULL
-#define RPCS3_HOOK_STATIC_FUNCS_INFO_0_SV NULL
+#define OPTION_VAL_RESET_SV NULL
+#define RPCS3_SILENCE_ALL_LOGS_LABEL_SV "Tysta alla loggar"
+#define RPCS3_SILENCE_ALL_LOGS_INFO_0_SV "Tysta all loggutdata för bättre prestanda."
+#define RPCS3_HOOK_STATIC_FUNCS_LABEL_SV "Koppla statiska funktioner"
+#define RPCS3_HOOK_STATIC_FUNCS_INFO_0_SV "Koppla statiska funktioner för HLE."
 #define RPCS3_HLE_LWMUTEX_LABEL_SV NULL
-#define RPCS3_HLE_LWMUTEX_INFO_0_SV NULL
+#define RPCS3_HLE_LWMUTEX_INFO_0_SV "Använd HLE-implementationen för lwmutex."
 
 struct retro_core_option_v2_category option_cats_sv[] = {
     { "cpu", CATEGORY_CPU_LABEL_SV, CATEGORY_CPU_INFO_0_SV },
@@ -31147,13 +31147,13 @@ struct retro_core_options_v2 options_sv = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_TH NULL
 #define OPTION_VAL_0_TH "อัตโนมัติ"
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_TH NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_TH NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_TH "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_TH NULL
 #define RPCS3_SPU_CACHE_INFO_0_TH NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_TH NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_TH NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_TH NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_TH NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_TH "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_TH NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_TH NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_TH NULL
@@ -31168,7 +31168,7 @@ struct retro_core_options_v2 options_sv = {
 #define OPTION_VAL_300_TH NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_TH NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_TH NULL
-#define OPTION_VAL_USLEEP_TH NULL
+#define OPTION_VAL_USLEEP_TH "Usleep Only"
 #define OPTION_VAL_ALL_TIMERS_TH NULL
 #define OPTION_VAL_AS_HOST_TH NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_TH NULL
@@ -31178,9 +31178,9 @@ struct retro_core_options_v2 options_sv = {
 #define OPTION_VAL_FORCED_TH NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_TH NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_TH NULL
-#define OPTION_VAL_RELAXED_TH NULL
+#define OPTION_VAL_RELAXED_TH "Relaxed"
 #define OPTION_VAL_ACCURATE_TH "แม่นยำ"
-#define OPTION_VAL_ULTRA_TH NULL
+#define OPTION_VAL_ULTRA_TH "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_TH NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_TH NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_TH NULL
@@ -31191,14 +31191,14 @@ struct retro_core_options_v2 options_sv = {
 #define OPTION_VAL_VULKAN_TH NULL
 #define OPTION_VAL_NULL_TH NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_TH NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_TH NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_TH "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_TH NULL
-#define OPTION_VAL_30_TH NULL
+#define OPTION_VAL_30_TH "30 FPS"
 #define OPTION_VAL_35_TH NULL
-#define OPTION_VAL_40_TH NULL
+#define OPTION_VAL_40_TH "40ms"
 #define OPTION_VAL_45_TH NULL
 #define OPTION_VAL_55_TH NULL
-#define OPTION_VAL_60_TH NULL
+#define OPTION_VAL_60_TH "60 FPS"
 #define OPTION_VAL_65_TH NULL
 #define OPTION_VAL_70_TH NULL
 #define OPTION_VAL_80_TH NULL
@@ -31209,7 +31209,7 @@ struct retro_core_options_v2 options_sv = {
 #define OPTION_VAL_105_TH NULL
 #define OPTION_VAL_110_TH NULL
 #define OPTION_VAL_115_TH NULL
-#define OPTION_VAL_120_TH NULL
+#define OPTION_VAL_120_TH "120x120"
 #define OPTION_VAL_125_TH NULL
 #define OPTION_VAL_130_TH NULL
 #define OPTION_VAL_135_TH NULL
@@ -31218,13 +31218,13 @@ struct retro_core_options_v2 options_sv = {
 #define OPTION_VAL_175_TH NULL
 #define OPTION_VAL_250_TH NULL
 #define RPCS3_FRAME_LIMIT_LABEL_TH NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_TH NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_TH "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_TH NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_TH NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_TH NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_TH NULL
 #define OPTION_VAL_144_TH NULL
-#define OPTION_VAL_240_TH NULL
+#define OPTION_VAL_240_TH "240x240"
 #define RPCS3_SHADER_MODE_LABEL_TH NULL
 #define RPCS3_SHADER_MODE_INFO_0_TH NULL
 #define OPTION_VAL_ASYNC_TH NULL
@@ -31236,18 +31236,18 @@ struct retro_core_options_v2 options_sv = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_TH NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_TH "การกรองพื้นผิวแบบAnisotropic"
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_TH NULL
-#define OPTION_VAL_1_TH NULL
+#define OPTION_VAL_1_TH "1x1"
 #define OPTION_VAL_2_TH NULL
 #define OPTION_VAL_4_TH NULL
 #define OPTION_VAL_8_TH NULL
-#define OPTION_VAL_16_TH NULL
-#define RPCS3_MSAA_LABEL_TH NULL
-#define RPCS3_MSAA_INFO_0_TH NULL
+#define OPTION_VAL_16_TH "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_TH "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_TH "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_TH NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_TH NULL
-#define OPTION_VAL_LOW_TH NULL
-#define OPTION_VAL_NORMAL_TH "ปกติ"
-#define OPTION_VAL_HIGH_TH NULL
+#define OPTION_VAL_LOW_TH "ตํ่า"
+#define OPTION_VAL_NORMAL_TH NULL
+#define OPTION_VAL_HIGH_TH "สูง"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_TH NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_TH NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_TH NULL
@@ -31261,16 +31261,16 @@ struct retro_core_options_v2 options_sv = {
 #define RPCS3_VERTEX_CACHE_LABEL_TH NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_TH NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_TH NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_TH NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_TH "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_TH NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_TH NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_TH "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_TH NULL
-#define OPTION_VAL_PRECISE_TH NULL
+#define OPTION_VAL_PRECISE_TH "Precise (Default)"
 #define RPCS3_CPU_BLIT_LABEL_TH NULL
 #define RPCS3_CPU_BLIT_INFO_0_TH NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_TH NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_TH NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_TH NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_TH "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_TH "0 (Default)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_TH NULL
 #define RPCS3_VBLANK_RATE_LABEL_TH NULL
 #define RPCS3_VBLANK_RATE_INFO_0_TH NULL
@@ -31313,9 +31313,9 @@ struct retro_core_options_v2 options_sv = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_TH NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_TH NULL
 #define RPCS3_NETWORK_ENABLED_LABEL_TH NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_TH NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_TH "Lets games reach the internet. Takes effect when content is loaded."
 #define RPCS3_PSN_STATUS_LABEL_TH NULL
-#define RPCS3_PSN_STATUS_INFO_0_TH NULL
+#define RPCS3_PSN_STATUS_INFO_0_TH "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_TH NULL
 #define OPTION_VAL_RPCN_TH NULL
 #define RPCS3_UPNP_LABEL_TH NULL
@@ -31332,7 +31332,7 @@ struct retro_core_options_v2 options_sv = {
 #define RPCS3_RPCN_SERVER_LABEL_TH NULL
 #define RPCS3_RPCN_SERVER_INFO_0_TH NULL
 #define OPTION_VAL_RPCN_RPCS3_NET_TH NULL
-#define OPTION_VAL_CUSTOM_TH "กำหนดเอง"
+#define OPTION_VAL_CUSTOM_TH NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_TH NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_TH NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_TH NULL
@@ -31340,7 +31340,7 @@ struct retro_core_options_v2 options_sv = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_TH NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_TH NULL
 #define OPTION_VAL_FAST_TH "เร็ว"
-#define OPTION_VAL_BALANCED_TH "สมดุล"
+#define OPTION_VAL_BALANCED_TH NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_TH NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_TH NULL
 #define OPTION_VAL_1000_TH NULL
@@ -31388,11 +31388,11 @@ struct retro_core_options_v2 options_sv = {
 #define OPTION_VAL_CIRCLE_TH NULL
 #define RPCS3_LICENSE_AREA_LABEL_TH NULL
 #define RPCS3_LICENSE_AREA_INFO_0_TH NULL
-#define OPTION_VAL_USA_TH NULL
-#define OPTION_VAL_EU_TH "ยุโรป"
-#define OPTION_VAL_JP_TH "ญี่ปุ่น"
-#define OPTION_VAL_HK_TH NULL
-#define OPTION_VAL_KR_TH NULL
+#define OPTION_VAL_USA_TH "SCEA (Americas)"
+#define OPTION_VAL_EU_TH "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_TH "SCEJ (Japan)"
+#define OPTION_VAL_HK_TH "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_TH "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_TH NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_TH NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_TH NULL
@@ -31402,7 +31402,7 @@ struct retro_core_options_v2 options_sv = {
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_TH NULL
 #define RPCS3_VFS_INIT_LABEL_TH NULL
 #define RPCS3_VFS_INIT_INFO_0_TH NULL
-#define OPTION_VAL_RESET_TH "รีเซ็ต"
+#define OPTION_VAL_RESET_TH NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_TH NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_TH NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_TH NULL
@@ -31987,13 +31987,13 @@ struct retro_core_options_v2 options_th = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_TR NULL
 #define OPTION_VAL_0_TR "Otomatik"
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_TR NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_TR NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_TR "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_TR NULL
 #define RPCS3_SPU_CACHE_INFO_0_TR NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_TR NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_TR NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_TR NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_TR NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_TR "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_TR NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_TR NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_TR NULL
@@ -32008,7 +32008,7 @@ struct retro_core_options_v2 options_th = {
 #define OPTION_VAL_300_TR "%300"
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_TR NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_TR NULL
-#define OPTION_VAL_USLEEP_TR NULL
+#define OPTION_VAL_USLEEP_TR "Usleep Only"
 #define OPTION_VAL_ALL_TIMERS_TR NULL
 #define OPTION_VAL_AS_HOST_TR NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_TR NULL
@@ -32018,9 +32018,9 @@ struct retro_core_options_v2 options_th = {
 #define OPTION_VAL_FORCED_TR NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_TR NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_TR NULL
-#define OPTION_VAL_RELAXED_TR NULL
+#define OPTION_VAL_RELAXED_TR "Relaxed"
 #define OPTION_VAL_ACCURATE_TR "Kesin"
-#define OPTION_VAL_ULTRA_TR NULL
+#define OPTION_VAL_ULTRA_TR "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_TR NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_TR NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_TR NULL
@@ -32031,40 +32031,40 @@ struct retro_core_options_v2 options_th = {
 #define OPTION_VAL_VULKAN_TR NULL
 #define OPTION_VAL_NULL_TR NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_TR NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_TR NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_TR "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_TR NULL
-#define OPTION_VAL_30_TR "%30"
-#define OPTION_VAL_35_TR "%35"
-#define OPTION_VAL_40_TR "%40"
+#define OPTION_VAL_30_TR "30 FPS"
+#define OPTION_VAL_35_TR NULL
+#define OPTION_VAL_40_TR "40ms"
 #define OPTION_VAL_45_TR NULL
-#define OPTION_VAL_55_TR "%55"
-#define OPTION_VAL_60_TR "%60"
-#define OPTION_VAL_65_TR "%65"
+#define OPTION_VAL_55_TR NULL
+#define OPTION_VAL_60_TR "60 FPS"
+#define OPTION_VAL_65_TR NULL
 #define OPTION_VAL_70_TR "%70"
 #define OPTION_VAL_80_TR "%80"
-#define OPTION_VAL_85_TR "%85"
+#define OPTION_VAL_85_TR NULL
 #define OPTION_VAL_90_TR "%90"
-#define OPTION_VAL_95_TR "%95"
+#define OPTION_VAL_95_TR NULL
 #define OPTION_VAL_100_RPCS3_RESOLUTION_SCALE_TR "%100 (Doğal)"
-#define OPTION_VAL_105_TR "%105"
-#define OPTION_VAL_110_TR "%110"
-#define OPTION_VAL_115_TR "%115"
-#define OPTION_VAL_120_TR "%120"
-#define OPTION_VAL_125_TR "%125"
-#define OPTION_VAL_130_TR "%130"
-#define OPTION_VAL_135_TR "%135"
-#define OPTION_VAL_140_TR "%140"
-#define OPTION_VAL_145_TR "%145"
-#define OPTION_VAL_175_TR "%175"
+#define OPTION_VAL_105_TR NULL
+#define OPTION_VAL_110_TR NULL
+#define OPTION_VAL_115_TR NULL
+#define OPTION_VAL_120_TR "120x120"
+#define OPTION_VAL_125_TR NULL
+#define OPTION_VAL_130_TR NULL
+#define OPTION_VAL_135_TR NULL
+#define OPTION_VAL_140_TR NULL
+#define OPTION_VAL_145_TR NULL
+#define OPTION_VAL_175_TR NULL
 #define OPTION_VAL_250_TR "%250"
 #define RPCS3_FRAME_LIMIT_LABEL_TR NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_TR NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_TR "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_TR NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_TR NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_TR NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_TR NULL
 #define OPTION_VAL_144_TR NULL
-#define OPTION_VAL_240_TR NULL
+#define OPTION_VAL_240_TR "240x240"
 #define RPCS3_SHADER_MODE_LABEL_TR NULL
 #define RPCS3_SHADER_MODE_INFO_0_TR NULL
 #define OPTION_VAL_ASYNC_TR NULL
@@ -32076,18 +32076,18 @@ struct retro_core_options_v2 options_th = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_TR NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_TR "Eşyönsüz Filtreleme"
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_TR NULL
-#define OPTION_VAL_1_TR NULL
+#define OPTION_VAL_1_TR "1x1"
 #define OPTION_VAL_2_TR NULL
 #define OPTION_VAL_4_TR NULL
 #define OPTION_VAL_8_TR NULL
-#define OPTION_VAL_16_TR NULL
-#define RPCS3_MSAA_LABEL_TR NULL
-#define RPCS3_MSAA_INFO_0_TR NULL
+#define OPTION_VAL_16_TR "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_TR "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_TR "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_TR NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_TR NULL
-#define OPTION_VAL_LOW_TR NULL
+#define OPTION_VAL_LOW_TR "Düşük"
 #define OPTION_VAL_NORMAL_TR NULL
-#define OPTION_VAL_HIGH_TR NULL
+#define OPTION_VAL_HIGH_TR "Yüksek"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_TR NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_TR NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_TR NULL
@@ -32101,16 +32101,16 @@ struct retro_core_options_v2 options_th = {
 #define RPCS3_VERTEX_CACHE_LABEL_TR NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_TR NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_TR NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_TR NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_TR "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_TR NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_TR NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_TR "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_TR NULL
-#define OPTION_VAL_PRECISE_TR NULL
+#define OPTION_VAL_PRECISE_TR "Precise (Default)"
 #define RPCS3_CPU_BLIT_LABEL_TR NULL
 #define RPCS3_CPU_BLIT_INFO_0_TR NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_TR NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_TR NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_TR NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_TR "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_TR "0 (Default)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_TR NULL
 #define RPCS3_VBLANK_RATE_LABEL_TR NULL
 #define RPCS3_VBLANK_RATE_INFO_0_TR NULL
@@ -32153,9 +32153,9 @@ struct retro_core_options_v2 options_th = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_TR NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_TR "%20"
 #define RPCS3_NETWORK_ENABLED_LABEL_TR NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_TR NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_TR "Lets games reach the internet. Takes effect when content is loaded."
 #define RPCS3_PSN_STATUS_LABEL_TR NULL
-#define RPCS3_PSN_STATUS_INFO_0_TR NULL
+#define RPCS3_PSN_STATUS_INFO_0_TR "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_TR NULL
 #define OPTION_VAL_RPCN_TR NULL
 #define RPCS3_UPNP_LABEL_TR NULL
@@ -32172,7 +32172,7 @@ struct retro_core_options_v2 options_th = {
 #define RPCS3_RPCN_SERVER_LABEL_TR NULL
 #define RPCS3_RPCN_SERVER_INFO_0_TR NULL
 #define OPTION_VAL_RPCN_RPCS3_NET_TR NULL
-#define OPTION_VAL_CUSTOM_TR "Özel"
+#define OPTION_VAL_CUSTOM_TR NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_TR NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_TR NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_TR NULL
@@ -32180,7 +32180,7 @@ struct retro_core_options_v2 options_th = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_TR NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_TR NULL
 #define OPTION_VAL_FAST_TR "Hızlı"
-#define OPTION_VAL_BALANCED_TR "Dengeli"
+#define OPTION_VAL_BALANCED_TR NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_TR NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_TR NULL
 #define OPTION_VAL_1000_TR NULL
@@ -32228,11 +32228,11 @@ struct retro_core_options_v2 options_th = {
 #define OPTION_VAL_CIRCLE_TR NULL
 #define RPCS3_LICENSE_AREA_LABEL_TR NULL
 #define RPCS3_LICENSE_AREA_INFO_0_TR NULL
-#define OPTION_VAL_USA_TR "ABD"
-#define OPTION_VAL_EU_TR "Avrupa"
-#define OPTION_VAL_JP_TR "Japonya"
-#define OPTION_VAL_HK_TR NULL
-#define OPTION_VAL_KR_TR NULL
+#define OPTION_VAL_USA_TR "SCEA (Americas)"
+#define OPTION_VAL_EU_TR "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_TR "SCEJ (Japan)"
+#define OPTION_VAL_HK_TR "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_TR "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_TR NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_TR NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_TR NULL
@@ -32242,7 +32242,7 @@ struct retro_core_options_v2 options_th = {
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_TR NULL
 #define RPCS3_VFS_INIT_LABEL_TR NULL
 #define RPCS3_VFS_INIT_INFO_0_TR NULL
-#define OPTION_VAL_RESET_TR "Sıfırla"
+#define OPTION_VAL_RESET_TR NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_TR NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_TR NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_TR NULL
@@ -32827,13 +32827,13 @@ struct retro_core_options_v2 options_tr = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_TT NULL
 #define OPTION_VAL_0_TT NULL
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_TT NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_TT NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_TT "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_TT NULL
 #define RPCS3_SPU_CACHE_INFO_0_TT NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_TT NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_TT NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_TT NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_TT NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_TT "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_TT NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_TT NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_TT NULL
@@ -32848,7 +32848,7 @@ struct retro_core_options_v2 options_tr = {
 #define OPTION_VAL_300_TT NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_TT NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_TT NULL
-#define OPTION_VAL_USLEEP_TT NULL
+#define OPTION_VAL_USLEEP_TT "Usleep Only"
 #define OPTION_VAL_ALL_TIMERS_TT NULL
 #define OPTION_VAL_AS_HOST_TT NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_TT NULL
@@ -32858,9 +32858,9 @@ struct retro_core_options_v2 options_tr = {
 #define OPTION_VAL_FORCED_TT NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_TT NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_TT NULL
-#define OPTION_VAL_RELAXED_TT NULL
+#define OPTION_VAL_RELAXED_TT "Relaxed"
 #define OPTION_VAL_ACCURATE_TT NULL
-#define OPTION_VAL_ULTRA_TT NULL
+#define OPTION_VAL_ULTRA_TT "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_TT NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_TT NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_TT NULL
@@ -32871,14 +32871,14 @@ struct retro_core_options_v2 options_tr = {
 #define OPTION_VAL_VULKAN_TT NULL
 #define OPTION_VAL_NULL_TT NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_TT NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_TT NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_TT "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_TT NULL
-#define OPTION_VAL_30_TT NULL
+#define OPTION_VAL_30_TT "30 FPS"
 #define OPTION_VAL_35_TT NULL
-#define OPTION_VAL_40_TT NULL
+#define OPTION_VAL_40_TT "40ms"
 #define OPTION_VAL_45_TT NULL
 #define OPTION_VAL_55_TT NULL
-#define OPTION_VAL_60_TT NULL
+#define OPTION_VAL_60_TT "60 FPS"
 #define OPTION_VAL_65_TT NULL
 #define OPTION_VAL_70_TT NULL
 #define OPTION_VAL_80_TT NULL
@@ -32889,7 +32889,7 @@ struct retro_core_options_v2 options_tr = {
 #define OPTION_VAL_105_TT NULL
 #define OPTION_VAL_110_TT NULL
 #define OPTION_VAL_115_TT NULL
-#define OPTION_VAL_120_TT NULL
+#define OPTION_VAL_120_TT "120x120"
 #define OPTION_VAL_125_TT NULL
 #define OPTION_VAL_130_TT NULL
 #define OPTION_VAL_135_TT NULL
@@ -32898,13 +32898,13 @@ struct retro_core_options_v2 options_tr = {
 #define OPTION_VAL_175_TT NULL
 #define OPTION_VAL_250_TT NULL
 #define RPCS3_FRAME_LIMIT_LABEL_TT NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_TT NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_TT "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_TT NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_TT NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_TT NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_TT NULL
 #define OPTION_VAL_144_TT NULL
-#define OPTION_VAL_240_TT NULL
+#define OPTION_VAL_240_TT "240x240"
 #define RPCS3_SHADER_MODE_LABEL_TT NULL
 #define RPCS3_SHADER_MODE_INFO_0_TT NULL
 #define OPTION_VAL_ASYNC_TT NULL
@@ -32916,18 +32916,18 @@ struct retro_core_options_v2 options_tr = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_TT NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_TT NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_TT NULL
-#define OPTION_VAL_1_TT NULL
+#define OPTION_VAL_1_TT "1x1"
 #define OPTION_VAL_2_TT NULL
 #define OPTION_VAL_4_TT NULL
 #define OPTION_VAL_8_TT NULL
-#define OPTION_VAL_16_TT NULL
-#define RPCS3_MSAA_LABEL_TT NULL
-#define RPCS3_MSAA_INFO_0_TT NULL
+#define OPTION_VAL_16_TT "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_TT "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_TT "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_TT NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_TT NULL
-#define OPTION_VAL_LOW_TT NULL
+#define OPTION_VAL_LOW_TT "Low"
 #define OPTION_VAL_NORMAL_TT NULL
-#define OPTION_VAL_HIGH_TT NULL
+#define OPTION_VAL_HIGH_TT "High"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_TT NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_TT NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_TT NULL
@@ -32941,16 +32941,16 @@ struct retro_core_options_v2 options_tr = {
 #define RPCS3_VERTEX_CACHE_LABEL_TT NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_TT NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_TT NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_TT NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_TT "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_TT NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_TT NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_TT "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_TT NULL
-#define OPTION_VAL_PRECISE_TT NULL
+#define OPTION_VAL_PRECISE_TT "Precise (Default)"
 #define RPCS3_CPU_BLIT_LABEL_TT NULL
 #define RPCS3_CPU_BLIT_INFO_0_TT NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_TT NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_TT NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_TT NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_TT "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_TT "0 (Default)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_TT NULL
 #define RPCS3_VBLANK_RATE_LABEL_TT NULL
 #define RPCS3_VBLANK_RATE_INFO_0_TT NULL
@@ -32993,9 +32993,9 @@ struct retro_core_options_v2 options_tr = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_TT NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_TT NULL
 #define RPCS3_NETWORK_ENABLED_LABEL_TT NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_TT NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_TT "Lets games reach the internet. Takes effect when content is loaded."
 #define RPCS3_PSN_STATUS_LABEL_TT NULL
-#define RPCS3_PSN_STATUS_INFO_0_TT NULL
+#define RPCS3_PSN_STATUS_INFO_0_TT "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_TT NULL
 #define OPTION_VAL_RPCN_TT NULL
 #define RPCS3_UPNP_LABEL_TT NULL
@@ -33068,11 +33068,11 @@ struct retro_core_options_v2 options_tr = {
 #define OPTION_VAL_CIRCLE_TT NULL
 #define RPCS3_LICENSE_AREA_LABEL_TT NULL
 #define RPCS3_LICENSE_AREA_INFO_0_TT NULL
-#define OPTION_VAL_USA_TT NULL
-#define OPTION_VAL_EU_TT "Аурупа"
-#define OPTION_VAL_JP_TT NULL
-#define OPTION_VAL_HK_TT NULL
-#define OPTION_VAL_KR_TT NULL
+#define OPTION_VAL_USA_TT "SCEA (Americas)"
+#define OPTION_VAL_EU_TT "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_TT "SCEJ (Japan)"
+#define OPTION_VAL_HK_TT "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_TT "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_TT NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_TT NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_TT NULL
@@ -33667,13 +33667,13 @@ struct retro_core_options_v2 options_tt = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_UK NULL
 #define OPTION_VAL_0_UK "Автоматично"
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_UK NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_UK NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_UK "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_UK NULL
 #define RPCS3_SPU_CACHE_INFO_0_UK NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_UK NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_UK NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_UK NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_UK NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_UK "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_UK NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_UK NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_UK NULL
@@ -33688,19 +33688,19 @@ struct retro_core_options_v2 options_tt = {
 #define OPTION_VAL_300_UK NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_UK NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_UK NULL
-#define OPTION_VAL_USLEEP_UK NULL
+#define OPTION_VAL_USLEEP_UK "Usleep Only"
 #define OPTION_VAL_ALL_TIMERS_UK NULL
 #define OPTION_VAL_AS_HOST_UK NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_UK NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_UK NULL
 #define RPCS3_ENABLE_TSX_LABEL_UK NULL
 #define RPCS3_ENABLE_TSX_INFO_0_UK NULL
-#define OPTION_VAL_FORCED_UK "Примусово"
+#define OPTION_VAL_FORCED_UK NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_UK NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_UK NULL
-#define OPTION_VAL_RELAXED_UK NULL
+#define OPTION_VAL_RELAXED_UK "У спокої"
 #define OPTION_VAL_ACCURATE_UK "Точний"
-#define OPTION_VAL_ULTRA_UK NULL
+#define OPTION_VAL_ULTRA_UK "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_UK NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_UK NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_UK NULL
@@ -33711,14 +33711,14 @@ struct retro_core_options_v2 options_tt = {
 #define OPTION_VAL_VULKAN_UK NULL
 #define OPTION_VAL_NULL_UK NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_UK NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_UK NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_UK "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_UK NULL
-#define OPTION_VAL_30_UK NULL
+#define OPTION_VAL_30_UK "30 FPS"
 #define OPTION_VAL_35_UK NULL
-#define OPTION_VAL_40_UK NULL
+#define OPTION_VAL_40_UK "40ms"
 #define OPTION_VAL_45_UK NULL
 #define OPTION_VAL_55_UK NULL
-#define OPTION_VAL_60_UK NULL
+#define OPTION_VAL_60_UK "60 FPS"
 #define OPTION_VAL_65_UK NULL
 #define OPTION_VAL_70_UK NULL
 #define OPTION_VAL_80_UK NULL
@@ -33729,7 +33729,7 @@ struct retro_core_options_v2 options_tt = {
 #define OPTION_VAL_105_UK NULL
 #define OPTION_VAL_110_UK NULL
 #define OPTION_VAL_115_UK NULL
-#define OPTION_VAL_120_UK NULL
+#define OPTION_VAL_120_UK "120x120"
 #define OPTION_VAL_125_UK NULL
 #define OPTION_VAL_130_UK NULL
 #define OPTION_VAL_135_UK NULL
@@ -33738,13 +33738,13 @@ struct retro_core_options_v2 options_tt = {
 #define OPTION_VAL_175_UK NULL
 #define OPTION_VAL_250_UK NULL
 #define RPCS3_FRAME_LIMIT_LABEL_UK NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_UK NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_UK "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_UK NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_UK NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_UK NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_UK NULL
 #define OPTION_VAL_144_UK NULL
-#define OPTION_VAL_240_UK NULL
+#define OPTION_VAL_240_UK "240x240"
 #define RPCS3_SHADER_MODE_LABEL_UK NULL
 #define RPCS3_SHADER_MODE_INFO_0_UK NULL
 #define OPTION_VAL_ASYNC_UK NULL
@@ -33756,18 +33756,18 @@ struct retro_core_options_v2 options_tt = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_UK NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_UK "Анізотропна фільтрація"
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_UK NULL
-#define OPTION_VAL_1_UK NULL
+#define OPTION_VAL_1_UK "1x1"
 #define OPTION_VAL_2_UK NULL
 #define OPTION_VAL_4_UK NULL
 #define OPTION_VAL_8_UK NULL
-#define OPTION_VAL_16_UK NULL
-#define RPCS3_MSAA_LABEL_UK NULL
-#define RPCS3_MSAA_INFO_0_UK NULL
+#define OPTION_VAL_16_UK "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_UK "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_UK "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_UK NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_UK NULL
-#define OPTION_VAL_LOW_UK NULL
-#define OPTION_VAL_NORMAL_UK "Нормально"
-#define OPTION_VAL_HIGH_UK NULL
+#define OPTION_VAL_LOW_UK "Низька"
+#define OPTION_VAL_NORMAL_UK NULL
+#define OPTION_VAL_HIGH_UK "Високий"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_UK NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_UK NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_UK NULL
@@ -33781,16 +33781,16 @@ struct retro_core_options_v2 options_tt = {
 #define RPCS3_VERTEX_CACHE_LABEL_UK NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_UK NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_UK NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_UK NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_UK "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_UK NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_UK NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_UK "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_UK NULL
-#define OPTION_VAL_PRECISE_UK NULL
+#define OPTION_VAL_PRECISE_UK "Precise (Default)"
 #define RPCS3_CPU_BLIT_LABEL_UK NULL
 #define RPCS3_CPU_BLIT_INFO_0_UK NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_UK NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_UK NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_UK NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_UK "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_UK "0 (Default)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_UK NULL
 #define RPCS3_VBLANK_RATE_LABEL_UK NULL
 #define RPCS3_VBLANK_RATE_INFO_0_UK NULL
@@ -33833,9 +33833,9 @@ struct retro_core_options_v2 options_tt = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_UK NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_UK NULL
 #define RPCS3_NETWORK_ENABLED_LABEL_UK NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_UK NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_UK "Lets games reach the internet. Takes effect when content is loaded."
 #define RPCS3_PSN_STATUS_LABEL_UK NULL
-#define RPCS3_PSN_STATUS_INFO_0_UK NULL
+#define RPCS3_PSN_STATUS_INFO_0_UK "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_UK NULL
 #define OPTION_VAL_RPCN_UK NULL
 #define RPCS3_UPNP_LABEL_UK NULL
@@ -33852,7 +33852,7 @@ struct retro_core_options_v2 options_tt = {
 #define RPCS3_RPCN_SERVER_LABEL_UK NULL
 #define RPCS3_RPCN_SERVER_INFO_0_UK NULL
 #define OPTION_VAL_RPCN_RPCS3_NET_UK NULL
-#define OPTION_VAL_CUSTOM_UK "Користувацька"
+#define OPTION_VAL_CUSTOM_UK NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_UK NULL
 #define RPCS3_SPU_VERIFICATION_INFO_0_UK NULL
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_UK NULL
@@ -33860,7 +33860,7 @@ struct retro_core_options_v2 options_tt = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_UK NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_UK NULL
 #define OPTION_VAL_FAST_UK "Швидко"
-#define OPTION_VAL_BALANCED_UK "Збалансований"
+#define OPTION_VAL_BALANCED_UK NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_UK NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_UK NULL
 #define OPTION_VAL_1000_UK NULL
@@ -33908,11 +33908,11 @@ struct retro_core_options_v2 options_tt = {
 #define OPTION_VAL_CIRCLE_UK NULL
 #define RPCS3_LICENSE_AREA_LABEL_UK NULL
 #define RPCS3_LICENSE_AREA_INFO_0_UK NULL
-#define OPTION_VAL_USA_UK "США"
-#define OPTION_VAL_EU_UK "Європа"
-#define OPTION_VAL_JP_UK "Японія"
-#define OPTION_VAL_HK_UK NULL
-#define OPTION_VAL_KR_UK NULL
+#define OPTION_VAL_USA_UK "SCEA (Americas)"
+#define OPTION_VAL_EU_UK "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_UK "SCEJ (Japan)"
+#define OPTION_VAL_HK_UK "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_UK "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_UK NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_UK NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_UK NULL
@@ -33922,7 +33922,7 @@ struct retro_core_options_v2 options_tt = {
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_UK NULL
 #define RPCS3_VFS_INIT_LABEL_UK NULL
 #define RPCS3_VFS_INIT_INFO_0_UK NULL
-#define OPTION_VAL_RESET_UK "Скинути"
+#define OPTION_VAL_RESET_UK NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_UK NULL
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_UK NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_UK NULL
@@ -34507,13 +34507,13 @@ struct retro_core_options_v2 options_uk = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_VAL NULL
 #define OPTION_VAL_0_VAL "Selecció automàtica"
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_VAL NULL
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_VAL NULL
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_VAL "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones."
 #define RPCS3_SPU_CACHE_LABEL_VAL NULL
 #define RPCS3_SPU_CACHE_INFO_0_VAL NULL
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_VAL NULL
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_VAL NULL
 #define RPCS3_ACCURATE_DFMA_LABEL_VAL NULL
-#define RPCS3_ACCURATE_DFMA_INFO_0_VAL NULL
+#define RPCS3_ACCURATE_DFMA_INFO_0_VAL "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games."
 #define RPCS3_PPU_RESERVATIONS_LABEL_VAL NULL
 #define RPCS3_PPU_RESERVATIONS_INFO_0_VAL NULL
 #define RPCS3_ACCURATE_XFLOAT_LABEL_VAL NULL
@@ -34528,7 +34528,7 @@ struct retro_core_options_v2 options_uk = {
 #define OPTION_VAL_300_VAL NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_VAL NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_VAL NULL
-#define OPTION_VAL_USLEEP_VAL NULL
+#define OPTION_VAL_USLEEP_VAL "Usleep Only"
 #define OPTION_VAL_ALL_TIMERS_VAL NULL
 #define OPTION_VAL_AS_HOST_VAL NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_VAL NULL
@@ -34538,9 +34538,9 @@ struct retro_core_options_v2 options_uk = {
 #define OPTION_VAL_FORCED_VAL NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_VAL NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_VAL NULL
-#define OPTION_VAL_RELAXED_VAL NULL
+#define OPTION_VAL_RELAXED_VAL "Relaxed"
 #define OPTION_VAL_ACCURATE_VAL NULL
-#define OPTION_VAL_ULTRA_VAL NULL
+#define OPTION_VAL_ULTRA_VAL "Ultra"
 #define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_VAL NULL
 #define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_VAL NULL
 #define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_VAL NULL
@@ -34551,14 +34551,14 @@ struct retro_core_options_v2 options_uk = {
 #define OPTION_VAL_VULKAN_VAL NULL
 #define OPTION_VAL_NULL_VAL NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_VAL NULL
-#define RPCS3_RESOLUTION_SCALE_INFO_0_VAL NULL
+#define RPCS3_RESOLUTION_SCALE_INFO_0_VAL "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160."
 #define OPTION_VAL_25_VAL NULL
-#define OPTION_VAL_30_VAL NULL
+#define OPTION_VAL_30_VAL "30 FPS"
 #define OPTION_VAL_35_VAL NULL
-#define OPTION_VAL_40_VAL NULL
+#define OPTION_VAL_40_VAL "40ms"
 #define OPTION_VAL_45_VAL NULL
 #define OPTION_VAL_55_VAL NULL
-#define OPTION_VAL_60_VAL NULL
+#define OPTION_VAL_60_VAL "60 FPS"
 #define OPTION_VAL_65_VAL NULL
 #define OPTION_VAL_70_VAL NULL
 #define OPTION_VAL_80_VAL NULL
@@ -34569,7 +34569,7 @@ struct retro_core_options_v2 options_uk = {
 #define OPTION_VAL_105_VAL NULL
 #define OPTION_VAL_110_VAL NULL
 #define OPTION_VAL_115_VAL NULL
-#define OPTION_VAL_120_VAL NULL
+#define OPTION_VAL_120_VAL "120x120"
 #define OPTION_VAL_125_VAL NULL
 #define OPTION_VAL_130_VAL NULL
 #define OPTION_VAL_135_VAL NULL
@@ -34578,13 +34578,13 @@ struct retro_core_options_v2 options_uk = {
 #define OPTION_VAL_175_VAL NULL
 #define OPTION_VAL_250_VAL NULL
 #define RPCS3_FRAME_LIMIT_LABEL_VAL NULL
-#define RPCS3_FRAME_LIMIT_INFO_0_VAL NULL
+#define RPCS3_FRAME_LIMIT_INFO_0_VAL "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_VAL NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_VAL NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_VAL NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_VAL NULL
 #define OPTION_VAL_144_VAL NULL
-#define OPTION_VAL_240_VAL NULL
+#define OPTION_VAL_240_VAL "240x240"
 #define RPCS3_SHADER_MODE_LABEL_VAL NULL
 #define RPCS3_SHADER_MODE_INFO_0_VAL NULL
 #define OPTION_VAL_ASYNC_VAL NULL
@@ -34596,18 +34596,18 @@ struct retro_core_options_v2 options_uk = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_VAL NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_VAL NULL
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_VAL NULL
-#define OPTION_VAL_1_VAL NULL
+#define OPTION_VAL_1_VAL "1x1"
 #define OPTION_VAL_2_VAL NULL
 #define OPTION_VAL_4_VAL NULL
 #define OPTION_VAL_8_VAL NULL
-#define OPTION_VAL_16_VAL NULL
-#define RPCS3_MSAA_LABEL_VAL NULL
-#define RPCS3_MSAA_INFO_0_VAL NULL
+#define OPTION_VAL_16_VAL "16x16 (Default)"
+#define RPCS3_MSAA_LABEL_VAL "Anti-Aliasing"
+#define RPCS3_MSAA_INFO_0_VAL "Multi-sample anti-aliasing where the game asks for it, as in RPCS3."
 #define RPCS3_SHADER_PRECISION_LABEL_VAL NULL
 #define RPCS3_SHADER_PRECISION_INFO_0_VAL NULL
-#define OPTION_VAL_LOW_VAL NULL
+#define OPTION_VAL_LOW_VAL "Low"
 #define OPTION_VAL_NORMAL_VAL NULL
-#define OPTION_VAL_HIGH_VAL NULL
+#define OPTION_VAL_HIGH_VAL "High"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_VAL NULL
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_VAL NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_VAL NULL
@@ -34621,16 +34621,16 @@ struct retro_core_options_v2 options_uk = {
 #define RPCS3_VERTEX_CACHE_LABEL_VAL NULL
 #define RPCS3_VERTEX_CACHE_INFO_0_VAL NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_VAL NULL
-#define RPCS3_MULTITHREADED_RSX_INFO_0_VAL NULL
+#define RPCS3_MULTITHREADED_RSX_INFO_0_VAL "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included."
 #define RPCS3_ZCULL_ACCURACY_LABEL_VAL NULL
-#define RPCS3_ZCULL_ACCURACY_INFO_0_VAL NULL
+#define RPCS3_ZCULL_ACCURACY_INFO_0_VAL "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones."
 #define OPTION_VAL_APPROXIMATE_VAL NULL
-#define OPTION_VAL_PRECISE_VAL NULL
+#define OPTION_VAL_PRECISE_VAL "Precise (Default)"
 #define RPCS3_CPU_BLIT_LABEL_VAL NULL
 #define RPCS3_CPU_BLIT_INFO_0_VAL NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_VAL NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_VAL NULL
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_VAL NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_VAL "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_VAL "0 (Default)"
 #define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_VAL NULL
 #define RPCS3_VBLANK_RATE_LABEL_VAL NULL
 #define RPCS3_VBLANK_RATE_INFO_0_VAL NULL
@@ -34673,9 +34673,9 @@ struct retro_core_options_v2 options_uk = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_VAL NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_VAL NULL
 #define RPCS3_NETWORK_ENABLED_LABEL_VAL NULL
-#define RPCS3_NETWORK_ENABLED_INFO_0_VAL NULL
+#define RPCS3_NETWORK_ENABLED_INFO_0_VAL "Lets games reach the internet. Takes effect when content is loaded."
 #define RPCS3_PSN_STATUS_LABEL_VAL NULL
-#define RPCS3_PSN_STATUS_INFO_0_VAL NULL
+#define RPCS3_PSN_STATUS_INFO_0_VAL "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded."
 #define OPTION_VAL_SIMULATED_VAL NULL
 #define OPTION_VAL_RPCN_VAL NULL
 #define RPCS3_UPNP_LABEL_VAL NULL
@@ -34748,11 +34748,11 @@ struct retro_core_options_v2 options_uk = {
 #define OPTION_VAL_CIRCLE_VAL NULL
 #define RPCS3_LICENSE_AREA_LABEL_VAL NULL
 #define RPCS3_LICENSE_AREA_INFO_0_VAL NULL
-#define OPTION_VAL_USA_VAL NULL
-#define OPTION_VAL_EU_VAL NULL
-#define OPTION_VAL_JP_VAL NULL
-#define OPTION_VAL_HK_VAL NULL
-#define OPTION_VAL_KR_VAL NULL
+#define OPTION_VAL_USA_VAL "SCEA (Americas)"
+#define OPTION_VAL_EU_VAL "SCEE (Europe, Oceania)"
+#define OPTION_VAL_JP_VAL "SCEJ (Japan)"
+#define OPTION_VAL_HK_VAL "SCEH (Hong Kong, Southeast Asia)"
+#define OPTION_VAL_KR_VAL "SCEK (Korea)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_VAL NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_VAL NULL
 #define RPCS3_SAVEDATA_SLOT_LABEL_VAL NULL
@@ -35347,17 +35347,17 @@ struct retro_core_options_v2 options_val = {
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_VN "Số lượng luồng SPU. Nên để Tự động."
 #define OPTION_VAL_0_VN "Tự động"
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_VN "Phát hiện vòng lặp SPU"
-#define RPCS3_SPU_LOOP_DETECTION_INFO_0_VN "Bật tính năng phát hiện vòng lặp SPU để tăng hiệu suất."
+#define RPCS3_SPU_LOOP_DETECTION_INFO_0_VN "Phát hiện các vòng lặp SPU chỉ chờ đợi và bỏ qua chúng. Nhanh hơn, nhưng một số trò chơi sẽ bị lỗi khi bật; mặc định tắt, giống như trong RPCS3. Nên bật để tăng tốc trên điện thoại."
 #define RPCS3_SPU_CACHE_LABEL_VN "Bộ nhớ đệm SPU"
 #define RPCS3_SPU_CACHE_INFO_0_VN "Bật bộ nhớ đệm SPU để tăng tốc các lần tải tiếp theo."
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_VN "Biên dịch trước bằng LLVM"
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_VN "Biên dịch trước các mô-đun PPU khi khởi động để tăng tốc các lần tải tiếp theo."
 #define RPCS3_ACCURATE_DFMA_LABEL_VN "DFMA chính xác"
-#define RPCS3_ACCURATE_DFMA_INFO_0_VN "Sử dụng phép nhân-cộng hợp nhất độ chính xác kép chính xác."
-#define RPCS3_PPU_RESERVATIONS_LABEL_VN "Phân bổ luồng PPU"
-#define RPCS3_PPU_RESERVATIONS_INFO_0_VN "Sử dụng cơ chế phân bổ luồng PPU để khóa chính xác."
-#define RPCS3_ACCURATE_XFLOAT_LABEL_VN "Độ chính xác XFLOAT"
-#define RPCS3_ACCURATE_XFLOAT_INFO_0_VN "Độ chính xác số thực dấu phẩy động của SPU cao hơn. Có thể khắc phục một số trò chơi."
+#define RPCS3_ACCURATE_DFMA_INFO_0_VN "Thực hiện phép nhân cộng dồn dấu phẩy động độ chính xác kép theo cách chính xác, giống như trong RPCS3 (ở đó cũng được bật mặc định). Tốn rất ít tài nguyên trên CPU có hỗ trợ FMA; tắt tùy chọn này có thể giúp tăng tốc trên điện thoại chậm và khiến một số trò chơi bị lỗi."
+#define RPCS3_PPU_RESERVATIONS_LABEL_VN NULL
+#define RPCS3_PPU_RESERVATIONS_INFO_0_VN NULL
+#define RPCS3_ACCURATE_XFLOAT_LABEL_VN NULL
+#define RPCS3_ACCURATE_XFLOAT_INFO_0_VN NULL
 #define RPCS3_CLOCKS_SCALE_LABEL_VN "Tỷ lệ xung nhịp"
 #define RPCS3_CLOCKS_SCALE_INFO_0_VN "Điều chỉnh tốc độ xung nhịp PS3 theo phần trăm."
 #define OPTION_VAL_50_VN NULL
@@ -35368,37 +35368,37 @@ struct retro_core_options_v2 options_val = {
 #define OPTION_VAL_300_VN NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_VN "Độ chính xác bộ hẹn giờ ngủ"
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_VN "Mức độ chính xác của bộ hẹn giờ ngủ."
-#define OPTION_VAL_USLEEP_VN NULL
+#define OPTION_VAL_USLEEP_VN "Chỉ Usleep"
 #define OPTION_VAL_ALL_TIMERS_VN "Tất cả bộ hẹn giờ"
 #define OPTION_VAL_AS_HOST_VN "Theo máy chủ"
 #define RPCS3_MAX_SPURS_THREADS_LABEL_VN "Số luồng SPURS tối đa"
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_VN "Số luồng SPURS tối đa. Giảm giá trị này có thể cải thiện hiệu suất."
-#define RPCS3_ENABLE_TSX_LABEL_VN "Bật TSX"
-#define RPCS3_ENABLE_TSX_INFO_0_VN "Bật tăng tốc phần cứng Intel TSX nếu có."
-#define OPTION_VAL_FORCED_VN "Bắt buộc"
+#define RPCS3_ENABLE_TSX_LABEL_VN NULL
+#define RPCS3_ENABLE_TSX_INFO_0_VN NULL
+#define OPTION_VAL_FORCED_VN NULL
 #define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_VN "Độ chính xác XFloat của SPU"
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_VN "Mức độ chính xác số thực dấu phẩy động của SPU."
-#define OPTION_VAL_RELAXED_VN "Thả lỏng (Nhanh nhất)"
+#define OPTION_VAL_RELAXED_VN "Thư giãn"
 #define OPTION_VAL_ACCURATE_VN "Chính xác"
-#define OPTION_VAL_ULTRA_VN "Cực cao (Chậm nhất)"
-#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_VN "Chờ bận SPU DMA"
-#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_VN "Bật chế độ chờ SPU DMA bận để tăng độ chính xác về thời gian."
-#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_VN "Mức tương thích chế độ Java của PPU LLVM"
-#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_VN "Mức độ tuân thủ chế độ Java của PPU LLVM."
+#define OPTION_VAL_ULTRA_VN "Siêu cao"
+#define RPCS3_SPU_DMA_BUSY_WAIT_LABEL_VN NULL
+#define RPCS3_SPU_DMA_BUSY_WAIT_INFO_0_VN NULL
+#define RPCS3_PPU_LLVM_JAVA_MODE_LABEL_VN NULL
+#define RPCS3_PPU_LLVM_JAVA_MODE_INFO_0_VN NULL
 #define RPCS3_RENDERER_LABEL_VN "Renderer (Trình kết xuất)"
 #define RPCS3_RENDERER_INFO_0_VN "Vulkan hoàn tất từng khung hình vào bộ nhớ rồi giao các điểm ảnh cho giao diện chính; tốc độ gần tương đương RPCS3 chạy độc lập và hoạt động trong trường hợp OpenGL không được hỗ trợ hoặc bị lỗi. OpenGL vẽ trực tiếp vào ngữ cảnh của giao diện chính."
 #define OPTION_VAL_OPENGL_VN NULL
 #define OPTION_VAL_VULKAN_VN "Vulkan (thông qua bộ nhớ)"
 #define OPTION_VAL_NULL_VN "Không (Không xuất hình)"
 #define RPCS3_RESOLUTION_SCALE_LABEL_VN "Tỷ lệ độ phân giải"
-#define RPCS3_RESOLUTION_SCALE_INFO_0_VN "Phần trăm tỷ lệ độ phân giải kết xuất nội bộ."
+#define RPCS3_RESOLUTION_SCALE_INFO_0_VN "Độ phân giải kết xuất nội bộ theo tỷ lệ phần trăm so với độ phân giải gốc của trò chơi. 200% của trò chơi 720p là 2560x1440, còn 200% của trò chơi 1080p là 3840x2160."
 #define OPTION_VAL_25_VN NULL
-#define OPTION_VAL_30_VN NULL
+#define OPTION_VAL_30_VN "30 FPS"
 #define OPTION_VAL_35_VN NULL
-#define OPTION_VAL_40_VN NULL
+#define OPTION_VAL_40_VN "40 mili giây"
 #define OPTION_VAL_45_VN NULL
 #define OPTION_VAL_55_VN NULL
-#define OPTION_VAL_60_VN NULL
+#define OPTION_VAL_60_VN "60 FPS"
 #define OPTION_VAL_65_VN NULL
 #define OPTION_VAL_70_VN NULL
 #define OPTION_VAL_80_VN NULL
@@ -35409,7 +35409,7 @@ struct retro_core_options_v2 options_val = {
 #define OPTION_VAL_105_VN NULL
 #define OPTION_VAL_110_VN NULL
 #define OPTION_VAL_115_VN NULL
-#define OPTION_VAL_120_VN NULL
+#define OPTION_VAL_120_VN "120x120"
 #define OPTION_VAL_125_VN NULL
 #define OPTION_VAL_130_VN NULL
 #define OPTION_VAL_135_VN NULL
@@ -35418,13 +35418,13 @@ struct retro_core_options_v2 options_val = {
 #define OPTION_VAL_175_VN NULL
 #define OPTION_VAL_250_VN NULL
 #define RPCS3_FRAME_LIMIT_LABEL_VN "Giới hạn khung hình"
-#define RPCS3_FRAME_LIMIT_INFO_0_VN "Giới hạn tốc độ khung hình. Tự động sử dụng cơ chế định thời của RetroArch."
+#define RPCS3_FRAME_LIMIT_INFO_0_VN "Tốc độ khung hình cao nhất mà trò chơi có thể chạy. Tự động là Tần số VBlank, giống như trong RPCS3; PS3 nguyên bản điều chỉnh thời điểm chuyển khung hình theo cách mà PS3 thực hiện; Tắt cho phép các trò chơi không chờ VBlank của PS3 chạy ở tốc độ cao hơn."
 #define OPTION_VAL_30_RPCS3_FRAME_LIMIT_VN NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_VN NULL
 #define OPTION_VAL_60_RPCS3_FRAME_LIMIT_VN NULL
 #define OPTION_VAL_120_RPCS3_FRAME_LIMIT_VN NULL
 #define OPTION_VAL_144_VN NULL
-#define OPTION_VAL_240_VN NULL
+#define OPTION_VAL_240_VN "240x240"
 #define RPCS3_SHADER_MODE_LABEL_VN "Chế độ đổ bóng"
 #define RPCS3_SHADER_MODE_INFO_0_VN "Cách các bộ đổ bóng được biên dịch. Biên dịch không đồng bộ sẽ thực hiện ở chế độ nền, nhưng khung hình đầu tiên cần một quy trình xử lý sẽ phải chờ biên dịch xong, đây thường là nguyên nhân gây ra hiện tượng đứng hình lâu khi chuyển sang cảnh mới. Biên dịch không đồng bộ với Bộ thông dịch đổ bóng sẽ dùng bộ thông dịch để dựng khung hình đó, sau đó thay bằng bộ đổ bóng đã biên dịch khi sẵn sàng: không bị đứng hình, nhưng tốc độ sẽ giảm trong lúc hệ thống xử lý phần còn lại."
 #define OPTION_VAL_ASYNC_VN "Không đồng bộ (Khuyên dùng)"
@@ -35436,18 +35436,18 @@ struct retro_core_options_v2 options_val = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_VN "Số lượng luồng dùng để biên dịch đổ bóng. Tự động cho phép RPCS3 tự quyết định dựa trên CPU mà nó nhận diện được."
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_VN "Lọc dị hướng"
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_VN "Chất lượng lọc kết cấu."
-#define OPTION_VAL_1_VN "1x (Tắt)"
+#define OPTION_VAL_1_VN "1x1"
 #define OPTION_VAL_2_VN NULL
 #define OPTION_VAL_4_VN NULL
 #define OPTION_VAL_8_VN NULL
-#define OPTION_VAL_16_VN NULL
-#define RPCS3_MSAA_LABEL_VN "Khử răng cưa (MSAA)"
-#define RPCS3_MSAA_INFO_0_VN "Khử răng cưa đa mẫu."
-#define RPCS3_SHADER_PRECISION_LABEL_VN "Độ chính xác của đổ bóng"
-#define RPCS3_SHADER_PRECISION_INFO_0_VN "Độ chính xác số thực của đổ bóng."
-#define OPTION_VAL_LOW_VN "Thấp (Nhanh nhất)"
-#define OPTION_VAL_NORMAL_VN "Bình thường"
-#define OPTION_VAL_HIGH_VN "Cao (Chính xác nhất)"
+#define OPTION_VAL_16_VN "16x16 (Mặc định)"
+#define RPCS3_MSAA_LABEL_VN "Khử răng cưa"
+#define RPCS3_MSAA_INFO_0_VN "Khử răng cưa đa mẫu khi trò chơi yêu cầu, giống như trong RPCS3."
+#define RPCS3_SHADER_PRECISION_LABEL_VN NULL
+#define RPCS3_SHADER_PRECISION_INFO_0_VN NULL
+#define OPTION_VAL_LOW_VN "Thấp"
+#define OPTION_VAL_NORMAL_VN NULL
+#define OPTION_VAL_HIGH_VN "Cao"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_VN "Ghi bộ đệm màu"
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_VN "Ghi bộ đệm màu vào bộ nhớ chính. Khắc phục một số hiệu ứng."
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_VN "Đọc bộ đệm màu"
@@ -35461,17 +35461,17 @@ struct retro_core_options_v2 options_val = {
 #define RPCS3_VERTEX_CACHE_LABEL_VN "Bộ nhớ đệm đỉnh"
 #define RPCS3_VERTEX_CACHE_INFO_0_VN "Bật bộ nhớ đệm đỉnh để cải thiện hiệu suất."
 #define RPCS3_MULTITHREADED_RSX_LABEL_VN "RSX đa luồng"
-#define RPCS3_MULTITHREADED_RSX_INFO_0_VN "Bật RSX đa luồng để cải thiện hiệu suất."
+#define RPCS3_MULTITHREADED_RSX_INFO_0_VN "Chuyển một phần tác vụ RSX sang luồng thứ hai. Mặc định tắt, giống như trong RPCS3; có thể cải thiện hiệu năng trên CPU có ít lõi nhưng tốc độ cao, bao gồm cả điện thoại."
 #define RPCS3_ZCULL_ACCURACY_LABEL_VN "Độ chính xác ZCULL"
-#define RPCS3_ZCULL_ACCURACY_INFO_0_VN "Độ chính xác của truy vấn che khuất ZCULL."
+#define RPCS3_ZCULL_ACCURACY_INFO_0_VN "Cách xử lý chính xác các truy vấn che khuất, giống như trong RPCS3. Chính xác là đúng và cũng là mặc định trong RPCS3; Gần đúng và Linh hoạt có tốc độ nhanh hơn nhưng có thể làm hỏng các hiệu ứng như lóe sáng ống kính. Linh hoạt đáng để thử trên điện thoại."
 #define OPTION_VAL_APPROXIMATE_VN "Xấp xỉ"
-#define OPTION_VAL_PRECISE_VN "Chính xác (Chậm nhất)"
+#define OPTION_VAL_PRECISE_VN "Chính xác (Mặc định)"
 #define RPCS3_CPU_BLIT_LABEL_VN "Ép xử lý Blit bằng CPU"
 #define RPCS3_CPU_BLIT_INFO_0_VN "Ép mô phỏng xử lý Blit bằng CPU cho một số hiệu ứng nhất định."
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_VN "Độ trễ đánh thức trình điều khiển"
-#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_VN "Độ trễ đánh thức trình điều khiển tính bằng micro giây."
-#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_VN "0 (Tối thiểu)"
-#define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_VN "200 (Mặc định)"
+#define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_VN "Độ trễ đánh thức trình điều khiển tính bằng micro giây. Mặc định là 0, giống như trong RPCS3; chỉ tăng giá trị này khi trò chơi yêu cầu."
+#define OPTION_VAL_0_RPCS3_DRIVER_WAKEUP_DELAY_VN "0 (Mặc định)"
+#define OPTION_VAL_200_RPCS3_DRIVER_WAKEUP_DELAY_VN NULL
 #define RPCS3_VBLANK_RATE_LABEL_VN "Tần số VBlank"
 #define RPCS3_VBLANK_RATE_INFO_0_VN "Tần số quét của PS3 tính bằng Hz. Đây cũng là tốc độ khung hình mà lõi yêu cầu RetroArch, có hiệu lực khi nội dung được tải; các trò chơi có thể chạy trên 60 FPS cần màn hình có tần số quét tương ứng."
 #define OPTION_VAL_50_RPCS3_VBLANK_RATE_VN NULL
@@ -35492,7 +35492,7 @@ struct retro_core_options_v2 options_val = {
 #define OPTION_VAL_10_VN "10 mili giây"
 #define OPTION_VAL_20_VN "20 mili giây"
 #define OPTION_VAL_30_RPCS3_AUDIO_BUFFER_DURATION_VN "30 mili giây"
-#define OPTION_VAL_40_RPCS3_AUDIO_BUFFER_DURATION_VN "40 mili giây"
+#define OPTION_VAL_40_RPCS3_AUDIO_BUFFER_DURATION_VN NULL
 #define OPTION_VAL_50_RPCS3_AUDIO_BUFFER_DURATION_VN "50 mili giây"
 #define OPTION_VAL_75_RPCS3_AUDIO_BUFFER_DURATION_VN "75 mili giây"
 #define OPTION_VAL_100_RPCS3_AUDIO_BUFFER_DURATION_VN "100 mili giây (Mặc định)"
@@ -35500,12 +35500,12 @@ struct retro_core_options_v2 options_val = {
 #define OPTION_VAL_200_RPCS3_AUDIO_BUFFER_DURATION_VN "200 mili giây"
 #define RPCS3_TIME_STRETCHING_LABEL_VN "Kéo giãn thời gian"
 #define RPCS3_TIME_STRETCHING_INFO_0_VN "Bật tính năng kéo giãn thời gian âm thanh để giảm hiện tượng giật âm thanh."
-#define RPCS3_MICROPHONE_TYPE_LABEL_VN "Loại micrô"
-#define RPCS3_MICROPHONE_TYPE_INFO_0_VN "Loại thiết bị micrô."
-#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_VN "Không có (Đã tắt)"
-#define OPTION_VAL_STANDARD_VN "Tiêu chuẩn"
+#define RPCS3_MICROPHONE_TYPE_LABEL_VN NULL
+#define RPCS3_MICROPHONE_TYPE_INFO_0_VN NULL
+#define OPTION_VAL_NULL_RPCS3_MICROPHONE_TYPE_VN NULL
+#define OPTION_VAL_STANDARD_VN NULL
 #define OPTION_VAL_SINGSTAR_VN NULL
-#define OPTION_VAL_REAL_SINGSTAR_VN "SingStar thật"
+#define OPTION_VAL_REAL_SINGSTAR_VN NULL
 #define OPTION_VAL_ROCKSMITH_VN NULL
 #define RPCS3_MASTER_VOLUME_LABEL_VN "Âm lượng Chính"
 #define RPCS3_MASTER_VOLUME_INFO_0_VN "Phần trăm âm lượng âm thanh chính."
@@ -35513,9 +35513,9 @@ struct retro_core_options_v2 options_val = {
 #define OPTION_VAL_10_RPCS3_MASTER_VOLUME_VN NULL
 #define OPTION_VAL_20_RPCS3_MASTER_VOLUME_VN NULL
 #define RPCS3_NETWORK_ENABLED_LABEL_VN "Bật mạng"
-#define RPCS3_NETWORK_ENABLED_INFO_0_VN "Bật các tính năng mạng."
+#define RPCS3_NETWORK_ENABLED_INFO_0_VN "Cho phép trò chơi kết nối Internet. Có hiệu lực khi nội dung được tải."
 #define RPCS3_PSN_STATUS_LABEL_VN "Trạng thái PSN"
-#define RPCS3_PSN_STATUS_INFO_0_VN "Trạng thái Mạng PlayStation."
+#define RPCS3_PSN_STATUS_INFO_0_VN "Những gì trò chơi nhìn thấy về PlayStation Network. Mô phỏng khiến trò chơi tin rằng bạn đã đăng nhập, điều mà một số trò chơi cần để vượt qua màn hình menu; RPCN kết nối với máy chủ riêng của RPCS3 bằng tài khoản được thiết lập trong rpcn.yml và yêu cầu bật Kết nối mạng. Có hiệu lực khi nội dung được tải."
 #define OPTION_VAL_SIMULATED_VN "Mô phỏng"
 #define OPTION_VAL_RPCN_VN NULL
 #define RPCS3_UPNP_LABEL_VN NULL
@@ -35529,10 +35529,10 @@ struct retro_core_options_v2 options_val = {
 #define OPTION_VAL_8_8_8_8_VN "DNS Google"
 #define OPTION_VAL_1_1_1_1_VN "DNS Cloudflare"
 #define OPTION_VAL_208_67_222_222_VN "Dns OpenDNS"
-#define RPCS3_RPCN_SERVER_LABEL_VN "Máy chủ RPCN"
-#define RPCS3_RPCN_SERVER_INFO_0_VN "Địa chỉ máy chủ RPCN để chơi trực tuyến."
-#define OPTION_VAL_RPCN_RPCS3_NET_VN "RPCN chính thức"
-#define OPTION_VAL_CUSTOM_VN "Tùy chỉnh"
+#define RPCS3_RPCN_SERVER_LABEL_VN NULL
+#define RPCS3_RPCN_SERVER_INFO_0_VN NULL
+#define OPTION_VAL_RPCN_RPCS3_NET_VN NULL
+#define OPTION_VAL_CUSTOM_VN NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_VN "Kiểm tra SPU"
 #define RPCS3_SPU_VERIFICATION_INFO_0_VN "Mức độ kiểm tra mã SPU."
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_VN "Lưu trữ dòng bộ nhớ đệm SPU"
@@ -35540,7 +35540,7 @@ struct retro_core_options_v2 options_val = {
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_VN "Độ chính xác hàng đợi FIFO của RSX"
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_VN "Mức độ chính xác của lệnh FIFO của RSX."
 #define OPTION_VAL_FAST_VN "Nhanh"
-#define OPTION_VAL_BALANCED_VN "Cân bằng"
+#define OPTION_VAL_BALANCED_VN NULL
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_VN "Thời gian chờ khôi phục trình điều khiển"
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_VN "Thời gian chờ khôi phục trình điều khiển GPU tính bằng mili giây."
 #define OPTION_VAL_1000_VN "1 giây"
@@ -35552,14 +35552,14 @@ struct retro_core_options_v2 options_val = {
 #define RPCS3_SPU_DELAY_PENALTY_LABEL_VN "Mức phạt độ trễ SPU"
 #define RPCS3_SPU_DELAY_PENALTY_INFO_0_VN "Mức độ trễ SPU khi lập lịch."
 #define OPTION_VAL_3_VN "3 (Mặc định)"
-#define RPCS3_ZCULL_SYNC_LABEL_VN "Đồng bộ ZCull linh hoạt"
-#define RPCS3_ZCULL_SYNC_INFO_0_VN "Sử dụng cơ chế đồng bộ ZCull linh hoạt."
+#define RPCS3_ZCULL_SYNC_LABEL_VN NULL
+#define RPCS3_ZCULL_SYNC_INFO_0_VN NULL
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_VN "Truyền kết cấu bất đồng bộ"
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_VN "Bật truyền kết cấu bất đồng bộ."
-#define RPCS3_PPU_LLVM_GREEDY_LABEL_VN "Chế độ tham lam LLVM của PPU"
-#define RPCS3_PPU_LLVM_GREEDY_INFO_0_VN "Sử dụng biên dịch LLVM tham lam cho PPU."
-#define RPCS3_SPU_NJ_FIXUP_LABEL_VN "Sửa lỗi chế độ NJ của SPU"
-#define RPCS3_SPU_NJ_FIXUP_INFO_0_VN "Áp dụng xử lý sửa lỗi cho chế độ không phải Java của SPU."
+#define RPCS3_PPU_LLVM_GREEDY_LABEL_VN NULL
+#define RPCS3_PPU_LLVM_GREEDY_INFO_0_VN NULL
+#define RPCS3_SPU_NJ_FIXUP_LABEL_VN NULL
+#define RPCS3_SPU_NJ_FIXUP_INFO_0_VN NULL
 #define RPCS3_PPU_NJ_MODE_LABEL_VN "Chế độ sửa lỗi NJ của PPU"
 #define RPCS3_PPU_NJ_MODE_INFO_0_VN "Cách xử lý chế độ không phải Java của PPU."
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_VN "Thiết lập bit bão hòa"
@@ -35588,11 +35588,11 @@ struct retro_core_options_v2 options_val = {
 #define OPTION_VAL_CIRCLE_VN "Nút O (Nhật Bản)"
 #define RPCS3_LICENSE_AREA_LABEL_VN "Khu vực giấy phép"
 #define RPCS3_LICENSE_AREA_INFO_0_VN "Khu vực giấy phép PS3."
-#define OPTION_VAL_USA_VN "Mỹ"
-#define OPTION_VAL_EU_VN "Châu Âu"
-#define OPTION_VAL_JP_VN "Nhật Bản"
-#define OPTION_VAL_HK_VN "Hồng Kông"
-#define OPTION_VAL_KR_VN "Hàn Quốc"
+#define OPTION_VAL_USA_VN "SCEA (Châu Mỹ)"
+#define OPTION_VAL_EU_VN "SCEE (Châu Âu, Châu Đại Dương)"
+#define OPTION_VAL_JP_VN "SCEJ (Nhật Bản)"
+#define OPTION_VAL_HK_VN "SCEH (Hồng Kông, Đông Nam Á)"
+#define OPTION_VAL_KR_VN "SCEK (Hàn Quốc)"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_VN "Hiển thị gợi ý biên dịch bộ đổ bóng"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_VN "Hiển thị gợi ý khi bộ đổ bóng đang được biên dịch."
 #define RPCS3_SAVEDATA_SLOT_LABEL_VN "Vị trí dữ liệu lưu"
@@ -35600,9 +35600,9 @@ struct retro_core_options_v2 options_val = {
 #define OPTION_VAL_LIST_VN "Chọn từ danh sách"
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_VN "Hiển thị gợi ý biên dịch PPU"
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_VN "Hiển thị gợi ý khi các mô-đun PPU đang được biên dịch."
-#define RPCS3_VFS_INIT_LABEL_VN "Chế độ khởi tạo hệ thống tệp ảo"
-#define RPCS3_VFS_INIT_INFO_0_VN "Chế độ khởi tạo hệ thống tệp ảo."
-#define OPTION_VAL_RESET_VN "Đặt lại"
+#define RPCS3_VFS_INIT_LABEL_VN NULL
+#define RPCS3_VFS_INIT_INFO_0_VN NULL
+#define OPTION_VAL_RESET_VN NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_VN "Tắt toàn bộ nhật ký"
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_VN "Tắt toàn bộ thông tin nhật ký để tăng hiệu suất."
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_VN "Hook các hàm tĩnh"
