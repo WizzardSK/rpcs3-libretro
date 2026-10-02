@@ -181,7 +181,7 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "rpcs3_scale_threshold", "Resolution Scale Threshold", NULL,
         "Render targets smaller than this are not scaled. Some games need a different value for the scaling to look right.",
         NULL, "gpu",
-        { {"1", "1x1"}, {"16", "16x16 (Default)"}, {"64", "64x64"}, {"120", "120x120"}, {"240", "240x240"}, {"256", "256x256"}, {"512", "512x512"}, {"640", "640x640"}, {"1024", "1024x1024"}, {NULL, NULL} },
+        { {"1", "1x1"}, {"16", "16x16 (Default)"}, {"64", "64x64"}, {"128", "128x128"}, {"160", "160x160"}, {"256", "256x256"}, {"320", "320x320"}, {"512", "512x512"}, {"592", "592x592"}, {"640", "640x640"}, {"1024", "1024x1024"}, {NULL, NULL} },
         "16"
     },
     {
