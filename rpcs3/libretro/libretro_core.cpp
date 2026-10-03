@@ -2059,6 +2059,27 @@ static void vk_present_frame()
             swapchain->release_image(s_replaced.front().first);
             s_replaced.pop_front();
         }
+
+        // Images replaced by a restart or a resize stay alive while the
+        // frontend may still show one (see swapchain_LIBRETRO): until it has a
+        // frame from the new ones, and is done with the frames before that.
+        static u64 s_retire_from = 0;
+        static u32 s_retire_generation = 0;
+        if (!swapchain->has_retired())
+            s_retire_from = 0;
+        else if (!s_retire_from || s_retire_generation != s_generation)
+        {
+            if (new_frame)
+            {
+                s_retire_from = s_frame;
+                s_retire_generation = s_generation;
+            }
+        }
+        else if (s_frame - s_retire_from > in_flight)
+        {
+            swapchain->free_retired();
+            s_retire_from = 0;
+        }
     }
 }
 #endif

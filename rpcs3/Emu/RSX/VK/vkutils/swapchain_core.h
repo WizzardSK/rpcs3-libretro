@@ -185,6 +185,38 @@ namespace vk
 		mutable std::mutex m_images_mutex;
 		std::vector<std::unique_ptr<image_view>> m_views;
 
+		// Images replaced while the frontend may still show one of them. Until
+		// it has a newer frame, RetroArch shows the last image it was given
+		// again on every frame without one - and the emulator does not draw any
+		// while it restarts (a multi-game disc going into the chosen game) or
+		// remakes its images (a resolution change). Destroyed there, the next
+		// of those frames read a freed image (NNshi: NVIDIA's driver crashed
+		// in retro_run). They go once the core has moved the frontend on.
+		std::vector<std::unique_ptr<swapchain_image_RPCS3>> m_retired_images;
+		std::vector<std::unique_ptr<image_view>> m_retired_views;
+
+		// Under m_images_mutex
+		void free_retired_locked()
+		{
+			// Views before the images they look at
+			m_retired_views.clear();
+			m_retired_images.clear();
+		}
+
+		void retire_images()
+		{
+			if (m_hw)
+			{
+				for (auto& image : swapchain_images)
+					if (image.second)
+						m_retired_images.emplace_back(std::move(image.second));
+				for (auto& view : m_views)
+					m_retired_views.emplace_back(std::move(view));
+			}
+			m_views.clear();
+			swapchain_images.clear();
+		}
+
 	public:
 		swapchain_LIBRETRO(physical_device& gpu, u32 present_queue, u32 graphics_queue, u32 transfer_queue, bool hw = false)
 			: native_swapchain_base(gpu, present_queue, graphics_queue, transfer_queue), m_hw(hw)
@@ -199,7 +231,7 @@ namespace vk
 			}
 
 			std::lock_guard lock(m_images_mutex);
-			m_views.clear();
+			retire_images();
 
 			// Without a context two is enough to keep one in flight while the
 			// other is read. With one, the frontend holds the image it shows
@@ -227,8 +259,10 @@ namespace vk
 		{
 			{
 				std::lock_guard lock(m_images_mutex);
-				m_views.clear();
-				swapchain_images.clear();
+				retire_images();
+				// Torn down for good: the frontend is past them by then.
+				if (full)
+					free_retired_locked();
 			}
 
 			// The device belongs to the swapchain, as with every other one.
@@ -306,6 +340,20 @@ namespace vk
 			for (const auto& image : swapchain_images)
 				result += image.first ? 'H' : '-';
 			return result;
+		}
+
+		// Once the frontend shows an image made after the retired ones, and has
+		// stopped sampling the ones it showed before
+		void free_retired()
+		{
+			std::lock_guard lock(m_images_mutex);
+			free_retired_locked();
+		}
+
+		bool has_retired() const
+		{
+			std::lock_guard lock(m_images_mutex);
+			return !m_retired_images.empty() || !m_retired_views.empty();
 		}
 
 		void release_all_images()

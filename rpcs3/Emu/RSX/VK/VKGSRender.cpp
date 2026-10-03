@@ -933,8 +933,11 @@ VKGSRender::~VKGSRender()
 		// The libretro core's hardware context: the swapchain and its device
 		// were made during context negotiation and outlive the emulator - the
 		// next boot draws on them again, and only the frontend's
-		// destroy_device ends them. Give back the images, keep the rest.
-		vk::libretro::drop_pending_frames();
+		// destroy_device ends them. Give back the images, keep the rest. The
+		// images are retired rather than destroyed, as on a resize, since
+		// the frontend goes on showing the last one until the next boot
+		// draws.
+		vk::libretro::new_image_generation();
 		m_swapchain->destroy(false);
 		m_swapchain.release();
 	}
