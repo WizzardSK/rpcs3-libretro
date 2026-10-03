@@ -298,11 +298,14 @@ static std::array<std::array<uint16_t, 2>, LIBRETRO_MAX_PADS> s_rumble_sent{};
 
 bool libretro_input_init_rumble(retro_environment_t environ_cb)
 {
+    // A refusal keeps what an earlier call got. RetroArch calls
+    // retro_set_environment again whenever it reads the system info - first
+    // with a callback that answers almost nothing, then with its own while
+    // ignoring every request - and dropping the interface there left the core
+    // without rumble for good: games asked, nothing vibrated (NNshi).
     retro_rumble_interface rumble{};
     if (environ_cb && environ_cb(RETRO_ENVIRONMENT_GET_RUMBLE_INTERFACE, &rumble) && rumble.set_rumble_state)
         s_rumble_cb = rumble.set_rumble_state;
-    else
-        s_rumble_cb = nullptr;
     return s_rumble_cb != nullptr;
 }
 
