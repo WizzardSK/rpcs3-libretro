@@ -665,7 +665,7 @@ void VKGSRender::flip(const rsx::display_flip_info_t& info)
 		// source at least as large as the scaled size is taken to be scaled;
 		// one read back from memory, or already sized by the surface cache,
 		// is not that large and keeps its size.
-		if (g_libretro_software_present && image_to_flip)
+		if ((g_libretro_software_present || vk::libretro::hw_present()) && image_to_flip)
 		{
 			const auto [scaled_width, scaled_height] = rsx::apply_resolution_scale<true>(resolution_scaling_config, buffer_width, buffer_height);
 			const bool scaled_source = scaled_width > buffer_width &&
@@ -685,6 +685,16 @@ void VKGSRender::flip(const rsx::display_flip_info_t& info)
 			{
 				buffer_width = scaled_width;
 				buffer_height = scaled_height;
+			}
+
+			// With the hardware context the frontend gets the swapchain image
+			// itself, so that is what has to be this size: the window it is
+			// sized after follows the picture, and the next flip makes the
+			// images anew when it changed.
+			if (vk::libretro::hw_present())
+			{
+				extern void libretro_set_vk_frame_size(int width, int height);
+				libretro_set_vk_frame_size(static_cast<int>(buffer_width), static_cast<int>(buffer_height));
 			}
 		}
 	}

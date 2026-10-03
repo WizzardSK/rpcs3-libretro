@@ -56,7 +56,7 @@ namespace vk::libretro
 	// Frame handoff. The renderer calls frame_ready once a frame's commands
 	// have finished on the GPU; the core takes the newest finished image in
 	// retro_run. Images finished but overtaken by a newer one before the core
-	// came for them are given back to the swapchain there.
+	// came for them go back to the swapchain at once.
 	void frame_ready(u32 image_index);
 	bool take_frame(u32& image_index);
 	void drop_pending_frames();

@@ -151,14 +151,14 @@ struct retro_core_option_v2_definition option_defs_us[] = {
     // ==================== GPU OPTIONS ====================
     {
         "rpcs3_renderer", "Renderer", NULL,
-        "Vulkan finishes each frame into memory and the frontend takes the pixels; it runs about as fast as standalone RPCS3 and works where OpenGL is missing or broken. OpenGL draws straight into the frontend's context.",
+        "Vulkan renders on the frontend's Vulkan device and hands it each finished frame as an image; when the frontend is not running its Vulkan video driver, the frame is copied back through memory instead. OpenGL draws straight into the frontend's OpenGL context. (Restart required)",
         NULL, "gpu",
-        { {"opengl", "OpenGL"}, {"vulkan", "Vulkan (through memory)"}, {"null", "Null (No Video)"}, {NULL, NULL} },
+        { {"opengl", "OpenGL"}, {"vulkan", "Vulkan"}, {"null", "Null (No Video)"}, {NULL, NULL} },
         "vulkan"
     },
     {
         "rpcs3_vk_readback", "Vulkan Frame Readback", NULL,
-        "How a Vulkan frame reaches the frontend. Immediate waits for the GPU to finish each frame before the next one starts: lowest latency, but at high resolution scales the waits show as uneven frame times. Deferred lets the GPU finish a frame while the next is prepared and hands it over when it is done: smoother at high resolution scales, up to one frame more latency.",
+        "Only when Vulkan runs without the frontend's Vulkan device, and frames are copied back through memory: how a frame reaches the frontend. Immediate waits for the GPU to finish each frame before the next one starts: lowest latency, but at high resolution scales the waits show as uneven frame times. Deferred lets the GPU finish a frame while the next is prepared and hands it over when it is done: smoother at high resolution scales, up to one frame more latency.",
         NULL, "gpu",
         { {"immediate", "Immediate"}, {"deferred", "Deferred"}, {NULL, NULL} },
         "immediate"

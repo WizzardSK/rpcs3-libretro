@@ -1862,17 +1862,45 @@ static bool vk_create_device(struct retro_vulkan_context* context, VkInstance in
     return true;
 }
 
-static void vk_destroy_device()
+// What RPCS3 made on the device - its allocator, the swapchain images - and
+// not the device itself, which is the frontend's.
+//
+// Done from context_destroy rather than the negotiation's destroy_device:
+// RetroArch unloads the core when content is closed and only destroys the
+// Vulkan context later, when it brings its video driver back up for the menu,
+// so a destroy_device of ours was called in a library that was already gone
+// (NNshi: a crash in rpcs3_libretro.dll_unloaded on every close).
+// context_destroy comes while the core is still loaded.
+static void vk_release_device_resources()
 {
-    // What RPCS3 made on the device - its allocator, the swapchain images - and
-    // not the device itself, which the frontend destroys next.
-    if (auto* swapchain = vk::libretro::shared_swapchain())
+    auto* swapchain = vk::libretro::shared_swapchain();
+    if (!swapchain)
+        return;
+
+    // A renderer still drawing on the device would outlive it. RetroArch takes
+    // the two down in either order: closing content unloads the core first and
+    // the context later, but quitting brings the video driver down - and the
+    // device with it - before the core is unloaded. In that order the emulator
+    // is still running here, and its renderer then waited on fences of a
+    // destroyed device on the way out ("vkGetFenceStatus: Invalid device",
+    // and an abort). So stop it here, the way retro_unload_game does; that
+    // finds it stopped later and only drops the disc.
+    if (!Emu.IsStopped())
     {
-        vk::libretro::drop_pending_frames();
-        swapchain->destroy(true);
-        delete swapchain;
-        vk::libretro::set_shared_swapchain(nullptr);
+        stop_pause_watchdog();
+        Emu.GracefulShutdown(false, false);
+        wait_for_emulation_stop("the Vulkan context going away");
     }
+
+    // Nothing of the device may be in use, the frontend's last frame included.
+    vk::acquire_global_submit_lock();
+    vkDeviceWaitIdle(swapchain->get_device());
+    vk::release_global_submit_lock();
+
+    vk::libretro::drop_pending_frames();
+    swapchain->destroy(true);
+    delete swapchain;
+    vk::libretro::set_shared_swapchain(nullptr);
     vk::libretro::set_frontend_device(VK_NULL_HANDLE);
     vk::libretro::set_queue_lock(nullptr, nullptr, nullptr);
     vk::libretro::shared_instance().destroy();
@@ -1884,7 +1912,7 @@ static const struct retro_hw_render_context_negotiation_interface_vulkan s_vk_ne
     1, // create_device, not create_device2: the frontend's instance is enough
     vk_get_application_info,
     vk_create_device,
-    vk_destroy_device,
+    nullptr, // see vk_release_device_resources
 };
 
 static void vk_fetch_interface()
@@ -1921,7 +1949,7 @@ static void vk_context_reset()
 
 static void vk_context_destroy()
 {
-    // The device goes in destroy_device, which the frontend calls next.
+    vk_release_device_resources();
 }
 
 static bool setup_vulkan_hw_render()

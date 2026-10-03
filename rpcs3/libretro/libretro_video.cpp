@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include <atomic>
 
 #include "libretro_video.h"
 #include "libretro_core.h"
@@ -208,6 +209,7 @@ static std::atomic<u64> s_present_fence_counter{0};
 static GLuint s_shared_texture = 0;
 static GLuint s_rsx_fbo = 0;           // FBO on RSX thread's context
 static GLuint s_main_read_fbo = 0;     // FBO on main thread's context for reading shared texture
+extern bool g_libretro_vulkan_hw;
 static int s_shared_texture_width = 1280;
 static int s_shared_texture_height = 720;
 static std::atomic<bool> s_rsx_resources_created{false};
@@ -1115,8 +1117,27 @@ void LibretroGSFrame::set_dimensions(int w, int h)
     }
 }
 
+// With the Vulkan hardware context the frontend is handed the swapchain image,
+// which the renderer sizes after the window this frame reports. There is no
+// shared GL texture to take the size from, so the renderer sets it to the
+// picture it presents (VKPresent, libretro_set_vk_frame_size): at the 1280x720
+// it started with, a title drawn at 200% was shrunk back to 720p (NNshi).
+static std::atomic<int> s_vk_frame_width{1280};
+static std::atomic<int> s_vk_frame_height{720};
+
+void libretro_set_vk_frame_size(int width, int height)
+{
+    if (width > 0 && height > 0)
+    {
+        s_vk_frame_width = width;
+        s_vk_frame_height = height;
+    }
+}
+
 int LibretroGSFrame::client_width()
 {
+    if (g_libretro_vulkan_hw)
+        return s_vk_frame_width;
     // Use shared texture size - RSX renders at game native resolution
     // RetroArch handles scaling from our output to window size
     return libretro_get_shared_texture_width();
@@ -1124,6 +1145,8 @@ int LibretroGSFrame::client_width()
 
 int LibretroGSFrame::client_height()
 {
+    if (g_libretro_vulkan_hw)
+        return s_vk_frame_height;
     // Use shared texture size - RSX renders at game native resolution
     // RetroArch handles scaling from our output to window size
     return libretro_get_shared_texture_height();

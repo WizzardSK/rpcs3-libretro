@@ -97,8 +97,22 @@ namespace vk::libretro
 
 	void frame_ready(u32 image_index)
 	{
-		std::lock_guard lock(s_frames_mutex);
-		s_ready_frames.push_back(image_index);
+		// Only the newest finished frame waits for the core. The ones before
+		// it were never given to the frontend and never will be, so they go
+		// straight back to the swapchain. Left waiting for take_frame, they
+		// held every image whenever retro_run was not running - while the
+		// title boots inside context_reset, and while it shuts down - and each
+		// flip then waited five seconds for one (NNshi's Wipeout HD log).
+		std::vector<u32> overtaken;
+		{
+			std::lock_guard lock(s_frames_mutex);
+			overtaken.swap(s_ready_frames);
+			s_ready_frames.push_back(image_index);
+		}
+
+		if (auto* swapchain = dynamic_cast<vk::swapchain_LIBRETRO*>(s_swapchain))
+			for (u32 index : overtaken)
+				swapchain->release_image(index);
 	}
 
 	bool take_frame(u32& image_index)

@@ -99,8 +99,24 @@ void LibretroGSFrame::flip(draw_context_t, bool) {}
 
 void LibretroGSFrame::update_dimensions_from_fbo() {}
 
-int LibretroGSFrame::client_width() { return m_width; }
-int LibretroGSFrame::client_height() { return m_height; }
+// With the Vulkan hardware context the renderer sizes the swapchain image the
+// frontend is handed after this window, and sets it to the picture it presents
+// (VKPresent, libretro_set_vk_frame_size), resolution scale included.
+extern bool g_libretro_vulkan_hw;
+static std::atomic<int> s_vk_frame_width{1280};
+static std::atomic<int> s_vk_frame_height{720};
+
+void libretro_set_vk_frame_size(int width, int height)
+{
+	if (width > 0 && height > 0)
+	{
+		s_vk_frame_width = width;
+		s_vk_frame_height = height;
+	}
+}
+
+int LibretroGSFrame::client_width() { return g_libretro_vulkan_hw ? s_vk_frame_width.load() : m_width; }
+int LibretroGSFrame::client_height() { return g_libretro_vulkan_hw ? s_vk_frame_height.load() : m_height; }
 
 void LibretroGSFrame::set_dimensions(int w, int h)
 {
