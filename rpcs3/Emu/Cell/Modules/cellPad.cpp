@@ -864,7 +864,31 @@ error_code cellPadGetDataExtra(u32 port_no, vm::ptr<u32> device_type, vm::ptr<Ce
 	return CELL_OK;
 }
 
+#ifdef LIBRETRO_CORE
+static error_code cellPadSetActDirect_impl(u32 port_no, vm::ptr<CellPadActParam> param);
+
+// The first calls of a session go to the log with what they asked for and what
+// came of it, so a rumble that never arrives shows whether the game asked.
 error_code cellPadSetActDirect(u32 port_no, vm::ptr<CellPadActParam> param)
+{
+	static atomic_t<s32> s_log_left = 32;
+	const error_code result = cellPadSetActDirect_impl(port_no, param);
+	if (s_log_left-- > 0)
+	{
+		if (param)
+			cellPad.notice("cellPadSetActDirect(port_no=%d, motor=[%d, %d], reserved=[%d %d %d %d %d %d]) -> %s", port_no,
+				param->motor[0], param->motor[1], param->reserved[0], param->reserved[1], param->reserved[2],
+				param->reserved[3], param->reserved[4], param->reserved[5], result);
+		else
+			cellPad.notice("cellPadSetActDirect(port_no=%d, param=null) -> %s", port_no, result);
+	}
+	return result;
+}
+
+static error_code cellPadSetActDirect_impl(u32 port_no, vm::ptr<CellPadActParam> param)
+#else
+error_code cellPadSetActDirect(u32 port_no, vm::ptr<CellPadActParam> param)
+#endif
 {
 	cellPad.trace("cellPadSetActDirect(port_no=%d, param=*0x%x)", port_no, param);
 
