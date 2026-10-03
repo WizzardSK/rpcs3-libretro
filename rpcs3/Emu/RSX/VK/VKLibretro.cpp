@@ -95,19 +95,29 @@ namespace vk::libretro
 	void set_shared_swapchain(vk::swapchain_base* swapchain) { s_swapchain = swapchain; }
 	vk::swapchain_base* shared_swapchain() { return s_swapchain; }
 
+	// Finished frames wait in order and each is handed over once (take_frame
+	// takes the oldest). Keeping only the newest, as before, threw a frame away
+	// whenever two finished between frontend frames and repeated one whenever
+	// none did - the emulator's frame times vary by a few percent, the
+	// frontend's do not, and that difference showed as judder (NNshi: 117-123
+	// fps through a 120 Hz frontend). A short queue absorbs it. Beyond
+	// kMaxQueued the oldest go back unseen, which bounds the latency it adds -
+	// and keeps images free while retro_run is not running at all (boot,
+	// shutdown), when nothing takes frames: left waiting there, they held every
+	// image and each flip waited five seconds for one (Wipeout HD).
+	constexpr usz kMaxQueued = 2;
+
 	void frame_ready(u32 image_index)
 	{
-		// Only the newest finished frame waits for the core. The ones before
-		// it were never given to the frontend and never will be, so they go
-		// straight back to the swapchain. Left waiting for take_frame, they
-		// held every image whenever retro_run was not running - while the
-		// title boots inside context_reset, and while it shuts down - and each
-		// flip then waited five seconds for one (NNshi's Wipeout HD log).
 		std::vector<u32> overtaken;
 		{
 			std::lock_guard lock(s_frames_mutex);
-			overtaken.swap(s_ready_frames);
 			s_ready_frames.push_back(image_index);
+			while (s_ready_frames.size() > kMaxQueued)
+			{
+				overtaken.push_back(s_ready_frames.front());
+				s_ready_frames.erase(s_ready_frames.begin());
+			}
 		}
 
 		if (auto* swapchain = dynamic_cast<vk::swapchain_LIBRETRO*>(s_swapchain))
@@ -117,20 +127,11 @@ namespace vk::libretro
 
 	bool take_frame(u32& image_index)
 	{
-		std::vector<u32> overtaken;
-		{
-			std::lock_guard lock(s_frames_mutex);
-			if (s_ready_frames.empty())
-				return false;
-			image_index = s_ready_frames.back();
-			s_ready_frames.pop_back();
-			overtaken.swap(s_ready_frames);
-		}
-
-		// Finished on the GPU and never shown: free to draw into again.
-		if (auto* swapchain = dynamic_cast<vk::swapchain_LIBRETRO*>(s_swapchain))
-			for (u32 index : overtaken)
-				swapchain->release_image(index);
+		std::lock_guard lock(s_frames_mutex);
+		if (s_ready_frames.empty())
+			return false;
+		image_index = s_ready_frames.front();
+		s_ready_frames.erase(s_ready_frames.begin());
 		return true;
 	}
 

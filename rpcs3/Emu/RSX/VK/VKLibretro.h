@@ -54,9 +54,9 @@ namespace vk::libretro
 	vk::swapchain_base* shared_swapchain();
 
 	// Frame handoff. The renderer calls frame_ready once a frame's commands
-	// have finished on the GPU; the core takes the newest finished image in
-	// retro_run. Images finished but overtaken by a newer one before the core
-	// came for them go back to the swapchain at once.
+	// have finished on the GPU; the core takes the oldest waiting image in
+	// retro_run, so each frame is shown once and in order. A few wait at
+	// most; beyond that the oldest go back to the swapchain unseen.
 	void frame_ready(u32 image_index);
 	bool take_frame(u32& image_index);
 	void drop_pending_frames();

@@ -235,8 +235,10 @@ namespace vk
 
 			// Without a context two is enough to keep one in flight while the
 			// other is read. With one, the frontend holds the image it shows
-			// and one or two it is still sampling, besides the ones being drawn.
-			init_swapchain_images(dev, m_hw ? 5 : 2);
+			// and the two or three it is still sampling, up to two finished
+			// frames wait for it (vk::libretro::frame_ready), and the renderer
+			// draws into the rest.
+			init_swapchain_images(dev, m_hw ? 8 : 2);
 
 			if (m_hw)
 			{
