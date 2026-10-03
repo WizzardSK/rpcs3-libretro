@@ -5,6 +5,7 @@
 
 #include "Emu/Io/pad_config.h"
 #include "Emu/Io/pad_types.h"
+#include "Emu/Io/PadHandler.h"
 #include "Emu/System.h"
 #include "Emu/IdManager.h"
 
@@ -289,6 +290,55 @@ struct SensorData
     float accel_z = 0.0f;
 };
 static std::array<SensorData, LIBRETRO_MAX_PADS> s_sensor_data;
+
+static retro_set_rumble_state_t s_rumble_cb = nullptr;
+// What each port's motors were last set to, so the frontend is called on a
+// change only - retro_run asks every frame.
+static std::array<std::array<uint16_t, 2>, LIBRETRO_MAX_PADS> s_rumble_sent{};
+
+bool libretro_input_init_rumble(retro_environment_t environ_cb)
+{
+    retro_rumble_interface rumble{};
+    if (environ_cb && environ_cb(RETRO_ENVIRONMENT_GET_RUMBLE_INTERFACE, &rumble) && rumble.set_rumble_state)
+        s_rumble_cb = rumble.set_rumble_state;
+    else
+        s_rumble_cb = nullptr;
+    return s_rumble_cb != nullptr;
+}
+
+void libretro_input_set_rumble(unsigned port, uint16_t strong, uint16_t weak)
+{
+    if (!s_rumble_cb || port >= LIBRETRO_MAX_PADS)
+        return;
+
+    auto& sent = s_rumble_sent[port];
+    if (sent[0] == strong && sent[1] == weak)
+        return;
+
+    const bool strong_ok = sent[0] == strong || s_rumble_cb(port, RETRO_RUMBLE_STRONG, strong);
+    const bool weak_ok = sent[1] == weak || s_rumble_cb(port, RETRO_RUMBLE_WEAK, weak);
+
+    // Once per change, so a report of no rumble says whether the game asked
+    // for it and whether the frontend took it (NNshi).
+    static std::array<std::array<uint16_t, 2>, LIBRETRO_MAX_PADS> s_logged{};
+    if (s_logged[port][0] != strong || s_logged[port][1] != weak)
+    {
+        input_log.notice("libretro rumble: port %u strong 0x%04x weak 0x%04x, frontend %s", port + 1, strong, weak,
+            strong_ok && weak_ok ? "took it" : "refused it (no rumble on that port's device?)");
+        s_logged[port] = { strong, weak };
+    }
+
+    if (strong_ok)
+        sent[0] = strong;
+    if (weak_ok)
+        sent[1] = weak;
+}
+
+void libretro_input_stop_rumble()
+{
+    for (unsigned port = 0; port < LIBRETRO_MAX_PADS; port++)
+        libretro_input_set_rumble(port, 0, 0);
+}
 
 bool libretro_input_init_sensors(retro_environment_t environ_cb)
 {

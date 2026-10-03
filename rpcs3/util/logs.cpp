@@ -202,7 +202,7 @@ namespace logs
 
 		for (auto&& pair : get_logger()->channels)
 		{
-			pair.second->enabled.release(level::notice);
+			pair.second->enabled.release(level::_default);
 		}
 	}
 
@@ -257,10 +257,8 @@ namespace logs
 		{
 			return found.first->second->enabled.observe();
 		}
-		else
-		{
-			return level::always;
-		}
+
+		return level::always;
 	}
 
 	void set_channel_levels(const std::map<std::string, logs::level, std::less<>>& map)
@@ -271,18 +269,17 @@ namespace logs
 		}
 	}
 
-	std::vector<std::string> get_channels()
+	std::set<std::string> get_channels()
 	{
-		std::vector<std::string> result;
+		std::set<std::string> result;
 
 		std::lock_guard lock(g_mutex);
 
 		for (auto&& p : get_logger()->channels)
 		{
-			// Copy names removing duplicates
-			if (result.empty() || result.back() != p.first)
+			if (!p.first.empty())
 			{
-				result.push_back(p.first);
+				result.insert(p.first);
 			}
 		}
 
@@ -390,6 +387,16 @@ void logs::listener::sync_all()
 	for (listener* lis = get_logger(); lis; lis = lis->m_next)
 	{
 		lis->sync();
+	}
+}
+
+void logs::listener::shutdown_all()
+{
+	std::lock_guard lock(g_mutex);
+
+	for (listener* lis = get_logger()->m_next.exchange(nullptr); lis;)
+	{
+		lis = lis->m_next.exchange(nullptr);
 	}
 }
 
@@ -618,7 +625,15 @@ bool logs::file_writer::flush(u64 bufv)
 				m_zs.avail_out = sizeof(m_zout);
 				m_zs.next_out  = m_zout;
 
-				if (deflate(&m_zs, Z_NO_FLUSH) == Z_STREAM_ERROR || m_fout2.write(m_zout, sizeof(m_zout) - m_zs.avail_out) != sizeof(m_zout) - m_zs.avail_out)
+#ifdef LIBRETRO_CORE
+				// Every write complete in the file: testers send the .gz, and
+				// after a crash or a kill the last block, with whatever went
+				// wrong in it, was otherwise never written out
+				constexpr int flush_mode = Z_SYNC_FLUSH;
+#else
+				constexpr int flush_mode = Z_NO_FLUSH;
+#endif
+				if (deflate(&m_zs, flush_mode) == Z_STREAM_ERROR || m_fout2.write(m_zout, sizeof(m_zout) - m_zs.avail_out) != sizeof(m_zout) - m_zs.avail_out)
 				{
 					deflateEnd(&m_zs);
 					m_fout2.close();

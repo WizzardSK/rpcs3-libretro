@@ -662,7 +662,7 @@ namespace rsx
 		}
 	}
 
-	void draw_command_processor::fill_fragment_state_buffer(void* buffer, const RSXFragmentProgram& /*fragment_program*/) const
+	void draw_command_processor::fill_fragment_state_buffer(void* buffer, const RSXFragmentProgram& fragment_program) const
 	{
 #pragma pack(push, 1)
 		struct fragment_context_t
@@ -680,78 +680,20 @@ namespace rsx
 		ROP_control_t rop_control{};
 		alignas(16) fragment_context_t payload{};
 
-		if (REGS(m_ctx)->alpha_test_enabled())
+		// Always encode the alpha function. Toggling alpha-test is not guaranteed to trigger context param reload anymore.
+		const u32 alpha_func = static_cast<u32>(REGS(m_ctx)->alpha_func());
+		rop_control.set_alpha_test_func(alpha_func);
+
+		if (fragment_program.ctrl & RSX_SHADER_CONTROL_ROP_OUTPUT_REMAP)
 		{
-			const u32 alpha_func = static_cast<u32>(REGS(m_ctx)->alpha_func());
-			rop_control.set_alpha_test_func(alpha_func);
-			rop_control.enable_alpha_test();
+			const u32 remap_index = get_ROP_output_shuffle_index(REGS(m_ctx)->surface_color());
+			rop_control.set_output_remap(remap_index);
 		}
 
-		if (REGS(m_ctx)->polygon_stipple_enabled())
+		if (fragment_program.ctrl & RSX_SHADER_CONTROL_PROGRAMMABLE_BLENDING)
 		{
-			rop_control.enable_polygon_stipple();
-		}
-
-		auto can_use_hw_a2c = [&]() -> bool
-		{
-			const auto& config = RSX(m_ctx)->get_backend_config();
-			if (!config.supports_hw_a2c)
-			{
-				return false;
-			}
-
-			if (config.supports_hw_a2c_1spp)
-			{
-				return true;
-			}
-
-			return REGS(m_ctx)->surface_antialias() != rsx::surface_antialiasing::center_1_sample;
-		};
-
-		if (REGS(m_ctx)->msaa_alpha_to_coverage_enabled() && !can_use_hw_a2c())
-		{
-			// TODO: Properly support alpha-to-coverage and alpha-to-one behavior in shaders
-			// Alpha values generate a coverage mask for order independent blending
-			// Requires hardware AA to work properly (or just fragment sample stage in fragment shaders)
-			// Simulated using combined alpha blend and alpha test
-			rop_control.enable_alpha_to_coverage();
-			if (REGS(m_ctx)->msaa_sample_mask())
-			{
-				rop_control.enable_MSAA_writes();
-			}
-
-			// Sample configuration bits
-			switch (REGS(m_ctx)->surface_antialias())
-			{
-			case rsx::surface_antialiasing::center_1_sample:
-				break;
-			case rsx::surface_antialiasing::diagonal_centered_2_samples:
-				rop_control.set_msaa_control(1u);
-				break;
-			default:
-				rop_control.set_msaa_control(3u);
-				break;
-			}
-		}
-
-		// Check if framebuffer is actually an XRGB format and not a WZYX format
-		switch (REGS(m_ctx)->surface_color())
-		{
-		case rsx::surface_color_format::w16z16y16x16:
-		case rsx::surface_color_format::w32z32y32x32:
-		case rsx::surface_color_format::x32:
-			// These behave very differently from "normal" formats.
-			break;
-		default:
-			// Integer framebuffer formats.
-			rop_control.enable_framebuffer_INT();
-
-			// Check if we want sRGB conversion.
-			if (REGS(m_ctx)->framebuffer_srgb_enabled())
-			{
-				rop_control.enable_framebuffer_sRGB();
-			}
-			break;
+			const auto blend_enable_mask = REGS(m_ctx)->blend_enabled_mask() & REGS(m_ctx)->surface_color_target_mask();
+			rop_control.set_blend_target_mask(blend_enable_mask);
 		}
 
 		// Generate wpos coefficients
@@ -766,11 +708,12 @@ namespace rsx
 		payload.rop_control = rop_control.value;
 		payload.alpha_ref = REGS(m_ctx)->alpha_ref();
 
-
 		const auto window_origin = REGS(m_ctx)->shader_window_origin();
 		const u32 window_height = REGS(m_ctx)->shader_window_height();
 		const auto pixel_center = REGS(m_ctx)->pixel_center();
-		const f32 resolution_scale = (window_height <= static_cast<u32>(g_cfg.video.min_scalable_dimension)) ? 1.f : rsx::get_resolution_scale();
+		const f32 resolution_scale = (window_height <= RSX(m_ctx)->resolution_scaling_config.min_scalable_dimension)
+			? 1.f
+			: RSX(m_ctx)->resolution_scaling_config.scale_factor();
 
 		payload.wpos_scale = (window_origin == rsx::window_origin::top) ? (1.f / resolution_scale) : (-1.f / resolution_scale);
 		payload.wpos_bias[0] = 0.f;
@@ -800,7 +743,7 @@ namespace rsx
 
 		// indirection table size
 		const auto full_reupload = !prog || prog->has_indexed_constants;
-		const auto reloc_table = full_reupload ? decltype(prog->constant_ids){} : prog->constant_ids;
+		const auto reloc_table = full_reupload ? std::span<const u16>{} : std::span<const u16>(prog->constant_ids);
 		const auto redirection_table_size = full_reupload ? 468u : ::size32(prog->constant_ids);
 		instancing_indirection_table.resize(redirection_table_size);
 

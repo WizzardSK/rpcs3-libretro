@@ -84,6 +84,15 @@ void libretro_input_set_controller_info(retro_environment_t environ_cb);
 // Initialize sensor interface for gyro/accelerometer
 bool libretro_input_init_sensors(retro_environment_t environ_cb);
 
+// Get the frontend's rumble interface
+bool libretro_input_init_rumble(retro_environment_t environ_cb);
+
+// Set a port's motors (0..65535); only changes reach the frontend
+void libretro_input_set_rumble(unsigned port, uint16_t strong, uint16_t weak);
+
+// Stop every port's motors
+void libretro_input_stop_rumble();
+
 // Poll sensor data (gyro/accelerometer)
 void libretro_input_poll_sensors();
 

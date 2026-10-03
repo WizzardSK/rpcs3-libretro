@@ -111,6 +111,7 @@ endif()
 # Compile definitions
 target_compile_definitions(rpcs3_libretro PRIVATE
     LIBRETRO_CORE
+    RPCS3_LIBRETRO_VERSION="${RPCS3_LIBRETRO_VERSION}"
 )
 
 # Hide symbols by default (expose only libretro API)

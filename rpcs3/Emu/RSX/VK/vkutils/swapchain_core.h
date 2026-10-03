@@ -7,6 +7,7 @@
 #include "../../display.h"
 #include "../VulkanAPI.h"
 #include "image.h"
+#include "util/logs.hpp"
 
 #include <memory>
 
@@ -192,9 +193,18 @@ namespace vk
 			// No window to attach to.
 		}
 
-		void destroy(bool /*full*/ = true) override
+		void destroy(bool full = true) override
 		{
 			swapchain_images.clear();
+
+			// The device belongs to the swapchain, as with every other one.
+			// Left alive, VKGSRender destroyed the instance under it and
+			// g_render_device kept pointing at it, and NVIDIA's driver then
+			// crashed on a thread of its own at the same address every time
+			// the emulator stopped: on unloading the core, and when a
+			// multi-game disc restarts into the chosen game (NNshi).
+			if (full)
+				dev.destroy();
 		}
 
 		VkResult present(VkSemaphore /*semaphore*/, u32 index) override
@@ -204,6 +214,22 @@ namespace vk
 			// acquire_next_swapchain_image looks at.
 			swapchain_images[index].first = false;
 			return VK_SUCCESS;
+		}
+
+		// For the flip's wait on a free image: which images are held, and a
+		// way out when nothing is ever going to give one back
+		std::string describe_images() const
+		{
+			std::string result;
+			for (const auto& image : swapchain_images)
+				result += image.first ? 'H' : '-';
+			return result;
+		}
+
+		void release_all_images()
+		{
+			for (auto& image : swapchain_images)
+				image.first = false;
 		}
 	};
 

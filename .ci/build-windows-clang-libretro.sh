@@ -7,14 +7,17 @@
 # with CMake does not work either - the LLVM on the runner image is the client
 # distribution, with no CMake package and no static libraries, so
 # find_package(LLVM) finds nothing. clang64 has all of it as packages: LLVM
-# with its CMake config, and ffmpeg, OpenCV, curl and GLEW besides, which is
-# why this asks for the system copies of those.
+# with its CMake config, and ffmpeg, OpenCV and GLEW besides, which is why
+# this asks for the system copies of those. Not curl: since RPCN and clans
+# went into the emulator itself it links libcurl, and clang64's is a DLL, so
+# curl and wolfSSL come from the submodules and are linked in. protobuf, for
+# RPCN, would take clang64's abseil, DLLs again; it fetches and builds its own.
 
 git config --global --add safe.directory '*'
 
 # The ones clang64 provides as packages are left out, as is LLVM.
 # shellcheck disable=SC2046
-git submodule -q update --init --depth 1 $(awk '/path/ && !/llvm/ && !/opencv/ && !/ffmpeg/ && !/curl/ && !/FAudio/ && !/zlib/ { print $3 }' .gitmodules)
+git submodule -q update --init --depth 1 $(awk '/path/ && !/llvm/ && !/opencv/ && !/ffmpeg/ && !/FAudio/ && !/zlib/ { print $3 }' .gitmodules)
 
 # The core has to be one DLL that needs nothing but Windows, the Vulkan loader
 # and OpenGL. RetroArch loads it with LoadLibraryW on its full path, so Windows
@@ -58,12 +61,14 @@ case "$FFMPEG_LIBS" in
     *) echo "pkg-config did not return the static ffmpeg built above"; exit 1 ;;
 esac
 
-# zlib and zstd come in through LLVM's CMake package, and libc++ and libunwind
-# through the compiler driver, each as clang64's import library. Neither lets
-# the caller ask for the static archive instead, so the import libraries are
-# swapped for the archives here, on the runner only: the linker goes by what
-# is in the file, not by its name.
-for lib in z zstd c++ unwind; do
+# zlib and zstd come in through LLVM's CMake package, libc++ and libunwind
+# through the compiler driver, and winpthread with abseil's threads, each as
+# clang64's import library. winpthread has two of them: libwinpthread.dll.a
+# and libpthread.dll.a, which is what -pthread (CMake's Threads::Threads)
+# links, so both go. Neither lets the caller ask for the static archive
+# instead, so the import libraries are swapped for the archives here, on the
+# runner only: the linker goes by what is in the file, not by its name.
+for lib in z zstd c++ unwind winpthread pthread; do
     cp "/clang64/lib/lib${lib}.a" "/clang64/lib/lib${lib}.dll.a"
 done
 
@@ -87,7 +92,11 @@ cmake ..                                               \
     -DCMAKE_SHARED_LINKER_FLAGS="${LINKER_FLAG}"       \
     -DCMAKE_AR="$AR"                                   \
     -DCMAKE_RANLIB="$RANLIB"                           \
-    -DUSE_SYSTEM_CURL=ON                               \
+    -DUSE_SYSTEM_CURL=OFF                              \
+    -DCURL_BROTLI=OFF                                  \
+    -DCURL_ZSTD=OFF                                    \
+    -DUSE_NGHTTP2=OFF                                  \
+    -Dprotobuf_FORCE_FETCH_DEPENDENCIES=ON             \
     -DUSE_FAUDIO=OFF                                   \
     -DUSE_SDL=OFF                                      \
     -DUSE_SYSTEM_FFMPEG=ON                             \

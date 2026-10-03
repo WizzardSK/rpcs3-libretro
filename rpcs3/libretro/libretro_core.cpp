@@ -21,6 +21,7 @@
 #include "Emu/RSX/Overlays/overlay_manager.h"
 #include "Emu/RSX/Overlays/overlay_save_dialog.h"
 #include "Emu/Cell/Modules/sceNpTrophy.h"
+#include "Emu/Cell/Modules/sceNp.h"
 #include "Emu/Io/Null/null_camera_handler.h"
 #include "Emu/Io/Null/null_music_handler.h"
 #include "Emu/Io/Null/NullKeyboardHandler.h"
@@ -39,11 +40,17 @@
 #include "Emu/RSX/Null/NullGSRender.h"
 #include "Emu/IdManager.h"
 #include "Emu/VFS.h"
+#include "Emu/emu_callbacks.h"
+#include "Emu/system_progress.hpp"
+#include "Emu/RSX/Overlays/overlay_utils.h"
+#include "libretro_localized_strings.h"
+#include "Emu/Audio/audio_device_enumerator.h"
 #include "Emu/RSX/RSXThread.h"
 #include "Input/pad_thread.h"
 #include "util/video_source.h"
 #include "Emu/vfs_config.h"
 #include "Utilities/File.h"
+#include "Utilities/StrUtil.h"
 #include "Utilities/stack_trace.h"
 
 #include "libretro_audio.h"
@@ -57,15 +64,18 @@
 
 #include <clocale>
 #include <chrono>
+#include <ctime>
 #include <atomic>
 #include <thread>
 #include <mutex>
 #include <functional>
+#include <filesystem>
 #include <string>
 #include <vector>
 
 #ifdef _WIN32
 #define WIN32_LEAN_AND_MEAN
+#include <winsock2.h>
 #include <Windows.h>
 #endif
 #ifdef __linux__
@@ -86,6 +96,7 @@ LOG_CHANNEL(sys_log, "SYS");
 typedef LONG(NTAPI* lr_NtQueryTimerResolution_t)(PULONG, PULONG, PULONG);
 typedef LONG(NTAPI* lr_NtSetTimerResolution_t)(ULONG, BOOLEAN, PULONG);
 static bool s_timer_resolution_set = false;
+static bool s_wsa_started = false;
 static ULONG s_timer_resolution = 0;
 
 static void lrcore_raise_timer_resolution()
@@ -146,6 +157,7 @@ bool g_libretro_software_present = true;
 #else
 bool g_libretro_software_present = false;
 #endif
+bool g_libretro_deferred_readback = false;
 
 // Core state
 static bool core_initialized = false;
@@ -261,6 +273,130 @@ static void libretro_show_message(const char* msg, unsigned frames = 180)
     environ_cb(RETRO_ENVIRONMENT_SET_MESSAGE, &rm);
 }
 
+// Long compilations - PPU modules on a first boot, the SPU cache - leave the
+// picture black or frozen for minutes, and a user cannot tell that from a hang
+// (ozzfreak). RPCS3 reports their progress through g_progr_*, for its own
+// dialog; this puts the same in front of the frontend's notifications, renewed
+// while the work goes on so it stays up exactly that long.
+static void libretro_report_progress()
+{
+    static int s_message_interface = -1;
+    if (s_message_interface < 0)
+    {
+        unsigned version = 0;
+        s_message_interface = environ_cb(RETRO_ENVIRONMENT_GET_MESSAGE_INTERFACE_VERSION, &version) ? static_cast<int>(version) : 0;
+    }
+
+    const std::string title = g_progr_text;
+    const u32 ptotal = g_progr_ptotal, pdone = g_progr_pdone;
+    const u32 ftotal = g_progr_ftotal, fdone = g_progr_fdone;
+
+    if (title.empty() && !ptotal && !ftotal)
+        return;
+
+    // RPCS3 leaves finished counts standing until its dialog server gets to
+    // them, if it does; a notice of "module 3 of 3" then stayed up for good.
+    if ((ptotal || ftotal) && pdone >= ptotal && fdone >= ftotal)
+        return;
+
+    // Often enough to follow the count, not every frame.
+    static std::string s_last;
+    static u64 s_last_us = 0;
+    std::string msg = title.empty() ? std::string("Please wait") : title;
+    while (!msg.empty() && (msg.back() == '.' || msg.back() == ' ' || msg.back() == '\n'))
+        msg.pop_back();
+    std::replace(msg.begin(), msg.end(), '\n', ' ');
+    if (ftotal)
+        fmt::append(msg, " - file %u of %u", fdone, ftotal);
+    if (ptotal)
+        fmt::append(msg, " - module %u of %u", pdone, ptotal);
+
+    const u64 now = lr_now_us();
+    if (msg == s_last && now - s_last_us < 1'000'000)
+        return;
+    s_last = msg;
+    s_last_us = now;
+
+    const u32 total = ptotal ? ptotal : ftotal;
+    const u32 done = ptotal ? pdone : fdone;
+
+    if (s_message_interface >= 1)
+    {
+        retro_message_ext rm{};
+        rm.msg = msg.c_str();
+        rm.duration = 2000;
+        rm.priority = 1;
+        rm.level = RETRO_LOG_INFO;
+        rm.target = RETRO_MESSAGE_TARGET_OSD;
+        rm.type = RETRO_MESSAGE_TYPE_PROGRESS;
+        rm.progress = total ? static_cast<int8_t>(std::min<u64>(100, u64{done} * 100 / total)) : -1;
+        environ_cb(RETRO_ENVIRONMENT_SET_MESSAGE_EXT, &rm);
+    }
+    else
+    {
+        libretro_show_message(msg.c_str(), 120);
+    }
+}
+
+// A picture that stops while the game runs on - GT5's menu froze with its
+// music and cursor going on until a pause and resume, inFamous went black
+// after its intro (ozzfreak) - left nothing in the log to say where the frames
+// stopped. Say it when it happens: after a few seconds without a new frame
+// while the emulator runs, log what moved since the last one. No RSX flips:
+// the game or the renderer stopped. Flips but no frames handed over: the
+// renderer flipped without copying a frame out. Frames handed over but none
+// taken: the handoff to retro_run. VBLANKs posted behind those requested: the
+// frontend-paced VBLANK thread.
+static void libretro_check_frame_stall(bool new_frame)
+{
+    struct counters
+    {
+        u64 flips = 0, handed = 0, vblanks = 0, requested = 0;
+    };
+
+    const auto now_counters = []()
+    {
+        counters c{};
+        if (rsx::thread* rsx = rsx::get_current_renderer())
+        {
+            c.flips = rsx->int_flip_index;
+            c.vblanks = rsx->vblank_count;
+        }
+        c.handed = libretro_sw_frames_presented();
+        c.requested = g_libretro_vblank_requests;
+        return c;
+    };
+
+    static counters s_at_frame{};
+    static u64 s_frame_us = 0;
+    static u64 s_report_us = 0;
+    static bool s_reported = false;
+
+    const u64 now = lr_now_us();
+
+    if (new_frame || !Emu.IsRunning() || !s_frame_us)
+    {
+        if (new_frame && s_reported)
+            rsx_log.warning("libretro: frames again after %.1fs", (now - s_frame_us) / 1e6);
+        s_at_frame = now_counters();
+        s_frame_us = now;
+        s_reported = false;
+        return;
+    }
+
+    if (now - s_frame_us < 3'000'000 || now - s_report_us < 10'000'000)
+        return;
+
+    const counters c = now_counters();
+    rsx_log.error("libretro: no new frame for %.1fs while running: RSX flips +%u, frames handed over +%u, "
+        "VBLANKs +%u of +%u requested (frontend pacing %s), progress dialog '%s'",
+        (now - s_frame_us) / 1e6, c.flips - s_at_frame.flips, c.handed - s_at_frame.handed,
+        c.vblanks - s_at_frame.vblanks, c.requested - s_at_frame.requested,
+        g_libretro_frontend_vblank ? "on" : "off", std::string(g_progr_text));
+    s_report_us = now;
+    s_reported = true;
+}
+
 // Check if a file path has a PKG extension
 static bool is_pkg_file(const std::string& path)
 {
@@ -331,7 +467,7 @@ static std::string install_pkg_file(const std::string& pkg_path)
     std::atomic<bool> extraction_success{false};
     std::thread extraction_thread([&]()
     {
-        auto result = package_reader::extract_data(readers, bootable_paths);
+        auto result = package_reader::extract_data(readers, bootable_paths, false);
         extraction_success = (result.error == package_install_result::error_type::no_error);
         extraction_done = true;
     });
@@ -461,7 +597,7 @@ static void libretro_apply_core_options()
     g_cfg.core.preferred_spu_threads.set(std::stoi(spu_threads));
 
     // SPU Loop Detection
-    g_cfg.core.spu_loop_detection.set(get_option_value("rpcs3_spu_loop_detection", "enabled") == "enabled");
+    g_cfg.core.spu_loop_detection.set(get_option_value("rpcs3_spu_loop_detection", "disabled") == "enabled");
 
     // SPU Cache
     g_cfg.core.spu_cache.set(get_option_value("rpcs3_spu_cache", "enabled") == "enabled");
@@ -470,7 +606,7 @@ static void libretro_apply_core_options()
     g_cfg.core.llvm_precompilation.set(get_option_value("rpcs3_llvm_precompilation", "enabled") == "enabled");
 
     // Accurate DFMA
-    g_cfg.core.use_accurate_dfma.set(get_option_value("rpcs3_accurate_dfma", "disabled") == "enabled");
+    g_cfg.core.use_accurate_dfma.set(get_option_value("rpcs3_accurate_dfma", "enabled") == "enabled");
 
     // Clocks Scale
     std::string clocks = get_option_value("rpcs3_clocks_scale", "100");
@@ -484,45 +620,68 @@ static void libretro_apply_core_options()
         g_cfg.core.max_spurs_threads.set(std::stoi(spurs));
 
     // ==================== GPU OPTIONS ====================
+    // Default Resolution: what the game is told the display is. Only between
+    // games - a game asks once, at boot, and the frame size the frontend was
+    // given depends on it.
+    if (Emu.IsStopped())
+    {
+        const std::string resolution = get_option_value("rpcs3_default_resolution", "720p");
+        if (resolution == "1080p")
+            g_cfg.video.resolution.set(video_resolution::_1080p);
+        else if (resolution == "480p")
+            g_cfg.video.resolution.set(video_resolution::_480p);
+        else if (resolution == "576p")
+            g_cfg.video.resolution.set(video_resolution::_576p);
+        else
+            g_cfg.video.resolution.set(video_resolution::_720p);
+    }
+
     // Resolution Scale
     std::string res_scale = get_option_value("rpcs3_resolution_scale", "100");
     g_cfg.video.resolution_scale_percent.set(std::stoi(res_scale));
 
+    // Resolution Scale Threshold
+    g_cfg.video.min_scalable_dimension.set(std::stoi(get_option_value("rpcs3_scale_threshold", "16")));
+
+    // ZCULL Accuracy, RPCS3's three settings as its own UI makes them
+    const std::string zcull = get_option_value("rpcs3_zcull_accuracy", "precise");
+    g_cfg.video.precise_zpass_count.set(zcull == "precise");
+    g_cfg.video.relaxed_zcull_sync.set(zcull == "relaxed");
+
     // Frame Limit
     std::string limit = get_option_value("rpcs3_frame_limit", "auto");
-    g_cfg.video.vsync.set(false);  // Disable RPCS3 vsync, RetroArch controls timing
+    g_cfg.video.vsync.set(vsync_mode::off);  // Disable RPCS3 vsync, RetroArch controls timing
+
+    // Auto is RPCS3's own default: at most one flip per PS3 refresh (the
+    // VBlank Rate). Leaving the limiter off for it, as this used to, let
+    // every game that does not wait for VBLANK itself run too fast (NNshi).
+    // 144 and 240 have no frame_limit_type of their own; they go through the
+    // second limit, which applies when the first one is unlimited.
+    g_disable_frame_limit = false;
+    g_cfg.video.second_frame_limit.set(0);
 
     if (limit == "off" || limit == "Off")
     {
         g_disable_frame_limit = true;
         g_cfg.video.frame_limit.set(frame_limit_type::none);
     }
+    else if (limit == "ps3")
+        g_cfg.video.frame_limit.set(frame_limit_type::_ps3);
     else if (limit == "30")
-    {
-        g_disable_frame_limit = false;
         g_cfg.video.frame_limit.set(frame_limit_type::_30);
-    }
     else if (limit == "50")
-    {
-        g_disable_frame_limit = false;
         g_cfg.video.frame_limit.set(frame_limit_type::_50);
-    }
     else if (limit == "60")
-    {
-        g_disable_frame_limit = false;
         g_cfg.video.frame_limit.set(frame_limit_type::_60);
-    }
     else if (limit == "120")
-    {
-        g_disable_frame_limit = false;
         g_cfg.video.frame_limit.set(frame_limit_type::_120);
+    else if (limit == "144" || limit == "240")
+    {
+        g_cfg.video.frame_limit.set(frame_limit_type::infinite);
+        g_cfg.video.second_frame_limit.set(std::stoi(limit));
     }
     else
-    {
-        // Auto: disable limiter in libretro by default
-        g_disable_frame_limit = true;
-        g_cfg.video.frame_limit.set(frame_limit_type::none);
-    }
+        g_cfg.video.frame_limit.set(frame_limit_type::_auto);
 
     // Shader Mode
     std::string shader_mode = get_option_value("rpcs3_shader_mode", "async");
@@ -551,6 +710,72 @@ static void libretro_apply_core_options()
     else
         g_cfg.video.anisotropic_level_override.set(std::stoi(aniso));
 
+    // Anti-Aliasing and Shader Quality were offered here but never applied
+    g_cfg.video.antialiasing_level.set(get_option_value("rpcs3_msaa", "auto") == "disabled" ? msaa_level::none : msaa_level::_auto);
+
+    const std::string shader_quality = get_option_value("rpcs3_shader_quality", "high");
+    g_cfg.video.shader_precision.set(shader_quality == "low" ? gpu_preset_level::low :
+        shader_quality == "ultra" ? gpu_preset_level::ultra : gpu_preset_level::high);
+
+    g_cfg.video.disable_zcull_queries.set(get_option_value("rpcs3_disable_zcull_queries", "disabled") == "enabled");
+    g_cfg.video.vblank_ntsc.set(get_option_value("rpcs3_vblank_ntsc", "disabled") == "enabled");
+    g_cfg.core.rsx_accurate_res_access.set(get_option_value("rpcs3_accurate_rsx_reservation", "disabled") == "enabled");
+
+    // These had core options since the port, which nothing ever read: setting
+    // them changed nothing. Each goes to the RPCS3 setting it is named after.
+    const auto enabled = [](const char* key, const char* def) { return get_option_value(key, def) == "enabled"; };
+
+    g_cfg.core.spu_verification.set(enabled("rpcs3_spu_verification", "enabled"));
+    g_cfg.core.accurate_cache_line_stores.set(enabled("rpcs3_spu_cache_line_stores", "disabled"));
+    g_cfg.core.mfc_shuffling_in_steps.set(enabled("rpcs3_mfc_shuffling", "disabled"));
+    g_cfg.core.spu_delay_penalty.set(std::clamp(std::atoi(get_option_value("rpcs3_spu_delay_penalty", "3").c_str()), 0, 16));
+    g_cfg.core.ppu_use_nj_bit.set(enabled("rpcs3_ppu_nj_mode", "disabled"));
+    g_cfg.core.ppu_set_sat_bit.set(enabled("rpcs3_ppu_set_sat_bit", "disabled"));
+    g_cfg.core.ppu_set_vnan.set(enabled("rpcs3_ppu_accurate_vector_nan", "disabled"));
+    g_cfg.core.ppu_set_fpcc.set(enabled("rpcs3_ppu_set_fpcc", "disabled"));
+    g_cfg.core.hook_functions.set(enabled("rpcs3_hook_static_funcs", "disabled"));
+    g_cfg.core.hle_lwmutex.set(enabled("rpcs3_hle_lwmutex", "disabled"));
+
+    const std::string xfloat = get_option_value("rpcs3_spu_xfloat_accuracy", "approximate");
+    g_cfg.core.spu_xfloat_accuracy.set(xfloat == "accurate" ? xfloat_accuracy::accurate :
+        xfloat == "relaxed" ? xfloat_accuracy::relaxed :
+        xfloat == "inaccurate" ? xfloat_accuracy::inaccurate : xfloat_accuracy::approximate);
+
+    const std::string fifo = get_option_value("rpcs3_rsx_fifo_accuracy", "atomic");
+    g_cfg.core.rsx_fifo_accuracy.set(fifo == "fast" ? rsx_fifo_mode::fast :
+        fifo == "atomic_ordered" ? rsx_fifo_mode::atomic_ordered :
+        fifo == "as_ps3" ? rsx_fifo_mode::as_ps3 : rsx_fifo_mode::atomic);
+
+    // "Automatic" is RPCS3's own default, which depends on the host OS.
+    const std::string sleep_timers = get_option_value("rpcs3_sleep_timers_accuracy", "auto");
+    if (sleep_timers == "as_host")
+        g_cfg.core.sleep_timers_accuracy.set(sleep_timers_accuracy_level::_as_host);
+    else if (sleep_timers == "usleep")
+        g_cfg.core.sleep_timers_accuracy.set(sleep_timers_accuracy_level::_usleep);
+    else if (sleep_timers == "all_timers")
+        g_cfg.core.sleep_timers_accuracy.set(sleep_timers_accuracy_level::_all_timers);
+    else
+        g_cfg.core.sleep_timers_accuracy.from_default();
+
+    g_cfg.video.disable_vertex_cache.set(!enabled("rpcs3_vertex_cache", "enabled"));
+    g_cfg.video.force_cpu_blit_processing.set(enabled("rpcs3_cpu_blit", "disabled"));
+    g_cfg.video.stretch_to_display_area.set(enabled("rpcs3_stretch_to_display", "disabled"));
+    g_cfg.video.vk.asynchronous_texture_streaming.set(enabled("rpcs3_async_texture_streaming", "disabled"));
+    // The option is in milliseconds, the setting in microseconds.
+    g_cfg.video.driver_recovery_timeout.set(std::clamp(std::atoi(get_option_value("rpcs3_driver_recovery_timeout", "1000").c_str()), 0, 30000) * 1000);
+
+    const std::string area = get_option_value("rpcs3_license_area", "usa");
+    g_cfg.sys.license_area.set(area == "eu" ? CELL_SYSUTIL_LICENSE_AREA_E :
+        area == "jp" ? CELL_SYSUTIL_LICENSE_AREA_J :
+        area == "hk" ? CELL_SYSUTIL_LICENSE_AREA_H :
+        area == "kr" ? CELL_SYSUTIL_LICENSE_AREA_K :
+        area == "cn" ? CELL_SYSUTIL_LICENSE_AREA_C : CELL_SYSUTIL_LICENSE_AREA_A);
+
+    g_cfg.misc.show_shader_compilation_hint.set(enabled("rpcs3_show_shader_compilation_hint", "disabled"));
+    g_cfg.misc.show_ppu_compilation_hint.set(enabled("rpcs3_show_ppu_compilation_hint", "disabled"));
+    g_cfg.misc.silence_all_logs.set(enabled("rpcs3_silence_all_logs", "disabled"));
+    g_cfg.core.spu_getllar_spin_optimization_disabled.set(get_option_value("rpcs3_disable_getllar_spin_opt", "disabled") == "enabled");
+
     // Write Color Buffers
     g_cfg.video.write_color_buffers.set(get_option_value("rpcs3_write_color_buffers", "disabled") == "enabled");
 
@@ -567,7 +792,7 @@ static void libretro_apply_core_options()
     g_cfg.video.strict_rendering_mode.set(get_option_value("rpcs3_strict_rendering", "disabled") == "enabled");
 
     // Multithreaded RSX
-    g_cfg.video.multithreaded_rsx.set(get_option_value("rpcs3_multithreaded_rsx", "enabled") == "enabled");
+    g_cfg.video.multithreaded_rsx.set(get_option_value("rpcs3_multithreaded_rsx", "disabled") == "enabled");
 
     // VBlank Rate
     std::string vblank = get_option_value("rpcs3_vblank_rate", "60");
@@ -575,8 +800,10 @@ static void libretro_apply_core_options()
 
     g_libretro_frontend_vblank = get_option_value("rpcs3_frame_pacing", "frontend") == "frontend";
 
+    g_libretro_deferred_readback = get_option_value("rpcs3_vk_readback", "immediate") == "deferred";
+
     // Driver Wake-Up Delay
-    std::string driver_delay = get_option_value("rpcs3_driver_wakeup_delay", "200");
+    std::string driver_delay = get_option_value("rpcs3_driver_wakeup_delay", "0");
     g_cfg.video.driver_wakeup_delay.set(std::stoi(driver_delay));
 
     // ==================== AUDIO OPTIONS ====================
@@ -602,6 +829,22 @@ static void libretro_apply_core_options()
         const std::string slot = get_option_value("rpcs3_savedata_slot", "list");
         s_savedata_slot = slot == "list" ? -1 : std::clamp(std::atoi(slot.c_str()), 0, 9);
     }
+
+    // ==================== NETWORK OPTIONS ====================
+    // None of these were read before: the network stayed off whatever they
+    // said. The connection is set up when a game boots, so only between games.
+    if (Emu.IsStopped())
+    {
+        g_cfg.net.net_active.set(get_option_value("rpcs3_network_enabled", "disabled") == "enabled"
+            ? np_internet_status::enabled : np_internet_status::disabled);
+        const std::string psn = get_option_value("rpcs3_psn_status", "disabled");
+        g_cfg.net.psn_status.set(psn == "simulated" ? np_psn_status::psn_fake
+            : psn == "rpcn" ? np_psn_status::psn_rpcn : np_psn_status::disabled);
+        g_cfg.net.upnp_enabled.set(get_option_value("rpcs3_upnp", "disabled") == "enabled");
+        g_cfg.net.dns.from_string(get_option_value("rpcs3_dns", "8.8.8.8"));
+    }
+    g_cfg.misc.show_rpcn_popups.set(get_option_value("rpcs3_show_rpcn_popups", "enabled") == "enabled");
+    g_cfg.misc.show_trophy_popups.set(get_option_value("rpcs3_show_trophy_popups", "enabled") == "enabled");
 
     // ==================== SYSTEM/CORE OPTIONS ====================
     // System Language
@@ -865,6 +1108,9 @@ static void install_ui_icons()
         const std::string path = dir + icon.name;
 
         fs::stat_t info{};
+        // The home menu's are in a subdirectory (home/32/).
+        if (const std::string parent = fs::get_parent_dir(path); !fs::is_dir(parent))
+            fs::create_path(parent);
         if (fs::get_stat(path, info) && info.size == icon.size)
             continue;
 
@@ -942,6 +1188,12 @@ void retro_set_environment(retro_environment_t cb)
 
     }
 
+    if (!libretro_input_init_rumble(cb))
+    {
+        if (log_cb)
+            log_cb(RETRO_LOG_WARN, "RPCS3: the frontend has no rumble interface, so the controller will not vibrate\n");
+    }
+
     // Initialize sensor interface for gyro/accelerometer support
     if (libretro_input_init_sensors(cb))
     {
@@ -989,8 +1241,9 @@ unsigned retro_api_version(void)
 void retro_get_system_info(struct retro_system_info* info)
 {
     info->library_name = "RPCS3";
-    info->library_version = "0.0.1";
-    info->valid_extensions = "bin|self|elf|pkg|iso";
+    // The upstream RPCS3 build this core is merged up to, from upstream.version
+    info->library_version = RPCS3_LIBRETRO_VERSION;
+    info->valid_extensions = "bin|self|elf|pkg|iso|sfo|sfb";
     // The path, never the bytes. retro_load_game() reads game->path and hands
     // it to RPCS3, which opens the file itself - it never looks at game->data.
     // With need_fullpath false the frontend loads the whole file into memory
@@ -1002,9 +1255,9 @@ void retro_get_system_info(struct retro_system_info* info)
 }
 
 // The renderer draws at the game's resolution times the Resolution Scale
-// option, and hands the frontend frames of that size. The base size here is a
-// 720p game's, which is what most are; the real one is reported with the
-// first frame. The maximum has to cover a 1080p game at the scale in use, or
+// option, and hands the frontend frames of that size. The base size here is
+// the Default Resolution's, which is what most games draw at; the real one is
+// reported with the first frame. The maximum has to cover a 1080p game at the scale in use, or
 // the frontend is told of frames larger than it made room for.
 static unsigned scaled_dimension(unsigned native)
 {
@@ -1020,8 +1273,16 @@ static unsigned s_max_height = 0;
 
 static void fill_av_info(retro_system_av_info* info)
 {
-    info->geometry.base_width = scaled_dimension(1280);
-    info->geometry.base_height = scaled_dimension(720);
+    unsigned width = 1280, height = 720;
+    switch (g_cfg.video.resolution.get())
+    {
+    case video_resolution::_1080p: width = 1920; height = 1080; break;
+    case video_resolution::_480p: width = 720; height = 480; break;
+    case video_resolution::_576p: width = 720; height = 576; break;
+    default: break;
+    }
+    info->geometry.base_width = scaled_dimension(width);
+    info->geometry.base_height = scaled_dimension(height);
     info->geometry.max_width = std::max(3840u, scaled_dimension(1920));
     info->geometry.max_height = std::max(2160u, scaled_dimension(1080));
     info->geometry.aspect_ratio = 16.0f / 9.0f;
@@ -1089,6 +1350,18 @@ void retro_init(void)
 #ifdef _WIN32
     lrcore_install_crash_handler();
     lrcore_raise_timer_resolution();
+
+    // Also from standalone's startup, and missing with it (NNshi's logs):
+    // Winsock, without which a game's first socket crashed it (Wipeout HD
+    // Fury, in sys_net_bnet_socket), and the 2-3 GiB working set PS3 memory
+    // that has to stay resident is locked in ("Failed to lock sudo memory").
+    // Standalone gives up without them; the core says so and carries on.
+    if (!SetProcessWorkingSetSize(GetCurrentProcess(), 0x80000000, 0xC0000000))
+        sys_log.error("SetProcessWorkingSetSize() failed (error %lu)", GetLastError());
+    WSADATA wsa_data{};
+    s_wsa_started = WSAStartup(MAKEWORD(2, 2), &wsa_data) == 0;
+    if (!s_wsa_started)
+        sys_log.error("WSAStartup() failed, games cannot use the network");
 #endif
 #ifdef __linux__
     // Standalone's other startup setting: 1 us timer slack instead of the
@@ -1193,6 +1466,18 @@ void retro_init(void)
     else
     {
     }
+
+    // RPCS3 replaces a renderer it was not told about with the default (Null),
+    // and standalone tells it by probing the GPU. Here the frontend's context is
+    // what decides, so every renderer this build has is allowed.
+    std::set<video_renderer> supported_renderers{video_renderer::null};
+#ifndef WITHOUT_OPENGL
+    supported_renderers.insert(video_renderer::opengl);
+#endif
+#ifdef HAVE_VULKAN
+    supported_renderers.insert(video_renderer::vulkan);
+#endif
+    Emu.SetSupportedRenderers(std::move(supported_renderers));
 
     // Initialize the emulator
     Emu.SetHasGui(false);
@@ -1314,6 +1599,11 @@ void retro_deinit(void)
 #ifdef _WIN32
     lrcore_uninstall_crash_handler();
     lrcore_restore_timer_resolution();
+    if (s_wsa_started)
+    {
+        WSACleanup();
+        s_wsa_started = false;
+    }
     // RPCS3's own exception handlers, installed when the library was loaded
     // (Utilities/Thread.cpp); left in, the next exception in the frontend
     // after the unload jumps into code that is gone
@@ -1419,6 +1709,13 @@ static bool setup_hw_render()
     return false;
 }
 
+// The last component of a path, with either kind of separator
+static std::string_view path_leaf(std::string_view path)
+{
+    const usz slash = path.find_last_of("/\\");
+    return slash == umax ? path : path.substr(slash + 1);
+}
+
 bool retro_load_game(const struct retro_game_info* game)
 {
 
@@ -1497,6 +1794,23 @@ bool retro_load_game(const struct retro_game_info* game)
             log_cb(RETRO_LOG_INFO, "RPCS3: booting the disc image as %s\n", eboot.c_str());
 
         game_path = eboot;
+    }
+    // PARAM.SFO or PS3_DISC.SFB stand for the game folder they sit in. They
+    // are content for the sake of the frontend's per-folder options: those are
+    // named after the folder of the loaded file, and for an EBOOT.BIN that is
+    // USRDIR in every game, while PARAM.SFO of a PSN title sits in the folder
+    // named after its title ID (NPUB31234) and PS3_DISC.SFB in the root of a
+    // disc dump. The game folder is booted, as for an EBOOT.BIN (NNshi).
+    else if (const std::string name = fmt::to_lower(path_leaf(game_path)); name == "param.sfo" || name == "ps3_disc.sfb")
+    {
+        std::string game_folder = fs::get_parent_dir(game_path);
+        // A disc dump's PARAM.SFO is in PS3_GAME, one level below its root
+        if (name == "param.sfo" && fmt::to_lower(path_leaf(game_folder)) == "ps3_game" && fs::is_file(fs::get_parent_dir(game_folder) + "/PS3_DISC.SFB"))
+            game_folder = fs::get_parent_dir(game_folder);
+
+        if (log_cb)
+            log_cb(RETRO_LOG_INFO, "RPCS3: booting the game folder %s\n", game_folder.c_str());
+        game_path = game_folder;
     }
     // Check if EBOOT.BIN was passed directly - need to find parent game folder
     else if (game_path.size() >= 9)
@@ -1597,10 +1911,10 @@ bool retro_load_game(const struct retro_game_info* game)
 
 
     // Performance optimizations
-    g_cfg.core.spu_loop_detection.set(true);  // Faster SPU loops
-    g_cfg.core.llvm_threads.set(std::thread::hardware_concurrency());  // Use all CPU cores for LLVM compilation
+    g_cfg.core.spu_loop_detection.set(false);
+    g_cfg.core.llvm_threads.set(0);  // 0 = as many as the CPU has, as in RPCS3
     g_cfg.core.llvm_precompilation.set(true);  // Precompile LLVM modules
-    g_cfg.video.multithreaded_rsx.set(true);  // Multi-threaded RSX
+    g_cfg.video.multithreaded_rsx.set(false);
     g_cfg.video.disable_vertex_cache.set(false);  // Keep vertex cache enabled
 
     // Shader compilation optimizations
@@ -1609,7 +1923,6 @@ bool retro_load_game(const struct retro_game_info* game)
     g_cfg.video.disable_on_disk_shader_cache.set(false);  // Keep shader cache enabled for faster subsequent loads
 
     // RSX optimizations
-    g_cfg.video.relaxed_zcull_sync.set(true);  // Relaxed ZCULL for better performance
     g_cfg.video.strict_rendering_mode.set(false);  // Disable strict mode for better performance
     g_cfg.video.disable_FIFO_reordering.set(false);  // Keep FIFO reordering enabled
 
@@ -1637,8 +1950,6 @@ bool retro_load_game(const struct retro_game_info* game)
     g_cfg.misc.show_ppu_compilation_hint.set(false);
     g_cfg.misc.show_autosave_autoload_hint.set(false);
     g_cfg.misc.show_pressure_intensity_toggle_hint.set(false);
-    g_cfg.misc.show_trophy_popups.set(false);
-    g_cfg.misc.show_rpcn_popups.set(false);
 
 
     // The block above hardcodes settings that also have core options behind them
@@ -1834,6 +2145,8 @@ bool retro_load_game_special(unsigned game_type, const struct retro_game_info* i
 
 void retro_unload_game(void)
 {
+    // A motor left running would keep going after the game is gone.
+    libretro_input_stop_rumble();
 
     stop_pause_watchdog();
     if (game_loaded)
@@ -1897,6 +2210,8 @@ void retro_run(void)
     // Update watchdog timestamp.
     s_last_retro_run_us.store(lr_now_us());
 
+    libretro_report_progress();
+
     // Check for variable updates
     bool updated = false;
     if (environ_cb(RETRO_ENVIRONMENT_GET_VARIABLE_UPDATE, &updated) && updated)
@@ -1919,6 +2234,19 @@ void retro_run(void)
     if (g_libretro_pad_thread)
     {
         g_libretro_pad_thread->apply_copilots();
+
+        // What pad_thread's own loop does after that, which the core never
+        // ran: without it no pad counted as connected, and RPCS3's in-game
+        // dialogs (save data list, "install game data?") ignored the
+        // controller and left the game waiting on them for good (NNshi)
+        u32 connected = 0;
+        {
+            std::lock_guard lock(pad::g_pad_mutex);
+            for (const auto& pad : g_libretro_pad_thread->GetPads())
+                if (pad && pad->is_connected())
+                    connected++;
+        }
+        g_libretro_pad_thread->frontend_update(connected);
     }
 
     // One PS3 VBLANK per frame the frontend asks for (Frame Pacing: RetroArch)
@@ -1938,7 +2266,9 @@ void retro_run(void)
         const void* pixels = nullptr;
         u32 sw_width = 0, sw_height = 0, sw_pitch = 0;
         static u32 s_sw_width = 1280, s_sw_height = 720;
-        if (libretro_take_software_frame(&pixels, &sw_width, &sw_height, &sw_pitch))
+        const bool new_frame = libretro_take_software_frame(&pixels, &sw_width, &sw_height, &sw_pitch);
+        libretro_check_frame_stall(new_frame);
+        if (new_frame)
         {
             report_frame_size(sw_width, sw_height);
             s_sw_width = sw_width;
@@ -1976,6 +2306,8 @@ void retro_run(void)
     // emulator is drawing something else now, say so, or it keeps scaling to
     // the old shape.
     report_frame_size(frame_width, frame_height);
+
+    libretro_check_frame_stall(has_new_frame);
 
     if (has_new_frame)
     {
@@ -2075,10 +2407,29 @@ void retro_set_controller_port_device(unsigned port, unsigned device)
     libretro_input_set_controller(port, device);
 }
 
+// PSN messages have no window to be written or read in here; a game that
+// asks gets a cancel, as if the player had closed the window.
+namespace
+{
+    class libretro_sendmessage_dialog : public SendMessageDialogBase
+    {
+    public:
+        error_code Exec(message_data&, std::set<std::string>&) override { return CELL_CANCEL; }
+        void callback_handler(rpcn::NotificationType, const std::string&, bool) override {}
+    };
+
+    class libretro_recvmessage_dialog : public RecvMessageDialogBase
+    {
+    public:
+        error_code Exec(SceNpBasicMessageMainType, SceNpBasicMessageRecvOptions, SceNpBasicMessageRecvAction&, u64&) override { return CELL_CANCEL; }
+        void callback_handler(const shared_ptr<std::pair<std::string, message_data>>, u64) override {}
+    };
+}
+
 // Initialize emulator callbacks for libretro integration
 static void init_emu_callbacks()
 {
-    EmuCallbacks callbacks{};
+    emu_callbacks callbacks{};
 
     callbacks.call_from_main_thread = [](std::function<void()> func, atomic_t<u32>* wake_up)
     {
@@ -2104,7 +2455,7 @@ static void init_emu_callbacks()
             std::thread([f = std::move(func)]() mutable { f = nullptr; }).detach();
     };
 
-    callbacks.on_install_pkgs = [](const std::vector<std::string>& pkgs) -> bool
+    callbacks.on_install_pkgs = [](const std::vector<std::string>& pkgs, bool /*from_optical_drive*/) -> bool
     {
         // A disc that carries packages in PS3_GAME/INSDIR asks the frontend to
         // install them before the game runs. There is no package installer here
@@ -2268,8 +2619,23 @@ static void init_emu_callbacks()
     callbacks.on_missing_fw = []() {};
     callbacks.handle_taskbar_progress = [](s32, s32) {};
 
-    callbacks.get_localized_string = [](localized_string_id, const char*) -> std::string { return {}; };
-    callbacks.get_localized_u32string = [](localized_string_id, const char*) -> std::u32string { return {}; };
+    // Standalone's English texts (libretro_localized_strings.h), with the
+    // argument where standalone puts it. These were empty: the progress dialog
+    // for PPU and SPU compilation had no text, nor had message and save dialogs.
+    callbacks.get_localized_string = [](localized_string_id id, const char* arg) -> std::string
+    {
+        const char* text = libretro_localized_template(id);
+        if (!text)
+            return {};
+        std::string result = text;
+        if (const usz pos = result.find("%0"); pos != umax)
+            result.replace(pos, 2, arg ? arg : "");
+        return result;
+    };
+    callbacks.get_localized_u32string = [](localized_string_id id, const char* arg) -> std::u32string
+    {
+        return utf8_to_u32string(g_emu_callbacks.get_localized_string(id, arg));
+    };
     callbacks.get_localized_setting = [](const cfg::_base*, u32) -> std::string { return {}; };
 
     callbacks.play_sound = [](const std::string&, std::optional<f32>) {};
@@ -2279,11 +2645,121 @@ static void init_emu_callbacks()
     callbacks.enable_display_sleep = [](bool) {};
 
     callbacks.check_microphone_permissions = []() {};
-    callbacks.make_video_source = []() { return nullptr; };
+    // Save data dialogs play a game's animated icon (ICON1.PAM) through a
+    // video source, and overlay_video ensure()s it gets one: returning none
+    // killed the game's thread the moment such a dialog opened, and the game
+    // waited on it for good - Project Diva F 2nd's "Pick from list" (NNshi).
+    // Standalone decodes it with Qt; here the source never has a frame, so
+    // the entry keeps its still icon.
+    callbacks.make_video_source = []() -> std::unique_ptr<video_source>
+    {
+        struct still_video_source final : video_source
+        {
+            void set_iso_path(const std::string&) override {}
+            void set_video_path(const std::string&, bool) override {}
+            void set_audio_path(const std::string&, bool) override {}
+            void set_active(bool) override {}
+            bool get_active() const override { return false; }
+            bool has_new() const override { return false; }
+            void get_image(std::vector<u8>&, int&, int&, int&, int&) override {}
+        };
+        return std::make_unique<still_video_source>();
+    };
+
+    // Standalone resolves paths with Qt's canonicalFilePath: absolute, links
+    // followed, no trailing separator. Without this the default passed paths
+    // through unchanged, and the boot path of a title in dev_hdd0/game was cut
+    // from "<hdd0>/game/" + '/' - one character too far, so SCUM12000 booted
+    // as /dev_hdd0/game/CUM12000/. A path that is not on disk (a disc image's
+    // virtual device) keeps its text, less any trailing separator; Qt would
+    // have made it empty, which the image boot does not expect.
+    callbacks.resolve_path = [](std::string_view path) -> std::string
+    {
+        std::error_code ec;
+        const std::filesystem::path canonical = std::filesystem::canonical(std::filesystem::path(std::u8string(path.begin(), path.end())), ec);
+        if (!ec)
+        {
+            const std::u8string text = canonical.generic_u8string();
+            return std::string(text.begin(), text.end());
+        }
+        while (path.size() > 1 && (path.back() == '/' || path.back() == '\\'))
+            path.remove_suffix(1);
+        return std::string(path);
+    };
+
+    // Every callback has to be set: an empty one is a std::bad_function_call
+    // the first time the emulator reaches for it, which kills the frontend.
+    // These five were not. Images are decoded by Qt in standalone; without
+    // it, cellPhotoDecode and the media library get a failure to report.
+    callbacks.get_image_info = [](const std::string&, std::string&, s32&, s32&, s32&) { return false; };
+    callbacks.get_scaled_image = [](const std::string&, s32, s32, s32&, s32&, u8*, bool) { return false; };
+    callbacks.get_sendmessage_dialog = []() -> std::shared_ptr<SendMessageDialogBase> { return std::make_shared<libretro_sendmessage_dialog>(); };
+    callbacks.get_recvmessage_dialog = []() -> std::shared_ptr<RecvMessageDialogBase> { return std::make_shared<libretro_recvmessage_dialog>(); };
+    callbacks.enable_gamemode = [](bool) {};
 
     callbacks.update_emu_settings = []() {};
     callbacks.save_emu_settings = []() {};
 
-    Emu.SetCallbacks(std::move(callbacks));
+    // Three more since upstream build 20147, the first of which ended every
+    // boot right after the title was logged.
+    //
+    // Standalone downloads a per-game config from RPCS3's database here. A core
+    // does not fetch anything at run time, so there is none.
+    callbacks.get_database_config = [](const std::string&) { return std::string(); };
+
+    // Standalone's, without Qt: the photo goes to dev_hdd0/photo/<date>/ under
+    // the title and the time, with a counter when that name is taken.
+    callbacks.get_photo_path = [](std::string_view title) -> std::string
+    {
+        const std::time_t now = std::time(nullptr);
+        std::tm tm{};
+#ifdef _WIN32
+        localtime_s(&tm, &now);
+#else
+        localtime_r(&now, &tm);
+#endif
+        std::string_view extension = ".png";
+        if (const auto extension_start = title.find_last_of('.'); extension_start != umax)
+        {
+            extension = title.substr(extension_start);
+            title = title.substr(0, extension_start);
+        }
+
+        std::string suffix = std::string(extension);
+        const std::string path = vfs::get(fmt::format("/dev_hdd0/photo/%04d/%02d/%02d/%s %02d-%02d-%04d %02d-%02d-%02d",
+            tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, vfs::escape(title, true),
+            tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900, tm.tm_hour, tm.tm_min, tm.tm_sec));
+
+        u32 counter = 0;
+        while (!Emu.IsStopped() && fs::is_file(path + suffix))
+        {
+            suffix = fmt::format(" %d%s", ++counter, extension);
+        }
+
+        return path + suffix;
+    };
+
+    // Like resolve_path, for a path that may not exist yet: the part that does
+    // is made canonical, the rest is appended as written. The default passed
+    // the text through untouched.
+    callbacks.resolve_path_may_not_exist = [](std::string_view path) -> std::string
+    {
+        std::error_code ec;
+        const std::filesystem::path resolved = std::filesystem::weakly_canonical(std::filesystem::path(std::u8string(path.begin(), path.end())), ec);
+        if (ec)
+            return std::string(path);
+        std::u8string text = resolved.generic_u8string();
+        while (text.size() > 1 && text.back() == u8'/')
+            text.pop_back();
+#ifdef _WIN32
+        // A path that was absolute without a drive stays without one, as in
+        // standalone.
+        if (path.starts_with("/") && !path.starts_with("//") && text.size() >= 3 && text[1] == u8':' && text[2] == u8'/')
+            text.erase(0, 2);
+#endif
+        return std::string(text.begin(), text.end());
+    };
+
+    g_emu_callbacks = std::move(callbacks);
 }
 

@@ -1,0 +1,12 @@
+# The upstream RPCS3 revision this core's emulation code is merged up to.
+# The build reports it as the core version (retro_get_system_info's
+# library_version, and the build in the log header), so an rpcs3-libretro build
+# names the same version as the standalone RPCS3 build it corresponds to:
+# upstream's version, then its build number (`git rev-list --count <commit>`).
+# The commit of this repository is appended to it at configure time (see
+# upstream_version.cmake); it is not recorded here.
+#
+# Bump both lines in the same commit that merges upstream; CMake warns when the
+# recorded commit is not an ancestor of the tree being built.
+RPCS3_VERSION=v0.0.43-20149
+RPCS3_COMMIT=3b3c7f4f070d41ed20ec5b17c4cbd4fb5a2a24f9

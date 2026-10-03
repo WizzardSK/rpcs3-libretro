@@ -93,10 +93,10 @@ struct retro_core_option_v2_definition option_defs_us[] = {
     },
     {
         "rpcs3_spu_loop_detection", "SPU Loop Detection", NULL,
-        "Enable SPU loop detection for performance.",
+        "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones.",
         NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
     },
     {
         "rpcs3_spu_cache", "SPU Cache", NULL,
@@ -114,24 +114,10 @@ struct retro_core_option_v2_definition option_defs_us[] = {
     },
     {
         "rpcs3_accurate_dfma", "Accurate DFMA", NULL,
-        "Use accurate double-precision fused multiply-add.",
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_reservations", "PPU Thread Reservations", NULL,
-        "Use PPU thread reservations for accurate locking.",
+        "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games.",
         NULL, "cpu",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
         "enabled"
-    },
-    {
-        "rpcs3_accurate_xfloat", "Accurate XFLOAT", NULL,
-        "More accurate SPU floating-point. May fix some games.",
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
     },
     {
         "rpcs3_clocks_scale", "Clocks Scale", NULL,
@@ -144,8 +130,8 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "rpcs3_sleep_timers_accuracy", "Sleep Timers Accuracy", NULL,
         "Sleep timers accuracy level.",
         NULL, "cpu",
-        { {"usleep", "Usleep"}, {"all_timers", "All Timers"}, {"as_host", "As Host"}, {NULL, NULL} },
-        "usleep"
+        { {"auto", "Automatic"}, {"as_host", "As Host"}, {"usleep", "Usleep Only"}, {"all_timers", "All Timers"}, {NULL, NULL} },
+        "auto"
     },
     {
         "rpcs3_max_spurs_threads", "Max SPURS Threads", NULL,
@@ -155,32 +141,11 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "auto"
     },
     {
-        "rpcs3_enable_tsx", "Enable TSX", NULL,
-        "Enable Intel TSX hardware acceleration if available.",
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {"forced", "Forced"}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_spu_xfloat_accuracy", "SPU XFloat Accuracy", NULL,
         "SPU floating-point accuracy level.",
         NULL, "cpu",
-        { {"relaxed", "Relaxed (Fastest)"}, {"accurate", "Accurate"}, {"ultra", "Ultra (Slowest)"}, {NULL, NULL} },
-        "accurate"
-    },
-    {
-        "rpcs3_spu_dma_busy_wait", "SPU DMA Busy Waiting", NULL,
-        "Enable SPU DMA busy waiting for timing accuracy.",
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_java_mode", "PPU LLVM Java Mode Handling", NULL,
-        "PPU LLVM Java mode compliance level.",
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"accurate", "Accurate"}, {"approximate", "Approximate"}, {"relaxed", "Relaxed"}, {"inaccurate", "Inaccurate"}, {NULL, NULL} },
+        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -192,17 +157,38 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "vulkan"
     },
     {
-        "rpcs3_resolution_scale", "Resolution Scale", NULL,
-        "Internal rendering resolution scale percentage.",
+        "rpcs3_vk_readback", "Vulkan Frame Readback", NULL,
+        "How a Vulkan frame reaches the frontend. Immediate waits for the GPU to finish each frame before the next one starts: lowest latency, but at high resolution scales the waits show as uneven frame times. Deferred lets the GPU finish a frame while the next is prepared and hands it over when it is done: smoother at high resolution scales, up to one frame more latency.",
         NULL, "gpu",
-        { {"25", "25%"}, {"30", "30%"}, {"35", "35%"}, {"40", "40%"}, {"45", "45%"}, {"50", "50%"}, {"55", "55%"}, {"60", "60%"}, {"65", "65%"}, {"70", "70%"}, {"75", "75%"}, {"80", "80%"}, {"85", "85%"}, {"90", "90%"}, {"95", "95%"}, {"100", "100% (Native)"}, {"105", "105%"}, {"110", "110%"}, {"115", "115%"}, {"120", "120%"}, {"125", "125%"}, {"130", "130%"}, {"135", "135%"}, {"140", "140%"}, {"145", "145%"}, {"150", "150%"}, {"175", "175%"}, {"200", "200%"}, {"250", "250%"}, {"300", "300%"}, {NULL, NULL} },
+        { {"immediate", "Immediate"}, {"deferred", "Deferred"}, {NULL, NULL} },
+        "immediate"
+    },
+    {
+        "rpcs3_default_resolution", "Default Resolution", NULL,
+        "The output resolution the emulated PS3 offers the game, as in RPCS3. Most games run at 720p; some look better at 1080p, and some need 480p or 576p to avoid bugs. Takes effect when content is loaded.",
+        NULL, "gpu",
+        { {"720p", "720p (Default)"}, {"1080p", "1080p"}, {"480p", "480p"}, {"576p", "576p"}, {NULL, NULL} },
+        "720p"
+    },
+    {
+        "rpcs3_resolution_scale", "Resolution Scale", NULL,
+        "Internal rendering resolution as a percentage of the game's own. 200% of a 720p game is 2560x1440, of a 1080p one 3840x2160.",
+        NULL, "gpu",
+        { {"25", "25%"}, {"50", "50%"}, {"66", "66%"}, {"75", "75%"}, {"100", "100% (Native)"}, {"150", "150%"}, {"200", "200%"}, {"250", "250%"}, {"300", "300%"}, {"400", "400%"}, {"500", "500%"}, {"600", "600%"}, {"700", "700%"}, {"800", "800%"}, {NULL, NULL} },
         "100"
     },
     {
-        "rpcs3_frame_limit", "Frame Limit", NULL,
-        "Limit frame rate. Auto uses RetroArch timing.",
+        "rpcs3_scale_threshold", "Resolution Scale Threshold", NULL,
+        "Render targets smaller than this are not scaled. Some games need a different value for the scaling to look right.",
         NULL, "gpu",
-        { {"auto", "Auto"}, {"off", "Off"}, {"30", "30 FPS"}, {"50", "50 FPS"}, {"60", "60 FPS"}, {"120", "120 FPS"}, {"144", "144 FPS"}, {"240", "240 FPS"}, {NULL, NULL} },
+        { {"1", "1x1"}, {"16", "16x16 (Default)"}, {"64", "64x64"}, {"128", "128x128"}, {"160", "160x160"}, {"256", "256x256"}, {"320", "320x320"}, {"512", "512x512"}, {"592", "592x592"}, {"640", "640x640"}, {"1024", "1024x1024"}, {NULL, NULL} },
+        "16"
+    },
+    {
+        "rpcs3_frame_limit", "Frame Limit", NULL,
+        "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast.",
+        NULL, "gpu",
+        { {"auto", "Auto"}, {"ps3", "PS3 Native"}, {"off", "Off"}, {"30", "30 FPS"}, {"50", "50 FPS"}, {"60", "60 FPS"}, {"120", "120 FPS"}, {"144", "144 FPS"}, {"240", "240 FPS"}, {NULL, NULL} },
         "auto"
     },
     {
@@ -223,22 +209,22 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "rpcs3_anisotropic_filter", "Anisotropic Filtering", NULL,
         "Texture filtering quality.",
         NULL, "gpu",
-        { {"auto", "Auto"}, {"1", "1x (Off)"}, {"2", "2x"}, {"4", "4x"}, {"8", "8x"}, {"16", "16x"}, {NULL, NULL} },
+        { {"auto", "Auto"}, {"2", "2x"}, {"4", "4x"}, {"8", "8x"}, {"16", "16x"}, {NULL, NULL} },
         "auto"
     },
     {
-        "rpcs3_msaa", "Anti-Aliasing (MSAA)", NULL,
-        "Multi-sample anti-aliasing.",
+        "rpcs3_msaa", "Anti-Aliasing", NULL,
+        "Multi-sample anti-aliasing where the game asks for it, as in RPCS3.",
         NULL, "gpu",
-        { {"disabled", NULL}, {"2", "2x"}, {"4", "4x"}, {"8", "8x"}, {"16", "16x"}, {NULL, NULL} },
-        "disabled"
+        { {"auto", "Auto"}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
     },
     {
-        "rpcs3_shader_precision", "Shader Precision", NULL,
-        "Shader floating-point precision.",
+        "rpcs3_shader_quality", "Shader Quality", NULL,
+        "Precision of the shaders RPCS3 generates. Low is fastest, Ultra most accurate.",
         NULL, "gpu",
-        { {"low", "Low (Fastest)"}, {"normal", "Normal"}, {"high", "High (Most Accurate)"}, {NULL, NULL} },
-        "normal"
+        { {"low", "Low"}, {"high", "High"}, {"ultra", "Ultra"}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_write_color_buffers", "Write Color Buffers", NULL,
@@ -284,17 +270,17 @@ struct retro_core_option_v2_definition option_defs_us[] = {
     },
     {
         "rpcs3_multithreaded_rsx", "Multithreaded RSX", NULL,
-        "Enable multithreaded RSX for better performance.",
+        "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included.",
         NULL, "gpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
     },
     {
         "rpcs3_zcull_accuracy", "ZCULL Accuracy", NULL,
-        "ZCULL occlusion query accuracy.",
+        "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones.",
         NULL, "gpu",
-        { {"relaxed", "Relaxed (Fastest)"}, {"approximate", "Approximate"}, {"precise", "Precise (Slowest)"}, {NULL, NULL} },
-        "relaxed"
+        { {"precise", "Precise (Default)"}, {"approximate", "Approximate"}, {"relaxed", "Relaxed (Fastest)"}, {NULL, NULL} },
+        "precise"
     },
     {
         "rpcs3_cpu_blit", "Force CPU Blit", NULL,
@@ -305,10 +291,10 @@ struct retro_core_option_v2_definition option_defs_us[] = {
     },
     {
         "rpcs3_driver_wakeup_delay", "Driver Wake-Up Delay", NULL,
-        "Driver wake-up delay in microseconds.",
+        "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it.",
         NULL, "gpu",
-        { {"0", "0 (Minimum)"}, {"20", "20"}, {"50", "50"}, {"100", "100"}, {"200", "200 (Default)"}, {"400", "400"}, {"800", "800"}, {NULL, NULL} },
-        "200"
+        { {"0", "0 (Default)"}, {"20", "20"}, {"50", "50"}, {"100", "100"}, {"200", "200"}, {"400", "400"}, {"800", "800"}, {NULL, NULL} },
+        "0"
     },
     {
         "rpcs3_vblank_rate", "VBlank Rate", NULL,
@@ -355,13 +341,6 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "disabled"
     },
     {
-        "rpcs3_microphone_type", "Microphone Type", NULL,
-        "Microphone device type.",
-        NULL, "audio",
-        { {"null", "Null (Disabled)"}, {"standard", "Standard"}, {"singstar", "SingStar"}, {"real_singstar", "Real SingStar"}, {"rocksmith", "Rocksmith"}, {NULL, NULL} },
-        "null"
-    },
-    {
         "rpcs3_master_volume", "Master Volume", NULL,
         "Master audio volume percentage.",
         NULL, "audio",
@@ -372,14 +351,14 @@ struct retro_core_option_v2_definition option_defs_us[] = {
     // ==================== NETWORK OPTIONS ====================
     {
         "rpcs3_network_enabled", "Network Enabled", NULL,
-        "Enable network features.",
+        "Lets games reach the internet. Takes effect when content is loaded.",
         NULL, "network",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
     {
         "rpcs3_psn_status", "PSN Status", NULL,
-        "PlayStation Network status.",
+        "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded.",
         NULL, "network",
         { {"disabled", NULL}, {"simulated", "Simulated"}, {"rpcn", "RPCN"}, {NULL, NULL} },
         "disabled"
@@ -412,13 +391,6 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         { {"8.8.8.8", "Google DNS"}, {"1.1.1.1", "Cloudflare DNS"}, {"208.67.222.222", "OpenDNS"}, {NULL, NULL} },
         "8.8.8.8"
     },
-    {
-        "rpcs3_rpcn_server", "RPCN Server", NULL,
-        "RPCN server address for online play.",
-        NULL, "network",
-        { {"rpcn.rpcs3.net", "Official RPCN"}, {"custom", "Custom"}, {NULL, NULL} },
-        "rpcn.rpcs3.net"
-    },
 
     // ==================== ADVANCED OPTIONS ====================
     {
@@ -439,8 +411,8 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "rpcs3_rsx_fifo_accuracy", "RSX FIFO Accuracy", NULL,
         "RSX FIFO command accuracy level.",
         NULL, "advanced",
-        { {"fast", "Fast"}, {"balanced", "Balanced"}, {"accurate", "Accurate"}, {NULL, NULL} },
-        "fast"
+        { {"fast", "Fast"}, {"atomic", "Atomic"}, {"atomic_ordered", "Ordered & Atomic"}, {"as_ps3", "PS3"}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_recovery_timeout", "Driver Recovery Timeout", NULL,
@@ -464,29 +436,8 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "3"
     },
     {
-        "rpcs3_zcull_sync", "Relaxed ZCull Sync", NULL,
-        "Use relaxed ZCull synchronization.",
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_async_texture_streaming", "Async Texture Streaming", NULL,
         "Enable asynchronous texture streaming.",
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_llvm_greedy", "PPU LLVM Greedy Mode", NULL,
-        "Use greedy PPU LLVM compilation.",
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_nj_fixup", "SPU NJ Fixup", NULL,
-        "Apply SPU non-Java mode fixup.",
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -519,6 +470,34 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    {
+        "rpcs3_accurate_rsx_reservation", "Accurate RSX Reservation Access", NULL,
+        "Synchronize RSX memory accesses with the reservations of the CPU threads. Needed by a few games, slower.",
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", "Disable SPU GETLLAR Spin Optimization", NULL,
+        "Turn off the detection of SPU busy-wait loops on GETLLAR. A few games need it off.",
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_zcull_queries", "Disable ZCull Occlusion Queries", NULL,
+        "Report occlusion queries as passed without running them. Faster; breaks games that rely on them (lens flares, visibility).",
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_vblank_ntsc", "VBlank NTSC Fixup", NULL,
+        "Run the VBlank Rate at the NTSC rate (59.94 Hz for 60) instead of the round number.",
+        NULL, "advanced",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
 
     // ==================== CORE OPTIONS ====================
     {
@@ -539,7 +518,7 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "rpcs3_license_area", "License Area", NULL,
         "PS3 license region.",
         NULL, "core",
-        { {"usa", "USA"}, {"eu", "Europe"}, {"jp", "Japan"}, {"hk", "Hong Kong"}, {"kr", "Korea"}, {NULL, NULL} },
+        { {"usa", "SCEA (Americas)"}, {"eu", "SCEE (Europe, Oceania)"}, {"jp", "SCEJ (Japan)"}, {"hk", "SCEH (Hong Kong, Southeast Asia)"}, {"kr", "SCEK (Korea)"}, {"cn", "SCH (China)"}, {NULL, NULL} },
         "usa"
     },
     {
@@ -562,13 +541,6 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_vfs_init", "VFS Initialize Mode", NULL,
-        "Virtual file system initialization mode.",
-        NULL, "core",
-        { {"auto", "Auto"}, {"reset", "Reset"}, {NULL, NULL} },
-        "auto"
     },
     {
         "rpcs3_silence_all_logs", "Silence All Logs", NULL,
