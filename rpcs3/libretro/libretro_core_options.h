@@ -283,6 +283,20 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "disabled"
     },
     {
+        "rpcs3_disable_blit_upscaling", "Disable Blit Engine Upscaling", NULL,
+        "As in RPCS3: copies made by the RSX blit engine are left at the game's own resolution instead of the Resolution Scale. Fixes some games' effects at higher scales, at the cost of a blurrier picture where they are used.",
+        NULL, "gpu",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_perf_overlay", "Performance Overlay", NULL,
+        "RPCS3's own performance overlay, drawn over the game: the game's frame rate as RPCS3 counts it, and at higher detail levels frame times and CPU and GPU load.",
+        NULL, "gpu",
+        { {"disabled", NULL}, {"minimal", "Frame rate only"}, {"low", "Low"}, {"medium", "Medium"}, {"high", "High"}, {NULL, NULL} },
+        "disabled"
+    },
+    {
         "rpcs3_driver_wakeup_delay", "Driver Wake-Up Delay", NULL,
         "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it.",
         NULL, "gpu",

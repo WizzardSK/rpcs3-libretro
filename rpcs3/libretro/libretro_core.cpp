@@ -22,6 +22,7 @@
 #include "Emu/Cell/Modules/cellSysutil.h"
 #include "Emu/RSX/Overlays/overlay_manager.h"
 #include "Emu/RSX/Overlays/overlay_save_dialog.h"
+#include "Emu/RSX/Overlays/overlay_perf_metrics.h"
 #include "Emu/Cell/Modules/sceNpTrophy.h"
 #include "Emu/Cell/Modules/sceNp.h"
 #include "Emu/Io/Null/null_camera_handler.h"
@@ -771,6 +772,21 @@ static void libretro_apply_core_options()
 
     g_cfg.video.disable_vertex_cache.set(!enabled("rpcs3_vertex_cache", "enabled"));
     g_cfg.video.force_cpu_blit_processing.set(enabled("rpcs3_cpu_blit", "disabled"));
+    g_cfg.video.disable_blit_engine_upscaling.set(enabled("rpcs3_disable_blit_upscaling", "disabled"));
+
+    // The performance overlay is read when the RSX thread starts; a change
+    // while a game runs is handed to it here.
+    {
+        const std::string level = get_option_value("rpcs3_perf_overlay", "disabled");
+        const bool on = level != "disabled";
+        const detail_level detail = level == "minimal" ? detail_level::minimal : level == "low" ? detail_level::low :
+            level == "high" ? detail_level::high : detail_level::medium;
+        const bool changed = g_cfg.video.perf_overlay.enabled.get() != on || (on && g_cfg.video.perf_overlay.level.get() != detail);
+        g_cfg.video.perf_overlay.enabled.set(on);
+        g_cfg.video.perf_overlay.level.set(detail);
+        if (changed && !Emu.IsStopped())
+            rsx::overlays::reset_performance_overlay();
+    }
     g_cfg.video.stretch_to_display_area.set(enabled("rpcs3_stretch_to_display", "disabled"));
     g_cfg.video.vk.asynchronous_texture_streaming.set(enabled("rpcs3_async_texture_streaming", "disabled"));
     // The option is in milliseconds, the setting in microseconds.
