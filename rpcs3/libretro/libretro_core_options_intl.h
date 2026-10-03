@@ -101,8 +101,6 @@ extern "C" {
 #define OPTION_VAL_OPENGL_AR NULL
 #define OPTION_VAL_VULKAN_AR NULL
 #define OPTION_VAL_NULL_AR NULL
-#define RPCS3_VK_READBACK_LABEL_AR NULL
-#define RPCS3_VK_READBACK_INFO_0_AR NULL
 #define OPTION_VAL_IMMEDIATE_AR NULL
 #define OPTION_VAL_DEFERRED_AR NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_AR NULL
@@ -427,13 +425,6 @@ struct retro_core_option_v2_definition option_defs_ar[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_AR, NULL,
-        RPCS3_VK_READBACK_INFO_0_AR,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_AR}, {"deferred", OPTION_VAL_DEFERRED_AR}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_AR, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_AR,
         NULL, "gpu",
@@ -578,7 +569,7 @@ struct retro_core_option_v2_definition option_defs_ar[] = {
         RPCS3_FRAME_PACING_INFO_0_AR,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_AR}, {"emulator", OPTION_VAL_EMULATOR_AR}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_AR, NULL,
@@ -905,8 +896,6 @@ struct retro_core_options_v2 options_ar = {
 #define OPTION_VAL_OPENGL_AST NULL
 #define OPTION_VAL_VULKAN_AST NULL
 #define OPTION_VAL_NULL_AST NULL
-#define RPCS3_VK_READBACK_LABEL_AST NULL
-#define RPCS3_VK_READBACK_INFO_0_AST NULL
 #define OPTION_VAL_IMMEDIATE_AST NULL
 #define OPTION_VAL_DEFERRED_AST NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_AST NULL
@@ -1231,13 +1220,6 @@ struct retro_core_option_v2_definition option_defs_ast[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_AST, NULL,
-        RPCS3_VK_READBACK_INFO_0_AST,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_AST}, {"deferred", OPTION_VAL_DEFERRED_AST}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_AST, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_AST,
         NULL, "gpu",
@@ -1382,7 +1364,7 @@ struct retro_core_option_v2_definition option_defs_ast[] = {
         RPCS3_FRAME_PACING_INFO_0_AST,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_AST}, {"emulator", OPTION_VAL_EMULATOR_AST}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_AST, NULL,
@@ -1709,8 +1691,6 @@ struct retro_core_options_v2 options_ast = {
 #define OPTION_VAL_OPENGL_BE NULL
 #define OPTION_VAL_VULKAN_BE NULL
 #define OPTION_VAL_NULL_BE NULL
-#define RPCS3_VK_READBACK_LABEL_BE NULL
-#define RPCS3_VK_READBACK_INFO_0_BE NULL
 #define OPTION_VAL_IMMEDIATE_BE NULL
 #define OPTION_VAL_DEFERRED_BE NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_BE NULL
@@ -2035,13 +2015,6 @@ struct retro_core_option_v2_definition option_defs_be[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_BE, NULL,
-        RPCS3_VK_READBACK_INFO_0_BE,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_BE}, {"deferred", OPTION_VAL_DEFERRED_BE}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_BE, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_BE,
         NULL, "gpu",
@@ -2186,7 +2159,7 @@ struct retro_core_option_v2_definition option_defs_be[] = {
         RPCS3_FRAME_PACING_INFO_0_BE,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_BE}, {"emulator", OPTION_VAL_EMULATOR_BE}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_BE, NULL,
@@ -2513,8 +2486,6 @@ struct retro_core_options_v2 options_be = {
 #define OPTION_VAL_OPENGL_BG NULL
 #define OPTION_VAL_VULKAN_BG NULL
 #define OPTION_VAL_NULL_BG NULL
-#define RPCS3_VK_READBACK_LABEL_BG NULL
-#define RPCS3_VK_READBACK_INFO_0_BG NULL
 #define OPTION_VAL_IMMEDIATE_BG NULL
 #define OPTION_VAL_DEFERRED_BG NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_BG NULL
@@ -2839,13 +2810,6 @@ struct retro_core_option_v2_definition option_defs_bg[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_BG, NULL,
-        RPCS3_VK_READBACK_INFO_0_BG,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_BG}, {"deferred", OPTION_VAL_DEFERRED_BG}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_BG, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_BG,
         NULL, "gpu",
@@ -2990,7 +2954,7 @@ struct retro_core_option_v2_definition option_defs_bg[] = {
         RPCS3_FRAME_PACING_INFO_0_BG,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_BG}, {"emulator", OPTION_VAL_EMULATOR_BG}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_BG, NULL,
@@ -3317,8 +3281,6 @@ struct retro_core_options_v2 options_bg = {
 #define OPTION_VAL_OPENGL_CA NULL
 #define OPTION_VAL_VULKAN_CA NULL
 #define OPTION_VAL_NULL_CA NULL
-#define RPCS3_VK_READBACK_LABEL_CA NULL
-#define RPCS3_VK_READBACK_INFO_0_CA NULL
 #define OPTION_VAL_IMMEDIATE_CA NULL
 #define OPTION_VAL_DEFERRED_CA NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_CA NULL
@@ -3643,13 +3605,6 @@ struct retro_core_option_v2_definition option_defs_ca[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_CA, NULL,
-        RPCS3_VK_READBACK_INFO_0_CA,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_CA}, {"deferred", OPTION_VAL_DEFERRED_CA}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_CA, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_CA,
         NULL, "gpu",
@@ -3794,7 +3749,7 @@ struct retro_core_option_v2_definition option_defs_ca[] = {
         RPCS3_FRAME_PACING_INFO_0_CA,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_CA}, {"emulator", OPTION_VAL_EMULATOR_CA}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_CA, NULL,
@@ -4121,8 +4076,6 @@ struct retro_core_options_v2 options_ca = {
 #define OPTION_VAL_OPENGL_CHS NULL
 #define OPTION_VAL_VULKAN_CHS NULL
 #define OPTION_VAL_NULL_CHS NULL
-#define RPCS3_VK_READBACK_LABEL_CHS NULL
-#define RPCS3_VK_READBACK_INFO_0_CHS NULL
 #define OPTION_VAL_IMMEDIATE_CHS NULL
 #define OPTION_VAL_DEFERRED_CHS NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_CHS NULL
@@ -4447,13 +4400,6 @@ struct retro_core_option_v2_definition option_defs_chs[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_CHS, NULL,
-        RPCS3_VK_READBACK_INFO_0_CHS,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_CHS}, {"deferred", OPTION_VAL_DEFERRED_CHS}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_CHS, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_CHS,
         NULL, "gpu",
@@ -4598,7 +4544,7 @@ struct retro_core_option_v2_definition option_defs_chs[] = {
         RPCS3_FRAME_PACING_INFO_0_CHS,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_CHS}, {"emulator", OPTION_VAL_EMULATOR_CHS}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_CHS, NULL,
@@ -4925,8 +4871,6 @@ struct retro_core_options_v2 options_chs = {
 #define OPTION_VAL_OPENGL_CHT NULL
 #define OPTION_VAL_VULKAN_CHT NULL
 #define OPTION_VAL_NULL_CHT NULL
-#define RPCS3_VK_READBACK_LABEL_CHT NULL
-#define RPCS3_VK_READBACK_INFO_0_CHT NULL
 #define OPTION_VAL_IMMEDIATE_CHT NULL
 #define OPTION_VAL_DEFERRED_CHT NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_CHT NULL
@@ -5251,13 +5195,6 @@ struct retro_core_option_v2_definition option_defs_cht[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_CHT, NULL,
-        RPCS3_VK_READBACK_INFO_0_CHT,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_CHT}, {"deferred", OPTION_VAL_DEFERRED_CHT}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_CHT, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_CHT,
         NULL, "gpu",
@@ -5402,7 +5339,7 @@ struct retro_core_option_v2_definition option_defs_cht[] = {
         RPCS3_FRAME_PACING_INFO_0_CHT,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_CHT}, {"emulator", OPTION_VAL_EMULATOR_CHT}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_CHT, NULL,
@@ -5729,8 +5666,6 @@ struct retro_core_options_v2 options_cht = {
 #define OPTION_VAL_OPENGL_CS NULL
 #define OPTION_VAL_VULKAN_CS NULL
 #define OPTION_VAL_NULL_CS NULL
-#define RPCS3_VK_READBACK_LABEL_CS NULL
-#define RPCS3_VK_READBACK_INFO_0_CS NULL
 #define OPTION_VAL_IMMEDIATE_CS NULL
 #define OPTION_VAL_DEFERRED_CS NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_CS NULL
@@ -6055,13 +5990,6 @@ struct retro_core_option_v2_definition option_defs_cs[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_CS, NULL,
-        RPCS3_VK_READBACK_INFO_0_CS,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_CS}, {"deferred", OPTION_VAL_DEFERRED_CS}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_CS, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_CS,
         NULL, "gpu",
@@ -6206,7 +6134,7 @@ struct retro_core_option_v2_definition option_defs_cs[] = {
         RPCS3_FRAME_PACING_INFO_0_CS,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_CS}, {"emulator", OPTION_VAL_EMULATOR_CS}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_CS, NULL,
@@ -6533,8 +6461,6 @@ struct retro_core_options_v2 options_cs = {
 #define OPTION_VAL_OPENGL_CY NULL
 #define OPTION_VAL_VULKAN_CY NULL
 #define OPTION_VAL_NULL_CY NULL
-#define RPCS3_VK_READBACK_LABEL_CY NULL
-#define RPCS3_VK_READBACK_INFO_0_CY NULL
 #define OPTION_VAL_IMMEDIATE_CY NULL
 #define OPTION_VAL_DEFERRED_CY NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_CY NULL
@@ -6859,13 +6785,6 @@ struct retro_core_option_v2_definition option_defs_cy[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_CY, NULL,
-        RPCS3_VK_READBACK_INFO_0_CY,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_CY}, {"deferred", OPTION_VAL_DEFERRED_CY}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_CY, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_CY,
         NULL, "gpu",
@@ -7010,7 +6929,7 @@ struct retro_core_option_v2_definition option_defs_cy[] = {
         RPCS3_FRAME_PACING_INFO_0_CY,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_CY}, {"emulator", OPTION_VAL_EMULATOR_CY}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_CY, NULL,
@@ -7337,8 +7256,6 @@ struct retro_core_options_v2 options_cy = {
 #define OPTION_VAL_OPENGL_DA NULL
 #define OPTION_VAL_VULKAN_DA NULL
 #define OPTION_VAL_NULL_DA NULL
-#define RPCS3_VK_READBACK_LABEL_DA NULL
-#define RPCS3_VK_READBACK_INFO_0_DA NULL
 #define OPTION_VAL_IMMEDIATE_DA NULL
 #define OPTION_VAL_DEFERRED_DA NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_DA NULL
@@ -7663,13 +7580,6 @@ struct retro_core_option_v2_definition option_defs_da[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_DA, NULL,
-        RPCS3_VK_READBACK_INFO_0_DA,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_DA}, {"deferred", OPTION_VAL_DEFERRED_DA}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_DA, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_DA,
         NULL, "gpu",
@@ -7814,7 +7724,7 @@ struct retro_core_option_v2_definition option_defs_da[] = {
         RPCS3_FRAME_PACING_INFO_0_DA,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_DA}, {"emulator", OPTION_VAL_EMULATOR_DA}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_DA, NULL,
@@ -8141,8 +8051,6 @@ struct retro_core_options_v2 options_da = {
 #define OPTION_VAL_OPENGL_DE NULL
 #define OPTION_VAL_VULKAN_DE NULL
 #define OPTION_VAL_NULL_DE NULL
-#define RPCS3_VK_READBACK_LABEL_DE NULL
-#define RPCS3_VK_READBACK_INFO_0_DE NULL
 #define OPTION_VAL_IMMEDIATE_DE NULL
 #define OPTION_VAL_DEFERRED_DE NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_DE NULL
@@ -8467,13 +8375,6 @@ struct retro_core_option_v2_definition option_defs_de[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_DE, NULL,
-        RPCS3_VK_READBACK_INFO_0_DE,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_DE}, {"deferred", OPTION_VAL_DEFERRED_DE}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_DE, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_DE,
         NULL, "gpu",
@@ -8618,7 +8519,7 @@ struct retro_core_option_v2_definition option_defs_de[] = {
         RPCS3_FRAME_PACING_INFO_0_DE,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_DE}, {"emulator", OPTION_VAL_EMULATOR_DE}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_DE, NULL,
@@ -8945,8 +8846,6 @@ struct retro_core_options_v2 options_de = {
 #define OPTION_VAL_OPENGL_EL NULL
 #define OPTION_VAL_VULKAN_EL NULL
 #define OPTION_VAL_NULL_EL NULL
-#define RPCS3_VK_READBACK_LABEL_EL NULL
-#define RPCS3_VK_READBACK_INFO_0_EL NULL
 #define OPTION_VAL_IMMEDIATE_EL NULL
 #define OPTION_VAL_DEFERRED_EL NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_EL NULL
@@ -9271,13 +9170,6 @@ struct retro_core_option_v2_definition option_defs_el[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_EL, NULL,
-        RPCS3_VK_READBACK_INFO_0_EL,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_EL}, {"deferred", OPTION_VAL_DEFERRED_EL}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_EL, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_EL,
         NULL, "gpu",
@@ -9422,7 +9314,7 @@ struct retro_core_option_v2_definition option_defs_el[] = {
         RPCS3_FRAME_PACING_INFO_0_EL,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_EL}, {"emulator", OPTION_VAL_EMULATOR_EL}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_EL, NULL,
@@ -9749,8 +9641,6 @@ struct retro_core_options_v2 options_el = {
 #define OPTION_VAL_OPENGL_EN NULL
 #define OPTION_VAL_VULKAN_EN NULL
 #define OPTION_VAL_NULL_EN NULL
-#define RPCS3_VK_READBACK_LABEL_EN NULL
-#define RPCS3_VK_READBACK_INFO_0_EN NULL
 #define OPTION_VAL_IMMEDIATE_EN NULL
 #define OPTION_VAL_DEFERRED_EN NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_EN NULL
@@ -10075,13 +9965,6 @@ struct retro_core_option_v2_definition option_defs_en[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_EN, NULL,
-        RPCS3_VK_READBACK_INFO_0_EN,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_EN}, {"deferred", OPTION_VAL_DEFERRED_EN}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_EN, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_EN,
         NULL, "gpu",
@@ -10226,7 +10109,7 @@ struct retro_core_option_v2_definition option_defs_en[] = {
         RPCS3_FRAME_PACING_INFO_0_EN,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_EN}, {"emulator", OPTION_VAL_EMULATOR_EN}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_EN, NULL,
@@ -10553,8 +10436,6 @@ struct retro_core_options_v2 options_en = {
 #define OPTION_VAL_OPENGL_EO NULL
 #define OPTION_VAL_VULKAN_EO NULL
 #define OPTION_VAL_NULL_EO NULL
-#define RPCS3_VK_READBACK_LABEL_EO NULL
-#define RPCS3_VK_READBACK_INFO_0_EO NULL
 #define OPTION_VAL_IMMEDIATE_EO NULL
 #define OPTION_VAL_DEFERRED_EO NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_EO NULL
@@ -10879,13 +10760,6 @@ struct retro_core_option_v2_definition option_defs_eo[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_EO, NULL,
-        RPCS3_VK_READBACK_INFO_0_EO,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_EO}, {"deferred", OPTION_VAL_DEFERRED_EO}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_EO, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_EO,
         NULL, "gpu",
@@ -11030,7 +10904,7 @@ struct retro_core_option_v2_definition option_defs_eo[] = {
         RPCS3_FRAME_PACING_INFO_0_EO,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_EO}, {"emulator", OPTION_VAL_EMULATOR_EO}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_EO, NULL,
@@ -11357,8 +11231,6 @@ struct retro_core_options_v2 options_eo = {
 #define OPTION_VAL_OPENGL_ES NULL
 #define OPTION_VAL_VULKAN_ES NULL
 #define OPTION_VAL_NULL_ES NULL
-#define RPCS3_VK_READBACK_LABEL_ES NULL
-#define RPCS3_VK_READBACK_INFO_0_ES NULL
 #define OPTION_VAL_IMMEDIATE_ES NULL
 #define OPTION_VAL_DEFERRED_ES NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_ES NULL
@@ -11683,13 +11555,6 @@ struct retro_core_option_v2_definition option_defs_es[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_ES, NULL,
-        RPCS3_VK_READBACK_INFO_0_ES,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_ES}, {"deferred", OPTION_VAL_DEFERRED_ES}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_ES, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_ES,
         NULL, "gpu",
@@ -11834,7 +11699,7 @@ struct retro_core_option_v2_definition option_defs_es[] = {
         RPCS3_FRAME_PACING_INFO_0_ES,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_ES}, {"emulator", OPTION_VAL_EMULATOR_ES}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_ES, NULL,
@@ -12161,8 +12026,6 @@ struct retro_core_options_v2 options_es = {
 #define OPTION_VAL_OPENGL_FA NULL
 #define OPTION_VAL_VULKAN_FA NULL
 #define OPTION_VAL_NULL_FA NULL
-#define RPCS3_VK_READBACK_LABEL_FA NULL
-#define RPCS3_VK_READBACK_INFO_0_FA NULL
 #define OPTION_VAL_IMMEDIATE_FA NULL
 #define OPTION_VAL_DEFERRED_FA NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_FA NULL
@@ -12487,13 +12350,6 @@ struct retro_core_option_v2_definition option_defs_fa[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_FA, NULL,
-        RPCS3_VK_READBACK_INFO_0_FA,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_FA}, {"deferred", OPTION_VAL_DEFERRED_FA}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_FA, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_FA,
         NULL, "gpu",
@@ -12638,7 +12494,7 @@ struct retro_core_option_v2_definition option_defs_fa[] = {
         RPCS3_FRAME_PACING_INFO_0_FA,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_FA}, {"emulator", OPTION_VAL_EMULATOR_FA}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_FA, NULL,
@@ -12965,8 +12821,6 @@ struct retro_core_options_v2 options_fa = {
 #define OPTION_VAL_OPENGL_FI NULL
 #define OPTION_VAL_VULKAN_FI NULL
 #define OPTION_VAL_NULL_FI NULL
-#define RPCS3_VK_READBACK_LABEL_FI NULL
-#define RPCS3_VK_READBACK_INFO_0_FI NULL
 #define OPTION_VAL_IMMEDIATE_FI NULL
 #define OPTION_VAL_DEFERRED_FI NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_FI NULL
@@ -13291,13 +13145,6 @@ struct retro_core_option_v2_definition option_defs_fi[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_FI, NULL,
-        RPCS3_VK_READBACK_INFO_0_FI,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_FI}, {"deferred", OPTION_VAL_DEFERRED_FI}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_FI, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_FI,
         NULL, "gpu",
@@ -13442,7 +13289,7 @@ struct retro_core_option_v2_definition option_defs_fi[] = {
         RPCS3_FRAME_PACING_INFO_0_FI,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_FI}, {"emulator", OPTION_VAL_EMULATOR_FI}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_FI, NULL,
@@ -13769,8 +13616,6 @@ struct retro_core_options_v2 options_fi = {
 #define OPTION_VAL_OPENGL_FR NULL
 #define OPTION_VAL_VULKAN_FR "Vulkan (via la mémoire)"
 #define OPTION_VAL_NULL_FR "Null (pas de vidéo)"
-#define RPCS3_VK_READBACK_LABEL_FR NULL
-#define RPCS3_VK_READBACK_INFO_0_FR NULL
 #define OPTION_VAL_IMMEDIATE_FR NULL
 #define OPTION_VAL_DEFERRED_FR NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_FR NULL
@@ -14095,13 +13940,6 @@ struct retro_core_option_v2_definition option_defs_fr[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_FR, NULL,
-        RPCS3_VK_READBACK_INFO_0_FR,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_FR}, {"deferred", OPTION_VAL_DEFERRED_FR}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_FR, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_FR,
         NULL, "gpu",
@@ -14246,7 +14084,7 @@ struct retro_core_option_v2_definition option_defs_fr[] = {
         RPCS3_FRAME_PACING_INFO_0_FR,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_FR}, {"emulator", OPTION_VAL_EMULATOR_FR}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_FR, NULL,
@@ -14573,8 +14411,6 @@ struct retro_core_options_v2 options_fr = {
 #define OPTION_VAL_OPENGL_GA NULL
 #define OPTION_VAL_VULKAN_GA NULL
 #define OPTION_VAL_NULL_GA NULL
-#define RPCS3_VK_READBACK_LABEL_GA NULL
-#define RPCS3_VK_READBACK_INFO_0_GA NULL
 #define OPTION_VAL_IMMEDIATE_GA NULL
 #define OPTION_VAL_DEFERRED_GA NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_GA NULL
@@ -14899,13 +14735,6 @@ struct retro_core_option_v2_definition option_defs_ga[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_GA, NULL,
-        RPCS3_VK_READBACK_INFO_0_GA,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_GA}, {"deferred", OPTION_VAL_DEFERRED_GA}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_GA, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_GA,
         NULL, "gpu",
@@ -15050,7 +14879,7 @@ struct retro_core_option_v2_definition option_defs_ga[] = {
         RPCS3_FRAME_PACING_INFO_0_GA,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_GA}, {"emulator", OPTION_VAL_EMULATOR_GA}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_GA, NULL,
@@ -15377,8 +15206,6 @@ struct retro_core_options_v2 options_ga = {
 #define OPTION_VAL_OPENGL_GL NULL
 #define OPTION_VAL_VULKAN_GL NULL
 #define OPTION_VAL_NULL_GL NULL
-#define RPCS3_VK_READBACK_LABEL_GL NULL
-#define RPCS3_VK_READBACK_INFO_0_GL NULL
 #define OPTION_VAL_IMMEDIATE_GL NULL
 #define OPTION_VAL_DEFERRED_GL NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_GL NULL
@@ -15703,13 +15530,6 @@ struct retro_core_option_v2_definition option_defs_gl[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_GL, NULL,
-        RPCS3_VK_READBACK_INFO_0_GL,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_GL}, {"deferred", OPTION_VAL_DEFERRED_GL}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_GL, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_GL,
         NULL, "gpu",
@@ -15854,7 +15674,7 @@ struct retro_core_option_v2_definition option_defs_gl[] = {
         RPCS3_FRAME_PACING_INFO_0_GL,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_GL}, {"emulator", OPTION_VAL_EMULATOR_GL}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_GL, NULL,
@@ -16181,8 +16001,6 @@ struct retro_core_options_v2 options_gl = {
 #define OPTION_VAL_OPENGL_HE NULL
 #define OPTION_VAL_VULKAN_HE NULL
 #define OPTION_VAL_NULL_HE NULL
-#define RPCS3_VK_READBACK_LABEL_HE NULL
-#define RPCS3_VK_READBACK_INFO_0_HE NULL
 #define OPTION_VAL_IMMEDIATE_HE NULL
 #define OPTION_VAL_DEFERRED_HE NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_HE NULL
@@ -16507,13 +16325,6 @@ struct retro_core_option_v2_definition option_defs_he[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_HE, NULL,
-        RPCS3_VK_READBACK_INFO_0_HE,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_HE}, {"deferred", OPTION_VAL_DEFERRED_HE}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_HE, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_HE,
         NULL, "gpu",
@@ -16658,7 +16469,7 @@ struct retro_core_option_v2_definition option_defs_he[] = {
         RPCS3_FRAME_PACING_INFO_0_HE,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_HE}, {"emulator", OPTION_VAL_EMULATOR_HE}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_HE, NULL,
@@ -16985,8 +16796,6 @@ struct retro_core_options_v2 options_he = {
 #define OPTION_VAL_OPENGL_HR NULL
 #define OPTION_VAL_VULKAN_HR NULL
 #define OPTION_VAL_NULL_HR NULL
-#define RPCS3_VK_READBACK_LABEL_HR NULL
-#define RPCS3_VK_READBACK_INFO_0_HR NULL
 #define OPTION_VAL_IMMEDIATE_HR NULL
 #define OPTION_VAL_DEFERRED_HR NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_HR NULL
@@ -17311,13 +17120,6 @@ struct retro_core_option_v2_definition option_defs_hr[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_HR, NULL,
-        RPCS3_VK_READBACK_INFO_0_HR,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_HR}, {"deferred", OPTION_VAL_DEFERRED_HR}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_HR, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_HR,
         NULL, "gpu",
@@ -17462,7 +17264,7 @@ struct retro_core_option_v2_definition option_defs_hr[] = {
         RPCS3_FRAME_PACING_INFO_0_HR,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_HR}, {"emulator", OPTION_VAL_EMULATOR_HR}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_HR, NULL,
@@ -17789,8 +17591,6 @@ struct retro_core_options_v2 options_hr = {
 #define OPTION_VAL_OPENGL_HU NULL
 #define OPTION_VAL_VULKAN_HU NULL
 #define OPTION_VAL_NULL_HU NULL
-#define RPCS3_VK_READBACK_LABEL_HU NULL
-#define RPCS3_VK_READBACK_INFO_0_HU NULL
 #define OPTION_VAL_IMMEDIATE_HU NULL
 #define OPTION_VAL_DEFERRED_HU NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_HU NULL
@@ -18115,13 +17915,6 @@ struct retro_core_option_v2_definition option_defs_hu[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_HU, NULL,
-        RPCS3_VK_READBACK_INFO_0_HU,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_HU}, {"deferred", OPTION_VAL_DEFERRED_HU}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_HU, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_HU,
         NULL, "gpu",
@@ -18266,7 +18059,7 @@ struct retro_core_option_v2_definition option_defs_hu[] = {
         RPCS3_FRAME_PACING_INFO_0_HU,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_HU}, {"emulator", OPTION_VAL_EMULATOR_HU}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_HU, NULL,
@@ -18593,8 +18386,6 @@ struct retro_core_options_v2 options_hu = {
 #define OPTION_VAL_OPENGL_ID NULL
 #define OPTION_VAL_VULKAN_ID NULL
 #define OPTION_VAL_NULL_ID NULL
-#define RPCS3_VK_READBACK_LABEL_ID NULL
-#define RPCS3_VK_READBACK_INFO_0_ID NULL
 #define OPTION_VAL_IMMEDIATE_ID NULL
 #define OPTION_VAL_DEFERRED_ID NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_ID NULL
@@ -18919,13 +18710,6 @@ struct retro_core_option_v2_definition option_defs_id[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_ID, NULL,
-        RPCS3_VK_READBACK_INFO_0_ID,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_ID}, {"deferred", OPTION_VAL_DEFERRED_ID}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_ID, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_ID,
         NULL, "gpu",
@@ -19070,7 +18854,7 @@ struct retro_core_option_v2_definition option_defs_id[] = {
         RPCS3_FRAME_PACING_INFO_0_ID,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_ID}, {"emulator", OPTION_VAL_EMULATOR_ID}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_ID, NULL,
@@ -19397,8 +19181,6 @@ struct retro_core_options_v2 options_id = {
 #define OPTION_VAL_OPENGL_IT NULL
 #define OPTION_VAL_VULKAN_IT NULL
 #define OPTION_VAL_NULL_IT NULL
-#define RPCS3_VK_READBACK_LABEL_IT NULL
-#define RPCS3_VK_READBACK_INFO_0_IT NULL
 #define OPTION_VAL_IMMEDIATE_IT NULL
 #define OPTION_VAL_DEFERRED_IT NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_IT NULL
@@ -19723,13 +19505,6 @@ struct retro_core_option_v2_definition option_defs_it[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_IT, NULL,
-        RPCS3_VK_READBACK_INFO_0_IT,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_IT}, {"deferred", OPTION_VAL_DEFERRED_IT}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_IT, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_IT,
         NULL, "gpu",
@@ -19874,7 +19649,7 @@ struct retro_core_option_v2_definition option_defs_it[] = {
         RPCS3_FRAME_PACING_INFO_0_IT,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_IT}, {"emulator", OPTION_VAL_EMULATOR_IT}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_IT, NULL,
@@ -20201,8 +19976,6 @@ struct retro_core_options_v2 options_it = {
 #define OPTION_VAL_OPENGL_JA NULL
 #define OPTION_VAL_VULKAN_JA NULL
 #define OPTION_VAL_NULL_JA NULL
-#define RPCS3_VK_READBACK_LABEL_JA NULL
-#define RPCS3_VK_READBACK_INFO_0_JA NULL
 #define OPTION_VAL_IMMEDIATE_JA NULL
 #define OPTION_VAL_DEFERRED_JA NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_JA NULL
@@ -20527,13 +20300,6 @@ struct retro_core_option_v2_definition option_defs_ja[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_JA, NULL,
-        RPCS3_VK_READBACK_INFO_0_JA,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_JA}, {"deferred", OPTION_VAL_DEFERRED_JA}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_JA, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_JA,
         NULL, "gpu",
@@ -20678,7 +20444,7 @@ struct retro_core_option_v2_definition option_defs_ja[] = {
         RPCS3_FRAME_PACING_INFO_0_JA,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_JA}, {"emulator", OPTION_VAL_EMULATOR_JA}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_JA, NULL,
@@ -21005,8 +20771,6 @@ struct retro_core_options_v2 options_ja = {
 #define OPTION_VAL_OPENGL_KO NULL
 #define OPTION_VAL_VULKAN_KO NULL
 #define OPTION_VAL_NULL_KO NULL
-#define RPCS3_VK_READBACK_LABEL_KO NULL
-#define RPCS3_VK_READBACK_INFO_0_KO NULL
 #define OPTION_VAL_IMMEDIATE_KO NULL
 #define OPTION_VAL_DEFERRED_KO NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_KO NULL
@@ -21331,13 +21095,6 @@ struct retro_core_option_v2_definition option_defs_ko[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_KO, NULL,
-        RPCS3_VK_READBACK_INFO_0_KO,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_KO}, {"deferred", OPTION_VAL_DEFERRED_KO}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_KO, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_KO,
         NULL, "gpu",
@@ -21482,7 +21239,7 @@ struct retro_core_option_v2_definition option_defs_ko[] = {
         RPCS3_FRAME_PACING_INFO_0_KO,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_KO}, {"emulator", OPTION_VAL_EMULATOR_KO}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_KO, NULL,
@@ -21809,8 +21566,6 @@ struct retro_core_options_v2 options_ko = {
 #define OPTION_VAL_OPENGL_NL NULL
 #define OPTION_VAL_VULKAN_NL NULL
 #define OPTION_VAL_NULL_NL NULL
-#define RPCS3_VK_READBACK_LABEL_NL NULL
-#define RPCS3_VK_READBACK_INFO_0_NL NULL
 #define OPTION_VAL_IMMEDIATE_NL NULL
 #define OPTION_VAL_DEFERRED_NL NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_NL NULL
@@ -22135,13 +21890,6 @@ struct retro_core_option_v2_definition option_defs_nl[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_NL, NULL,
-        RPCS3_VK_READBACK_INFO_0_NL,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_NL}, {"deferred", OPTION_VAL_DEFERRED_NL}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_NL, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_NL,
         NULL, "gpu",
@@ -22286,7 +22034,7 @@ struct retro_core_option_v2_definition option_defs_nl[] = {
         RPCS3_FRAME_PACING_INFO_0_NL,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_NL}, {"emulator", OPTION_VAL_EMULATOR_NL}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_NL, NULL,
@@ -22613,8 +22361,6 @@ struct retro_core_options_v2 options_nl = {
 #define OPTION_VAL_OPENGL_NO NULL
 #define OPTION_VAL_VULKAN_NO NULL
 #define OPTION_VAL_NULL_NO NULL
-#define RPCS3_VK_READBACK_LABEL_NO NULL
-#define RPCS3_VK_READBACK_INFO_0_NO NULL
 #define OPTION_VAL_IMMEDIATE_NO NULL
 #define OPTION_VAL_DEFERRED_NO NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_NO NULL
@@ -22939,13 +22685,6 @@ struct retro_core_option_v2_definition option_defs_no[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_NO, NULL,
-        RPCS3_VK_READBACK_INFO_0_NO,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_NO}, {"deferred", OPTION_VAL_DEFERRED_NO}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_NO, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_NO,
         NULL, "gpu",
@@ -23090,7 +22829,7 @@ struct retro_core_option_v2_definition option_defs_no[] = {
         RPCS3_FRAME_PACING_INFO_0_NO,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_NO}, {"emulator", OPTION_VAL_EMULATOR_NO}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_NO, NULL,
@@ -23417,8 +23156,6 @@ struct retro_core_options_v2 options_no = {
 #define OPTION_VAL_OPENGL_OR NULL
 #define OPTION_VAL_VULKAN_OR NULL
 #define OPTION_VAL_NULL_OR NULL
-#define RPCS3_VK_READBACK_LABEL_OR NULL
-#define RPCS3_VK_READBACK_INFO_0_OR NULL
 #define OPTION_VAL_IMMEDIATE_OR NULL
 #define OPTION_VAL_DEFERRED_OR NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_OR NULL
@@ -23743,13 +23480,6 @@ struct retro_core_option_v2_definition option_defs_or[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_OR, NULL,
-        RPCS3_VK_READBACK_INFO_0_OR,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_OR}, {"deferred", OPTION_VAL_DEFERRED_OR}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_OR, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_OR,
         NULL, "gpu",
@@ -23894,7 +23624,7 @@ struct retro_core_option_v2_definition option_defs_or[] = {
         RPCS3_FRAME_PACING_INFO_0_OR,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_OR}, {"emulator", OPTION_VAL_EMULATOR_OR}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_OR, NULL,
@@ -24221,8 +23951,6 @@ struct retro_core_options_v2 options_or = {
 #define OPTION_VAL_OPENGL_PL NULL
 #define OPTION_VAL_VULKAN_PL NULL
 #define OPTION_VAL_NULL_PL NULL
-#define RPCS3_VK_READBACK_LABEL_PL NULL
-#define RPCS3_VK_READBACK_INFO_0_PL NULL
 #define OPTION_VAL_IMMEDIATE_PL NULL
 #define OPTION_VAL_DEFERRED_PL NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_PL NULL
@@ -24547,13 +24275,6 @@ struct retro_core_option_v2_definition option_defs_pl[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_PL, NULL,
-        RPCS3_VK_READBACK_INFO_0_PL,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_PL}, {"deferred", OPTION_VAL_DEFERRED_PL}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_PL, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_PL,
         NULL, "gpu",
@@ -24698,7 +24419,7 @@ struct retro_core_option_v2_definition option_defs_pl[] = {
         RPCS3_FRAME_PACING_INFO_0_PL,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_PL}, {"emulator", OPTION_VAL_EMULATOR_PL}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_PL, NULL,
@@ -25025,8 +24746,6 @@ struct retro_core_options_v2 options_pl = {
 #define OPTION_VAL_OPENGL_PT_BR NULL
 #define OPTION_VAL_VULKAN_PT_BR NULL
 #define OPTION_VAL_NULL_PT_BR NULL
-#define RPCS3_VK_READBACK_LABEL_PT_BR NULL
-#define RPCS3_VK_READBACK_INFO_0_PT_BR NULL
 #define OPTION_VAL_IMMEDIATE_PT_BR NULL
 #define OPTION_VAL_DEFERRED_PT_BR NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_PT_BR NULL
@@ -25351,13 +25070,6 @@ struct retro_core_option_v2_definition option_defs_pt_br[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_PT_BR, NULL,
-        RPCS3_VK_READBACK_INFO_0_PT_BR,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_PT_BR}, {"deferred", OPTION_VAL_DEFERRED_PT_BR}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_PT_BR, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_PT_BR,
         NULL, "gpu",
@@ -25502,7 +25214,7 @@ struct retro_core_option_v2_definition option_defs_pt_br[] = {
         RPCS3_FRAME_PACING_INFO_0_PT_BR,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_PT_BR}, {"emulator", OPTION_VAL_EMULATOR_PT_BR}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_PT_BR, NULL,
@@ -25829,8 +25541,6 @@ struct retro_core_options_v2 options_pt_br = {
 #define OPTION_VAL_OPENGL_PT_PT NULL
 #define OPTION_VAL_VULKAN_PT_PT NULL
 #define OPTION_VAL_NULL_PT_PT NULL
-#define RPCS3_VK_READBACK_LABEL_PT_PT NULL
-#define RPCS3_VK_READBACK_INFO_0_PT_PT NULL
 #define OPTION_VAL_IMMEDIATE_PT_PT NULL
 #define OPTION_VAL_DEFERRED_PT_PT NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_PT_PT NULL
@@ -26155,13 +25865,6 @@ struct retro_core_option_v2_definition option_defs_pt_pt[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_PT_PT, NULL,
-        RPCS3_VK_READBACK_INFO_0_PT_PT,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_PT_PT}, {"deferred", OPTION_VAL_DEFERRED_PT_PT}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_PT_PT, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_PT_PT,
         NULL, "gpu",
@@ -26306,7 +26009,7 @@ struct retro_core_option_v2_definition option_defs_pt_pt[] = {
         RPCS3_FRAME_PACING_INFO_0_PT_PT,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_PT_PT}, {"emulator", OPTION_VAL_EMULATOR_PT_PT}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_PT_PT, NULL,
@@ -26633,8 +26336,6 @@ struct retro_core_options_v2 options_pt_pt = {
 #define OPTION_VAL_OPENGL_RU NULL
 #define OPTION_VAL_VULKAN_RU NULL
 #define OPTION_VAL_NULL_RU NULL
-#define RPCS3_VK_READBACK_LABEL_RU NULL
-#define RPCS3_VK_READBACK_INFO_0_RU NULL
 #define OPTION_VAL_IMMEDIATE_RU NULL
 #define OPTION_VAL_DEFERRED_RU NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_RU NULL
@@ -26959,13 +26660,6 @@ struct retro_core_option_v2_definition option_defs_ru[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_RU, NULL,
-        RPCS3_VK_READBACK_INFO_0_RU,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_RU}, {"deferred", OPTION_VAL_DEFERRED_RU}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_RU, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_RU,
         NULL, "gpu",
@@ -27110,7 +26804,7 @@ struct retro_core_option_v2_definition option_defs_ru[] = {
         RPCS3_FRAME_PACING_INFO_0_RU,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_RU}, {"emulator", OPTION_VAL_EMULATOR_RU}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_RU, NULL,
@@ -27437,8 +27131,6 @@ struct retro_core_options_v2 options_ru = {
 #define OPTION_VAL_OPENGL_SK NULL
 #define OPTION_VAL_VULKAN_SK "Vulkan (cez pamäť)"
 #define OPTION_VAL_NULL_SK "Nulový (bez videa)"
-#define RPCS3_VK_READBACK_LABEL_SK "Spätné čítanie snímky Vulkan"
-#define RPCS3_VK_READBACK_INFO_0_SK "Ako sa snímka z Vulkanu dostane k frontendu. Okamžité čaká, kým GPU dokončí každú snímku, a až potom začne ďalšiu: najnižšia odozva, ale pri vysokej mierke rozlíšenia sa čakanie prejaví ako nerovnomerné časy snímok. Odložené nechá GPU dokončiť snímku, kým sa pripravuje ďalšia, a odovzdá ju, keď je hotová: plynulejšie pri vysokej mierke rozlíšenia, s odozvou dlhšou najviac o jednu snímku."
 #define OPTION_VAL_IMMEDIATE_SK "Okamžité"
 #define OPTION_VAL_DEFERRED_SK "Odložené"
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_SK "Predvolené rozlíšenie"
@@ -27763,13 +27455,6 @@ struct retro_core_option_v2_definition option_defs_sk[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_SK, NULL,
-        RPCS3_VK_READBACK_INFO_0_SK,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_SK}, {"deferred", OPTION_VAL_DEFERRED_SK}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_SK, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_SK,
         NULL, "gpu",
@@ -27914,7 +27599,7 @@ struct retro_core_option_v2_definition option_defs_sk[] = {
         RPCS3_FRAME_PACING_INFO_0_SK,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_SK}, {"emulator", OPTION_VAL_EMULATOR_SK}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_SK, NULL,
@@ -28241,8 +27926,6 @@ struct retro_core_options_v2 options_sk = {
 #define OPTION_VAL_OPENGL_SR NULL
 #define OPTION_VAL_VULKAN_SR NULL
 #define OPTION_VAL_NULL_SR NULL
-#define RPCS3_VK_READBACK_LABEL_SR NULL
-#define RPCS3_VK_READBACK_INFO_0_SR NULL
 #define OPTION_VAL_IMMEDIATE_SR NULL
 #define OPTION_VAL_DEFERRED_SR NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_SR NULL
@@ -28567,13 +28250,6 @@ struct retro_core_option_v2_definition option_defs_sr[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_SR, NULL,
-        RPCS3_VK_READBACK_INFO_0_SR,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_SR}, {"deferred", OPTION_VAL_DEFERRED_SR}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_SR, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_SR,
         NULL, "gpu",
@@ -28718,7 +28394,7 @@ struct retro_core_option_v2_definition option_defs_sr[] = {
         RPCS3_FRAME_PACING_INFO_0_SR,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_SR}, {"emulator", OPTION_VAL_EMULATOR_SR}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_SR, NULL,
@@ -29045,8 +28721,6 @@ struct retro_core_options_v2 options_sr = {
 #define OPTION_VAL_OPENGL_SV NULL
 #define OPTION_VAL_VULKAN_SV NULL
 #define OPTION_VAL_NULL_SV NULL
-#define RPCS3_VK_READBACK_LABEL_SV NULL
-#define RPCS3_VK_READBACK_INFO_0_SV NULL
 #define OPTION_VAL_IMMEDIATE_SV NULL
 #define OPTION_VAL_DEFERRED_SV NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_SV NULL
@@ -29371,13 +29045,6 @@ struct retro_core_option_v2_definition option_defs_sv[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_SV, NULL,
-        RPCS3_VK_READBACK_INFO_0_SV,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_SV}, {"deferred", OPTION_VAL_DEFERRED_SV}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_SV, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_SV,
         NULL, "gpu",
@@ -29522,7 +29189,7 @@ struct retro_core_option_v2_definition option_defs_sv[] = {
         RPCS3_FRAME_PACING_INFO_0_SV,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_SV}, {"emulator", OPTION_VAL_EMULATOR_SV}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_SV, NULL,
@@ -29849,8 +29516,6 @@ struct retro_core_options_v2 options_sv = {
 #define OPTION_VAL_OPENGL_TH NULL
 #define OPTION_VAL_VULKAN_TH NULL
 #define OPTION_VAL_NULL_TH NULL
-#define RPCS3_VK_READBACK_LABEL_TH NULL
-#define RPCS3_VK_READBACK_INFO_0_TH NULL
 #define OPTION_VAL_IMMEDIATE_TH NULL
 #define OPTION_VAL_DEFERRED_TH NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_TH NULL
@@ -30175,13 +29840,6 @@ struct retro_core_option_v2_definition option_defs_th[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_TH, NULL,
-        RPCS3_VK_READBACK_INFO_0_TH,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_TH}, {"deferred", OPTION_VAL_DEFERRED_TH}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_TH, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_TH,
         NULL, "gpu",
@@ -30326,7 +29984,7 @@ struct retro_core_option_v2_definition option_defs_th[] = {
         RPCS3_FRAME_PACING_INFO_0_TH,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_TH}, {"emulator", OPTION_VAL_EMULATOR_TH}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_TH, NULL,
@@ -30653,8 +30311,6 @@ struct retro_core_options_v2 options_th = {
 #define OPTION_VAL_OPENGL_TR NULL
 #define OPTION_VAL_VULKAN_TR NULL
 #define OPTION_VAL_NULL_TR NULL
-#define RPCS3_VK_READBACK_LABEL_TR NULL
-#define RPCS3_VK_READBACK_INFO_0_TR NULL
 #define OPTION_VAL_IMMEDIATE_TR NULL
 #define OPTION_VAL_DEFERRED_TR NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_TR NULL
@@ -30979,13 +30635,6 @@ struct retro_core_option_v2_definition option_defs_tr[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_TR, NULL,
-        RPCS3_VK_READBACK_INFO_0_TR,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_TR}, {"deferred", OPTION_VAL_DEFERRED_TR}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_TR, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_TR,
         NULL, "gpu",
@@ -31130,7 +30779,7 @@ struct retro_core_option_v2_definition option_defs_tr[] = {
         RPCS3_FRAME_PACING_INFO_0_TR,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_TR}, {"emulator", OPTION_VAL_EMULATOR_TR}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_TR, NULL,
@@ -31457,8 +31106,6 @@ struct retro_core_options_v2 options_tr = {
 #define OPTION_VAL_OPENGL_TT NULL
 #define OPTION_VAL_VULKAN_TT NULL
 #define OPTION_VAL_NULL_TT NULL
-#define RPCS3_VK_READBACK_LABEL_TT NULL
-#define RPCS3_VK_READBACK_INFO_0_TT NULL
 #define OPTION_VAL_IMMEDIATE_TT NULL
 #define OPTION_VAL_DEFERRED_TT NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_TT NULL
@@ -31783,13 +31430,6 @@ struct retro_core_option_v2_definition option_defs_tt[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_TT, NULL,
-        RPCS3_VK_READBACK_INFO_0_TT,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_TT}, {"deferred", OPTION_VAL_DEFERRED_TT}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_TT, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_TT,
         NULL, "gpu",
@@ -31934,7 +31574,7 @@ struct retro_core_option_v2_definition option_defs_tt[] = {
         RPCS3_FRAME_PACING_INFO_0_TT,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_TT}, {"emulator", OPTION_VAL_EMULATOR_TT}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_TT, NULL,
@@ -32261,8 +31901,6 @@ struct retro_core_options_v2 options_tt = {
 #define OPTION_VAL_OPENGL_UK NULL
 #define OPTION_VAL_VULKAN_UK NULL
 #define OPTION_VAL_NULL_UK NULL
-#define RPCS3_VK_READBACK_LABEL_UK NULL
-#define RPCS3_VK_READBACK_INFO_0_UK NULL
 #define OPTION_VAL_IMMEDIATE_UK NULL
 #define OPTION_VAL_DEFERRED_UK NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_UK NULL
@@ -32587,13 +32225,6 @@ struct retro_core_option_v2_definition option_defs_uk[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_UK, NULL,
-        RPCS3_VK_READBACK_INFO_0_UK,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_UK}, {"deferred", OPTION_VAL_DEFERRED_UK}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_UK, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_UK,
         NULL, "gpu",
@@ -32738,7 +32369,7 @@ struct retro_core_option_v2_definition option_defs_uk[] = {
         RPCS3_FRAME_PACING_INFO_0_UK,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_UK}, {"emulator", OPTION_VAL_EMULATOR_UK}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_UK, NULL,
@@ -33065,8 +32696,6 @@ struct retro_core_options_v2 options_uk = {
 #define OPTION_VAL_OPENGL_VAL NULL
 #define OPTION_VAL_VULKAN_VAL NULL
 #define OPTION_VAL_NULL_VAL NULL
-#define RPCS3_VK_READBACK_LABEL_VAL NULL
-#define RPCS3_VK_READBACK_INFO_0_VAL NULL
 #define OPTION_VAL_IMMEDIATE_VAL NULL
 #define OPTION_VAL_DEFERRED_VAL NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_VAL NULL
@@ -33391,13 +33020,6 @@ struct retro_core_option_v2_definition option_defs_val[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_VAL, NULL,
-        RPCS3_VK_READBACK_INFO_0_VAL,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_VAL}, {"deferred", OPTION_VAL_DEFERRED_VAL}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_VAL, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_VAL,
         NULL, "gpu",
@@ -33542,7 +33164,7 @@ struct retro_core_option_v2_definition option_defs_val[] = {
         RPCS3_FRAME_PACING_INFO_0_VAL,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_VAL}, {"emulator", OPTION_VAL_EMULATOR_VAL}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_VAL, NULL,
@@ -33869,8 +33491,6 @@ struct retro_core_options_v2 options_val = {
 #define OPTION_VAL_OPENGL_VN NULL
 #define OPTION_VAL_VULKAN_VN "Vulkan (thông qua bộ nhớ)"
 #define OPTION_VAL_NULL_VN "Không (Không xuất hình)"
-#define RPCS3_VK_READBACK_LABEL_VN NULL
-#define RPCS3_VK_READBACK_INFO_0_VN NULL
 #define OPTION_VAL_IMMEDIATE_VN NULL
 #define OPTION_VAL_DEFERRED_VN NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_VN NULL
@@ -34195,13 +33815,6 @@ struct retro_core_option_v2_definition option_defs_vn[] = {
         "vulkan"
     },
     {
-        "rpcs3_vk_readback", RPCS3_VK_READBACK_LABEL_VN, NULL,
-        RPCS3_VK_READBACK_INFO_0_VN,
-        NULL, "gpu",
-        { {"immediate", OPTION_VAL_IMMEDIATE_VN}, {"deferred", OPTION_VAL_DEFERRED_VN}, {NULL, NULL} },
-        "immediate"
-    },
-    {
         "rpcs3_default_resolution", RPCS3_DEFAULT_RESOLUTION_LABEL_VN, NULL,
         RPCS3_DEFAULT_RESOLUTION_INFO_0_VN,
         NULL, "gpu",
@@ -34346,7 +33959,7 @@ struct retro_core_option_v2_definition option_defs_vn[] = {
         RPCS3_FRAME_PACING_INFO_0_VN,
         NULL, "gpu",
         { {"frontend", OPTION_VAL_FRONTEND_VN}, {"emulator", OPTION_VAL_EMULATOR_VN}, {NULL, NULL} },
-        "frontend"
+        "emulator"
     },
     {
         "rpcs3_stretch_to_display", RPCS3_STRETCH_TO_DISPLAY_LABEL_VN, NULL,

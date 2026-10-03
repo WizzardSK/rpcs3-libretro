@@ -810,9 +810,11 @@ static void libretro_apply_core_options()
     std::string vblank = get_option_value("rpcs3_vblank_rate", "60");
     g_cfg.video.vblank_rate.set(std::stoi(vblank));
 
-    g_libretro_frontend_vblank = get_option_value("rpcs3_frame_pacing", "frontend") == "frontend";
+    g_libretro_frontend_vblank = get_option_value("rpcs3_frame_pacing", "emulator") == "frontend";
 
-    g_libretro_deferred_readback = get_option_value("rpcs3_vk_readback", "immediate") == "deferred";
+    // Immediate: the readback path is only the fallback without the
+    // frontend's Vulkan device now, and no longer offered as an option.
+    g_libretro_deferred_readback = false;
 
     // Driver Wake-Up Delay
     std::string driver_delay = get_option_value("rpcs3_driver_wakeup_delay", "0");
