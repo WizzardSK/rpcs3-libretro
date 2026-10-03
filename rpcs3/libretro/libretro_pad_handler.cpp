@@ -2,6 +2,7 @@
 #include "libretro_pad_handler.h"
 #include "libretro_input.h"
 #include "Input/pad_thread.h"
+#include "Input/product_info.h"
 #include "Emu/Cell/timers.hpp"
 
 LibretroPadHandler::LibretroPadHandler()
@@ -116,6 +117,27 @@ bool LibretroPadHandler::bindPadToDevice(std::shared_ptr<Pad> pad)
     // Create a device for this pad
     auto device = std::make_shared<PadDevice>();
     m_bindings.emplace_back(pad, device, nullptr);
+
+    // Describe it to games as standalone's gamepad handlers do by default: a
+    // PlayStation 3 controller, with that product's capabilities. Left as it
+    // was, it was a pad of no known make without the analog stick and sensor
+    // capabilities, and a game looking for the pad that rumbles found none
+    // (OutRun asked for port -1, NNshi).
+    {
+        u32 capabilities = CELL_PAD_CAPABILITY_PS3_CONFORMITY | CELL_PAD_CAPABILITY_PRESS_MODE |
+            CELL_PAD_CAPABILITY_HP_ANALOG_STICK | CELL_PAD_CAPABILITY_ACTUATOR | CELL_PAD_CAPABILITY_SENSOR_MODE;
+        u32 profile = 0;
+        for (const input::product_info& product : input::get_products_by_class(CELL_PAD_PCLASS_TYPE_STANDARD))
+        {
+            if (product.vendor_id == input::vendor_id::sony_corp && product.product_id == input::product_id::playstation_3_controller)
+            {
+                capabilities = product.capabilites;
+                profile = product.pclass_profile;
+            }
+        }
+        pad->Init(CELL_PAD_STATUS_DISCONNECTED, capabilities, CELL_PAD_DEV_TYPE_STANDARD, CELL_PAD_PCLASS_TYPE_STANDARD,
+            profile, input::vendor_id::sony_corp, input::product_id::playstation_3_controller, 50);
+    }
 
     // CRITICAL: Initialize the pad's buttons and sticks
     // Without this, m_buttons is empty and process() has nothing to update
