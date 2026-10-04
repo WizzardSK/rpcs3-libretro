@@ -593,6 +593,8 @@ static void libretro_apply_core_options()
         g_cfg.core.spu_decoder.set(spu_decoder_type::llvm);
     else if (spu_decoder == "asmjit")
         g_cfg.core.spu_decoder.set(spu_decoder_type::asmjit);
+    else if (spu_decoder == "dynamic")
+        g_cfg.core.spu_decoder.set(spu_decoder_type::dynamic);
     else
         g_cfg.core.spu_decoder.set(spu_decoder_type::_static);
 
@@ -655,6 +657,8 @@ static void libretro_apply_core_options()
 
     // Resolution Scale Threshold
     g_cfg.video.min_scalable_dimension.set(std::stoi(get_option_value("rpcs3_scale_threshold", "16")));
+    g_cfg.video.output_scaling.set(get_option_value("rpcs3_output_scaling", "bilinear") == "nearest"
+        ? output_scaling_mode::nearest : output_scaling_mode::bilinear);
 
     // ZCULL Accuracy, RPCS3's three settings as its own UI makes them
     const std::string zcull = get_option_value("rpcs3_zcull_accuracy", "precise");
@@ -770,7 +774,7 @@ static void libretro_apply_core_options()
     else
         g_cfg.core.sleep_timers_accuracy.from_default();
 
-    g_cfg.video.disable_vertex_cache.set(!enabled("rpcs3_vertex_cache", "enabled"));
+    g_cfg.video.disable_vertex_cache.set(enabled("rpcs3_disable_vertex_cache", "disabled"));
     g_cfg.video.force_cpu_blit_processing.set(enabled("rpcs3_cpu_blit", "disabled"));
     g_cfg.video.disable_blit_engine_upscaling.set(enabled("rpcs3_disable_blit_upscaling", "disabled"));
 

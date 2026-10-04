@@ -67,15 +67,22 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "rpcs3_ppu_decoder", "PPU Decoder", NULL,
         "PPU (main CPU) decoder. LLVM Recompiler is fastest.",
         NULL, "cpu",
-        { {"llvm", "Recompiler (LLVM)"}, {"interpreter", "Interpreter (Slow)"}, {NULL, NULL} },
+        { {"llvm", "Recompiler (LLVM)"}, {"interpreter", "Interpreter (static)"}, {NULL, NULL} },
         "llvm"
     },
     {
         "rpcs3_spu_decoder", "SPU Decoder", NULL,
         "SPU (co-processor) decoder. LLVM Recompiler is fastest.",
         NULL, "cpu",
-        { {"llvm", "Recompiler (LLVM)"}, {"asmjit", "Recompiler (ASMJIT)"}, {"interpreter", "Interpreter (Slow)"}, {NULL, NULL} },
+        { {"llvm", "Recompiler (LLVM)"}, {"asmjit", "Recompiler (ASMJIT)"}, {"dynamic", "Interpreter (dynamic)"}, {"interpreter", "Interpreter (static)"}, {NULL, NULL} },
         "llvm"
+    },
+    {
+        "rpcs3_spu_xfloat_accuracy", "SPU XFloat Accuracy", NULL,
+        "SPU floating-point accuracy level.",
+        NULL, "cpu",
+        { {"accurate", "Accurate"}, {"approximate", "Approximate"}, {"relaxed", "Relaxed"}, {"inaccurate", "Inaccurate"}, {NULL, NULL} },
+        "approximate"
     },
     {
         "rpcs3_spu_block_size", "SPU Block Size", NULL,
@@ -99,22 +106,8 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "disabled"
     },
     {
-        "rpcs3_spu_cache", "SPU Cache", NULL,
-        "Enable SPU cache for faster subsequent loads.",
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
         "rpcs3_llvm_precompilation", "LLVM Precompilation", NULL,
         "Precompile PPU modules at boot for faster subsequent loads.",
-        NULL, "cpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_accurate_dfma", "Accurate DFMA", NULL,
-        "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games.",
         NULL, "cpu",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
         "enabled"
@@ -134,18 +127,11 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "auto"
     },
     {
-        "rpcs3_max_spurs_threads", "Max SPURS Threads", NULL,
+        "rpcs3_max_spurs_threads", "Maximum Number of SPURS Threads", NULL,
         "Maximum SPURS thread count. Lower may improve performance.",
         NULL, "cpu",
         { {"auto", "Auto"}, {"1", "1"}, {"2", "2"}, {"3", "3"}, {"4", "4"}, {"5", "5"}, {"6", "6"}, {NULL, NULL} },
         "auto"
-    },
-    {
-        "rpcs3_spu_xfloat_accuracy", "SPU XFloat Accuracy", NULL,
-        "SPU floating-point accuracy level.",
-        NULL, "cpu",
-        { {"accurate", "Accurate"}, {"approximate", "Approximate"}, {"relaxed", "Relaxed"}, {"inaccurate", "Inaccurate"}, {NULL, NULL} },
-        "approximate"
     },
 
     // ==================== GPU OPTIONS ====================
@@ -178,8 +164,15 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "16"
     },
     {
+        "rpcs3_output_scaling", "Output Scaling", NULL,
+        "How the game's frame is scaled to the output resolution, as in RPCS3. Many PS3 games render below 720p and are scaled up when they are shown. Bilinear is smooth, Nearest keeps the pixels sharp.",
+        NULL, "gpu",
+        { {"bilinear", "Bilinear"}, {"nearest", "Nearest"}, {NULL, NULL} },
+        "bilinear"
+    },
+    {
         "rpcs3_frame_limit", "Frame Limit", NULL,
-        "Highest frame rate the game may run at. Auto is the VBlank Rate, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast.",
+        "Highest frame rate the game may run at. Auto is the VBlank Frequency, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast.",
         NULL, "gpu",
         { {"auto", "Auto"}, {"ps3", "PS3 Native"}, {"off", "Off"}, {"30", "30 FPS"}, {"50", "50 FPS"}, {"60", "60 FPS"}, {"120", "120 FPS"}, {"144", "144 FPS"}, {"240", "240 FPS"}, {NULL, NULL} },
         "auto"
@@ -255,15 +248,22 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "disabled"
     },
     {
-        "rpcs3_vertex_cache", "Vertex Cache", NULL,
-        "Enable vertex cache for performance.",
+        "rpcs3_disable_vertex_cache", "Disable Vertex Cache", NULL,
+        "Turn off the cache of vertex data, as in RPCS3. Slower; only for games that show broken or stale geometry with it.",
         NULL, "gpu",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
     },
     {
         "rpcs3_multithreaded_rsx", "Multithreaded RSX", NULL,
         "Moves part of the RSX work to a second thread. Off by default, as in RPCS3; it can help on CPUs with few fast cores, phones included.",
+        NULL, "gpu",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_async_texture_streaming", "Asynchronous Texture Streaming", NULL,
+        "Enable asynchronous texture streaming.",
         NULL, "gpu",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -290,13 +290,6 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "disabled"
     },
     {
-        "rpcs3_perf_overlay", "Performance Overlay", NULL,
-        "RPCS3's own performance overlay, drawn over the game: the game's frame rate as RPCS3 counts it, and at higher detail levels frame times and CPU and GPU load.",
-        NULL, "gpu",
-        { {"disabled", NULL}, {"minimal", "Frame rate only"}, {"low", "Low"}, {"medium", "Medium"}, {"high", "High"}, {NULL, NULL} },
-        "disabled"
-    },
-    {
         "rpcs3_driver_wakeup_delay", "Driver Wake-Up Delay", NULL,
         "Driver wake-up delay in microseconds. 0 by default, as in RPCS3; raise it only when a game needs it.",
         NULL, "gpu",
@@ -304,18 +297,11 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "0"
     },
     {
-        "rpcs3_vblank_rate", "VBlank Rate", NULL,
+        "rpcs3_vblank_rate", "VBlank Frequency", NULL,
         "The PS3's refresh rate in Hz. It is also the frame rate the core asks RetroArch for, which takes effect when content is loaded; games that can run above 60 FPS need a display that refreshes that fast.",
         NULL, "gpu",
         { {"50", "50 Hz (PAL)"}, {"60", "60 Hz (NTSC)"}, {"120", "120 Hz"}, {"144", "144 Hz"}, {"240", "240 Hz"}, {NULL, NULL} },
         "60"
-    },
-    {
-        "rpcs3_frame_pacing", "Frame Pacing", NULL,
-        "What the game's frames are timed by. Emulator clock is RPCS3's own timer, as in standalone RPCS3. RetroArch gives the game one PS3 refresh per frame RetroArch shows, so fast-forward speeds the game up and the game runs at the VBlank Rate when RetroArch shows that many frames a second; with the Vulkan renderer it currently skips frames.",
-        NULL, "gpu",
-        { {"frontend", "RetroArch"}, {"emulator", "Emulator clock"}, {NULL, NULL} },
-        "emulator"
     },
     {
         "rpcs3_stretch_to_display", "Stretch to Display", NULL,
@@ -408,7 +394,7 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "enabled"
     },
     {
-        "rpcs3_spu_cache_line_stores", "SPU Cache Line Stores", NULL,
+        "rpcs3_spu_cache_line_stores", "Accurate PPU/SPU Cache Line Stores", NULL,
         "Enable accurate cache line stores.",
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
@@ -443,35 +429,28 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "3"
     },
     {
-        "rpcs3_async_texture_streaming", "Async Texture Streaming", NULL,
-        "Enable asynchronous texture streaming.",
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_nj_mode", "PPU NJ Fixup Mode", NULL,
+        "rpcs3_ppu_nj_mode", "Accurate PPU Non-Java Mode", NULL,
         "PPU non-Java mode handling.",
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
     {
-        "rpcs3_ppu_set_sat_bit", "Set Saturation Bit", NULL,
+        "rpcs3_ppu_set_sat_bit", "Accurate PPU Saturation Bit", NULL,
         "Accurately set PPU saturation bit.",
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
     {
-        "rpcs3_ppu_accurate_vector_nan", "PPU Accurate Vector NaN", NULL,
+        "rpcs3_ppu_accurate_vector_nan", "Accurate PPU Vector NaN Handling", NULL,
         "More accurate vector NaN handling.",
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
     {
-        "rpcs3_ppu_set_fpcc", "PPU Set FPCC", NULL,
+        "rpcs3_ppu_set_fpcc", "Accurate PPU Float Condition Control", NULL,
         "Accurately set PPU FPCC bits.",
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
@@ -500,13 +479,41 @@ struct retro_core_option_v2_definition option_defs_us[] = {
     },
     {
         "rpcs3_vblank_ntsc", "VBlank NTSC Fixup", NULL,
-        "Run the VBlank Rate at the NTSC rate (59.94 Hz for 60) instead of the round number.",
+        "Run the VBlank Frequency at the NTSC rate (59.94 Hz for 60) instead of the round number.",
         NULL, "advanced",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    {
+        "rpcs3_accurate_dfma", "Accurate DFMA", NULL,
+        "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games.",
+        NULL, "advanced",
+        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
+        "enabled"
+    },
+    {
+        "rpcs3_spu_cache", "SPU Cache", NULL,
+        "Enable SPU cache for faster subsequent loads.",
+        NULL, "advanced",
+        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
+        "enabled"
+    },
 
     // ==================== CORE OPTIONS ====================
+    {
+        "rpcs3_perf_overlay", "Performance Overlay", NULL,
+        "RPCS3's own performance overlay, drawn over the game: the game's frame rate as RPCS3 counts it, and at higher detail levels frame times and CPU and GPU load.",
+        NULL, "core",
+        { {"disabled", NULL}, {"minimal", "Frame rate only"}, {"low", "Low"}, {"medium", "Medium"}, {"high", "High"}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_frame_pacing", "Frame Pacing", NULL,
+        "What the game's frames are timed by. Emulator clock is RPCS3's own timer, as in standalone RPCS3. RetroArch gives the game one PS3 refresh per frame RetroArch shows, so fast-forward speeds the game up and the game runs at the VBlank Frequency when RetroArch shows that many frames a second; with the Vulkan renderer it currently skips frames.",
+        NULL, "core",
+        { {"frontend", "RetroArch"}, {"emulator", "Emulator clock"}, {NULL, NULL} },
+        "emulator"
+    },
     {
         "rpcs3_language", "System Language", NULL,
         "PS3 system language.",
@@ -515,14 +522,14 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "english"
     },
     {
-        "rpcs3_enter_button", "Confirm Button", NULL,
+        "rpcs3_enter_button", "Enter Button Assignment", NULL,
         "Button used for confirm actions.",
         NULL, "core",
         { {"cross", "Cross (Western)"}, {"circle", "Circle (Japanese)"}, {NULL, NULL} },
         "cross"
     },
     {
-        "rpcs3_license_area", "License Area", NULL,
+        "rpcs3_license_area", "Console Region", NULL,
         "PS3 license region.",
         NULL, "core",
         { {"usa", "SCEA (Americas)"}, {"eu", "SCEE (Europe, Oceania)"}, {"jp", "SCEJ (Japan)"}, {"hk", "SCEH (Hong Kong, Southeast Asia)"}, {"kr", "SCEK (Korea)"}, {"cn", "SCH (China)"}, {NULL, NULL} },
