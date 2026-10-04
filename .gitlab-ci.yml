@@ -1,10 +1,6 @@
 # DESCRIPTION: GitLab CI/CD for libRetro (NOT FOR GitLab-proper)
 
-# Linux x64, Linux aarch64 and Android arm64-v8a: the targets the GitHub
-# workflow builds and publishes. Windows is not here yet. Upstream builds it
-# with MSVC through rpcs3.sln, the GitHub workflow with MSYS2 clang64 and its
-# LLVM, ffmpeg, OpenCV and GLEW packages; the buildbot's Windows images have
-# neither (MXE gcc, or MSVC 2019 16.8, which is too old for RPCS3's C++).
+# Linux x64, Linux aarch64, Windows x64 and Android arm64-v8a.
 #
 # The buildbot's own Linux images are Ubuntu 16.04 with gcc 9, which cannot
 # build RPCS3 at all, so the Linux jobs run in the images upstream RPCS3 builds
@@ -48,6 +44,10 @@ include:
   - project: 'libretro-infrastructure/ci-templates'
     file: '/linux-cmake.yml'
 
+  # Windows
+  - project: 'libretro-infrastructure/ci-templates'
+    file: '/windows-cmake-mingw.yml'
+
   # Android
   - project: 'libretro-infrastructure/ci-templates'
     file: '/android-cmake.yml'
@@ -75,6 +75,26 @@ libretro-build-linux-aarch64:
     - .core-defs
     - .linux-defs
   image: rpcs3/rpcs3-ci-jammy-aarch64:2.1
+
+# Windows 64-bit
+#
+# Cross-built on Linux with llvm-mingw (clang, lld, libc++), the same kind of
+# toolchain as the MSYS2 clang64 environment the GitHub workflow builds
+# Windows in. The buildbot's own Windows images cannot build RPCS3: MXE's gcc
+# is not a toolchain RPCS3 supports, and MSVC 2019 16.8 is too old for its C++.
+# .ci/build-windows-cross-libretro.sh makes what clang64 would provide as
+# packages (LLVM, GLEW, the Vulkan headers and import library).
+libretro-build-windows-x64:
+  extends:
+    - .libretro-windows-cmake-x86_64
+    - .core-defs
+  image: mstorsjo/llvm-mingw:latest
+  before_script:
+    - export NUMPROC=$(($(nproc)/5))
+    - *submodule-urls
+  script:
+    - .ci/build-windows-cross-libretro.sh
+    - mv build/bin/$LIBNAME $LIBNAME
 
 # Android 64-bit (ARM)
 #
