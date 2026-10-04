@@ -52,17 +52,17 @@ extern "C" {
  */
 
 struct retro_core_option_v2_category option_cats_us[] = {
-    { "cpu", "CPU", "PPU/SPU decoder, threads, cache, and CPU emulation options." },
-    { "gpu", "GPU", "Renderer, resolution, shaders, and graphics options." },
-    { "audio", "Audio", "Audio buffering, volume, and microphone options." },
-    { "network", "Network", "Network, PSN, RPCN, and online options." },
-    { "advanced", "Advanced", "Advanced accuracy and performance tuning options." },
-    { "core", "Core", "System language, region, and misc core options." },
+    { "cpu", "CPU", "PPU and SPU decoders, accuracy and CPU emulation options." },
+    { "gpu", "GPU", "Renderer, resolution, shaders and graphics accuracy options." },
+    { "threads", "Thread Count", "How many threads the emulator runs and compiles with." },
+    { "network", "Network", "Network, PSN and RPCN options." },
+    { "debug", "Debug", "Options from RPCS3's Debug tab: for diagnosing problems, rarely for playing." },
+    { "core", "Core", "Language, region, overlay, frame pacing, volume and other options of the core itself." },
     { NULL, NULL, NULL }
 };
 
 struct retro_core_option_v2_definition option_defs_us[] = {
-    // ==================== CPU OPTIONS ====================
+    // ==================== CPU ====================
     {
         "rpcs3_ppu_decoder", "PPU Decoder", NULL,
         "PPU (main CPU) decoder. LLVM Recompiler is fastest.",
@@ -92,32 +92,74 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "safe"
     },
     {
-        "rpcs3_preferred_spu_threads", "Preferred SPU Threads", NULL,
-        "Number of SPU threads. Auto recommended.",
+        "rpcs3_accurate_rsx_reservation", "Accurate RSX Reservation Access", NULL,
+        "Synchronize RSX memory accesses with the reservations of the CPU threads. Needed by a few games, slower.",
         NULL, "cpu",
-        { {"0", "Auto"}, {"1", "1"}, {"2", "2"}, {"3", "3"}, {"4", "4"}, {"5", "5"}, {"6", "6"}, {NULL, NULL} },
-        "0"
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
     },
     {
-        "rpcs3_spu_loop_detection", "SPU Loop Detection", NULL,
+        "rpcs3_spu_accurate_dma", "Accurate SPU DMA", NULL,
+        "Accurately processes SPU DMA operations, as in RPCS3. Fixes a few games, at a large cost in speed.",
+        NULL, "cpu",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_spu_accurate_reservations", "Accurate SPU Reservations", NULL,
+        "Accurately processes SPU reservations, as in RPCS3 (on by default there too). Turning it off can make some games faster and break others.",
+        NULL, "cpu",
+        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
+        "enabled"
+    },
+    {
+        "rpcs3_debug_console_mode", "Debug Console Mode", NULL,
+        "Emulates a PS3 debug console (more memory and debug features) instead of a retail one. Only for software that needs it; not recommended otherwise.",
+        NULL, "cpu",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_mfc_delay_command", "Delay Each Odd MFC Command", NULL,
+        "Delays every second MFC (SPU DMA) command, as in RPCS3. Only for the few games that need it.",
+        NULL, "cpu",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_disable_getllar_spin_opt", "Disable SPU GETLLAR Spin Optimization", NULL,
+        "Turn off the detection of SPU busy-wait loops on GETLLAR. A few games need it off.",
+        NULL, "cpu",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_emulate_hdd_speed", "Emulate HDD Read Speed", NULL,
+        "Reads from the emulated hard disk at the speed of the PS3's, for games that break when loading is instant.",
+        NULL, "cpu",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_spu_loop_detection", "Enable SPU Loop Detection", NULL,
         "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones.",
         NULL, "cpu",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
     {
-        "rpcs3_llvm_precompilation", "LLVM Precompilation", NULL,
+        "rpcs3_ppu_reservation_priority", "PPU Reservation Priority", NULL,
+        "Gives PPU reservations priority over the SPUs', as in RPCS3. Can help games that stall on them.",
+        NULL, "cpu",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_llvm_precompilation", "PPU/SPU LLVM Precompilation", NULL,
         "Precompile PPU modules at boot for faster subsequent loads.",
         NULL, "cpu",
         { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
         "enabled"
-    },
-    {
-        "rpcs3_clocks_scale", "Clocks Scale", NULL,
-        "Scale PS3 clock speed percentage.",
-        NULL, "cpu",
-        { {"50", "50%"}, {"75", "75%"}, {"100", "100%"}, {"150", "150%"}, {"200", "200%"}, {"300", "300%"}, {NULL, NULL} },
-        "100"
     },
     {
         "rpcs3_sleep_timers_accuracy", "Sleep Timers Accuracy", NULL,
@@ -127,20 +169,54 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "auto"
     },
     {
-        "rpcs3_max_spurs_threads", "Maximum Number of SPURS Threads", NULL,
-        "Maximum SPURS thread count. Lower may improve performance.",
+        "rpcs3_clocks_scale", "Clocks Scale", NULL,
+        "Scale PS3 clock speed percentage.",
         NULL, "cpu",
-        { {"auto", "Auto"}, {"1", "1"}, {"2", "2"}, {"3", "3"}, {"4", "4"}, {"5", "5"}, {"6", "6"}, {NULL, NULL} },
-        "auto"
+        { {"50", "50%"}, {"75", "75%"}, {"100", "100%"}, {"150", "150%"}, {"200", "200%"}, {"300", "300%"}, {NULL, NULL} },
+        "100"
     },
-
-    // ==================== GPU OPTIONS ====================
+    // ==================== GPU ====================
     {
         "rpcs3_renderer", "Renderer", NULL,
         "Vulkan renders on the frontend's Vulkan device and hands it each finished frame as an image; when the frontend is not running its Vulkan video driver, the frame is copied back through memory instead. OpenGL draws straight into the frontend's OpenGL context. (Restart required)",
         NULL, "gpu",
         { {"opengl", "OpenGL"}, {"vulkan", "Vulkan"}, {"null", "Null (No Video)"}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_frame_limit", "Frame Limit", NULL,
+        "Highest frame rate the game may run at. Auto is the VBlank Frequency, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast.",
+        NULL, "gpu",
+        { {"auto", "Auto"}, {"ps3", "PS3 Native"}, {"off", "Off"}, {"30", "30 FPS"}, {"50", "50 FPS"}, {"60", "60 FPS"}, {"120", "120 FPS"}, {"144", "144 FPS"}, {"240", "240 FPS"}, {NULL, NULL} },
+        "auto"
+    },
+    {
+        "rpcs3_anisotropic_filter", "Anisotropic Filtering", NULL,
+        "Texture filtering quality.",
+        NULL, "gpu",
+        { {"auto", "Auto"}, {"2", "2x"}, {"4", "4x"}, {"8", "8x"}, {"16", "16x"}, {NULL, NULL} },
+        "auto"
+    },
+    {
+        "rpcs3_msaa", "Anti-Aliasing", NULL,
+        "Multi-sample anti-aliasing where the game asks for it, as in RPCS3.",
+        NULL, "gpu",
+        { {"auto", "Auto"}, {"disabled", NULL}, {NULL, NULL} },
+        "auto"
+    },
+    {
+        "rpcs3_zcull_accuracy", "ZCULL Accuracy", NULL,
+        "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones.",
+        NULL, "gpu",
+        { {"precise", "Precise (Default)"}, {"approximate", "Approximate"}, {"relaxed", "Relaxed (Fastest)"}, {NULL, NULL} },
+        "precise"
+    },
+    {
+        "rpcs3_shader_quality", "Shader Quality", NULL,
+        "Precision of the shaders RPCS3 generates. Low is fastest, Ultra most accurate.",
+        NULL, "gpu",
+        { {"low", "Low"}, {"high", "High"}, {"ultra", "Ultra"}, {NULL, NULL} },
+        "high"
     },
     {
         "rpcs3_default_resolution", "Default Resolution", NULL,
@@ -171,13 +247,6 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "bilinear"
     },
     {
-        "rpcs3_frame_limit", "Frame Limit", NULL,
-        "Highest frame rate the game may run at. Auto is the VBlank Frequency, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast.",
-        NULL, "gpu",
-        { {"auto", "Auto"}, {"ps3", "PS3 Native"}, {"off", "Off"}, {"30", "30 FPS"}, {"50", "50 FPS"}, {"60", "60 FPS"}, {"120", "120 FPS"}, {"144", "144 FPS"}, {"240", "240 FPS"}, {NULL, NULL} },
-        "auto"
-    },
-    {
         "rpcs3_shader_mode", "Shader Mode", NULL,
         "How shaders are compiled. Async compiles in the background but the frame that first needs a pipeline waits for it, which is what a long freeze on a new scene usually is. Async with Shader Interpreter draws that frame through the interpreter instead and swaps in the compiled shader when it is ready: no freeze, lower speed while it catches up.",
         NULL, "gpu",
@@ -185,57 +254,8 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "async"
     },
     {
-        "rpcs3_shader_compiler_threads", "Shader Compiler Threads", NULL,
-        "How many threads compile shaders. Auto lets RPCS3 decide from the CPU it sees.",
-        NULL, "gpu",
-        { {"auto", "Auto"}, {"1", "1"}, {"2", "2"}, {"3", "3"}, {"4", "4"}, {"6", "6"}, {"8", "8"}, {NULL, NULL} },
-        "auto"
-    },
-    {
-        "rpcs3_anisotropic_filter", "Anisotropic Filtering", NULL,
-        "Texture filtering quality.",
-        NULL, "gpu",
-        { {"auto", "Auto"}, {"2", "2x"}, {"4", "4x"}, {"8", "8x"}, {"16", "16x"}, {NULL, NULL} },
-        "auto"
-    },
-    {
-        "rpcs3_msaa", "Anti-Aliasing", NULL,
-        "Multi-sample anti-aliasing where the game asks for it, as in RPCS3.",
-        NULL, "gpu",
-        { {"auto", "Auto"}, {"disabled", NULL}, {NULL, NULL} },
-        "auto"
-    },
-    {
-        "rpcs3_shader_quality", "Shader Quality", NULL,
-        "Precision of the shaders RPCS3 generates. Low is fastest, Ultra most accurate.",
-        NULL, "gpu",
-        { {"low", "Low"}, {"high", "High"}, {"ultra", "Ultra"}, {NULL, NULL} },
-        "high"
-    },
-    {
         "rpcs3_write_color_buffers", "Write Color Buffers", NULL,
         "Write color buffers to main memory. Fixes some effects.",
-        NULL, "gpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_read_color_buffers", "Read Color Buffers", NULL,
-        "Read color buffers from main memory.",
-        NULL, "gpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_read_depth_buffers", "Read Depth Buffers", NULL,
-        "Read depth buffers from main memory.",
-        NULL, "gpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_write_depth_buffers", "Write Depth Buffers", NULL,
-        "Write depth buffers to main memory.",
         NULL, "gpu",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -248,8 +268,8 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "disabled"
     },
     {
-        "rpcs3_disable_vertex_cache", "Disable Vertex Cache", NULL,
-        "Turn off the cache of vertex data, as in RPCS3. Slower; only for games that show broken or stale geometry with it.",
+        "rpcs3_stretch_to_display", "Stretch to Display Area", NULL,
+        "Stretch game output to fill the display.",
         NULL, "gpu",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -269,15 +289,8 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "disabled"
     },
     {
-        "rpcs3_zcull_accuracy", "ZCULL Accuracy", NULL,
-        "How exactly occlusion queries are answered, as in RPCS3. Precise is correct and the default there; Approximate and Relaxed are faster, and can break effects such as lens flares. Relaxed is worth trying on phones.",
-        NULL, "gpu",
-        { {"precise", "Precise (Default)"}, {"approximate", "Approximate"}, {"relaxed", "Relaxed (Fastest)"}, {NULL, NULL} },
-        "precise"
-    },
-    {
-        "rpcs3_cpu_blit", "Force CPU Blit", NULL,
-        "Force CPU blit emulation for certain effects.",
+        "rpcs3_host_gpu_labels", "Allow Host GPU Labels", NULL,
+        "Lets the host GPU signal RSX labels itself instead of the CPU waiting on them. Faster in some games, unstable in others.",
         NULL, "gpu",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -288,6 +301,69 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         NULL, "gpu",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
+    },
+    {
+        "rpcs3_disable_vertex_cache", "Disable Vertex Cache", NULL,
+        "Turn off the cache of vertex data, as in RPCS3. Slower; only for games that show broken or stale geometry with it.",
+        NULL, "gpu",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_emulate_depth_compare", "Emulate Special Depth Comparison", NULL,
+        "Emulates the depth comparison modes the PS3 has and the host GPU lacks. Fixes some shadows, at a cost in speed.",
+        NULL, "gpu",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_force_hw_msaa_resolve", "Force Hardware MSAA Resolve", NULL,
+        "Resolves anti-aliased surfaces on the GPU's own hardware instead of a shader. Faster, but some games show artifacts with it.",
+        NULL, "gpu",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_handle_tiled_memory", "Handle RSX Memory Tiling", NULL,
+        "Emulates the RSX's tiled memory, for games that read their tiled surfaces back. Costs speed.",
+        NULL, "gpu",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_read_depth_buffers", "Read Depth Buffers", NULL,
+        "Read depth buffers from main memory.",
+        NULL, "gpu",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_read_color_buffers", "Read Color Buffers", NULL,
+        "Read color buffers from main memory.",
+        NULL, "gpu",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_use_rebar", "Use Re-BAR Memory for GPU Uploads", NULL,
+        "Uploads to the GPU through resizable BAR memory where the Vulkan driver offers it, as in RPCS3 (on by default there too). Turn off if it causes problems.",
+        NULL, "gpu",
+        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
+        "enabled"
+    },
+    {
+        "rpcs3_write_depth_buffers", "Write Depth Buffers", NULL,
+        "Write depth buffers to main memory.",
+        NULL, "gpu",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_rsx_fifo_accuracy", "RSX FIFO Accuracy", NULL,
+        "RSX FIFO command accuracy level.",
+        NULL, "gpu",
+        { {"fast", "Fast"}, {"atomic", "Atomic"}, {"atomic_ordered", "Ordered & Atomic"}, {"as_ps3", "PS3"}, {NULL, NULL} },
+        "atomic"
     },
     {
         "rpcs3_driver_wakeup_delay", "Driver Wake-Up Delay", NULL,
@@ -303,45 +379,43 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         { {"50", "50 Hz (PAL)"}, {"60", "60 Hz (NTSC)"}, {"120", "120 Hz"}, {"144", "144 Hz"}, {"240", "240 Hz"}, {NULL, NULL} },
         "60"
     },
+    // ==================== THREADS ====================
     {
-        "rpcs3_stretch_to_display", "Stretch to Display", NULL,
-        "Stretch game output to fill the display.",
-        NULL, "gpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-
-    // ==================== AUDIO OPTIONS ====================
-    {
-        "rpcs3_audio_buffering", "Enable Buffering", NULL,
-        "Enable audio buffering.",
-        NULL, "audio",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "disabled"
+        "rpcs3_preferred_spu_threads", "Preferred SPU Threads", NULL,
+        "Number of SPU threads. Auto recommended.",
+        NULL, "threads",
+        { {"0", "Auto"}, {"1", "1"}, {"2", "2"}, {"3", "3"}, {"4", "4"}, {"5", "5"}, {"6", "6"}, {NULL, NULL} },
+        "0"
     },
     {
-        "rpcs3_audio_buffer_duration", "Buffer Duration", NULL,
-        "Audio buffer size in milliseconds.",
-        NULL, "audio",
-        { {"10", "10ms"}, {"20", "20ms"}, {"30", "30ms"}, {"40", "40ms"}, {"50", "50ms"}, {"75", "75ms"}, {"100", "100ms (Default)"}, {"150", "150ms"}, {"200", "200ms"}, {NULL, NULL} },
-        "100"
+        "rpcs3_max_preempt_count", "Max Power Saving CPU-Preemptions", NULL,
+        "How many times a frame RPCS3 may pause the CPU threads to save power, as in RPCS3. 0 turns it off.",
+        NULL, "threads",
+        { {"0", "0 (Disabled)"}, {"10", NULL}, {"20", NULL}, {"50", NULL}, {"100", NULL}, {"200", NULL}, {"400", NULL}, {NULL, NULL} },
+        "0"
     },
     {
-        "rpcs3_time_stretching", "Time Stretching", NULL,
-        "Enable audio time stretching to reduce stuttering.",
-        NULL, "audio",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        "rpcs3_ppu_threads", "PPU Thread Count", NULL,
+        "How many PPU threads run at once, as in RPCS3. 2 is the default and what nearly every game wants.",
+        NULL, "threads",
+        { {"1", NULL}, {"2", "2 (Default)"}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {NULL, NULL} },
+        "2"
     },
     {
-        "rpcs3_master_volume", "Master Volume", NULL,
-        "Master audio volume percentage.",
-        NULL, "audio",
-        { {"0", "0%"}, {"10", "10%"}, {"20", "20%"}, {"30", "30%"}, {"40", "40%"}, {"50", "50%"}, {"60", "60%"}, {"70", "70%"}, {"80", "80%"}, {"90", "90%"}, {"100", "100%"}, {NULL, NULL} },
-        "100"
+        "rpcs3_shader_compiler_threads", "Shader Compiler Threads", NULL,
+        "How many threads compile shaders. Auto lets RPCS3 decide from the CPU it sees.",
+        NULL, "threads",
+        { {"auto", "Auto"}, {"1", "1"}, {"2", "2"}, {"3", "3"}, {"4", "4"}, {"6", "6"}, {"8", "8"}, {NULL, NULL} },
+        "auto"
     },
-
-    // ==================== NETWORK OPTIONS ====================
+    {
+        "rpcs3_max_spurs_threads", "Maximum Number of SPURS Threads", NULL,
+        "Maximum SPURS thread count. Lower may improve performance.",
+        NULL, "threads",
+        { {"auto", "Auto"}, {"1", "1"}, {"2", "2"}, {"3", "3"}, {"4", "4"}, {"5", "5"}, {"6", "6"}, {NULL, NULL} },
+        "auto"
+    },
+    // ==================== NETWORK ====================
     {
         "rpcs3_network_enabled", "Network Enabled", NULL,
         "Lets games reach the internet. Takes effect when content is loaded.",
@@ -384,122 +458,120 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         { {"8.8.8.8", "Google DNS"}, {"1.1.1.1", "Cloudflare DNS"}, {"208.67.222.222", "OpenDNS"}, {NULL, NULL} },
         "8.8.8.8"
     },
-
-    // ==================== ADVANCED OPTIONS ====================
+    // ==================== DEBUG ====================
     {
-        "rpcs3_spu_verification", "SPU Verification", NULL,
-        "SPU code verification level.",
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "enabled"
-    },
-    {
-        "rpcs3_spu_cache_line_stores", "Accurate PPU/SPU Cache Line Stores", NULL,
-        "Enable accurate cache line stores.",
-        NULL, "advanced",
+        "rpcs3_disable_fifo_reordering", "Disable FIFO Reordering", NULL,
+        "Turns off the reordering of RSX commands RPCS3 does for speed. For debugging.",
+        NULL, "debug",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
     {
-        "rpcs3_rsx_fifo_accuracy", "RSX FIFO Accuracy", NULL,
-        "RSX FIFO command accuracy level.",
-        NULL, "advanced",
-        { {"fast", "Fast"}, {"atomic", "Atomic"}, {"atomic_ordered", "Ordered & Atomic"}, {"as_ps3", "PS3"}, {NULL, NULL} },
-        "atomic"
-    },
-    {
-        "rpcs3_driver_recovery_timeout", "Driver Recovery Timeout", NULL,
-        "GPU driver recovery timeout in milliseconds.",
-        NULL, "advanced",
-        { {"0", "Disabled"}, {"1000", "1 second"}, {"2000", "2 seconds"}, {"5000", "5 seconds"}, {"10000", "10 seconds"}, {NULL, NULL} },
-        "1000"
-    },
-    {
-        "rpcs3_mfc_shuffling", "MFC Commands Shuffling", NULL,
-        "Shuffle MFC commands for accuracy.",
-        NULL, "advanced",
+        "rpcs3_disable_hw_blending", "Disable Hardware Blending", NULL,
+        "Forces programmable blending on renderers that support it, as in RPCS3's Debug tab. Purely a debugging option.",
+        NULL, "debug",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
     {
-        "rpcs3_spu_delay_penalty", "SPU Delay Penalty", NULL,
-        "SPU delay penalty for scheduling.",
-        NULL, "advanced",
-        { {"0", "0"}, {"1", "1"}, {"2", "2"}, {"3", "3 (Default)"}, {"4", "4"}, {"5", "5"}, {NULL, NULL} },
-        "3"
-    },
-    {
-        "rpcs3_ppu_nj_mode", "Accurate PPU Non-Java Mode", NULL,
-        "PPU non-Java mode handling.",
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_set_sat_bit", "Accurate PPU Saturation Bit", NULL,
-        "Accurately set PPU saturation bit.",
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_accurate_vector_nan", "Accurate PPU Vector NaN Handling", NULL,
-        "More accurate vector NaN handling.",
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_ppu_set_fpcc", "Accurate PPU Float Condition Control", NULL,
-        "Accurately set PPU FPCC bits.",
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_accurate_rsx_reservation", "Accurate RSX Reservation Access", NULL,
-        "Synchronize RSX memory accesses with the reservations of the CPU threads. Needed by a few games, slower.",
-        NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_disable_getllar_spin_opt", "Disable SPU GETLLAR Spin Optimization", NULL,
-        "Turn off the detection of SPU busy-wait loops on GETLLAR. A few games need it off.",
-        NULL, "advanced",
+        "rpcs3_disable_hw_colorspace", "Disable Hardware ColorSpace Remapping", NULL,
+        "Remaps texture colour spaces in shaders instead of in the GPU's hardware. For debugging.",
+        NULL, "debug",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
     {
         "rpcs3_disable_zcull_queries", "Disable ZCull Occlusion Queries", NULL,
         "Report occlusion queries as passed without running them. Faster; breaks games that rely on them (lens flares, visibility).",
-        NULL, "advanced",
+        NULL, "debug",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
     {
-        "rpcs3_vblank_ntsc", "VBlank NTSC Fixup", NULL,
-        "Run the VBlank Frequency at the NTSC rate (59.94 Hz for 60) instead of the round number. On by default, as in RPCS3.",
-        NULL, "advanced",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "rpcs3_cpu_blit", "Force CPU Blit Emulation", NULL,
+        "Force CPU blit emulation for certain effects.",
+        NULL, "debug",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
     },
     {
-        "rpcs3_accurate_dfma", "Accurate DFMA", NULL,
-        "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games.",
-        NULL, "advanced",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "rpcs3_gpu_texture_scaling", "Force GPU Texture Scaling", NULL,
+        "Scales textures on the GPU instead of the CPU. For debugging; can break games.",
+        NULL, "debug",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
     },
     {
-        "rpcs3_spu_cache", "SPU Cache", NULL,
-        "Enable SPU cache for faster subsequent loads.",
-        NULL, "advanced",
-        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
-        "enabled"
+        "rpcs3_spu_events_busy_loop", "Enable SPU Events Busy Loop", NULL,
+        "Lets SPU threads spin while they wait for events instead of sleeping. Can help a few games, costs CPU time.",
+        NULL, "debug",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
     },
-
-    // ==================== CORE OPTIONS ====================
+    {
+        "rpcs3_hook_static_funcs", "Hook Static Functions", NULL,
+        "Hook static functions for HLE.",
+        NULL, "debug",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_set_daz_ftz", "PPU Set DAZ and FTZ", NULL,
+        "Sets the denormals-are-zero and flush-to-zero CPU flags for the PPU. For debugging.",
+        NULL, "debug",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_spu_cache_line_stores", "Accurate PPU/SPU Cache Line Stores", NULL,
+        "Enable accurate cache line stores.",
+        NULL, "debug",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_ppu_set_fpcc", "Accurate PPU Float Condition Control", NULL,
+        "Accurately set PPU FPCC bits.",
+        NULL, "debug",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_ppu_set_sat_bit", "Accurate PPU Saturation Bit", NULL,
+        "Accurately set PPU saturation bit.",
+        NULL, "debug",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_ppu_nj_mode", "Accurate PPU Non-Java Mode", NULL,
+        "PPU non-Java mode handling.",
+        NULL, "debug",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_ppu_accurate_vector_nan", "Accurate PPU Vector NaN Handling", NULL,
+        "More accurate vector NaN handling.",
+        NULL, "debug",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
+        "rpcs3_accurate_ppu_128", "Accurate PPU 128 Reservations", NULL,
+        "Processes 128-byte PPU reservation operations accurately: never, always, or for loops up to the given length. For debugging.",
+        NULL, "debug",
+        { {"0", "Never (Default)"}, {"-1", "Always"}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {"10", NULL}, {"11", NULL}, {"12", NULL}, {"13", NULL}, {"14", NULL}, {NULL, NULL} },
+        "0"
+    },
+    {
+        "rpcs3_fb_aliasing_bias", "Framebuffer Aliasing Heuristic Bias", NULL,
+        "Which way RPCS3 decides a surface used as both colour and depth. For debugging.",
+        NULL, "debug",
+        { {"auto", "Auto"}, {"color", "Prefer Color"}, {"depth", "Prefer Depth"}, {NULL, NULL} },
+        "auto"
+    },
+    // ==================== CORE ====================
     {
         "rpcs3_perf_overlay", "Performance Overlay", NULL,
         "RPCS3's own performance overlay, drawn over the game: the game's frame rate as RPCS3 counts it, and at higher detail levels frame times and CPU and GPU load.",
@@ -515,18 +587,25 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "emulator"
     },
     {
+        "rpcs3_savedata_slot", "Save Data Slot", NULL,
+        "A PS3 game shows a list of its save data and lets the player pick. 'Pick from list' shows that list in the game picture, to be used with the controller. A number has the core pick for you instead: saving overwrites the entry at this position in the game's list, or makes a new save when the list is shorter; loading takes the entry at this position, and finds nothing when the list is shorter. 0 is the first entry. Games that keep a single save of their own do not show a list, so this does not apply to them.",
+        NULL, "core",
+        { {"list", "Pick from list"}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
+        "list"
+    },
+    {
+        "rpcs3_master_volume", "Master Volume", NULL,
+        "Master audio volume percentage.",
+        NULL, "core",
+        { {"0", "0%"}, {"10", "10%"}, {"20", "20%"}, {"30", "30%"}, {"40", "40%"}, {"50", "50%"}, {"60", "60%"}, {"70", "70%"}, {"80", "80%"}, {"90", "90%"}, {"100", "100%"}, {NULL, NULL} },
+        "100"
+    },
+    {
         "rpcs3_language", "System Language", NULL,
         "PS3 system language.",
         NULL, "core",
         { {"english", "English"}, {"japanese", "Japanese"}, {"french", "French"}, {"spanish", "Spanish"}, {"german", "German"}, {"italian", "Italian"}, {"dutch", "Dutch"}, {"portuguese", "Portuguese"}, {"russian", "Russian"}, {"korean", "Korean"}, {"chinese_trad", "Chinese (Traditional)"}, {"chinese_simp", "Chinese (Simplified)"}, {NULL, NULL} },
         "english"
-    },
-    {
-        "rpcs3_enter_button", "Enter Button Assignment", NULL,
-        "Button used for confirm actions.",
-        NULL, "core",
-        { {"cross", "Cross (Western)"}, {"circle", "Circle (Japanese)"}, {NULL, NULL} },
-        "cross"
     },
     {
         "rpcs3_license_area", "Console Region", NULL,
@@ -536,22 +615,22 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "usa"
     },
     {
-        "rpcs3_show_shader_compilation_hint", "Show Shader Compilation Hint", NULL,
-        "Show hint when shaders are being compiled.",
+        "rpcs3_enter_button", "Enter Button Assignment", NULL,
+        "Button used for confirm actions.",
+        NULL, "core",
+        { {"cross", "Cross (Western)"}, {"circle", "Circle (Japanese)"}, {NULL, NULL} },
+        "cross"
+    },
+    {
+        "rpcs3_show_ppu_compilation_hint", "Show PPU Compilation Hint", NULL,
+        "Show hint when PPU modules are being compiled.",
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
     {
-        "rpcs3_savedata_slot", "Save Data Slot", NULL,
-        "A PS3 game shows a list of its save data and lets the player pick. 'Pick from list' shows that list in the game picture, to be used with the controller. A number has the core pick for you instead: saving overwrites the entry at this position in the game's list, or makes a new save when the list is shorter; loading takes the entry at this position, and finds nothing when the list is shorter. 0 is the first entry. Games that keep a single save of their own do not show a list, so this does not apply to them.",
-        NULL, "core",
-        { {"list", "Pick from list"}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
-        "rpcs3_show_ppu_compilation_hint", "Show PPU Compilation Hint", NULL,
-        "Show hint when PPU modules are being compiled.",
+        "rpcs3_show_shader_compilation_hint", "Show Shader Compilation Hint", NULL,
+        "Show hint when shaders are being compiled.",
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -563,12 +642,57 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
+    // ==================== HIDDEN ====================
+    // Not in the menu, as RPCS3 keeps them out of its settings dialog (they
+    // are config.yml only there); still read from the .opt file.
     {
-        "rpcs3_hook_static_funcs", "Hook Static Functions", NULL,
-        "Hook static functions for HLE.",
+        "rpcs3_spu_cache", "SPU Cache", NULL,
+        "Enable SPU cache for faster subsequent loads.",
+        NULL, "core",
+        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
+        "enabled"
+    },
+    {
+        "rpcs3_accurate_dfma", "Accurate DFMA", NULL,
+        "Double-precision fused multiply-add done exactly, as in RPCS3 (on by default there too). Costs little on CPUs with FMA; turning it off can help on a slow phone, and breaks some games.",
+        NULL, "core",
+        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
+        "enabled"
+    },
+    {
+        "rpcs3_spu_verification", "SPU Verification", NULL,
+        "SPU code verification level.",
+        NULL, "core",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "enabled"
+    },
+    {
+        "rpcs3_driver_recovery_timeout", "Driver Recovery Timeout", NULL,
+        "GPU driver recovery timeout in milliseconds.",
+        NULL, "core",
+        { {"0", "Disabled"}, {"1000", "1 second"}, {"2000", "2 seconds"}, {"5000", "5 seconds"}, {"10000", "10 seconds"}, {NULL, NULL} },
+        "1000"
+    },
+    {
+        "rpcs3_mfc_shuffling", "MFC Commands Shuffling", NULL,
+        "Shuffle MFC commands for accuracy.",
         NULL, "core",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
+    },
+    {
+        "rpcs3_spu_delay_penalty", "SPU Delay Penalty", NULL,
+        "SPU delay penalty for scheduling.",
+        NULL, "core",
+        { {"0", "0"}, {"1", "1"}, {"2", "2"}, {"3", "3 (Default)"}, {"4", "4"}, {"5", "5"}, {NULL, NULL} },
+        "3"
+    },
+    {
+        "rpcs3_vblank_ntsc", "VBlank NTSC Fixup", NULL,
+        "Run the VBlank Frequency at the NTSC rate (59.94 Hz for 60) instead of the round number. On by default, as in RPCS3.",
+        NULL, "core",
+        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
+        "enabled"
     },
     {
         "rpcs3_hle_lwmutex", "HLE lwmutex", NULL,
@@ -577,7 +701,6 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
     },
-
     { NULL, NULL, NULL, NULL, NULL, NULL, {{NULL, NULL}}, NULL }
 };
 

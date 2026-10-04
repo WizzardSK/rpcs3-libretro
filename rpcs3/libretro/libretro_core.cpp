@@ -753,6 +753,35 @@ static void libretro_apply_core_options()
     g_cfg.core.hook_functions.set(enabled("rpcs3_hook_static_funcs", "disabled"));
     g_cfg.core.hle_lwmutex.set(enabled("rpcs3_hle_lwmutex", "disabled"));
 
+    // The rest of RPCS3's settings dialog (NNshi's list)
+    g_cfg.core.spu_accurate_dma.set(enabled("rpcs3_spu_accurate_dma", "disabled"));
+    g_cfg.core.spu_accurate_reservations.set(enabled("rpcs3_spu_accurate_reservations", "enabled"));
+    g_cfg.core.debug_console_mode.set(enabled("rpcs3_debug_console_mode", "disabled"));
+    g_cfg.core.mfc_transfers_shuffling.set(enabled("rpcs3_mfc_delay_command", "disabled") ? 1 : 0);
+    g_cfg.vfs.emulate_hdd_speed.set(enabled("rpcs3_emulate_hdd_speed", "disabled"));
+    g_cfg.core.ppu_reservation_priority_over_spu.set(enabled("rpcs3_ppu_reservation_priority", "disabled"));
+    g_cfg.video.host_label_synchronization.set(enabled("rpcs3_host_gpu_labels", "disabled"));
+    g_cfg.video.emulate_depth_compare.set(enabled("rpcs3_emulate_depth_compare", "disabled"));
+    g_cfg.video.force_hw_MSAA_resolve.set(enabled("rpcs3_force_hw_msaa_resolve", "disabled"));
+    g_cfg.video.handle_tiled_memory.set(enabled("rpcs3_handle_tiled_memory", "disabled"));
+    g_cfg.video.vk.use_rebar_upload_heap.set(enabled("rpcs3_use_rebar", "enabled"));
+    g_cfg.core.max_cpu_preempt_count_per_frame.set(std::clamp(std::atoi(get_option_value("rpcs3_max_preempt_count", "0").c_str()), 0, 400));
+    g_cfg.core.ppu_threads.set(std::clamp(std::atoi(get_option_value("rpcs3_ppu_threads", "2").c_str()), 1, 8));
+    g_cfg.video.disable_FIFO_reordering.set(enabled("rpcs3_disable_fifo_reordering", "disabled"));
+    // By what they do: RPCS3's dialog has these two the wrong way round, each
+    // checkbox setting the other one's config entry
+    g_cfg.video.disable_hardware_blending.set(enabled("rpcs3_disable_hw_blending", "disabled"));
+    g_cfg.video.disable_hardware_texel_remapping.set(enabled("rpcs3_disable_hw_colorspace", "disabled"));
+    g_cfg.video.use_gpu_texture_scaling.set(enabled("rpcs3_gpu_texture_scaling", "disabled"));
+    g_cfg.core.spu_reservation_busy_waiting_enabled.set(enabled("rpcs3_spu_events_busy_loop", "disabled"));
+    g_cfg.core.set_daz_and_ftz.set(enabled("rpcs3_set_daz_ftz", "disabled"));
+    g_cfg.core.ppu_128_reservations_loop_max_length.set(std::clamp(std::atoi(get_option_value("rpcs3_accurate_ppu_128", "0").c_str()), -1, 14));
+    {
+        const std::string bias = get_option_value("rpcs3_fb_aliasing_bias", "auto");
+        g_cfg.video.fb_aliasing_bias.set(bias == "color" ? framebuffer_aliasing_bias::prefer_color
+            : bias == "depth" ? framebuffer_aliasing_bias::prefer_depth : framebuffer_aliasing_bias::_auto);
+    }
+
     const std::string xfloat = get_option_value("rpcs3_spu_xfloat_accuracy", "approximate");
     g_cfg.core.spu_xfloat_accuracy.set(xfloat == "accurate" ? xfloat_accuracy::accurate :
         xfloat == "relaxed" ? xfloat_accuracy::relaxed :
@@ -840,18 +869,13 @@ static void libretro_apply_core_options()
     std::string driver_delay = get_option_value("rpcs3_driver_wakeup_delay", "0");
     g_cfg.video.driver_wakeup_delay.set(std::stoi(driver_delay));
 
-    // ==================== AUDIO OPTIONS ====================
-    // Audio Buffering
-    // Off by default: RetroArch keeps its own buffer, and cellAudio's comes on
-    // top of it as latency the pictures do not have (NNshi, Project Diva).
-    g_cfg.audio.enable_buffering.set(get_option_value("rpcs3_audio_buffering", "disabled") == "enabled");
-
-    // Audio Buffer Duration
-    std::string audio_buf = get_option_value("rpcs3_audio_buffer_duration", "100");
-    g_cfg.audio.desired_buffer_duration.set(std::stoi(audio_buf));
-
-    // Time Stretching
-    g_cfg.audio.enable_time_stretching.set(get_option_value("rpcs3_time_stretching", "disabled") == "enabled");
+    // ==================== AUDIO ====================
+    // cellAudio's own buffer and time stretching are off and not options:
+    // RetroArch keeps the buffer, and cellAudio's on top of it is only latency
+    // the pictures do not have (NNshi, Project Diva); time stretching works
+    // only with that buffer on.
+    g_cfg.audio.enable_buffering.set(false);
+    g_cfg.audio.enable_time_stretching.set(false);
 
     // Master Volume
     std::string volume = get_option_value("rpcs3_master_volume", "100");
@@ -1202,6 +1226,16 @@ void retro_set_environment(retro_environment_t cb)
     // the flat v0 list generated from the same definitions.
     bool categories_supported = false;
     libretro_set_core_options(cb, &categories_supported);
+
+    // Out of the menu, as RPCS3 keeps them out of its settings dialog; the
+    // .opt file still sets them (the HIDDEN block in libretro_core_options.h)
+    for (const char* key : {"rpcs3_spu_cache", "rpcs3_accurate_dfma", "rpcs3_spu_verification",
+            "rpcs3_driver_recovery_timeout", "rpcs3_mfc_shuffling", "rpcs3_spu_delay_penalty",
+            "rpcs3_vblank_ntsc", "rpcs3_hle_lwmutex"})
+    {
+        struct retro_core_option_display display{key, false};
+        cb(RETRO_ENVIRONMENT_SET_CORE_OPTIONS_DISPLAY, &display);
+    }
 
     // We don't support no-game
     bool support_no_game = false;
