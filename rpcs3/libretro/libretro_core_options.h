@@ -479,10 +479,10 @@ struct retro_core_option_v2_definition option_defs_us[] = {
     },
     {
         "rpcs3_vblank_ntsc", "VBlank NTSC Fixup", NULL,
-        "Run the VBlank Frequency at the NTSC rate (59.94 Hz for 60) instead of the round number.",
+        "Run the VBlank Frequency at the NTSC rate (59.94 Hz for 60) instead of the round number. On by default, as in RPCS3.",
         NULL, "advanced",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
+        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
+        "enabled"
     },
     {
         "rpcs3_accurate_dfma", "Accurate DFMA", NULL,

@@ -735,7 +735,7 @@ static void libretro_apply_core_options()
         shader_quality == "ultra" ? gpu_preset_level::ultra : gpu_preset_level::high);
 
     g_cfg.video.disable_zcull_queries.set(get_option_value("rpcs3_disable_zcull_queries", "disabled") == "enabled");
-    g_cfg.video.vblank_ntsc.set(get_option_value("rpcs3_vblank_ntsc", "disabled") == "enabled");
+    g_cfg.video.vblank_ntsc.set(get_option_value("rpcs3_vblank_ntsc", "enabled") == "enabled");
     g_cfg.core.rsx_accurate_res_access.set(get_option_value("rpcs3_accurate_rsx_reservation", "disabled") == "enabled");
 
     // These had core options since the port, which nothing ever read: setting
