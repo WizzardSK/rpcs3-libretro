@@ -184,16 +184,32 @@ jobs:
     # principle - 3rdparty/llvm/CMakeLists.txt has an if(ANDROID) branch that
     # builds LLVM for AArch64 with an Android triple - but cross-building LLVM
     # is far larger than the core it serves and does not belong in a test run.
-    # LLVM is built from the submodule here, for AArch64 only - the branch for
-    # that is already in 3rdparty/llvm/CMakeLists.txt. Skipping it was the plan
+    # LLVM is built from the submodule here, for the ABI being built - the
+    # branch for that is already in 3rdparty/llvm/CMakeLists.txt, AArch64 on
+    # arm64 and X86 on x86_64. Skipping it was the plan
     # and did not survive contact: the AArch64 CPU backend uses llvm:: types
     # whether or not WITH_LLVM is set, so there is no arm64 build without it.
     #
     # What this answers is whether the core compiles for Android at all. Even
     # when it does, nobody should expect to play on it.
-    name: libretro core android-arm64 (experimental)
+    name: libretro core android-${{ matrix.name }} (experimental)
     runs-on: ubuntu-24.04
     continue-on-error: true
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: arm64
+            abi: arm64-v8a
+            ffarch: aarch64
+            triple: aarch64-linux-android
+            ffextra: ""
+          # ffmpeg's x86 assembly wants nasm; the C fallbacks do for videos
+          - name: x86_64
+            abi: x86_64
+            ffarch: x86_64
+            triple: x86_64-linux-android
+            ffextra: --disable-x86asm
     steps:
       - name: Checkout repository
         uses: actions/checkout@main
@@ -225,13 +241,14 @@ jobs:
           cd ffmpeg-src
           ./configure \
             --prefix="$PREFIX" \
-            --target-os=android --arch=aarch64 --enable-cross-compile \
-            --cc="$TC/aarch64-linux-android30-clang" \
-            --cxx="$TC/aarch64-linux-android30-clang++" \
+            --target-os=android --arch=${{ matrix.ffarch }} --enable-cross-compile \
+            --cc="$TC/${{ matrix.triple }}30-clang" \
+            --cxx="$TC/${{ matrix.triple }}30-clang++" \
             --ar="$TC/llvm-ar" --ranlib="$TC/llvm-ranlib" \
             --nm="$TC/llvm-nm" --strip="$TC/llvm-strip" \
             --enable-static --disable-shared --enable-pic \
-            --disable-programs --disable-doc --disable-avdevice --disable-network
+            --disable-programs --disable-doc --disable-avdevice --disable-network \
+            ${{ matrix.ffextra }}
           make -j"$(nproc)"
           make install
           echo "FFMPEG_PREFIX=$PREFIX" >> "$GITHUB_ENV"
@@ -245,7 +262,7 @@ jobs:
           echo "using NDK at $NDK"
           cmake -S . -B build -G Ninja \
             -DCMAKE_TOOLCHAIN_FILE="$NDK/build/cmake/android.toolchain.cmake" \
-            -DANDROID_ABI=arm64-v8a \
+            -DANDROID_ABI=${{ matrix.abi }} \
             -DANDROID_PLATFORM=android-30 \
             -DANDROID_STL=c++_static \
             -DCMAKE_BUILD_TYPE=Release \
@@ -273,7 +290,7 @@ jobs:
       - name: Collect
         run: |
           mkdir -p artifacts
-          find build -name 'rpcs3_libretro.so' -exec cp {} artifacts/rpcs3_libretro_android_arm64.so \;
+          find build -name 'rpcs3_libretro.so' -exec cp {} artifacts/rpcs3_libretro_android_${{ matrix.name }}.so \;
           ls -la artifacts
           # A gigabyte of it is debug information. The NDK toolchain file puts
           # -g in the flags for every build type and nothing takes it back out,
@@ -284,9 +301,9 @@ jobs:
           NDK="${ANDROID_NDK_LATEST_HOME:-$ANDROID_NDK_HOME}"
           STRIP="$NDK/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-strip"
           if [ ! -x "$STRIP" ]; then STRIP="$(command -v llvm-strip || command -v strip)"; fi
-          echo "before: $(stat -c %s artifacts/rpcs3_libretro_android_arm64.so) bytes"
-          "$STRIP" --strip-unneeded artifacts/rpcs3_libretro_android_arm64.so
-          echo "after:  $(stat -c %s artifacts/rpcs3_libretro_android_arm64.so) bytes"
+          echo "before: $(stat -c %s artifacts/rpcs3_libretro_android_${{ matrix.name }}.so) bytes"
+          "$STRIP" --strip-unneeded artifacts/rpcs3_libretro_android_${{ matrix.name }}.so
+          echo "after:  $(stat -c %s artifacts/rpcs3_libretro_android_${{ matrix.name }}.so) bytes"
           ls -la artifacts
 
       - name: Add the core info file
@@ -295,7 +312,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@main
         with:
-          name: rpcs3_libretro-android-arm64
+          name: rpcs3_libretro-android-${{ matrix.name }}
           path: |
             artifacts/*.so
             artifacts/*.info

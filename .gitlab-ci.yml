@@ -1,6 +1,6 @@
 # DESCRIPTION: GitLab CI/CD for libRetro (NOT FOR GitLab-proper)
 
-# Linux x64, Linux aarch64, Windows x64 and Android arm64-v8a.
+# Linux x64, Linux aarch64, Windows x64, Android arm64-v8a and x86_64.
 #
 # The buildbot's own Linux images are Ubuntu 16.04 with gcc 9, which cannot
 # build RPCS3 at all, so the Linux jobs run in the images upstream RPCS3 builds
@@ -96,18 +96,15 @@ libretro-build-windows-x64:
     - .ci/build-windows-cross-libretro.sh
     - mv build/bin/$LIBNAME $LIBNAME
 
-# Android 64-bit (ARM)
+# Android
 #
 # Nothing ships LLVM or ffmpeg for Android, so both are built here. LLVM comes
 # from its submodule (3rdparty/llvm/CMakeLists.txt has the Android branch for
-# it) and cannot be left out: the AArch64 CPU backend uses llvm:: types whether
-# or not WITH_LLVM is set. ffmpeg's prebuilts are for Windows, macOS and glibc
-# Linux only, so it is cross-built from source with the NDK, and kept in the
-# GitLab cache between pipelines.
-android-arm64-v8a:
-  extends:
-    - .libretro-android-cmake-arm64-v8a
-    - .core-defs
+# it, which picks the AArch64 or the X86 backend) and cannot be left out: the
+# CPU backends use llvm:: types whether or not WITH_LLVM is set. ffmpeg's
+# prebuilts are for Windows, macOS and glibc Linux only, so it is cross-built
+# from source with the NDK, and kept in the GitLab cache between pipelines.
+.android-defs:
   variables:
     API_LEVEL: 30
     FFMPEG_PREFIX: $CI_PROJECT_DIR/ffmpeg-android
@@ -146,19 +143,45 @@ android-arm64-v8a:
       git clone --quiet --depth 1 -b release/7.1 https://github.com/FFmpeg/FFmpeg.git ffmpeg-src
       (cd ffmpeg-src && ./configure \
         --prefix="$FFMPEG_PREFIX" \
-        --target-os=android --arch=aarch64 --enable-cross-compile \
-        --cc="$TC/aarch64-linux-android${API_LEVEL}-clang" \
-        --cxx="$TC/aarch64-linux-android${API_LEVEL}-clang++" \
+        --target-os=android --arch=$FFMPEG_ARCH --enable-cross-compile \
+        --cc="$TC/$FFMPEG_TRIPLE${API_LEVEL}-clang" \
+        --cxx="$TC/$FFMPEG_TRIPLE${API_LEVEL}-clang++" \
         --ar="$TC/llvm-ar" --ranlib="$TC/llvm-ranlib" \
         --nm="$TC/llvm-nm" --strip="$TC/llvm-strip" \
         --enable-static --disable-shared --enable-pic \
         --disable-programs --disable-doc --disable-avdevice --disable-network \
+        $FFMPEG_EXTRA \
         && make -j"$(nproc)" && make install)
       fi
     - export PKG_CONFIG_LIBDIR="$FFMPEG_PREFIX/lib/pkgconfig"
   # The ffmpeg it builds does not change between pipelines; the key names
   # everything it depends on, so a change to any of them builds it afresh.
   cache:
-    key: ffmpeg-7.1-android-arm64-v8a-api30-ndk29
+    key: ffmpeg-7.1-android-$ANDROID_ABI-api30-ndk29
     paths:
       - ffmpeg-android/
+
+# Android 64-bit (ARM)
+android-arm64-v8a:
+  extends:
+    - .libretro-android-cmake-arm64-v8a
+    - .core-defs
+    - .android-defs
+  variables:
+    FFMPEG_ARCH: aarch64
+    FFMPEG_TRIPLE: aarch64-linux-android
+    FFMPEG_EXTRA: ""
+
+# Android 64-bit (x86)
+#
+# ffmpeg's x86 assembly wants nasm, which the Android image does not have; the
+# C fallbacks are slower, and ffmpeg only decodes the games' videos here.
+android-x86_64:
+  extends:
+    - .libretro-android-cmake-x86_64
+    - .core-defs
+    - .android-defs
+  variables:
+    FFMPEG_ARCH: x86_64
+    FFMPEG_TRIPLE: x86_64-linux-android
+    FFMPEG_EXTRA: --disable-x86asm
