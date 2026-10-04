@@ -425,7 +425,7 @@ struct retro_core_option_v2_definition option_defs_us[] = {
     },
     {
         "rpcs3_psn_status", "PSN Status", NULL,
-        "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server with the account set up in rpcn.yml, and needs Network Enabled. Takes effect when content is loaded.",
+        "What games see of the PlayStation Network. Simulated makes them believe they are signed in, which some need to get past their menus; RPCN connects to RPCS3's own server and needs Network Enabled and an RPCN account: the core cannot create one, so set it up in standalone RPCS3 and copy its rpcn.yml into system/rpcs3/ (system/rpcs3/config/ on Windows). Takes effect when content is loaded.",
         NULL, "network",
         { {"disabled", NULL}, {"simulated", "Simulated"}, {"rpcn", "RPCN"}, {NULL, NULL} },
         "disabled"
