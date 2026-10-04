@@ -1974,6 +1974,27 @@ fs::file::file(const std::string& path, bs_t<open_mode> mode)
 	// Try libretro VFS first for all file operations
 	if (libretro_vfs::is_vfs_available())
 	{
+		// The frontend's open has neither "create, but only a new file" nor
+		// "open, but only an existing one": with write access it creates a
+		// missing file and opens an existing one for update. Both are settled
+		// here, as the native open settles them. Without it, the "User" meant
+		// for a missing localusername went over the start of an existing one
+		// on every boot - "123456" became "User56" (NNshi).
+		if (mode & (fs::excl + fs::write))
+		{
+			const bool exists = libretro_vfs::vfs_stat(path, nullptr);
+			if ((mode & fs::excl) && exists)
+			{
+				g_tls_error = fs::error::exist;
+				return;
+			}
+			if ((mode & fs::write) && !(mode & fs::create) && !exists)
+			{
+				g_tls_error = fs::error::noent;
+				return;
+			}
+		}
+
 		// Convert fs:: mode flags to VFS mode flags
 		unsigned int vfs_mode = 0;
 		if (mode & fs::read)   vfs_mode |= libretro_vfs::VFS_MODE_READ;
