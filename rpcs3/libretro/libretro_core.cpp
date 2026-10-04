@@ -2015,6 +2015,12 @@ static bool setup_vulkan_hw_render()
     s_vk_hw_render.version_minor = 0;
     s_vk_hw_render.context_reset = vk_context_reset;
     s_vk_hw_render.context_destroy = vk_context_destroy;
+    // RetroArch rebuilds its video driver for a fullscreen toggle. Without
+    // this it took the Vulkan context down with it, and context_destroy stops
+    // the emulator (vk_release_device_resources), so the game quit at every
+    // toggle (NNshi). Cached, the device survives the rebuild, and
+    // context_destroy comes only when it really goes away.
+    s_vk_hw_render.cache_context = true;
     if (!environ_cb(RETRO_ENVIRONMENT_SET_HW_RENDER, &s_vk_hw_render))
         return false;
 
