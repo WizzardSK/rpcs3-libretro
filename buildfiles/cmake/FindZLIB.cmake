@@ -12,6 +12,10 @@ else()
                 IMPORTED_LOCATION_DEBUG           "${CMAKE_BINARY_DIR}/3rdparty/zlib/zlib/Debug/zsd.lib"
                 IMPORTED_LOCATION_RELWITHDEBINFO  "${CMAKE_BINARY_DIR}/3rdparty/zlib/zlib/RelWithDebInfo/zs.lib"
                 IMPORTED_LOCATION_MINSIZEREL      "${CMAKE_BINARY_DIR}/3rdparty/zlib/zlib/MinSizeRel/zs.lib")
+        elseif(WIN32)
+            # MinGW: zlib appends "s" to the static library on any WIN32 → libzs.a
+            set_target_properties(ZLIB::ZLIB PROPERTIES
+                IMPORTED_LOCATION "${CMAKE_BINARY_DIR}/3rdparty/zlib/zlib/libzs.a")
         else()
             # On non-MSVC, zlib OUTPUT_NAME is "z" → libz.a
             set_target_properties(ZLIB::ZLIB PROPERTIES
