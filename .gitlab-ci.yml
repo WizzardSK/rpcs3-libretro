@@ -1,14 +1,15 @@
 # DESCRIPTION: GitLab CI/CD for libRetro (NOT FOR GitLab-proper)
 
-# Linux only, and deliberately so. Both architectures here are the ones the
-# GitHub workflow already builds, so they are not a guess; everything else
-# would be. Windows is out because upstream RPCS3 is MSVC-only and does not
-# build under the buildbot's mingw, and macOS, Android and the consoles have
-# never had the libretro port pointed at them at all. They can be added once
-# someone has seen them work rather than before.
+# Linux x64, Linux aarch64 and Android arm64-v8a: the targets the GitHub
+# workflow builds and publishes. Windows is not here yet. Upstream builds it
+# with MSVC through rpcs3.sln, the GitHub workflow with MSYS2 clang64 and its
+# LLVM, ffmpeg, OpenCV and GLEW packages; the buildbot's Windows images have
+# neither (MXE gcc, or MSVC 2019 16.8, which is too old for RPCS3's C++).
 #
-# RPCS3 also needs LLVM 19.1 or newer present in the image: the submodule is
-# skipped below, since building it here would dwarf the core.
+# The buildbot's own Linux images are Ubuntu 16.04 with gcc 9, which cannot
+# build RPCS3 at all, so the Linux jobs run in the images upstream RPCS3 builds
+# its Linux releases in - the same ones the GitHub workflow uses - through the
+# same script.
 
 ##############################################################################
 ################################# BOILERPLATE ################################
@@ -16,35 +17,40 @@
 
 .core-defs:
   variables:
-    # Not recursive: the LLVM submodule is enormous and is not wanted - the
-    # build uses the system LLVM instead (BUILD_LLVM=OFF below).
+    # The jobs fetch the submodules themselves, LLVM only where it is built.
     GIT_SUBMODULE_STRATEGY: none
     CORENAME: rpcs3
-    CORE_ARGS: >-
-      -DBUILD_LIBRETRO_CORE_ONLY=ON
-      -DBUILD_LLVM=OFF
-      -DSTATIC_LINK_LLVM=ON
-      -DUSE_NATIVE_INSTRUCTIONS=OFF
-      -DUSE_PRECOMPILED_HEADERS=OFF
-      -DUSE_SYSTEM_CURL=ON
-      -DUSE_SDL=ON
-      -DUSE_SYSTEM_SDL=ON
-      -DUSE_SYSTEM_FFMPEG=OFF
-      -DUSE_SYSTEM_OPENCV=ON
-      -DUSE_DISCORD_RPC=OFF
-      -DUSE_LTO=OFF
-      -DOpenGL_GL_PREFERENCE=LEGACY
+    EXTRA_PATH: rpcs3/libretro
+
+# .gitmodules is upstream's, and upstream gives its submodules URLs relative to
+# its own GitHub repository (../../asmjit/asmjit.git). Cloned from
+# git.libretro.com those resolve to git.libretro.com/asmjit/asmjit.git, which
+# does not exist, so point them back at GitHub before anything is fetched.
+.submodule-urls: &submodule-urls
+  - git config --global --add safe.directory '*'
+  - sed -i 's#url = \.\./\.\./#url = https://github.com/#' .gitmodules
+  - git submodule -q sync
+
+.linux-defs:
+  variables:
+    COMPILER: clang
+    RPCS3_DIR: $CI_PROJECT_DIR
+    ARTDIR: $CI_PROJECT_DIR/artifacts
   before_script:
-    - git config --global --add safe.directory '*'
-    # Everything except the ones the build does not use, LLVM above all.
-    - git submodule -q update --init --depth 1
-      $(awk '/path/ && !/llvm/ && !/opencv/ && !/libsdl-org/ && !/curl/ && !/zlib/ { print $3 }' .gitmodules)
+    - *submodule-urls
+  script:
+    - .ci/build-libretro.sh
+    - mv artifacts/$LIBNAME $LIBNAME
 
 # Inclusion templates, required for the build to work
 include:
   # Linux
   - project: 'libretro-infrastructure/ci-templates'
     file: '/linux-cmake.yml'
+
+  # Android
+  - project: 'libretro-infrastructure/ci-templates'
+    file: '/android-cmake.yml'
 
 stages:
   - build-prepare
@@ -59,9 +65,69 @@ libretro-build-linux-x64:
   extends:
     - .libretro-linux-cmake-x86_64
     - .core-defs
+    - .linux-defs
+  image: rpcs3/rpcs3-ci-jammy:2.1
 
 # Linux 64-bit (ARM)
 libretro-build-linux-aarch64:
   extends:
     - .libretro-linux-cmake-aarch64
     - .core-defs
+    - .linux-defs
+  image: rpcs3/rpcs3-ci-jammy-aarch64:2.1
+
+# Android 64-bit (ARM)
+#
+# Nothing ships LLVM or ffmpeg for Android, so both are built here. LLVM comes
+# from its submodule (3rdparty/llvm/CMakeLists.txt has the Android branch for
+# it) and cannot be left out: the AArch64 CPU backend uses llvm:: types whether
+# or not WITH_LLVM is set. ffmpeg's prebuilts are for Windows, macOS and glibc
+# Linux only, so it is cross-built from source with the NDK.
+android-arm64-v8a:
+  extends:
+    - .libretro-android-cmake-arm64-v8a
+    - .core-defs
+  variables:
+    API_LEVEL: 30
+    FFMPEG_PREFIX: $CI_PROJECT_DIR/ffmpeg-android
+    CORE_ARGS: >-
+      -DBUILD_LIBRETRO_CORE_ONLY=ON
+      -DWITH_LLVM=ON
+      -DBUILD_LLVM=ON
+      -DUSE_NATIVE_INSTRUCTIONS=OFF
+      -DUSE_PRECOMPILED_HEADERS=OFF
+      -DUSE_SDL=OFF
+      -DUSE_DISCORD_RPC=OFF
+      -DUSE_LTO=OFF
+      -DUSE_SYSTEM_CURL=OFF
+      -DUSE_SYSTEM_OPENCV=OFF
+      -DUSE_SYSTEM_SDL=OFF
+      -DUSE_SYSTEM_ZLIB=OFF
+      -DUSE_SYSTEM_OPENAL=OFF
+      -DUSE_SYSTEM_FFMPEG=ON
+      -DCMAKE_PREFIX_PATH=$CI_PROJECT_DIR/ffmpeg-android
+      -DCMAKE_FIND_ROOT_PATH_MODE_INCLUDE=BOTH
+      -DCMAKE_FIND_ROOT_PATH_MODE_LIBRARY=BOTH
+  before_script:
+    - export NUMPROC=$(($(nproc)/5))
+    - |
+      if [ "$ANDROID_NDK_VERSION" = "27.3.13750724" ]; then
+        export ANDROID_NDK_VERSION="29.0.14206865"
+        export NDK_ROOT="${ANDROID_HOME}/ndk/${ANDROID_NDK_VERSION}"
+      fi
+    - *submodule-urls
+    - git submodule -q update --init --depth 1 $(awk '/path/ { print $3 }' .gitmodules)
+    - |
+      TC="$NDK_ROOT/toolchains/llvm/prebuilt/linux-x86_64/bin"
+      git clone --quiet --depth 1 -b release/7.1 https://github.com/FFmpeg/FFmpeg.git ffmpeg-src
+      (cd ffmpeg-src && ./configure \
+        --prefix="$FFMPEG_PREFIX" \
+        --target-os=android --arch=aarch64 --enable-cross-compile \
+        --cc="$TC/aarch64-linux-android${API_LEVEL}-clang" \
+        --cxx="$TC/aarch64-linux-android${API_LEVEL}-clang++" \
+        --ar="$TC/llvm-ar" --ranlib="$TC/llvm-ranlib" \
+        --nm="$TC/llvm-nm" --strip="$TC/llvm-strip" \
+        --enable-static --disable-shared --enable-pic \
+        --disable-programs --disable-doc --disable-avdevice --disable-network \
+        && make -j"$(nproc)" && make install)
+    - export PKG_CONFIG_LIBDIR="$FFMPEG_PREFIX/lib/pkgconfig"

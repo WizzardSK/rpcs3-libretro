@@ -18,7 +18,7 @@
 # was not found". The core has no use for Wayland anyway: the frontend hands it
 # the context.
 
-cd rpcs3 || exit 1
+cd "${RPCS3_DIR:-rpcs3}" || exit 1
 
 git config --global --add safe.directory '*'
 
