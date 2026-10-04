@@ -54,7 +54,7 @@ extern "C" {
 struct retro_core_option_v2_category option_cats_us[] = {
     { "cpu", "CPU", "PPU and SPU decoders, accuracy and CPU emulation options." },
     { "gpu", "GPU", "Renderer, resolution, shaders and graphics accuracy options." },
-    { "threads", "Thread Count", "How many threads the emulator runs and compiles with." },
+    { "threads", "Scheduling", "How the emulator's threads are scheduled, and how many it runs and compiles with: what a CPU with few cores, or a phone, may want changed." },
     { "network", "Network", "Network, PSN and RPCN options." },
     { "debug", "Debug", "Options from RPCS3's Debug tab: for diagnosing problems, rarely for playing." },
     { "core", "Core", "Language, region, overlay, frame pacing, volume and other options of the core itself." },
@@ -136,13 +136,6 @@ struct retro_core_option_v2_definition option_defs_us[] = {
     {
         "rpcs3_emulate_hdd_speed", "Emulate HDD Read Speed", NULL,
         "Reads from the emulated hard disk at the speed of the PS3's, for games that break when loading is instant.",
-        NULL, "cpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
-        "disabled"
-    },
-    {
-        "rpcs3_spu_loop_detection", "Enable SPU Loop Detection", NULL,
-        "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones.",
         NULL, "cpu",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
@@ -379,7 +372,14 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         { {"50", "50 Hz (PAL)"}, {"60", "60 Hz (NTSC)"}, {"120", "120 Hz"}, {"144", "144 Hz"}, {"240", "240 Hz"}, {NULL, NULL} },
         "60"
     },
-    // ==================== THREADS ====================
+    // ==================== SCHEDULING ====================
+    {
+        "rpcs3_thread_scheduler", "Thread Scheduler", NULL,
+        "Who places the emulator's threads on the CPU's cores, as in RPCS3. Operating System leaves it to the system; the RPCS3 schedulers pin PPU, SPU and RSX threads to cores of their own, laid out for a few desktop CPUs. Has no effect on Android, where the core cannot pin threads.",
+        NULL, "threads",
+        { {"os", "Operating System"}, {"old", "RPCS3 Scheduler"}, {"alt", "RPCS3 Alternative Scheduler"}, {NULL, NULL} },
+        "os"
+    },
     {
         "rpcs3_preferred_spu_threads", "Preferred SPU Threads", NULL,
         "Number of SPU threads. Auto recommended.",
@@ -388,18 +388,18 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "0"
     },
     {
-        "rpcs3_max_preempt_count", "Max Power Saving CPU-Preemptions", NULL,
-        "How many times a frame RPCS3 may pause the CPU threads to save power, as in RPCS3. 0 turns it off.",
+        "rpcs3_spu_loop_detection", "Enable SPU Loop Detection", NULL,
+        "Detects SPU loops that only wait and skips through them. Faster, but some games break with it; off by default, as in RPCS3. Worth turning on for speed on phones.",
         NULL, "threads",
-        { {"0", "0 (Disabled)"}, {"10", NULL}, {"20", NULL}, {"50", NULL}, {"100", NULL}, {"200", NULL}, {"400", NULL}, {NULL, NULL} },
-        "0"
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
     },
     {
-        "rpcs3_ppu_threads", "PPU Thread Count", NULL,
-        "How many PPU threads run at once, as in RPCS3. 2 is the default and what nearly every game wants.",
+        "rpcs3_llvm_threads", "PPU/SPU LLVM Compiler Threads", NULL,
+        "How many threads compile PPU and SPU code with LLVM, as RPCS3's Max LLVM Compile Threads. Auto uses every core; fewer keeps a phone cooler and uses less memory while a game is compiled, and makes it take longer.",
         NULL, "threads",
-        { {"1", NULL}, {"2", "2 (Default)"}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {NULL, NULL} },
-        "2"
+        { {"0", "Auto"}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"6", NULL}, {"8", NULL}, {NULL, NULL} },
+        "0"
     },
     {
         "rpcs3_shader_compiler_threads", "Shader Compiler Threads", NULL,
@@ -409,11 +409,25 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "auto"
     },
     {
+        "rpcs3_ppu_threads", "PPU Thread Count", NULL,
+        "How many PPU threads run at once, as in RPCS3. 2 is the default and what nearly every game wants.",
+        NULL, "threads",
+        { {"1", NULL}, {"2", "2 (Default)"}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {NULL, NULL} },
+        "2"
+    },
+    {
         "rpcs3_max_spurs_threads", "Maximum Number of SPURS Threads", NULL,
         "Maximum SPURS thread count. Lower may improve performance.",
         NULL, "threads",
         { {"auto", "Auto"}, {"1", "1"}, {"2", "2"}, {"3", "3"}, {"4", "4"}, {"5", "5"}, {"6", "6"}, {NULL, NULL} },
         "auto"
+    },
+    {
+        "rpcs3_max_preempt_count", "Max Power Saving CPU-Preemptions", NULL,
+        "How many times a frame RPCS3 may pause the CPU threads to save power, as in RPCS3. 0 turns it off.",
+        NULL, "threads",
+        { {"0", "0 (Disabled)"}, {"10", NULL}, {"20", NULL}, {"50", NULL}, {"100", NULL}, {"200", NULL}, {"400", NULL}, {NULL, NULL} },
+        "0"
     },
     // ==================== NETWORK ====================
     {

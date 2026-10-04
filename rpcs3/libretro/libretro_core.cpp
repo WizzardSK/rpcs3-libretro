@@ -767,6 +767,12 @@ static void libretro_apply_core_options()
     g_cfg.video.vk.use_rebar_upload_heap.set(enabled("rpcs3_use_rebar", "enabled"));
     g_cfg.core.max_cpu_preempt_count_per_frame.set(std::clamp(std::atoi(get_option_value("rpcs3_max_preempt_count", "0").c_str()), 0, 400));
     g_cfg.core.ppu_threads.set(std::clamp(std::atoi(get_option_value("rpcs3_ppu_threads", "2").c_str()), 1, 8));
+    g_cfg.core.llvm_threads.set(std::clamp(std::atoi(get_option_value("rpcs3_llvm_threads", "0").c_str()), 0, 1024));
+    {
+        const std::string sched = get_option_value("rpcs3_thread_scheduler", "os");
+        g_cfg.core.thread_scheduler.set(sched == "old" ? thread_scheduler_mode::old
+            : sched == "alt" ? thread_scheduler_mode::alt : thread_scheduler_mode::os);
+    }
     g_cfg.video.disable_FIFO_reordering.set(enabled("rpcs3_disable_fifo_reordering", "disabled"));
     // By what they do: RPCS3's dialog has these two the wrong way round, each
     // checkbox setting the other one's config entry
