@@ -437,7 +437,11 @@ static std::string install_pkg_file(const std::string& pkg_path)
     }
     else if (!system_dir.empty())
     {
-        install_base = system_dir + "/rpcs3/dev_hdd0/game/";
+        // dev_hdd0 where vfs.yml puts it, which may be outside RetroArch's
+        // folders (NNshi); system/rpcs3/dev_hdd0/ unless it says otherwise.
+        g_cfg_vfs.load();
+        g_cfg_vfs.emulator_dir.from_string(system_dir + "/rpcs3/");
+        install_base = g_cfg_vfs.get(g_cfg_vfs.dev_hdd0, system_dir + "/rpcs3/") + "game/";
     }
     else
     {
@@ -657,8 +661,11 @@ static void libretro_apply_core_options()
 
     // Resolution Scale Threshold
     g_cfg.video.min_scalable_dimension.set(std::stoi(get_option_value("rpcs3_scale_threshold", "16")));
-    g_cfg.video.output_scaling.set(get_option_value("rpcs3_output_scaling", "bilinear") == "nearest"
-        ? output_scaling_mode::nearest : output_scaling_mode::bilinear);
+    // No option for it: the frame goes to the frontend at its own size, so
+    // nothing is scaled here and RPCS3's output scaling has nothing to do.
+    // The frontend scales it to the screen, with its own filter (Video >
+    // Scaling > Bilinear Filtering, or a shader).
+    g_cfg.video.output_scaling.set(output_scaling_mode::bilinear);
 
     // ZCULL Accuracy, RPCS3's three settings as its own UI makes them
     const std::string zcull = get_option_value("rpcs3_zcull_accuracy", "precise");

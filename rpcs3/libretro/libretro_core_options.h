@@ -233,13 +233,6 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "16"
     },
     {
-        "rpcs3_output_scaling", "Output Scaling", NULL,
-        "How the game's frame is scaled to the output resolution, as in RPCS3. Many PS3 games render below 720p and are scaled up when they are shown. Bilinear is smooth, Nearest keeps the pixels sharp.",
-        NULL, "gpu",
-        { {"bilinear", "Bilinear"}, {"nearest", "Nearest"}, {NULL, NULL} },
-        "bilinear"
-    },
-    {
         "rpcs3_shader_mode", "Shader Mode", NULL,
         "How shaders are compiled. Async compiles in the background but the frame that first needs a pipeline waits for it, which is what a long freeze on a new scene usually is. Async with Shader Interpreter draws that frame through the interpreter instead and swaps in the compiled shader when it is ready: no freeze, lower speed while it catches up.",
         NULL, "gpu",
