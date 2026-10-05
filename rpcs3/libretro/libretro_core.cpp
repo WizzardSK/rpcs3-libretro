@@ -2592,9 +2592,15 @@ static bool do_boot_game()
     {
         system_state state = Emu.GetStatus();
 
-        // If running, paused, or ready - we can proceed
+        // If running, paused, or ready - we can proceed. Starting too: that is
+        // the emulator compiling the game's PPU modules (ppu_cmd::initialize),
+        // which on a game's first boot can take over a minute, and the PPU
+        // thread ends it itself once they are done. Waiting it out here held
+        // context_reset - RetroArch showed nothing at all until the modules were
+        // compiled, rather than its progress messages (NNshi).
         if (state == system_state::running || state == system_state::paused ||
-            state == system_state::ready || state == system_state::frozen)
+            state == system_state::ready || state == system_state::frozen ||
+            state == system_state::starting)
         {
             break;
         }
@@ -2624,11 +2630,6 @@ static bool do_boot_game()
     {
 
         Emu.Resume();
-    }
-    // If still in starting state after timeout, force transition to running
-    else if (final_state == system_state::starting)
-    {
-        Emu.FinalizeRunRequest();
     }
 
 
