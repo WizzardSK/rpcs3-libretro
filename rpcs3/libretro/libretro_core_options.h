@@ -389,14 +389,14 @@ struct retro_core_option_v2_definition option_defs_us[] = {
     },
     {
         "rpcs3_llvm_threads", "PPU/SPU LLVM Compiler Threads", NULL,
-        "How many threads compile PPU and SPU code with LLVM, as RPCS3's Max LLVM Compile Threads. Auto uses every core; fewer keeps a phone cooler and uses less memory while a game is compiled, and makes it take longer.",
+        "How many threads compile PPU and SPU code with LLVM, as RPCS3's Max LLVM Compile Threads. Auto uses every core; fewer keeps a phone cooler and uses less memory while a game is compiled, and makes it take longer. On ARM CPUs with big and little cores (phones, ARM laptops) the default is the number of big cores.",
         NULL, "threads",
         { {"0", "Auto"}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"6", NULL}, {"8", NULL}, {NULL, NULL} },
         "0"
     },
     {
         "rpcs3_shader_compiler_threads", "Shader Compiler Threads", NULL,
-        "How many threads compile shaders. Auto lets RPCS3 decide from the CPU it sees.",
+        "How many threads compile shaders. Auto lets RPCS3 decide from the CPU it sees. On ARM CPUs with big and little cores (phones, ARM laptops) the default is the number of big cores.",
         NULL, "threads",
         { {"auto", "Auto"}, {"1", "1"}, {"2", "2"}, {"3", "3"}, {"4", "4"}, {"6", "6"}, {"8", "8"}, {NULL, NULL} },
         "auto"

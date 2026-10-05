@@ -1231,6 +1231,55 @@ static std::string find_firmware_pup()
     return {};
 }
 
+// On ARM CPUs with big and little cores - every phone, and ARM laptops like
+// Snapdragon Chromebooks - RPCS3's Auto compiles on every core, the little
+// ones included, which makes a first boot slower than it need be and heats
+// the device for nothing (NNshi). There the compiler threads default to the
+// number of big cores: the cores with the highest top clock, which Linux and
+// Android report in cpufreq. Other CPUs, and CPUs whose cores all clock the
+// same, keep Auto, and so does anyone who has set the options already.
+static void libretro_big_little_defaults()
+{
+#if defined(__aarch64__) && !defined(_WIN32) && !defined(__APPLE__)
+    std::vector<u64> max_freq;
+    for (u32 cpu = 0; cpu < 256; cpu++)
+    {
+        fs::file f(fmt::format("/sys/devices/system/cpu/cpu{}/cpufreq/cpuinfo_max_freq", cpu));
+        if (!f)
+        {
+            if (!fs::is_dir(fmt::format("/sys/devices/system/cpu/cpu{}", cpu)))
+                break;
+            continue;
+        }
+        max_freq.push_back(std::strtoull(f.to_string().c_str(), nullptr, 10));
+    }
+    if (max_freq.size() < 2)
+        return;
+    const u64 top = *std::max_element(max_freq.begin(), max_freq.end());
+    const usz big = std::count(max_freq.begin(), max_freq.end(), top);
+    if (big == max_freq.size())
+        return;
+
+    // The largest of the option's values that is not more than the big cores
+    static std::string value;
+    for (const char *v : { "8", "6", "4", "3", "2", "1" })
+    {
+        if (static_cast<usz>(std::atoi(v)) <= big)
+        {
+            value = v;
+            break;
+        }
+    }
+    for (retro_core_option_v2_definition &def : option_defs_us)
+    {
+        if (def.key && (!std::strcmp(def.key, "rpcs3_llvm_threads") || !std::strcmp(def.key, "rpcs3_shader_compiler_threads")))
+            def.default_value = value.c_str();
+    }
+    if (log_cb)
+        log_cb(RETRO_LOG_INFO, "RPCS3: %zu of %zu cores are big cores, compiler threads default to %s\n", big, max_freq.size(), value.c_str());
+#endif
+}
+
 void retro_set_environment(retro_environment_t cb)
 {
     environ_cb = cb;
@@ -1263,6 +1312,7 @@ void retro_set_environment(retro_environment_t cb)
     // libretro's Crowdin scripts read them. Frontends without v2 get v1 or
     // the flat v0 list generated from the same definitions.
     bool categories_supported = false;
+    libretro_big_little_defaults();
     libretro_set_core_options(cb, &categories_supported);
 
     // Out of the menu, as RPCS3 keeps them out of its settings dialog; the
