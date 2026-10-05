@@ -287,71 +287,6 @@ static void libretro_show_message(const char* msg, unsigned frames = 180)
     environ_cb(RETRO_ENVIRONMENT_SET_MESSAGE, &rm);
 }
 
-// Long compilations - PPU modules on a first boot, the SPU cache - leave the
-// picture black or frozen for minutes, and a user cannot tell that from a hang
-// (ozzfreak). RPCS3 reports their progress through g_progr_*, for its own
-// dialog; this puts the same in front of the frontend's notifications, renewed
-// while the work goes on so it stays up exactly that long.
-static void libretro_report_progress()
-{
-    static int s_message_interface = -1;
-    if (s_message_interface < 0)
-    {
-        unsigned version = 0;
-        s_message_interface = environ_cb(RETRO_ENVIRONMENT_GET_MESSAGE_INTERFACE_VERSION, &version) ? static_cast<int>(version) : 0;
-    }
-
-    const std::string title = g_progr_text;
-    const u32 ptotal = g_progr_ptotal, pdone = g_progr_pdone;
-    const u32 ftotal = g_progr_ftotal, fdone = g_progr_fdone;
-
-    if (title.empty() && !ptotal && !ftotal)
-        return;
-
-    // RPCS3 leaves finished counts standing until its dialog server gets to
-    // them, if it does; a notice of "module 3 of 3" then stayed up for good.
-    if ((ptotal || ftotal) && pdone >= ptotal && fdone >= ftotal)
-        return;
-
-    // Often enough to follow the count, not every frame.
-    static std::string s_last;
-    static u64 s_last_us = 0;
-    std::string msg = title.empty() ? std::string("Please wait") : title;
-    while (!msg.empty() && (msg.back() == '.' || msg.back() == ' ' || msg.back() == '\n'))
-        msg.pop_back();
-    std::replace(msg.begin(), msg.end(), '\n', ' ');
-    if (ftotal)
-        fmt::append(msg, " - file %u of %u", fdone, ftotal);
-    if (ptotal)
-        fmt::append(msg, " - module %u of %u", pdone, ptotal);
-
-    const u64 now = lr_now_us();
-    if (msg == s_last && now - s_last_us < 1'000'000)
-        return;
-    s_last = msg;
-    s_last_us = now;
-
-    const u32 total = ptotal ? ptotal : ftotal;
-    const u32 done = ptotal ? pdone : fdone;
-
-    if (s_message_interface >= 1)
-    {
-        retro_message_ext rm{};
-        rm.msg = msg.c_str();
-        rm.duration = 2000;
-        rm.priority = 1;
-        rm.level = RETRO_LOG_INFO;
-        rm.target = RETRO_MESSAGE_TARGET_OSD;
-        rm.type = RETRO_MESSAGE_TYPE_PROGRESS;
-        rm.progress = total ? static_cast<int8_t>(std::min<u64>(100, u64{done} * 100 / total)) : -1;
-        environ_cb(RETRO_ENVIRONMENT_SET_MESSAGE_EXT, &rm);
-    }
-    else
-    {
-        libretro_show_message(msg.c_str(), 120);
-    }
-}
-
 // A picture that stops while the game runs on - GT5's menu froze with its
 // music and cursor going on until a pause and resume, inFamous went black
 // after its intro (ozzfreak) - left nothing in the log to say where the frames
@@ -1209,6 +1144,29 @@ static void install_config_database()
     // this one's is only known at link time
     fs::file file(path, fs::rewrite);
     if (!file || file.write(g_libretro_config_database, g_libretro_config_database_size) != g_libretro_config_database_size)
+    {
+        if (log_cb)
+            log_cb(RETRO_LOG_WARN, "RPCS3: could not write %s\n", path.c_str());
+    }
+}
+
+// RPCS3's game patches (embed_patches.cmake), written to patches/patch.yml in
+// the config dir as standalone's patch manager does, when missing or of
+// another size. Which patches are on is patch_config.yml's, left alone.
+extern const unsigned char g_libretro_patch_yml[];
+extern const std::size_t g_libretro_patch_yml_size;
+
+static void install_patches()
+{
+    if (!g_libretro_patch_yml_size)
+        return;
+    const std::string path = fs::get_config_dir() + "patches/patch.yml";
+    fs::stat_t info{};
+    if (fs::get_stat(path, info) && info.size == g_libretro_patch_yml_size)
+        return;
+    fs::create_path(fs::get_parent_dir(path));
+    fs::file file(path, fs::rewrite);
+    if (!file || file.write(g_libretro_patch_yml, g_libretro_patch_yml_size) != g_libretro_patch_yml_size)
     {
         if (log_cb)
             log_cb(RETRO_LOG_WARN, "RPCS3: could not write %s\n", path.c_str());
@@ -2469,6 +2427,7 @@ bool retro_load_game(const struct retro_game_info* game)
 
     install_ui_icons();
     install_config_database();
+    install_patches();
 
     // For null renderer, boot immediately. For OpenGL, defer until
     // context_reset(). The software path has no context coming, so it boots
@@ -2728,7 +2687,6 @@ void retro_run(void)
     // Update watchdog timestamp.
     s_last_retro_run_us.store(lr_now_us());
 
-    libretro_report_progress();
 
     // Check for variable updates
     bool updated = false;
