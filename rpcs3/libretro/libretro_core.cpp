@@ -1231,40 +1231,52 @@ static std::string find_firmware_pup()
     return {};
 }
 
-// On ARM CPUs with big and little cores - every phone, and ARM laptops like
-// Snapdragon Chromebooks - RPCS3's Auto compiles on every core, the little
-// ones included, which makes a first boot slower than it need be and heats
-// the device for nothing (NNshi). There the compiler threads default to the
-// number of big cores: the cores with the highest top clock, which Linux and
-// Android report in cpufreq. Other CPUs, and CPUs whose cores all clock the
-// same, keep Auto, and so does anyone who has set the options already.
+// On ARM CPUs with efficiency cores - most phones, and ARM laptops like
+// Snapdragon Chromebooks - RPCS3's Auto compiles on every core, the slow
+// little ones included, which makes a first boot slower than it need be and
+// heats the device for nothing (NNshi). There the compiler threads default to
+// the number of the other cores. Only the efficiency cores are left out, not
+// every core below the fastest: a Dimensity 9600 (2 prime + 3 performance + 3
+// efficiency) gets 5, a Snapdragon 8 Elite (2 prime + 6 performance, no
+// efficiency cores) keeps Auto. A core is an efficiency core when the kernel
+// rates it below 60 % of the fastest core's capacity (cpu_capacity, which ARM
+// kernels have from their energy model), or, without that, when its top clock
+// is below 75 % of the fastest's. CPUs without efficiency cores, and x86, keep
+// Auto, and so does anyone who has set the options already.
 static void libretro_big_little_defaults()
 {
 #if defined(__aarch64__) && !defined(_WIN32) && !defined(__APPLE__)
-    std::vector<u64> max_freq;
+    std::vector<u64> capacity, max_freq;
     for (u32 cpu = 0; cpu < 256; cpu++)
     {
-        fs::file f(fmt::format("/sys/devices/system/cpu/cpu{}/cpufreq/cpuinfo_max_freq", cpu));
-        if (!f)
-        {
-            if (!fs::is_dir(fmt::format("/sys/devices/system/cpu/cpu{}", cpu)))
-                break;
-            continue;
-        }
-        max_freq.push_back(std::strtoull(f.to_string().c_str(), nullptr, 10));
+        const std::string dir = fmt::format("/sys/devices/system/cpu/cpu{}", cpu);
+        if (!fs::is_dir(dir))
+            break;
+        const auto read = [&](const char *name) -> u64 {
+            fs::file f(dir + name);
+            return f ? std::strtoull(f.to_string().c_str(), nullptr, 10) : 0;
+        };
+        capacity.push_back(read("/cpu_capacity"));
+        max_freq.push_back(read("/cpufreq/cpuinfo_max_freq"));
     }
-    if (max_freq.size() < 2)
-        return;
-    const u64 top = *std::max_element(max_freq.begin(), max_freq.end());
-    const usz big = std::count(max_freq.begin(), max_freq.end(), top);
-    if (big == max_freq.size())
+    if (capacity.size() < 2)
         return;
 
-    // The largest of the option's values that is not more than the big cores
+    const bool by_capacity = std::find(capacity.begin(), capacity.end(), 0) == capacity.end();
+    const std::vector<u64> &rating = by_capacity ? capacity : max_freq;
+    if (std::find(rating.begin(), rating.end(), 0) != rating.end())
+        return;
+    const u64 top = *std::max_element(rating.begin(), rating.end());
+    const u64 threshold = top * (by_capacity ? 60 : 75) / 100;
+    const usz fast = std::count_if(rating.begin(), rating.end(), [&](u64 r) { return r >= threshold; });
+    if (fast == rating.size())
+        return;
+
+    // The largest of the option's values that is not more than those cores
     static std::string value;
     for (const char *v : { "8", "6", "4", "3", "2", "1" })
     {
-        if (static_cast<usz>(std::atoi(v)) <= big)
+        if (static_cast<usz>(std::atoi(v)) <= fast)
         {
             value = v;
             break;
@@ -1276,7 +1288,8 @@ static void libretro_big_little_defaults()
             def.default_value = value.c_str();
     }
     if (log_cb)
-        log_cb(RETRO_LOG_INFO, "RPCS3: %zu of %zu cores are big cores, compiler threads default to %s\n", big, max_freq.size(), value.c_str());
+        log_cb(RETRO_LOG_INFO, "RPCS3: %zu of %zu cores are not efficiency cores (by %s), compiler threads default to %s\n",
+            fast, rating.size(), by_capacity ? "cpu_capacity" : "top clock", value.c_str());
 #endif
 }
 
