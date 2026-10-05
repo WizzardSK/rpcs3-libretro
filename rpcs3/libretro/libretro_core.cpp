@@ -50,6 +50,7 @@
 #include "Emu/emu_callbacks.h"
 #include "Emu/system_progress.hpp"
 #include "Emu/RSX/Overlays/overlay_utils.h"
+#include <cstring>
 #include "libretro_localized_strings.h"
 #include "util/yaml.hpp"
 #include "Emu/Audio/audio_device_enumerator.h"
@@ -1092,6 +1093,22 @@ namespace
 // RPCS3's in-game overlays look for their icons in the config dir first, and
 // standalone copies them there from next to the executable. The core carries
 // them itself; put them where they are looked for.
+// Whether the file at path holds exactly these bytes. The size alone is not
+// enough: a newer database or patch file can have the same size (sco). Only
+// a file of the right size is read, once per start, which costs far less
+// than writing it again every time.
+static bool file_has_contents(const std::string &path, const void *data, std::size_t size)
+{
+    fs::stat_t info{};
+    if (!fs::get_stat(path, info) || info.size != size)
+        return false;
+    fs::file file(path);
+    if (!file)
+        return false;
+    std::vector<u8> current(size);
+    return file.read(current.data(), size) == size && std::memcmp(current.data(), data, size) == 0;
+}
+
 static void install_ui_icons()
 {
     const std::string dir = fs::get_config_dir() + "Icons/ui/";
@@ -1107,11 +1124,10 @@ static void install_ui_icons()
         const libretro_ui_icon& icon = g_libretro_ui_icons[i];
         const std::string path = dir + icon.name;
 
-        fs::stat_t info{};
         // The home menu's are in a subdirectory (home/32/).
         if (const std::string parent = fs::get_parent_dir(path); !fs::is_dir(parent))
             fs::create_path(parent);
-        if (fs::get_stat(path, info) && info.size == icon.size)
+        if (file_has_contents(path, icon.data, icon.size))
             continue;
 
         if (!fs::write_file(path, fs::rewrite, icon.data, icon.size) && log_cb)
@@ -1121,8 +1137,8 @@ static void install_ui_icons()
 
 // RPCS3's per-game settings database (embed_config_database.cmake). The copy in
 // GuiConfigs is standalone's file, so a standalone pointed at the same folder
-// sees it too; it is written when it is missing or differs in size from the
-// one in the core, not at every start.
+// sees it too; it is written when it is missing or differs from the one in
+// the core, not at every start.
 extern const unsigned char g_libretro_config_database[];
 extern const std::size_t g_libretro_config_database_size;
 
@@ -1136,8 +1152,7 @@ static void install_config_database()
     if (!g_libretro_config_database_size)
         return;
     const std::string path = config_database_path();
-    fs::stat_t info{};
-    if (fs::get_stat(path, info) && info.size == g_libretro_config_database_size)
+    if (file_has_contents(path, g_libretro_config_database, g_libretro_config_database_size))
         return;
     fs::create_path(fs::get_parent_dir(path));
     // Pointer and size: fs::write_file takes the size of an array argument, and
@@ -1161,8 +1176,7 @@ static void install_patches()
     if (!g_libretro_patch_yml_size)
         return;
     const std::string path = fs::get_config_dir() + "patches/patch.yml";
-    fs::stat_t info{};
-    if (fs::get_stat(path, info) && info.size == g_libretro_patch_yml_size)
+    if (file_has_contents(path, g_libretro_patch_yml, g_libretro_patch_yml_size))
         return;
     fs::create_path(fs::get_parent_dir(path));
     fs::file file(path, fs::rewrite);
