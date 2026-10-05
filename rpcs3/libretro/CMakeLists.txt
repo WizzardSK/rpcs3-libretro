@@ -11,10 +11,13 @@ endif()
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/embed_ui_icons.cmake)
 libretro_embed_ui_icons(${CMAKE_CURRENT_BINARY_DIR}/libretro_ui_icons.cpp)
+include(${CMAKE_CURRENT_SOURCE_DIR}/embed_config_database.cmake)
+libretro_embed_config_database(${CMAKE_CURRENT_BINARY_DIR}/libretro_config_database.cpp)
 
 add_library(rpcs3_libretro SHARED
     libretro_core.cpp
     ${CMAKE_CURRENT_BINARY_DIR}/libretro_ui_icons.cpp
+    ${CMAKE_CURRENT_BINARY_DIR}/libretro_config_database.cpp
     ${LIBRETRO_VIDEO_SRC}
     libretro_audio.cpp
     libretro_input.cpp
@@ -59,6 +62,7 @@ target_include_directories(rpcs3_libretro PRIVATE
 target_link_libraries(rpcs3_libretro PRIVATE
     rpcs3_emu
     3rdparty::fusion
+    3rdparty::yaml-cpp
 )
 
 # OpenGL, and everything that goes with it. Not on Android: there is no desktop

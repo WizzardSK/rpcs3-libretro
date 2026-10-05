@@ -580,6 +580,13 @@ struct retro_core_option_v2_definition option_defs_us[] = {
     },
     // ==================== CORE ====================
     {
+        "rpcs3_database_override", "Database Settings Override", NULL,
+        "Improves compatibility by automatically applying game-specific fixes: the settings RPCS3's database has for the game (as standalone RPCS3 applies them) take priority over the core options, global or per game, for the settings they name; every other setting stays as you set it. Off applies none of them. Takes effect the next time a game is started.",
+        NULL, "core",
+        { {"enabled", NULL}, {"disabled", NULL}, {NULL, NULL} },
+        "enabled"
+    },
+    {
         "rpcs3_perf_overlay", "Performance Overlay", NULL,
         "RPCS3's own performance overlay, drawn over the game: the game's frame rate as RPCS3 counts it, and at higher detail levels frame times and CPU and GPU load.",
         NULL, "core",

@@ -51,6 +51,7 @@
 #include "Emu/system_progress.hpp"
 #include "Emu/RSX/Overlays/overlay_utils.h"
 #include "libretro_localized_strings.h"
+#include "util/yaml.hpp"
 #include "Emu/Audio/audio_device_enumerator.h"
 #include "Emu/RSX/RSXThread.h"
 #include "Input/pad_thread.h"
@@ -424,7 +425,9 @@ static bool is_pkg_file(const std::string& path)
 }
 
 // Install a PKG file and return the path to the installed EBOOT.BIN
-static std::string install_pkg_file(const std::string& pkg_path)
+// Installs the PKG; true when it went in. eboot_path is its EBOOT.BIN, empty
+// for content with none (DLC, an update without a game).
+static bool install_pkg_file(const std::string& pkg_path, std::string& eboot_path)
 {
 
     libretro_show_message("Installing PKG file...", 300);
@@ -447,14 +450,14 @@ static std::string install_pkg_file(const std::string& pkg_path)
     {
 
         libretro_show_message("PKG installation failed: No install directory", 300);
-        return "";
+        return false;
     }
 
     // Create install directory
     if (!fs::create_path(install_base))
     {
         libretro_show_message("PKG installation failed: Cannot create directory", 300);
-        return "";
+        return false;
     }
 
     // Create deque for extraction - use emplace_back since package_reader is non-copyable
@@ -465,7 +468,7 @@ static std::string install_pkg_file(const std::string& pkg_path)
     if (!readers.front().is_valid())
     {
         libretro_show_message("PKG installation failed: Invalid PKG file", 300);
-        return "";
+        return false;
     }
 
     // Get PKG info
@@ -511,11 +514,11 @@ static std::string install_pkg_file(const std::string& pkg_path)
     {
 
         libretro_show_message("PKG installation failed: Extraction error", 300);
-        return "";
+        return false;
     }
 
     // Find the bootable EBOOT.BIN
-    std::string eboot_path;
+    eboot_path.clear();
     if (!bootable_paths.empty())
     {
         eboot_path = bootable_paths.front();
@@ -538,16 +541,7 @@ static std::string install_pkg_file(const std::string& pkg_path)
         }
     }
 
-    if (eboot_path.empty())
-    {
-        libretro_show_message("PKG installed (no bootable content - may be DLC)", 300);
-    }
-    else
-    {
-        libretro_show_message("PKG installed successfully!", 180);
-    }
-
-    return eboot_path;
+    return true;
 }
 
 // The Save Data Slot core option, for the save dialog (see libretro_save_dialog)
@@ -1188,6 +1182,59 @@ static void install_ui_icons()
         if (!fs::write_file(path, fs::rewrite, icon.data, icon.size) && log_cb)
             log_cb(RETRO_LOG_WARN, "RPCS3: could not write %s\n", path.c_str());
     }
+}
+
+// RPCS3's per-game settings database (embed_config_database.cmake). The copy in
+// GuiConfigs is standalone's file, so a standalone pointed at the same folder
+// sees it too; it is written when it is missing or differs in size from the
+// one in the core, not at every start.
+extern const unsigned char g_libretro_config_database[];
+extern const std::size_t g_libretro_config_database_size;
+
+static std::string config_database_path()
+{
+    return fs::get_config_dir() + "GuiConfigs/config_database.dat";
+}
+
+static void install_config_database()
+{
+    if (!g_libretro_config_database_size)
+        return;
+    const std::string path = config_database_path();
+    fs::stat_t info{};
+    if (fs::get_stat(path, info) && info.size == g_libretro_config_database_size)
+        return;
+    fs::create_path(fs::get_parent_dir(path));
+    if (!fs::write_file(path, fs::rewrite, g_libretro_config_database, g_libretro_config_database_size) && log_cb)
+        log_cb(RETRO_LOG_WARN, "RPCS3: could not write %s\n", path.c_str());
+}
+
+// The game's entry, as RPCS3's YAML config, or nothing. The file is JSON,
+// which yaml-cpp reads as the YAML it is a subset of.
+static std::string s_database_config;
+
+static std::string lookup_database_config(const std::string& title_id)
+{
+    s_database_config.clear();
+    if (title_id.empty() || get_option_value("rpcs3_database_override", "enabled") != "enabled")
+        return {};
+    fs::file file(config_database_path());
+    if (!file)
+        return {};
+    auto [root, error] = yaml_load(file.to_string());
+    if (!error.empty())
+    {
+        if (log_cb)
+            log_cb(RETRO_LOG_WARN, "RPCS3: config database is not readable: %s\n", error.c_str());
+        return {};
+    }
+    const YAML::Node entry = root["games"][title_id]["config"];
+    if (!entry || !entry.IsScalar())
+        return {};
+    s_database_config = entry.Scalar();
+    if (log_cb)
+        log_cb(RETRO_LOG_INFO, "RPCS3: database settings for %s:\n%s\n", title_id.c_str(), s_database_config.c_str());
+    return s_database_config;
 }
 
 static std::string find_firmware_pup()
@@ -2148,6 +2195,11 @@ static std::string_view path_leaf(std::string_view path)
     return slash == umax ? path : path.substr(slash + 1);
 }
 
+// Set when the content was a PKG, installed and done with: retro_run then only
+// shows a black frame until it asks RetroArch to close the content.
+static bool s_pkg_install_only = false;
+static u32 s_pkg_install_frames = 0;
+
 bool retro_load_game(const struct retro_game_info* game)
 {
 
@@ -2183,20 +2235,33 @@ bool retro_load_game(const struct retro_game_info* game)
 
     game_path = game->path;
 
-    // Check if this is a PKG file - install it and boot the installed game
+    // A PKG is installed, not started, as standalone RPCS3 does: the core says
+    // where it went and has RetroArch close the content again (retro_run). The
+    // game is started afterwards from its PARAM.SFO in dev_hdd0/game/ (NNshi:
+    // a game booted right after its install looked like a hang while its
+    // modules compiled).
     if (is_pkg_file(game_path))
     {
+        std::string installed_eboot;
+        if (!install_pkg_file(game_path, installed_eboot))
+            return false;
 
-
-        std::string installed_eboot = install_pkg_file(game_path);
+        std::string message;
         if (installed_eboot.empty())
         {
-
-            return false;
+            message = "PKG installed (no game in it - DLC or an update)";
         }
-
-        // Update game_path to the installed EBOOT.BIN for booting
-        game_path = installed_eboot;
+        else
+        {
+            // .../game/<title id>/USRDIR/EBOOT.BIN
+            const std::string game_dir = fs::get_parent_dir(fs::get_parent_dir(installed_eboot));
+            message = "PKG installed. Start it from " + game_dir + "/PARAM.SFO";
+        }
+        if (log_cb)
+            log_cb(RETRO_LOG_INFO, "RPCS3: %s\n", message.c_str());
+        libretro_show_message(message.c_str(), 600);
+        s_pkg_install_only = true;
+        return true;
     }
     // A disc image. The ISO reader serves the volume inside it as an fs::
     // virtual device, so the boot path is taken from there and everything
@@ -2397,6 +2462,7 @@ bool retro_load_game(const struct retro_game_info* game)
     g_cfg.save(config_path);
 
     install_ui_icons();
+    install_config_database();
 
     // For null renderer, boot immediately. For OpenGL, defer until
     // context_reset(). The software path has no context coming, so it boots
@@ -2577,6 +2643,8 @@ bool retro_load_game_special(unsigned game_type, const struct retro_game_info* i
 
 void retro_unload_game(void)
 {
+    s_pkg_install_only = false;
+    s_pkg_install_frames = 0;
     // A motor left running would keep going after the game is gone.
     libretro_input_stop_rumble();
 
@@ -2608,6 +2676,17 @@ void retro_unload_game(void)
 
 void retro_run(void)
 {
+    if (s_pkg_install_only)
+    {
+        // A frame for RetroArch to show while the message is up, then the close
+        // 32 bits a pixel, so the pitch fits whichever format RetroArch is in
+        static u32 s_black[320 * 240] = {};
+        video_cb(s_black, 320, 240, 320 * sizeof(u32));
+        if (++s_pkg_install_frames == 180)
+            environ_cb(RETRO_ENVIRONMENT_SHUTDOWN, nullptr);
+        return;
+    }
+
     if (!game_loaded)
         return;
 
@@ -2649,6 +2728,10 @@ void retro_run(void)
     if (environ_cb(RETRO_ENVIRONMENT_GET_VARIABLE_UPDATE, &updated) && updated)
     {
         libretro_apply_core_options();
+        // The game's database settings stay on top of options changed while
+        // it runs, as they were at its start.
+        if (!s_database_config.empty())
+            g_cfg.from_string(s_database_config);
     }
 
     // Poll input
@@ -3143,9 +3226,11 @@ static void init_emu_callbacks()
     // Three more since upstream build 20147, the first of which ended every
     // boot right after the title was logged.
     //
-    // Standalone downloads a per-game config from RPCS3's database here. A core
-    // does not fetch anything at run time, so there is none.
-    callbacks.get_database_config = [](const std::string&) { return std::string(); };
+    // Standalone reads its downloaded config_database.dat here; the core reads
+    // the copy it carries (install_config_database), unless Database Settings
+    // Override is off. RPCS3 applies the entry on top of config.yml, where the
+    // core options are, so the database wins for the settings it names.
+    callbacks.get_database_config = [](const std::string& title_id) { return lookup_database_config(title_id); };
 
     // Standalone's, without Qt: the photo goes to dev_hdd0/photo/<date>/ under
     // the title and the time, with a counter when that name is taken.
