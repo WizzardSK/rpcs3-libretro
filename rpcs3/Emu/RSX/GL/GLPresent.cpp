@@ -500,18 +500,6 @@ void GLGSRender::flip(const rsx::display_flip_info_t& info)
 	if (image_to_flip)
 	{
 #if defined(LIBRETRO_CORE)
-		// Debug logging for zoom/crop issue investigation
-		static u64 s_flip_debug_count = 0;
-		s_flip_debug_count++;
-		if (s_flip_debug_count <= 60 || (s_flip_debug_count % 300) == 0)
-		{
-			rsx_log.notice("[LRFLIP_DEBUG] image_to_flip: %ux%u, buffer: %ux%u, client: %dx%d, aspect_ratio: (%d,%d)-(%d,%d)",
-				image_to_flip->width(), image_to_flip->height(),
-				buffer_width, buffer_height,
-				width, height,
-				aspect_ratio.x1, aspect_ratio.y1, aspect_ratio.x2, aspect_ratio.y2);
-		}
-
 		// The surface a title flips can be larger than the buffer it shows -
 		// GT5 draws its 1280x720 frame into a 2048x1080 render target. Upstream
 		// takes only the buffer's area of it through the upscaler's source
