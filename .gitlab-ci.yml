@@ -12,6 +12,14 @@
 ##############################################################################
 
 .core-defs:
+  # A failed job is run again: the nightly at 04:03 on 5 Oct failed in two jobs
+  # only because GitHub turned the runner's anonymous clones away ("could not
+  # read Username for 'https://github.com'") - the submodules on linux-x64,
+  # protobuf's abseil on windows-x64 - while the same commit built the evening
+  # before and the morning after.
+  retry:
+    max: 2
+    when: script_failure
   variables:
     # The jobs fetch the submodules themselves, LLVM only where it is built.
     GIT_SUBMODULE_STRATEGY: none
