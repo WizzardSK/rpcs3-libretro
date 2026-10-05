@@ -361,6 +361,37 @@ static bool is_pkg_file(const std::string& path)
 }
 
 // Install a PKG file and return the path to the installed EBOOT.BIN
+// A PSN game's PKG installs without its license, but its EBOOT.BIN only
+// decrypts with the .rap file, which RPCS3 looks for in
+// dev_hdd0/home/<user>/exdata/ (standalone has its user drop it there). The
+// .rap files next to the PKG - a PSN dump comes as both - are copied there with
+// the install, unless one of that name is there already (sco).
+static void install_rap_files(const std::string& pkg_path)
+{
+    const std::string pkg_dir = fs::get_parent_dir(pkg_path);
+    const std::string exdata = g_cfg_vfs.get(g_cfg_vfs.dev_hdd0, system_dir + "/rpcs3/") + "home/00000001/exdata/";
+    fs::dir dir(pkg_dir);
+    if (!dir)
+        return;
+    for (const fs::dir_entry& entry : dir)
+    {
+        if (entry.is_directory || entry.name.size() <= 4 || fmt::to_lower(entry.name.substr(entry.name.size() - 4)) != ".rap")
+            continue;
+        // RPCS3 wants the extension in lower case
+        const std::string dest = exdata + entry.name.substr(0, entry.name.size() - 4) + ".rap";
+        if (fs::is_file(dest))
+            continue;
+        fs::create_path(exdata);
+        if (fs::copy_file(pkg_dir + "/" + entry.name, dest, false))
+        {
+            if (log_cb)
+                log_cb(RETRO_LOG_INFO, "RPCS3: license %s installed to %s\n", entry.name.c_str(), exdata.c_str());
+        }
+        else if (log_cb)
+            log_cb(RETRO_LOG_WARN, "RPCS3: could not copy %s to %s\n", entry.name.c_str(), exdata.c_str());
+    }
+}
+
 // Installs the PKG; true when it went in. eboot_path is its EBOOT.BIN, empty
 // for content with none (DLC, an update without a game).
 static bool install_pkg_file(const std::string& pkg_path, std::string& eboot_path)
@@ -477,6 +508,7 @@ static bool install_pkg_file(const std::string& pkg_path, std::string& eboot_pat
         }
     }
 
+    install_rap_files(pkg_path);
     return true;
 }
 
