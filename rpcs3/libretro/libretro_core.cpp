@@ -1205,8 +1205,14 @@ static void install_config_database()
     if (fs::get_stat(path, info) && info.size == g_libretro_config_database_size)
         return;
     fs::create_path(fs::get_parent_dir(path));
-    if (!fs::write_file(path, fs::rewrite, g_libretro_config_database, g_libretro_config_database_size) && log_cb)
-        log_cb(RETRO_LOG_WARN, "RPCS3: could not write %s\n", path.c_str());
+    // Pointer and size: fs::write_file takes the size of an array argument, and
+    // this one's is only known at link time
+    fs::file file(path, fs::rewrite);
+    if (!file || file.write(g_libretro_config_database, g_libretro_config_database_size) != g_libretro_config_database_size)
+    {
+        if (log_cb)
+            log_cb(RETRO_LOG_WARN, "RPCS3: could not write %s\n", path.c_str());
+    }
 }
 
 // The game's entry, as RPCS3's YAML config, or nothing. The file is JSON,
