@@ -141,6 +141,13 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "disabled"
     },
     {
+        "rpcs3_emulate_bdvd_speed", "Emulate BD-ROM Read Speed", NULL,
+        "Reads from the disc at the PS3 drive's 2x speed (9 MB/s), for games that stream movies from disc and show corrupted video when loading is instant. Loading takes longer.",
+        NULL, "cpu",
+        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        "disabled"
+    },
+    {
         "rpcs3_ppu_reservation_priority", "PPU Reservation Priority", NULL,
         "Gives PPU reservations priority over the SPUs', as in RPCS3. Can help games that stall on them.",
         NULL, "cpu",

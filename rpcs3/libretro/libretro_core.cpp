@@ -728,6 +728,7 @@ static void libretro_apply_core_options()
     g_cfg.core.debug_console_mode.set(enabled("rpcs3_debug_console_mode", "disabled"));
     g_cfg.core.mfc_transfers_shuffling.set(enabled("rpcs3_mfc_delay_command", "disabled") ? 1 : 0);
     g_cfg.vfs.emulate_hdd_speed.set(enabled("rpcs3_emulate_hdd_speed", "disabled"));
+    g_cfg.vfs.emulate_bdvd_speed.set(enabled("rpcs3_emulate_bdvd_speed", "disabled"));
     g_cfg.core.ppu_reservation_priority_over_spu.set(enabled("rpcs3_ppu_reservation_priority", "disabled"));
     g_cfg.video.host_label_synchronization.set(enabled("rpcs3_host_gpu_labels", "disabled"));
     g_cfg.video.emulate_depth_compare.set(enabled("rpcs3_emulate_depth_compare", "disabled"));
