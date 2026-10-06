@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "VKCommandStream.h"
 #include "VKGSRender.h"
 #ifdef LIBRETRO_CORE
 #include "VKLibretro.h"
@@ -939,11 +940,19 @@ void VKGSRender::flip(const rsx::display_flip_info_t& info)
 		else
 #endif
 		{
+			// We need to disable the driver manager temporarily as this next section is out of sequence.
+			// We're not supposed to be halting the GPU here and we certainly do not want to run driver management as we will end up deleting temp resources too early.
+			auto& driver_manager = g_fxo->get<vk::driver_manager_thread>();
+			driver_manager.set_enabled(false);
+
 			flush_command_queue(true);
 			const auto src = sshot_vkbuf.map(0, sshot_size);
 			std::vector<u8> sshot_frame(sshot_size);
 			memcpy(sshot_frame.data(), src, sshot_size);
 			sshot_vkbuf.unmap();
+
+			// Restore the driver manager state to keep things from crashing...
+			driver_manager.set_enabled(true);
 
 			const bool is_bgra = image_to_copy->format() == VK_FORMAT_B8G8R8A8_UNORM;
 
