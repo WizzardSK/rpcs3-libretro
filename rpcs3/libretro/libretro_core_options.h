@@ -445,8 +445,8 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "disabled"
     },
     {
-        "rpcs3_upnp", "UPNP", NULL,
-        "Enable UPNP for automatic port forwarding.",
+        "rpcs3_upnp", "UPnP", NULL,
+        "Enable UPnP for automatic port forwarding.",
         NULL, "network",
         { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
         "disabled"
