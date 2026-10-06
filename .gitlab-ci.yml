@@ -17,6 +17,10 @@
   # read Username for 'https://github.com'") - the submodules on linux-x64,
   # protobuf's abseil on windows-x64 - while the same commit built the evening
   # before and the morning after.
+  # The runner reuses its clone, and a submodule whose recorded commit is
+  # already checked out there is skipped by a plain `submodule update` even
+  # when its files are gone: the jobs on 6 Oct configured against an empty
+  # 3rdparty/ffmpeg and SoundTouch. So the scripts update with --force.
   retry:
     max: 2
     when: script_failure
@@ -142,7 +146,7 @@ libretro-build-windows-x64:
         export NDK_ROOT="${ANDROID_HOME}/ndk/${ANDROID_NDK_VERSION}"
       fi
     - *submodule-urls
-    - git submodule -q update --init --depth 1 $(awk '/path/ { print $3 }' .gitmodules)
+    - git submodule -q update --init --force --depth 1 $(awk '/path/ { print $3 }' .gitmodules)
     - |
       TC="$NDK_ROOT/toolchains/llvm/prebuilt/linux-x86_64/bin"
       if [ -f "$FFMPEG_PREFIX/lib/libavcodec.a" ]; then
