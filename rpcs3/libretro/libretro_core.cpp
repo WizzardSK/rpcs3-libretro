@@ -8,6 +8,8 @@
 #include "libretro.h"
 #include "libretro_core.h"
 #include "libretro_core_options.h"
+#include "libretro_patch_manager.h"
+#include "Loader/PSF.h"
 
 #include <cstdlib>
 
@@ -1326,6 +1328,94 @@ static void libretro_big_little_defaults()
 #endif
 }
 
+// The options from libretro_core_options.h, then the loaded game's patches
+// (libretro_patch_manager.cpp) in a category of their own. Declared again once the
+// game is known; RetroArch keeps what the .opt file says for each key.
+static bool RETRO_CALLCONV libretro_update_options_display()
+{
+    libretro_patches::update_display(environ_cb, [](const char* key) { return get_option_value(key, "disabled"); });
+    return true;
+}
+
+static void publish_core_options(retro_environment_t cb)
+{
+    static const std::vector<retro_core_option_v2_definition> fixed = [] {
+        std::vector<retro_core_option_v2_definition> defs;
+        for (const auto& def : option_defs_us)
+        {
+            if (!def.key)
+                break;
+            defs.push_back(def);
+        }
+        return defs;
+    }();
+    static const std::vector<retro_core_option_v2_category> fixed_categories = [] {
+        std::vector<retro_core_option_v2_category> cats;
+        for (const auto& cat : option_cats_us)
+        {
+            if (!cat.key)
+                break;
+            cats.push_back(cat);
+        }
+        return cats;
+    }();
+
+    static std::vector<retro_core_option_v2_definition> all;
+    static std::vector<retro_core_option_v2_category> categories;
+    all = fixed;
+    categories = fixed_categories;
+    if (libretro_patches::any())
+    {
+        const auto& patches = libretro_patches::definitions();
+        all.insert(all.end(), patches.begin(), patches.end());
+        categories.push_back({"patches", "Patch Manager", "The game's patches from RPCS3's patch files, patch.yml and imported_patch.yml. A change applies at the next start of the game."});
+    }
+    all.push_back({});
+    categories.push_back({});
+    options_us.definitions = all.data();
+    options_us.categories = categories.data();
+
+    bool categories_supported = false;
+    libretro_set_core_options(cb, &categories_supported);
+
+    // Out of the menu, as RPCS3 keeps them out of its settings dialog; the
+    // .opt file still sets them (the HIDDEN block in libretro_core_options.h)
+    for (const char* key : {"rpcs3_spu_cache", "rpcs3_accurate_dfma", "rpcs3_spu_verification",
+            "rpcs3_driver_recovery_timeout", "rpcs3_mfc_shuffling", "rpcs3_spu_delay_penalty",
+            "rpcs3_vblank_ntsc", "rpcs3_hle_lwmutex"})
+    {
+        struct retro_core_option_display display{key, false};
+        cb(RETRO_ENVIRONMENT_SET_CORE_OPTIONS_DISPLAY, &display);
+    }
+
+    if (libretro_patches::any())
+    {
+        struct retro_core_options_update_display_callback update_display{libretro_update_options_display};
+        cb(RETRO_ENVIRONMENT_SET_CORE_OPTIONS_UPDATE_DISPLAY_CALLBACK, &update_display);
+        libretro_patches::update_display(cb, [](const char* key) { return get_option_value(key, "disabled"); });
+    }
+}
+
+// The serial of the game in a folder (a disc dump's root or PS3_GAME, an HDD
+// game's folder) or of the EBOOT.BIN in it, from its PARAM.SFO
+static std::string game_serial(const std::string& path)
+{
+    std::string dir = fs::is_dir(path) ? path : fs::get_parent_dir(path);
+    for (int i = 0; i < 4 && !dir.empty(); i++)
+    {
+        for (const std::string& sfo : {dir + "/PARAM.SFO", dir + "/PS3_GAME/PARAM.SFO"})
+        {
+            if (!fs::is_file(sfo))
+                continue;
+            const std::string serial = std::string(psf::get_string(psf::load_object(sfo), "TITLE_ID"));
+            if (!serial.empty())
+                return serial;
+        }
+        dir = fs::get_parent_dir(dir);
+    }
+    return {};
+}
+
 void retro_set_environment(retro_environment_t cb)
 {
     environ_cb = cb;
@@ -1357,19 +1447,8 @@ void retro_set_environment(retro_environment_t cb)
     // language, live in libretro_core_options.h, laid out the way
     // libretro's Crowdin scripts read them. Frontends without v2 get v1 or
     // the flat v0 list generated from the same definitions.
-    bool categories_supported = false;
     libretro_big_little_defaults();
-    libretro_set_core_options(cb, &categories_supported);
-
-    // Out of the menu, as RPCS3 keeps them out of its settings dialog; the
-    // .opt file still sets them (the HIDDEN block in libretro_core_options.h)
-    for (const char* key : {"rpcs3_spu_cache", "rpcs3_accurate_dfma", "rpcs3_spu_verification",
-            "rpcs3_driver_recovery_timeout", "rpcs3_mfc_shuffling", "rpcs3_spu_delay_penalty",
-            "rpcs3_vblank_ntsc", "rpcs3_hle_lwmutex"})
-    {
-        struct retro_core_option_display display{key, false};
-        cb(RETRO_ENVIRONMENT_SET_CORE_OPTIONS_DISPLAY, &display);
-    }
+    publish_core_options(cb);
 
     // We don't support no-game
     bool support_no_game = false;
@@ -2539,6 +2618,12 @@ bool retro_load_game(const struct retro_game_info* game)
     install_config_database();
     install_patches();
 
+    // The Patch Manager for this game, now that its serial and the patch files
+    // are there
+    libretro_patches::collect(game_serial(game_path));
+    if (libretro_patches::any())
+        publish_core_options(environ_cb);
+
     // For null renderer, boot immediately. For OpenGL, defer until
     // context_reset(). The software path has no context coming, so it boots
     // here as well or it would wait forever.
@@ -2599,6 +2684,9 @@ static bool do_boot_game()
         }
 
     }
+
+    // The patches turned on in the Patch Manager, for RPCS3 to read as it boots
+    libretro_patches::write_config([](const char* key) { return get_option_value(key, "disabled"); });
 
     game_boot_result result = game_boot_result::generic_error;
     try
