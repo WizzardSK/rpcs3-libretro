@@ -390,10 +390,22 @@ void LibretroPadHandler::process()
         u16 rsy_pos = button_values[static_cast<u64>(LibretroButton::RSYPos)];
 
         // Convert to centered format: 128 = center, 0 = full left/up, 255 = full right/down
-        u8 analog_left_x  = static_cast<u8>(128 + (lsx_pos / 2) - (lsx_neg / 2));
-        u8 analog_left_y  = static_cast<u8>(128 + (lsy_pos / 2) - (lsy_neg / 2));
-        u8 analog_right_x = static_cast<u8>(128 + (rsx_pos / 2) - (rsx_neg / 2));
-        u8 analog_right_y = static_cast<u8>(128 + (rsy_pos / 2) - (rsy_neg / 2));
+        u16 lx = static_cast<u16>(128 + (lsx_pos / 2) - (lsx_neg / 2));
+        u16 ly = static_cast<u16>(128 + (lsy_pos / 2) - (lsy_neg / 2));
+        u16 rx = static_cast<u16>(128 + (rsx_pos / 2) - (rsx_neg / 2));
+        u16 ry = static_cast<u16>(128 + (rsy_pos / 2) - (rsy_neg / 2));
+
+        // A stick reports a circle, which a DualShock 3 does not: pushed all
+        // the way diagonally it gave about 70 % on each axis, and games that
+        // run at a full tilt walked instead (Ratchet & Clank, NNshi).
+        // Standalone RPCS3 turns the circle into a squircle for every pad
+        // handler (convert_stick_values), with a factor of 4000 by default.
+        ConvertToSquirclePoint(lx, ly, 4000);
+        ConvertToSquirclePoint(rx, ry, 4000);
+        const u8 analog_left_x = static_cast<u8>(lx);
+        const u8 analog_left_y = static_cast<u8>(ly);
+        const u8 analog_right_x = static_cast<u8>(rx);
+        const u8 analog_right_y = static_cast<u8>(ry);
 
         // Update analog stick axes in m_sticks array
         for (auto& stick : binding.pad->m_sticks)

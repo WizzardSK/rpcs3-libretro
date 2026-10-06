@@ -2753,11 +2753,13 @@ void retro_run(void)
 {
     if (s_pkg_install_only)
     {
-        // A frame for RetroArch to show while the message is up, then the close
+        // One frame and the close: RetroArch keeps the install message up for
+        // a few seconds on its menu anyway, and three seconds of black before
+        // it were only a wait (NNshi)
         // 32 bits a pixel, so the pitch fits whichever format RetroArch is in
         static u32 s_black[320 * 240] = {};
         video_cb(s_black, 320, 240, 320 * sizeof(u32));
-        if (++s_pkg_install_frames == 180)
+        if (++s_pkg_install_frames == 1)
             environ_cb(RETRO_ENVIRONMENT_SHUTDOWN, nullptr);
         return;
     }

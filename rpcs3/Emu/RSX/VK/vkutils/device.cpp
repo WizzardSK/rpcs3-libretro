@@ -633,6 +633,24 @@ namespace vk
 		enabled_features.shaderStorageBufferArrayDynamicIndexing = VK_TRUE;
 
 		// Optionally disable unsupported stuff
+#ifdef LIBRETRO_CORE
+		// Phone GPUs lack some of what desktop ones all have, and asking for a
+		// feature the device does not have fails vkCreateDevice outright
+		// (VK_ERROR_FEATURE_NOT_PRESENT on Android, sco); without these RPCS3
+		// draws less exactly rather than not at all
+		for (auto [wanted, have, name] : {
+			std::tuple{ &enabled_features.robustBufferAccess, pgpu->features.robustBufferAccess, "robustBufferAccess" },
+			std::tuple{ &enabled_features.independentBlend, pgpu->features.independentBlend, "independentBlend" },
+			std::tuple{ &enabled_features.logicOp, pgpu->features.logicOp, "logicOp" },
+			std::tuple{ &enabled_features.depthClamp, pgpu->features.depthClamp, "depthClamp" } })
+		{
+			if (*wanted && !have)
+			{
+				rsx_log.error("Your GPU does not support %s. Some rendering may be inaccurate.", name);
+				*wanted = VK_FALSE;
+			}
+		}
+#endif
 		if (!pgpu->features.fullDrawIndexUint32)
 		{
 			// There's really nothing we can do about PS3 draw indices, just pray your GPU doesn't crash.
