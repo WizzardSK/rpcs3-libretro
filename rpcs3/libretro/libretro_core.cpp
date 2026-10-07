@@ -529,6 +529,16 @@ static std::string get_option_value(const char* key, const char* default_val = "
     return default_val;
 }
 
+// What the frontend was last told: the frame size, and the largest frame it
+// made room for. Both start over whenever it asks for the AV info again.
+static unsigned s_reported_width = 0;
+static unsigned s_reported_height = 0;
+static unsigned s_max_width = 0;
+static unsigned s_max_height = 0;
+// The aspect ratio the frontend is told: 16:9, or what Stretch to Display
+// Area names
+static float s_display_aspect = 16.0f / 9.0f;
+
 static void libretro_apply_core_options()
 {
     if (!environ_cb)
@@ -798,7 +808,22 @@ static void libretro_apply_core_options()
         if (changed && !Emu.IsStopped())
             rsx::overlays::reset_performance_overlay();
     }
-    g_cfg.video.stretch_to_display_area.set(enabled("rpcs3_stretch_to_display", "disabled"));
+    {
+        // Stretched, the picture fills what the frontend shows it in, and that
+        // is the aspect ratio the core reports: a game patched for 21:9 needs
+        // RetroArch to show it at 21:9 (NNshi). The frontend does not say what
+        // its display is, so the option names it; "enabled" is 16:9, as before.
+        const std::string stretch = get_option_value("rpcs3_stretch_to_display", "disabled");
+        g_cfg.video.stretch_to_display_area.set(stretch != "disabled");
+        float aspect = 16.0f / 9.0f;
+        if (unsigned w = 0, h = 0; std::sscanf(stretch.c_str(), "%u:%u", &w, &h) == 2 && w && h)
+            aspect = static_cast<float>(w) / static_cast<float>(h);
+        if (aspect != s_display_aspect)
+        {
+            s_display_aspect = aspect;
+            s_reported_width = s_reported_height = 0; // reported again with the next frame
+        }
+    }
     g_cfg.video.vk.asynchronous_texture_streaming.set(enabled("rpcs3_async_texture_streaming", "disabled"));
     // The option is in milliseconds, the setting in microseconds.
     g_cfg.video.driver_recovery_timeout.set(std::clamp(std::atoi(get_option_value("rpcs3_driver_recovery_timeout", "1000").c_str()), 0, 30000) * 1000);
@@ -1545,12 +1570,6 @@ static unsigned scaled_dimension(unsigned native)
     return static_cast<unsigned>(static_cast<u64>(native) * g_cfg.video.resolution_scale_percent.get() / 100);
 }
 
-// What the frontend was last told: the frame size, and the largest frame it
-// made room for. Both start over whenever it asks for the AV info again.
-static unsigned s_reported_width = 0;
-static unsigned s_reported_height = 0;
-static unsigned s_max_width = 0;
-static unsigned s_max_height = 0;
 
 static void fill_av_info(retro_system_av_info* info)
 {
@@ -1566,7 +1585,7 @@ static void fill_av_info(retro_system_av_info* info)
     info->geometry.base_height = scaled_dimension(height);
     info->geometry.max_width = std::max(3840u, scaled_dimension(1920));
     info->geometry.max_height = std::max(2160u, scaled_dimension(1080));
-    info->geometry.aspect_ratio = 16.0f / 9.0f;
+    info->geometry.aspect_ratio = s_display_aspect;
     // The PS3's refresh rate: with Frame Pacing on RetroArch, every frame the
     // frontend asks for is one VBLANK, so this is the rate the game runs at.
     const double vblank_period = 1'000'000.0 + g_cfg.video.vblank_ntsc.get() * 1000.0;

@@ -3,14 +3,18 @@
 // options of their own in a last category, Patch Manager, which is not there
 // for a game without any (NNshi).
 //
-// - Every patch is an Enabled/Disabled switch, off unless turned on.
-// - Patches that share a Group are one option, a choice between them and
-//   Disabled: RPCS3 applies one patch of a group at most.
+// - Every patch is an Enabled/Disabled switch with its own notes, off unless
+//   turned on, as standalone lists them.
+// - Patches that share a Group are switches too, of which one at most is on,
+//   as RPCS3 applies one patch of a group at most: turning one on turns the
+//   others off (NNshi: standalone does not merge them into one choice).
 // - A patch's configurable values with a list of allowed values are options
 //   too, shown while the patch is on. Ranges keep the patch's default.
-// - "All titles" patches (serial "All", hashed SPU programs) are left out:
-//   which ones apply is known only once the game has run its SPU code, and
-//   listed for every game they made the category appear everywhere.
+// - "All titles" patches (serial "All", hashed SPU programs) are listed only
+//   for the games they are known to affect (s_multigame_patches); listed for
+//   every game they made the category appear everywhere. Turned on, they are
+//   on for every game, as in standalone - RPCS3 applies them only where the
+//   SPU program's hash matches anyway.
 //
 // The patches come from patch.yml (the one the core carries), from
 // imported_patch.yml (what was imported in standalone RPCS3, copied over) and
@@ -43,12 +47,38 @@ namespace
     struct patch_option
     {
         std::string key;
-        std::string group;                     // empty: an Enabled/Disabled switch
-        std::vector<std::string> descriptions; // one, or a group's patches
+        std::string group;                     // empty: none; else one of a group is on at most
+        std::vector<std::string> descriptions; // the patch (one)
+        bool all_titles = false;               // an "All titles" patch, configured for all
         std::map<std::string /*description*/, std::vector<config_value_option>> config_values;
     };
 
+// The "All titles" patches of patch.yml (hashed SPU programs) that name the
+// games they are known to affect only in their notes: those games' serials,
+// so the patch is listed for them. Demos and betas are left out. Made from
+// the notes with RPCS3's compatibility list (NNshi did the first).
+static const std::map<std::string_view, std::vector<std::string_view>> s_multigame_patches = {
+    {"Disable SPU MLAA - Prince of Persia series", {"NPEB00341", "NPEB00389", "NPEB00390", "NPUB30303", "NPUB30387", "NPUB30388"}},
+    {"Disable SPU MLAA - Multiple titles (01)", {"BCAS20233", "BCAS20281", "BCES01503", "BCES01740", "BCUS98282", "BCUS98377", "BLES01211", "BLES01222", "BLES01250", "BLES01414", "BLJM60352", "BLJM60489", "BLJM61149", "BLUS30732", "BLUS30736", "BLUS30842", "NPEA00275", "NPEA00288", "NPEA00438", "NPEB00645", "NPEB00821", "NPEB00915", "NPEB01363", "NPEB02228", "NPHA80188", "NPJA00075", "NPJB00466", "NPJB00532", "NPUA70218", "NPUA80275", "NPUA80523", "NPUB30745", "NPUB31077", "NPUB31345", "NPUB31658"}},
+    {"Disable SPU MLAA - Multiple titles (02)", {"BLES01066", "BLES01167", "BLES01169", "BLES01399", "BLJM60316", "BLUS30580", "BLUS30642", "BLUS30709", "BLUS30826", "NPEB00618", "NPEB02034", "NPUB30539", "NPUB31509"}},
+    {"Disable SPU MLAA - Multiple titles (03)", {"BCAS20254", "BCES01097", "BCES01115", "BCES01279", "BCES01598", "BCUS98259", "BCUS98278", "BCUS98279", "NPEA00280", "NPUA80677"}},
+    {"Disable SPU MLAA - Multiple titles (04)", {"BLAS50796", "BLES02178", "BLES02243", "BLJM61249", "BLJM61313", "BLUS31599", "NPEB02281", "NPUB31838", "NPUB31857"}},
+    {"Disable SPU MLAA - WWE '13, WWE 2K14", {"BLES01699", "BLES01937", "BLUS31015", "BLUS31277", "NPEB01815"}},
+    {"Disable SPU MLAA - ICO", {"BCES01097", "BCES01115", "BCUS98259", "NPEA00279", "NPUA80676"}},
+    {"Disable SPU MLAA - Macross 30", {"BLJS10184"}},
+    {"Disable SPU MLAA - Metro Last Light", {"BLES01867", "BLJS10218", "BLUS31184", "NPEB01369", "NPUB31219"}},
+    {"Disable SPU MLAA - God of War: Ascension (01)", {"BCES01741", "BCES01742", "BCUS98232", "NPEA00445", "NPHA80258", "NPUA80918"}},
+    {"Disable SPU MLAA - God of War: Ascension (02)", {"BCES01741", "BCES01742", "BCUS98232", "NPEA00445", "NPHA80258", "NPUA80918"}},
+    {"Disable SPU MLAA - God of War: Ascension (03)", {"BCES01741", "BCES01742", "BCUS98232", "NPEA00445", "NPHA80258", "NPUA80918"}},
+    {"Disable SPU MLAA - Twisted Metal, Resident Evil: Operation Raccoon City", {"BCES01010", "BCES01400", "BCUS98106", "BLES01288", "BLJM60342", "BLUS30750", "NPEA00362", "NPEB00985", "NPUA80079", "NPUB30767"}},
+    {"Disable SPU MLAA - Multiple titles (05)", {"BCES00484", "BCES00956", "BCES01104", "BCES01284", "BCES01285", "BCES01369", "BCUS98242", "BCUS98247", "BCUS98248", "BCUS98271", "BLES00991", "BLES01392", "BLES01393", "BLES01698", "BLES01796", "BLES02026", "BLJM60502", "BLJS10127", "BLUS30585", "BLUS30613", "BLUS30723", "BLUS31433", "NPEA00303", "NPEA00304", "NPEA00315", "NPEA00333", "NPEA00429", "NPEA00505", "NPEB00435", "NPEB00476", "NPEB01020", "NPEB01332", "NPJA00077", "NPUA80619", "NPUA80661", "NPUA80678", "NPUA80696", "NPUA80875", "NPUA80930", "NPUB30383", "NPUB30830", "NPUB31072", "NPUB31496"}},
+    {"Disable SPU MLAA - LittleBigPlanet 2 (01)", {"BCAS20113", "BCES00850", "BCES01086", "BCES01693", "BCES01694", "BCUS98245", "BCUS98372", "NPEA00324", "NPEA00437", "NPUA80662"}},
+    {"Disable SPU MLAA - LittleBigPlanet 2 (02)", {"BCAS20113", "BCES00850", "BCES01086", "BCES01693", "BCES01694", "BCUS98245", "BCUS98372", "NPEA00324", "NPEA00437", "NPUA80662"}},
+    {"Disable SPU MLAA - LittleBigPlanet 2, LittleBigPlanet 3, LittleBigPlanet Hub", {"BCAS20113", "BCES00850", "BCES01086", "BCES01663", "BCES01693", "BCES01694", "BCES02068", "BCUS98245", "BCUS98362", "BCUS98372", "NPEA00324", "NPEA00437", "NPEA00515", "NPUA80662", "NPUA81116"}},
+};
+
     std::string s_serial;
+    std::map<std::string, std::string> s_last_values; // what a group's switches were, to see which one was turned on
     patch_engine::patch_map s_map;
     std::vector<patch_option> s_options;
     std::vector<retro_core_option_v2_definition> s_definitions;
@@ -81,6 +111,17 @@ namespace
                 return true;
         }
         return false;
+    }
+
+    // An "All titles" patch whose notes name this game
+    bool all_titles_for_serial(const patch_engine::patch_info& info, const std::string& description, const std::string& serial)
+    {
+        const auto titles = info.titles.find(patch_key::all);
+        if (titles == info.titles.end() || !titles->second.contains(patch_key::all))
+            return false;
+        const auto games = s_multigame_patches.find(description);
+        return games != s_multigame_patches.end() &&
+            std::find(games->second.begin(), games->second.end(), serial) != games->second.end();
     }
 
     // The notes' first paragraph, as the sublabel
@@ -122,8 +163,7 @@ namespace libretro_patches
         }
 
         // One option per description, whichever executables (hashes) it is
-        // for; a group's patches together under the group's name
-        std::map<std::string, patch_option> by_group;
+        // for, as standalone lists them
         std::map<std::string, patch_option> singles;
         std::map<std::string, const patch_engine::patch_info*> first_info;
 
@@ -131,44 +171,43 @@ namespace libretro_patches
         {
             for (const auto& [description, info] : container.patch_info_map)
             {
-                if (!for_serial(info, serial))
+                const bool all_titles = !for_serial(info, serial) && all_titles_for_serial(info, description, serial);
+                if (!all_titles && !for_serial(info, serial))
                     continue;
 
                 first_info.try_emplace(description, &info);
 
-                patch_option& option = info.patch_group.empty() ? singles[description] : by_group[info.patch_group];
+                patch_option& option = singles[description];
                 option.group = info.patch_group;
-                if (std::find(option.descriptions.begin(), option.descriptions.end(), description) == option.descriptions.end())
+                option.all_titles = option.all_titles || all_titles;
+                if (option.descriptions.empty())
                     option.descriptions.push_back(description);
             }
         }
 
-        for (auto* options : {&singles, &by_group})
+        for (auto& [name, option] : singles)
         {
-            for (auto& [name, option] : *options)
+            option.key = "rpcs3_zpatch_" + key_hash(serial + '\x1f' + "p" + name);
+
+            for (const std::string& description : option.descriptions)
             {
-                option.key = "rpcs3_zpatch_" + key_hash(serial + '\x1f' + (option.group.empty() ? "p" : "g") + name);
-                std::sort(option.descriptions.begin(), option.descriptions.end());
-
-                for (const std::string& description : option.descriptions)
+                const patch_engine::patch_info& info = *first_info.at(description);
+                for (const auto& [value_name, value] : info.default_config_values)
                 {
-                    const patch_engine::patch_info& info = *first_info.at(description);
-                    for (const auto& [value_name, value] : info.default_config_values)
-                    {
-                        if (value.allowed_values.empty())
-                            continue; // a range: the patch's default
+                    if (value.allowed_values.empty())
+                        continue; // a range: the patch's default
 
-                        config_value_option config{};
-                        config.key = option.key + "_" + key_hash(description + '\x1f' + value_name);
-                        config.name = value_name;
-                        for (const auto& allowed : value.allowed_values)
-                            config.values.emplace_back(allowed.label.empty() ? value_text(allowed.value) : allowed.label, allowed.value);
-                        option.config_values[description].push_back(std::move(config));
-                    }
+                    config_value_option config{};
+                    config.key = option.key + "_" + key_hash(description + '\x1f' + value_name);
+                    config.name = value_name;
+                    for (const auto& allowed : value.allowed_values)
+                        config.values.emplace_back(allowed.label.empty() ? value_text(allowed.value) : allowed.label, allowed.value);
+                    option.config_values[description].push_back(std::move(config));
                 }
-                s_options.push_back(std::move(option));
             }
+            s_options.push_back(std::move(option));
         }
+        s_last_values.clear();
 
         // The definitions, in the order the options were made
         for (const patch_option& option : s_options)
@@ -178,31 +217,18 @@ namespace libretro_patches
             def.category_key = "patches";
 
             const patch_engine::patch_info& first = *first_info.at(option.descriptions.front());
-            if (option.group.empty())
-            {
-                std::string info = first_paragraph(first.notes);
-                if (!first.author.empty())
-                    info += (info.empty() ? "" : " ") + fmt::format("(%s)", first.author);
-                def.desc = keep(option.descriptions.front());
-                def.info = keep(info.empty() ? "Applies at the next start of the game." : info + " Applies at the next start of the game.");
-                def.values[0] = {"disabled", nullptr};
-                def.values[1] = {"enabled", nullptr};
-                def.default_value = "disabled";
-            }
-            else
-            {
-                def.desc = keep(option.group);
-                def.info = "Patches of which one at most can be on. Applies at the next start of the game.";
-                usz index = 0;
-                def.values[index++] = {"disabled", nullptr};
-                for (const std::string& description : option.descriptions)
-                {
-                    if (index + 1 >= RETRO_NUM_CORE_OPTION_VALUES_MAX)
-                        break;
-                    def.values[index++] = {keep(description), nullptr};
-                }
-                def.default_value = "disabled";
-            }
+            std::string info = first_paragraph(first.notes);
+            if (!first.author.empty())
+                info += (info.empty() ? "" : " ") + fmt::format("(%s)", first.author);
+            if (!option.group.empty())
+                info += (info.empty() ? "" : " ") + fmt::format("One patch of the group %s at most is on.", option.group);
+            if (option.all_titles)
+                info += (info.empty() ? "" : " ") + std::string("For several games: on, it is on for all of them.");
+            def.desc = keep(option.descriptions.front());
+            def.info = keep(info.empty() ? "Applies at the next start of the game." : info + " Applies at the next start of the game.");
+            def.values[0] = {"disabled", nullptr};
+            def.values[1] = {"enabled", nullptr};
+            def.default_value = "disabled";
             s_definitions.push_back(def);
 
             for (const auto& [description, configs] : option.config_values)
@@ -213,7 +239,7 @@ namespace libretro_patches
                     retro_core_option_v2_definition value_def{};
                     value_def.key = keep(config.key);
                     value_def.category_key = "patches";
-                    value_def.desc = keep(option.group.empty() ? fmt::format("%s: %s", description, config.name) : fmt::format("%s - %s: %s", option.group, description, config.name));
+                    value_def.desc = keep(fmt::format("%s: %s", description, config.name));
                     value_def.info = keep(fmt::format("A value of the patch \"%s\".", description));
 
                     const f64 default_value = ::at32(info.default_config_values, config.name).value;
@@ -248,18 +274,35 @@ namespace libretro_patches
     // The patch an option turns on: its description, or empty for none
     static std::string chosen(const patch_option& option, const option_getter& get)
     {
-        const std::string value = get(option.key.c_str());
-        if (option.group.empty())
-            return value == "enabled" ? option.descriptions.front() : std::string{};
-        if (std::find(option.descriptions.begin(), option.descriptions.end(), value) != option.descriptions.end())
-            return value;
-        return {};
+        return get(option.key.c_str()) == "enabled" ? option.descriptions.front() : std::string{};
     }
 
     void update_display(retro_environment_t cb, const option_getter& get)
     {
         if (!cb)
             return;
+
+        // A group's switch turned on turns the group's others off
+        for (const patch_option& option : s_options)
+        {
+            if (option.group.empty())
+                continue;
+            const std::string value = get(option.key.c_str());
+            const bool turned_on = value == "enabled" && s_last_values[option.key] != "enabled";
+            if (!turned_on)
+                continue;
+            for (const patch_option& other : s_options)
+            {
+                if (&other == &option || other.group != option.group || get(other.key.c_str()) != "enabled")
+                    continue;
+                retro_variable var{other.key.c_str(), "disabled"};
+                cb(RETRO_ENVIRONMENT_SET_VARIABLE, &var);
+                s_last_values[other.key] = "disabled";
+            }
+        }
+        for (const patch_option& option : s_options)
+            s_last_values[option.key] = get(option.key.c_str());
+
         for (const patch_option& option : s_options)
         {
             const std::string on = chosen(option, get);
@@ -280,11 +323,18 @@ namespace libretro_patches
         // left in it would otherwise stay on
         patch_engine::patch_map config;
 
+        std::set<std::string> groups_on;
         for (const patch_option& option : s_options)
         {
             const std::string on = chosen(option, get);
             if (on.empty())
                 continue;
+            // One of a group at most, should the .opt file have more on
+            if (!option.group.empty() && !groups_on.insert(option.group).second)
+            {
+                lr_patch_log.warning("%s: another patch of group %s is on already", on, option.group);
+                continue;
+            }
 
             // The values picked, by name
             std::map<std::string, f64> picked;
@@ -309,14 +359,17 @@ namespace libretro_patches
 
                 patch_engine::patch_info& out = config[hash].patch_info_map[on];
                 out.default_config_values = info->second.default_config_values;
+                // An "All titles" patch is configured for all, as standalone
+                // does; RPCS3 matches its hash itself
+                const std::string& serial_key = option.all_titles ? patch_key::all : s_serial;
                 for (const auto& [title, serials] : info->second.titles)
                 {
-                    const auto serial = serials.find(s_serial);
+                    const auto serial = serials.find(serial_key);
                     if (serial == serials.end())
                         continue;
                     for (const auto& [app_version, values] : serial->second)
                     {
-                        patch_engine::patch_config_values& out_values = out.titles[title][s_serial][app_version];
+                        patch_engine::patch_config_values& out_values = out.titles[title][serial_key][app_version];
                         out_values.enabled = true;
                         out_values.config_values = info->second.default_config_values;
                         for (const auto& [name, number] : picked)
