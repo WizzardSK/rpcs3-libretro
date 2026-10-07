@@ -33,8 +33,9 @@
 #include "Emu/Io/MouseHandler.h"
 // The OpenGL renderer, where there is one to have. On Android there is no
 // desktop GL and these headers reach for GL/glew.h, so the software path uses
-// Vulkan instead - see g_libretro_software_present.
-#ifndef ANDROID
+// Vulkan instead - see g_libretro_software_present. macOS has no GL renderer
+// either (LIBRETRO_NO_GL, from CMakeLists.txt): Vulkan, through MoltenVK.
+#ifndef LIBRETRO_NO_GL
 #include "Emu/RSX/GL/GLGSRender.h"
 #endif
 #ifdef HAVE_VULKAN
@@ -3088,7 +3089,7 @@ static void init_emu_callbacks()
         case video_renderer::null:
             g_fxo->init<rsx::thread, named_thread<NullGSRender>>(ar);
             break;
-#ifndef ANDROID
+#ifndef LIBRETRO_NO_GL
         case video_renderer::opengl:
             g_fxo->init<rsx::thread, named_thread<GLGSRender>>(ar);
             break;

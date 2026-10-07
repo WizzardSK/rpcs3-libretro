@@ -2,8 +2,10 @@
 
 # Build as a shared library
 # libretro_video.cpp is the OpenGL video unit; libretro_video_sw.cpp answers the
-# same interface without it, for platforms that have no desktop GL.
-if(ANDROID)
+# same interface without it, for platforms that have no desktop GL renderer:
+# Android, and macOS, where RPCS3 builds no GL renderer (rpcs3/Emu) and the core
+# draws with Vulkan through MoltenVK.
+if(ANDROID OR APPLE)
     set(LIBRETRO_VIDEO_SRC libretro_video_sw.cpp)
 else()
     set(LIBRETRO_VIDEO_SRC libretro_video.cpp)
@@ -71,7 +73,10 @@ target_link_libraries(rpcs3_libretro PRIVATE
 # OpenGL, and everything that goes with it. Not on Android: there is no desktop
 # GL there, only GLES, and this port's video path is written against GL 4.3. It
 # renders with Vulkan into system memory instead - see g_libretro_software_present.
-if(NOT ANDROID)
+# Nor on macOS, which has no GL renderer to drive (see LIBRETRO_VIDEO_SRC).
+if(ANDROID OR APPLE)
+    target_compile_definitions(rpcs3_libretro PRIVATE LIBRETRO_NO_GL)
+else()
     # GLEW for OpenGL extension loading
     if(NOT WIN32)
         target_link_libraries(rpcs3_libretro PRIVATE 3rdparty::glew)
@@ -110,8 +115,6 @@ elseif(UNIX AND NOT APPLE)
     find_package(Threads REQUIRED)
     target_link_libraries(rpcs3_libretro PRIVATE Threads::Threads)
 elseif(APPLE)
-    find_library(OPENGL_FRAMEWORK OpenGL)
-    target_link_libraries(rpcs3_libretro PRIVATE ${OPENGL_FRAMEWORK})
     target_link_libraries(rpcs3_libretro PRIVATE iconv)
 endif()
 
