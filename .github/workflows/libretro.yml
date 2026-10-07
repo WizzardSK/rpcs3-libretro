@@ -318,12 +318,104 @@ jobs:
             artifacts/*.info
           compression-level: 0
 
+  MacOS:
+    # As upstream's macOS build, with LLVM's own clang rather than Apple's:
+    # Apple clang does not take fmt::throw_exception's [[noreturn]] constructor
+    # as the end of a function, and -Werror=return-type fails all over. Clang,
+    # the LLVM the core links and GLEW from Homebrew, the prebuilt ffmpeg, curl
+    # and wolfSSL from their submodules, and Vulkan through Homebrew's MoltenVK.
+    # Each architecture on its own runner, so Homebrew's libraries are its own.
+    name: libretro core macos-${{ matrix.arch }} (experimental)
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: arm64
+            runner: macos-15
+          - arch: x86_64
+            runner: macos-15-intel
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@main
+        with:
+          fetch-depth: 0
+
+      - name: Submodules
+        run: git submodule -q update --init --depth 1 $(awk '/path/ && !/llvm/ && !/opencv/ && !/libsdl-org/ && !/zlib/ { print $3 }' .gitmodules)
+
+      - name: Dependencies
+        run: |
+          brew install ninja llvm@21 glew molten-vk vulkan-headers >/dev/null
+          echo "LLVM=$(brew --prefix llvm@21)" >> $GITHUB_ENV
+          echo "BREW=$(brew --prefix)" >> $GITHUB_ENV
+
+      - name: Configure
+        run: |
+          cmake -S . -B build -G Ninja \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_C_COMPILER=$LLVM/bin/clang -DCMAKE_CXX_COMPILER=$LLVM/bin/clang++ \
+            -DCMAKE_OSX_ARCHITECTURES=${{ matrix.arch }} \
+            -DCMAKE_OSX_DEPLOYMENT_TARGET=15.0 \
+            -DCMAKE_OSX_SYSROOT="$(xcrun --sdk macosx --show-sdk-path)" \
+            -DCMAKE_PREFIX_PATH="$BREW" \
+            -DBUILD_LIBRETRO_CORE_ONLY=ON \
+            -DWITH_LLVM=ON -DBUILD_LLVM=OFF -DSTATIC_LINK_LLVM=ON -DLLVM_DIR=$LLVM/lib/cmake/llvm \
+            -DUSE_NATIVE_INSTRUCTIONS=OFF -DUSE_PRECOMPILED_HEADERS=OFF \
+            -DUSE_SYSTEM_FFMPEG=OFF -DUSE_SYSTEM_CURL=OFF \
+            -DCURL_BROTLI=OFF -DCURL_ZSTD=OFF -DUSE_NGHTTP2=OFF \
+            -DUSE_SDL=OFF -DUSE_FAUDIO=OFF -DUSE_DISCORD_RPC=OFF \
+            -DUSE_SYSTEM_OPENCV=OFF -DUSE_LTO=OFF \
+            -DUSE_SYSTEM_MVK=ON \
+            -DVulkan_INCLUDE_DIR=$BREW/include \
+            -DVulkan_LIBRARY=$BREW/lib/libMoltenVK.dylib
+
+      - name: Build
+        run: cmake --build build --target rpcs3_libretro
+
+      - name: Collect
+        run: |
+          mkdir -p artifacts
+          f=$(find build -name 'rpcs3_libretro.dylib' | head -1)
+          CORE=artifacts/rpcs3_libretro_macos_${{ matrix.arch }}.dylib
+          cp "$f" $CORE
+          strip -x $CORE
+          # Nothing from Homebrew at its own path: MoltenVK is the one
+          # RetroArch carries in its Frameworks, and zstd (LLVM's) goes next to
+          # the core
+          MVK=$(otool -L $CORE | awk '/libMoltenVK/ {print $1}')
+          [ -n "$MVK" ] && install_name_tool -change "$MVK" @rpath/libMoltenVK.dylib $CORE
+          ZSTD=$(otool -L $CORE | awk '/libzstd/ {print $1}')
+          if [ -n "$ZSTD" ]; then
+            # One per architecture, as both go into the same release
+            Z=libzstd_macos_${{ matrix.arch }}.dylib
+            cp "$ZSTD" artifacts/$Z
+            chmod u+w artifacts/$Z
+            install_name_tool -id @loader_path/$Z artifacts/$Z
+            install_name_tool -change "$ZSTD" @loader_path/$Z $CORE
+            codesign -f -s - artifacts/$Z
+          fi
+          codesign -f -s - $CORE
+          cp rpcs3/libretro/rpcs3_libretro.info artifacts/
+          otool -L $CORE
+          if otool -L $CORE | grep -q '/opt/homebrew\|/usr/local/'; then echo "still linked to Homebrew"; exit 1; fi
+          ls -la artifacts
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@main
+        with:
+          name: rpcs3_libretro-macos-${{ matrix.arch }}
+          path: |
+            artifacts/*.dylib
+            artifacts/*.info
+          compression-level: 0
+
   Release:
     name: Publish release
     # Windows and Android are allowed to fail, and a continue-on-error job
     # still counts as met here, so waiting on them only means their artifacts
     # join the release when those builds do work.
-    needs: [Build, Windows, Android]
+    needs: [Build, Windows, Android, MacOS]
     if: inputs.release
     runs-on: ubuntu-24.04
     permissions:
