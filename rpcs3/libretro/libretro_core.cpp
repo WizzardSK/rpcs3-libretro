@@ -3352,14 +3352,15 @@ static void init_emu_callbacks()
         if (ec)
             return std::string(path);
         std::u8string text = resolved.generic_u8string();
-        while (text.size() > 1 && text.back() == u8'/')
-            text.pop_back();
 #ifdef _WIN32
         // A path that was absolute without a drive stays without one, as in
-        // standalone.
+        // standalone. Strip the drive before trailing separators so a root
+        // such as D:/ becomes / instead of D:.
         if (path.starts_with("/") && !path.starts_with("//") && text.size() >= 3 && text[1] == u8':' && text[2] == u8'/')
             text.erase(0, 2);
 #endif
+        while (text.size() > 1 && text.back() == u8'/')
+            text.pop_back();
         return std::string(text.begin(), text.end());
     };
 
