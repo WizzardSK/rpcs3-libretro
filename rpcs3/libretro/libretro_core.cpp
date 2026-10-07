@@ -8,6 +8,8 @@
 #include "libretro.h"
 #include "libretro_core.h"
 #include "libretro_core_options.h"
+#include "libretro_patch_manager.h"
+#include "Loader/PSF.h"
 
 #include <cstdlib>
 
@@ -528,6 +530,16 @@ static std::string get_option_value(const char* key, const char* default_val = "
     return default_val;
 }
 
+// What the frontend was last told: the frame size, and the largest frame it
+// made room for. Both start over whenever it asks for the AV info again.
+static unsigned s_reported_width = 0;
+static unsigned s_reported_height = 0;
+static unsigned s_max_width = 0;
+static unsigned s_max_height = 0;
+// The aspect ratio the frontend is told: 16:9, or what Stretch to Display
+// Area names
+static float s_display_aspect = 16.0f / 9.0f;
+
 static void libretro_apply_core_options()
 {
     if (!environ_cb)
@@ -797,7 +809,22 @@ static void libretro_apply_core_options()
         if (changed && !Emu.IsStopped())
             rsx::overlays::reset_performance_overlay();
     }
-    g_cfg.video.stretch_to_display_area.set(enabled("rpcs3_stretch_to_display", "disabled"));
+    {
+        // Stretched, the picture fills what the frontend shows it in, and that
+        // is the aspect ratio the core reports: a game patched for 21:9 needs
+        // RetroArch to show it at 21:9 (NNshi). The frontend does not say what
+        // its display is, so the option names it; "enabled" is 16:9, as before.
+        const std::string stretch = get_option_value("rpcs3_stretch_to_display", "disabled");
+        g_cfg.video.stretch_to_display_area.set(stretch != "disabled");
+        float aspect = 16.0f / 9.0f;
+        if (unsigned w = 0, h = 0; std::sscanf(stretch.c_str(), "%u:%u", &w, &h) == 2 && w && h)
+            aspect = static_cast<float>(w) / static_cast<float>(h);
+        if (aspect != s_display_aspect)
+        {
+            s_display_aspect = aspect;
+            s_reported_width = s_reported_height = 0; // reported again with the next frame
+        }
+    }
     g_cfg.video.vk.asynchronous_texture_streaming.set(enabled("rpcs3_async_texture_streaming", "disabled"));
     // The option is in milliseconds, the setting in microseconds.
     g_cfg.video.driver_recovery_timeout.set(std::clamp(std::atoi(get_option_value("rpcs3_driver_recovery_timeout", "1000").c_str()), 0, 30000) * 1000);
@@ -1327,6 +1354,94 @@ static void libretro_big_little_defaults()
 #endif
 }
 
+// The options from libretro_core_options.h, then the loaded game's patches
+// (libretro_patch_manager.cpp) in a category of their own. Declared again once the
+// game is known; RetroArch keeps what the .opt file says for each key.
+static bool RETRO_CALLCONV libretro_update_options_display()
+{
+    libretro_patches::update_display(environ_cb, [](const char* key) { return get_option_value(key, "disabled"); });
+    return true;
+}
+
+static void publish_core_options(retro_environment_t cb)
+{
+    static const std::vector<retro_core_option_v2_definition> fixed = [] {
+        std::vector<retro_core_option_v2_definition> defs;
+        for (const auto& def : option_defs_us)
+        {
+            if (!def.key)
+                break;
+            defs.push_back(def);
+        }
+        return defs;
+    }();
+    static const std::vector<retro_core_option_v2_category> fixed_categories = [] {
+        std::vector<retro_core_option_v2_category> cats;
+        for (const auto& cat : option_cats_us)
+        {
+            if (!cat.key)
+                break;
+            cats.push_back(cat);
+        }
+        return cats;
+    }();
+
+    static std::vector<retro_core_option_v2_definition> all;
+    static std::vector<retro_core_option_v2_category> categories;
+    all = fixed;
+    categories = fixed_categories;
+    if (libretro_patches::any())
+    {
+        const auto& patches = libretro_patches::definitions();
+        all.insert(all.end(), patches.begin(), patches.end());
+        categories.push_back({"patches", "Patch Manager", "The game's patches from RPCS3's patch files, patch.yml and imported_patch.yml. A change applies at the next start of the game."});
+    }
+    all.push_back({});
+    categories.push_back({});
+    options_us.definitions = all.data();
+    options_us.categories = categories.data();
+
+    bool categories_supported = false;
+    libretro_set_core_options(cb, &categories_supported);
+
+    // Out of the menu, as RPCS3 keeps them out of its settings dialog; the
+    // .opt file still sets them (the HIDDEN block in libretro_core_options.h)
+    for (const char* key : {"rpcs3_spu_cache", "rpcs3_accurate_dfma", "rpcs3_spu_verification",
+            "rpcs3_driver_recovery_timeout", "rpcs3_mfc_shuffling", "rpcs3_spu_delay_penalty",
+            "rpcs3_vblank_ntsc", "rpcs3_hle_lwmutex"})
+    {
+        struct retro_core_option_display display{key, false};
+        cb(RETRO_ENVIRONMENT_SET_CORE_OPTIONS_DISPLAY, &display);
+    }
+
+    if (libretro_patches::any())
+    {
+        struct retro_core_options_update_display_callback update_display{libretro_update_options_display};
+        cb(RETRO_ENVIRONMENT_SET_CORE_OPTIONS_UPDATE_DISPLAY_CALLBACK, &update_display);
+        libretro_patches::update_display(cb, [](const char* key) { return get_option_value(key, "disabled"); });
+    }
+}
+
+// The serial of the game in a folder (a disc dump's root or PS3_GAME, an HDD
+// game's folder) or of the EBOOT.BIN in it, from its PARAM.SFO
+static std::string game_serial(const std::string& path)
+{
+    std::string dir = fs::is_dir(path) ? path : fs::get_parent_dir(path);
+    for (int i = 0; i < 4 && !dir.empty(); i++)
+    {
+        for (const std::string& sfo : {dir + "/PARAM.SFO", dir + "/PS3_GAME/PARAM.SFO"})
+        {
+            if (!fs::is_file(sfo))
+                continue;
+            const std::string serial = std::string(psf::get_string(psf::load_object(sfo), "TITLE_ID"));
+            if (!serial.empty())
+                return serial;
+        }
+        dir = fs::get_parent_dir(dir);
+    }
+    return {};
+}
+
 void retro_set_environment(retro_environment_t cb)
 {
     environ_cb = cb;
@@ -1358,19 +1473,8 @@ void retro_set_environment(retro_environment_t cb)
     // language, live in libretro_core_options.h, laid out the way
     // libretro's Crowdin scripts read them. Frontends without v2 get v1 or
     // the flat v0 list generated from the same definitions.
-    bool categories_supported = false;
     libretro_big_little_defaults();
-    libretro_set_core_options(cb, &categories_supported);
-
-    // Out of the menu, as RPCS3 keeps them out of its settings dialog; the
-    // .opt file still sets them (the HIDDEN block in libretro_core_options.h)
-    for (const char* key : {"rpcs3_spu_cache", "rpcs3_accurate_dfma", "rpcs3_spu_verification",
-            "rpcs3_driver_recovery_timeout", "rpcs3_mfc_shuffling", "rpcs3_spu_delay_penalty",
-            "rpcs3_vblank_ntsc", "rpcs3_hle_lwmutex"})
-    {
-        struct retro_core_option_display display{key, false};
-        cb(RETRO_ENVIRONMENT_SET_CORE_OPTIONS_DISPLAY, &display);
-    }
+    publish_core_options(cb);
 
     // We don't support no-game
     bool support_no_game = false;
@@ -1467,12 +1571,6 @@ static unsigned scaled_dimension(unsigned native)
     return static_cast<unsigned>(static_cast<u64>(native) * g_cfg.video.resolution_scale_percent.get() / 100);
 }
 
-// What the frontend was last told: the frame size, and the largest frame it
-// made room for. Both start over whenever it asks for the AV info again.
-static unsigned s_reported_width = 0;
-static unsigned s_reported_height = 0;
-static unsigned s_max_width = 0;
-static unsigned s_max_height = 0;
 
 static void fill_av_info(retro_system_av_info* info)
 {
@@ -1488,7 +1586,7 @@ static void fill_av_info(retro_system_av_info* info)
     info->geometry.base_height = scaled_dimension(height);
     info->geometry.max_width = std::max(3840u, scaled_dimension(1920));
     info->geometry.max_height = std::max(2160u, scaled_dimension(1080));
-    info->geometry.aspect_ratio = 16.0f / 9.0f;
+    info->geometry.aspect_ratio = s_display_aspect;
     // The PS3's refresh rate: with Frame Pacing on RetroArch, every frame the
     // frontend asks for is one VBLANK, so this is the rate the game runs at.
     const double vblank_period = 1'000'000.0 + g_cfg.video.vblank_ntsc.get() * 1000.0;
@@ -2540,6 +2638,12 @@ bool retro_load_game(const struct retro_game_info* game)
     install_config_database();
     install_patches();
 
+    // The Patch Manager for this game, now that its serial and the patch files
+    // are there
+    libretro_patches::collect(game_serial(game_path));
+    if (libretro_patches::any())
+        publish_core_options(environ_cb);
+
     // For null renderer, boot immediately. For OpenGL, defer until
     // context_reset(). The software path has no context coming, so it boots
     // here as well or it would wait forever.
@@ -2600,6 +2704,9 @@ static bool do_boot_game()
         }
 
     }
+
+    // The patches turned on in the Patch Manager, for RPCS3 to read as it boots
+    libretro_patches::write_config([](const char* key) { return get_option_value(key, "disabled"); });
 
     game_boot_result result = game_boot_result::generic_error;
     try

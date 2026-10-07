@@ -262,9 +262,9 @@ struct retro_core_option_v2_definition option_defs_us[] = {
     },
     {
         "rpcs3_stretch_to_display", "Stretch to Display Area", NULL,
-        "Stretch game output to fill the display.",
+        "Stretch game output to fill the display, reported to RetroArch at this aspect ratio: pick the display's for games patched to a wider one (21:9, 32:9). Needs RetroArch's aspect ratio set to Core Provided.",
         NULL, "gpu",
-        { {"disabled", NULL}, {"enabled", NULL}, {NULL, NULL} },
+        { {"disabled", NULL}, {"enabled", "16:9"}, {"16:10", NULL}, {"21:9", NULL}, {"32:9", NULL}, {"4:3", NULL}, {"5:4", NULL}, {NULL, NULL} },
         "disabled"
     },
     {
