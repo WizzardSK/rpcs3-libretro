@@ -116,6 +116,10 @@ elseif(UNIX AND NOT APPLE)
     target_link_libraries(rpcs3_libretro PRIVATE Threads::Threads)
 elseif(APPLE)
     target_link_libraries(rpcs3_libretro PRIVATE iconv)
+    # The prebuilt ffmpeg's VideoToolbox hwcontext calls CoreVideo
+    target_link_libraries(rpcs3_libretro PRIVATE "-framework CoreVideo")
+    # sysinfo_darwin.mm asks NSProcessInfo
+    target_link_libraries(rpcs3_libretro PRIVATE "-framework Foundation")
 endif()
 
 # Compile definitions
