@@ -1,0 +1,43 @@
+name: Buildbot preflight (macOS)
+
+# The macOS jobs of .gitlab-ci.yml, run where they can be watched: the
+# buildbot's Macs are Apple Silicon on macOS 14 with Xcode 16.0, and no
+# Homebrew. The runner here has Homebrew, which the script keeps out of the
+# build (CMAKE_IGNORE_PREFIX_PATH) and the final check would catch.
+
+on:
+  # By hand, when .ci/build-macos-libretro.sh changes
+  workflow_dispatch:
+
+jobs:
+  macos:
+    name: macOS ${{ matrix.arch }} (buildbot preflight)
+    runs-on: macos-14
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [arm64, x86_64]
+    steps:
+      - uses: actions/checkout@main
+        with:
+          fetch-depth: 0
+
+      - name: Xcode 16.1 (the buildbot has 16.0, which this image lacks; the same clang 16)
+        run: |
+          sudo xcode-select -s /Applications/Xcode_16.1.app || { ls /Applications | grep Xcode; exit 1; }
+          clang --version
+
+      - name: Build
+        env:
+          ARCH: ${{ matrix.arch }}
+          KEEP_GOING: 1
+        run: |
+          sed -i '' 's#url = \.\./\.\./#url = https://github.com/#' .gitmodules
+          git submodule -q sync
+          .ci/build-macos-libretro.sh
+
+      - uses: actions/upload-artifact@main
+        with:
+          name: rpcs3_libretro-macos-${{ matrix.arch }}-preflight
+          path: rpcs3_libretro.dylib
