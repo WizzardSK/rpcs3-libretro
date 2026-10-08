@@ -1,6 +1,6 @@
 {
     "return_code": 0,
-    "timestamp": 1791194786,
+    "timestamp": 1791220835,
     "games": {
         "BCAS20014": {
             "config": "Core:\n  Libraries Control:\n    - libvdec.sprx:lle"
@@ -417,6 +417,9 @@
             "config": "Audio:\n  Enable Buffering: false\n  Microphone Type: SingStar"
         },
         "BCES02042": {
+            "config": "Audio:\n  Enable Buffering: false\n  Microphone Type: SingStar"
+        },
+        "BCES02043": {
             "config": "Audio:\n  Enable Buffering: false\n  Microphone Type: SingStar"
         },
         "BCES02044": {
@@ -1653,7 +1656,7 @@
             "config": "Video:\n  Write Color Buffers: true"
         },
         "BLES01737": {
-            "config": "Video:\n  Write Color Buffers: true"
+            "config": "VFS:\n  Emulate HDD Read Speed: true\nVideo:\n  Write Color Buffers: true"
         },
         "BLES01745": {
             "config": "Video:\n  Vulkan:\n    Asynchronous Texture Streaming: true\n  Multithreaded RSX: true"
@@ -1740,7 +1743,7 @@
             "config": "Video:\n  Anisotropic Filter Override: 0"
         },
         "BLES01855": {
-            "config": "Video:\n  Write Color Buffers: true"
+            "config": "VFS:\n  Emulate HDD Read Speed: true\nVideo:\n  Write Color Buffers: true"
         },
         "BLES01856": {
             "config": "Video:\n  Anisotropic Filter Override: 0"
@@ -2023,6 +2026,9 @@
         },
         "BLJM60316": {
             "config": "Core:\n  SPU Block Size: Mega"
+        },
+        "BLJM60318": {
+            "config": "Video:\n  Read Color Buffers: true\n  Write Color Buffers: true"
         },
         "BLJM60348": {
             "config": "Video:\n  Write Color Buffers: true"
@@ -3060,7 +3066,7 @@
             "config": "Video:\n  Write Color Buffers: true"
         },
         "BLUS31055": {
-            "config": "Video:\n  Write Color Buffers: true"
+            "config": "VFS:\n  Emulate HDD Read Speed: true\nVideo:\n  Write Color Buffers: true"
         },
         "BLUS31059": {
             "config": "Video:\n  Vulkan:\n    Asynchronous Texture Streaming: true\n  Multithreaded RSX: true"
@@ -4073,6 +4079,9 @@
         "NPEB01156": {
             "config": "Video:\n  Read Color Buffers: true\n  Strict Rendering Mode: true\n  Write Color Buffers: true\nCore:\n  Sleep Timers Accuracy: As Host"
         },
+        "NPEB01162": {
+            "config": "Video:\n  Allow Host GPU Labels: true"
+        },
         "NPEB01170": {
             "config": "Video:\n  Write Color Buffers: true"
         },
@@ -4098,7 +4107,7 @@
             "config": "Video:\n  Anisotropic Filter Override: 0"
         },
         "NPEB01222": {
-            "config": "Video:\n  Write Color Buffers: true"
+            "config": "VFS:\n  Emulate HDD Read Speed: true\nVideo:\n  Write Color Buffers: true"
         },
         "NPEB01232": {
             "config": "Video:\n  Strict Rendering Mode: true\n  Write Color Buffers: true"
@@ -4137,7 +4146,7 @@
             "config": "Video:\n  Write Color Buffers: true"
         },
         "NPEB01342": {
-            "config": "Video:\n  Write Color Buffers: true"
+            "config": "VFS:\n  Emulate HDD Read Speed: true\nVideo:\n  Write Color Buffers: true"
         },
         "NPEB01347": {
             "config": "Video:\n  Accurate ZCULL stats: false\n  Relaxed ZCULL Sync: true\n  Vulkan:\n    Asynchronous Texture Streaming: true\n  Frame limit: PS3 Native\n  MSAA: Disabled\nCore:\n  SPU XFloat Accuracy: Relaxed\n  Sleep Timers Accuracy: As Host\n  Max SPURS Threads: 3"
@@ -4240,6 +4249,9 @@
         },
         "NPEB02021": {
             "config": "Video:\n  Frame limit: Auto\n  Write Color Buffers: true\nCore:\n  PPU Decoder: Interpreter (static)\n  SPU Decoder: Recompiler (ASMJIT)"
+        },
+        "NPEB02034": {
+            "config": "Core:\n  SPU Block Size: Mega"
         },
         "NPEB02064": {
             "config": "Core:\n  PPU Decoder: Interpreter (static)\nVideo:\n  Read Color Buffers: true\n  Write Color Buffers: true"
@@ -4659,7 +4671,7 @@
             "config": "Video:\n  Frame limit: Auto"
         },
         "NPEB90520": {
-            "config": "Video:\n  Write Color Buffers: true"
+            "config": "VFS:\n  Emulate HDD Read Speed: true\nVideo:\n  Write Color Buffers: true"
         },
         "NPEB90523": {
             "config": "Video:\n  Write Color Buffers: true"
@@ -5238,7 +5250,7 @@
             "config": "Video:\n  Write Color Buffers: true"
         },
         "NPJB90634": {
-            "config": "Video:\n  Write Color Buffers: true"
+            "config": "VFS:\n  Emulate HDD Read Speed: true\nVideo:\n  Write Color Buffers: true"
         },
         "NPJB90637": {
             "config": "Video:\n  Read Color Buffers: true\n  Write Color Buffers: true"
@@ -6023,6 +6035,9 @@
         "NPUB30920": {
             "config": "Video:\n  Read Color Buffers: true\n  Strict Rendering Mode: true\n  Write Color Buffers: true\nCore:\n  Sleep Timers Accuracy: As Host"
         },
+        "NPUB30927": {
+            "config": "Video:\n  Allow Host GPU Labels: true"
+        },
         "NPUB30942": {
             "config": "Video:\n  Anisotropic Filter Override: 0"
         },
@@ -6048,7 +6063,7 @@
             "config": "Video:\n  Disable Vertex Cache: true\n  Write Color Buffers: true"
         },
         "NPUB31075": {
-            "config": "Video:\n  Write Color Buffers: true"
+            "config": "VFS:\n  Emulate HDD Read Speed: true\nVideo:\n  Write Color Buffers: true"
         },
         "NPUB31077": {
             "config": "Core:\n  Accurate RSX reservation access: true"
@@ -6693,7 +6708,7 @@
             "config": "Video:\n  Frame limit: Auto"
         },
         "NPUB90988": {
-            "config": "Video:\n  Write Color Buffers: true"
+            "config": "VFS:\n  Emulate HDD Read Speed: true\nVideo:\n  Write Color Buffers: true"
         },
         "NPUB91010": {
             "config": "Video:\n  Vulkan:\n    Asynchronous Texture Streaming: true\n  Multithreaded RSX: true\n  Write Color Buffers: true\n  Accurate ZCULL stats: false\n  Relaxed ZCULL Sync: true\nCore:\n  RSX FIFO Fetch Accuracy: Ordered & Atomic\n  Sleep Timers Accuracy: As Host"
