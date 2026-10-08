@@ -788,7 +788,8 @@ namespace libretro_vfs
 
 		bool create_dir(const std::string& path) override
 		{
-			const int result = s_vfs_interface->mkdir(uri_trim(path).c_str());
+			// In parentheses: the mkdir macro above (Windows) would take it otherwise
+			const int result = (s_vfs_interface->mkdir)(uri_trim(path).c_str());
 			if (result == -2)
 				fs::g_tls_error = fs::error::exist;
 			else if (result != 0)
