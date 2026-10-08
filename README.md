@@ -20,6 +20,7 @@ The PS3 firmware (`PS3UPDAT.PUP`, from playstation.com) goes into RetroArch's sy
 
 - **Database Settings Override** (on by default) applies RPCS3's per-game settings database, which covers most games' known issues. For a game that still misbehaves, its page in RPCS3's [compatibility list](https://rpcs3.net/compatibility) says what else it needs; the [Vblank compatible games list](https://wiki.rpcs3.net/index.php?title=Vblank_compatible_games_list) shows which games can run above 60 FPS.
 - The **Patch Manager** category lists the loaded game's patches and turns them on per game. It keeps its own settings: standalone RPCS3's `patch_config.yml` is not imported.
+- Standalone RPCS3 scales its picture to the window with bilinear filtering; RetroArch scales with nearest neighbour unless told otherwise, which looks sharper and blockier. For the standalone look, turn on Settings > Video > Scaling > Bilinear Filtering (as a core override, so it applies to RPCS3 only), or prepend a `bilinear.slangp` shader.
 - A handful of rarely needed options are not in the menu, as standalone RPCS3 keeps them out of its settings dialog, but can be set in the core's `.opt` file (`RPCS3.opt`).
 - The PS3 user name is in `dev_hdd0/home/00000001/localusername`; edit it to change it.
 - `dev_hdd0` and the other emulated drives can be moved outside RetroArch's folders by editing `vfs.yml` (in `system/rpcs3/`, or `system/rpcs3/config/` on Windows).
