@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "libretro_vfs.h"
 #include "Utilities/File.h"
+#include <cctype>
 #include <cstring>
 #include <cstdarg>
 #include <atomic>
@@ -625,5 +626,243 @@ namespace libretro_vfs
 
 		s_vfs_open_count++;
 		return std::make_unique<vfs_file_base>(handle, path, (mode & VFS_MODE_APPEND) != 0);
+	}
+}
+
+namespace libretro_vfs
+{
+	bool is_uri(std::string_view path)
+	{
+		// RFC 3986: a letter, then letters, digits, '+', '-' or '.'; drive
+		// letters ("C:/") have no "//" after the colon
+		const usz colon = path.find("://");
+		if (colon == umax || colon == 0 || !std::isalpha(static_cast<unsigned char>(path[0])))
+			return false;
+		for (usz i = 1; i < colon; i++)
+		{
+			const auto c = static_cast<unsigned char>(path[i]);
+			if (!std::isalnum(c) && c != '+' && c != '-' && c != '.')
+				return false;
+		}
+		return true;
+	}
+
+	// The path without trailing delimiters, which RPCS3 often puts after a
+	// directory and the frontend's VFS may not take
+	static std::string uri_trim(const std::string& path)
+	{
+		usz end = path.find_last_not_of("/\\");
+		const usz root = path.find("://") + 3;
+		return path.substr(0, end == umax || end < root ? root : end + 1);
+	}
+
+	// stat, with the size of a file from an open handle: the VFS stat's size
+	// is 32-bit, and PS3 game files can be bigger
+	static bool uri_stat(const std::string& path, fs::stat_t& info)
+	{
+		info = {};
+		if (!is_vfs_available() || !s_vfs_interface->stat)
+		{
+			fs::g_tls_error = fs::error::noent;
+			return false;
+		}
+
+		int32_t size32 = 0;
+		const int result = s_vfs_interface->stat(uri_trim(path).c_str(), &size32);
+		if (!(result & RETRO_VFS_STAT_IS_VALID))
+		{
+			fs::g_tls_error = fs::error::noent;
+			return false;
+		}
+
+		info.is_directory = (result & RETRO_VFS_STAT_IS_DIRECTORY) != 0;
+		info.is_writable = true;
+		if (!info.is_directory)
+		{
+			info.size = static_cast<u32>(size32);
+			if (auto* handle = s_vfs_interface->open(path.c_str(), RETRO_VFS_FILE_ACCESS_READ, RETRO_VFS_FILE_ACCESS_HINT_NONE))
+			{
+				const int64_t size = s_vfs_interface->size(handle);
+				if (size >= 0)
+					info.size = static_cast<u64>(size);
+				s_vfs_interface->close(handle);
+			}
+		}
+		return true;
+	}
+
+	class uri_dir final : public fs::dir_base
+	{
+		std::string m_path;
+		struct retro_vfs_dir_handle* m_handle = nullptr;
+		// "." and "..", which native listings start with, first
+		int m_dots = 0;
+
+	public:
+		explicit uri_dir(std::string path)
+			: m_path(std::move(path))
+		{
+		}
+
+		~uri_dir() override
+		{
+			if (m_handle)
+				s_vfs_interface->closedir(m_handle);
+		}
+
+		bool open()
+		{
+			m_handle = s_vfs_interface->opendir(m_path.c_str(), true);
+			return m_handle != nullptr;
+		}
+
+		bool read(fs::dir_entry& info) override
+		{
+			if (m_dots < 2)
+			{
+				info = {};
+				info.name = m_dots++ ? ".." : ".";
+				info.is_directory = true;
+				info.is_writable = true;
+				return true;
+			}
+
+			while (m_handle && s_vfs_interface->readdir(m_handle))
+			{
+				const char* name = s_vfs_interface->dirent_get_name(m_handle);
+				if (!name || !std::strcmp(name, ".") || !std::strcmp(name, ".."))
+					continue;
+
+				fs::stat_t st{};
+				if (s_vfs_interface->dirent_is_dir(m_handle))
+				{
+					st.is_directory = true;
+					st.is_writable = true;
+				}
+				else if (!uri_stat(m_path + '/' + name, st))
+				{
+					continue;
+				}
+
+				static_cast<fs::stat_t&>(info) = st;
+				info.name = name;
+				return true;
+			}
+
+			return false;
+		}
+
+		void rewind() override
+		{
+			if (m_handle)
+				s_vfs_interface->closedir(m_handle);
+			m_handle = nullptr;
+			m_dots = 0;
+			open();
+		}
+	};
+
+	class uri_device final : public fs::device_base
+	{
+	public:
+		bool stat(const std::string& path, fs::stat_t& info) override
+		{
+			return uri_stat(path, info);
+		}
+
+		bool statfs(const std::string& path, fs::device_stat& info) override
+		{
+			fs::stat_t st;
+			if (!uri_stat(path, st))
+				return false;
+
+			// The frontend's VFS doesn't tell free space
+			info = {.block_size = 4096, .total_size = umax, .total_free = umax, .avail_free = umax};
+			return true;
+		}
+
+		bool remove_dir(const std::string& path) override
+		{
+			return remove(path);
+		}
+
+		bool create_dir(const std::string& path) override
+		{
+			const int result = s_vfs_interface->mkdir(uri_trim(path).c_str());
+			if (result == -2)
+				fs::g_tls_error = fs::error::exist;
+			else if (result != 0)
+				fs::g_tls_error = fs::error::noent;
+			return result == 0;
+		}
+
+		bool rename(const std::string& from, const std::string& to) override
+		{
+			if (s_vfs_interface->rename(uri_trim(from).c_str(), uri_trim(to).c_str()) == 0)
+				return true;
+			fs::g_tls_error = fs::error::noent;
+			return false;
+		}
+
+		bool remove(const std::string& path) override
+		{
+			if (s_vfs_interface->remove(uri_trim(path).c_str()) == 0)
+				return true;
+			fs::g_tls_error = fs::error::noent;
+			return false;
+		}
+
+		std::unique_ptr<fs::file_base> open(const std::string& path, bs_t<fs::open_mode> mode) override
+		{
+			// As the native open: the frontend's has neither "only a new file"
+			// nor "only an existing one"
+			if (mode & (fs::excl + fs::write))
+			{
+				const bool exists = vfs_stat(path, nullptr);
+				if ((mode & fs::excl) && exists)
+				{
+					fs::g_tls_error = fs::error::exist;
+					return nullptr;
+				}
+				if ((mode & fs::write) && !(mode & fs::create) && !exists)
+				{
+					fs::g_tls_error = fs::error::noent;
+					return nullptr;
+				}
+			}
+
+			unsigned vfs_mode = 0;
+			if (mode & fs::read)   vfs_mode |= VFS_MODE_READ;
+			if (mode & fs::write)  vfs_mode |= VFS_MODE_WRITE;
+			if (mode & fs::append) vfs_mode |= VFS_MODE_APPEND;
+			if (mode & fs::create) vfs_mode |= VFS_MODE_CREATE;
+			if (mode & fs::trunc)  vfs_mode |= VFS_MODE_TRUNC;
+			if (mode & fs::excl)   vfs_mode |= VFS_MODE_EXCL;
+
+			auto file = create_vfs_file_base(path, vfs_mode);
+			if (!file)
+				fs::g_tls_error = fs::error::noent;
+			return file;
+		}
+
+		std::unique_ptr<fs::dir_base> open_dir(const std::string& path) override
+		{
+			auto dir = std::make_unique<uri_dir>(uri_trim(path));
+			if (!dir->open())
+			{
+				fs::g_tls_error = fs::error::noent;
+				return nullptr;
+			}
+			return dir;
+		}
+	};
+
+	stx::shared_ptr<fs::device_base> get_uri_device()
+	{
+		if (!is_vfs_available() || !s_vfs_interface->opendir)
+			return {};
+
+		static const stx::shared_ptr<fs::device_base> device = stx::make_shared<uri_device>();
+		return device;
 	}
 }
