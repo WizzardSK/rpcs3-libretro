@@ -1,6 +1,7 @@
 # DESCRIPTION: GitLab CI/CD for libRetro (NOT FOR GitLab-proper)
 
-# Linux x64, Linux aarch64, Windows x64, Android arm64-v8a and x86_64.
+# Linux x64, Linux aarch64, Windows x64, Android arm64-v8a and x86_64, and
+# macOS arm64 and x86_64.
 #
 # The buildbot's own Linux images are Ubuntu 16.04 with gcc 9, which cannot
 # build RPCS3 at all, so the Linux jobs run in the images upstream RPCS3 builds
@@ -63,6 +64,12 @@ include:
   # Android
   - project: 'libretro-infrastructure/ci-templates'
     file: '/android-cmake.yml'
+
+  # macOS
+  - project: 'libretro-infrastructure/ci-templates'
+    file: '/osx-cmake-arm64.yml'
+  - project: 'libretro-infrastructure/ci-templates'
+    file: '/osx-cmake-x86.yml'
 
 stages:
   - build-prepare
@@ -197,3 +204,52 @@ android-x86_64:
     FFMPEG_ARCH: x86_64
     FFMPEG_TRIPLE: x86_64-linux-android
     FFMPEG_EXTRA: --disable-x86asm
+
+# macOS
+#
+# The buildbot's Macs have Xcode, cmake, ninja and git, and no Homebrew, which
+# the GitHub workflow takes LLVM, clang and MoltenVK from; and Xcode's clang
+# does not build RPCS3. .ci/build-macos-libretro.sh builds LLVM and clang from
+# the LLVM submodule and fetches MoltenVK's release instead; the cache keeps
+# both between pipelines, so only the first one (or the first after the LLVM
+# submodule moves) builds them, for an hour or more. The x86_64 slice is
+# cross-built on Apple Silicon, as Cemu's is. Checked on GitHub's macOS 14
+# runners first (.github/workflows/buildbot-preflight-macos.yml).
+.core-defs-macos:
+  extends: .core-defs
+  allow_failure: true
+  timeout: 4h
+  before_script:
+    # The template's before_script uses nproc, which a stock Mac does not
+    # have; and the shared submodule-urls step runs GNU sed's -i
+    - export NUMPROC=$(($(sysctl -n hw.ncpu)/5))
+    - git config --global --add safe.directory '*'
+    - sed -i '' 's#url = \.\./\.\./#url = https://github.com/#' .gitmodules
+    - git submodule -q sync
+  script:
+    - .ci/build-macos-libretro.sh
+  cache:
+    key: llvm-clang-moltenvk-$CI_JOB_NAME
+    paths:
+      - deps-macos-arm64/
+      - deps-macos-x86_64/
+      - deps-macos-host/
+
+# macOS 64-bit (Apple Silicon)
+libretro-build-osx-arm64:
+  extends:
+    - .libretro-osx-cmake-arm64
+    - .core-defs-macos
+  variables:
+    ARCH: arm64
+
+# macOS 64-bit (Intel), cross-built on Apple Silicon
+libretro-build-osx-x64:
+  extends:
+    # -x86_64, not -x86: the latter is the 32-bit profile and sets ARCH=x86.
+    - .libretro-osx-cmake-x86_64
+    - .core-defs-macos
+  tags:
+    - mac-apple-silicon
+  variables:
+    ARCH: x86_64
