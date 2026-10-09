@@ -147,8 +147,10 @@ bool TROPUSRLoader::Save(std::string_view filepath)
 {
 	fs::pending_file temp(vfs::get(filepath));
 
+	// libretro diagnostics: which step fails on a network share (ozzfreak)
 	if (!temp.file)
 	{
+		trp_log.error("TROPUSRLoader::Save: creating the temporary file next to %s failed (%s, errno %d)", vfs::get(filepath), fs::g_tls_error, errno);
 		return false;
 	}
 
@@ -157,7 +159,12 @@ bool TROPUSRLoader::Save(std::string_view filepath)
 	temp.file.write(m_table4);
 	temp.file.write(m_table6);
 
-	return temp.commit();
+	if (!temp.commit())
+	{
+		trp_log.error("TROPUSRLoader::Save: moving the temporary file over %s failed (%s, errno %d)", vfs::get(filepath), fs::g_tls_error, errno);
+		return false;
+	}
+	return true;
 }
 
 bool TROPUSRLoader::Generate(std::string_view filepath, std::string_view configpath)
@@ -166,6 +173,7 @@ bool TROPUSRLoader::Generate(std::string_view filepath, std::string_view configp
 
 	if (!config)
 	{
+		trp_log.error("TROPUSRLoader::Generate: opening %s failed (%s, errno %d)", vfs::get(configpath), fs::g_tls_error, errno);
 		return false;
 	}
 
