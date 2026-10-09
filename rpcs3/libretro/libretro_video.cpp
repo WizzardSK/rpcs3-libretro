@@ -3,6 +3,7 @@
 
 #include "libretro_video.h"
 #include "libretro_core.h"
+#include "Emu/system_config.h"
 
 #include "Emu/RSX/GL/OpenGL.h"
 #include "Emu/RSX/GL/glutils/common.h"
@@ -1122,8 +1123,17 @@ void LibretroGSFrame::set_dimensions(int w, int h)
 // shared GL texture to take the size from, so the renderer sets it to the
 // picture it presents (VKPresent, libretro_set_vk_frame_size): at the 1280x720
 // it started with, a title drawn at 200% was shrunk back to 720p (NNshi).
-static std::atomic<int> s_vk_frame_width{1280};
-static std::atomic<int> s_vk_frame_height{720};
+// Until the first picture says otherwise, the size is 720p at the Resolution
+// Scale setting: what is drawn before the game's first flip - the shader and
+// PPU compilation progress - was drawn at 1280x720 and blown up, blurry, at
+// 200% and up (NNshi).
+static std::atomic<int> s_vk_frame_width{0};
+static std::atomic<int> s_vk_frame_height{0};
+
+static int libretro_vk_start_size(int base)
+{
+    return static_cast<int>(static_cast<u64>(base) * g_cfg.video.resolution_scale_percent / 100);
+}
 
 void libretro_set_vk_frame_size(int width, int height)
 {
@@ -1137,7 +1147,7 @@ void libretro_set_vk_frame_size(int width, int height)
 int LibretroGSFrame::client_width()
 {
     if (g_libretro_vulkan_hw)
-        return s_vk_frame_width;
+        return s_vk_frame_width ? s_vk_frame_width.load() : libretro_vk_start_size(1280);
     // Use shared texture size - RSX renders at game native resolution
     // RetroArch handles scaling from our output to window size
     return libretro_get_shared_texture_width();
@@ -1146,7 +1156,7 @@ int LibretroGSFrame::client_width()
 int LibretroGSFrame::client_height()
 {
     if (g_libretro_vulkan_hw)
-        return s_vk_frame_height;
+        return s_vk_frame_height ? s_vk_frame_height.load() : libretro_vk_start_size(720);
     // Use shared texture size - RSX renders at game native resolution
     // RetroArch handles scaling from our output to window size
     return libretro_get_shared_texture_height();

@@ -2,6 +2,7 @@
 
 #include "libretro_video.h"
 #include "libretro_core.h"
+#include "Emu/system_config.h"
 
 #include <atomic>
 #include <mutex>
@@ -101,10 +102,18 @@ void LibretroGSFrame::update_dimensions_from_fbo() {}
 
 // With the Vulkan hardware context the renderer sizes the swapchain image the
 // frontend is handed after this window, and sets it to the picture it presents
-// (VKPresent, libretro_set_vk_frame_size), resolution scale included.
+// (VKPresent, libretro_set_vk_frame_size), resolution scale included. Until
+// the first picture, 720p at the Resolution Scale setting, so the compilation
+// progress drawn before it is not blown up from 1280x720 (libretro_video.cpp).
 extern bool g_libretro_vulkan_hw;
-static std::atomic<int> s_vk_frame_width{1280};
-static std::atomic<int> s_vk_frame_height{720};
+static std::atomic<int> s_vk_frame_width{0};
+static std::atomic<int> s_vk_frame_height{0};
+
+static int libretro_vk_size(const std::atomic<int>& reported, int base)
+{
+	const int size = reported.load();
+	return size ? size : static_cast<int>(static_cast<u64>(base) * g_cfg.video.resolution_scale_percent / 100);
+}
 
 void libretro_set_vk_frame_size(int width, int height)
 {
@@ -115,8 +124,8 @@ void libretro_set_vk_frame_size(int width, int height)
 	}
 }
 
-int LibretroGSFrame::client_width() { return g_libretro_vulkan_hw ? s_vk_frame_width.load() : m_width; }
-int LibretroGSFrame::client_height() { return g_libretro_vulkan_hw ? s_vk_frame_height.load() : m_height; }
+int LibretroGSFrame::client_width() { return g_libretro_vulkan_hw ? libretro_vk_size(s_vk_frame_width, 1280) : m_width; }
+int LibretroGSFrame::client_height() { return g_libretro_vulkan_hw ? libretro_vk_size(s_vk_frame_height, 720) : m_height; }
 
 void LibretroGSFrame::set_dimensions(int w, int h)
 {
