@@ -10,6 +10,10 @@ defaults:
 on:
   workflow_dispatch:
     inputs:
+      platforms:
+        description: 'Platforms to build besides Linux, comma-separated (windows, android, macos), or all'
+        type: string
+        default: all
       release:
         description: 'Publish the cores as a release'
         type: boolean
@@ -26,6 +30,9 @@ concurrency:
 env:
   BUILD_ARTIFACTSTAGINGDIRECTORY: ${{ github.workspace }}/artifacts/
 
+# Test builds can be limited to the platforms their testers use: the
+# platforms input (workflow_dispatch) lists them; Linux is always built, as a
+# quick check that it compiles. Pushes and "all" build everything.
 jobs:
   Build:
     strategy:
@@ -116,6 +123,7 @@ jobs:
           key: ${{ steps.restore-build-ccache.outputs.cache-primary-key }}
 
   Windows:
+    if: github.event_name != 'workflow_dispatch' || inputs.platforms == 'all' || contains(inputs.platforms, 'windows') || inputs.release
     # Experimental, and allowed to fail. Built under MSYS2's clang64 rather
     # than MSVC: the core exists only as a CMake target, so rpcs3.sln - the way
     # upstream builds Windows - is no use, and CMake with MSVC gets no further
@@ -180,6 +188,7 @@ jobs:
           compression-level: 0
 
   Android:
+    if: github.event_name != 'workflow_dispatch' || inputs.platforms == 'all' || contains(inputs.platforms, 'android') || inputs.release
     # Experimental, and allowed to fail, like Windows. Android is reachable in
     # principle - 3rdparty/llvm/CMakeLists.txt has an if(ANDROID) branch that
     # builds LLVM for AArch64 with an Android triple - but cross-building LLVM
@@ -319,6 +328,7 @@ jobs:
           compression-level: 0
 
   MacOS:
+    if: github.event_name != 'workflow_dispatch' || inputs.platforms == 'all' || contains(inputs.platforms, 'macos') || inputs.release
     # As upstream's macOS build, with LLVM's own clang rather than Apple's:
     # Apple clang does not take fmt::throw_exception's [[noreturn]] constructor
     # as the end of a function, and -Werror=return-type fails all over. Clang,
