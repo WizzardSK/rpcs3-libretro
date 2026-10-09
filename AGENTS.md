@@ -35,7 +35,7 @@ This repository builds the libretro core and nothing else. The standalone's part
 
 ## Testing
 
-- Ask testers for RetroArch's log and `system/rpcs3/rpcs3_detailed.log.gz` (cut short when RPCS3 crashes), and check which build a log came from before drawing conclusions from it.
+- The core logs, at start, its version and the commit of this repository it was built from. Ask testers for RetroArch's log and `system/rpcs3/rpcs3_detailed.log.gz` (cut short when RPCS3 crashes), and check which commit a log came from before drawing conclusions from it.
 - Compare with standalone RPCS3 at the same upstream build before calling something a core bug; when standalone fails the same way, it is upstream's.
 
 ## Libretro pitfalls already hit in the other cores
