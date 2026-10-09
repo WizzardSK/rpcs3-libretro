@@ -2,7 +2,9 @@
 #include "mutex.h"
 #include "StrFmt.h"
 
+#include <chrono>
 #include <span>
+#include <thread>
 #include <unordered_map>
 #include <algorithm>
 #include <cstring>
