@@ -1674,6 +1674,12 @@ void retro_init(void)
     if (core_initialized)
         return;
 
+    // The upstream build and the commit of this repository the core was built
+    // from ("v0.0.43-20243 (libretro core 1a2b3c4)"), so a tester's log says
+    // which build it came from
+    if (log_cb)
+        log_cb(RETRO_LOG_INFO, "RPCS3 libretro core %s\n", RPCS3_LIBRETRO_VERSION);
+
 
 
 #ifdef _WIN32
