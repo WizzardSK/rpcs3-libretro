@@ -2146,7 +2146,17 @@ fs::file::file(const std::string& path, bs_t<open_mode> mode)
 		perm = 0;
 	}
 
-	const int fd = ::open(path.c_str(), flags, perm);
+	int fd = ::open(path.c_str(), flags, perm);
+
+	// A network share's client (CIFS behind autofs) can refuse an open of a
+	// file that is there with EINVAL now and then, and the next open works:
+	// a trophy config on ozzfreak's NAS failed 2 runs of 3. A few tries before
+	// giving up; EINVAL from bad flags fails every time and costs 30 ms.
+	for (int tries = 0; fd == -1 && errno == EINVAL && tries < 3; tries++)
+	{
+		std::this_thread::sleep_for(std::chrono::milliseconds(10));
+		fd = ::open(path.c_str(), flags, perm);
+	}
 
 	if (fd == -1)
 	{
