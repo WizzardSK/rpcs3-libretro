@@ -7,6 +7,35 @@
 #include <mutex>
 #include <atomic>
 
+// Multi-channel audio (RetroArch since 10 September 2026), from the current
+// libretro.h, which the core's copy predates
+#ifndef RETRO_ENVIRONMENT_GET_AUDIO_SAMPLE_BATCH_MULTI
+#define RETRO_ENVIRONMENT_GET_AUDIO_SAMPLE_BATCH_MULTI (94 | RETRO_ENVIRONMENT_EXPERIMENTAL)
+#define RETRO_AUDIO_SPEAKER_FRONT_LEFT    0x001
+#define RETRO_AUDIO_SPEAKER_FRONT_RIGHT   0x002
+#define RETRO_AUDIO_SPEAKER_FRONT_CENTER  0x004
+#define RETRO_AUDIO_SPEAKER_LOW_FREQUENCY 0x008
+#define RETRO_AUDIO_SPEAKER_BACK_LEFT     0x010
+#define RETRO_AUDIO_SPEAKER_BACK_RIGHT    0x020
+#define RETRO_AUDIO_SPEAKER_SIDE_LEFT     0x200
+#define RETRO_AUDIO_SPEAKER_SIDE_RIGHT    0x400
+typedef size_t (RETRO_CALLCONV *retro_audio_sample_batch_multi_int16_t)(
+      const int16_t *data, size_t frames, unsigned channels, unsigned layout);
+typedef size_t (RETRO_CALLCONV *retro_audio_sample_batch_multi_float_t)(
+      const float *data, size_t frames, unsigned channels, unsigned layout);
+struct retro_audio_sample_multi_callback
+{
+   retro_audio_sample_batch_multi_int16_t batch_int16;
+   retro_audio_sample_batch_multi_float_t batch_float;
+};
+#endif
+
+// Asks the frontend for multi-channel output; true when it takes it, and
+// from then on all audio goes through it (the frontend's rule: one or the
+// other for the loaded game). Call from retro_load_game.
+bool libretro_audio_negotiate_multi(retro_environment_t environ_cb);
+bool libretro_audio_multi_available();
+
 // Process and send audio to libretro frontend
 void libretro_audio_process(retro_audio_sample_batch_t audio_batch_cb);
 

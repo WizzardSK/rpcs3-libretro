@@ -6,8 +6,69 @@
 #include <algorithm>
 #include <cstring>
 #include <chrono>
+#include <bit>
+
+LOG_CHANNEL(libretro_audio_log, "LibretroAudio");
 
 static LibretroAudioBackend* s_audio_backend = nullptr;
+
+// RPCS3 can output more than two channels (its Audio Channels setting, which
+// the core used to pin to stereo). With a frontend that takes them, they go
+// out as they are and the frontend fits them to the user's speakers, its
+// Output Layout setting: discrete on a device that has them, folded to
+// stereo otherwise.
+static retro_audio_sample_multi_callback s_multi{};
+static bool s_multi_available = false;
+
+bool libretro_audio_negotiate_multi(retro_environment_t environ_cb)
+{
+    s_multi = {};
+    s_multi_available = environ_cb && environ_cb(RETRO_ENVIRONMENT_GET_AUDIO_SAMPLE_BATCH_MULTI, &s_multi) && s_multi.batch_int16;
+    return s_multi_available;
+}
+
+bool libretro_audio_multi_available()
+{
+    return s_multi_available;
+}
+
+// The speakers of RPCS3's layouts, in the order RPCS3 interleaves them - the
+// order cubeb's layouts give them in standalone, ascending speaker bits, which
+// is the order the frontend takes. Always as many speakers as channels: the
+// frontend refuses a frame whose channel count and mask disagree, which was
+// silence when a stereo game ran under a 5.1 layout (NNshi).
+static unsigned speaker_mask_of(audio_channel_layout layout, u32 channels);
+
+static unsigned speaker_mask(audio_channel_layout layout, u32 channels)
+{
+    const unsigned mask = speaker_mask_of(layout, channels);
+    return static_cast<u32>(std::popcount(mask)) == channels ? mask : speaker_mask_of(audio_channel_layout::automatic, channels);
+}
+
+static unsigned speaker_mask_of(audio_channel_layout layout, u32 channels)
+{
+    constexpr unsigned FL = RETRO_AUDIO_SPEAKER_FRONT_LEFT, FR = RETRO_AUDIO_SPEAKER_FRONT_RIGHT,
+        FC = RETRO_AUDIO_SPEAKER_FRONT_CENTER, LFE = RETRO_AUDIO_SPEAKER_LOW_FREQUENCY,
+        BL = RETRO_AUDIO_SPEAKER_BACK_LEFT, BR = RETRO_AUDIO_SPEAKER_BACK_RIGHT,
+        SL = RETRO_AUDIO_SPEAKER_SIDE_LEFT, SR = RETRO_AUDIO_SPEAKER_SIDE_RIGHT;
+    switch (layout)
+    {
+    case audio_channel_layout::mono: return FC;
+    case audio_channel_layout::stereo_lfe: return FL | FR | LFE;
+    case audio_channel_layout::quadraphonic: return FL | FR | BL | BR;
+    case audio_channel_layout::quadraphonic_lfe: return FL | FR | LFE | BL | BR;
+    case audio_channel_layout::surround_5_1: return FL | FR | FC | LFE | SL | SR;
+    case audio_channel_layout::surround_7_1: return FL | FR | FC | LFE | BL | BR | SL | SR;
+    default: break;
+    }
+    switch (channels)
+    {
+    case 6: return FL | FR | FC | LFE | SL | SR;
+    case 8: return FL | FR | FC | LFE | BL | BR | SL | SR;
+    case 1: return FC;
+    default: return FL | FR;
+    }
+}
 
 LibretroAudioBackend* get_libretro_audio_backend()
 {
@@ -35,7 +96,9 @@ void libretro_audio_process(retro_audio_sample_batch_t audio_batch_cb)
     // it missed. The emulator was paused too, so there is nothing to catch up.
     static constexpr double MAX_FRAMES_PER_RUN = SAMPLE_RATE / 10;
     static constexpr size_t FRAMES_PER_BATCH = 512;
-    alignas(16) int16_t buffer[FRAMES_PER_BATCH * 2]; // 16-byte aligned for SIMD
+    alignas(16) int16_t buffer[FRAMES_PER_BATCH * 8]; // up to 7.1; 16-byte aligned for SIMD
+    const u32 channels = s_audio_backend->get_channels();
+    const unsigned mask = speaker_mask(s_audio_backend->get_channel_layout(), channels);
 
     static std::chrono::steady_clock::time_point s_last_run;
     static double s_owed = 0.0; // fractional frames carried to the next run
@@ -56,7 +119,12 @@ void libretro_audio_process(retro_audio_sample_batch_t audio_batch_cb)
         const size_t want = std::min(remaining, FRAMES_PER_BATCH);
         const size_t frames = s_audio_backend->GetSamples(buffer, want);
         if (frames > 0)
-            audio_batch_cb(buffer, frames);
+        {
+            if (s_multi_available)
+                s_multi.batch_int16(buffer, frames, channels, mask);
+            else if (channels == 2)
+                audio_batch_cb(buffer, frames);
+        }
         remaining -= frames;
         if (frames < want)
             break; // nothing more to give this run
@@ -93,12 +161,14 @@ bool LibretroAudioBackend::Open(std::string_view dev_id, AudioFreq freq, AudioSa
     // We handle float->s16 conversion ourselves in GetSamples() if needed
     m_sampling_rate = freq;
     m_sample_size = sample_size;  // Accept what config gives us (usually FLOAT)
-    m_channels = static_cast<u32>(ch_cnt);
-    m_layout = layout;
+    // As many channels as the game configured, up to 8 when the frontend
+    // takes multi-channel output and 2 otherwise, as standalone's backends
+    // fit the game's to the device
+    setup_channel_layout(static_cast<u32>(ch_cnt), libretro_audio_multi_available() ? 8 : 2, layout, libretro_audio_log);
 
     // Ring buffer for ~500ms of audio - larger buffer reduces stutter
     // At 48kHz stereo float = 48000 * 2 * 4 * 0.5 = 192KB
-    const size_t bytes_per_second = static_cast<size_t>(freq) * static_cast<u32>(ch_cnt) * get_sample_size();
+    const size_t bytes_per_second = static_cast<size_t>(freq) * m_channels * get_sample_size();
     m_ring_buffer_bytes.resize(bytes_per_second / 2, 0);  // 500ms buffer
     m_ring_read_pos = 0;
     m_ring_write_pos = 0;
@@ -176,7 +246,7 @@ size_t LibretroAudioBackend::GetSamples(int16_t* buffer, size_t max_frames)
     {
         static constexpr size_t PULL_FRAMES = 2048;
         const size_t pull_bytes = PULL_FRAMES * bytes_per_frame;
-        alignas(16) u8 temp_buffer[PULL_FRAMES * 2 * sizeof(float)];
+        alignas(16) u8 temp_buffer[PULL_FRAMES * 8 * sizeof(float)]; // up to 7.1
 
         // Pull only what this call is about to hand out. The callback always
         // delivers - it pads with silence - so filling the whole ring put up to
@@ -222,7 +292,7 @@ size_t LibretroAudioBackend::GetSamples(int16_t* buffer, size_t max_frames)
     const size_t bytes_to_read = frames_available * bytes_per_frame;
 
     // Read from ring buffer into a contiguous temp buffer for easier processing
-    alignas(16) u8 read_buffer[2048 * 2 * sizeof(float)];
+    alignas(16) u8 read_buffer[2048 * 8 * sizeof(float)]; // up to 7.1
     if (m_ring_read_pos + bytes_to_read <= m_ring_buffer_bytes.size())
     {
         // Contiguous read

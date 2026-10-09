@@ -622,6 +622,13 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "100"
     },
     {
+        "rpcs3_audio_format", "Audio Format", NULL,
+        "The speakers the PS3 tells games it has. Set it to RetroArch's Output Layout: a game picks its own stereo, 5.1 or 7.1 mix from what is offered, and a surround mix folded down by RetroArch does not always sound like the game's own stereo one. Needs a RetroArch with multi-channel audio; stereo otherwise. Takes effect when a game boots.",
+        NULL, "core",
+        { {"stereo", "Stereo"}, {"surround_5_1", "Surround 5.1"}, {"surround_7_1", "Surround 7.1"}, {NULL, NULL} },
+        "stereo"
+    },
+    {
         "rpcs3_language", "System Language", NULL,
         "PS3 system language.",
         NULL, "core",

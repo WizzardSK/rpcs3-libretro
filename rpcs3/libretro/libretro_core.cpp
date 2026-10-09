@@ -881,6 +881,31 @@ static void libretro_apply_core_options()
     g_cfg.audio.enable_buffering.set(false);
     g_cfg.audio.enable_time_stretching.set(false);
 
+    // Audio Format: the speakers the PS3 reports, which decides the mix a game
+    // makes. A core cannot ask RetroArch for its Output Layout, and offering
+    // everything left RetroArch folding 7.1 down even on stereo, which is not
+    // always what the game's own stereo mix sounds like (NNshi). Surround
+    // needs the frontend's multi-channel output, negotiated at load; a 7.1
+    // setup takes 5.1 games too, as a PS3's does.
+    const std::string audio_fmt = get_option_value("rpcs3_audio_format", "stereo");
+    if (libretro_audio_multi_available() && audio_fmt == "surround_7_1")
+    {
+        g_cfg.audio.format.set(audio_format::manual);
+        g_cfg.audio.formats.set(static_cast<u32>(audio_format_flag::lpcm_5_1_48khz) | static_cast<u32>(audio_format_flag::lpcm_7_1_48khz));
+        g_cfg.audio.channel_layout.set(audio_channel_layout::surround_7_1);
+    }
+    else if (libretro_audio_multi_available() && audio_fmt == "surround_5_1")
+    {
+        g_cfg.audio.format.set(audio_format::manual);
+        g_cfg.audio.formats.set(static_cast<u32>(audio_format_flag::lpcm_5_1_48khz));
+        g_cfg.audio.channel_layout.set(audio_channel_layout::surround_5_1);
+    }
+    else
+    {
+        g_cfg.audio.format.set(audio_format::stereo);
+        g_cfg.audio.channel_layout.set(audio_channel_layout::stereo);
+    }
+
     // Master Volume
     std::string volume = get_option_value("rpcs3_master_volume", "100");
     g_cfg.audio.volume.set(std::stoi(volume));
@@ -2382,6 +2407,13 @@ bool retro_load_game(const struct retro_game_info* game)
 
         return false;
     }
+
+    // Surround needs the frontend's multi-channel output, negotiated now, at
+    // load; a frontend without it keeps the classic stereo callback
+    if (libretro_audio_negotiate_multi(environ_cb))
+        { if (log_cb) log_cb(RETRO_LOG_INFO, "RPCS3: multi-channel audio output negotiated; Audio Format can offer games 5.1/7.1\n"); }
+    else
+        { if (log_cb) log_cb(RETRO_LOG_INFO, "RPCS3: the frontend has no multi-channel audio output; stereo\n"); }
 
     // Get content directory from RetroArch (for PKG installation)
     const char* content_dir_ptr = nullptr;
