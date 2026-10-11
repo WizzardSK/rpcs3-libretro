@@ -82,6 +82,7 @@
 #include <mutex>
 #include <functional>
 #include <filesystem>
+#include <sstream>
 #include <string>
 #include <vector>
 
@@ -304,7 +305,7 @@ static void libretro_check_frame_stall(bool new_frame)
 {
     struct counters
     {
-        u64 flips = 0, handed = 0, vblanks = 0, requested = 0;
+        u64 flips = 0, handed = 0, vblanks = 0;
     };
 
     const auto now_counters = []()
@@ -316,7 +317,6 @@ static void libretro_check_frame_stall(bool new_frame)
             c.vblanks = rsx->vblank_count;
         }
         c.handed = libretro_sw_frames_presented();
-        c.requested = g_libretro_vblank_requests;
         return c;
     };
 
@@ -342,10 +342,9 @@ static void libretro_check_frame_stall(bool new_frame)
 
     const counters c = now_counters();
     rsx_log.error("libretro: no new frame for %.1fs while running: RSX flips +%u, frames handed over +%u, "
-        "VBLANKs +%u of +%u requested (frontend pacing %s), progress dialog '%s'",
+        "VBLANKs +%u, progress dialog '%s'",
         (now - s_frame_us) / 1e6, c.flips - s_at_frame.flips, c.handed - s_at_frame.handed,
-        c.vblanks - s_at_frame.vblanks, c.requested - s_at_frame.requested,
-        g_libretro_frontend_vblank ? "on" : "off", std::string(g_progr_text));
+        c.vblanks - s_at_frame.vblanks, std::string(g_progr_text));
     s_report_us = now;
     s_reported = true;
 }
@@ -515,9 +514,6 @@ static bool install_pkg_file(const std::string& pkg_path, std::string& eboot_pat
     return true;
 }
 
-// The Save Data Slot core option, for the save dialog (see libretro_save_dialog)
-static std::atomic<int> s_savedata_slot{-1}; // -1: let the player pick from the game's list
-
 static std::string get_option_value(const char* key, const char* default_val = "")
 {
     if (!environ_cb)
@@ -539,6 +535,65 @@ static unsigned s_max_height = 0;
 // The aspect ratio the frontend is told: 16:9, or what Stretch to Display
 // Area names
 static float s_display_aspect = 16.0f / 9.0f;
+
+// VBlank Frequency "From List": vblank_unlock.txt in the core's folder of the
+// system directory (embed_vblank_unlock.cmake) names the games whose frame
+// rate doubles with a 120 Hz VBlank. The core writes the file when it is not
+// there and never overwrites it, so it can be edited.
+extern const unsigned char g_libretro_vblank_unlock[];
+extern const std::size_t g_libretro_vblank_unlock_size;
+static std::string game_serial(const std::string& path);
+
+// The frames a second the core shows, when not the VBlank Frequency: 60 for a
+// 30 fps game of the list, whose VBlank runs at 120. 0: the VBlank Frequency.
+static u32 s_output_hz = 0;
+
+static std::string vblank_unlock_path()
+{
+    return (system_dir.empty() ? fs::get_config_dir() : system_dir + "/rpcs3/") + "vblank_unlock.txt";
+}
+
+static void install_vblank_unlock()
+{
+    const std::string path = vblank_unlock_path();
+    if (!g_libretro_vblank_unlock_size || fs::is_file(path))
+        return;
+    fs::create_path(fs::get_parent_dir(path));
+    fs::file file(path, fs::rewrite);
+    if (!file || file.write(g_libretro_vblank_unlock, g_libretro_vblank_unlock_size) != g_libretro_vblank_unlock_size)
+    {
+        if (log_cb)
+            log_cb(RETRO_LOG_WARN, "RPCS3: could not write %s\n", path.c_str());
+    }
+}
+
+// The block of the list a title ID is in: 30, 60, or 0 when it is in neither
+static u32 vblank_unlock_block(const std::string& serial)
+{
+    if (serial.empty())
+        return 0;
+    install_vblank_unlock();
+    fs::file file(vblank_unlock_path());
+    if (!file)
+        return 0;
+
+    u32 block = 0;
+    std::istringstream lines(file.to_string());
+    for (std::string line; std::getline(lines, line);)
+    {
+        if (const usz comment = line.find('#'); comment != umax)
+            line.erase(comment);
+        const usz first = line.find_first_not_of(" \t\r");
+        if (first == umax)
+            continue;
+        line = line.substr(first, line.find_last_not_of(" \t\r") - first + 1);
+        if (line.front() == '[')
+            block = line.starts_with("[30") ? 30 : line.starts_with("[60") ? 60 : 0;
+        else if (block && line == serial)
+            return block;
+    }
+    return 0;
+}
 
 static void libretro_apply_core_options()
 {
@@ -859,11 +914,30 @@ static void libretro_apply_core_options()
     // Multithreaded RSX
     g_cfg.video.multithreaded_rsx.set(get_option_value("rpcs3_multithreaded_rsx", "disabled") == "enabled");
 
-    // VBlank Rate
+    // VBlank Rate. From List: 120 Hz for a game of vblank_unlock.txt - with
+    // the core still at 60 frames a second for a 30 fps game, which then runs
+    // at 60 - and 60 Hz for any other (NNshi)
     std::string vblank = get_option_value("rpcs3_vblank_rate", "60");
+    s_output_hz = 0;
+    if (vblank == "list")
+    {
+        const std::string serial = game_serial(game_path);
+        const u32 block = vblank_unlock_block(serial);
+        vblank = block ? "120" : "60";
+        if (block == 30)
+            s_output_hz = 60;
+        static std::string s_logged;
+        if (log_cb && !serial.empty() && s_logged != serial)
+        {
+            s_logged = serial;
+            if (block)
+                log_cb(RETRO_LOG_INFO, "RPCS3: VBlank Frequency from the list: %s is a %u fps game, VBlank at 120 Hz, %u frames a second shown\n",
+                    serial.c_str(), block, block * 2);
+            else
+                log_cb(RETRO_LOG_INFO, "RPCS3: VBlank Frequency from the list: %s is not in vblank_unlock.txt, 60 Hz\n", serial.c_str());
+        }
+    }
     g_cfg.video.vblank_rate.set(std::stoi(vblank));
-
-    g_libretro_frontend_vblank = get_option_value("rpcs3_frame_pacing", "emulator") == "frontend";
 
     // Immediate: the readback path is only the fallback without the
     // frontend's Vulkan device now, and no longer offered as an option.
@@ -909,13 +983,6 @@ static void libretro_apply_core_options()
     // Master Volume
     std::string volume = get_option_value("rpcs3_master_volume", "100");
     g_cfg.audio.volume.set(std::stoi(volume));
-
-    // Save Data Slot (read here, on the frontend's thread, and kept for the
-    // save dialog, which runs on the game's)
-    {
-        const std::string slot = get_option_value("rpcs3_savedata_slot", "list");
-        s_savedata_slot = slot == "list" ? -1 : std::clamp(std::atoi(slot.c_str()), 0, 9);
-    }
 
     // ==================== NETWORK OPTIONS ====================
     // None of these were read before: the network stayed off whatever they
@@ -1108,15 +1175,13 @@ static std::unique_ptr<logs::listener> s_file_logger;
 // Save data lists. A PS3 game asks the system to show its save list and waits
 // for the player's pick; RPCS3 answers with a Qt dialog the core does not have,
 // and without one every list operation was cancelled, so games could not save
-// or load (NNshi). By default the list is RPCS3's own in-game one, drawn into
-// the picture like the PS3's and driven with the pad. With the Save Data Slot
-// core option set to a number, the core picks for the player instead:
-// the entry at the Save Data Slot core option's position in the list the game
-// asked for - overwriting it when saving, or making a new save when there is
-// nothing at that position and the game allows one; loading it, or nothing
-// when there is nothing at that position. Nothing is ever picked for
-// deletion. The "save / load this data?" confirmation that follows is answered
-// yes (g_cellsavedata_auto_confirm).
+// or load (NNshi). The list is RPCS3's own in-game one, drawn into the picture
+// like the PS3's and driven with the pad. Only when that cannot be shown does
+// the core pick for the player: the first entry of the list the game asked
+// for - overwriting it when saving, or making a new save when the list is
+// empty and the game allows one; loading it, or nothing when the list is
+// empty. Nothing is ever picked for deletion. The "save / load this data?"
+// confirmation that follows is answered yes (g_cellsavedata_auto_confirm).
 extern atomic_t<bool> g_cellsavedata_auto_confirm;
 
 namespace
@@ -1128,49 +1193,41 @@ namespace
         {
             constexpr u32 op_list_save = 4, op_list_load = 5, op_list_auto_save = 2, op_list_auto_load = 3;
             const s32 count = static_cast<s32>(save_entries.size());
-            const s32 slot = s_savedata_slot.load();
 
-            if (slot < 0)
+            // What standalone RPCS3 does with its native interface enabled
+            if (auto manager = g_fxo->try_get<rsx::overlays::display_manager>())
             {
-                // What standalone RPCS3 does with its native interface enabled
-                if (auto manager = g_fxo->try_get<rsx::overlays::display_manager>())
-                {
-                    const bool use_end = sysutil_send_system_cmd(CELL_SYSUTIL_DRAWING_BEGIN, 0) >= 0;
-                    const s32 result = manager->create<rsx::overlays::save_dialog>()->show(base_dir, save_entries, focused, op, listSet, enable_overlay);
-                    if (use_end)
-                        sysutil_send_system_cmd(CELL_SYSUTIL_DRAWING_END, 0);
-                    if (result != rsx::overlays::user_interface::selection_code::error)
-                        return result;
-                }
+                const bool use_end = sysutil_send_system_cmd(CELL_SYSUTIL_DRAWING_BEGIN, 0) >= 0;
+                const s32 result = manager->create<rsx::overlays::save_dialog>()->show(base_dir, save_entries, focused, op, listSet, enable_overlay);
+                if (use_end)
+                    sysutil_send_system_cmd(CELL_SYSUTIL_DRAWING_END, 0);
+                if (result != rsx::overlays::user_interface::selection_code::error)
+                    return result;
             }
 
-            if (slot < 0 && op != op_list_save && op != op_list_load && op != op_list_auto_save && op != op_list_auto_load)
+            if (op != op_list_save && op != op_list_load && op != op_list_auto_save && op != op_list_auto_load)
                 return -2; // deleting needs the list, and it could not be shown
 
-            const s32 pick_slot = slot < 0 ? 0 : slot;
             const bool saving = op == op_list_save || op == op_list_auto_save;
             const bool loading = op == op_list_load || op == op_list_auto_load;
             s32 pick = -2; // cancel
 
-            // Only ever the entry at the slot's position: falling back to
-            // another one loaded, and then overwrote, a save the player had
-            // not picked (NNshi, slot 1 with a single save in slot 0).
             if (saving)
             {
-                if (pick_slot < count)
-                    pick = pick_slot;
+                if (count > 0)
+                    pick = 0;
                 else if (listSet && listSet->newData)
                     pick = -1; // new save
             }
-            else if (loading && pick_slot < count)
+            else if (loading && count > 0)
             {
-                pick = pick_slot;
+                pick = 0;
             }
 
             if (log_cb)
-                log_cb(RETRO_LOG_INFO, "RPCS3: save data list (%s, %d entr%s, slot %d): %s\n",
-                    saving ? "save" : loading ? "load" : "other", count, count == 1 ? "y" : "ies", pick_slot,
-                    pick == -2 ? "nothing picked" : pick == -1 ? "new save" : ("entry " + std::to_string(pick)).c_str());
+                log_cb(RETRO_LOG_INFO, "RPCS3: save data list could not be shown (%s, %d entr%s): %s\n",
+                    saving ? "save" : loading ? "load" : "other", count, count == 1 ? "y" : "ies",
+                    pick == -2 ? "nothing picked" : pick == -1 ? "new save" : "the first entry");
             return pick;
         }
     };
@@ -1612,10 +1669,10 @@ static void fill_av_info(retro_system_av_info* info)
     info->geometry.max_width = std::max(3840u, scaled_dimension(1920));
     info->geometry.max_height = std::max(2160u, scaled_dimension(1080));
     info->geometry.aspect_ratio = s_display_aspect;
-    // The PS3's refresh rate: with Frame Pacing on RetroArch, every frame the
-    // frontend asks for is one VBLANK, so this is the rate the game runs at.
+    // The PS3's refresh rate. A 30 fps game of the VBlank Frequency list has
+    // its VBLANK at 120 Hz and is shown at 60 (s_output_hz).
     const double vblank_period = 1'000'000.0 + g_cfg.video.vblank_ntsc.get() * 1000.0;
-    info->timing.fps = g_cfg.video.vblank_rate.get() * 1'000'000.0 / vblank_period;
+    info->timing.fps = (s_output_hz ? s_output_hz : g_cfg.video.vblank_rate.get()) * 1'000'000.0 / vblank_period;
     info->timing.sample_rate = 48000.0;
 }
 
@@ -2985,13 +3042,6 @@ void retro_run(void)
                     connected++;
         }
         g_libretro_pad_thread->frontend_update(connected);
-    }
-
-    // One PS3 VBLANK per frame the frontend asks for (Frame Pacing: RetroArch)
-    if (g_libretro_frontend_vblank && Emu.IsRunning())
-    {
-        g_libretro_vblank_requests++;
-        g_libretro_vblank_requests.notify_one();
     }
 
     // Process audio

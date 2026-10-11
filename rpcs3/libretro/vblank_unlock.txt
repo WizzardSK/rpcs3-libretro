@@ -1,0 +1,754 @@
+# RPCS3 libretro core: games whose frame rate doubles with a 120 Hz VBlank, for
+# the "From List" choice of VBlank Frequency. A title ID under [30 fps] is a
+# game that runs at half the VBlank rate: the VBlank runs at 120 Hz and the
+# core still shows 60 frames a second. One under [60 fps] runs at the VBlank
+# rate: the VBlank and the core run at 120. A title not listed stays at 60 Hz.
+# One title ID per line, anything after # is a comment. The core makes this
+# file once and never overwrites it.
+# From the RPCS3 wiki's "Vblank compatible games list" as of 2026-06-22: the
+# rows with "VBlank works?" Yes, by Target FPS - with the 30 fps games whose
+# notes say they reach 60 at 60 Hz and follow the VBlank beyond it under
+# [60 fps], and the ones that should stay at 60 Hz left out - and NNshi's
+# choice among the Partial and mixed-target rows. Many of these games need a
+# per-game frame rate patch as well.
+
+[30 fps]
+BLES00875 # 3D Dot Game Heroes
+BLJM60180 # 3D Dot Game Heroes
+BLUS30490 # 3D Dot Game Heroes
+BLUS31425 # Akiba's Trip: Undead & Undressed
+BLES01265 # Alice: Madness Returns
+BLUS30607 # Alice: Madness Returns
+NPUB30545 # Alice: Madness Returns
+NPEB00260 # Alien Breed: Impact
+NPUB30141 # Alien Breed: Impact
+BLES01697 # Alien: Isolation
+BLUS30832 # Alien: Isolation
+NPEB01921 # Alien: Isolation
+NPUB31440 # Alien: Isolation
+NPUB30308 # All Zombies Must Die!
+BLES01440 # Armored Core V
+BLUS30516 # Armored Core V
+BLES00659 # Army of TWO: The 40th Day
+BLUS30408 # Army of TWO: The 40th Day
+BLES01763 # Army of TWO: The Devil's Cartel
+BLUS31069 # Army of TWO: The Devil's Cartel
+NPEB01216 # Army of TWO: The Devil's Cartel
+NPEB01217 # Army of TWO: The Devil's Cartel
+NPUB30987 # Army of TWO: The Devil's Cartel
+BLES00669 # Assassin's Creed II
+BLES00670 # Assassin's Creed II
+BLES00751 # Assassin's Creed II
+BLES00899 # Assassin's Creed II
+BLJM60185 # Assassin's Creed II
+BLUS30364 # Assassin's Creed II
+NPEB00462 # Assassin's Creed II
+NPUB30423 # Assassin's Creed II
+BLES00909 # Assassin's Creed: Brotherhood
+BLUS30537 # Assassin's Creed: Brotherhood
+NPEB00600 # Assassin's Creed: Brotherhood
+NPUB30522 # Assassin's Creed: Brotherhood
+BLES01466 # Assassin's Creed: Revelations
+BLES01467 # Assassin's Creed: Revelations
+BLES01772 # Assassin's Creed: Revelations
+BLUS30905 # Assassin's Creed: Revelations
+BLUS31145 # Assassin's Creed: Revelations
+NPEB00880 # Assassin's Creed: Revelations
+NPUB30707 # Assassin's Creed: Revelations
+BLES01227 # Asura's Wrath
+BLUS30721 # Asura's Wrath
+BLES00503 # Batman: Arkham Asylum
+BLJM60193 # Batman: Arkham Asylum
+BLUS30279 # Batman: Arkham Asylum
+NPEB01156 # Batman: Arkham Asylum
+NPUB30920 # Batman: Arkham Asylum
+BLES00926 # Batman: Arkham City
+BLUS30538 # Batman: Arkham City
+NPEB00941 # Batman: Arkham City
+NPUB30754 # Batman: Arkham City
+BLES01784 # Batman: Arkham Origins
+BLUS31147 # Batman: Arkham Origins
+BLUS31207 # Batman: Arkham Origins
+NPUB31261 # Batman: Arkham Origins
+BLES01211 # Binary Domain
+NPEB00915 # Binary Domain
+NPUB30745 # Binary Domain
+NPEB00859 # Black Knight Sword
+NPUB30719 # Black Knight Sword
+NPEB00365 # Blacklight: Tango Down
+NPUB30224 # Blacklight: Tango Down
+BLES00697 # Borderlands
+BLUS30386 # Borderlands
+NPEB00458 # Borderlands
+NPEB00459 # Borderlands
+NPUB30413 # Borderlands
+BLES01684 # Borderlands 2
+BLJS10190 # Borderlands 2
+BLUS30982 # Borderlands 2
+NPEB01144 # Borderlands 2
+NPUB30898 # Borderlands 2
+BLES02058 # Borderlands: The Pre-Sequel
+BLES02997 # Borderlands: The Pre-Sequel
+BLJS10281 # Borderlands: The Pre-Sequel
+BLUS31445 # Borderlands: The Pre-Sequel
+NPEB02061 # Borderlands: The Pre-Sequel
+BLES01134 # Bulletstorm
+BLES01212 # Bulletstorm
+BLUS30651 # Bulletstorm
+NPEB00622 # Bulletstorm
+NPEB00623 # Bulletstorm
+NPUB30544 # Bulletstorm
+BCES00098 # Buzz! Quiz TV
+BCES00099 # Buzz! Quiz TV
+BCES00195 # Buzz! Quiz TV
+BCUS98145 # Buzz! Quiz TV
+BLES00016 # Call of Duty 3
+BLES00017 # Call of Duty 3
+BLES00021 # Call of Duty 3
+BLJM60027 # Call of Duty 3
+BLUS30012 # Call of Duty 3
+NPEB01214 # Call of Juarez: Gunslinger
+NPJB00394 # Call of Juarez: Gunslinger
+NPUB31079 # Call of Juarez: Gunslinger
+BLES01352 # Call of Juarez: The Cartel
+BLUS30795 # Call of Juarez: The Cartel
+BLES00620 # Cars: Race-O-Rama
+BLUS30319 # Cars: Race-O-Rama
+NPUB31526 # Chivalry: Medieval Warfare
+NPUB30619 # Choplifter HD
+BLES00222 # Dark Sector
+BLES00223 # Dark Sector
+BLUS30116 # Dark Sector
+BLES00723 # Dark Void
+BLUS30323 # Dark Void
+BLES00749 # Dead Island
+BLJS10148 # Dead Island
+BLUS31026 # Dead Island
+NPEB00721 # Dead Island
+NPJB00630 # Dead Island
+BLES01739 # Dead Island: Riptide
+BLJS10228 # Dead Island: Riptide
+BLUS31052 # Dead Island: Riptide
+NPJB00413 # Dead Island: Riptide
+NPUB31145 # Dead Island: Riptide
+BLES00308 # Dead Space
+BLES00309 # Dead Space
+BLES00310 # Dead Space
+BLUS30177 # Dead Space
+NPEB00050 # Dead Space
+NPUB30569 # Dead Space
+BLES01150 # Deus Ex: Human Revolution
+BLES01151 # Deus Ex: Human Revolution
+BLUS30476 # Deus Ex: Human Revolution
+NPEB00791 # Deus Ex: Human Revolution
+NPEB00792 # Deus Ex: Human Revolution
+NPEB00793 # Deus Ex: Human Revolution
+BLES01354 # Disney Universe
+BLES01366 # Disney Universe
+BLUS30773 # Disney Universe
+NPUB30706 # Disney Universe
+BLES01698 # DmC Devil May Cry
+BLJM60502 # DmC Devil May Cry
+BLUS30723 # DmC Devil May Cry
+NPEB01020 # DmC Devil May Cry
+NPUB30830 # DmC Devil May Cry
+NPUB31590 # Don't Starve: Giant Edition
+BCAS20311 # Drakengard 3
+BLUS31197 # Drakengard 3
+NPEB01407 # Drakengard 3
+NPUB31251 # Drakengard 3
+BLES01147 # Duke Nukem Forever
+BLUS30615 # Duke Nukem Forever
+NPEB00828 # Duke Nukem Forever
+NPUB30655 # Duke Nukem Forever
+NPEB00652 # Dungeon Defenders
+NPUB30251 # Dungeon Defenders
+NPEB00385 # Dungeons & Dragons: Daggerdale
+NPUB30318 # Dungeons & Dragons: Daggerdale
+BLES00989 # Enslaved: Odyssey to the West
+BLES00990 # Enslaved: Odyssey to the West
+BLJS10089 # Enslaved: Odyssey to the West
+BLUS30558 # Enslaved: Odyssey to the West
+BLES00035 # F.E.A.R. - First Encounter Assault Recon
+BLES00036 # F.E.A.R. - First Encounter Assault Recon
+BLUS30003 # F.E.A.R. - First Encounter Assault Recon
+BLES00696 # Fairytale Fights
+BLUS30456 # Fairytale Fights
+BLES01625 # Family Guy: Back to the Multiverse
+BLUS30824 # Family Guy: Back to the Multiverse
+NPUB30886 # Family Guy: Back to the Multiverse
+BLES00324 # Far Cry 2
+BLES00325 # Far Cry 2
+BLUS30178 # Far Cry 2
+NPEB00599 # Far Cry 2
+NPUB30523 # Far Cry 2
+NPEB00989 # Far Cry Classic
+NPUB30737 # Far Cry Classic
+BLES02108 # Farming Simulator 15
+BLJM61312 # Farming Simulator 15
+NPHB00036 # Fatal Inertia EX
+NPUB30023 # Fatal Inertia EX
+BCAS25005 # Final Fantasy XIII
+BLES00783 # Final Fantasy XIII
+BLJM67005 # Final Fantasy XIII
+BLUS30416 # Final Fantasy XIII
+MRTC00003 # Final Fantasy XIII
+BLES01062 # Fist of the North Star: Ken's Rage
+BLUS30504 # Fist of the North Star: Ken's Rage
+BLES00329 # Fracture
+BLJS10037 # Fracture
+BLUS30184 # Fracture
+BLES01807 # Grand Theft Auto V
+BLJM61019 # Grand Theft Auto V
+BLUS31156 # Grand Theft Auto V
+NPEB01283 # Grand Theft Auto V
+NPUB31154 # Grand Theft Auto V
+BLES01116 # Green Lantern Rise of the Manhunters
+BLUS30674 # Green Lantern Rise of the Manhunters
+NPEB01085 # Guardians of the Middle-earth
+NPUB30840 # Guardians of the Middle-earth
+BLUS30153 # Hail to the Chimp
+BLES00588 # Hannah Montana The Movie
+BLES00424 # Harry Potter and the Half-Blood Prince
+BLUS30242 # Harry Potter and the Half-Blood Prince
+BCAS20016 # Heavenly Sword
+BCES00078 # Heavenly Sword
+BCUS98132 # Heavenly Sword
+BLES00090 # Hellboy: The Science of Evil
+BLUS30048 # Hellboy: The Science of Evil
+BLUS31388 # How to Train Your Dragon 2
+NPEA00123 # Hustle Kings
+NPEA00145 # Hustle Kings
+NPUA80291 # Hustle Kings
+NPEB00476 # I Am Alive
+NPUB30383 # I Am Alive
+BLES00648 # IL-2 Sturmovik: Birds of Prey
+BLUS30424 # IL-2 Sturmovik: Birds of Prey
+BCES01700 # Invizimals: The Lost Kingdom
+NPEA00473 # Invizimals: The Lost Kingdom
+BLES00247 # Iron Man
+BLUS30134 # Iron Man
+BLES00667 # James Cameron's Avatar: The Game
+BLES00753 # James Cameron's Avatar: The Game
+BLUS30374 # James Cameron's Avatar: The Game
+NPUB30566 # James Cameron's Avatar: The Game
+BLES01986 # JoJo's Bizarre Adventure: All-Star Battle
+BLUS31405 # JoJo's Bizarre Adventure: All-Star Battle
+NPEB01922 # JoJo's Bizarre Adventure: All-Star Battle
+NPUB31391 # JoJo's Bizarre Adventure: All-Star Battle
+BLJS10318 # JoJo's Bizarre Adventure: Eyes of Heaven
+NPEA00288 # Journey
+NPHA80188 # Journey
+NPUA80275 # Journey
+NPEB00826 # Jurassic Park The Game - Episode 1
+NPUB30499 # Jurassic Park The Game - Episode 1
+BCAS20066 # Killzone 2
+BCES00081 # Killzone 2
+BCJS30032 # Killzone 2
+BCUS98116 # Killzone 2
+NPEA90034 # Killzone 2
+NPHA80060 # Killzone 2
+NPJA90092 # Killzone 2
+NPUA70034 # Killzone 2
+BCES01007 # Killzone 3
+BCUS98234 # Killzone 3
+BLES01613 # LEGO Batman 2: DC Super Heroes
+BLUS30837 # LEGO Batman 2: DC Super Heroes
+NPEB01032 # LEGO Batman 2: DC Super Heroes
+NPUB30807 # LEGO Batman 2: DC Super Heroes
+BLES02033 # LEGO Batman 3: Beyond Gotham
+BLUS31434 # LEGO Batman 3: Beyond Gotham
+NPUB31499 # LEGO Batman 3: Beyond Gotham
+BLES02105 # LEGO Dimensions
+BLUS31473 # LEGO Dimensions
+BLES01348 # LEGO Harry Potter: Years 5-7
+BLUS30794 # LEGO Harry Potter: Years 5-7
+NPEB01179 # LEGO Harry Potter: Years 5-7
+NPUB30985 # LEGO Harry Potter: Years 5-7
+BLES01831 # LEGO Marvel Super Heroes
+BLJM61242 # LEGO Marvel Super Heroes
+BLUS31161 # LEGO Marvel Super Heroes
+NPUB31236 # LEGO Marvel Super Heroes
+BLES01239 # LEGO Pirates of the Caribbean: The Video Game
+BLES01241 # LEGO Pirates of the Caribbean: The Video Game
+BLUS30744 # LEGO Pirates of the Caribbean: The Video Game
+NPEB00654 # LEGO Pirates of the Caribbean: The Video Game
+NPUB30560 # LEGO Pirates of the Caribbean: The Video Game
+BLES01998 # LEGO The Hobbit
+BLUS31392 # LEGO The Hobbit
+NPUB31429 # LEGO The Hobbit
+BLES01516 # LEGO The Lord of the Rings
+BLUS30963 # LEGO The Lord of the Rings
+NPUB30978 # LEGO The Lord of the Rings
+NPEB02197 # Life is Strange
+NPJB00789 # Life is Strange
+NPUB31636 # Life is Strange
+BCES01422 # LittleBigPlanet Karting
+BCUS98254 # LittleBigPlanet Karting
+NPEA00421 # LittleBigPlanet Karting
+NPUA80848 # LittleBigPlanet Karting
+BLES01525 # Lollipop Chainsaw
+BLUS30917 # Lollipop Chainsaw
+NPJB00273 # Lollipop Chainsaw
+BLUS31020 # Lost Planet 3
+NPUB31125 # Lost Planet 3
+BLES00198 # Lost Planet: Extreme Condition
+BLJM60061 # Lost Planet: Extreme Condition
+BLUS30113 # Lost Planet: Extreme Condition
+BLES00919 # Majin and the Forsaken Kingdom
+BLUS30472 # Majin and the Forsaken Kingdom
+BLES01462 # Mass Effect 3
+BLUS30853 # Mass Effect 3
+NPEB00865 # Mass Effect 3
+NPUB30710 # Mass Effect 3
+BLES00174 # Medal of Honor: Airborne
+BLUS30067 # Medal of Honor: Airborne
+BLES01549 # Men in Black: Alien Crisis
+BLUS30922 # Men in Black: Alien Crisis
+BLES01867 # Metro: Last Light
+BLJS10218 # Metro: Last Light
+BLUS31184 # Metro: Last Light
+NPEB01369 # Metro: Last Light
+NPUB31219 # Metro: Last Light
+BLES01745 # Middle-Earth: Shadow of Mordor
+BLUS31059 # Middle-Earth: Shadow of Mordor
+NPUB31436 # Middle-Earth: Shadow of Mordor
+BLES00362 # Midnight Club: Los Angeles
+BLUS30190 # Midnight Club: Los Angeles
+BLES01009 # Mindjack
+BLUS30547 # Mindjack
+MRTC00014 # Mindjack
+BLES02214 # Minecraft Story Mode
+NPEB02294 # Minecraft Story Mode
+NPUB31725 # Minecraft Story Mode
+BLES00322 # Mirror's Edge
+BLUS30179 # Mirror's Edge
+NPEB00052 # Mirror's Edge
+NPUB30838 # Mirror's Edge
+BCES00701 # ModNation Racers
+BCES00764 # ModNation Racers
+BCJS30041 # ModNation Racers
+BCUS98167 # ModNation Racers
+NPEA00291 # ModNation Racers
+NPUA80535 # ModNation Racers
+NPEB00375 # Moon Diver
+NPJB00100 # Moon Diver
+NPUB30345 # Moon Diver
+BLES01836 # Murdered: Soul Suspect
+BLUS31166 # Murdered: Soul Suspect
+NPEB01432 # Murdered: Soul Suspect
+NPUB31285 # Murdered: Soul Suspect
+BLES02032 # MX vs. ATV Supercross
+BLUS31455 # MX vs. ATV Supercross
+NPUB31530 # MX vs. ATV Supercross
+BLUS30806 # NASCAR Unleashed
+BLES00681 # Need for Speed Shift
+BLES00682 # Need for Speed Shift
+BLJM60167 # Need for Speed Shift
+BLUS30391 # Need for Speed Shift
+BLES01555 # Ni no Kuni: Wrath of the White Witch
+BLUS30947 # Ni no Kuni: Wrath of the White Witch
+NPEB01158 # Ni no Kuni: Wrath of the White Witch
+NPUB30932 # Ni no Kuni: Wrath of the White Witch
+BLES00826 # NieR
+BLUS30481 # NieR
+BLES00597 # Operation Flashpoint: Dragon Rising
+BLUS30316 # Operation Flashpoint: Dragon Rising
+BLES01791 # Painkiller: Hell & Damnation
+BLUS31206 # Painkiller: Hell & Damnation
+NPUB31259 # Painkiller: Hell & Damnation
+NPEB01109 # Papo & Yo
+NPUB30620 # Papo & Yo
+BLES00066 # Pirates of the Caribbean: At World's End
+BLUS30029 # Pirates of the Caribbean: At World's End
+BLES00584 # Planet 51: The Game
+NPEB01357 # Poker Night 2
+NPUB31210 # Poker Night 2
+BLES00389 # Prince of Persia (2008)
+BLES00390 # Prince of Persia (2008)
+BLUS30214 # Prince of Persia (2008)
+NPUB30424 # Prince of Persia (2008)
+BLUS30142 # Race Driver: GRID
+BCES01141 # Ratchet & Clank: All 4 One
+BCUS98175 # Ratchet & Clank: All 4 One
+NPEA00356 # Ratchet & Clank: All 4 One
+NPUA80695 # Ratchet & Clank: All 4 One
+BCES01908 # Ratchet & Clank: Into the Nexus
+BCES01949 # Ratchet & Clank: Into the Nexus
+BCUS99245 # Ratchet & Clank: Into the Nexus
+NPEA00457 # Ratchet & Clank: Into the Nexus
+NPUA80908 # Ratchet & Clank: Into the Nexus
+BCES01594 # Ratchet & Clank: QForce
+NPEA00378 # Ratchet & Clank: QForce
+BLES00680 # Red Dead Redemption
+BLUS30418 # Red Dead Redemption
+NPEB00833 # Red Dead Redemption
+NPUB30638 # Red Dead Redemption
+BLES01179 # Red Dead Redemption: Undead Nightmare
+BLUS30711 # Red Dead Redemption: Undead Nightmare
+NPUB30639 # Red Dead Redemption: Undead Nightmare
+BCES00001 # Resistance: Fall of Man
+BCJS30003 # Resistance: Fall of Man
+BCUS98107 # Resistance: Fall of Man
+NPEA00430 # Resistance: Fall of Man
+BLES01581 # Ride to Hell: Retribution
+BLUS30324 # Ride to Hell: Retribution
+NPUB31230 # Ride to Hell: Retribution
+BLES00249 # Robert Ludlum's The Bourne Conspiracy
+BLES00250 # Robert Ludlum's The Bourne Conspiracy
+BLES00263 # Robert Ludlum's The Bourne Conspiracy
+BLUS30137 # Robert Ludlum's The Bourne Conspiracy
+NPEB00299 # Rush'n Attack: Ex-Patriot
+NPHB00360 # Rush'n Attack: Ex-Patriot
+NPUB30112 # Rush'n Attack: Ex-Patriot
+NPEB01374 # Sanctum 2
+NPUB31209 # Sanctum 2
+BLES00676 # SAW
+BLES00793 # SAW
+BLUS30358 # SAW
+BLES01050 # Saw II Flesh and Blood
+BLUS30548 # Saw II Flesh and Blood
+NPEB00386 # Section 8: Prejudice
+NPUB30381 # Section 8: Prejudice
+NPUB30375 # SEGA Rally Online Arcade
+BLES00232 # Sega Superstars Tennis
+BLUS30123 # Sega Superstars Tennis
+BLES01276 # Shadows of the Damned
+BLUS30653 # Shadows of the Damned
+BLES00408 # Shellshock 2
+BLES01066 # Shift 2 Unleashed
+BLUS30580 # Shift 2 Unleashed
+NPEB00618 # Shift 2 Unleashed
+NPUB30539 # Shift 2 Unleashed
+BLES01446 # Silent Hill Downpour
+BLJM60391 # Silent Hill Downpour
+BLUS30565 # Silent Hill Downpour
+BLES01646 # Sonic & All-Stars Racing Transformed
+BLUS30839 # Sonic & All-Stars Racing Transformed
+NPEB01232 # Sonic & All-Stars Racing Transformed
+BLES00750 # Sonic & SEGA All-Stars Racing
+BLUS30342 # Sonic & SEGA All-Stars Racing
+BLES01157 # Spec Ops: The Line
+NPEB00986 # Spec Ops: The Line
+NPUB30786 # Spec Ops: The Line
+BLES00392 # Spider-Man: Web of Shadows
+BLUS30218 # Spider-Man: Web of Shadows
+BLES01437 # SSX
+BLUS30849 # SSX
+NPEB01121 # SSX
+NPUB30892 # SSX
+NPEB01425 # Teenage Mutant Ninja Turtles: Out of the Shadows
+NPUB31217 # Teenage Mutant Ninja Turtles: Out of the Shadows
+BLUS30033 # The Bigs
+BLUS30280 # The Bigs 2
+BLES00058 # The Darkness
+BLJS10023 # The Darkness
+BLUS30035 # The Darkness
+BLES01964 # The LEGO Movie Videogame
+BLUS31373 # The LEGO Movie Videogame
+NPEB01862 # The LEGO Movie Videogame
+NPUB31390 # The LEGO Movie Videogame
+BLES00412 # The Lord of the Rings Conquest
+BLUS30226 # The Lord of the Rings Conquest
+BLES01181 # The Lord of the Rings: War in the North
+BLKS20321 # The Lord of the Rings: War in the North
+BLUS30421 # The Lord of the Rings: War in the North
+NPEB01267 # The Lord of the Rings: War in the North
+NPEB00098 # The Punisher: No Mercy
+NPUB30070 # The Punisher: No Mercy
+BLES01195 # The Tomb Raider Trilogy
+BLUS30718 # The Tomb Raider Trilogy
+BLES00159 # TimeShift
+BLUS30090 # TimeShift
+BCAS20233 # Tokyo Jungle
+NPEA00275 # Tokyo Jungle
+NPJA00075 # Tokyo Jungle
+NPUA80523 # Tokyo Jungle
+BLES00922 # Tom Clancy's Ghost Recon: Future Soldier
+BLES00924 # Tom Clancy's Ghost Recon: Future Soldier
+BLUS30521 # Tom Clancy's Ghost Recon: Future Soldier
+NPEB00892 # Tom Clancy's Ghost Recon: Future Soldier
+NPUB30784 # Tom Clancy's Ghost Recon: Future Soldier
+BLES00237 # Tom Clancy's Rainbow Six: Vegas 2
+BLUS30125 # Tom Clancy's Rainbow Six: Vegas 2
+NPEB00394 # Tom Clancy's Rainbow Six: Vegas 2
+NPUB30503 # Tom Clancy's Rainbow Six: Vegas 2
+NPEB01028 # Tony Hawk's Pro Skater HD
+NPUB30732 # Tony Hawk's Pro Skater HD
+BLES00130 # Tony Hawk's Proving Ground
+BLUS30071 # Tony Hawk's Proving Ground
+BLUS31568 # Tony Hawks Pro Skater 5
+BLES00876 # Toy Story 3
+BLES00877 # Toy Story 3
+BLES00878 # Toy Story 3
+BLUS30480 # Toy Story 3
+BLUS30556 # Toy Story 3
+NPEB00659 # Toy Story 3
+NPUB30555 # Toy Story 3
+BLES00761 # TRON: Evolution
+BLES00925 # TRON: Evolution
+BLUS30457 # TRON: Evolution
+BLES00187 # Turok
+BLUS30104 # Turok
+NPEB00891 # Unearthed: Trail of Ibn Battuta
+BLES00200 # Unreal Tournament 3
+BLUS30086 # Unreal Tournament 3
+NPEB01238 # Urban Trial Freestyle
+NPUB31092 # Urban Trial Freestyle
+NPEB00148 # Vandal Hearts Flames of Judgement
+NPJB00038 # Vandal Hearts Flames of Judgement
+BLES00277 # WALL-E
+BLES00279 # WALL-E
+BLES00280 # WALL-E
+BLES00281 # WALL-E
+BLJM60084 # WALL-E
+BLUS30151 # WALL-E
+NPEB00636 # Warp
+NPUB30543 # Warp
+BLES01854 # Watch Dogs
+BLUS31176 # Watch Dogs
+NPEB01433 # Watch Dogs
+NPUB31254 # Watch Dogs
+BLES00707 # Wet
+BLJS10062 # Wet
+BLUS30403 # Wet
+BCES00225 # White Knight Chronicles
+BCJS30030 # White Knight Chronicles
+BCUS98146 # White Knight Chronicles
+NPEB00285 # Who Wants to be a Millionaire? Special Editions
+BLES00150 # X-Men Origins: Wolverine
+BLUS30268 # X-Men Origins: Wolverine
+BLES01892 # Yaiba: Ninja Gaiden Z
+BLUS31203 # Yaiba: Ninja Gaiden Z
+NPUB31256 # Yaiba: Ninja Gaiden Z
+BLAS50796 # Yakuza 0
+BLJM61249 # Yakuza 0
+BLJM61149 # Yakuza Ishin!
+NPJB00532 # Yakuza Ishin!
+BLJM61313 # Yakuza Kiwami
+NPEB01351 # Zeno Clash 2
+NPUB30872 # Zeno Clash 2
+NPEB00811 # Zombie Driver HD
+NPJB00176 # Zombie Driver HD
+NPUB30922 # Zombie Driver HD
+
+[60 fps]
+NPEA00137 # .detuned
+NPUA80008 # .detuned
+BLES01994 # 2014 FIFA World Cup Brazil
+BLUS31389 # 2014 FIFA World Cup Brazil
+NPEB01947 # 2014 FIFA World Cup Brazil
+NPEB02458 # 99Vidas
+NPUB31842 # 99Vidas
+NPEB01910 # Abyss Odyssey
+NPUB31397 # Abyss Odyssey
+BLES00158 # Assassin's Creed
+BLES00199 # Assassin's Creed
+BLUS30089 # Assassin's Creed
+NPEB00393 # Assassin's Creed
+NPUB30451 # Assassin's Creed
+BLES01596 # Back to the Future: The Game
+BLUS30886 # Back to the Future: The Game
+BLES02189 # Barbie and Her Sisters Puppy Rescue
+BLES00316 # BioShock
+BLUS30166 # BioShock
+NPEB00772 # BioShock
+NPJB00431 # BioShock
+NPUB30393 # BioShock
+BLES00728 # BioShock 2
+BLJS10078 # BioShock 2
+BLUS30420 # BioShock 2
+NPEB00771 # BioShock 2
+NPUB30392 # BioShock 2
+BLES01705 # BioShock Infinite
+BLJS10207 # BioShock Infinite
+BLUS30629 # BioShock Infinite
+BLUS31177 # BioShock Infinite
+NPEB01290 # BioShock Infinite
+NPUB31128 # BioShock Infinite
+NPEB00101 # Call of Duty Classic
+NPEB00113 # Call of Duty Classic
+NPUB30065 # Call of Duty Classic
+BLES01717 # Call of Duty: Black Ops 2
+BLES01718 # Call of Duty: Black Ops 2
+BLES01719 # Call of Duty: Black Ops 2
+BLES01720 # Call of Duty: Black Ops 2
+BLUS31011 # Call of Duty: Black Ops 2
+BLUS31140 # Call of Duty: Black Ops 2
+NPUB31054 # Call of Duty: Black Ops 2
+BLES00076 # Conan
+BLJM60051 # Conan
+BLUS30069 # Conan
+BLES01420 # Cyberbike 2: Cycling Sports
+BLES00713 # Dante's Inferno
+BLES00714 # Dante's Inferno
+BLJM60202 # Dante's Inferno
+BLUS30405 # Dante's Inferno
+NPEB00548 # Dante's Inferno
+NPEB00549 # Dante's Inferno
+NPUB30478 # Dante's Inferno
+BCJS30022 # Demon's Souls
+BLES00932 # Demon's Souls
+BLUS30443 # Demon's Souls
+NPEB01202 # Demon's Souls
+NPJA00102 # Demon's Souls
+NPUB30910 # Demon's Souls
+BLES00602 # DJ Hero
+BLUS30368 # DJ Hero
+BLES00896 # DJ Hero 2
+BLUS30526 # DJ Hero 2
+NPEB01014 # DOOM Classic Complete
+NPUB30808 # DOOM Classic Complete
+BLES00891 # Driver: San Francisco
+BLES00951 # Driver: San Francisco
+BLUS30536 # Driver: San Francisco
+NPEB00632 # Driver: San Francisco
+NPEB01882 # Duke Nukem 3D: Megaton Edition
+NPUB31378 # Duke Nukem 3D: Megaton Edition
+NPEB00289 # Dungeon Hunter: Alliance
+NPHB00285 # Dungeon Hunter: Alliance
+NPUB30227 # Dungeon Hunter: Alliance
+BLES00315 # FIFA 09
+BLUS30176 # FIFA 09
+BLES00615 # FIFA 10
+BLUS30385 # FIFA 10
+BLES01059 # FIFA 11
+BLUS30630 # FIFA 11
+BLES01381 # FIFA 12
+BLUS30809 # FIFA 12
+NPEB00688 # FIFA 12
+NPUB30570 # FIFA 12
+BLES01676 # FIFA 13
+BLUS30998 # FIFA 13
+NPUB30835 # FIFA 13
+BLES01876 # FIFA 14
+BLUS31189 # FIFA 14
+NPEB01384 # FIFA 14
+BLES02048 # FIFA 15
+BLUS31443 # FIFA 15
+BLES02161 # FIFA 16
+BLJM61281 # FIFA 16
+BLUS31543 # FIFA 16
+BLES02233 # FIFA 17
+BLUS31593 # FIFA 17
+BLES02250 # FIFA 18
+BLUS31610 # FIFA 18
+BLES01493 # FIFA Street
+BLUS30882 # FIFA Street
+NPEB00822 # FIFA Street
+BLES01801 # Fist of the North Star: Ken's Rage 2
+NPUB30849 # Fist of the North Star: Ken's Rage 2
+BCAS25003 # God of War III
+BCES00510 # God of War III
+BCES00799 # God of War III
+BCKS15003 # God of War III
+BCUS98111 # God of War III
+BCES01741 # God of War: Ascension
+BCES01742 # God of War: Ascension
+BCUS98232 # God of War: Ascension
+NPEA00445 # God of War: Ascension
+NPHA80258 # God of War: Ascension
+NPUA80918 # God of War: Ascension
+NPEA00308 # God of War: Chains of Olympus
+NPUA80637 # God of War: Chains of Olympus
+NPEA00309 # God of War: Ghost of Sparta
+NPUA80636 # God of War: Ghost of Sparta
+NPEB00179 # Hamster Ball
+NPUB30101 # Hamster Ball
+BCAS20107 # Heavy Rain
+BCES00797 # Heavy Rain
+BCUS98164 # Heavy Rain
+BCAS20074 # InFamous
+BCES00220 # InFamous
+BCES00591 # InFamous
+BCES00609 # InFamous
+BCJS30037 # InFamous
+BCUS98119 # InFamous
+NPEA00252 # InFamous
+NPEA00257 # InFamous
+NPHA80103 # InFamous
+NPUA80480 # InFamous
+BCES01143 # InFamous 2
+BCES01144 # InFamous 2
+BCUS98125 # InFamous 2
+NPEA00318 # InFamous 2
+NPHA80157 # InFamous 2
+NPUA80638 # InFamous 2
+NPEB00201 # Lead and Gold: Gangs of the Wild West
+NPJB00088 # Lead and Gold: Gangs of the Wild West
+NPUB30228 # Lead and Gold: Gangs of the Wild West
+BLES00636 # LEGO Rock Band
+BLUS30382 # LEGO Rock Band
+BLUS30640 # Lucha Libre AAA: Héroes del Ring
+BLES00246 # Metal Gear Solid 4: Guns of the Patriots
+BLJM67001 # Metal Gear Solid 4: Guns of the Patriots
+BLUS30109 # Metal Gear Solid 4: Guns of the Patriots
+NPEB02182 # Metal Gear Solid 4: Guns of the Patriots
+NPJB00698 # Metal Gear Solid 4: Guns of the Patriots
+NPUB31633 # Metal Gear Solid 4: Guns of the Patriots
+BLES01976 # Minecraft
+BLUS31426 # Minecraft
+NPEB01899 # Minecraft
+NPJB00549 # Minecraft
+NPUB31419 # Minecraft
+BCUS99195 # MLB 14: The Show
+NPUA80969 # MLB 14: The Show
+NPEB02111 # Monopoly Deal
+BCES00006 # MotorStorm
+BCUS98137 # MotorStorm
+BCES00484 # MotorStorm: Apocalypse
+BCES01104 # MotorStorm: Apocalypse
+BCUS98242 # MotorStorm: Apocalypse
+NPEA00315 # MotorStorm: Apocalypse
+NPUA80661 # MotorStorm: Apocalypse
+NPEA00333 # MotorStorm RC
+NPJA00077 # MotorStorm RC
+NPUA80678 # MotorStorm RC
+NPEB00120 # Mushroom Wars
+NPUB30099 # Mushroom Wars
+NPUB30448 # Nelson Tethers Puzzle Agent
+BLJS10221 # Onechanbara Z: Kagura with NoNoNo!
+BLES01902 # Payday 2
+BLUS31219 # Payday 2
+NPEB01784 # Payday 2
+NPUB31294 # Payday 2
+NPEA00331 # Payday: The Heist
+NPUA30073 # Payday: The Heist
+BLUS30622 # Power Gig: Rise of the SixString
+BLES00228 # Rock Band
+BLUS30050 # Rock Band
+BLES00385 # Rock Band 2
+BLUS30147 # Rock Band 2
+BLES00474 # Rock Revolution
+BLUS30212 # Rock Revolution
+NPEB00814 # Shank 2
+NPUB30646 # Shank 2
+BLES00461 # Skate 2
+BLUS30253 # Skate 2
+BLES00760 # Skate 3
+BLJM60296 # Skate 3
+BLUS30464 # Skate 3
+NPEB00119 # Smash Cars
+NPUB30097 # Smash Cars
+BLES00190 # Soldier of Fortune: Payback
+BLUS30105 # Soldier of Fortune: Payback
+BLES00028 # Sonic The Hedgehog
+BLJM60006 # Sonic The Hedgehog
+BLUS30008 # Sonic The Hedgehog
+NPEB00478 # Sonic The Hedgehog
+NPUB30442 # Sonic The Hedgehog
+BLES01911 # SpongeBob SquarePants: Plankton's Robotic Revenge
+BLUS31276 # SpongeBob SquarePants: Plankton's Robotic Revenge
+NPEB01793 # SpongeBob SquarePants: Plankton's Robotic Revenge
+NPUB31310 # SpongeBob SquarePants: Plankton's Robotic Revenge
+BLES01299 # The Cursed Crusade
+BLUS30641 # The Cursed Crusade
+BLES00543 # Up
+BLES00544 # Up
+BLES00552 # Up
+NPUB30427 # Who Wants To Be A Millionaire
+NPEA00057 # WipEout HD
+NPJA00031 # WipEout HD
+NPUA80105 # WipEout HD
+BCAS20100 # WipEout HD Fury
+BCES00664 # WipEout HD Fury

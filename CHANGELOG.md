@@ -2,6 +2,13 @@
 
 What changed in the libretro core of this fork, newest first. Changes that come with a merge of upstream RPCS3 are in upstream's own history; a merge is noted here with the upstream build it brought in.
 
+## Unreleased
+
+- VBlank Frequency has a new choice, From List: a game named in `vblank_unlock.txt` runs with a 120 Hz VBlank - shown at 60 frames a second when it is a 30 fps game, at 120 when it is a 60 fps one - and any other game stays at 60 Hz. The list ships with the core and is written to `system/rpcs3/` when it is not there; the core never overwrites it, so titles can be added. It comes from the RPCS3 wiki's list of VBlank-compatible games and NNshi's testing.
+- Frame Pacing is removed, option and code: the game's frames are timed by RPCS3's own clock, as in standalone. The other choice, one VBlank per frame RetroArch shows, added input lag and was better in no case tested.
+- Save Data Slot is removed: the game's save list is always shown in the picture. The core picks the first entry itself only when the list cannot be shown.
+- Default Resolution's tooltip warns against using it to upscale; Resolution Scale is for that.
+
 ## October 2026
 
 ### Upstream

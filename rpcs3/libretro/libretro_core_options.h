@@ -220,7 +220,7 @@ struct retro_core_option_v2_definition option_defs_us[] = {
     },
     {
         "rpcs3_default_resolution", "Default Resolution", NULL,
-        "The output resolution the emulated PS3 offers the game, as in RPCS3. Most games run at 720p; some look better at 1080p, and some need 480p or 576p to avoid bugs. Takes effect when content is loaded.",
+        "DO NOT CHANGE THIS OPTION TO UPSCALE THE GAME. Use Resolution Scale instead. Only use 1080p if the game supports it. Rarely due to emulation bugs some games will only render at resolutions below 720p.",
         NULL, "gpu",
         { {"720p", "720p (Default)"}, {"1080p", "1080p"}, {"480p", "480p"}, {"576p", "576p"}, {NULL, NULL} },
         "720p"
@@ -367,9 +367,9 @@ struct retro_core_option_v2_definition option_defs_us[] = {
     },
     {
         "rpcs3_vblank_rate", "VBlank Frequency", NULL,
-        "The PS3's refresh rate in Hz. It is also the frame rate the core asks RetroArch for, which takes effect when content is loaded; games that can run above 60 FPS need a display that refreshes that fast.",
+        "The PS3's refresh rate in Hz. It is also the frame rate the core asks RetroArch for, which takes effect when content is loaded; games that can run above 60 FPS need a display that refreshes that fast. \"From List\" doubles Vblank rate for supported games listed in vblank_unlock.txt found in system/rpcs3. You may need to apply per-game patches.",
         NULL, "gpu",
-        { {"50", "50 Hz (PAL)"}, {"60", "60 Hz (NTSC)"}, {"120", "120 Hz"}, {"144", "144 Hz"}, {"240", "240 Hz"}, {NULL, NULL} },
+        { {"50", "50 Hz (PAL)"}, {"60", "60 Hz (NTSC)"}, {"120", "120 Hz"}, {"144", "144 Hz"}, {"240", "240 Hz"}, {"list", "From List"}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -599,20 +599,6 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         NULL, "core",
         { {"disabled", NULL}, {"minimal", "Frame rate only"}, {"low", "Low"}, {"medium", "Medium"}, {"high", "High"}, {NULL, NULL} },
         "disabled"
-    },
-    {
-        "rpcs3_frame_pacing", "Frame Pacing", NULL,
-        "What the game's frames are timed by. Emulator clock is RPCS3's own timer, as in standalone RPCS3. RetroArch gives the game one PS3 refresh per frame RetroArch shows, so fast-forward speeds the game up and the game runs at the VBlank Frequency when RetroArch shows that many frames a second; with the Vulkan renderer it currently skips frames.",
-        NULL, "core",
-        { {"frontend", "RetroArch"}, {"emulator", "Emulator clock"}, {NULL, NULL} },
-        "emulator"
-    },
-    {
-        "rpcs3_savedata_slot", "Save Data Slot", NULL,
-        "A PS3 game shows a list of its save data and lets the player pick. 'Pick from list' shows that list in the game picture, to be used with the controller. A number has the core pick for you instead: saving overwrites the entry at this position in the game's list, or makes a new save when the list is shorter; loading takes the entry at this position, and finds nothing when the list is shorter. 0 is the first entry. Games that keep a single save of their own do not show a list, so this does not apply to them.",
-        NULL, "core",
-        { {"list", "Pick from list"}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
     },
     {
         "rpcs3_master_volume", "Master Volume", NULL,
