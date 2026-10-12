@@ -86,8 +86,17 @@ else()
         target_link_libraries(rpcs3_libretro PRIVATE 3rdparty::glew)
     endif()
 
-    find_package(OpenGL REQUIRED OPTIONAL_COMPONENTS EGL)
-    target_link_libraries(rpcs3_libretro PRIVATE OpenGL::GL)
+    find_package(OpenGL REQUIRED OPTIONAL_COMPONENTS EGL OpenGL)
+    if(UNIX AND NOT APPLE AND TARGET OpenGL::OpenGL)
+        # libOpenGL, which has OpenGL's own functions and nothing of X11.
+        # libGL would bring libGLX and libX11 with it, and the core would not
+        # load without them; GLX and Xlib are found at run time
+        # (libretro_x11_runtime.cpp).
+        target_link_libraries(rpcs3_libretro PRIVATE OpenGL::OpenGL)
+        target_sources(rpcs3_libretro PRIVATE libretro_x11_runtime.cpp)
+    else()
+        target_link_libraries(rpcs3_libretro PRIVATE OpenGL::GL)
+    endif()
 
     # EGL: needed to create RSX contexts that share the frontend's GL objects
     if(UNIX AND NOT APPLE AND TARGET OpenGL::EGL)
@@ -109,9 +118,10 @@ if(WIN32)
     )
     target_compile_definitions(rpcs3_libretro PRIVATE UNICODE _UNICODE)
 elseif(UNIX AND NOT APPLE)
+    # Xlib's headers only; libX11 is not linked (libretro_x11_runtime.cpp)
     find_package(X11)
     if(X11_FOUND)
-        target_link_libraries(rpcs3_libretro PRIVATE X11::X11)
+        target_include_directories(rpcs3_libretro PRIVATE ${X11_INCLUDE_DIR})
     endif()
     target_link_libraries(rpcs3_libretro PRIVATE ${CMAKE_DL_LIBS})
     

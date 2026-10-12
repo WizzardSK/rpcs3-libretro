@@ -100,6 +100,18 @@ jobs:
             echo "::error::the core still needs a library the build image provided but a user's system will not"
             exit 1
           fi
+          # No X11: the frontend owns the window, and the core has to load
+          # where X11 is not installed. GLX and Xlib are looked up at run time,
+          # so none of their libraries may be needed and none of their
+          # functions left for the loader to find.
+          if readelf -d rpcs3_libretro_linux_${{ matrix.arch }}.so | grep -qE 'NEEDED.*(libX11|libGLX|libGL\.so|libxcb|libwayland)'; then
+            echo "::error::the core needs an X11 or Wayland library to load"
+            exit 1
+          fi
+          if nm -D --undefined-only rpcs3_libretro_linux_${{ matrix.arch }}.so | grep -E ' (X[A-Z][a-z]|glX|xcb_|wl_)'; then
+            echo "::error::the core has X11 functions left for the loader, which libretro_x11_runtime.cpp should define"
+            exit 1
+          fi
 
       # The core info file goes with every core, not only with a release:
       # a test build's core can take content types the published .info does

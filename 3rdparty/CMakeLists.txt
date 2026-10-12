@@ -96,7 +96,7 @@ add_subdirectory(yaml-cpp)
 # That one is real - the RetroArch flatpak's runtime does not carry libGLU, so a
 # core that names it does not load there at all.
 if (NOT ANDROID AND NOT APPLE)
-	find_package(OpenGL REQUIRED OPTIONAL_COMPONENTS EGL)
+	find_package(OpenGL REQUIRED OPTIONAL_COMPONENTS EGL OpenGL)
 
 	add_library(3rdparty_opengl INTERFACE)
 	target_include_directories(3rdparty_opengl SYSTEM INTERFACE GL)
@@ -107,6 +107,10 @@ if (NOT ANDROID AND NOT APPLE)
 		else()
 			target_link_libraries(3rdparty_opengl INTERFACE dxgi.lib d2d1.lib dwrite.lib)
 		endif()
+	elseif(TARGET OpenGL::OpenGL)
+		# The core: libOpenGL alone, so that it loads without X11. GLX is found
+		# at run time (rpcs3/libretro/libretro_x11_runtime.cpp).
+		target_link_libraries(3rdparty_opengl INTERFACE OpenGL::OpenGL)
 	else()
 		target_link_libraries(3rdparty_opengl INTERFACE OpenGL::GL OpenGL::GLX)
 	endif()
