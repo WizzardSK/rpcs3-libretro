@@ -4,6 +4,9 @@ What changed in the libretro core of this fork, newest first. Changes that come 
 
 ## Unreleased
 
+- Frame Pacing is an option again (Emulator clock by default, or RetroArch: one PS3 refresh per frame RetroArch shows). It had been removed on one tester's result, which he could not repeat (NNshi).
+- Pause and Frame Advance with the Vulkan renderer: once RetroArch stops asking for frames, the game waits after the frame it is drawing, and each Frame Advance step lets it draw exactly one frame and shows that one, drawn with the input of that step. The game used to run on for a tenth of a second and a step let 4-6 frames through (NNshi).
+- Sound after unpausing: the first frames after a pause handed RetroArch up to four frames' worth of sound at once, which with RetroArch's audio sync on made the frame rate drop and swing for seconds. A pause is no longer made up for (NNshi).
 - Linux: the core no longer links libGL, libGLX and libX11, so it loads on a system without X11. It links libOpenGL for OpenGL itself, and the GLX and Xlib functions it shares RetroArch's context with on an X11 session are found at run time, in RetroArch's own libraries.
 - VBlank Frequency has a new choice, From List: a game named in `vblank_unlock.txt` runs with a 120 Hz VBlank - shown at 60 frames a second when it is a 30 fps game, at 120 when it is a 60 fps one - and any other game stays at 60 Hz. The list ships with the core and is written to `system/rpcs3/` when it is not there; the core never overwrites it, so titles can be added. It comes from the RPCS3 wiki's list of VBlank-compatible games and NNshi's testing.
 - Frame Pacing is removed, option and code: the game's frames are timed by RPCS3's own clock, as in standalone. The other choice, one VBlank per frame RetroArch shows, added input lag and was better in no case tested.

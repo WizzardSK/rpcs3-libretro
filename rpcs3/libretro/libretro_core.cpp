@@ -213,6 +213,12 @@ static inline long long lr_now_us()
 
 static void stop_pause_watchdog()
 {
+#ifdef HAVE_VULKAN
+    // Called before every stop of the emulator: no retro_run will take
+    // frames now, so a flip must not wait for one
+    vk::libretro::frontend_detached();
+#endif
+
     if (!s_pause_watchdog_running.exchange(false))
         return;
 
@@ -305,7 +311,7 @@ static void libretro_check_frame_stall(bool new_frame)
 {
     struct counters
     {
-        u64 flips = 0, handed = 0, vblanks = 0;
+        u64 flips = 0, handed = 0, vblanks = 0, requested = 0;
     };
 
     const auto now_counters = []()
@@ -317,6 +323,7 @@ static void libretro_check_frame_stall(bool new_frame)
             c.vblanks = rsx->vblank_count;
         }
         c.handed = libretro_sw_frames_presented();
+        c.requested = g_libretro_vblank_requests;
         return c;
     };
 
@@ -342,9 +349,10 @@ static void libretro_check_frame_stall(bool new_frame)
 
     const counters c = now_counters();
     rsx_log.error("libretro: no new frame for %.1fs while running: RSX flips +%u, frames handed over +%u, "
-        "VBLANKs +%u, progress dialog '%s'",
+        "VBLANKs +%u of +%u requested (frontend pacing %s), progress dialog '%s'",
         (now - s_frame_us) / 1e6, c.flips - s_at_frame.flips, c.handed - s_at_frame.handed,
-        c.vblanks - s_at_frame.vblanks, std::string(g_progr_text));
+        c.vblanks - s_at_frame.vblanks, c.requested - s_at_frame.requested,
+        g_libretro_frontend_vblank ? "on" : "off", std::string(g_progr_text));
     s_report_us = now;
     s_reported = true;
 }
@@ -938,6 +946,8 @@ static void libretro_apply_core_options()
         }
     }
     g_cfg.video.vblank_rate.set(std::stoi(vblank));
+
+    g_libretro_frontend_vblank = get_option_value("rpcs3_frame_pacing", "emulator") == "frontend";
 
     // Immediate: the readback path is only the fallback without the
     // frontend's Vulkan device now, and no longer offered as an option.
@@ -3001,6 +3011,9 @@ void retro_run(void)
 
     // Update watchdog timestamp.
     s_last_retro_run_us.store(lr_now_us());
+#ifdef HAVE_VULKAN
+    vk::libretro::frontend_ran();
+#endif
 
 
     // Check for variable updates
@@ -3044,6 +3057,15 @@ void retro_run(void)
         g_libretro_pad_thread->frontend_update(connected);
     }
 
+    // One PS3 VBLANK per frame the frontend asks for (Frame Pacing:
+    // RetroArch) - two where the VBLANK runs at twice the rate the core shows
+    // frames at (a 30 fps game of the VBlank Frequency list)
+    if (g_libretro_frontend_vblank && Emu.IsRunning())
+    {
+        g_libretro_vblank_requests += s_output_hz ? std::max<u32>(1, g_cfg.video.vblank_rate.get() / s_output_hz) : 1;
+        g_libretro_vblank_requests.notify_one();
+    }
+
     // Process audio
     libretro_audio_process(audio_batch_cb);
 
@@ -3051,6 +3073,7 @@ void retro_run(void)
     if (g_libretro_vulkan_hw)
     {
         vk_present_frame();
+        vk::libretro::frontend_returned();
         return;
     }
 #endif

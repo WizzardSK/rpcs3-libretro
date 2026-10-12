@@ -92,9 +92,11 @@ void libretro_audio_process(retro_audio_sample_batch_t audio_batch_cb)
     // its pictures (Project Diva, 5-10 % fast). A sound card drains the ring
     // at a steady 48 kHz whatever the frame rate; this does the same.
     static constexpr double SAMPLE_RATE = 48000.0;
-    // A run after a pause or a long stall would otherwise ask for everything
-    // it missed. The emulator was paused too, so there is nothing to catch up.
-    static constexpr double MAX_FRAMES_PER_RUN = SAMPLE_RATE / 10;
+    // The longest a run can be late and still be owed the time it missed: the
+    // gap after which the core's watchdog pauses the emulator. A longer one
+    // was a pause - the frontend's, and then the emulator's.
+    static constexpr double PAUSE_SECONDS = 0.1;
+    static constexpr double MAX_FRAMES_PER_RUN = SAMPLE_RATE * PAUSE_SECONDS;
     static constexpr size_t FRAMES_PER_BATCH = 512;
     alignas(16) int16_t buffer[FRAMES_PER_BATCH * 8]; // up to 7.1; 16-byte aligned for SIMD
     const u32 channels = s_audio_backend->get_channels();
@@ -106,9 +108,29 @@ void libretro_audio_process(retro_audio_sample_batch_t audio_batch_cb)
     const auto now = std::chrono::steady_clock::now();
     if (s_last_run == std::chrono::steady_clock::time_point{})
         s_last_run = now - std::chrono::microseconds(1'000'000 / 60);
-    s_owed += std::chrono::duration<double>(now - s_last_run).count() * SAMPLE_RATE;
+    double elapsed = std::chrono::duration<double>(now - s_last_run).count();
     s_last_run = now;
-    s_owed = std::min(s_owed, MAX_FRAMES_PER_RUN);
+
+    // Nothing is owed for a pause. The first runs after one found the
+    // emulator still paused, and what they asked for and did not get - up to
+    // 50 ms - was carried to the run after, which then handed the frontend
+    // four frames' worth at once. With audio sync on, that filled the
+    // frontend's buffer, each run after it waited in the audio driver, and
+    // the frame times swung for seconds until the buffer had drained (NNshi:
+    // frame rate drops and oscillation after unpausing, more often the longer
+    // the pause). After a pause a run is owed one frame's worth, and while
+    // the emulator's audio is stopped, nothing.
+    if (!s_audio_backend->IsPlaying())
+    {
+        s_owed = 0.0;
+        return;
+    }
+    if (elapsed >= PAUSE_SECONDS)
+    {
+        elapsed = 1.0 / 60.0;
+        s_owed = 0.0;
+    }
+    s_owed = std::min(s_owed + elapsed * SAMPLE_RATE, MAX_FRAMES_PER_RUN);
 
     const size_t due = static_cast<size_t>(s_owed);
     s_owed -= static_cast<double>(due);

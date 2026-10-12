@@ -601,6 +601,13 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "disabled"
     },
     {
+        "rpcs3_frame_pacing", "Frame Pacing", NULL,
+        "What the game's frames are timed by. Emulator clock is RPCS3's own timer, as in standalone RPCS3. RetroArch gives the game one PS3 refresh per frame RetroArch shows, so fast-forward speeds the game up and the game runs at the VBlank Frequency when RetroArch shows that many frames a second.",
+        NULL, "core",
+        { {"frontend", "RetroArch"}, {"emulator", "Emulator clock"}, {NULL, NULL} },
+        "emulator"
+    },
+    {
         "rpcs3_master_volume", "Master Volume", NULL,
         "Master audio volume percentage.",
         NULL, "core",
