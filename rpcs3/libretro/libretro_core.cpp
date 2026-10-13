@@ -540,8 +540,8 @@ static unsigned s_reported_width = 0;
 static unsigned s_reported_height = 0;
 static unsigned s_max_width = 0;
 static unsigned s_max_height = 0;
-// The aspect ratio the frontend is told: 16:9, or what Stretch to Display
-// Area names
+// The aspect ratio the frontend is told: the Aspect Ratio option's, or what
+// Stretch to Display Area names
 static float s_display_aspect = 16.0f / 9.0f;
 
 // VBlank Frequency "From List": vblank_unlock.txt in the core's folder of the
@@ -877,9 +877,17 @@ static void libretro_apply_core_options()
         // is the aspect ratio the core reports: a game patched for 21:9 needs
         // RetroArch to show it at 21:9 (NNshi). The frontend does not say what
         // its display is, so the option names it; "enabled" is 16:9, as before.
+        // Not stretched, it is the aspect ratio the PS3 is set to, which a
+        // game with a native 4:3 mode renders for. The frame handed over stays
+        // 16:9 in pixels, and RPCS3 would fit a 4:3 picture into it with bars
+        // at the sides, which RetroArch showing the frame at 4:3 then squeezed
+        // a second time (NNshi): so with 4:3 the picture fills the frame, as
+        // Stretch to Display Area does, and RetroArch gives it its shape.
+        const bool four_by_three = get_option_value("rpcs3_aspect_ratio", "16:9") == "4:3";
+        g_cfg.video.aspect_ratio.set(four_by_three ? video_aspect::_4_3 : video_aspect::_16_9);
         const std::string stretch = get_option_value("rpcs3_stretch_to_display", "disabled");
-        g_cfg.video.stretch_to_display_area.set(stretch != "disabled");
-        float aspect = 16.0f / 9.0f;
+        g_cfg.video.stretch_to_display_area.set(stretch != "disabled" || four_by_three);
+        float aspect = (four_by_three && stretch == "disabled") ? 4.0f / 3.0f : 16.0f / 9.0f;
         if (unsigned w = 0, h = 0; std::sscanf(stretch.c_str(), "%u:%u", &w, &h) == 2 && w && h)
             aspect = static_cast<float>(w) / static_cast<float>(h);
         if (aspect != s_display_aspect)

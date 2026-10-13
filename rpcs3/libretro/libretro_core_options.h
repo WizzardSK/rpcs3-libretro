@@ -184,6 +184,13 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "vulkan"
     },
     {
+        "rpcs3_aspect_ratio", "Aspect Ratio", NULL,
+        "Changes output aspect ratio. Only some PS3 games support native 4:3. (Restart required)",
+        NULL, "gpu",
+        { {"16:9", "16:9 (default)"}, {"4:3", NULL}, {NULL, NULL} },
+        "16:9"
+    },
+    {
         "rpcs3_frame_limit", "Frame Limit", NULL,
         "Highest frame rate the game may run at. Auto is the VBlank Frequency, as in RPCS3; PS3 Native paces flips the way the PS3 does; Off lets games that do not wait for the PS3's refresh themselves run too fast.",
         NULL, "gpu",

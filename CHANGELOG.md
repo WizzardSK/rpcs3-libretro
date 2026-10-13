@@ -4,6 +4,7 @@ What changed in the libretro core of this fork, newest first. Changes that come 
 
 ## Unreleased
 
+- New option GPU > Aspect Ratio, 16:9 (default) or 4:3, as RPCS3's own setting: with 4:3 a game with a native 4:3 mode renders for it, and the core tells RetroArch the picture is 4:3 (unless Stretch to Display Area names another ratio); the picture fills the frame, so Stretch to Display Area does not have to be set for it. Takes effect when the game is started (NNshi).
 - Frame Pacing is an option again (Emulator clock by default, or RetroArch: one PS3 refresh per frame RetroArch shows). It had been removed on one tester's result, which he could not repeat (NNshi).
 - Pause and Frame Advance with the Vulkan renderer: once RetroArch stops asking for frames, the game waits after the frame it is drawing, and each Frame Advance step lets it draw exactly one frame and shows that one, drawn with the input of that step. The game used to run on for a tenth of a second and a step let 4-6 frames through (NNshi).
 - Sound after unpausing: the first frames after a pause handed RetroArch up to four frames' worth of sound at once, which with RetroArch's audio sync on made the frame rate drop and swing for seconds. A pause is no longer made up for (NNshi).
