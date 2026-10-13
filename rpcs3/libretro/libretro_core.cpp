@@ -61,6 +61,7 @@
 #include "Input/pad_thread.h"
 #include "util/video_source.h"
 #include "Emu/vfs_config.h"
+#include "Emu/cache_utils.hpp"
 #include "Utilities/File.h"
 #include "Utilities/StrUtil.h"
 #include "Utilities/stack_trace.h"
@@ -80,6 +81,8 @@
 #include <atomic>
 #include <thread>
 #include <mutex>
+#include <optional>
+#include <string_view>
 #include <functional>
 #include <filesystem>
 #include <sstream>
@@ -601,6 +604,19 @@ static u32 vblank_unlock_block(const std::string& serial)
             return block;
     }
     return 0;
+}
+
+// Disk Cache Size: RPCS3's own disk cache limit (dev_hdd1/caches, the oldest
+// game's cache removed first), with Wipe on Exit as a limit of nothing.
+// Standalone applies it once at its start; the core does when a game is
+// loaded and again once it has stopped (NNshi).
+static void libretro_limit_disk_cache()
+{
+    const std::string size = get_option_value("rpcs3_disk_cache_size", "1gb");
+    g_cfg.vfs.limit_cache_size.set(size != "unlimited");
+    g_cfg.vfs.cache_max_size.set(size == "1gb" ? 1024 : size == "wipe" ? 0 : 5120);
+    if (g_cfg.vfs.limit_cache_size)
+        rpcs3::cache::limit_cache_size();
 }
 
 static void libretro_apply_core_options()
@@ -1298,8 +1314,9 @@ static void install_ui_icons()
 
 // RPCS3's per-game settings database (embed_config_database.cmake). The copy in
 // GuiConfigs is standalone's file, so a standalone pointed at the same folder
-// sees it too; it is written when it is missing or differs from the one in
-// the core, not at every start.
+// sees it too; it is written when it is missing or older than the one in the
+// core, by the "timestamp" both carry at their top. One of the same date or
+// newer is left alone, so entries edited by hand stay (NNshi).
 extern const unsigned char g_libretro_config_database[];
 extern const std::size_t g_libretro_config_database_size;
 
@@ -1308,13 +1325,38 @@ static std::string config_database_path()
     return fs::get_config_dir() + "GuiConfigs/config_database.dat";
 }
 
+// The "timestamp" at the top of a database, or nothing when there is none
+static std::optional<u64> config_database_timestamp(std::string_view head)
+{
+    static constexpr std::string_view key = "\"timestamp\"";
+    usz pos = head.find(key);
+    if (pos == umax)
+        return std::nullopt;
+    pos = head.find_first_of("0123456789", pos + key.size());
+    if (pos == umax)
+        return std::nullopt;
+    u64 value = 0;
+    for (; pos < head.size() && head[pos] >= '0' && head[pos] <= '9'; pos++)
+        value = value * 10 + (head[pos] - '0');
+    return value;
+}
+
 static void install_config_database()
 {
     if (!g_libretro_config_database_size)
         return;
     const std::string path = config_database_path();
-    if (file_has_contents(path, g_libretro_config_database, g_libretro_config_database_size))
-        return;
+    // The timestamp is in the first lines of the file
+    constexpr usz head_size = 512;
+    const auto own = config_database_timestamp({reinterpret_cast<const char*>(g_libretro_config_database), std::min<usz>(g_libretro_config_database_size, head_size)});
+    if (fs::file current{path})
+    {
+        std::string head(std::min<u64>(current.size(), head_size), '\0');
+        head.resize(current.read(head.data(), head.size()));
+        const auto present = config_database_timestamp(head);
+        if (present && own && *present >= *own)
+            return;
+    }
     fs::create_path(fs::get_parent_dir(path));
     // Pointer and size: fs::write_file takes the size of an array argument, and
     // this one's is only known at link time
@@ -2741,6 +2783,7 @@ bool retro_load_game(const struct retro_game_info* game)
     // without re-applying them here the user's choices are silently discarded -
     // e.g. "LLVM Precompilation: disabled" still precompiled every module.
     libretro_apply_core_options();
+    libretro_limit_disk_cache();
 
     // Save config so BootGame() loads the correct settings when it reloads config.yml
     // Note: RPCS3 loads config from fs::get_config_dir(true) which adds "config/" subdirectory
@@ -2967,6 +3010,9 @@ void retro_unload_game(void)
 
         // Drops the disc device, and with it the handle on the image.
         unload_iso();
+
+        // The game's cache on dev_hdd1 is closed now
+        libretro_limit_disk_cache();
     }
 
 }

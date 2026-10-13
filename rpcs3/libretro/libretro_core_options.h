@@ -629,6 +629,13 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         "stereo"
     },
     {
+        "rpcs3_disk_cache_size", "Disk Cache Size", NULL,
+        "Limits the cache games keep on dev_hdd1, which otherwise only grows. With a size, the games' caches used longest ago are deleted when a game is loaded or closed, until the rest fits. Wipe on Exit deletes all of it when a game is closed, as a PS3 does when it is switched off. A deleted cache is built again by its game, which can make that game's next start slower.",
+        NULL, "core",
+        { {"unlimited", "Unlimited"}, {"1gb", "1 GB"}, {"5gb", "5 GB"}, {"wipe", "Wipe on Exit"}, {NULL, NULL} },
+        "1gb"
+    },
+    {
         "rpcs3_language", "System Language", NULL,
         "PS3 system language.",
         NULL, "core",

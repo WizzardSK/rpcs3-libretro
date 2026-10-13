@@ -24,7 +24,7 @@ The PS3 firmware (`PS3UPDAT.PUP`, from playstation.com) goes into RetroArch's sy
 - A handful of rarely needed options are not in the menu, as standalone RPCS3 keeps them out of its settings dialog, but can be set in the core's `.opt` file (`RPCS3.opt`).
 - The PS3 user name is in `dev_hdd0/home/00000001/localusername`; edit it to change it.
 - `dev_hdd0` and the other emulated drives can be moved outside RetroArch's folders by editing `vfs.yml` (in `system/rpcs3/`, or `system/rpcs3/config/` on Windows).
-- `dev_hdd1` fills up with games' cache over time and RPCS3 never cleans it. Its contents can be deleted safely when it gets too big.
+- `dev_hdd1` fills up with games' cache over time. Options > Disk Cache Size limits it: to 1 GB by default, or 5 GB (the caches used longest ago go first), wiped whenever a game is closed, or Unlimited. Its contents can also be deleted by hand at any time.
 - A game that has built up a large SPU/shader cache can take a minute or more to close. Let it finish.
 - **Surround sound:** set Options > Audio Format to Surround 5.1 or 7.1 to match your speakers (Stereo is the default). It is what the emulated PS3 tells games it is connected to, so a game with a surround mix plays it in 5.1/7.1. It needs a RetroArch with multi-channel audio output (master builds since September 2026), RetroArch's Settings > Audio > Output > Output Layout set to the same layout, and an audio device configured for it (on Windows, the speaker setup in the sound settings). With Stereo, games make their own stereo mix.
 - PS3 peripherals beyond the DualShock 3 (guitars, PlayStation Move, cameras and the like) are not supported yet.

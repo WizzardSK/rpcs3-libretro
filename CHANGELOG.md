@@ -4,6 +4,8 @@ What changed in the libretro core of this fork, newest first. Changes that come 
 
 ## Unreleased
 
+- New option Disk Cache Size (1 GB by default, 5 GB, Wipe on Exit or Unlimited as before) for the games' cache on `dev_hdd1`: with a size RPCS3's own disk cache limit is used, deleting the caches used longest ago when a game is loaded and when it is closed; Wipe on Exit deletes all of it at both points (NNshi).
+- The settings database in `GuiConfigs/config_database.dat` is replaced by the core's only when it is missing or carries an older `timestamp` than the core's; it was replaced whenever its bytes differed, so entries edited by hand did not stay (NNshi).
 - New option GPU > Aspect Ratio, 16:9 (default) or 4:3, as RPCS3's own setting: with 4:3 a game with a native 4:3 mode renders for it, and the core tells RetroArch the picture is 4:3 (unless Stretch to Display Area names another ratio); the picture fills the frame, so Stretch to Display Area does not have to be set for it. Takes effect when the game is started (NNshi).
 - Frame Pacing is an option again (Emulator clock by default, or RetroArch: one PS3 refresh per frame RetroArch shows). It had been removed on one tester's result, which he could not repeat (NNshi).
 - Pause and Frame Advance with the Vulkan renderer: once RetroArch stops asking for frames, the game waits after the frame it is drawing, and each Frame Advance step lets it draw exactly one frame and shows that one, drawn with the input of that step. The game used to run on for a tenth of a second and a step let 4-6 frames through (NNshi).
