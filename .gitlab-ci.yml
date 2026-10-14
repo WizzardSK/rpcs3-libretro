@@ -176,7 +176,7 @@ libretro-build-windows-x64:
   # The ffmpeg it builds does not change between pipelines; the key names
   # everything it depends on, so a change to any of them builds it afresh.
   cache:
-    key: ffmpeg-7.1-android-$ANDROID_ABI-api30-ndk29
+    key: ffmpeg-7.1-android-$ANDROID_ABI-api30-ndk29-asm
     paths:
       - ffmpeg-android/
 
@@ -193,8 +193,8 @@ android-arm64-v8a:
 
 # Android 64-bit (x86)
 #
-# ffmpeg's x86 assembly wants nasm, which the Android image does not have; the
-# C fallbacks are slower, and ffmpeg only decodes the games' videos here.
+# ffmpeg's x86 assembly is built with nasm, which the Android image has had
+# since October 2026.
 android-x86_64:
   extends:
     - .libretro-android-cmake-x86_64
@@ -203,7 +203,6 @@ android-x86_64:
   variables:
     FFMPEG_ARCH: x86_64
     FFMPEG_TRIPLE: x86_64-linux-android
-    FFMPEG_EXTRA: --disable-x86asm
 
 # macOS
 #
