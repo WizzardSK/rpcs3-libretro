@@ -977,6 +977,15 @@ shared_ptr<fs::device_base> fs::device_manager::set_device(const std::string& na
 
 shared_ptr<fs::device_base> fs::get_virtual_device(const std::string& path)
 {
+#ifdef LIBRETRO_CORE
+	// The frontend's URIs (Android's saf://) go to its VFS whole: stat,
+	// directories and files
+	if (libretro_vfs::is_uri(path))
+	{
+		return libretro_vfs::get_uri_device();
+	}
+#endif
+
 	// Every virtual device path must have specific name at the beginning
 	if (path.starts_with("/vfsv0_") && path.size() >= 8 + 22 && path[29] == '_' && path.find_first_of('/', 1) > 29)
 	{
@@ -1687,6 +1696,41 @@ bool fs::rename(const std::string& from, const std::string& to, bool overwrite)
 bool fs::copy_file(const std::string& from, const std::string& to, bool overwrite)
 {
 	const auto device = get_virtual_device(from);
+
+#ifdef LIBRETRO_CORE
+	// To or from the frontend's VFS: read and written through it
+	if (libretro_vfs::is_uri(from) || libretro_vfs::is_uri(to))
+	{
+		fs::file src(from);
+		if (!src)
+		{
+			return false;
+		}
+
+		bs_t<fs::open_mode> dst_mode = fs::write + fs::create + fs::trunc;
+		if (!overwrite)
+		{
+			dst_mode += fs::excl;
+		}
+
+		fs::file dst(to, dst_mode);
+		if (!dst)
+		{
+			return false;
+		}
+
+		std::vector<u8> buf(1 << 20);
+		while (const u64 n = src.read(buf.data(), buf.size()))
+		{
+			if (dst.write(buf.data(), n) != n)
+			{
+				g_tls_error = fs::error::nospace;
+				return false;
+			}
+		}
+		return true;
+	}
+#endif
 
 	if (device != get_virtual_device(to) || device) // TODO
 	{

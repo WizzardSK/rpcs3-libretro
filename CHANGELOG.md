@@ -4,6 +4,7 @@ What changed in the libretro core of this fork, newest first. Changes that come 
 
 ## Unreleased
 
+- Android: a game behind a `saf://` path, as the Play Store RetroArch gives for folders it was granted, is read through RetroArch's VFS for directories too: listing, stat, creating, removing, renaming and copying, not only opening files. That is what an unpacked game in such a folder needs. Ordinary paths are untouched. Not tried on a real SAF path by anyone yet.
 - New option Disk Cache Size (1 GB by default, 5 GB, Wipe on Exit or Unlimited as before) for the games' cache on `dev_hdd1`: with a size RPCS3's own disk cache limit is used, deleting the caches used longest ago when a game is loaded and when it is closed; Wipe on Exit deletes all of it at both points (NNshi).
 - The settings database in `GuiConfigs/config_database.dat` is replaced by the core's only when it is missing or carries an older `timestamp` than the core's; it was replaced whenever its bytes differed, so entries edited by hand did not stay (NNshi).
 - New option GPU > Aspect Ratio, 16:9 (default) or 4:3, as RPCS3's own setting: with 4:3 a game with a native 4:3 mode renders for it, and the core tells RetroArch the picture is 4:3 (unless Stretch to Display Area names another ratio); the picture fills the frame, so Stretch to Display Area does not have to be set for it. Takes effect when the game is started (NNshi).
