@@ -14,10 +14,6 @@ on:
         description: 'Platforms to build, comma-separated (linux, windows, android, macos), or all'
         type: string
         default: all
-      release:
-        description: 'Publish the cores as a release'
-        type: boolean
-        default: true
       keep_symbols:
         description: 'Leave the symbol table in the core (for backtraces)'
         type: boolean
@@ -35,7 +31,7 @@ env:
 # everything.
 jobs:
   Build:
-    if: github.event_name != 'workflow_dispatch' || inputs.platforms == 'all' || contains(inputs.platforms, 'linux') || inputs.release
+    if: github.event_name != 'workflow_dispatch' || inputs.platforms == 'all' || contains(inputs.platforms, 'linux')
     strategy:
       fail-fast: false
       matrix:
@@ -113,8 +109,7 @@ jobs:
             exit 1
           fi
 
-      # The core info file goes with every core, not only with a release:
-      # a test build's core can take content types the published .info does
+      # The core info file goes with every core: a test build's core can take content types the published .info does
       # not list yet, and the frontend's file browser goes by the .info (NNshi).
       - name: Add the core info file
         run: cp rpcs3/libretro/rpcs3_libretro.info "${{ env.BUILD_ARTIFACTSTAGINGDIRECTORY }}/"
@@ -136,7 +131,7 @@ jobs:
           key: ${{ steps.restore-build-ccache.outputs.cache-primary-key }}
 
   Windows:
-    if: github.event_name != 'workflow_dispatch' || inputs.platforms == 'all' || contains(inputs.platforms, 'windows') || inputs.release
+    if: github.event_name != 'workflow_dispatch' || inputs.platforms == 'all' || contains(inputs.platforms, 'windows')
     # Experimental, and allowed to fail. Built under MSYS2's clang64 rather
     # than MSVC: the core exists only as a CMake target, so rpcs3.sln - the way
     # upstream builds Windows - is no use, and CMake with MSVC gets no further
@@ -201,7 +196,7 @@ jobs:
           compression-level: 0
 
   Android:
-    if: github.event_name != 'workflow_dispatch' || inputs.platforms == 'all' || contains(inputs.platforms, 'android') || inputs.release
+    if: github.event_name != 'workflow_dispatch' || inputs.platforms == 'all' || contains(inputs.platforms, 'android')
     # Experimental, and allowed to fail, like Windows. Android is reachable in
     # principle - 3rdparty/llvm/CMakeLists.txt has an if(ANDROID) branch that
     # builds LLVM for AArch64 with an Android triple - but cross-building LLVM
@@ -341,7 +336,7 @@ jobs:
           compression-level: 0
 
   MacOS:
-    if: github.event_name != 'workflow_dispatch' || inputs.platforms == 'all' || contains(inputs.platforms, 'macos') || inputs.release
+    if: github.event_name != 'workflow_dispatch' || inputs.platforms == 'all' || contains(inputs.platforms, 'macos')
     # As upstream's macOS build, with LLVM's own clang rather than Apple's:
     # Apple clang does not take fmt::throw_exception's [[noreturn]] constructor
     # as the end of a function, and -Werror=return-type fails all over. Clang,
@@ -410,7 +405,7 @@ jobs:
           [ -n "$MVK" ] && install_name_tool -change "$MVK" @rpath/libMoltenVK.dylib $CORE
           ZSTD=$(otool -L $CORE | awk '/libzstd/ {print $1}')
           if [ -n "$ZSTD" ]; then
-            # One per architecture, as both go into the same release
+            # One per architecture, named after it, so the two never meet
             Z=libzstd_macos_${{ matrix.arch }}.dylib
             cp "$ZSTD" artifacts/$Z
             chmod u+w artifacts/$Z
@@ -432,64 +427,3 @@ jobs:
             artifacts/*.dylib
             artifacts/*.info
           compression-level: 0
-
-  Release:
-    name: Publish release
-    # Windows and Android are allowed to fail, and a continue-on-error job
-    # still counts as met here, so waiting on them only means their artifacts
-    # join the release when those builds do work.
-    needs: [Build, Windows, Android, MacOS]
-    if: inputs.release
-    runs-on: ubuntu-24.04
-    permissions:
-      contents: write
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@main
-        with:
-          fetch-depth: 0
-
-      - name: Download the cores
-        uses: actions/download-artifact@main
-        with:
-          path: artifacts
-          merge-multiple: true
-
-      - name: Publish
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          # The core info file goes with the cores, so a frontend that has no
-          # entry for rpcs3 in its core info database can still name the core
-          # and its firmware (NNshi).
-          cp rpcs3/libretro/rpcs3_libretro.info artifacts/
-          ls -la artifacts
-          SHORT=$(git rev-parse --short=8 HEAD)
-          # One release, always the newest. A tag per commit left a row of stale
-          # test builds behind, each with a gigabyte of cores nobody wanted any
-          # more, and no way to tell at a glance which was current. A fixed tag
-          # also means the download link in the thread keeps working instead of
-          # pointing at whatever was newest the day it was posted. The commit is
-          # in the title and the notes.
-          TAG="libretro-latest"
-          {
-            echo "Test build of the RPCS3 libretro core. Not a release, and not expected to be useful for playing anything yet."
-            echo
-            echo "Built from the \`libretro\` branch with \`BUILD_LIBRETRO_CORE_ONLY=ON\`, in the same containers upstream RPCS3 uses for its Linux builds. LLVM is linked statically, so each core is a single file with nothing to place beside it - drop one into RetroArch's \`cores\` directory."
-            echo
-            echo "These are glibc builds and will not load into a musl frontend."
-            echo
-            echo "Commit: $SHORT"
-          } > notes.md
-          # Replace rather than add to: the tag moves to this commit and the
-          # old assets go with the old release.
-          gh release delete "$TAG" --yes --cleanup-tag 2>/dev/null || true
-          gh release create "$TAG" artifacts/* \
-            --target "$GITHUB_SHA" \
-            --title "libretro core test build ($SHORT)" \
-            --notes-file notes.md
-          # Anything left over from when this published a tag per commit.
-          for old in $(gh release list --limit 50 --json tagName --jq '.[].tagName' | grep '^libretro-test-' || true); do
-            echo "removing superseded release $old"
-            gh release delete "$old" --yes --cleanup-tag || true
-          done
