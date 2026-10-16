@@ -109,6 +109,10 @@ extern "C" {
 #define OPTION_VAL_OPENGL_AR NULL
 #define OPTION_VAL_VULKAN_AR NULL
 #define OPTION_VAL_NULL_AR NULL
+#define RPCS3_ASPECT_RATIO_LABEL_AR "نسبة الجانب"
+#define RPCS3_ASPECT_RATIO_INFO_0_AR NULL
+#define OPTION_VAL_16_9_AR NULL
+#define OPTION_VAL_4_3_AR NULL
 #define RPCS3_FRAME_LIMIT_LABEL_AR NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_AR NULL
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_AR "تلقائي"
@@ -183,7 +187,6 @@ extern "C" {
 #define OPTION_VAL_16_10_AR NULL
 #define OPTION_VAL_21_9_AR NULL
 #define OPTION_VAL_32_9_AR NULL
-#define OPTION_VAL_4_3_AR NULL
 #define OPTION_VAL_5_4_AR NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_AR NULL
 #define RPCS3_MULTITHREADED_RSX_INFO_0_AR NULL
@@ -225,6 +228,7 @@ extern "C" {
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_AR NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_AR NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_AR NULL
+#define OPTION_VAL_LIST_AR NULL
 #define RPCS3_THREAD_SCHEDULER_LABEL_AR NULL
 #define RPCS3_THREAD_SCHEDULER_INFO_0_AR NULL
 #define OPTION_VAL_OS_AR NULL
@@ -309,9 +313,6 @@ extern "C" {
 #define RPCS3_FRAME_PACING_INFO_0_AR NULL
 #define OPTION_VAL_FRONTEND_AR "رتروارش"
 #define OPTION_VAL_EMULATOR_AR NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_AR NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_AR NULL
-#define OPTION_VAL_LIST_AR NULL
 #define RPCS3_MASTER_VOLUME_LABEL_AR NULL
 #define RPCS3_MASTER_VOLUME_INFO_0_AR NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_AR NULL
@@ -328,6 +329,12 @@ extern "C" {
 #define OPTION_VAL_STEREO_AR NULL
 #define OPTION_VAL_SURROUND_5_1_AR NULL
 #define OPTION_VAL_SURROUND_7_1_AR NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_AR NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_AR NULL
+#define OPTION_VAL_UNLIMITED_AR NULL
+#define OPTION_VAL_1GB_AR NULL
+#define OPTION_VAL_5GB_AR NULL
+#define OPTION_VAL_WIPE_AR NULL
 #define RPCS3_LANGUAGE_LABEL_AR NULL
 #define RPCS3_LANGUAGE_INFO_0_AR NULL
 #define OPTION_VAL_ENGLISH_AR NULL
@@ -512,6 +519,13 @@ struct retro_core_option_v2_definition option_defs_ar[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_AR}, {"vulkan", OPTION_VAL_VULKAN_AR}, {"null", OPTION_VAL_NULL_AR}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_AR, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_AR,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_AR}, {"4:3", OPTION_VAL_4_3_AR}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_AR, NULL,
@@ -699,7 +713,7 @@ struct retro_core_option_v2_definition option_defs_ar[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_AR, NULL,
         RPCS3_VBLANK_RATE_INFO_0_AR,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_AR}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_AR}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_AR}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_AR}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_AR}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_AR}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_AR}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_AR}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_AR}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_AR}, {"list", OPTION_VAL_LIST_AR}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -938,13 +952,6 @@ struct retro_core_option_v2_definition option_defs_ar[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_AR, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_AR,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_AR}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_AR, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_AR,
         NULL, "core",
@@ -957,6 +964,13 @@ struct retro_core_option_v2_definition option_defs_ar[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_AR}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_AR}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_AR}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_AR, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_AR,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_AR}, {"1gb", OPTION_VAL_1GB_AR}, {"5gb", OPTION_VAL_5GB_AR}, {"wipe", OPTION_VAL_WIPE_AR}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_AR, NULL,
@@ -1138,6 +1152,10 @@ struct retro_core_options_v2 options_ar = {
 #define OPTION_VAL_OPENGL_AST NULL
 #define OPTION_VAL_VULKAN_AST NULL
 #define OPTION_VAL_NULL_AST NULL
+#define RPCS3_ASPECT_RATIO_LABEL_AST "Proporción del aspeutu"
+#define RPCS3_ASPECT_RATIO_INFO_0_AST NULL
+#define OPTION_VAL_16_9_AST NULL
+#define OPTION_VAL_4_3_AST NULL
 #define RPCS3_FRAME_LIMIT_LABEL_AST NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_AST NULL
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_AST NULL
@@ -1212,7 +1230,6 @@ struct retro_core_options_v2 options_ar = {
 #define OPTION_VAL_16_10_AST NULL
 #define OPTION_VAL_21_9_AST NULL
 #define OPTION_VAL_32_9_AST NULL
-#define OPTION_VAL_4_3_AST NULL
 #define OPTION_VAL_5_4_AST NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_AST NULL
 #define RPCS3_MULTITHREADED_RSX_INFO_0_AST NULL
@@ -1254,6 +1271,7 @@ struct retro_core_options_v2 options_ar = {
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_AST NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_AST NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_AST NULL
+#define OPTION_VAL_LIST_AST NULL
 #define RPCS3_THREAD_SCHEDULER_LABEL_AST NULL
 #define RPCS3_THREAD_SCHEDULER_INFO_0_AST NULL
 #define OPTION_VAL_OS_AST NULL
@@ -1338,9 +1356,6 @@ struct retro_core_options_v2 options_ar = {
 #define RPCS3_FRAME_PACING_INFO_0_AST NULL
 #define OPTION_VAL_FRONTEND_AST NULL
 #define OPTION_VAL_EMULATOR_AST NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_AST NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_AST NULL
-#define OPTION_VAL_LIST_AST NULL
 #define RPCS3_MASTER_VOLUME_LABEL_AST NULL
 #define RPCS3_MASTER_VOLUME_INFO_0_AST NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_AST NULL
@@ -1354,9 +1369,15 @@ struct retro_core_options_v2 options_ar = {
 #define OPTION_VAL_90_AST NULL
 #define RPCS3_AUDIO_FORMAT_LABEL_AST NULL
 #define RPCS3_AUDIO_FORMAT_INFO_0_AST NULL
-#define OPTION_VAL_STEREO_AST NULL
+#define OPTION_VAL_STEREO_AST "Estéreu"
 #define OPTION_VAL_SURROUND_5_1_AST NULL
 #define OPTION_VAL_SURROUND_7_1_AST NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_AST NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_AST NULL
+#define OPTION_VAL_UNLIMITED_AST NULL
+#define OPTION_VAL_1GB_AST NULL
+#define OPTION_VAL_5GB_AST NULL
+#define OPTION_VAL_WIPE_AST NULL
 #define RPCS3_LANGUAGE_LABEL_AST NULL
 #define RPCS3_LANGUAGE_INFO_0_AST NULL
 #define OPTION_VAL_ENGLISH_AST "Inglés"
@@ -1541,6 +1562,13 @@ struct retro_core_option_v2_definition option_defs_ast[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_AST}, {"vulkan", OPTION_VAL_VULKAN_AST}, {"null", OPTION_VAL_NULL_AST}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_AST, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_AST,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_AST}, {"4:3", OPTION_VAL_4_3_AST}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_AST, NULL,
@@ -1728,7 +1756,7 @@ struct retro_core_option_v2_definition option_defs_ast[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_AST, NULL,
         RPCS3_VBLANK_RATE_INFO_0_AST,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_AST}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_AST}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_AST}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_AST}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_AST}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_AST}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_AST}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_AST}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_AST}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_AST}, {"list", OPTION_VAL_LIST_AST}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -1967,13 +1995,6 @@ struct retro_core_option_v2_definition option_defs_ast[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_AST, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_AST,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_AST}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_AST, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_AST,
         NULL, "core",
@@ -1986,6 +2007,13 @@ struct retro_core_option_v2_definition option_defs_ast[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_AST}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_AST}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_AST}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_AST, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_AST,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_AST}, {"1gb", OPTION_VAL_1GB_AST}, {"5gb", OPTION_VAL_5GB_AST}, {"wipe", OPTION_VAL_WIPE_AST}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_AST, NULL,
@@ -2167,6 +2195,10 @@ struct retro_core_options_v2 options_ast = {
 #define OPTION_VAL_OPENGL_BE NULL
 #define OPTION_VAL_VULKAN_BE NULL
 #define OPTION_VAL_NULL_BE NULL
+#define RPCS3_ASPECT_RATIO_LABEL_BE "Суадносіны бакоў"
+#define RPCS3_ASPECT_RATIO_INFO_0_BE NULL
+#define OPTION_VAL_16_9_BE NULL
+#define OPTION_VAL_4_3_BE NULL
 #define RPCS3_FRAME_LIMIT_LABEL_BE NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_BE NULL
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_BE "Аўта"
@@ -2241,7 +2273,6 @@ struct retro_core_options_v2 options_ast = {
 #define OPTION_VAL_16_10_BE NULL
 #define OPTION_VAL_21_9_BE NULL
 #define OPTION_VAL_32_9_BE NULL
-#define OPTION_VAL_4_3_BE NULL
 #define OPTION_VAL_5_4_BE NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_BE NULL
 #define RPCS3_MULTITHREADED_RSX_INFO_0_BE NULL
@@ -2283,6 +2314,7 @@ struct retro_core_options_v2 options_ast = {
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_BE NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_BE NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_BE NULL
+#define OPTION_VAL_LIST_BE NULL
 #define RPCS3_THREAD_SCHEDULER_LABEL_BE NULL
 #define RPCS3_THREAD_SCHEDULER_INFO_0_BE NULL
 #define OPTION_VAL_OS_BE NULL
@@ -2367,9 +2399,6 @@ struct retro_core_options_v2 options_ast = {
 #define RPCS3_FRAME_PACING_INFO_0_BE NULL
 #define OPTION_VAL_FRONTEND_BE NULL
 #define OPTION_VAL_EMULATOR_BE NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_BE NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_BE NULL
-#define OPTION_VAL_LIST_BE NULL
 #define RPCS3_MASTER_VOLUME_LABEL_BE "Агульная гучнасць"
 #define RPCS3_MASTER_VOLUME_INFO_0_BE NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_BE NULL
@@ -2383,9 +2412,15 @@ struct retro_core_options_v2 options_ast = {
 #define OPTION_VAL_90_BE "90 %"
 #define RPCS3_AUDIO_FORMAT_LABEL_BE NULL
 #define RPCS3_AUDIO_FORMAT_INFO_0_BE NULL
-#define OPTION_VAL_STEREO_BE NULL
+#define OPTION_VAL_STEREO_BE "Стэрэа"
 #define OPTION_VAL_SURROUND_5_1_BE NULL
 #define OPTION_VAL_SURROUND_7_1_BE NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_BE NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_BE NULL
+#define OPTION_VAL_UNLIMITED_BE NULL
+#define OPTION_VAL_1GB_BE NULL
+#define OPTION_VAL_5GB_BE NULL
+#define OPTION_VAL_WIPE_BE NULL
 #define RPCS3_LANGUAGE_LABEL_BE NULL
 #define RPCS3_LANGUAGE_INFO_0_BE NULL
 #define OPTION_VAL_ENGLISH_BE "Англійская"
@@ -2570,6 +2605,13 @@ struct retro_core_option_v2_definition option_defs_be[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_BE}, {"vulkan", OPTION_VAL_VULKAN_BE}, {"null", OPTION_VAL_NULL_BE}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_BE, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_BE,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_BE}, {"4:3", OPTION_VAL_4_3_BE}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_BE, NULL,
@@ -2757,7 +2799,7 @@ struct retro_core_option_v2_definition option_defs_be[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_BE, NULL,
         RPCS3_VBLANK_RATE_INFO_0_BE,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_BE}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_BE}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_BE}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_BE}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_BE}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_BE}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_BE}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_BE}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_BE}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_BE}, {"list", OPTION_VAL_LIST_BE}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -2996,13 +3038,6 @@ struct retro_core_option_v2_definition option_defs_be[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_BE, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_BE,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_BE}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_BE, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_BE,
         NULL, "core",
@@ -3015,6 +3050,13 @@ struct retro_core_option_v2_definition option_defs_be[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_BE}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_BE}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_BE}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_BE, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_BE,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_BE}, {"1gb", OPTION_VAL_1GB_BE}, {"5gb", OPTION_VAL_5GB_BE}, {"wipe", OPTION_VAL_WIPE_BE}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_BE, NULL,
@@ -3196,6 +3238,10 @@ struct retro_core_options_v2 options_be = {
 #define OPTION_VAL_OPENGL_BG NULL
 #define OPTION_VAL_VULKAN_BG NULL
 #define OPTION_VAL_NULL_BG NULL
+#define RPCS3_ASPECT_RATIO_LABEL_BG NULL
+#define RPCS3_ASPECT_RATIO_INFO_0_BG NULL
+#define OPTION_VAL_16_9_BG NULL
+#define OPTION_VAL_4_3_BG NULL
 #define RPCS3_FRAME_LIMIT_LABEL_BG NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_BG NULL
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_BG NULL
@@ -3270,7 +3316,6 @@ struct retro_core_options_v2 options_be = {
 #define OPTION_VAL_16_10_BG NULL
 #define OPTION_VAL_21_9_BG NULL
 #define OPTION_VAL_32_9_BG NULL
-#define OPTION_VAL_4_3_BG NULL
 #define OPTION_VAL_5_4_BG NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_BG NULL
 #define RPCS3_MULTITHREADED_RSX_INFO_0_BG NULL
@@ -3312,6 +3357,7 @@ struct retro_core_options_v2 options_be = {
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_BG NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_BG NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_BG NULL
+#define OPTION_VAL_LIST_BG NULL
 #define RPCS3_THREAD_SCHEDULER_LABEL_BG NULL
 #define RPCS3_THREAD_SCHEDULER_INFO_0_BG NULL
 #define OPTION_VAL_OS_BG NULL
@@ -3396,9 +3442,6 @@ struct retro_core_options_v2 options_be = {
 #define RPCS3_FRAME_PACING_INFO_0_BG NULL
 #define OPTION_VAL_FRONTEND_BG NULL
 #define OPTION_VAL_EMULATOR_BG NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_BG NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_BG NULL
-#define OPTION_VAL_LIST_BG NULL
 #define RPCS3_MASTER_VOLUME_LABEL_BG NULL
 #define RPCS3_MASTER_VOLUME_INFO_0_BG NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_BG NULL
@@ -3415,6 +3458,12 @@ struct retro_core_options_v2 options_be = {
 #define OPTION_VAL_STEREO_BG NULL
 #define OPTION_VAL_SURROUND_5_1_BG NULL
 #define OPTION_VAL_SURROUND_7_1_BG NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_BG NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_BG NULL
+#define OPTION_VAL_UNLIMITED_BG NULL
+#define OPTION_VAL_1GB_BG NULL
+#define OPTION_VAL_5GB_BG NULL
+#define OPTION_VAL_WIPE_BG NULL
 #define RPCS3_LANGUAGE_LABEL_BG NULL
 #define RPCS3_LANGUAGE_INFO_0_BG NULL
 #define OPTION_VAL_ENGLISH_BG NULL
@@ -3599,6 +3648,13 @@ struct retro_core_option_v2_definition option_defs_bg[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_BG}, {"vulkan", OPTION_VAL_VULKAN_BG}, {"null", OPTION_VAL_NULL_BG}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_BG, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_BG,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_BG}, {"4:3", OPTION_VAL_4_3_BG}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_BG, NULL,
@@ -3786,7 +3842,7 @@ struct retro_core_option_v2_definition option_defs_bg[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_BG, NULL,
         RPCS3_VBLANK_RATE_INFO_0_BG,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_BG}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_BG}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_BG}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_BG}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_BG}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_BG}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_BG}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_BG}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_BG}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_BG}, {"list", OPTION_VAL_LIST_BG}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -4025,13 +4081,6 @@ struct retro_core_option_v2_definition option_defs_bg[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_BG, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_BG,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_BG}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_BG, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_BG,
         NULL, "core",
@@ -4044,6 +4093,13 @@ struct retro_core_option_v2_definition option_defs_bg[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_BG}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_BG}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_BG}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_BG, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_BG,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_BG}, {"1gb", OPTION_VAL_1GB_BG}, {"5gb", OPTION_VAL_5GB_BG}, {"wipe", OPTION_VAL_WIPE_BG}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_BG, NULL,
@@ -4162,7 +4218,7 @@ struct retro_core_options_v2 options_bg = {
 #define CATEGORY_THREADS_LABEL_CA "Programació"
 #define CATEGORY_THREADS_INFO_0_CA NULL
 #define CATEGORY_NETWORK_LABEL_CA "Xarxa"
-#define CATEGORY_NETWORK_INFO_0_CA NULL
+#define CATEGORY_NETWORK_INFO_0_CA "Opcions de xarxa, PSN i RPCN."
 #define CATEGORY_DEBUG_LABEL_CA "Depurador"
 #define CATEGORY_DEBUG_INFO_0_CA NULL
 #define CATEGORY_CORE_LABEL_CA "Nucli"
@@ -4186,28 +4242,28 @@ struct retro_core_options_v2 options_bg = {
 #define OPTION_VAL_SAFE_CA "Segur"
 #define OPTION_VAL_MEGA_CA NULL
 #define OPTION_VAL_GIGA_CA NULL
-#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_CA NULL
+#define RPCS3_ACCURATE_RSX_RESERVATION_LABEL_CA "Accés de reserva del RSX precís"
 #define RPCS3_ACCURATE_RSX_RESERVATION_INFO_0_CA NULL
 #define RPCS3_SPU_ACCURATE_DMA_LABEL_CA "DMA de la SPU precís"
 #define RPCS3_SPU_ACCURATE_DMA_INFO_0_CA NULL
-#define RPCS3_SPU_ACCURATE_RESERVATIONS_LABEL_CA NULL
+#define RPCS3_SPU_ACCURATE_RESERVATIONS_LABEL_CA "Reserves SPU precís"
 #define RPCS3_SPU_ACCURATE_RESERVATIONS_INFO_0_CA NULL
 #define RPCS3_DEBUG_CONSOLE_MODE_LABEL_CA "Mode de la consola de la depuració"
 #define RPCS3_DEBUG_CONSOLE_MODE_INFO_0_CA NULL
-#define RPCS3_MFC_DELAY_COMMAND_LABEL_CA NULL
+#define RPCS3_MFC_DELAY_COMMAND_LABEL_CA "Retardar comenades MFC estranys"
 #define RPCS3_MFC_DELAY_COMMAND_INFO_0_CA NULL
-#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_CA NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_CA "Deshabilita l'optimització de SPU GETLLAR Spin"
 #define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_CA NULL
 #define RPCS3_EMULATE_HDD_SPEED_LABEL_CA "Emula la velocitat real de lectura del disc dur"
 #define RPCS3_EMULATE_HDD_SPEED_INFO_0_CA NULL
-#define RPCS3_EMULATE_BDVD_SPEED_LABEL_CA NULL
+#define RPCS3_EMULATE_BDVD_SPEED_LABEL_CA "Emula la velocitat real de lectura del lector Bluray"
 #define RPCS3_EMULATE_BDVD_SPEED_INFO_0_CA NULL
-#define RPCS3_PPU_RESERVATION_PRIORITY_LABEL_CA NULL
+#define RPCS3_PPU_RESERVATION_PRIORITY_LABEL_CA "Prioritat de reserva de PPU"
 #define RPCS3_PPU_RESERVATION_PRIORITY_INFO_0_CA NULL
-#define RPCS3_LLVM_PRECOMPILATION_LABEL_CA NULL
+#define RPCS3_LLVM_PRECOMPILATION_LABEL_CA "Precompilació PPU/SPU de LLVM"
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_CA NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_CA "Precisió dels temporitzadors d'hibernació"
-#define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_CA NULL
+#define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_CA "Precisió dels temporitzadors d'hibernació."
 #define OPTION_VAL_AUTO_CA "Automàtic"
 #define OPTION_VAL_AS_HOST_CA "Igual que l'amfitrió"
 #define OPTION_VAL_USLEEP_CA "Només usleep"
@@ -4225,6 +4281,10 @@ struct retro_core_options_v2 options_bg = {
 #define OPTION_VAL_OPENGL_CA NULL
 #define OPTION_VAL_VULKAN_CA NULL
 #define OPTION_VAL_NULL_CA "Nul (sense vídeo)"
+#define RPCS3_ASPECT_RATIO_LABEL_CA "Relació d'aspecte"
+#define RPCS3_ASPECT_RATIO_INFO_0_CA NULL
+#define OPTION_VAL_16_9_CA NULL
+#define OPTION_VAL_4_3_CA NULL
 #define RPCS3_FRAME_LIMIT_LABEL_CA "Límit de fotogrames"
 #define RPCS3_FRAME_LIMIT_INFO_0_CA NULL
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_CA "Automàtic"
@@ -4236,7 +4296,7 @@ struct retro_core_options_v2 options_bg = {
 #define OPTION_VAL_144_CA NULL
 #define OPTION_VAL_240_CA NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_CA "Filtre anisotròpic"
-#define RPCS3_ANISOTROPIC_FILTER_INFO_0_CA NULL
+#define RPCS3_ANISOTROPIC_FILTER_INFO_0_CA "Qualitat del filtratge de textures."
 #define OPTION_VAL_2_CA NULL
 #define OPTION_VAL_4_CA NULL
 #define OPTION_VAL_8_CA NULL
@@ -4269,7 +4329,7 @@ struct retro_core_options_v2 options_bg = {
 #define OPTION_VAL_600_CA NULL
 #define OPTION_VAL_700_CA NULL
 #define OPTION_VAL_800_CA NULL
-#define RPCS3_SCALE_THRESHOLD_LABEL_CA NULL
+#define RPCS3_SCALE_THRESHOLD_LABEL_CA "Llindar d'escala de resolució"
 #define RPCS3_SCALE_THRESHOLD_INFO_0_CA NULL
 #define OPTION_VAL_1_CA NULL
 #define OPTION_VAL_16_RPCS3_SCALE_THRESHOLD_CA "16x16 (per defecte)"
@@ -4287,41 +4347,40 @@ struct retro_core_options_v2 options_bg = {
 #define OPTION_VAL_ASYNC_CA "Asíncron (Recomanat)"
 #define OPTION_VAL_ASYNC_INTERPRETER_CA NULL
 #define OPTION_VAL_ASYNC_RECOMPILER_CA "Asíncron amb recompilador"
-#define OPTION_VAL_INTERPRETER_RPCS3_SHADER_MODE_CA NULL
+#define OPTION_VAL_INTERPRETER_RPCS3_SHADER_MODE_CA "Només intèrpret de shaders"
 #define OPTION_VAL_SYNC_CA "Sincrònic"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_CA "Escriu a les memòries intermèdies de color"
 #define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_CA NULL
 #define RPCS3_STRICT_RENDERING_LABEL_CA "Mode de rendertizat estricte"
 #define RPCS3_STRICT_RENDERING_INFO_0_CA NULL
-#define RPCS3_STRETCH_TO_DISPLAY_LABEL_CA NULL
+#define RPCS3_STRETCH_TO_DISPLAY_LABEL_CA "Ajusta a l'àrea de visualització"
 #define RPCS3_STRETCH_TO_DISPLAY_INFO_0_CA NULL
 #define OPTION_VAL_ENABLED_CA NULL
 #define OPTION_VAL_16_10_CA NULL
 #define OPTION_VAL_21_9_CA NULL
 #define OPTION_VAL_32_9_CA NULL
-#define OPTION_VAL_4_3_CA NULL
 #define OPTION_VAL_5_4_CA NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_CA "Multifil RSX"
 #define RPCS3_MULTITHREADED_RSX_INFO_0_CA NULL
-#define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_CA NULL
+#define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_CA "Reproducció asíncrona de textures"
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_CA NULL
 #define RPCS3_HOST_GPU_LABELS_LABEL_CA "Permet etiquetes de d'amfitrió de la targeta gràfica"
 #define RPCS3_HOST_GPU_LABELS_INFO_0_CA NULL
-#define RPCS3_DISABLE_BLIT_UPSCALING_LABEL_CA NULL
+#define RPCS3_DISABLE_BLIT_UPSCALING_LABEL_CA "Desactiva l'escalat Blit"
 #define RPCS3_DISABLE_BLIT_UPSCALING_INFO_0_CA NULL
 #define RPCS3_DISABLE_VERTEX_CACHE_LABEL_CA "Desactiva la memòria intermèdia de vèrtexs"
 #define RPCS3_DISABLE_VERTEX_CACHE_INFO_0_CA NULL
-#define RPCS3_EMULATE_DEPTH_COMPARE_LABEL_CA NULL
+#define RPCS3_EMULATE_DEPTH_COMPARE_LABEL_CA "Emula la comparació de profunditat especial"
 #define RPCS3_EMULATE_DEPTH_COMPARE_INFO_0_CA NULL
-#define RPCS3_FORCE_HW_MSAA_RESOLVE_LABEL_CA NULL
+#define RPCS3_FORCE_HW_MSAA_RESOLVE_LABEL_CA "Força la solució per maquinari de MSAA"
 #define RPCS3_FORCE_HW_MSAA_RESOLVE_INFO_0_CA NULL
-#define RPCS3_HANDLE_TILED_MEMORY_LABEL_CA NULL
+#define RPCS3_HANDLE_TILED_MEMORY_LABEL_CA "Administrador de mosaics de memòria del RSX"
 #define RPCS3_HANDLE_TILED_MEMORY_INFO_0_CA NULL
 #define RPCS3_READ_DEPTH_BUFFERS_LABEL_CA "Llegir memòries intermèdies de profunditat"
 #define RPCS3_READ_DEPTH_BUFFERS_INFO_0_CA NULL
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_CA "Llegir memòries intermèdies de color"
 #define RPCS3_READ_COLOR_BUFFERS_INFO_0_CA NULL
-#define RPCS3_USE_REBAR_LABEL_CA NULL
+#define RPCS3_USE_REBAR_LABEL_CA "Fes servir la memòria Re-BAR per enviaments de la targeta gràfica"
 #define RPCS3_USE_REBAR_INFO_0_CA NULL
 #define RPCS3_WRITE_DEPTH_BUFFERS_LABEL_CA "Escriu a les memòries intermèdies de profunditat"
 #define RPCS3_WRITE_DEPTH_BUFFERS_INFO_0_CA NULL
@@ -4341,25 +4400,26 @@ struct retro_core_options_v2 options_bg = {
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_CA NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_CA NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_CA NULL
+#define OPTION_VAL_LIST_CA "Des de la llista"
 #define RPCS3_THREAD_SCHEDULER_LABEL_CA "Programador de fils"
 #define RPCS3_THREAD_SCHEDULER_INFO_0_CA NULL
 #define OPTION_VAL_OS_CA "Sistema operatiu"
 #define OPTION_VAL_OLD_CA "Programador de RPCS3"
-#define OPTION_VAL_ALT_CA NULL
+#define OPTION_VAL_ALT_CA "Programador alternatiu de RPCS3"
 #define RPCS3_PREFERRED_SPU_THREADS_LABEL_CA "Nombre de fils preferits de SPU"
 #define RPCS3_PREFERRED_SPU_THREADS_INFO_0_CA NULL
-#define RPCS3_SPU_LOOP_DETECTION_LABEL_CA NULL
+#define RPCS3_SPU_LOOP_DETECTION_LABEL_CA "Activa la detecció de bucles de la SPU"
 #define RPCS3_SPU_LOOP_DETECTION_INFO_0_CA NULL
 #define RPCS3_LLVM_THREADS_LABEL_CA NULL
 #define RPCS3_LLVM_THREADS_INFO_0_CA NULL
-#define RPCS3_SHADER_COMPILER_THREADS_LABEL_CA NULL
+#define RPCS3_SHADER_COMPILER_THREADS_LABEL_CA "Fils de compilació de shaders"
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_CA NULL
 #define RPCS3_PPU_THREADS_LABEL_CA "Fils de la PPU"
 #define RPCS3_PPU_THREADS_INFO_0_CA NULL
 #define OPTION_VAL_2_RPCS3_PPU_THREADS_CA "2 (Per defecte)"
-#define RPCS3_MAX_SPURS_THREADS_LABEL_CA NULL
+#define RPCS3_MAX_SPURS_THREADS_LABEL_CA "Nombre màxim de fils per a SPURS"
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_CA NULL
-#define RPCS3_MAX_PREEMPT_COUNT_LABEL_CA NULL
+#define RPCS3_MAX_PREEMPT_COUNT_LABEL_CA "Nombre màxim d'apropiacions de la CPU per estalviar energia"
 #define RPCS3_MAX_PREEMPT_COUNT_INFO_0_CA NULL
 #define OPTION_VAL_0_RPCS3_MAX_PREEMPT_COUNT_CA "0 (Desactivat)"
 #define RPCS3_NETWORK_ENABLED_LABEL_CA "Xarxa activada"
@@ -4371,65 +4431,62 @@ struct retro_core_options_v2 options_bg = {
 #define RPCS3_UPNP_LABEL_CA NULL
 #define RPCS3_UPNP_INFO_0_CA NULL
 #define RPCS3_SHOW_RPCN_POPUPS_LABEL_CA "Mostra missatges emergents de RPCN"
-#define RPCS3_SHOW_RPCN_POPUPS_INFO_0_CA NULL
+#define RPCS3_SHOW_RPCN_POPUPS_INFO_0_CA "Mostra missatges de notificació RPCN."
 #define RPCS3_SHOW_TROPHY_POPUPS_LABEL_CA "Mostra missatges de trofeus"
-#define RPCS3_SHOW_TROPHY_POPUPS_INFO_0_CA NULL
+#define RPCS3_SHOW_TROPHY_POPUPS_INFO_0_CA "Mostra notificacions de desbloqueig de trofeus."
 #define RPCS3_DNS_LABEL_CA "Servidor DNS"
 #define RPCS3_DNS_INFO_0_CA "Adreça del servidor DNS."
 #define OPTION_VAL_8_8_8_8_CA "DNS de Google"
 #define OPTION_VAL_1_1_1_1_CA "DNS de Cloudflare"
 #define OPTION_VAL_208_67_222_222_CA NULL
-#define RPCS3_DISABLE_FIFO_REORDERING_LABEL_CA NULL
+#define RPCS3_DISABLE_FIFO_REORDERING_LABEL_CA "Desactiva el reordenament FIFO"
 #define RPCS3_DISABLE_FIFO_REORDERING_INFO_0_CA NULL
-#define RPCS3_DISABLE_HW_BLENDING_LABEL_CA NULL
+#define RPCS3_DISABLE_HW_BLENDING_LABEL_CA "Desactiva la barreja per maquinari"
 #define RPCS3_DISABLE_HW_BLENDING_INFO_0_CA NULL
 #define RPCS3_DISABLE_HW_COLORSPACE_LABEL_CA NULL
 #define RPCS3_DISABLE_HW_COLORSPACE_INFO_0_CA NULL
-#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_CA NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_CA "Desactiva peticions d'oclusió de ZCull"
 #define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_CA NULL
-#define RPCS3_CPU_BLIT_LABEL_CA NULL
+#define RPCS3_CPU_BLIT_LABEL_CA "Força l'emulació de blits a la CPU"
 #define RPCS3_CPU_BLIT_INFO_0_CA NULL
-#define RPCS3_GPU_TEXTURE_SCALING_LABEL_CA NULL
+#define RPCS3_GPU_TEXTURE_SCALING_LABEL_CA "Força l'escalat de textures de la GPU"
 #define RPCS3_GPU_TEXTURE_SCALING_INFO_0_CA NULL
-#define RPCS3_SPU_EVENTS_BUSY_LOOP_LABEL_CA NULL
+#define RPCS3_SPU_EVENTS_BUSY_LOOP_LABEL_CA "Activa el bucle d'esdeveniments ocupats per la SPU"
 #define RPCS3_SPU_EVENTS_BUSY_LOOP_INFO_0_CA NULL
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_CA "Funcions estàtiques Hook"
 #define RPCS3_HOOK_STATIC_FUNCS_INFO_0_CA NULL
 #define RPCS3_SET_DAZ_FTZ_LABEL_CA "Estableix DAZ i FTZ"
 #define RPCS3_SET_DAZ_FTZ_INFO_0_CA NULL
-#define RPCS3_SPU_CACHE_LINE_STORES_LABEL_CA NULL
+#define RPCS3_SPU_CACHE_LINE_STORES_LABEL_CA "Emmagatzematge de línies de memòria intermèdia precís"
 #define RPCS3_SPU_CACHE_LINE_STORES_INFO_0_CA NULL
-#define RPCS3_PPU_SET_FPCC_LABEL_CA NULL
+#define RPCS3_PPU_SET_FPCC_LABEL_CA "Control condicional nombres float de PPU precís"
 #define RPCS3_PPU_SET_FPCC_INFO_0_CA NULL
-#define RPCS3_PPU_SET_SAT_BIT_LABEL_CA NULL
+#define RPCS3_PPU_SET_SAT_BIT_LABEL_CA "Bit de saturació de PPU precís"
 #define RPCS3_PPU_SET_SAT_BIT_INFO_0_CA NULL
-#define RPCS3_PPU_NJ_MODE_LABEL_CA NULL
+#define RPCS3_PPU_NJ_MODE_LABEL_CA "Mode aliè a Java de PPU precís"
 #define RPCS3_PPU_NJ_MODE_INFO_0_CA NULL
-#define RPCS3_PPU_ACCURATE_VECTOR_NAN_LABEL_CA NULL
+#define RPCS3_PPU_ACCURATE_VECTOR_NAN_LABEL_CA "NaNs vectorials precisos a la PPU"
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_CA NULL
-#define RPCS3_ACCURATE_PPU_128_LABEL_CA NULL
+#define RPCS3_ACCURATE_PPU_128_LABEL_CA "Reserves precises de 128 bytes en PPU"
 #define RPCS3_ACCURATE_PPU_128_INFO_0_CA NULL
 #define OPTION_VAL_0_RPCS3_ACCURATE_PPU_128_CA "Mai (per defecte)"
 #define OPTION_VAL_1_RPCS3_ACCURATE_PPU_128_CA "Sempre"
-#define RPCS3_FB_ALIASING_BIAS_LABEL_CA NULL
+#define RPCS3_FB_ALIASING_BIAS_LABEL_CA "Biaix heurístic de superposició de la memòria intermèdia de fotogrames"
 #define RPCS3_FB_ALIASING_BIAS_INFO_0_CA NULL
 #define OPTION_VAL_COLOR_CA "Color preferit"
 #define OPTION_VAL_DEPTH_CA "Profunditat preferida"
-#define RPCS3_DATABASE_OVERRIDE_LABEL_CA NULL
+#define RPCS3_DATABASE_OVERRIDE_LABEL_CA "Sobreescriu la configuració de la base de dades"
 #define RPCS3_DATABASE_OVERRIDE_INFO_0_CA NULL
 #define RPCS3_PERF_OVERLAY_LABEL_CA "Superposició de rendiment"
 #define RPCS3_PERF_OVERLAY_INFO_0_CA NULL
 #define OPTION_VAL_MINIMAL_CA "Només la taxa de fotogrames"
 #define OPTION_VAL_MEDIUM_CA "Mig"
-#define RPCS3_FRAME_PACING_LABEL_CA "Omissió de fotogrames"
+#define RPCS3_FRAME_PACING_LABEL_CA NULL
 #define RPCS3_FRAME_PACING_INFO_0_CA NULL
 #define OPTION_VAL_FRONTEND_CA NULL
-#define OPTION_VAL_EMULATOR_CA "Emulació del rellotge"
-#define RPCS3_SAVEDATA_SLOT_LABEL_CA "Ranura de dades desades"
-#define RPCS3_SAVEDATA_SLOT_INFO_0_CA NULL
-#define OPTION_VAL_LIST_CA "Selecciona de la llista"
+#define OPTION_VAL_EMULATOR_CA NULL
 #define RPCS3_MASTER_VOLUME_LABEL_CA "Volum principal"
-#define RPCS3_MASTER_VOLUME_INFO_0_CA NULL
+#define RPCS3_MASTER_VOLUME_INFO_0_CA "Percentatge de volum d'àudio principal."
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_CA NULL
 #define OPTION_VAL_10_CA NULL
 #define OPTION_VAL_20_CA NULL
@@ -4439,11 +4496,17 @@ struct retro_core_options_v2 options_bg = {
 #define OPTION_VAL_70_CA NULL
 #define OPTION_VAL_80_CA NULL
 #define OPTION_VAL_90_CA NULL
-#define RPCS3_AUDIO_FORMAT_LABEL_CA NULL
+#define RPCS3_AUDIO_FORMAT_LABEL_CA "Format d'àudio"
 #define RPCS3_AUDIO_FORMAT_INFO_0_CA NULL
-#define OPTION_VAL_STEREO_CA NULL
+#define OPTION_VAL_STEREO_CA "Estèreo"
 #define OPTION_VAL_SURROUND_5_1_CA NULL
 #define OPTION_VAL_SURROUND_7_1_CA NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_CA NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_CA NULL
+#define OPTION_VAL_UNLIMITED_CA NULL
+#define OPTION_VAL_1GB_CA NULL
+#define OPTION_VAL_5GB_CA NULL
+#define OPTION_VAL_WIPE_CA NULL
 #define RPCS3_LANGUAGE_LABEL_CA "Idioma del sistema"
 #define RPCS3_LANGUAGE_INFO_0_CA "Idioma del sistema de PS3."
 #define OPTION_VAL_ENGLISH_CA "Anglès"
@@ -4463,16 +4526,16 @@ struct retro_core_options_v2 options_bg = {
 #define OPTION_VAL_USA_CA "SCEA (Amèrica)"
 #define OPTION_VAL_EU_CA "SCEE (Europa, Oceania)"
 #define OPTION_VAL_JP_CA "SCEJ (Japó)"
-#define OPTION_VAL_HK_CA NULL
+#define OPTION_VAL_HK_CA "SCEH (Hong Kong, sud-est asiàtic)"
 #define OPTION_VAL_KR_CA "SCEK (Corea)"
 #define OPTION_VAL_CN_CA "SCH (Xina)"
-#define RPCS3_ENTER_BUTTON_LABEL_CA NULL
-#define RPCS3_ENTER_BUTTON_INFO_0_CA NULL
+#define RPCS3_ENTER_BUTTON_LABEL_CA "Asignació del botó per seleccionar"
+#define RPCS3_ENTER_BUTTON_INFO_0_CA "El botó que es fa servir per confirmar accions."
 #define OPTION_VAL_CROSS_CA "Cross (Oest)"
 #define OPTION_VAL_CIRCLE_CA "Cercle (Japonès)"
-#define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_CA NULL
+#define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_CA "Mostra missatges de compilació de la PPU"
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_CA NULL
-#define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_CA NULL
+#define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_CA "Mostra missatges de compilació de shaders"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_CA NULL
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_CA "Silencia tots els registres"
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_CA NULL
@@ -4481,14 +4544,14 @@ struct retro_core_options_v2 options_bg = {
 #define RPCS3_ACCURATE_DFMA_LABEL_CA "DFMA precís"
 #define RPCS3_ACCURATE_DFMA_INFO_0_CA NULL
 #define RPCS3_SPU_VERIFICATION_LABEL_CA "Verificació SPU"
-#define RPCS3_SPU_VERIFICATION_INFO_0_CA NULL
-#define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_CA NULL
+#define RPCS3_SPU_VERIFICATION_INFO_0_CA "Nivell de verificació del codi SPU."
+#define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_CA "Temps d'espera de recuperació del controlador"
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_CA NULL
 #define OPTION_VAL_1000_CA "1 segon"
 #define OPTION_VAL_2000_CA "2 segons"
 #define OPTION_VAL_5000_CA "5 segons"
 #define OPTION_VAL_10000_CA "10 segons"
-#define RPCS3_MFC_SHUFFLING_LABEL_CA NULL
+#define RPCS3_MFC_SHUFFLING_LABEL_CA "Reordena les comandes de MFC"
 #define RPCS3_MFC_SHUFFLING_INFO_0_CA NULL
 #define RPCS3_SPU_DELAY_PENALTY_LABEL_CA "Penalització de retard de SPU"
 #define RPCS3_SPU_DELAY_PENALTY_INFO_0_CA NULL
@@ -4628,6 +4691,13 @@ struct retro_core_option_v2_definition option_defs_ca[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_CA}, {"vulkan", OPTION_VAL_VULKAN_CA}, {"null", OPTION_VAL_NULL_CA}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_CA, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_CA,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_CA}, {"4:3", OPTION_VAL_4_3_CA}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_CA, NULL,
@@ -4815,7 +4885,7 @@ struct retro_core_option_v2_definition option_defs_ca[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_CA, NULL,
         RPCS3_VBLANK_RATE_INFO_0_CA,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_CA}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_CA}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_CA}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_CA}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_CA}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_CA}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_CA}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_CA}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_CA}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_CA}, {"list", OPTION_VAL_LIST_CA}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -5054,13 +5124,6 @@ struct retro_core_option_v2_definition option_defs_ca[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_CA, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_CA,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_CA}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_CA, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_CA,
         NULL, "core",
@@ -5073,6 +5136,13 @@ struct retro_core_option_v2_definition option_defs_ca[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_CA}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_CA}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_CA}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_CA, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_CA,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_CA}, {"1gb", OPTION_VAL_1GB_CA}, {"5gb", OPTION_VAL_5GB_CA}, {"wipe", OPTION_VAL_WIPE_CA}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_CA, NULL,
@@ -5254,6 +5324,10 @@ struct retro_core_options_v2 options_ca = {
 #define OPTION_VAL_OPENGL_CHS NULL
 #define OPTION_VAL_VULKAN_CHS NULL
 #define OPTION_VAL_NULL_CHS "无视频输出 (Null)"
+#define RPCS3_ASPECT_RATIO_LABEL_CHS "宽高比"
+#define RPCS3_ASPECT_RATIO_INFO_0_CHS NULL
+#define OPTION_VAL_16_9_CHS NULL
+#define OPTION_VAL_4_3_CHS NULL
 #define RPCS3_FRAME_LIMIT_LABEL_CHS "帧率限制"
 #define RPCS3_FRAME_LIMIT_INFO_0_CHS "游戏运行的最高帧率。自动 (Auto) 即场消隐频率（VBlank，同 RPCS3）；PS3 原生 (PS3 Native) 按照 PS3 原生的方式控制翻帧节奏；关闭 (Off) 会导致不等待 PS3 刷新率的游戏运行速度过快。"
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_CHS "自动"
@@ -5282,7 +5356,7 @@ struct retro_core_options_v2 options_ca = {
 #define OPTION_VAL_HIGH_CHS "高"
 #define OPTION_VAL_ULTRA_CHS "极致 (Ultra)"
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_CHS "默认分辨率"
-#define RPCS3_DEFAULT_RESOLUTION_INFO_0_CHS "模拟的 PS3 提供给游戏的输出分辨率（遵循 RPCS3 官方逻辑）。大多数游戏运行在 720p；部分游戏在 1080p 下画质更好，另有部分游戏需要 480p 或 576p 以避免图像漏洞。重新加载游戏后生效。"
+#define RPCS3_DEFAULT_RESOLUTION_INFO_0_CHS NULL
 #define OPTION_VAL_720P_CHS "720p（默认）"
 #define OPTION_VAL_1080P_CHS NULL
 #define OPTION_VAL_480P_CHS NULL
@@ -5328,7 +5402,6 @@ struct retro_core_options_v2 options_ca = {
 #define OPTION_VAL_16_10_CHS NULL
 #define OPTION_VAL_21_9_CHS NULL
 #define OPTION_VAL_32_9_CHS NULL
-#define OPTION_VAL_4_3_CHS NULL
 #define OPTION_VAL_5_4_CHS NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_CHS "多线程 RSX"
 #define RPCS3_MULTITHREADED_RSX_INFO_0_CHS "将部分 RSX（图形芯片）工作移至第二线程。遵循 RPCS3 默认关闭；对少核高主频 CPU（包括手机）有所帮助。"
@@ -5364,12 +5437,13 @@ struct retro_core_options_v2 options_ca = {
 #define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_CHS "驱动唤醒延迟时间（微秒）。默认为 0（遵循 RPCS3 逻辑）；仅在特定游戏需要时提高该值。"
 #define OPTION_VAL_0_CHS "0（默认）"
 #define RPCS3_VBLANK_RATE_LABEL_CHS "场消隐频率 (VBlank)"
-#define RPCS3_VBLANK_RATE_INFO_0_CHS "PS3 的刷新率（单位：Hz）。这也是核心向 RetroArch 请求的帧率，在重新加载游戏后生效；可运行在 60 FPS 以上的游戏需要具备相应高刷新率的显示设备。"
+#define RPCS3_VBLANK_RATE_INFO_0_CHS NULL
 #define OPTION_VAL_50_RPCS3_VBLANK_RATE_CHS NULL
 #define OPTION_VAL_60_RPCS3_VBLANK_RATE_CHS NULL
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_CHS NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_CHS NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_CHS NULL
+#define OPTION_VAL_LIST_CHS NULL
 #define RPCS3_THREAD_SCHEDULER_LABEL_CHS "线程调度器"
 #define RPCS3_THREAD_SCHEDULER_INFO_0_CHS "控制如何将模拟器的线程分配到 CPU 核心上（同 RPCS3）。“操作系统”交由系统自行调度；RPCS3 调度器则针对特定桌面 CPU 架构，将 PPU、SPU 及 RSX 线程绑定至固定核心。在 Android 系统上无效，因为核心无法绑定线程。"
 #define OPTION_VAL_OS_CHS "操作系统"
@@ -5450,13 +5524,10 @@ struct retro_core_options_v2 options_ca = {
 #define RPCS3_PERF_OVERLAY_INFO_0_CHS "RPCS3 自身的性能浮层，叠加在游戏画面上：显示 RPCS3 统计的游戏帧率；在更高详细级别下还会显示帧生成时间以及 CPU 和 GPU 负载。"
 #define OPTION_VAL_MINIMAL_CHS "仅显示帧率"
 #define OPTION_VAL_MEDIUM_CHS "中等"
-#define RPCS3_FRAME_PACING_LABEL_CHS "帧节奏同步"
-#define RPCS3_FRAME_PACING_INFO_0_CHS "游戏帧计时的依据方式。“模拟器时钟 (Emulator clock)”使用 RPCS3 自带的计时器（同独立版 RPCS3）。RetroArch 模式下，RetroArch 每显示一帧就向游戏提供一次 PS3 刷新，快进时游戏速度会同步加快；当 RetroArch 每秒显示的帧数达到该数值时，游戏按 VBlank 频率运行；在使用 Vulkan 渲染器时目前会进行跳帧处理。"
+#define RPCS3_FRAME_PACING_LABEL_CHS NULL
+#define RPCS3_FRAME_PACING_INFO_0_CHS NULL
 #define OPTION_VAL_FRONTEND_CHS "全能模拟器"
-#define OPTION_VAL_EMULATOR_CHS "模拟器时钟"
-#define RPCS3_SAVEDATA_SLOT_LABEL_CHS "存档数据槽位"
-#define RPCS3_SAVEDATA_SLOT_INFO_0_CHS "PS3 游戏通常会显示存档列表供玩家选择。“从列表中选择 (Pick from list)”会在游戏画面中呈现该列表并由手柄操作。选择具体数字则由核心替您自动指定：保存时将覆盖列表中对应位置的存档（若列表较短则创建新存档）；加载时直接提取对应位置的存档（若列表较短则无法找到）。0 代表第一个条目。自己仅维护单个存档的游戏不会呈现列表，因此本选项对其无效。"
-#define OPTION_VAL_LIST_CHS "从列表中选择 (Pick from list)"
+#define OPTION_VAL_EMULATOR_CHS NULL
 #define RPCS3_MASTER_VOLUME_LABEL_CHS "主音量"
 #define RPCS3_MASTER_VOLUME_INFO_0_CHS "主音量百分比。"
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_CHS NULL
@@ -5470,9 +5541,15 @@ struct retro_core_options_v2 options_ca = {
 #define OPTION_VAL_90_CHS NULL
 #define RPCS3_AUDIO_FORMAT_LABEL_CHS NULL
 #define RPCS3_AUDIO_FORMAT_INFO_0_CHS NULL
-#define OPTION_VAL_STEREO_CHS NULL
+#define OPTION_VAL_STEREO_CHS "立体声"
 #define OPTION_VAL_SURROUND_5_1_CHS NULL
 #define OPTION_VAL_SURROUND_7_1_CHS NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_CHS NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_CHS NULL
+#define OPTION_VAL_UNLIMITED_CHS NULL
+#define OPTION_VAL_1GB_CHS NULL
+#define OPTION_VAL_5GB_CHS NULL
+#define OPTION_VAL_WIPE_CHS NULL
 #define RPCS3_LANGUAGE_LABEL_CHS "系统语言"
 #define RPCS3_LANGUAGE_INFO_0_CHS "PS3 系统语言设定。"
 #define OPTION_VAL_ENGLISH_CHS "英语"
@@ -5657,6 +5734,13 @@ struct retro_core_option_v2_definition option_defs_chs[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_CHS}, {"vulkan", OPTION_VAL_VULKAN_CHS}, {"null", OPTION_VAL_NULL_CHS}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_CHS, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_CHS,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_CHS}, {"4:3", OPTION_VAL_4_3_CHS}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_CHS, NULL,
@@ -5844,7 +5928,7 @@ struct retro_core_option_v2_definition option_defs_chs[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_CHS, NULL,
         RPCS3_VBLANK_RATE_INFO_0_CHS,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_CHS}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_CHS}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_CHS}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_CHS}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_CHS}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_CHS}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_CHS}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_CHS}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_CHS}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_CHS}, {"list", OPTION_VAL_LIST_CHS}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -6083,13 +6167,6 @@ struct retro_core_option_v2_definition option_defs_chs[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_CHS, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_CHS,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_CHS}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_CHS, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_CHS,
         NULL, "core",
@@ -6102,6 +6179,13 @@ struct retro_core_option_v2_definition option_defs_chs[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_CHS}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_CHS}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_CHS}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_CHS, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_CHS,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_CHS}, {"1gb", OPTION_VAL_1GB_CHS}, {"5gb", OPTION_VAL_5GB_CHS}, {"wipe", OPTION_VAL_WIPE_CHS}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_CHS, NULL,
@@ -6283,6 +6367,10 @@ struct retro_core_options_v2 options_chs = {
 #define OPTION_VAL_OPENGL_CHT NULL
 #define OPTION_VAL_VULKAN_CHT NULL
 #define OPTION_VAL_NULL_CHT NULL
+#define RPCS3_ASPECT_RATIO_LABEL_CHT "寬高比"
+#define RPCS3_ASPECT_RATIO_INFO_0_CHT NULL
+#define OPTION_VAL_16_9_CHT NULL
+#define OPTION_VAL_4_3_CHT NULL
 #define RPCS3_FRAME_LIMIT_LABEL_CHT NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_CHT NULL
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_CHT "自動"
@@ -6357,7 +6445,6 @@ struct retro_core_options_v2 options_chs = {
 #define OPTION_VAL_16_10_CHT NULL
 #define OPTION_VAL_21_9_CHT NULL
 #define OPTION_VAL_32_9_CHT NULL
-#define OPTION_VAL_4_3_CHT NULL
 #define OPTION_VAL_5_4_CHT NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_CHT NULL
 #define RPCS3_MULTITHREADED_RSX_INFO_0_CHT NULL
@@ -6399,6 +6486,7 @@ struct retro_core_options_v2 options_chs = {
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_CHT NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_CHT NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_CHT NULL
+#define OPTION_VAL_LIST_CHT NULL
 #define RPCS3_THREAD_SCHEDULER_LABEL_CHT NULL
 #define RPCS3_THREAD_SCHEDULER_INFO_0_CHT NULL
 #define OPTION_VAL_OS_CHT NULL
@@ -6483,9 +6571,6 @@ struct retro_core_options_v2 options_chs = {
 #define RPCS3_FRAME_PACING_INFO_0_CHT NULL
 #define OPTION_VAL_FRONTEND_CHT "復古電玩"
 #define OPTION_VAL_EMULATOR_CHT NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_CHT NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_CHT NULL
-#define OPTION_VAL_LIST_CHT NULL
 #define RPCS3_MASTER_VOLUME_LABEL_CHT "主音量"
 #define RPCS3_MASTER_VOLUME_INFO_0_CHT NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_CHT NULL
@@ -6499,9 +6584,15 @@ struct retro_core_options_v2 options_chs = {
 #define OPTION_VAL_90_CHT NULL
 #define RPCS3_AUDIO_FORMAT_LABEL_CHT NULL
 #define RPCS3_AUDIO_FORMAT_INFO_0_CHT NULL
-#define OPTION_VAL_STEREO_CHT NULL
+#define OPTION_VAL_STEREO_CHT "立體聲"
 #define OPTION_VAL_SURROUND_5_1_CHT NULL
 #define OPTION_VAL_SURROUND_7_1_CHT NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_CHT NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_CHT NULL
+#define OPTION_VAL_UNLIMITED_CHT NULL
+#define OPTION_VAL_1GB_CHT NULL
+#define OPTION_VAL_5GB_CHT NULL
+#define OPTION_VAL_WIPE_CHT NULL
 #define RPCS3_LANGUAGE_LABEL_CHT NULL
 #define RPCS3_LANGUAGE_INFO_0_CHT NULL
 #define OPTION_VAL_ENGLISH_CHT "英語"
@@ -6686,6 +6777,13 @@ struct retro_core_option_v2_definition option_defs_cht[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_CHT}, {"vulkan", OPTION_VAL_VULKAN_CHT}, {"null", OPTION_VAL_NULL_CHT}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_CHT, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_CHT,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_CHT}, {"4:3", OPTION_VAL_4_3_CHT}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_CHT, NULL,
@@ -6873,7 +6971,7 @@ struct retro_core_option_v2_definition option_defs_cht[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_CHT, NULL,
         RPCS3_VBLANK_RATE_INFO_0_CHT,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_CHT}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_CHT}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_CHT}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_CHT}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_CHT}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_CHT}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_CHT}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_CHT}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_CHT}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_CHT}, {"list", OPTION_VAL_LIST_CHT}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -7112,13 +7210,6 @@ struct retro_core_option_v2_definition option_defs_cht[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_CHT, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_CHT,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_CHT}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_CHT, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_CHT,
         NULL, "core",
@@ -7131,6 +7222,13 @@ struct retro_core_option_v2_definition option_defs_cht[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_CHT}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_CHT}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_CHT}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_CHT, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_CHT,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_CHT}, {"1gb", OPTION_VAL_1GB_CHT}, {"5gb", OPTION_VAL_5GB_CHT}, {"wipe", OPTION_VAL_WIPE_CHT}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_CHT, NULL,
@@ -7312,6 +7410,10 @@ struct retro_core_options_v2 options_cht = {
 #define OPTION_VAL_OPENGL_CS NULL
 #define OPTION_VAL_VULKAN_CS NULL
 #define OPTION_VAL_NULL_CS NULL
+#define RPCS3_ASPECT_RATIO_LABEL_CS "Poměr stran"
+#define RPCS3_ASPECT_RATIO_INFO_0_CS NULL
+#define OPTION_VAL_16_9_CS NULL
+#define OPTION_VAL_4_3_CS NULL
 #define RPCS3_FRAME_LIMIT_LABEL_CS NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_CS NULL
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_CS NULL
@@ -7386,7 +7488,6 @@ struct retro_core_options_v2 options_cht = {
 #define OPTION_VAL_16_10_CS NULL
 #define OPTION_VAL_21_9_CS NULL
 #define OPTION_VAL_32_9_CS NULL
-#define OPTION_VAL_4_3_CS NULL
 #define OPTION_VAL_5_4_CS NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_CS NULL
 #define RPCS3_MULTITHREADED_RSX_INFO_0_CS NULL
@@ -7428,6 +7529,7 @@ struct retro_core_options_v2 options_cht = {
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_CS NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_CS NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_CS NULL
+#define OPTION_VAL_LIST_CS NULL
 #define RPCS3_THREAD_SCHEDULER_LABEL_CS NULL
 #define RPCS3_THREAD_SCHEDULER_INFO_0_CS NULL
 #define OPTION_VAL_OS_CS NULL
@@ -7512,9 +7614,6 @@ struct retro_core_options_v2 options_cht = {
 #define RPCS3_FRAME_PACING_INFO_0_CS NULL
 #define OPTION_VAL_FRONTEND_CS NULL
 #define OPTION_VAL_EMULATOR_CS NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_CS NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_CS NULL
-#define OPTION_VAL_LIST_CS NULL
 #define RPCS3_MASTER_VOLUME_LABEL_CS "Hlavní Hlasitost"
 #define RPCS3_MASTER_VOLUME_INFO_0_CS NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_CS NULL
@@ -7531,6 +7630,12 @@ struct retro_core_options_v2 options_cht = {
 #define OPTION_VAL_STEREO_CS NULL
 #define OPTION_VAL_SURROUND_5_1_CS NULL
 #define OPTION_VAL_SURROUND_7_1_CS NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_CS NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_CS NULL
+#define OPTION_VAL_UNLIMITED_CS NULL
+#define OPTION_VAL_1GB_CS NULL
+#define OPTION_VAL_5GB_CS NULL
+#define OPTION_VAL_WIPE_CS NULL
 #define RPCS3_LANGUAGE_LABEL_CS NULL
 #define RPCS3_LANGUAGE_INFO_0_CS NULL
 #define OPTION_VAL_ENGLISH_CS "Angličtina"
@@ -7715,6 +7820,13 @@ struct retro_core_option_v2_definition option_defs_cs[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_CS}, {"vulkan", OPTION_VAL_VULKAN_CS}, {"null", OPTION_VAL_NULL_CS}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_CS, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_CS,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_CS}, {"4:3", OPTION_VAL_4_3_CS}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_CS, NULL,
@@ -7902,7 +8014,7 @@ struct retro_core_option_v2_definition option_defs_cs[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_CS, NULL,
         RPCS3_VBLANK_RATE_INFO_0_CS,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_CS}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_CS}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_CS}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_CS}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_CS}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_CS}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_CS}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_CS}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_CS}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_CS}, {"list", OPTION_VAL_LIST_CS}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -8141,13 +8253,6 @@ struct retro_core_option_v2_definition option_defs_cs[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_CS, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_CS,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_CS}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_CS, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_CS,
         NULL, "core",
@@ -8160,6 +8265,13 @@ struct retro_core_option_v2_definition option_defs_cs[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_CS}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_CS}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_CS}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_CS, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_CS,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_CS}, {"1gb", OPTION_VAL_1GB_CS}, {"5gb", OPTION_VAL_5GB_CS}, {"wipe", OPTION_VAL_WIPE_CS}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_CS, NULL,
@@ -8341,6 +8453,10 @@ struct retro_core_options_v2 options_cs = {
 #define OPTION_VAL_OPENGL_CY NULL
 #define OPTION_VAL_VULKAN_CY NULL
 #define OPTION_VAL_NULL_CY NULL
+#define RPCS3_ASPECT_RATIO_LABEL_CY NULL
+#define RPCS3_ASPECT_RATIO_INFO_0_CY NULL
+#define OPTION_VAL_16_9_CY NULL
+#define OPTION_VAL_4_3_CY NULL
 #define RPCS3_FRAME_LIMIT_LABEL_CY NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_CY NULL
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_CY NULL
@@ -8415,7 +8531,6 @@ struct retro_core_options_v2 options_cs = {
 #define OPTION_VAL_16_10_CY NULL
 #define OPTION_VAL_21_9_CY NULL
 #define OPTION_VAL_32_9_CY NULL
-#define OPTION_VAL_4_3_CY NULL
 #define OPTION_VAL_5_4_CY NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_CY NULL
 #define RPCS3_MULTITHREADED_RSX_INFO_0_CY NULL
@@ -8457,6 +8572,7 @@ struct retro_core_options_v2 options_cs = {
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_CY NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_CY NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_CY NULL
+#define OPTION_VAL_LIST_CY NULL
 #define RPCS3_THREAD_SCHEDULER_LABEL_CY NULL
 #define RPCS3_THREAD_SCHEDULER_INFO_0_CY NULL
 #define OPTION_VAL_OS_CY NULL
@@ -8541,9 +8657,6 @@ struct retro_core_options_v2 options_cs = {
 #define RPCS3_FRAME_PACING_INFO_0_CY NULL
 #define OPTION_VAL_FRONTEND_CY NULL
 #define OPTION_VAL_EMULATOR_CY NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_CY NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_CY NULL
-#define OPTION_VAL_LIST_CY NULL
 #define RPCS3_MASTER_VOLUME_LABEL_CY NULL
 #define RPCS3_MASTER_VOLUME_INFO_0_CY NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_CY NULL
@@ -8560,6 +8673,12 @@ struct retro_core_options_v2 options_cs = {
 #define OPTION_VAL_STEREO_CY NULL
 #define OPTION_VAL_SURROUND_5_1_CY NULL
 #define OPTION_VAL_SURROUND_7_1_CY NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_CY NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_CY NULL
+#define OPTION_VAL_UNLIMITED_CY NULL
+#define OPTION_VAL_1GB_CY NULL
+#define OPTION_VAL_5GB_CY NULL
+#define OPTION_VAL_WIPE_CY NULL
 #define RPCS3_LANGUAGE_LABEL_CY NULL
 #define RPCS3_LANGUAGE_INFO_0_CY NULL
 #define OPTION_VAL_ENGLISH_CY NULL
@@ -8744,6 +8863,13 @@ struct retro_core_option_v2_definition option_defs_cy[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_CY}, {"vulkan", OPTION_VAL_VULKAN_CY}, {"null", OPTION_VAL_NULL_CY}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_CY, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_CY,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_CY}, {"4:3", OPTION_VAL_4_3_CY}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_CY, NULL,
@@ -8931,7 +9057,7 @@ struct retro_core_option_v2_definition option_defs_cy[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_CY, NULL,
         RPCS3_VBLANK_RATE_INFO_0_CY,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_CY}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_CY}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_CY}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_CY}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_CY}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_CY}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_CY}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_CY}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_CY}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_CY}, {"list", OPTION_VAL_LIST_CY}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -9170,13 +9296,6 @@ struct retro_core_option_v2_definition option_defs_cy[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_CY, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_CY,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_CY}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_CY, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_CY,
         NULL, "core",
@@ -9189,6 +9308,13 @@ struct retro_core_option_v2_definition option_defs_cy[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_CY}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_CY}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_CY}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_CY, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_CY,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_CY}, {"1gb", OPTION_VAL_1GB_CY}, {"5gb", OPTION_VAL_5GB_CY}, {"wipe", OPTION_VAL_WIPE_CY}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_CY, NULL,
@@ -9370,6 +9496,10 @@ struct retro_core_options_v2 options_cy = {
 #define OPTION_VAL_OPENGL_DA NULL
 #define OPTION_VAL_VULKAN_DA NULL
 #define OPTION_VAL_NULL_DA NULL
+#define RPCS3_ASPECT_RATIO_LABEL_DA NULL
+#define RPCS3_ASPECT_RATIO_INFO_0_DA NULL
+#define OPTION_VAL_16_9_DA NULL
+#define OPTION_VAL_4_3_DA NULL
 #define RPCS3_FRAME_LIMIT_LABEL_DA NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_DA NULL
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_DA NULL
@@ -9444,7 +9574,6 @@ struct retro_core_options_v2 options_cy = {
 #define OPTION_VAL_16_10_DA NULL
 #define OPTION_VAL_21_9_DA NULL
 #define OPTION_VAL_32_9_DA NULL
-#define OPTION_VAL_4_3_DA NULL
 #define OPTION_VAL_5_4_DA NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_DA NULL
 #define RPCS3_MULTITHREADED_RSX_INFO_0_DA NULL
@@ -9486,6 +9615,7 @@ struct retro_core_options_v2 options_cy = {
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_DA NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_DA NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_DA NULL
+#define OPTION_VAL_LIST_DA NULL
 #define RPCS3_THREAD_SCHEDULER_LABEL_DA NULL
 #define RPCS3_THREAD_SCHEDULER_INFO_0_DA NULL
 #define OPTION_VAL_OS_DA NULL
@@ -9570,9 +9700,6 @@ struct retro_core_options_v2 options_cy = {
 #define RPCS3_FRAME_PACING_INFO_0_DA NULL
 #define OPTION_VAL_FRONTEND_DA NULL
 #define OPTION_VAL_EMULATOR_DA NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_DA NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_DA NULL
-#define OPTION_VAL_LIST_DA NULL
 #define RPCS3_MASTER_VOLUME_LABEL_DA NULL
 #define RPCS3_MASTER_VOLUME_INFO_0_DA NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_DA NULL
@@ -9589,6 +9716,12 @@ struct retro_core_options_v2 options_cy = {
 #define OPTION_VAL_STEREO_DA NULL
 #define OPTION_VAL_SURROUND_5_1_DA NULL
 #define OPTION_VAL_SURROUND_7_1_DA NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_DA NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_DA NULL
+#define OPTION_VAL_UNLIMITED_DA NULL
+#define OPTION_VAL_1GB_DA NULL
+#define OPTION_VAL_5GB_DA NULL
+#define OPTION_VAL_WIPE_DA NULL
 #define RPCS3_LANGUAGE_LABEL_DA NULL
 #define RPCS3_LANGUAGE_INFO_0_DA NULL
 #define OPTION_VAL_ENGLISH_DA NULL
@@ -9773,6 +9906,13 @@ struct retro_core_option_v2_definition option_defs_da[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_DA}, {"vulkan", OPTION_VAL_VULKAN_DA}, {"null", OPTION_VAL_NULL_DA}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_DA, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_DA,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_DA}, {"4:3", OPTION_VAL_4_3_DA}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_DA, NULL,
@@ -9960,7 +10100,7 @@ struct retro_core_option_v2_definition option_defs_da[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_DA, NULL,
         RPCS3_VBLANK_RATE_INFO_0_DA,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_DA}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_DA}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_DA}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_DA}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_DA}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_DA}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_DA}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_DA}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_DA}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_DA}, {"list", OPTION_VAL_LIST_DA}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -10199,13 +10339,6 @@ struct retro_core_option_v2_definition option_defs_da[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_DA, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_DA,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_DA}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_DA, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_DA,
         NULL, "core",
@@ -10218,6 +10351,13 @@ struct retro_core_option_v2_definition option_defs_da[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_DA}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_DA}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_DA}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_DA, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_DA,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_DA}, {"1gb", OPTION_VAL_1GB_DA}, {"5gb", OPTION_VAL_5GB_DA}, {"wipe", OPTION_VAL_WIPE_DA}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_DA, NULL,
@@ -10342,21 +10482,21 @@ struct retro_core_options_v2 options_da = {
 #define CATEGORY_CORE_LABEL_DE "Cores"
 #define CATEGORY_CORE_INFO_0_DE "Optionen des Cores selbst für Sprache, Region, Overlay, Frame Pacing, Lautstärke und weitere Einstellungen."
 #define RPCS3_PPU_DECODER_LABEL_DE "PPU-Decoder"
-#define RPCS3_PPU_DECODER_INFO_0_DE NULL
+#define RPCS3_PPU_DECODER_INFO_0_DE "PPU-Decoder (Haupt-CPU). Der LLVM-Recompiler ist am schnellsten."
 #define OPTION_VAL_LLVM_DE NULL
 #define OPTION_VAL_INTERPRETER_DE "Interpreter (statisch)"
 #define RPCS3_SPU_DECODER_LABEL_DE "SPU-Decoder"
-#define RPCS3_SPU_DECODER_INFO_0_DE NULL
+#define RPCS3_SPU_DECODER_INFO_0_DE "SPU-Decoder (Koprozessor). Der LLVM-Recompiler ist am schnellsten."
 #define OPTION_VAL_ASMJIT_DE NULL
 #define OPTION_VAL_DYNAMIC_DE "Interpreter (dynamisch)"
-#define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_DE NULL
-#define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_DE NULL
+#define RPCS3_SPU_XFLOAT_ACCURACY_LABEL_DE "SPU-XFloat-Genauigkeit"
+#define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_DE "Genauigkeitsstufe der SPU-Gleitkommaoperationen."
 #define OPTION_VAL_ACCURATE_DE "Genau"
 #define OPTION_VAL_APPROXIMATE_DE "Annähernd"
 #define OPTION_VAL_RELAXED_DE "Tolerant"
 #define OPTION_VAL_INACCURATE_DE "Ungenau"
 #define RPCS3_SPU_BLOCK_SIZE_LABEL_DE "SPU-Blockgröße"
-#define RPCS3_SPU_BLOCK_SIZE_INFO_0_DE NULL
+#define RPCS3_SPU_BLOCK_SIZE_INFO_0_DE "Blockgröße des SPU-Recompilers. Mega/Giga können die Leistung verbessern."
 #define OPTION_VAL_SAFE_DE "Sicher"
 #define OPTION_VAL_MEGA_DE NULL
 #define OPTION_VAL_GIGA_DE NULL
@@ -10379,15 +10519,15 @@ struct retro_core_options_v2 options_da = {
 #define RPCS3_PPU_RESERVATION_PRIORITY_LABEL_DE "PPU-Reservierungspriorität"
 #define RPCS3_PPU_RESERVATION_PRIORITY_INFO_0_DE "Gibt PPU-Reservierungen Vorrang vor denen der SPUs, wie bei RPCS3. Kann bei Spielen helfen, die dadurch ins Stocken geraten."
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_DE "PPU-/SPU-LLVM-Vorkompilierung"
-#define RPCS3_LLVM_PRECOMPILATION_INFO_0_DE NULL
-#define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_DE NULL
-#define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_DE NULL
+#define RPCS3_LLVM_PRECOMPILATION_INFO_0_DE "PPU-Module beim Start vorkompillieren, um nachfolgende Ladevorgänge zu beschleunigen."
+#define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_DE "Genauigkeit der Schlaftimer"
+#define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_DE "Genauigkeitsstufe der Schlaftimer."
 #define OPTION_VAL_AUTO_DE "Automatisch"
-#define OPTION_VAL_AS_HOST_DE NULL
+#define OPTION_VAL_AS_HOST_DE "Wie Host"
 #define OPTION_VAL_USLEEP_DE "Nur Usleep"
 #define OPTION_VAL_ALL_TIMERS_DE "Alle Timer"
-#define RPCS3_CLOCKS_SCALE_LABEL_DE NULL
-#define RPCS3_CLOCKS_SCALE_INFO_0_DE NULL
+#define RPCS3_CLOCKS_SCALE_LABEL_DE "Taktskalierung"
+#define RPCS3_CLOCKS_SCALE_INFO_0_DE "Skaliert die Taktrate der PS3 prozentual."
 #define OPTION_VAL_50_DE "50 %"
 #define OPTION_VAL_75_DE "75 %"
 #define OPTION_VAL_100_DE "100 %"
@@ -10398,8 +10538,12 @@ struct retro_core_options_v2 options_da = {
 #define RPCS3_RENDERER_INFO_0_DE "Vulkan rendert auf dem Vulkan-Gerät des Frontends und übergibt ihm jedes fertige Bild als Bilddaten. Wenn das Frontend nicht seinen Vulkan-Videotreiber verwendet, wird das Bild stattdessen über den Arbeitsspeicher zurückkopiert. OpenGL rendert direkt in den OpenGL-Kontext des Frontends. (Neustart erforderlich)"
 #define OPTION_VAL_OPENGL_DE NULL
 #define OPTION_VAL_VULKAN_DE NULL
-#define OPTION_VAL_NULL_DE NULL
-#define RPCS3_FRAME_LIMIT_LABEL_DE NULL
+#define OPTION_VAL_NULL_DE "Null (Kein Video)"
+#define RPCS3_ASPECT_RATIO_LABEL_DE "Bildseitenverhältnis"
+#define RPCS3_ASPECT_RATIO_INFO_0_DE "Ändert das Seitenverhältnis der Ausgabe. Nur einige PS3-Spiele unterstützen nativ 4:3. (Neustart erforderlich)"
+#define OPTION_VAL_16_9_DE "16:9 (Standard)"
+#define OPTION_VAL_4_3_DE NULL
+#define RPCS3_FRAME_LIMIT_LABEL_DE "Frame-Limit"
 #define RPCS3_FRAME_LIMIT_INFO_0_DE "Höchste Bildrate, mit der das Spiel ausgeführt werden darf. „Automatisch“ verwendet die VBlank-Frequenz wie in RPCS3. „PS3-nativ“ taktet die Bildwechsel wie die PS3. „Aus“ ermöglicht es Spielen, die nicht auf die Bildwiederholrate der PS3 warten, mit überhöhter Geschwindigkeit zu laufen."
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_DE NULL
 #define OPTION_VAL_PS3_DE "PS3 Nativ"
@@ -10410,7 +10554,7 @@ struct retro_core_options_v2 options_da = {
 #define OPTION_VAL_144_DE NULL
 #define OPTION_VAL_240_DE NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_DE "Anisotrope Filterung"
-#define RPCS3_ANISOTROPIC_FILTER_INFO_0_DE NULL
+#define RPCS3_ANISOTROPIC_FILTER_INFO_0_DE "Qualität der Texturfilterung."
 #define OPTION_VAL_2_DE NULL
 #define OPTION_VAL_4_DE NULL
 #define OPTION_VAL_8_DE NULL
@@ -10427,12 +10571,12 @@ struct retro_core_options_v2 options_da = {
 #define OPTION_VAL_HIGH_DE "Hoch"
 #define OPTION_VAL_ULTRA_DE NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_DE "Standardauflösung"
-#define RPCS3_DEFAULT_RESOLUTION_INFO_0_DE "Die Ausgabeauflösung, die die emulierte PS3 dem Spiel bereitstellt, wie bei RPCS3. Die meisten Spiele laufen mit 720p; einige sehen bei 1080p besser aus, und manche benötigen 480p oder 576p, um Fehler zu vermeiden. Die Einstellung wird wirksam, sobald der Inhalt geladen ist."
+#define RPCS3_DEFAULT_RESOLUTION_INFO_0_DE "DIESE OPTION NICHT ÄNDERN, UM DAS SPIEL HOCHZUSKALIEREN. Dafür „Auflösungsskalierung“ verwenden. 1080p nur verwenden, wenn das Spiel diese Auflösung unterstützt. Aufgrund von Emulationsfehlern werden manche Spiele in seltenen Fällen nur mit einer Auflösung unter 720p dargestellt."
 #define OPTION_VAL_720P_DE "720p (Standard)"
 #define OPTION_VAL_1080P_DE NULL
 #define OPTION_VAL_480P_DE NULL
 #define OPTION_VAL_576P_DE NULL
-#define RPCS3_RESOLUTION_SCALE_LABEL_DE NULL
+#define RPCS3_RESOLUTION_SCALE_LABEL_DE "Auflösungsskalierung"
 #define RPCS3_RESOLUTION_SCALE_INFO_0_DE "Interne Rendering-Auflösung als Prozentsatz der Auflösung des Spiels. 200 % eines 720p-Spiels entsprechen 2560×1440, bei einem 1080p-Spiel 3840×2160."
 #define OPTION_VAL_25_DE "25 %"
 #define OPTION_VAL_66_DE "66 %"
@@ -10449,36 +10593,35 @@ struct retro_core_options_v2 options_da = {
 #define OPTION_VAL_16_RPCS3_SCALE_THRESHOLD_DE "16×16 (Standard)"
 #define OPTION_VAL_64_DE "64×64"
 #define OPTION_VAL_128_DE "128×128"
-#define OPTION_VAL_160_DE "160×160"
+#define OPTION_VAL_160_DE "160 × 160"
 #define OPTION_VAL_256_DE "256×256"
-#define OPTION_VAL_320_DE "320×320"
+#define OPTION_VAL_320_DE "320 × 320"
 #define OPTION_VAL_512_DE "512×512"
 #define OPTION_VAL_592_DE "592×592"
 #define OPTION_VAL_640_DE "640×640"
 #define OPTION_VAL_1024_DE "1024×1024"
-#define RPCS3_SHADER_MODE_LABEL_DE "Shader-Modus"
-#define RPCS3_SHADER_MODE_INFO_0_DE NULL
+#define RPCS3_SHADER_MODE_LABEL_DE "Shadermodus"
+#define RPCS3_SHADER_MODE_INFO_0_DE "Legt fest, wie Shader kompiliert werden. Bei „Asynchron“ erfolgt die Kompilierung im Hintergrund. Der erste Frame, der eine Pipeline benötigt, muss jedoch auf deren Fertigstellung warten – häufig führt das beim Laden einer neuen Szene zu einem längeren Einfrieren. Bei „Asynchron mit Shaderinterpreter“ wird dieser Frame stattdessen mit dem Interpreter gerendert. Sobald der kompilierte Shader bereit ist, wird er übernommen: Das Einfrieren entfällt, dafür ist die Leistung geringer, bis die Kompilierung aufgeholt hat."
 #define OPTION_VAL_ASYNC_DE "Asynchron (empfohlen)"
 #define OPTION_VAL_ASYNC_INTERPRETER_DE "Asynchron mit Shader-Interpreter (keine Wartezeiten)"
 #define OPTION_VAL_ASYNC_RECOMPILER_DE "Asynchron mit Recompiler"
-#define OPTION_VAL_INTERPRETER_RPCS3_SHADER_MODE_DE "Nur Shader-Interpreter"
+#define OPTION_VAL_INTERPRETER_RPCS3_SHADER_MODE_DE "Nur Shaderinterpreter"
 #define OPTION_VAL_SYNC_DE "Synchron"
 #define RPCS3_WRITE_COLOR_BUFFERS_LABEL_DE "Farbpuffer schreiben"
-#define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_DE NULL
-#define RPCS3_STRICT_RENDERING_LABEL_DE NULL
-#define RPCS3_STRICT_RENDERING_INFO_0_DE NULL
+#define RPCS3_WRITE_COLOR_BUFFERS_INFO_0_DE "Schreibt Farbpuffer in den Hauptspeicher. Behebt Probleme mit einigen Effekten."
+#define RPCS3_STRICT_RENDERING_LABEL_DE "Strikter Rendering-Modus"
+#define RPCS3_STRICT_RENDERING_INFO_0_DE "Aktiviert striktes Rendering für höhere Genauigkeit."
 #define RPCS3_STRETCH_TO_DISPLAY_LABEL_DE "Auf Anzeigebereich strecken"
 #define RPCS3_STRETCH_TO_DISPLAY_INFO_0_DE "Spielausgabe strecken, damit sie den gesamten Bildschirm ausfüllt. Dieses Seitenverhältnis wird RetroArch gemeldet. Für Spiele, die auf ein breiteres Format (21:9, 32:9) angepasst wurden, das Seitenverhältnis des Displays auswählen. In RetroArch muss das Seitenverhältnis auf „Vom Core bereitgestellt“ eingestellt sein."
 #define OPTION_VAL_ENABLED_DE NULL
 #define OPTION_VAL_16_10_DE NULL
 #define OPTION_VAL_21_9_DE NULL
 #define OPTION_VAL_32_9_DE NULL
-#define OPTION_VAL_4_3_DE NULL
 #define OPTION_VAL_5_4_DE NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_DE NULL
 #define RPCS3_MULTITHREADED_RSX_INFO_0_DE "Verschiebt einen Teil der RSX-Arbeit auf einen zweiten Thread. Wie bei RPCS3 ist diese Option standardmäßig deaktiviert. Sie kann bei Prozessoren mit wenigen leistungsstarken Kernen helfen, auch bei Smartphones."
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_DE "Asynchrones Textur-Streaming"
-#define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_DE NULL
+#define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_DE "Aktiviert asynchrones Textur-Streaming."
 #define RPCS3_HOST_GPU_LABELS_LABEL_DE "Host-GPU-Labels zulassen"
 #define RPCS3_HOST_GPU_LABELS_INFO_0_DE "Ermöglicht es der Host-GPU, RSX-Labels selbst zu signalisieren, sodass die CPU nicht auf die Labels warten muss. In einigen Spielen schneller, in anderen instabil."
 #define RPCS3_DISABLE_BLIT_UPSCALING_LABEL_DE "Hochskalierung der Blit-Engine deaktivieren"
@@ -10492,47 +10635,48 @@ struct retro_core_options_v2 options_da = {
 #define RPCS3_HANDLE_TILED_MEMORY_LABEL_DE "RSX-Speicher-Tiling verarbeiten"
 #define RPCS3_HANDLE_TILED_MEMORY_INFO_0_DE "Emuliert das Speicher-Tiling des RSX für Spiele, die ihre gekachelten Oberflächen wieder auslesen. Geht zulasten der Geschwindigkeit."
 #define RPCS3_READ_DEPTH_BUFFERS_LABEL_DE "Tiefenpuffer lesen"
-#define RPCS3_READ_DEPTH_BUFFERS_INFO_0_DE NULL
+#define RPCS3_READ_DEPTH_BUFFERS_INFO_0_DE "Die Tiefenpuffer aus dem Hauptspeicher lesen."
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_DE "Farbpuffer lesen"
-#define RPCS3_READ_COLOR_BUFFERS_INFO_0_DE NULL
+#define RPCS3_READ_COLOR_BUFFERS_INFO_0_DE "Die Farbpuffer aus dem Hauptspeicher lesen."
 #define RPCS3_USE_REBAR_LABEL_DE "Re-BAR-Speicher für GPU-Uploads verwenden"
 #define RPCS3_USE_REBAR_INFO_0_DE "Überträgt Daten über den Resizable-BAR-Speicher an die GPU, sofern der Vulkan-Treiber dies unterstützt, wie bei RPCS3 (dort ebenfalls standardmäßig aktiviert). Deaktivieren, falls dadurch Probleme verursacht werden."
 #define RPCS3_WRITE_DEPTH_BUFFERS_LABEL_DE "Tiefenpuffer schreiben"
 #define RPCS3_WRITE_DEPTH_BUFFERS_INFO_0_DE "Tiefenpuffer in den Hauptspeicher schreiben."
-#define RPCS3_RSX_FIFO_ACCURACY_LABEL_DE NULL
-#define RPCS3_RSX_FIFO_ACCURACY_INFO_0_DE NULL
+#define RPCS3_RSX_FIFO_ACCURACY_LABEL_DE "RSX-FIFO-Genauigkeit"
+#define RPCS3_RSX_FIFO_ACCURACY_INFO_0_DE "Genauigkeitsstufe der RSX-FIFO-Befehlsverarbeitung."
 #define OPTION_VAL_FAST_DE "Schnell"
 #define OPTION_VAL_ATOMIC_DE "Atomar"
 #define OPTION_VAL_ATOMIC_ORDERED_DE "Geordnet und Atomar"
 #define OPTION_VAL_AS_PS3_DE NULL
-#define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_DE NULL
+#define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_DE "Aufweckverzögerung des Treibers"
 #define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_DE "Verzögerung für das Aufwecken des Treibers in Mikrosekunden. Standardmäßig 0, wie bei RPCS3; nur erhöhen, wenn ein Spiel dies erfordert."
 #define OPTION_VAL_0_DE "0 (Standard)"
 #define RPCS3_VBLANK_RATE_LABEL_DE "VBlank-Frequenz"
-#define RPCS3_VBLANK_RATE_INFO_0_DE NULL
+#define RPCS3_VBLANK_RATE_INFO_0_DE "Die Bildwiederholrate der PS3 in Hz. Sie entspricht auch der Bildrate, die der Core bei RetroArch anfordert, und wird wirksam, sobald Inhalte geladen werden. Spiele, die mit mehr als 60 FPS laufen können, benötigen ein Display mit entsprechend hoher Bildwiederholrate. Bei „Aus der Liste“ wird die Vblank-Rate für unterstützte Spiele verdoppelt, die in der Datei vblank_unlock.txt unter system/rpcs3 aufgeführt sind. Möglicherweise müssen spielespezifische Patches angewendet werden."
 #define OPTION_VAL_50_RPCS3_VBLANK_RATE_DE NULL
 #define OPTION_VAL_60_RPCS3_VBLANK_RATE_DE NULL
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_DE NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_DE NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_DE NULL
+#define OPTION_VAL_LIST_DE "Aus der Liste"
 #define RPCS3_THREAD_SCHEDULER_LABEL_DE "Thread-Scheduler"
 #define RPCS3_THREAD_SCHEDULER_INFO_0_DE "Wer die Threads des Emulators den CPU-Kernen zuweist, wie bei RPCS3. Bei „Betriebssystem“ wird die Zuweisung dem System überlassen; die RPCS3-Scheduler heften PPU-, SPU- und RSX-Threads eigenständig an CPU-Kerne. Dafür sind Layouts für einige Desktop-CPUs hinterlegt. Diese Einstellung hat unter Android keine Auswirkungen, da der Core dort keine Threads an CPU-Kerne binden kann."
 #define OPTION_VAL_OS_DE "Betriebssystem"
 #define OPTION_VAL_OLD_DE "RPCS3-Scheduler"
 #define OPTION_VAL_ALT_DE "Alternativer RPCS3-Scheduler"
-#define RPCS3_PREFERRED_SPU_THREADS_LABEL_DE NULL
-#define RPCS3_PREFERRED_SPU_THREADS_INFO_0_DE NULL
+#define RPCS3_PREFERRED_SPU_THREADS_LABEL_DE "Bevorzugte SPU-Threads"
+#define RPCS3_PREFERRED_SPU_THREADS_INFO_0_DE "Anzahl der SPU-Threads. „Automatisch“ empfohlen."
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_DE "SPU-Schleifenerkennung aktivieren"
 #define RPCS3_SPU_LOOP_DETECTION_INFO_0_DE "Erkennt SPU-Schleifen, die nur warten, und überspringt sie. Das erhöht die Geschwindigkeit, kann aber bei einigen Spielen zu Problemen führen. Wie bei RPCS3 ist diese Option standardmäßig deaktiviert. Auf Smartphones kann sie zur Leistungssteigerung aktiviert werden."
 #define RPCS3_LLVM_THREADS_LABEL_DE "PPU-/SPU-LLVM-Compiler-Threads"
 #define RPCS3_LLVM_THREADS_INFO_0_DE "Wie viele Threads PPU- und SPU-Code mit LLVM kompilieren, entsprechend „Maximale LLVM-Kompilierungs-Threads“ in RPCS3. „Automatisch“ verwendet alle CPU-Kerne; eine geringere Anzahl hält ein Smartphone während der Kompilierung eines Spiels kühler, benötigt weniger Arbeitsspeicher und verlängert die Kompilierungsdauer. Bei ARM-CPUs mit Effizienzkernen (die meisten Smartphones und einige ARM-Laptops) lässt der Standardwert diese Kerne aus."
-#define RPCS3_SHADER_COMPILER_THREADS_LABEL_DE NULL
+#define RPCS3_SHADER_COMPILER_THREADS_LABEL_DE "Shadercompiler-Threads"
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_DE "Wie viele Threads Shader kompilieren. Bei „Automatisch“ entscheidet RPCS3 anhand der erkannten CPU. Bei ARM-CPUs mit Effizienzkernen (die meisten Smartphones und einige ARM-Laptops) lässt der Standardwert diese Kerne aus."
 #define RPCS3_PPU_THREADS_LABEL_DE "Anzahl der PPU-Threads"
 #define RPCS3_PPU_THREADS_INFO_0_DE "Wie viele PPU-Threads gleichzeitig ausgeführt werden, wie bei RPCS3. „2“ ist der Standardwert, den nahezu jedes Spiel benötigt."
 #define OPTION_VAL_2_RPCS3_PPU_THREADS_DE "2 (Standard)"
 #define RPCS3_MAX_SPURS_THREADS_LABEL_DE "Maximale Anzahl von SPURS-Threads"
-#define RPCS3_MAX_SPURS_THREADS_INFO_0_DE NULL
+#define RPCS3_MAX_SPURS_THREADS_INFO_0_DE "Maximale Anzahl von SPURS-Threads. Ein niedrigerer Wert kann die Leistung verbessern."
 #define RPCS3_MAX_PREEMPT_COUNT_LABEL_DE "Maximale CPU-Präemptionen zur Energieeinsparung"
 #define RPCS3_MAX_PREEMPT_COUNT_INFO_0_DE "Wie oft die CPU-Threads pro Frame zur Energieeinsparung pausiert werden dürfen, wie bei RPCS3. „0“ deaktiviert die Funktion."
 #define OPTION_VAL_0_RPCS3_MAX_PREEMPT_COUNT_DE "0 (Deaktiviert)"
@@ -10544,10 +10688,10 @@ struct retro_core_options_v2 options_da = {
 #define OPTION_VAL_RPCN_DE NULL
 #define RPCS3_UPNP_LABEL_DE NULL
 #define RPCS3_UPNP_INFO_0_DE "UPnP für automatische Portweiterleitung aktivieren."
-#define RPCS3_SHOW_RPCN_POPUPS_LABEL_DE NULL
-#define RPCS3_SHOW_RPCN_POPUPS_INFO_0_DE NULL
-#define RPCS3_SHOW_TROPHY_POPUPS_LABEL_DE NULL
-#define RPCS3_SHOW_TROPHY_POPUPS_INFO_0_DE NULL
+#define RPCS3_SHOW_RPCN_POPUPS_LABEL_DE "RPCN-Popups anzeigen"
+#define RPCS3_SHOW_RPCN_POPUPS_INFO_0_DE "RPCN-Popup-Benachrichtigungen anzeigen."
+#define RPCS3_SHOW_TROPHY_POPUPS_LABEL_DE "Trophäen-Popups anzeigen"
+#define RPCS3_SHOW_TROPHY_POPUPS_INFO_0_DE "Benachrichtigungen über freigeschaltete Trophäen anzeigen."
 #define RPCS3_DNS_LABEL_DE "DNS-Server"
 #define RPCS3_DNS_INFO_0_DE "DNS-Serveradresse."
 #define OPTION_VAL_8_8_8_8_DE NULL
@@ -10562,13 +10706,13 @@ struct retro_core_options_v2 options_da = {
 #define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_DE "ZCull-Okklusionsabfragen deaktivieren"
 #define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_DE "Okklusionsabfragen als durchlaufen melden, ohne sie auszuführen. Das ist schneller; führt jedoch dazu, dass Spiele, die darauf angewiesen sind (Linseneffekte, Sichtbarkeit), nicht mehr funktionieren."
 #define RPCS3_CPU_BLIT_LABEL_DE "CPU-Blit-Emulation erzwingen"
-#define RPCS3_CPU_BLIT_INFO_0_DE NULL
+#define RPCS3_CPU_BLIT_INFO_0_DE "CPU-Blit-Emulation für bestimmte Effekte erzwingen."
 #define RPCS3_GPU_TEXTURE_SCALING_LABEL_DE "GPU-Texturskalierung erzwingen"
 #define RPCS3_GPU_TEXTURE_SCALING_INFO_0_DE "Skaliert Texturen auf der GPU statt auf der CPU. Für Debugging-Zwecke; kann zu Fehlern in Spielen führen."
 #define RPCS3_SPU_EVENTS_BUSY_LOOP_LABEL_DE "Warteschleife für SPU-Ereignisse aktivieren"
 #define RPCS3_SPU_EVENTS_BUSY_LOOP_INFO_0_DE "Lässt SPU-Threads beim Warten auf Ereignisse in einer aktiven Warteschleife laufen, statt zu schlafen. Kann bei einigen wenigen Spielen helfen, verbraucht jedoch CPU-Zeit."
-#define RPCS3_HOOK_STATIC_FUNCS_LABEL_DE NULL
-#define RPCS3_HOOK_STATIC_FUNCS_INFO_0_DE NULL
+#define RPCS3_HOOK_STATIC_FUNCS_LABEL_DE "Statische Funktionen hooken"
+#define RPCS3_HOOK_STATIC_FUNCS_INFO_0_DE "Aktiviert Hooks für statische Funktionen in HLE."
 #define RPCS3_SET_DAZ_FTZ_LABEL_DE "DAZ und FTZ für die PPU setzen"
 #define RPCS3_SET_DAZ_FTZ_INFO_0_DE "Setzt die CPU-Flags „Denormals Are Zero“ (DAZ) und „Flush To Zero“ (FTZ) für die PPU. Zum Debuggen."
 #define RPCS3_SPU_CACHE_LINE_STORES_LABEL_DE "Präzise Schreibzugriffe auf PPU-/SPU-Cache-Zeilen"
@@ -10595,15 +10739,12 @@ struct retro_core_options_v2 options_da = {
 #define RPCS3_PERF_OVERLAY_INFO_0_DE "Die eigene Leistungsanzeige von RPCS3, die über dem Spiel eingeblendet wird: die Bildrate des Spiels, wie sie von RPCS3 erfasst wird, sowie bei höheren Detailstufen die Framezeiten und die CPU- und GPU-Auslastung."
 #define OPTION_VAL_MINIMAL_DE "Nur Bildrate"
 #define OPTION_VAL_MEDIUM_DE "Mittel"
-#define RPCS3_FRAME_PACING_LABEL_DE NULL
-#define RPCS3_FRAME_PACING_INFO_0_DE "Woran die Frames des Spiels zeitlich ausgerichtet werden. „Emulatoruhr“ verwendet den eigenen Timer von RPCS3, wie in der eigenständigen Version von RPCS3. RetroArch gibt dem Spiel für jeden von RetroArch angezeigten Frame eine PS3-Bildwiederholung vor. Dadurch beschleunigt der Schnellvorlauf das Spiel, und das Spiel läuft mit der VBlank-Frequenz, wenn RetroArch entsprechend viele Frames pro Sekunde anzeigt; beim Vulkan-Renderer werden derzeit Frames übersprungen."
+#define RPCS3_FRAME_PACING_LABEL_DE "Frame-Taktung"
+#define RPCS3_FRAME_PACING_INFO_0_DE "Woran die Frames des Spiels zeitlich ausgerichtet werden. „Emulatoruhr“ verwendet den eigenen Timer von RPCS3, wie in der eigenständigen Version von RPCS3. RetroArch gibt dem Spiel für jeden von RetroArch angezeigten Frame eine PS3-Bildwiederholung vor. Dadurch beschleunigt der Schnellvorlauf das Spiel, und das Spiel läuft mit der VBlank-Frequenz, wenn RetroArch entsprechend viele Frames pro Sekunde anzeigt."
 #define OPTION_VAL_FRONTEND_DE NULL
 #define OPTION_VAL_EMULATOR_DE "Emulatoruhr"
-#define RPCS3_SAVEDATA_SLOT_LABEL_DE NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_DE NULL
-#define OPTION_VAL_LIST_DE "Aus der Liste auswählen"
 #define RPCS3_MASTER_VOLUME_LABEL_DE "Gesamtlautstärke"
-#define RPCS3_MASTER_VOLUME_INFO_0_DE NULL
+#define RPCS3_MASTER_VOLUME_INFO_0_DE "Gesamtlautstärke in Prozent."
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_DE "0 %"
 #define OPTION_VAL_10_DE "10 %"
 #define OPTION_VAL_20_DE "20 %"
@@ -10613,11 +10754,17 @@ struct retro_core_options_v2 options_da = {
 #define OPTION_VAL_70_DE "70 %"
 #define OPTION_VAL_80_DE "80 %"
 #define OPTION_VAL_90_DE "90 %"
-#define RPCS3_AUDIO_FORMAT_LABEL_DE NULL
-#define RPCS3_AUDIO_FORMAT_INFO_0_DE NULL
+#define RPCS3_AUDIO_FORMAT_LABEL_DE "Audioformat"
+#define RPCS3_AUDIO_FORMAT_INFO_0_DE "Die Lautsprecher, die RetroArch den Spielen als verfügbar meldet. Auf „Ausgabelayout von RetroArch“ setzen: Das Spiel wählt dann aus den angebotenen Optionen selbst seinen Stereo-, 5.1- oder 7.1-Mix. Ein von RetroArch auf Stereo heruntergemischter Surround-Mix klingt nicht immer wie der eigene Stereomix des Spiels. Erfordert eine RetroArch-Version mit Mehrkanal-Audio; andernfalls Stereo. Wird beim Start eines Spiels wirksam."
 #define OPTION_VAL_STEREO_DE NULL
 #define OPTION_VAL_SURROUND_5_1_DE NULL
 #define OPTION_VAL_SURROUND_7_1_DE NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_DE "Größe des Festplattencaches"
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_DE "Begrenzt den Cache, den Spiele auf dev_hdd1 speichern und der sonst unbegrenzt wächst. Bei festgelegter Größe werden beim Laden oder Schließen eines Spiels die am längsten nicht verwendeten Spiel-Caches gelöscht, bis der verbleibende Cache in die Größenbegrenzung passt. Beim Beenden löschen entfernt den gesamten Cache, wenn ein Spiel geschlossen wird – wie bei einer PS3, wenn sie ausgeschaltet wird. Ein gelöschter Cache wird vom jeweiligen Spiel neu erstellt, wodurch der nächste Start dieses Spiels länger dauern kann."
+#define OPTION_VAL_UNLIMITED_DE "Unbegrenzt"
+#define OPTION_VAL_1GB_DE NULL
+#define OPTION_VAL_5GB_DE NULL
+#define OPTION_VAL_WIPE_DE "Beim Beenden löschen"
 #define RPCS3_LANGUAGE_LABEL_DE "Systemsprache"
 #define RPCS3_LANGUAGE_INFO_0_DE "PS3-Systemsprache."
 #define OPTION_VAL_ENGLISH_DE "Englisch"
@@ -10641,36 +10788,36 @@ struct retro_core_options_v2 options_da = {
 #define OPTION_VAL_KR_DE NULL
 #define OPTION_VAL_CN_DE NULL
 #define RPCS3_ENTER_BUTTON_LABEL_DE "Bestätigungstaste zuweisen"
-#define RPCS3_ENTER_BUTTON_INFO_0_DE NULL
+#define RPCS3_ENTER_BUTTON_INFO_0_DE "Taste, mit der Aktionen bestätigt werden."
 #define OPTION_VAL_CROSS_DE "Kreuz (westlich)"
 #define OPTION_VAL_CIRCLE_DE "Kreis (japanisch)"
-#define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_DE NULL
-#define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_DE NULL
-#define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_DE NULL
-#define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_DE NULL
+#define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_DE "PPU-Kompilierungshinweis anzeigen"
+#define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_DE "Zeigt einen Hinweis an, wenn PPU-Module kompiliert werden."
+#define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_DE "Hinweis zur Shaderkompilierung anzeigen"
+#define RPCS3_SHOW_SHADER_COMPILATION_HINT_INFO_0_DE "Zeigt einen Hinweis an, wenn Shader kompiliert werden."
 #define RPCS3_SILENCE_ALL_LOGS_LABEL_DE "Alle Protokollausgaben unterdrücken"
 #define RPCS3_SILENCE_ALL_LOGS_INFO_0_DE "Alle Protokollausgaben aus Leistungsgründen unterdrücken."
 #define RPCS3_SPU_CACHE_LABEL_DE "SPU-Cache"
-#define RPCS3_SPU_CACHE_INFO_0_DE NULL
+#define RPCS3_SPU_CACHE_INFO_0_DE "Aktiviert den SPU-Cache, um nachfolgende Ladevorgänge zu beschleunigen."
 #define RPCS3_ACCURATE_DFMA_LABEL_DE "Präzises DFMA"
 #define RPCS3_ACCURATE_DFMA_INFO_0_DE "Führt Fused-Multiply-Add-Operationen mit doppelter Genauigkeit exakt aus, wie in RPCS3 (auch dort standardmäßig aktiviert). Verursacht auf CPUs mit FMA nur geringe Leistungseinbußen; das Deaktivieren kann auf einem langsamen Smartphone die Leistung verbessern, führt bei einigen Spielen jedoch zu Fehlern."
 #define RPCS3_SPU_VERIFICATION_LABEL_DE "SPU-Verifizierung"
-#define RPCS3_SPU_VERIFICATION_INFO_0_DE NULL
-#define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_DE NULL
-#define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_DE NULL
+#define RPCS3_SPU_VERIFICATION_INFO_0_DE "Stufe der SPU-Codeüberprüfung."
+#define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_DE "Zeitlimit für die Treiberwiederherstellung"
+#define RPCS3_DRIVER_RECOVERY_TIMEOUT_INFO_0_DE "Zeitlimit für die Wiederherstellung des GPU-Treibers in Millisekunden."
 #define OPTION_VAL_1000_DE "1 Sekunde"
 #define OPTION_VAL_2000_DE "2 Sekunden"
 #define OPTION_VAL_5000_DE "5 Sekunden"
 #define OPTION_VAL_10000_DE "10 Sekunden"
-#define RPCS3_MFC_SHUFFLING_LABEL_DE NULL
-#define RPCS3_MFC_SHUFFLING_INFO_0_DE NULL
-#define RPCS3_SPU_DELAY_PENALTY_LABEL_DE NULL
-#define RPCS3_SPU_DELAY_PENALTY_INFO_0_DE NULL
+#define RPCS3_MFC_SHUFFLING_LABEL_DE "Mischen von MFC-Befehlen"
+#define RPCS3_MFC_SHUFFLING_INFO_0_DE "Mischt MFC-Befehle zur Verbesserung der Genauigkeit."
+#define RPCS3_SPU_DELAY_PENALTY_LABEL_DE "SPU-Verzögerungszuschlag"
+#define RPCS3_SPU_DELAY_PENALTY_INFO_0_DE "SPU-Verzögerungszuschlag bei der Thread-Zuweisung."
 #define OPTION_VAL_3_DE "3 (Standard)"
 #define RPCS3_VBLANK_NTSC_LABEL_DE "VBlank-NTSC-Korrektur"
 #define RPCS3_VBLANK_NTSC_INFO_0_DE "Verwendet für die VBlank-Frequenz die NTSC-Rate (59,94 Hz statt der runden Frequenz von 60 Hz). Standardmäßig aktiviert, wie in RPCS3."
 #define RPCS3_HLE_LWMUTEX_LABEL_DE NULL
-#define RPCS3_HLE_LWMUTEX_INFO_0_DE NULL
+#define RPCS3_HLE_LWMUTEX_INFO_0_DE "Verwendet für lwmutex die HLE-Implementierung."
 
 struct retro_core_option_v2_category option_cats_de[] = {
     { "cpu", CATEGORY_CPU_LABEL_DE, CATEGORY_CPU_INFO_0_DE },
@@ -10802,6 +10949,13 @@ struct retro_core_option_v2_definition option_defs_de[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_DE}, {"vulkan", OPTION_VAL_VULKAN_DE}, {"null", OPTION_VAL_NULL_DE}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_DE, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_DE,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_DE}, {"4:3", OPTION_VAL_4_3_DE}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_DE, NULL,
@@ -10989,7 +11143,7 @@ struct retro_core_option_v2_definition option_defs_de[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_DE, NULL,
         RPCS3_VBLANK_RATE_INFO_0_DE,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_DE}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_DE}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_DE}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_DE}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_DE}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_DE}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_DE}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_DE}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_DE}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_DE}, {"list", OPTION_VAL_LIST_DE}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -11228,13 +11382,6 @@ struct retro_core_option_v2_definition option_defs_de[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_DE, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_DE,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_DE}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_DE, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_DE,
         NULL, "core",
@@ -11247,6 +11394,13 @@ struct retro_core_option_v2_definition option_defs_de[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_DE}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_DE}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_DE}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_DE, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_DE,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_DE}, {"1gb", OPTION_VAL_1GB_DE}, {"5gb", OPTION_VAL_5GB_DE}, {"wipe", OPTION_VAL_WIPE_DE}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_DE, NULL,
@@ -11428,6 +11582,10 @@ struct retro_core_options_v2 options_de = {
 #define OPTION_VAL_OPENGL_EL NULL
 #define OPTION_VAL_VULKAN_EL NULL
 #define OPTION_VAL_NULL_EL NULL
+#define RPCS3_ASPECT_RATIO_LABEL_EL "Αναλογία Οθόνης"
+#define RPCS3_ASPECT_RATIO_INFO_0_EL NULL
+#define OPTION_VAL_16_9_EL NULL
+#define OPTION_VAL_4_3_EL NULL
 #define RPCS3_FRAME_LIMIT_LABEL_EL NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_EL NULL
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_EL "Αυτόματο"
@@ -11502,7 +11660,6 @@ struct retro_core_options_v2 options_de = {
 #define OPTION_VAL_16_10_EL NULL
 #define OPTION_VAL_21_9_EL NULL
 #define OPTION_VAL_32_9_EL NULL
-#define OPTION_VAL_4_3_EL NULL
 #define OPTION_VAL_5_4_EL NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_EL NULL
 #define RPCS3_MULTITHREADED_RSX_INFO_0_EL NULL
@@ -11544,6 +11701,7 @@ struct retro_core_options_v2 options_de = {
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_EL NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_EL NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_EL NULL
+#define OPTION_VAL_LIST_EL NULL
 #define RPCS3_THREAD_SCHEDULER_LABEL_EL NULL
 #define RPCS3_THREAD_SCHEDULER_INFO_0_EL NULL
 #define OPTION_VAL_OS_EL NULL
@@ -11628,9 +11786,6 @@ struct retro_core_options_v2 options_de = {
 #define RPCS3_FRAME_PACING_INFO_0_EL NULL
 #define OPTION_VAL_FRONTEND_EL NULL
 #define OPTION_VAL_EMULATOR_EL NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_EL NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_EL NULL
-#define OPTION_VAL_LIST_EL NULL
 #define RPCS3_MASTER_VOLUME_LABEL_EL NULL
 #define RPCS3_MASTER_VOLUME_INFO_0_EL NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_EL NULL
@@ -11647,6 +11802,12 @@ struct retro_core_options_v2 options_de = {
 #define OPTION_VAL_STEREO_EL NULL
 #define OPTION_VAL_SURROUND_5_1_EL NULL
 #define OPTION_VAL_SURROUND_7_1_EL NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_EL NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_EL NULL
+#define OPTION_VAL_UNLIMITED_EL NULL
+#define OPTION_VAL_1GB_EL NULL
+#define OPTION_VAL_5GB_EL NULL
+#define OPTION_VAL_WIPE_EL NULL
 #define RPCS3_LANGUAGE_LABEL_EL NULL
 #define RPCS3_LANGUAGE_INFO_0_EL NULL
 #define OPTION_VAL_ENGLISH_EL "Αγγλικά"
@@ -11831,6 +11992,13 @@ struct retro_core_option_v2_definition option_defs_el[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_EL}, {"vulkan", OPTION_VAL_VULKAN_EL}, {"null", OPTION_VAL_NULL_EL}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_EL, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_EL,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_EL}, {"4:3", OPTION_VAL_4_3_EL}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_EL, NULL,
@@ -12018,7 +12186,7 @@ struct retro_core_option_v2_definition option_defs_el[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_EL, NULL,
         RPCS3_VBLANK_RATE_INFO_0_EL,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_EL}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_EL}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_EL}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_EL}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_EL}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_EL}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_EL}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_EL}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_EL}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_EL}, {"list", OPTION_VAL_LIST_EL}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -12257,13 +12425,6 @@ struct retro_core_option_v2_definition option_defs_el[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_EL, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_EL,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_EL}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_EL, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_EL,
         NULL, "core",
@@ -12276,6 +12437,13 @@ struct retro_core_option_v2_definition option_defs_el[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_EL}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_EL}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_EL}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_EL, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_EL,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_EL}, {"1gb", OPTION_VAL_1GB_EL}, {"5gb", OPTION_VAL_5GB_EL}, {"wipe", OPTION_VAL_WIPE_EL}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_EL, NULL,
@@ -12457,6 +12625,10 @@ struct retro_core_options_v2 options_el = {
 #define OPTION_VAL_OPENGL_EN NULL
 #define OPTION_VAL_VULKAN_EN NULL
 #define OPTION_VAL_NULL_EN NULL
+#define RPCS3_ASPECT_RATIO_LABEL_EN NULL
+#define RPCS3_ASPECT_RATIO_INFO_0_EN NULL
+#define OPTION_VAL_16_9_EN NULL
+#define OPTION_VAL_4_3_EN NULL
 #define RPCS3_FRAME_LIMIT_LABEL_EN NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_EN NULL
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_EN NULL
@@ -12531,7 +12703,6 @@ struct retro_core_options_v2 options_el = {
 #define OPTION_VAL_16_10_EN NULL
 #define OPTION_VAL_21_9_EN NULL
 #define OPTION_VAL_32_9_EN NULL
-#define OPTION_VAL_4_3_EN NULL
 #define OPTION_VAL_5_4_EN NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_EN NULL
 #define RPCS3_MULTITHREADED_RSX_INFO_0_EN NULL
@@ -12573,6 +12744,7 @@ struct retro_core_options_v2 options_el = {
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_EN NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_EN NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_EN NULL
+#define OPTION_VAL_LIST_EN NULL
 #define RPCS3_THREAD_SCHEDULER_LABEL_EN NULL
 #define RPCS3_THREAD_SCHEDULER_INFO_0_EN NULL
 #define OPTION_VAL_OS_EN NULL
@@ -12657,9 +12829,6 @@ struct retro_core_options_v2 options_el = {
 #define RPCS3_FRAME_PACING_INFO_0_EN NULL
 #define OPTION_VAL_FRONTEND_EN NULL
 #define OPTION_VAL_EMULATOR_EN NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_EN NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_EN NULL
-#define OPTION_VAL_LIST_EN NULL
 #define RPCS3_MASTER_VOLUME_LABEL_EN NULL
 #define RPCS3_MASTER_VOLUME_INFO_0_EN NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_EN NULL
@@ -12676,6 +12845,12 @@ struct retro_core_options_v2 options_el = {
 #define OPTION_VAL_STEREO_EN NULL
 #define OPTION_VAL_SURROUND_5_1_EN NULL
 #define OPTION_VAL_SURROUND_7_1_EN NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_EN NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_EN NULL
+#define OPTION_VAL_UNLIMITED_EN NULL
+#define OPTION_VAL_1GB_EN NULL
+#define OPTION_VAL_5GB_EN NULL
+#define OPTION_VAL_WIPE_EN NULL
 #define RPCS3_LANGUAGE_LABEL_EN NULL
 #define RPCS3_LANGUAGE_INFO_0_EN NULL
 #define OPTION_VAL_ENGLISH_EN NULL
@@ -12860,6 +13035,13 @@ struct retro_core_option_v2_definition option_defs_en[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_EN}, {"vulkan", OPTION_VAL_VULKAN_EN}, {"null", OPTION_VAL_NULL_EN}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_EN, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_EN,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_EN}, {"4:3", OPTION_VAL_4_3_EN}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_EN, NULL,
@@ -13047,7 +13229,7 @@ struct retro_core_option_v2_definition option_defs_en[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_EN, NULL,
         RPCS3_VBLANK_RATE_INFO_0_EN,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_EN}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_EN}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_EN}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_EN}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_EN}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_EN}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_EN}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_EN}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_EN}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_EN}, {"list", OPTION_VAL_LIST_EN}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -13286,13 +13468,6 @@ struct retro_core_option_v2_definition option_defs_en[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_EN, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_EN,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_EN}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_EN, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_EN,
         NULL, "core",
@@ -13305,6 +13480,13 @@ struct retro_core_option_v2_definition option_defs_en[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_EN}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_EN}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_EN}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_EN, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_EN,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_EN}, {"1gb", OPTION_VAL_1GB_EN}, {"5gb", OPTION_VAL_5GB_EN}, {"wipe", OPTION_VAL_WIPE_EN}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_EN, NULL,
@@ -13486,6 +13668,10 @@ struct retro_core_options_v2 options_en = {
 #define OPTION_VAL_OPENGL_EO NULL
 #define OPTION_VAL_VULKAN_EO NULL
 #define OPTION_VAL_NULL_EO NULL
+#define RPCS3_ASPECT_RATIO_LABEL_EO "Bilda proporcio"
+#define RPCS3_ASPECT_RATIO_INFO_0_EO NULL
+#define OPTION_VAL_16_9_EO NULL
+#define OPTION_VAL_4_3_EO NULL
 #define RPCS3_FRAME_LIMIT_LABEL_EO NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_EO NULL
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_EO "Aŭtomata"
@@ -13560,7 +13746,6 @@ struct retro_core_options_v2 options_en = {
 #define OPTION_VAL_16_10_EO NULL
 #define OPTION_VAL_21_9_EO NULL
 #define OPTION_VAL_32_9_EO NULL
-#define OPTION_VAL_4_3_EO NULL
 #define OPTION_VAL_5_4_EO NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_EO NULL
 #define RPCS3_MULTITHREADED_RSX_INFO_0_EO NULL
@@ -13602,6 +13787,7 @@ struct retro_core_options_v2 options_en = {
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_EO NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_EO NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_EO NULL
+#define OPTION_VAL_LIST_EO NULL
 #define RPCS3_THREAD_SCHEDULER_LABEL_EO NULL
 #define RPCS3_THREAD_SCHEDULER_INFO_0_EO NULL
 #define OPTION_VAL_OS_EO NULL
@@ -13686,9 +13872,6 @@ struct retro_core_options_v2 options_en = {
 #define RPCS3_FRAME_PACING_INFO_0_EO NULL
 #define OPTION_VAL_FRONTEND_EO NULL
 #define OPTION_VAL_EMULATOR_EO NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_EO NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_EO NULL
-#define OPTION_VAL_LIST_EO NULL
 #define RPCS3_MASTER_VOLUME_LABEL_EO "Ĉefa volumeno"
 #define RPCS3_MASTER_VOLUME_INFO_0_EO NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_EO NULL
@@ -13702,9 +13885,15 @@ struct retro_core_options_v2 options_en = {
 #define OPTION_VAL_90_EO NULL
 #define RPCS3_AUDIO_FORMAT_LABEL_EO NULL
 #define RPCS3_AUDIO_FORMAT_INFO_0_EO NULL
-#define OPTION_VAL_STEREO_EO NULL
+#define OPTION_VAL_STEREO_EO "Dukanala"
 #define OPTION_VAL_SURROUND_5_1_EO NULL
 #define OPTION_VAL_SURROUND_7_1_EO NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_EO NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_EO NULL
+#define OPTION_VAL_UNLIMITED_EO NULL
+#define OPTION_VAL_1GB_EO NULL
+#define OPTION_VAL_5GB_EO NULL
+#define OPTION_VAL_WIPE_EO NULL
 #define RPCS3_LANGUAGE_LABEL_EO NULL
 #define RPCS3_LANGUAGE_INFO_0_EO NULL
 #define OPTION_VAL_ENGLISH_EO "Angla"
@@ -13889,6 +14078,13 @@ struct retro_core_option_v2_definition option_defs_eo[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_EO}, {"vulkan", OPTION_VAL_VULKAN_EO}, {"null", OPTION_VAL_NULL_EO}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_EO, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_EO,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_EO}, {"4:3", OPTION_VAL_4_3_EO}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_EO, NULL,
@@ -14076,7 +14272,7 @@ struct retro_core_option_v2_definition option_defs_eo[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_EO, NULL,
         RPCS3_VBLANK_RATE_INFO_0_EO,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_EO}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_EO}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_EO}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_EO}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_EO}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_EO}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_EO}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_EO}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_EO}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_EO}, {"list", OPTION_VAL_LIST_EO}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -14315,13 +14511,6 @@ struct retro_core_option_v2_definition option_defs_eo[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_EO, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_EO,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_EO}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_EO, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_EO,
         NULL, "core",
@@ -14334,6 +14523,13 @@ struct retro_core_option_v2_definition option_defs_eo[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_EO}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_EO}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_EO}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_EO, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_EO,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_EO}, {"1gb", OPTION_VAL_1GB_EO}, {"5gb", OPTION_VAL_5GB_EO}, {"wipe", OPTION_VAL_WIPE_EO}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_EO, NULL,
@@ -14515,6 +14711,10 @@ struct retro_core_options_v2 options_eo = {
 #define OPTION_VAL_OPENGL_ES NULL
 #define OPTION_VAL_VULKAN_ES NULL
 #define OPTION_VAL_NULL_ES "Nulo (sin vídeo)"
+#define RPCS3_ASPECT_RATIO_LABEL_ES "Relación de aspecto"
+#define RPCS3_ASPECT_RATIO_INFO_0_ES "Cambia la relación de aspecto de salida. Solo unos pocos juegos de PS3 son compatibles con 4:3 nativos (es necesario reiniciar)."
+#define OPTION_VAL_16_9_ES "16:9 (predeterminada)"
+#define OPTION_VAL_4_3_ES NULL
 #define RPCS3_FRAME_LIMIT_LABEL_ES "Límite de fotogramas"
 #define RPCS3_FRAME_LIMIT_INFO_0_ES "Establece la velocidad de fotogramas máxima a la que puede ejecutarse un juego. El valor automático representa la frecuencia de VBLANKs, igual que en RPCS3; Nativo de PS3 sigue el sistema de PS3, al desactivar esta opción permite que aquellos juegos que no esperan a la frecuencia de actualización de PS3 puedan ejecutarse demasiado rápido."
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_ES "Automático"
@@ -14543,7 +14743,7 @@ struct retro_core_options_v2 options_eo = {
 #define OPTION_VAL_HIGH_ES "Alta"
 #define OPTION_VAL_ULTRA_ES NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_ES "Resolución predeterminada"
-#define RPCS3_DEFAULT_RESOLUTION_INFO_0_ES "La resolución de salida que ofrecerá la PS3 emulada al juego como lo haría en RPCS3. La mayoría de juegos se ejecutan a 720p, algunos tienen mejor aspecto a 1080p y otros necesitan 480p o 576p para evitar fallos. Los cambios se aplicarán al cargar un contenido."
+#define RPCS3_DEFAULT_RESOLUTION_INFO_0_ES "NO CAMBIES ESTA OPCIÓN SI QUIERES AUMENTAR LA RESOLUCIÓN DEL JUEGO. Para eso debes utilizar Escala de resolución. Selecciona 1080p solo si el juego es compatible. En muy pocos casos, debido a errores de emulación, algunos juegos se renderizarán únicamente a resoluciones inferiores a 720p."
 #define OPTION_VAL_720P_ES "720p (predeterminada)"
 #define OPTION_VAL_1080P_ES NULL
 #define OPTION_VAL_480P_ES NULL
@@ -14589,7 +14789,6 @@ struct retro_core_options_v2 options_eo = {
 #define OPTION_VAL_16_10_ES NULL
 #define OPTION_VAL_21_9_ES NULL
 #define OPTION_VAL_32_9_ES NULL
-#define OPTION_VAL_4_3_ES NULL
 #define OPTION_VAL_5_4_ES NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_ES "RSX multihilo"
 #define RPCS3_MULTITHREADED_RSX_INFO_0_ES "Traslada parte de las operaciones del RSX a otro hilo. Esta opción está desactivada por defecto, al igual que en RPCS3. Podría ayudar a aquellas CPU con pocos núcleos, pero rápidos, incluyendo a las CPU de smartphones."
@@ -14625,12 +14824,13 @@ struct retro_core_options_v2 options_eo = {
 #define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_ES "El retardo para llamar al controlador en microsegundos. El valor predeterminado es de 0, al igual que en RPCS3; solo debes aumentar este valor si lo necesita un juego."
 #define OPTION_VAL_0_ES "0 (valor predeterminado)"
 #define RPCS3_VBLANK_RATE_LABEL_ES "Frecuencia de VBLANKs"
-#define RPCS3_VBLANK_RATE_INFO_0_ES "Establece la frecuencia de actualización de PS3 en hercios. También será la velocidad de fotogramas que solicitará el núcleo a RetroArch, cuyos cambios se aplicarán al cargar un contenido; aquellos juegos que puedan ejecutarse a más de 60 FPS necesitarán una pantalla capaz de mostrar esa frecuencia."
+#define RPCS3_VBLANK_RATE_INFO_0_ES "Establece la frecuencia de actualización de PS3 en hercios. También indica la velocidad de fotogramas que solicitará el núcleo a RetroArch, que surtirá efecto cuando se cargue un contenido; los juegos que puedan ejecutarse por encima de 60 FPS necesitarán una pantalla capaz de mostrar dicha velocidad. Según la lista duplicará la frecuencia de VBLANKs en aquellos juegos que se encuentren listados en el archivo vblank_unlock.txt, dentro de la carpeta system/rpcs3. Es posible que debas aplicar parches según el juego."
 #define OPTION_VAL_50_RPCS3_VBLANK_RATE_ES NULL
 #define OPTION_VAL_60_RPCS3_VBLANK_RATE_ES NULL
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_ES NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_ES NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_ES NULL
+#define OPTION_VAL_LIST_ES "Según la lista"
 #define RPCS3_THREAD_SCHEDULER_LABEL_ES "Programador de hilos"
 #define RPCS3_THREAD_SCHEDULER_INFO_0_ES "Decide qué ordena los hilos del emulador según los núcleos de la CPU, tal y como haría RPCS3. Sistema operativo deja esta decisión en el sistema, los programadores de RPCS3 asignarán hilos de la PPU, la SPU y el RSX a núcleos independientes repartidos por unas pocas CPU de escritorio. Esta opción no se aplica en Android porque el núcleo no puede programar hilos."
 #define OPTION_VAL_OS_ES "Sistema operativo"
@@ -14712,12 +14912,9 @@ struct retro_core_options_v2 options_eo = {
 #define OPTION_VAL_MINIMAL_ES "Solo velocidad de fotogramas"
 #define OPTION_VAL_MEDIUM_ES "Media"
 #define RPCS3_FRAME_PACING_LABEL_ES "Ritmo de fotogramas"
-#define RPCS3_FRAME_PACING_INFO_0_ES "Establece la forma de medir la duración de cada fotograma del juego. Reloj del emulador usará el temporizador interno de RPCS3, como haría su aplicación independiente. RetroArch hace que el juego se muestre a una actualización de imagen de PS3 por cada fotograma mostrado por RetroArch, de esta forma, el avance rápido puede acelerar el juego y el juego se ejecutará a la frecuencia de VBLANKs cuando RetroArch muestre dicha cantidad de fotogramas con segundo; en el caso del renderizador por Vulkan, se omitirán fotogramas por el momento."
+#define RPCS3_FRAME_PACING_INFO_0_ES "Establece la forma de medir la duración de cada fotograma del juego. Reloj del emulador usará el temporizador interno de RPCS3, como haría su aplicación independiente. RetroArch hace que el juego se muestre a una actualización de imagen de PS3 por cada fotograma mostrado por RetroArch, de esta forma, el avance rápido puede acelerar el juego y el juego se ejecutará a la frecuencia de VBLANKs cuando RetroArch muestre dicha cantidad de fotogramas con segundo."
 #define OPTION_VAL_FRONTEND_ES NULL
 #define OPTION_VAL_EMULATOR_ES "Reloj del emulador"
-#define RPCS3_SAVEDATA_SLOT_LABEL_ES "Espacio de datos guardados"
-#define RPCS3_SAVEDATA_SLOT_INFO_0_ES "Un juego de PS3 mostrará una lista con sus datos guardados para que el jugador pueda elegir. Elegir de lista mostrará la lista en la imagen del juego para que se pueda controlar con el mando. Si seleccionas un número, el núcleo elegirá por ti: cada guardado sobrescribirá el elemento que se encuentre en esta posición dentro de la lista del juego o hará un guardado nuevo si la lista es más corta, al cargar datos se cargará el elemento que se encuentre en esta posición o no cargará nada si la lista es más corta. 0 es el primer elemento. Aquellos juegos que solo tengan un elemento guardado no mostrarán una lista, así que no se les aplicará esta opción."
-#define OPTION_VAL_LIST_ES "Elegir de lista"
 #define RPCS3_MASTER_VOLUME_LABEL_ES "Volumen general"
 #define RPCS3_MASTER_VOLUME_INFO_0_ES "El porcentaje del volumen maestro de audio."
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_ES "0 %"
@@ -14729,11 +14926,17 @@ struct retro_core_options_v2 options_eo = {
 #define OPTION_VAL_70_ES "70 %"
 #define OPTION_VAL_80_ES "80 %"
 #define OPTION_VAL_90_ES "90 %"
-#define RPCS3_AUDIO_FORMAT_LABEL_ES NULL
-#define RPCS3_AUDIO_FORMAT_INFO_0_ES NULL
-#define OPTION_VAL_STEREO_ES NULL
-#define OPTION_VAL_SURROUND_5_1_ES NULL
-#define OPTION_VAL_SURROUND_7_1_ES NULL
+#define RPCS3_AUDIO_FORMAT_LABEL_ES "Formato de audio"
+#define RPCS3_AUDIO_FORMAT_INFO_0_ES "Indica el número de altavoces que el sistema PS3 mostrará a los juegos. Debes elegir la disposición de altavoces de salida de RetroArch: los juegos elegirán de entre una mezcla estéreo, 5.1 o 7.1 según los altavoces ofrecidos y una mezcla surround generada por RetroArch no sonará siempre como la mezcla estéreo del propio juego. Necesita una versión de RetroArch con audio multicanal, en caso contrario se pasará a una mezcla estéreo. Esta opción surtirá efecto cuando se ejecute un juego."
+#define OPTION_VAL_STEREO_ES "Estéreo"
+#define OPTION_VAL_SURROUND_5_1_ES "5.1 Surround"
+#define OPTION_VAL_SURROUND_7_1_ES "7.1 Surround"
+#define RPCS3_DISK_CACHE_SIZE_LABEL_ES "Tamaño de caché en disco"
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_ES "Limita la caché que almacenan los juegos en dev_hdd1 para evitar que no pare de crecer. Si estableces un tamaño, se eliminarán las cachés más antiguas al cargar o cerrar un juego hasta que ocupen menos del límite. Borrar al salir eliminará toda la caché al cerrar un juego, como haría un sistema PS3 al apagarse. Los juegos volverán a generar sus cachés borradas, cosa que podría ralentizar su siguiente arranque."
+#define OPTION_VAL_UNLIMITED_ES "Ilimitado"
+#define OPTION_VAL_1GB_ES "1 GB"
+#define OPTION_VAL_5GB_ES "5 GB"
+#define OPTION_VAL_WIPE_ES "Borrar al salir"
 #define RPCS3_LANGUAGE_LABEL_ES "Idioma del sistema"
 #define RPCS3_LANGUAGE_INFO_0_ES "El idioma del sistema PS3."
 #define OPTION_VAL_ENGLISH_ES "Inglés"
@@ -14918,6 +15121,13 @@ struct retro_core_option_v2_definition option_defs_es[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_ES}, {"vulkan", OPTION_VAL_VULKAN_ES}, {"null", OPTION_VAL_NULL_ES}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_ES, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_ES,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_ES}, {"4:3", OPTION_VAL_4_3_ES}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_ES, NULL,
@@ -15105,7 +15315,7 @@ struct retro_core_option_v2_definition option_defs_es[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_ES, NULL,
         RPCS3_VBLANK_RATE_INFO_0_ES,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_ES}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_ES}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_ES}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_ES}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_ES}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_ES}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_ES}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_ES}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_ES}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_ES}, {"list", OPTION_VAL_LIST_ES}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -15344,13 +15554,6 @@ struct retro_core_option_v2_definition option_defs_es[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_ES, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_ES,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_ES}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_ES, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_ES,
         NULL, "core",
@@ -15363,6 +15566,13 @@ struct retro_core_option_v2_definition option_defs_es[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_ES}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_ES}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_ES}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_ES, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_ES,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_ES}, {"1gb", OPTION_VAL_1GB_ES}, {"5gb", OPTION_VAL_5GB_ES}, {"wipe", OPTION_VAL_WIPE_ES}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_ES, NULL,
@@ -15544,6 +15754,10 @@ struct retro_core_options_v2 options_es = {
 #define OPTION_VAL_OPENGL_FA NULL
 #define OPTION_VAL_VULKAN_FA NULL
 #define OPTION_VAL_NULL_FA NULL
+#define RPCS3_ASPECT_RATIO_LABEL_FA "نسبت تصویر"
+#define RPCS3_ASPECT_RATIO_INFO_0_FA NULL
+#define OPTION_VAL_16_9_FA NULL
+#define OPTION_VAL_4_3_FA NULL
 #define RPCS3_FRAME_LIMIT_LABEL_FA NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_FA NULL
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_FA "خودکار"
@@ -15618,7 +15832,6 @@ struct retro_core_options_v2 options_es = {
 #define OPTION_VAL_16_10_FA NULL
 #define OPTION_VAL_21_9_FA NULL
 #define OPTION_VAL_32_9_FA NULL
-#define OPTION_VAL_4_3_FA NULL
 #define OPTION_VAL_5_4_FA NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_FA NULL
 #define RPCS3_MULTITHREADED_RSX_INFO_0_FA NULL
@@ -15660,6 +15873,7 @@ struct retro_core_options_v2 options_es = {
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_FA NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_FA NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_FA NULL
+#define OPTION_VAL_LIST_FA NULL
 #define RPCS3_THREAD_SCHEDULER_LABEL_FA NULL
 #define RPCS3_THREAD_SCHEDULER_INFO_0_FA NULL
 #define OPTION_VAL_OS_FA NULL
@@ -15744,9 +15958,6 @@ struct retro_core_options_v2 options_es = {
 #define RPCS3_FRAME_PACING_INFO_0_FA NULL
 #define OPTION_VAL_FRONTEND_FA NULL
 #define OPTION_VAL_EMULATOR_FA NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_FA NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_FA NULL
-#define OPTION_VAL_LIST_FA NULL
 #define RPCS3_MASTER_VOLUME_LABEL_FA NULL
 #define RPCS3_MASTER_VOLUME_INFO_0_FA NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_FA NULL
@@ -15763,6 +15974,12 @@ struct retro_core_options_v2 options_es = {
 #define OPTION_VAL_STEREO_FA NULL
 #define OPTION_VAL_SURROUND_5_1_FA NULL
 #define OPTION_VAL_SURROUND_7_1_FA NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_FA NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_FA NULL
+#define OPTION_VAL_UNLIMITED_FA NULL
+#define OPTION_VAL_1GB_FA NULL
+#define OPTION_VAL_5GB_FA NULL
+#define OPTION_VAL_WIPE_FA NULL
 #define RPCS3_LANGUAGE_LABEL_FA NULL
 #define RPCS3_LANGUAGE_INFO_0_FA NULL
 #define OPTION_VAL_ENGLISH_FA NULL
@@ -15947,6 +16164,13 @@ struct retro_core_option_v2_definition option_defs_fa[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_FA}, {"vulkan", OPTION_VAL_VULKAN_FA}, {"null", OPTION_VAL_NULL_FA}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_FA, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_FA,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_FA}, {"4:3", OPTION_VAL_4_3_FA}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_FA, NULL,
@@ -16134,7 +16358,7 @@ struct retro_core_option_v2_definition option_defs_fa[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_FA, NULL,
         RPCS3_VBLANK_RATE_INFO_0_FA,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_FA}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_FA}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_FA}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_FA}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_FA}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_FA}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_FA}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_FA}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_FA}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_FA}, {"list", OPTION_VAL_LIST_FA}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -16373,13 +16597,6 @@ struct retro_core_option_v2_definition option_defs_fa[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_FA, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_FA,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_FA}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_FA, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_FA,
         NULL, "core",
@@ -16392,6 +16609,13 @@ struct retro_core_option_v2_definition option_defs_fa[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_FA}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_FA}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_FA}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_FA, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_FA,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_FA}, {"1gb", OPTION_VAL_1GB_FA}, {"5gb", OPTION_VAL_5GB_FA}, {"wipe", OPTION_VAL_WIPE_FA}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_FA, NULL,
@@ -16573,6 +16797,10 @@ struct retro_core_options_v2 options_fa = {
 #define OPTION_VAL_OPENGL_FI NULL
 #define OPTION_VAL_VULKAN_FI NULL
 #define OPTION_VAL_NULL_FI NULL
+#define RPCS3_ASPECT_RATIO_LABEL_FI "Kuvasuhde"
+#define RPCS3_ASPECT_RATIO_INFO_0_FI NULL
+#define OPTION_VAL_16_9_FI NULL
+#define OPTION_VAL_4_3_FI NULL
 #define RPCS3_FRAME_LIMIT_LABEL_FI NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_FI NULL
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_FI "Automaattinen"
@@ -16647,7 +16875,6 @@ struct retro_core_options_v2 options_fa = {
 #define OPTION_VAL_16_10_FI NULL
 #define OPTION_VAL_21_9_FI NULL
 #define OPTION_VAL_32_9_FI NULL
-#define OPTION_VAL_4_3_FI NULL
 #define OPTION_VAL_5_4_FI NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_FI NULL
 #define RPCS3_MULTITHREADED_RSX_INFO_0_FI NULL
@@ -16689,6 +16916,7 @@ struct retro_core_options_v2 options_fa = {
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_FI NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_FI NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_FI NULL
+#define OPTION_VAL_LIST_FI NULL
 #define RPCS3_THREAD_SCHEDULER_LABEL_FI NULL
 #define RPCS3_THREAD_SCHEDULER_INFO_0_FI NULL
 #define OPTION_VAL_OS_FI NULL
@@ -16773,9 +17001,6 @@ struct retro_core_options_v2 options_fa = {
 #define RPCS3_FRAME_PACING_INFO_0_FI NULL
 #define OPTION_VAL_FRONTEND_FI NULL
 #define OPTION_VAL_EMULATOR_FI NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_FI NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_FI NULL
-#define OPTION_VAL_LIST_FI NULL
 #define RPCS3_MASTER_VOLUME_LABEL_FI NULL
 #define RPCS3_MASTER_VOLUME_INFO_0_FI NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_FI NULL
@@ -16792,6 +17017,12 @@ struct retro_core_options_v2 options_fa = {
 #define OPTION_VAL_STEREO_FI NULL
 #define OPTION_VAL_SURROUND_5_1_FI NULL
 #define OPTION_VAL_SURROUND_7_1_FI NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_FI NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_FI NULL
+#define OPTION_VAL_UNLIMITED_FI NULL
+#define OPTION_VAL_1GB_FI "1 Gt"
+#define OPTION_VAL_5GB_FI NULL
+#define OPTION_VAL_WIPE_FI NULL
 #define RPCS3_LANGUAGE_LABEL_FI NULL
 #define RPCS3_LANGUAGE_INFO_0_FI NULL
 #define OPTION_VAL_ENGLISH_FI NULL
@@ -16976,6 +17207,13 @@ struct retro_core_option_v2_definition option_defs_fi[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_FI}, {"vulkan", OPTION_VAL_VULKAN_FI}, {"null", OPTION_VAL_NULL_FI}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_FI, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_FI,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_FI}, {"4:3", OPTION_VAL_4_3_FI}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_FI, NULL,
@@ -17163,7 +17401,7 @@ struct retro_core_option_v2_definition option_defs_fi[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_FI, NULL,
         RPCS3_VBLANK_RATE_INFO_0_FI,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_FI}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_FI}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_FI}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_FI}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_FI}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_FI}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_FI}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_FI}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_FI}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_FI}, {"list", OPTION_VAL_LIST_FI}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -17402,13 +17640,6 @@ struct retro_core_option_v2_definition option_defs_fi[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_FI, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_FI,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_FI}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_FI, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_FI,
         NULL, "core",
@@ -17421,6 +17652,13 @@ struct retro_core_option_v2_definition option_defs_fi[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_FI}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_FI}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_FI}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_FI, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_FI,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_FI}, {"1gb", OPTION_VAL_1GB_FI}, {"5gb", OPTION_VAL_5GB_FI}, {"wipe", OPTION_VAL_WIPE_FI}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_FI, NULL,
@@ -17602,6 +17840,10 @@ struct retro_core_options_v2 options_fi = {
 #define OPTION_VAL_OPENGL_FR NULL
 #define OPTION_VAL_VULKAN_FR NULL
 #define OPTION_VAL_NULL_FR "Null (pas de vidéo)"
+#define RPCS3_ASPECT_RATIO_LABEL_FR "Rapport d'aspect"
+#define RPCS3_ASPECT_RATIO_INFO_0_FR "Modifie le format d'image de sortie. Seuls certains jeux PS3 prennent en charge le format 4:3 natif. (Redémarrage requis)"
+#define OPTION_VAL_16_9_FR "16:9 (par défaut)"
+#define OPTION_VAL_4_3_FR NULL
 #define RPCS3_FRAME_LIMIT_LABEL_FR "Limite d'images"
 #define RPCS3_FRAME_LIMIT_INFO_0_FR "Fréquence d'images maximale à laquelle le jeu peut tourner. Auto correspond à la fréquence de rafraîchissement vertical, comme dans RPCS3 ; Native à la PS3 synchronise les changements d'image (flips) exactement comme sur PS3 ; Désactivée permet aux jeux qui n'attendent pas le signal de rafraîchissement de la PS3 de s'exécuter trop rapidement."
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_FR NULL
@@ -17630,7 +17872,7 @@ struct retro_core_options_v2 options_fi = {
 #define OPTION_VAL_HIGH_FR "Élevée"
 #define OPTION_VAL_ULTRA_FR NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_FR "Résolution par défaut"
-#define RPCS3_DEFAULT_RESOLUTION_INFO_0_FR "La résolution de sortie que la PS3 émulée offre au jeu, comme dans RPCS3. La plupart des jeux fonctionnent en 720p ; certains sont plus beaux en 1080p, et certains ont besoin de 480p ou 576p pour éviter les bugs. Prend effet lorsque le contenu est chargé."
+#define RPCS3_DEFAULT_RESOLUTION_INFO_0_FR "NE MODIFIEZ PAS CETTE OPTION POUR AUGMENTER LA RÉSOLUTION DU JEU. Utilisez plutôt l'échelle de résolution. N'utilisez le 1080p que si le jeu le prend en charge. Dans de rares cas, en raison de bugs d'émulation, certains jeux ne s'affichent qu'à des résolutions inférieures au 720p."
 #define OPTION_VAL_720P_FR "720p (par défaut)"
 #define OPTION_VAL_1080P_FR NULL
 #define OPTION_VAL_480P_FR NULL
@@ -17676,7 +17918,6 @@ struct retro_core_options_v2 options_fi = {
 #define OPTION_VAL_16_10_FR NULL
 #define OPTION_VAL_21_9_FR NULL
 #define OPTION_VAL_32_9_FR NULL
-#define OPTION_VAL_4_3_FR NULL
 #define OPTION_VAL_5_4_FR NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_FR "RSX sur plusieurs fils d'exécution"
 #define RPCS3_MULTITHREADED_RSX_INFO_0_FR "Déplace une partie du traitement du processeur graphique RSX vers un second fil d'exécution. Désactivé par défaut, comme dans RPCS3 ; cela peut améliorer les performances sur les processeurs disposant de peu de cœurs rapides, y compris sur les téléphones."
@@ -17712,12 +17953,13 @@ struct retro_core_options_v2 options_fi = {
 #define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_FR "Délai de réveil du pilote en microsecondes. 0 par défaut, comme dans RPCS3 ; ne l'augmentez que si un jeu le nécessite."
 #define OPTION_VAL_0_FR "0 (par défaut)"
 #define RPCS3_VBLANK_RATE_LABEL_FR "Fréquence de rafraîchissement vertical"
-#define RPCS3_VBLANK_RATE_INFO_0_FR "La fréquence de rafraîchissement de la PS3, exprimée en Hz. Il s'agit également de la cadence d'images que le cœur demande à RetroArch et qui s'applique au chargement de contenu ; les jeux capables de tourner à plus de 60 images/s nécessitent un écran offrant une telle fréquence de rafraîchissement."
+#define RPCS3_VBLANK_RATE_INFO_0_FR "Taux de rafraîchissement de la PS3 en Hz. C'est également la fréquence d'images que le cœur demande à RetroArch ; ce paramètre s'applique au chargement du contenu. Les jeux capables de tourner à plus de 60 FPS nécessitent un écran offrant un taux de rafraîchissement équivalent. Depuis la liste double la fréquence de rafraîchissement vertical pour les jeux pris en charge et répertoriés dans le fichier vblank_unlock.txt situé dans system/rpcs3. Il peut être nécessaire d'appliquer des correctifs spécifiques à chaque jeu."
 #define OPTION_VAL_50_RPCS3_VBLANK_RATE_FR NULL
 #define OPTION_VAL_60_RPCS3_VBLANK_RATE_FR NULL
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_FR NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_FR NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_FR NULL
+#define OPTION_VAL_LIST_FR "Depuis la liste"
 #define RPCS3_THREAD_SCHEDULER_LABEL_FR "Ordonnanceur de fils d'exécution"
 #define RPCS3_THREAD_SCHEDULER_INFO_0_FR "Ce qui permet d'assigner les fils d'exécution de l'émulateur aux cœurs du processeur, comme dans RPCS3. Alors que le système d'exploitation gère normalement cette répartition ; les ordonnanceurs de RPCS3 affectent spécifiquement les fils d'exécution PPU, SPU et RSX à des cœurs dédiés, selon une configuration optimisée pour certains processeurs de bureau. Cette fonctionnalité est sans effet sous Android, où il n'est pas possible d'assigner ainsi les fils d'exécution aux cœurs."
 #define OPTION_VAL_OS_FR "Système d'exploitation"
@@ -17799,12 +18041,9 @@ struct retro_core_options_v2 options_fi = {
 #define OPTION_VAL_MINIMAL_FR "Fréquence d'images uniquement"
 #define OPTION_VAL_MEDIUM_FR "Moyenne"
 #define RPCS3_FRAME_PACING_LABEL_FR "Cadence des images"
-#define RPCS3_FRAME_PACING_INFO_0_FR "Ce qui détermine le timing des images du jeu. L'horloge de l'émulateur est le minuteur propre à RPCS3, comme dans la version autonome de RPCS3. RetroArch fournit au jeu un cycle de rafraîchissement PS3 pour chaque image affichée, ainsi, l'avance rapide augmente la vitesse du jeu, et celui-ci tourne à la fréquence de rafraîchissement vertical lorsque RetroArch affiche ce nombre d'images par seconde ; bien que le moteur de rendu Vulkan entraîne actuellement des sauts d'images."
+#define RPCS3_FRAME_PACING_INFO_0_FR "Ce qui détermine le timing des images du jeu. L'horloge de l'émulateur est le minuteur propre à RPCS3, comme dans la version autonome de RPCS3. RetroArch fournit au jeu un cycle de rafraîchissement PS3 pour chaque image affichée, ainsi, l'avance rapide augmente la vitesse du jeu, et celui-ci tourne à la fréquence de rafraîchissement vertical lorsque RetroArch affiche ce nombre d'images par seconde."
 #define OPTION_VAL_FRONTEND_FR NULL
 #define OPTION_VAL_EMULATOR_FR "Horloge de l'émulateur"
-#define RPCS3_SAVEDATA_SLOT_LABEL_FR "Emplacement de sauvegarde"
-#define RPCS3_SAVEDATA_SLOT_INFO_0_FR "Un jeu PS3 affiche une liste de ses données de sauvegarde et permet au joueur d'effectuer un choix. 'Choisir dans la liste' présente cette liste à l'écran du jeu pour une sélection à la manette. L'utilisation d'un numéro effectue la sélection automatiquement : la sauvegarde écrase l'entrée située à cette position dans la liste du jeu, ou en crée une nouvelle si la liste est plus courte ; le chargement utilise l'entrée à cette position, ou ne trouve rien si la liste est plus courte. 0 correspond à la première entrée. Les jeux qui ne gèrent qu'une seule sauvegarde interne n'affichent pas de liste, ce mécanisme ne s'applique donc pas à eux."
-#define OPTION_VAL_LIST_FR "Choisir dans la liste"
 #define RPCS3_MASTER_VOLUME_LABEL_FR "Volume principal"
 #define RPCS3_MASTER_VOLUME_INFO_0_FR "Pourcentage du volume audio général."
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_FR "0 %"
@@ -17816,11 +18055,17 @@ struct retro_core_options_v2 options_fi = {
 #define OPTION_VAL_70_FR "70 %"
 #define OPTION_VAL_80_FR "80 %"
 #define OPTION_VAL_90_FR "90 %"
-#define RPCS3_AUDIO_FORMAT_LABEL_FR NULL
-#define RPCS3_AUDIO_FORMAT_INFO_0_FR NULL
-#define OPTION_VAL_STEREO_FR NULL
+#define RPCS3_AUDIO_FORMAT_LABEL_FR "Format audio"
+#define RPCS3_AUDIO_FORMAT_INFO_0_FR "LRetroArcha configuration des enceintes que la PS3 signale aux jeux. Réglez ce paramètre sur la Disposition de sortie de RetroArch : le jeu sélectionne lui-même son mix stéréo, 5.1 ou 7.1 parmi les options disponibles, alors qu'un mix surround converti en stéréo par RetroArch ne restitue pas toujours le rendu du mix stéréo natif du jeu. Nécessite une version de RetroArch prenant en charge l'audio multicanal ; sinon, le son sera en stéréo. La modification prend effet au lancement du jeu."
+#define OPTION_VAL_STEREO_FR "Stéréo"
 #define OPTION_VAL_SURROUND_5_1_FR NULL
 #define OPTION_VAL_SURROUND_7_1_FR NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_FR NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_FR NULL
+#define OPTION_VAL_UNLIMITED_FR NULL
+#define OPTION_VAL_1GB_FR "1 Go"
+#define OPTION_VAL_5GB_FR NULL
+#define OPTION_VAL_WIPE_FR NULL
 #define RPCS3_LANGUAGE_LABEL_FR "Langue du système"
 #define RPCS3_LANGUAGE_INFO_0_FR "Langue du système de la PS3."
 #define OPTION_VAL_ENGLISH_FR "Anglais"
@@ -18005,6 +18250,13 @@ struct retro_core_option_v2_definition option_defs_fr[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_FR}, {"vulkan", OPTION_VAL_VULKAN_FR}, {"null", OPTION_VAL_NULL_FR}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_FR, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_FR,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_FR}, {"4:3", OPTION_VAL_4_3_FR}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_FR, NULL,
@@ -18192,7 +18444,7 @@ struct retro_core_option_v2_definition option_defs_fr[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_FR, NULL,
         RPCS3_VBLANK_RATE_INFO_0_FR,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_FR}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_FR}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_FR}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_FR}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_FR}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_FR}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_FR}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_FR}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_FR}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_FR}, {"list", OPTION_VAL_LIST_FR}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -18431,13 +18683,6 @@ struct retro_core_option_v2_definition option_defs_fr[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_FR, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_FR,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_FR}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_FR, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_FR,
         NULL, "core",
@@ -18450,6 +18695,13 @@ struct retro_core_option_v2_definition option_defs_fr[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_FR}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_FR}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_FR}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_FR, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_FR,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_FR}, {"1gb", OPTION_VAL_1GB_FR}, {"5gb", OPTION_VAL_5GB_FR}, {"wipe", OPTION_VAL_WIPE_FR}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_FR, NULL,
@@ -18566,7 +18818,7 @@ struct retro_core_options_v2 options_fr = {
 #define CATEGORY_GPU_LABEL_GA NULL
 #define CATEGORY_GPU_INFO_0_GA "Roghanna maidir le hinneall rindreála, taifeach, scáthóirí agus cruinneas na grafaice."
 #define CATEGORY_THREADS_LABEL_GA "Sceidealú"
-#define CATEGORY_THREADS_INFO_0_GA NULL
+#define CATEGORY_THREADS_INFO_0_GA "An chaoi a sceidealófar snáitheanna an emuladóra, agus an líon snáitheanna a úsáidfear le haghaidh rith agus tiomsú: rudaí a d’fhéadfadh a bheith le hathrú i gcás próiseálaí (CPU) nach bhfuil ach líon beag croíthe aige, nó i gcás fóin."
 #define CATEGORY_NETWORK_LABEL_GA "Líonra"
 #define CATEGORY_NETWORK_INFO_0_GA "Roghanna líonra, PSN agus RPCN."
 #define CATEGORY_DEBUG_LABEL_GA "Dífhabhtaigh"
@@ -18603,13 +18855,13 @@ struct retro_core_options_v2 options_fr = {
 #define RPCS3_MFC_DELAY_COMMAND_LABEL_GA "Cuir moill ar gach ordú MFC corr"
 #define RPCS3_MFC_DELAY_COMMAND_INFO_0_GA "Cuireann sé moill ar gach dara hordú MFC (SPU DMA), mar a dhéantar in RPCS3. Ní bhaineann sé ach leis an líon beag cluichí a dteastaíonn sé uathu."
 #define RPCS3_DISABLE_GETLLAR_SPIN_OPT_LABEL_GA "Díchumasaigh Optamú Casadh SPU GETLLAR"
-#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_GA NULL
+#define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_GA "Múch an braite ar lúba feithimh ghnóthacha (busy-wait loops) SPU ar GETLLAR. Teastaíonn sé sin a bheith múchta i gcás roinnt cluichí."
 #define RPCS3_EMULATE_HDD_SPEED_LABEL_GA "Aithris ar Luas Léite HDD"
 #define RPCS3_EMULATE_HDD_SPEED_INFO_0_GA "Léann sé ón diosca crua insamhlataithe ar an luas céanna le diosca crua an PS3, i gcás cluichí a théann i bhfostú má bhíonn an luchtú láithreach."
 #define RPCS3_EMULATE_BDVD_SPEED_LABEL_GA "Aithris a dhéanamh ar luas léite BD-ROM"
 #define RPCS3_EMULATE_BDVD_SPEED_INFO_0_GA "Léitear ón diosca ag luas 2x an tiomántáin PS3 (9 MB/s); baineann sé seo le cluichí a shruthaíonn scannáin ón diosca agus a thaispeánann físeán truaillithe nuair a bhíonn an luchtú láithreach. Tógann an luchtú níos faide."
 #define RPCS3_PPU_RESERVATION_PRIORITY_LABEL_GA "Tosaíocht Áirithinte PPU"
-#define RPCS3_PPU_RESERVATION_PRIORITY_INFO_0_GA NULL
+#define RPCS3_PPU_RESERVATION_PRIORITY_INFO_0_GA "Tugann sé tosaíocht do shocruithe in áirithe (reservations) an PPU thar cinn an SPU, mar a dhéantar in RPCS3. Féadfaidh sé cabhrú le cluichí a bhíonn ag stad dá bharr."
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_GA "Réamhthiomsú LLVM PPU/SPU"
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_GA "Réamhthiomsaigh modúil PPU ag am tosaithe chun ualaí ina dhiaidh sin a dhéanamh níos tapúla."
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_GA "Cruinneas na n-amadóirí codlata"
@@ -18631,6 +18883,10 @@ struct retro_core_options_v2 options_fr = {
 #define OPTION_VAL_OPENGL_GA NULL
 #define OPTION_VAL_VULKAN_GA NULL
 #define OPTION_VAL_NULL_GA "Null (Gan Físeán)"
+#define RPCS3_ASPECT_RATIO_LABEL_GA "Cóimheas Gnéithe"
+#define RPCS3_ASPECT_RATIO_INFO_0_GA "Athraíonn sé cóimheas gné an aschuir. Ní thacaíonn ach roinnt cluichí PS3 leis an bhformáid dhúchais 4:3. (Teastaíonn atosú)"
+#define OPTION_VAL_16_9_GA "16:9 (réamhshocrú)"
+#define OPTION_VAL_4_3_GA NULL
 #define RPCS3_FRAME_LIMIT_LABEL_GA "Teorainn Frámaí"
 #define RPCS3_FRAME_LIMIT_INFO_0_GA "An ráta frámaí is airde ar féidir leis an gcluiche rith air. Is é 'Auto' ná Minicíocht VBlank, mar atá in RPCS3; déanann 'PS3 Native' sioncrónú ar an mbealach céanna leis an PS3; má roghnaítear 'Off', rithfidh cluichí nach bhfanann le hathnuachan an PS3 ró-thapa."
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_GA "Uathoibríoch"
@@ -18659,7 +18915,7 @@ struct retro_core_options_v2 options_fr = {
 #define OPTION_VAL_HIGH_GA "Ard"
 #define OPTION_VAL_ULTRA_GA "Antoisceach"
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_GA "Réiteach Réamhshocraithe"
-#define RPCS3_DEFAULT_RESOLUTION_INFO_0_GA "An taifeach aschuir a chuireann an PS3 insamhlaithe ar fáil don chluiche, mar atá in RPCS3. Ritheann formhór na gcluichí ag 720p; breathnaíonn cuid acu níos fearr ag 1080p, agus teastaíonn 480p nó 576p ó chuid eile chun fadhbanna teicniúla a sheachaint. Tagann sé i bhfeidhm nuair a luchtútar an t-ábhar."
+#define RPCS3_DEFAULT_RESOLUTION_INFO_0_GA "NÁ ATHRAIGH AN ROGHA SEO CHUN AN CLUICHE A UASDÁIL. Bain úsáid as an Scála Réitigh ina ionad sin. Ná húsáid 1080p ach amháin má thacaíonn an cluiche leis. Uaireanta, mar gheall ar fhabhtanna insamhalta, ní rindreálfar roinnt cluichí ach ag réitigh atá níos ísle ná 720p."
 #define OPTION_VAL_720P_GA "720p (Réamhshocrú)"
 #define OPTION_VAL_1080P_GA NULL
 #define OPTION_VAL_480P_GA NULL
@@ -18700,12 +18956,11 @@ struct retro_core_options_v2 options_fr = {
 #define RPCS3_STRICT_RENDERING_LABEL_GA "Modh Rindreála Dian"
 #define RPCS3_STRICT_RENDERING_INFO_0_GA "Cumasaigh rindreáil dhian ar mhaithe le cruinneas."
 #define RPCS3_STRETCH_TO_DISPLAY_LABEL_GA "Sín go dtí an limistéar taispeána"
-#define RPCS3_STRETCH_TO_DISPLAY_INFO_0_GA NULL
+#define RPCS3_STRETCH_TO_DISPLAY_INFO_0_GA "Sín aschur an chluiche chun an scáileán a líonadh, agus cuir an cóimheas gné seo in iúl do RetroArch: roghnaigh cóimheas an scáileáin féin le haghaidh cluichí ar cuireadh paiste orthu chun tacú le cóimheas níos leithne (21:9, 32:9). Ní ​​mór cóimheas gné RetroArch a shocrú go dtí \"Core Provided\" (Arna sholáthar ag an gCroílár)."
 #define OPTION_VAL_ENABLED_GA NULL
 #define OPTION_VAL_16_10_GA NULL
 #define OPTION_VAL_21_9_GA NULL
 #define OPTION_VAL_32_9_GA NULL
-#define OPTION_VAL_4_3_GA NULL
 #define OPTION_VAL_5_4_GA NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_GA "RSX ilshnáitheach"
 #define RPCS3_MULTITHREADED_RSX_INFO_0_GA "Bogann sé cuid den obair RSX go dtí an dara snáithe. Bíonn sé múchta de réir réamhshocraithe, mar atá in RPCS3; féadfaidh sé cabhrú ar LAPanna a bhfuil líon beag croíleacán tapa acu, fóin san áireamh."
@@ -18741,12 +18996,13 @@ struct retro_core_options_v2 options_fr = {
 #define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_GA "Moill mhúscailte an tiománaí i micreasoicindí. 0 de réir réamhshocraithe, mar atá in RPCS3; ná méadaigh é ach amháin nuair a bhíonn sé ag teastáil ó chluiche."
 #define OPTION_VAL_0_GA "0 (Réamhshocrú)"
 #define RPCS3_VBLANK_RATE_LABEL_GA "Minicíocht VBlank"
-#define RPCS3_VBLANK_RATE_INFO_0_GA "Ráta athnuachana an PS3 i Hz. Is é seo freisin an ráta frámaí a iarrann an croí-inneall ar RetroArch, rud a thagann i bhfeidhm nuair a luchtútar an t-ábhar; teastaíonn taispeáint a athnuaitear chomh tapa sin ó chluichí ar féidir leo rith ag níos mó ná 60 FPS."
+#define RPCS3_VBLANK_RATE_INFO_0_GA "Ráta athnuachana an PS3 i Hz. Is é seo freisin an ráta frámaí a iarrann an croí-inneall ar RetroArch, agus a thagann i bhfeidhm nuair a luchtófar an t-ábhar; teastaíonn taispeáint a dhéanann athnuachan chomh tapa sin ó chluichí ar féidir leo rith ag níos mó ná 60 FPS. Déanann an rogha \"From List\" an ráta Vblank a dhúbailt do chluichí tacaithe atá liostaithe sa chomhad vblank_unlock.txt (atá le fáil in system/rpcs3). D’fhéadfadh sé go mbeadh ort paistí ar leith a chur i bhfeidhm do chluichí áirithe."
 #define OPTION_VAL_50_RPCS3_VBLANK_RATE_GA NULL
 #define OPTION_VAL_60_RPCS3_VBLANK_RATE_GA NULL
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_GA NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_GA NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_GA NULL
+#define OPTION_VAL_LIST_GA "Ón liosta"
 #define RPCS3_THREAD_SCHEDULER_LABEL_GA "Sceidealóir Snáitheanna"
 #define RPCS3_THREAD_SCHEDULER_INFO_0_GA "Cé a shannann snáitheanna an emuladóra do chroíleacáin an LAP, mar a dhéantar in RPCS3? Fágann an córas oibriúcháin faoin gcóras féin é; socraíonn sceidealóirí RPCS3 snáitheanna PPU, SPU agus RSX ar chroíleacáin ar leith, leagan amach atá saindeartha do roinnt LAP deisce. Níl aon tionchar aige seo ar Android, áit nach féidir snáitheanna a shocrú ar chroíleacáin ar leith."
 #define OPTION_VAL_OS_GA "Córas Oibriúcháin"
@@ -18771,7 +19027,7 @@ struct retro_core_options_v2 options_fr = {
 #define RPCS3_NETWORK_ENABLED_LABEL_GA "Cumasaithe don Líonra"
 #define RPCS3_NETWORK_ENABLED_INFO_0_GA "Cuireann sé ar chumas cluichí rochtain a fháil ar an idirlíon. Tagann sé i bhfeidhm nuair a luchtútar an t-ábhar."
 #define RPCS3_PSN_STATUS_LABEL_GA "Stádas PSN"
-#define RPCS3_PSN_STATUS_INFO_0_GA NULL
+#define RPCS3_PSN_STATUS_INFO_0_GA "Seo an méid a fheiceann cluichí de chuid an PlayStation Network. Cuireann an modh insamhalta ina luí orthu go bhfuil siad logáilte isteach — rud atá riachtanach do chuid acu chun dul thar na roghchláir; nascann RPCN le freastalaí de chuid RPCS3 féin agus teastaíonn go mbeadh an líonra cumasaithe agus cuntas RPCN agat: ní féidir leis an gcroílár cuntas a chruthú, mar sin ní mór é a shocrú in RPCS3 ina aonar (neamhspleách) agus an comhad `rpcn.yml` a chóipeáil isteach i `system/rpcs3/` (nó `system/rpcs3/config/` ar Windows). Cuirtear i bhfeidhm é nuair a luchtútar an t-ábhar."
 #define OPTION_VAL_SIMULATED_GA "Insamhlatha"
 #define OPTION_VAL_RPCN_GA NULL
 #define RPCS3_UPNP_LABEL_GA NULL
@@ -18792,13 +19048,13 @@ struct retro_core_options_v2 options_fr = {
 #define RPCS3_DISABLE_HW_COLORSPACE_LABEL_GA "Díchumasaigh Athmhapaíl Spás Dathanna na Crua-earraí"
 #define RPCS3_DISABLE_HW_COLORSPACE_INFO_0_GA "Athmhapaíonn sé spásanna datha uigeachtaí sna scáthóirí seachas i crua-earraí an GPU. Chun críocha dífhabhtaithe."
 #define RPCS3_DISABLE_ZCULL_QUERIES_LABEL_GA "Díchumasaigh Ceisteanna Bacála ZCull"
-#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_GA NULL
+#define RPCS3_DISABLE_ZCULL_QUERIES_INFO_0_GA "Tuairiscigh fiosrúcháin occlúis mar chuid acu a d’éirigh leo gan iad a rith. Bíonn sé seo níos tapúla, ach cuireann sé isteach ar chluichí a bhraitheann orthu (m.sh. lasracha lionsa, infheictheacht)."
 #define RPCS3_CPU_BLIT_LABEL_GA "Cuir Aithris Blit LAP i bhFeidhm go Láidir"
 #define RPCS3_CPU_BLIT_INFO_0_GA "Cuir aithris 'blit' an LAP i bhfeidhm go héigeantach le haghaidh éifeachtaí áirithe."
 #define RPCS3_GPU_TEXTURE_SCALING_LABEL_GA "Cuir Scálú Uigeachta GPU i bhFeidhm"
 #define RPCS3_GPU_TEXTURE_SCALING_INFO_0_GA "Déanann sé scálú ar uigeachtaí ar an GPU seachas ar an CPU. Chun críocha dífhabhtaithe; d’fhéadfadh sé cur isteach ar oibriú cluichí."
 #define RPCS3_SPU_EVENTS_BUSY_LOOP_LABEL_GA "Cumasaigh Lúb Ghnóthach Imeachtaí SPU"
-#define RPCS3_SPU_EVENTS_BUSY_LOOP_INFO_0_GA NULL
+#define RPCS3_SPU_EVENTS_BUSY_LOOP_INFO_0_GA "Ceadaítear do shreadaí SPU fanacht ag rith (ag casadh) agus iad ag fanacht ar imeachtaí, in áit dul a chodladh. Is féidir leis cabhrú le roinnt cluichí, ach caitheann sé am LAP."
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_GA "Feidhmeanna Statacha a Nascadh"
 #define RPCS3_HOOK_STATIC_FUNCS_INFO_0_GA "Feidhmeanna statacha a nascadh le haghaidh HLE."
 #define RPCS3_SET_DAZ_FTZ_LABEL_GA "Socraigh PPU ar DAZ agus FTZ"
@@ -18809,7 +19065,7 @@ struct retro_core_options_v2 options_fr = {
 #define RPCS3_PPU_SET_FPCC_INFO_0_GA "Socraigh giotáin PPU FPCC go cruinn."
 #define RPCS3_PPU_SET_SAT_BIT_LABEL_GA "Giotán Sáithithe PPU Cruinn"
 #define RPCS3_PPU_SET_SAT_BIT_INFO_0_GA "Socraigh an giotán sáithiúcháin PPU go cruinn."
-#define RPCS3_PPU_NJ_MODE_LABEL_GA NULL
+#define RPCS3_PPU_NJ_MODE_LABEL_GA "Mód Neamh-Java PPU Cruinn"
 #define RPCS3_PPU_NJ_MODE_INFO_0_GA "Láimhseáil mód neamh-Java an PPU."
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_LABEL_GA "Láimhseáil Chruinn ar NaN i Veicteoirí PPU"
 #define RPCS3_PPU_ACCURATE_VECTOR_NAN_INFO_0_GA "Láimhseáil níos cruinne ar NaN i veicteoirí."
@@ -18822,18 +19078,15 @@ struct retro_core_options_v2 options_fr = {
 #define OPTION_VAL_COLOR_GA "Dath is Fearr Leat"
 #define OPTION_VAL_DEPTH_GA "Tabhair tosaíocht don doimhneacht"
 #define RPCS3_DATABASE_OVERRIDE_LABEL_GA "Sárú ar Socruithe na Bunachair Sonraí"
-#define RPCS3_DATABASE_OVERRIDE_INFO_0_GA NULL
+#define RPCS3_DATABASE_OVERRIDE_INFO_0_GA "Feabhsaítear an comhoiriúnacht trí cheartúcháin a bhaineann go sonrach le cluichí a chur i bhfeidhm go huathoibríoch: bíonn tús áite ag na socruithe atá i mbunachar sonraí RPCS3 don chluiche (mar a chuireann RPCS3 ina aonar i bhfeidhm iad) thar na príomhroghanna — cibé acu go domhanda nó in aghaidh an chluiche — maidir leis na socruithe a luaitear iontu; fanann gach socrú eile mar a shocraigh tú féin é. Má roghnaítear \"As\" (Off), ní chuirtear aon cheann acu i bhfeidhm. Tiocfaidh an t-athrú i bhfeidhm an chéad uair eile a sheoltar cluiche."
 #define RPCS3_PERF_OVERLAY_LABEL_GA "Forleagan Feidhmíochta"
 #define RPCS3_PERF_OVERLAY_INFO_0_GA "Forleagan feidhmíochta RPCS3 féin, a thaispeántar thar an gcluiche: ráta frámaí an chluiche mar a dhéanann RPCS3 a chomhaireamh, agus — ag leibhéil mhionsonraí níos airde — amanna na bhfrámaí agus an t-ualach ar an LAP agus ar an bGPU."
 #define OPTION_VAL_MINIMAL_GA "Ráta frámaí amháin"
 #define OPTION_VAL_MEDIUM_GA "Meánach"
 #define RPCS3_FRAME_PACING_LABEL_GA "Luas na bhFrámaí"
-#define RPCS3_FRAME_PACING_INFO_0_GA NULL
+#define RPCS3_FRAME_PACING_INFO_0_GA "An rud a chinneann uainiú fhrámaí an chluiche. Is é clog an insamhlóra (emulator) an t-uaineadóir a bhaineann le RPCS3 féin, díreach mar a bhíonn i gcás RPCS3 ina aonar. Cuireann RetroArch athnuachan PS3 amháin ar fáil don chluiche do gach fráma a thaispeánann RetroArch; dá bhrí sin, luasghéaraíonn an fheidhm \"fast-forward\" an cluiche, agus ritheann an cluiche ag minicíocht VBlank nuair a bhíonn an líon sin frámaí in aghaidh an tsoicind á thaispeáint ag RetroArch."
 #define OPTION_VAL_FRONTEND_GA NULL
 #define OPTION_VAL_EMULATOR_GA "Cloigín an insuladóra"
-#define RPCS3_SAVEDATA_SLOT_LABEL_GA "Sliotán Sábhála Sonraí"
-#define RPCS3_SAVEDATA_SLOT_INFO_0_GA "Taispeánann cluiche PS3 liosta dá shonraí sábhála agus tugann sé deis don imreoir rogha a dhéanamh. Trí 'Roghnú ón liosta' a úsáid, taispeántar an liosta sin ar an scáileán le go bhféadfar é a úsáid leis an rialtán. Ina áit sin, is uimhir a shocraíonn an príomhrogha duit: má shábhálann tú, scríobhtar thar an iontráil atá ag an suíomh sin ar liosta an chluiche, nó cruthaítear sábháil nua má tá an liosta níos giorra; má luchtar an cluiche, úsáidtear an iontráil ag an suíomh sin, ach ní aimsítear aon rud má tá an liosta níos giorra. Is í an uimhir 0 an chéad iontráil. Ní thaispeánann cluichí nach gcoinníonn ach aon chomhad sábhála amháin liosta ar bith, mar sin ní bhaineann sé seo leo."
-#define OPTION_VAL_LIST_GA "Roghnaigh ón liosta"
 #define RPCS3_MASTER_VOLUME_LABEL_GA "Imleabhar Máistir"
 #define RPCS3_MASTER_VOLUME_INFO_0_GA "Céatadán príomhleibhéil fuaime."
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_GA NULL
@@ -18845,11 +19098,17 @@ struct retro_core_options_v2 options_fr = {
 #define OPTION_VAL_70_GA NULL
 #define OPTION_VAL_80_GA NULL
 #define OPTION_VAL_90_GA NULL
-#define RPCS3_AUDIO_FORMAT_LABEL_GA NULL
-#define RPCS3_AUDIO_FORMAT_INFO_0_GA NULL
-#define OPTION_VAL_STEREO_GA NULL
-#define OPTION_VAL_SURROUND_5_1_GA NULL
-#define OPTION_VAL_SURROUND_7_1_GA NULL
+#define RPCS3_AUDIO_FORMAT_LABEL_GA "Formáid Fuaime"
+#define RPCS3_AUDIO_FORMAT_INFO_0_GA "Na callairí a insíonn an PS3 do chluichí go bhfuil siad aige. Socraigh é ar 'Output Layout' (Leagan Amach an Aschuir) de chuid RetroArch: roghnaíonn cluiche a mheascán steiréó, 5.1 nó 7.1 féin as na roghanna atá ar fáil, agus ní bhíonn an fhuaim chéanna i gcónaí ag meascán timpeallaigh a laghdaítear (nó a chomhbhrúitear) ag RetroArch agus a bhíonn ag an meascán steiréó bunaidh sa chluiche. Teastaíonn leagan de RetroArch a thacaíonn le fuaim ilchainéil; mura bhfuil, úsáidfear steiréó. Tagann an socrú i bhfeidhm nuair a thosaíonn an cluiche."
+#define OPTION_VAL_STEREO_GA "Steiréó"
+#define OPTION_VAL_SURROUND_5_1_GA "Fuaim thimpeallach 5.1"
+#define OPTION_VAL_SURROUND_7_1_GA "Fuaim Thimpeallach 7.1"
+#define RPCS3_DISK_CACHE_SIZE_LABEL_GA "Méid na Taisce Diosca"
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_GA "Cuirtear teorainn leis an taisce a choinníonn cluichí ar dev_hdd1; murach sin, ní dhéanfadh sé ach fás. Nuair a shocraítear méid áirithe, scriostar na taiscí is sine nuair a luchtófar nó a dhúnfar cluiche, go dtí go n-oireann an chuid eile. Scriosann an rogha \"Wipe on Exit\" an taisce ar fad nuair a dhúntar cluiche, díreach mar a dhéanann PS3 nuair a mhúchtar é. Athchruthaíonn an cluiche féin an taisce a scriosadh, rud a d’fhéadfadh moill a chur ar an gcéad uair eile a sheoltar an cluiche sin."
+#define OPTION_VAL_UNLIMITED_GA "Gan teorainn"
+#define OPTION_VAL_1GB_GA NULL
+#define OPTION_VAL_5GB_GA NULL
+#define OPTION_VAL_WIPE_GA "Scrios ar Scor"
 #define RPCS3_LANGUAGE_LABEL_GA "Teanga an Chórais"
 #define RPCS3_LANGUAGE_INFO_0_GA "Teanga chórais PS3."
 #define OPTION_VAL_ENGLISH_GA "Béarla"
@@ -19034,6 +19293,13 @@ struct retro_core_option_v2_definition option_defs_ga[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_GA}, {"vulkan", OPTION_VAL_VULKAN_GA}, {"null", OPTION_VAL_NULL_GA}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_GA, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_GA,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_GA}, {"4:3", OPTION_VAL_4_3_GA}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_GA, NULL,
@@ -19221,7 +19487,7 @@ struct retro_core_option_v2_definition option_defs_ga[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_GA, NULL,
         RPCS3_VBLANK_RATE_INFO_0_GA,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_GA}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_GA}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_GA}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_GA}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_GA}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_GA}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_GA}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_GA}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_GA}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_GA}, {"list", OPTION_VAL_LIST_GA}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -19460,13 +19726,6 @@ struct retro_core_option_v2_definition option_defs_ga[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_GA, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_GA,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_GA}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_GA, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_GA,
         NULL, "core",
@@ -19479,6 +19738,13 @@ struct retro_core_option_v2_definition option_defs_ga[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_GA}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_GA}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_GA}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_GA, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_GA,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_GA}, {"1gb", OPTION_VAL_1GB_GA}, {"5gb", OPTION_VAL_5GB_GA}, {"wipe", OPTION_VAL_WIPE_GA}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_GA, NULL,
@@ -19660,6 +19926,10 @@ struct retro_core_options_v2 options_ga = {
 #define OPTION_VAL_OPENGL_GL NULL
 #define OPTION_VAL_VULKAN_GL NULL
 #define OPTION_VAL_NULL_GL NULL
+#define RPCS3_ASPECT_RATIO_LABEL_GL "Relación de aspecto"
+#define RPCS3_ASPECT_RATIO_INFO_0_GL NULL
+#define OPTION_VAL_16_9_GL NULL
+#define OPTION_VAL_4_3_GL NULL
 #define RPCS3_FRAME_LIMIT_LABEL_GL NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_GL NULL
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_GL NULL
@@ -19734,7 +20004,6 @@ struct retro_core_options_v2 options_ga = {
 #define OPTION_VAL_16_10_GL NULL
 #define OPTION_VAL_21_9_GL NULL
 #define OPTION_VAL_32_9_GL NULL
-#define OPTION_VAL_4_3_GL NULL
 #define OPTION_VAL_5_4_GL NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_GL NULL
 #define RPCS3_MULTITHREADED_RSX_INFO_0_GL NULL
@@ -19776,6 +20045,7 @@ struct retro_core_options_v2 options_ga = {
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_GL NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_GL NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_GL NULL
+#define OPTION_VAL_LIST_GL NULL
 #define RPCS3_THREAD_SCHEDULER_LABEL_GL NULL
 #define RPCS3_THREAD_SCHEDULER_INFO_0_GL NULL
 #define OPTION_VAL_OS_GL NULL
@@ -19860,9 +20130,6 @@ struct retro_core_options_v2 options_ga = {
 #define RPCS3_FRAME_PACING_INFO_0_GL NULL
 #define OPTION_VAL_FRONTEND_GL NULL
 #define OPTION_VAL_EMULATOR_GL NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_GL NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_GL NULL
-#define OPTION_VAL_LIST_GL NULL
 #define RPCS3_MASTER_VOLUME_LABEL_GL "Volume principal"
 #define RPCS3_MASTER_VOLUME_INFO_0_GL NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_GL NULL
@@ -19876,9 +20143,15 @@ struct retro_core_options_v2 options_ga = {
 #define OPTION_VAL_90_GL NULL
 #define RPCS3_AUDIO_FORMAT_LABEL_GL NULL
 #define RPCS3_AUDIO_FORMAT_INFO_0_GL NULL
-#define OPTION_VAL_STEREO_GL NULL
+#define OPTION_VAL_STEREO_GL "Estéreo"
 #define OPTION_VAL_SURROUND_5_1_GL NULL
 #define OPTION_VAL_SURROUND_7_1_GL NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_GL NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_GL NULL
+#define OPTION_VAL_UNLIMITED_GL NULL
+#define OPTION_VAL_1GB_GL NULL
+#define OPTION_VAL_5GB_GL NULL
+#define OPTION_VAL_WIPE_GL NULL
 #define RPCS3_LANGUAGE_LABEL_GL NULL
 #define RPCS3_LANGUAGE_INFO_0_GL NULL
 #define OPTION_VAL_ENGLISH_GL "Inglés"
@@ -20063,6 +20336,13 @@ struct retro_core_option_v2_definition option_defs_gl[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_GL}, {"vulkan", OPTION_VAL_VULKAN_GL}, {"null", OPTION_VAL_NULL_GL}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_GL, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_GL,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_GL}, {"4:3", OPTION_VAL_4_3_GL}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_GL, NULL,
@@ -20250,7 +20530,7 @@ struct retro_core_option_v2_definition option_defs_gl[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_GL, NULL,
         RPCS3_VBLANK_RATE_INFO_0_GL,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_GL}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_GL}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_GL}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_GL}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_GL}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_GL}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_GL}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_GL}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_GL}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_GL}, {"list", OPTION_VAL_LIST_GL}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -20489,13 +20769,6 @@ struct retro_core_option_v2_definition option_defs_gl[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_GL, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_GL,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_GL}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_GL, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_GL,
         NULL, "core",
@@ -20508,6 +20781,13 @@ struct retro_core_option_v2_definition option_defs_gl[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_GL}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_GL}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_GL}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_GL, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_GL,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_GL}, {"1gb", OPTION_VAL_1GB_GL}, {"5gb", OPTION_VAL_5GB_GL}, {"wipe", OPTION_VAL_WIPE_GL}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_GL, NULL,
@@ -20689,6 +20969,10 @@ struct retro_core_options_v2 options_gl = {
 #define OPTION_VAL_OPENGL_HE NULL
 #define OPTION_VAL_VULKAN_HE NULL
 #define OPTION_VAL_NULL_HE NULL
+#define RPCS3_ASPECT_RATIO_LABEL_HE "יחס גובה-רוחב"
+#define RPCS3_ASPECT_RATIO_INFO_0_HE NULL
+#define OPTION_VAL_16_9_HE NULL
+#define OPTION_VAL_4_3_HE NULL
 #define RPCS3_FRAME_LIMIT_LABEL_HE NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_HE NULL
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_HE NULL
@@ -20763,7 +21047,6 @@ struct retro_core_options_v2 options_gl = {
 #define OPTION_VAL_16_10_HE NULL
 #define OPTION_VAL_21_9_HE NULL
 #define OPTION_VAL_32_9_HE NULL
-#define OPTION_VAL_4_3_HE NULL
 #define OPTION_VAL_5_4_HE NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_HE NULL
 #define RPCS3_MULTITHREADED_RSX_INFO_0_HE NULL
@@ -20805,6 +21088,7 @@ struct retro_core_options_v2 options_gl = {
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_HE NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_HE NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_HE NULL
+#define OPTION_VAL_LIST_HE NULL
 #define RPCS3_THREAD_SCHEDULER_LABEL_HE NULL
 #define RPCS3_THREAD_SCHEDULER_INFO_0_HE NULL
 #define OPTION_VAL_OS_HE NULL
@@ -20889,9 +21173,6 @@ struct retro_core_options_v2 options_gl = {
 #define RPCS3_FRAME_PACING_INFO_0_HE NULL
 #define OPTION_VAL_FRONTEND_HE NULL
 #define OPTION_VAL_EMULATOR_HE NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_HE NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_HE NULL
-#define OPTION_VAL_LIST_HE NULL
 #define RPCS3_MASTER_VOLUME_LABEL_HE NULL
 #define RPCS3_MASTER_VOLUME_INFO_0_HE NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_HE NULL
@@ -20908,6 +21189,12 @@ struct retro_core_options_v2 options_gl = {
 #define OPTION_VAL_STEREO_HE NULL
 #define OPTION_VAL_SURROUND_5_1_HE NULL
 #define OPTION_VAL_SURROUND_7_1_HE NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_HE NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_HE NULL
+#define OPTION_VAL_UNLIMITED_HE NULL
+#define OPTION_VAL_1GB_HE NULL
+#define OPTION_VAL_5GB_HE NULL
+#define OPTION_VAL_WIPE_HE NULL
 #define RPCS3_LANGUAGE_LABEL_HE NULL
 #define RPCS3_LANGUAGE_INFO_0_HE NULL
 #define OPTION_VAL_ENGLISH_HE NULL
@@ -21092,6 +21379,13 @@ struct retro_core_option_v2_definition option_defs_he[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_HE}, {"vulkan", OPTION_VAL_VULKAN_HE}, {"null", OPTION_VAL_NULL_HE}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_HE, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_HE,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_HE}, {"4:3", OPTION_VAL_4_3_HE}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_HE, NULL,
@@ -21279,7 +21573,7 @@ struct retro_core_option_v2_definition option_defs_he[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_HE, NULL,
         RPCS3_VBLANK_RATE_INFO_0_HE,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_HE}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_HE}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_HE}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_HE}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_HE}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_HE}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_HE}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_HE}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_HE}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_HE}, {"list", OPTION_VAL_LIST_HE}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -21518,13 +21812,6 @@ struct retro_core_option_v2_definition option_defs_he[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_HE, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_HE,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_HE}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_HE, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_HE,
         NULL, "core",
@@ -21537,6 +21824,13 @@ struct retro_core_option_v2_definition option_defs_he[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_HE}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_HE}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_HE}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_HE, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_HE,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_HE}, {"1gb", OPTION_VAL_1GB_HE}, {"5gb", OPTION_VAL_5GB_HE}, {"wipe", OPTION_VAL_WIPE_HE}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_HE, NULL,
@@ -21718,6 +22012,10 @@ struct retro_core_options_v2 options_he = {
 #define OPTION_VAL_OPENGL_HR NULL
 #define OPTION_VAL_VULKAN_HR NULL
 #define OPTION_VAL_NULL_HR NULL
+#define RPCS3_ASPECT_RATIO_LABEL_HR "Omjer slike"
+#define RPCS3_ASPECT_RATIO_INFO_0_HR NULL
+#define OPTION_VAL_16_9_HR NULL
+#define OPTION_VAL_4_3_HR NULL
 #define RPCS3_FRAME_LIMIT_LABEL_HR NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_HR NULL
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_HR NULL
@@ -21792,7 +22090,6 @@ struct retro_core_options_v2 options_he = {
 #define OPTION_VAL_16_10_HR NULL
 #define OPTION_VAL_21_9_HR NULL
 #define OPTION_VAL_32_9_HR NULL
-#define OPTION_VAL_4_3_HR NULL
 #define OPTION_VAL_5_4_HR NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_HR NULL
 #define RPCS3_MULTITHREADED_RSX_INFO_0_HR NULL
@@ -21834,6 +22131,7 @@ struct retro_core_options_v2 options_he = {
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_HR NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_HR NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_HR NULL
+#define OPTION_VAL_LIST_HR NULL
 #define RPCS3_THREAD_SCHEDULER_LABEL_HR NULL
 #define RPCS3_THREAD_SCHEDULER_INFO_0_HR NULL
 #define OPTION_VAL_OS_HR NULL
@@ -21918,9 +22216,6 @@ struct retro_core_options_v2 options_he = {
 #define RPCS3_FRAME_PACING_INFO_0_HR NULL
 #define OPTION_VAL_FRONTEND_HR NULL
 #define OPTION_VAL_EMULATOR_HR NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_HR NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_HR NULL
-#define OPTION_VAL_LIST_HR NULL
 #define RPCS3_MASTER_VOLUME_LABEL_HR "Glavna glasnoća"
 #define RPCS3_MASTER_VOLUME_INFO_0_HR NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_HR NULL
@@ -21937,6 +22232,12 @@ struct retro_core_options_v2 options_he = {
 #define OPTION_VAL_STEREO_HR NULL
 #define OPTION_VAL_SURROUND_5_1_HR NULL
 #define OPTION_VAL_SURROUND_7_1_HR NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_HR NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_HR NULL
+#define OPTION_VAL_UNLIMITED_HR NULL
+#define OPTION_VAL_1GB_HR NULL
+#define OPTION_VAL_5GB_HR NULL
+#define OPTION_VAL_WIPE_HR NULL
 #define RPCS3_LANGUAGE_LABEL_HR NULL
 #define RPCS3_LANGUAGE_INFO_0_HR NULL
 #define OPTION_VAL_ENGLISH_HR "Engleski"
@@ -22121,6 +22422,13 @@ struct retro_core_option_v2_definition option_defs_hr[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_HR}, {"vulkan", OPTION_VAL_VULKAN_HR}, {"null", OPTION_VAL_NULL_HR}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_HR, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_HR,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_HR}, {"4:3", OPTION_VAL_4_3_HR}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_HR, NULL,
@@ -22308,7 +22616,7 @@ struct retro_core_option_v2_definition option_defs_hr[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_HR, NULL,
         RPCS3_VBLANK_RATE_INFO_0_HR,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_HR}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_HR}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_HR}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_HR}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_HR}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_HR}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_HR}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_HR}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_HR}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_HR}, {"list", OPTION_VAL_LIST_HR}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -22547,13 +22855,6 @@ struct retro_core_option_v2_definition option_defs_hr[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_HR, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_HR,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_HR}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_HR, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_HR,
         NULL, "core",
@@ -22566,6 +22867,13 @@ struct retro_core_option_v2_definition option_defs_hr[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_HR}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_HR}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_HR}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_HR, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_HR,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_HR}, {"1gb", OPTION_VAL_1GB_HR}, {"5gb", OPTION_VAL_5GB_HR}, {"wipe", OPTION_VAL_WIPE_HR}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_HR, NULL,
@@ -22747,6 +23055,10 @@ struct retro_core_options_v2 options_hr = {
 #define OPTION_VAL_OPENGL_HU NULL
 #define OPTION_VAL_VULKAN_HU NULL
 #define OPTION_VAL_NULL_HU NULL
+#define RPCS3_ASPECT_RATIO_LABEL_HU "Képarány"
+#define RPCS3_ASPECT_RATIO_INFO_0_HU NULL
+#define OPTION_VAL_16_9_HU NULL
+#define OPTION_VAL_4_3_HU NULL
 #define RPCS3_FRAME_LIMIT_LABEL_HU NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_HU NULL
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_HU "Automatikus"
@@ -22821,7 +23133,6 @@ struct retro_core_options_v2 options_hr = {
 #define OPTION_VAL_16_10_HU NULL
 #define OPTION_VAL_21_9_HU NULL
 #define OPTION_VAL_32_9_HU NULL
-#define OPTION_VAL_4_3_HU NULL
 #define OPTION_VAL_5_4_HU NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_HU NULL
 #define RPCS3_MULTITHREADED_RSX_INFO_0_HU NULL
@@ -22863,6 +23174,7 @@ struct retro_core_options_v2 options_hr = {
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_HU NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_HU NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_HU NULL
+#define OPTION_VAL_LIST_HU NULL
 #define RPCS3_THREAD_SCHEDULER_LABEL_HU NULL
 #define RPCS3_THREAD_SCHEDULER_INFO_0_HU NULL
 #define OPTION_VAL_OS_HU NULL
@@ -22947,9 +23259,6 @@ struct retro_core_options_v2 options_hr = {
 #define RPCS3_FRAME_PACING_INFO_0_HU NULL
 #define OPTION_VAL_FRONTEND_HU NULL
 #define OPTION_VAL_EMULATOR_HU NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_HU NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_HU NULL
-#define OPTION_VAL_LIST_HU NULL
 #define RPCS3_MASTER_VOLUME_LABEL_HU "Fő hangerő"
 #define RPCS3_MASTER_VOLUME_INFO_0_HU NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_HU NULL
@@ -22963,9 +23272,15 @@ struct retro_core_options_v2 options_hr = {
 #define OPTION_VAL_90_HU NULL
 #define RPCS3_AUDIO_FORMAT_LABEL_HU NULL
 #define RPCS3_AUDIO_FORMAT_INFO_0_HU NULL
-#define OPTION_VAL_STEREO_HU NULL
+#define OPTION_VAL_STEREO_HU "Sztereó"
 #define OPTION_VAL_SURROUND_5_1_HU NULL
 #define OPTION_VAL_SURROUND_7_1_HU NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_HU NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_HU NULL
+#define OPTION_VAL_UNLIMITED_HU NULL
+#define OPTION_VAL_1GB_HU NULL
+#define OPTION_VAL_5GB_HU NULL
+#define OPTION_VAL_WIPE_HU NULL
 #define RPCS3_LANGUAGE_LABEL_HU NULL
 #define RPCS3_LANGUAGE_INFO_0_HU NULL
 #define OPTION_VAL_ENGLISH_HU "angol"
@@ -23150,6 +23465,13 @@ struct retro_core_option_v2_definition option_defs_hu[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_HU}, {"vulkan", OPTION_VAL_VULKAN_HU}, {"null", OPTION_VAL_NULL_HU}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_HU, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_HU,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_HU}, {"4:3", OPTION_VAL_4_3_HU}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_HU, NULL,
@@ -23337,7 +23659,7 @@ struct retro_core_option_v2_definition option_defs_hu[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_HU, NULL,
         RPCS3_VBLANK_RATE_INFO_0_HU,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_HU}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_HU}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_HU}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_HU}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_HU}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_HU}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_HU}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_HU}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_HU}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_HU}, {"list", OPTION_VAL_LIST_HU}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -23576,13 +23898,6 @@ struct retro_core_option_v2_definition option_defs_hu[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_HU, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_HU,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_HU}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_HU, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_HU,
         NULL, "core",
@@ -23595,6 +23910,13 @@ struct retro_core_option_v2_definition option_defs_hu[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_HU}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_HU}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_HU}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_HU, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_HU,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_HU}, {"1gb", OPTION_VAL_1GB_HU}, {"5gb", OPTION_VAL_5GB_HU}, {"wipe", OPTION_VAL_WIPE_HU}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_HU, NULL,
@@ -23776,6 +24098,10 @@ struct retro_core_options_v2 options_hu = {
 #define OPTION_VAL_OPENGL_ID NULL
 #define OPTION_VAL_VULKAN_ID NULL
 #define OPTION_VAL_NULL_ID NULL
+#define RPCS3_ASPECT_RATIO_LABEL_ID "Rasio Aspek"
+#define RPCS3_ASPECT_RATIO_INFO_0_ID NULL
+#define OPTION_VAL_16_9_ID NULL
+#define OPTION_VAL_4_3_ID NULL
 #define RPCS3_FRAME_LIMIT_LABEL_ID NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_ID NULL
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_ID "Otomatis"
@@ -23850,7 +24176,6 @@ struct retro_core_options_v2 options_hu = {
 #define OPTION_VAL_16_10_ID NULL
 #define OPTION_VAL_21_9_ID NULL
 #define OPTION_VAL_32_9_ID NULL
-#define OPTION_VAL_4_3_ID NULL
 #define OPTION_VAL_5_4_ID NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_ID NULL
 #define RPCS3_MULTITHREADED_RSX_INFO_0_ID NULL
@@ -23892,6 +24217,7 @@ struct retro_core_options_v2 options_hu = {
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_ID NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_ID NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_ID NULL
+#define OPTION_VAL_LIST_ID NULL
 #define RPCS3_THREAD_SCHEDULER_LABEL_ID NULL
 #define RPCS3_THREAD_SCHEDULER_INFO_0_ID NULL
 #define OPTION_VAL_OS_ID NULL
@@ -23976,9 +24302,6 @@ struct retro_core_options_v2 options_hu = {
 #define RPCS3_FRAME_PACING_INFO_0_ID NULL
 #define OPTION_VAL_FRONTEND_ID NULL
 #define OPTION_VAL_EMULATOR_ID NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_ID NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_ID NULL
-#define OPTION_VAL_LIST_ID NULL
 #define RPCS3_MASTER_VOLUME_LABEL_ID NULL
 #define RPCS3_MASTER_VOLUME_INFO_0_ID NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_ID NULL
@@ -23995,6 +24318,12 @@ struct retro_core_options_v2 options_hu = {
 #define OPTION_VAL_STEREO_ID NULL
 #define OPTION_VAL_SURROUND_5_1_ID NULL
 #define OPTION_VAL_SURROUND_7_1_ID NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_ID NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_ID NULL
+#define OPTION_VAL_UNLIMITED_ID NULL
+#define OPTION_VAL_1GB_ID NULL
+#define OPTION_VAL_5GB_ID NULL
+#define OPTION_VAL_WIPE_ID NULL
 #define RPCS3_LANGUAGE_LABEL_ID NULL
 #define RPCS3_LANGUAGE_INFO_0_ID NULL
 #define OPTION_VAL_ENGLISH_ID "Bahasa Inggris"
@@ -24179,6 +24508,13 @@ struct retro_core_option_v2_definition option_defs_id[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_ID}, {"vulkan", OPTION_VAL_VULKAN_ID}, {"null", OPTION_VAL_NULL_ID}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_ID, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_ID,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_ID}, {"4:3", OPTION_VAL_4_3_ID}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_ID, NULL,
@@ -24366,7 +24702,7 @@ struct retro_core_option_v2_definition option_defs_id[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_ID, NULL,
         RPCS3_VBLANK_RATE_INFO_0_ID,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_ID}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_ID}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_ID}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_ID}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_ID}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_ID}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_ID}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_ID}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_ID}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_ID}, {"list", OPTION_VAL_LIST_ID}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -24605,13 +24941,6 @@ struct retro_core_option_v2_definition option_defs_id[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_ID, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_ID,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_ID}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_ID, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_ID,
         NULL, "core",
@@ -24624,6 +24953,13 @@ struct retro_core_option_v2_definition option_defs_id[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_ID}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_ID}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_ID}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_ID, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_ID,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_ID}, {"1gb", OPTION_VAL_1GB_ID}, {"5gb", OPTION_VAL_5GB_ID}, {"wipe", OPTION_VAL_WIPE_ID}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_ID, NULL,
@@ -24805,6 +25141,10 @@ struct retro_core_options_v2 options_id = {
 #define OPTION_VAL_OPENGL_IT NULL
 #define OPTION_VAL_VULKAN_IT NULL
 #define OPTION_VAL_NULL_IT NULL
+#define RPCS3_ASPECT_RATIO_LABEL_IT "Rapporto d'aspetto"
+#define RPCS3_ASPECT_RATIO_INFO_0_IT NULL
+#define OPTION_VAL_16_9_IT NULL
+#define OPTION_VAL_4_3_IT NULL
 #define RPCS3_FRAME_LIMIT_LABEL_IT NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_IT NULL
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_IT NULL
@@ -24879,7 +25219,6 @@ struct retro_core_options_v2 options_id = {
 #define OPTION_VAL_16_10_IT NULL
 #define OPTION_VAL_21_9_IT NULL
 #define OPTION_VAL_32_9_IT NULL
-#define OPTION_VAL_4_3_IT NULL
 #define OPTION_VAL_5_4_IT NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_IT NULL
 #define RPCS3_MULTITHREADED_RSX_INFO_0_IT NULL
@@ -24921,6 +25260,7 @@ struct retro_core_options_v2 options_id = {
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_IT NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_IT NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_IT NULL
+#define OPTION_VAL_LIST_IT NULL
 #define RPCS3_THREAD_SCHEDULER_LABEL_IT NULL
 #define RPCS3_THREAD_SCHEDULER_INFO_0_IT NULL
 #define OPTION_VAL_OS_IT NULL
@@ -25005,9 +25345,6 @@ struct retro_core_options_v2 options_id = {
 #define RPCS3_FRAME_PACING_INFO_0_IT NULL
 #define OPTION_VAL_FRONTEND_IT NULL
 #define OPTION_VAL_EMULATOR_IT NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_IT NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_IT NULL
-#define OPTION_VAL_LIST_IT NULL
 #define RPCS3_MASTER_VOLUME_LABEL_IT "Volume Principale"
 #define RPCS3_MASTER_VOLUME_INFO_0_IT NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_IT NULL
@@ -25024,6 +25361,12 @@ struct retro_core_options_v2 options_id = {
 #define OPTION_VAL_STEREO_IT NULL
 #define OPTION_VAL_SURROUND_5_1_IT NULL
 #define OPTION_VAL_SURROUND_7_1_IT NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_IT NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_IT NULL
+#define OPTION_VAL_UNLIMITED_IT NULL
+#define OPTION_VAL_1GB_IT NULL
+#define OPTION_VAL_5GB_IT NULL
+#define OPTION_VAL_WIPE_IT NULL
 #define RPCS3_LANGUAGE_LABEL_IT NULL
 #define RPCS3_LANGUAGE_INFO_0_IT NULL
 #define OPTION_VAL_ENGLISH_IT "Inglese"
@@ -25208,6 +25551,13 @@ struct retro_core_option_v2_definition option_defs_it[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_IT}, {"vulkan", OPTION_VAL_VULKAN_IT}, {"null", OPTION_VAL_NULL_IT}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_IT, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_IT,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_IT}, {"4:3", OPTION_VAL_4_3_IT}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_IT, NULL,
@@ -25395,7 +25745,7 @@ struct retro_core_option_v2_definition option_defs_it[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_IT, NULL,
         RPCS3_VBLANK_RATE_INFO_0_IT,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_IT}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_IT}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_IT}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_IT}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_IT}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_IT}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_IT}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_IT}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_IT}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_IT}, {"list", OPTION_VAL_LIST_IT}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -25634,13 +25984,6 @@ struct retro_core_option_v2_definition option_defs_it[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_IT, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_IT,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_IT}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_IT, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_IT,
         NULL, "core",
@@ -25653,6 +25996,13 @@ struct retro_core_option_v2_definition option_defs_it[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_IT}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_IT}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_IT}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_IT, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_IT,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_IT}, {"1gb", OPTION_VAL_1GB_IT}, {"5gb", OPTION_VAL_5GB_IT}, {"wipe", OPTION_VAL_WIPE_IT}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_IT, NULL,
@@ -25834,6 +26184,10 @@ struct retro_core_options_v2 options_it = {
 #define OPTION_VAL_OPENGL_JA NULL
 #define OPTION_VAL_VULKAN_JA NULL
 #define OPTION_VAL_NULL_JA NULL
+#define RPCS3_ASPECT_RATIO_LABEL_JA "アスペクト比"
+#define RPCS3_ASPECT_RATIO_INFO_0_JA NULL
+#define OPTION_VAL_16_9_JA NULL
+#define OPTION_VAL_4_3_JA NULL
 #define RPCS3_FRAME_LIMIT_LABEL_JA NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_JA NULL
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_JA "自動"
@@ -25908,7 +26262,6 @@ struct retro_core_options_v2 options_it = {
 #define OPTION_VAL_16_10_JA NULL
 #define OPTION_VAL_21_9_JA NULL
 #define OPTION_VAL_32_9_JA NULL
-#define OPTION_VAL_4_3_JA NULL
 #define OPTION_VAL_5_4_JA NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_JA NULL
 #define RPCS3_MULTITHREADED_RSX_INFO_0_JA NULL
@@ -25950,6 +26303,7 @@ struct retro_core_options_v2 options_it = {
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_JA NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_JA NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_JA NULL
+#define OPTION_VAL_LIST_JA NULL
 #define RPCS3_THREAD_SCHEDULER_LABEL_JA NULL
 #define RPCS3_THREAD_SCHEDULER_INFO_0_JA NULL
 #define OPTION_VAL_OS_JA NULL
@@ -26034,9 +26388,6 @@ struct retro_core_options_v2 options_it = {
 #define RPCS3_FRAME_PACING_INFO_0_JA NULL
 #define OPTION_VAL_FRONTEND_JA NULL
 #define OPTION_VAL_EMULATOR_JA NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_JA NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_JA NULL
-#define OPTION_VAL_LIST_JA NULL
 #define RPCS3_MASTER_VOLUME_LABEL_JA "マスター音量"
 #define RPCS3_MASTER_VOLUME_INFO_0_JA NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_JA NULL
@@ -26050,9 +26401,15 @@ struct retro_core_options_v2 options_it = {
 #define OPTION_VAL_90_JA NULL
 #define RPCS3_AUDIO_FORMAT_LABEL_JA NULL
 #define RPCS3_AUDIO_FORMAT_INFO_0_JA NULL
-#define OPTION_VAL_STEREO_JA NULL
+#define OPTION_VAL_STEREO_JA "ステレオ"
 #define OPTION_VAL_SURROUND_5_1_JA NULL
 #define OPTION_VAL_SURROUND_7_1_JA NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_JA NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_JA NULL
+#define OPTION_VAL_UNLIMITED_JA NULL
+#define OPTION_VAL_1GB_JA NULL
+#define OPTION_VAL_5GB_JA NULL
+#define OPTION_VAL_WIPE_JA NULL
 #define RPCS3_LANGUAGE_LABEL_JA NULL
 #define RPCS3_LANGUAGE_INFO_0_JA NULL
 #define OPTION_VAL_ENGLISH_JA "英語"
@@ -26237,6 +26594,13 @@ struct retro_core_option_v2_definition option_defs_ja[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_JA}, {"vulkan", OPTION_VAL_VULKAN_JA}, {"null", OPTION_VAL_NULL_JA}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_JA, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_JA,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_JA}, {"4:3", OPTION_VAL_4_3_JA}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_JA, NULL,
@@ -26424,7 +26788,7 @@ struct retro_core_option_v2_definition option_defs_ja[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_JA, NULL,
         RPCS3_VBLANK_RATE_INFO_0_JA,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_JA}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_JA}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_JA}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_JA}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_JA}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_JA}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_JA}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_JA}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_JA}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_JA}, {"list", OPTION_VAL_LIST_JA}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -26663,13 +27027,6 @@ struct retro_core_option_v2_definition option_defs_ja[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_JA, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_JA,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_JA}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_JA, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_JA,
         NULL, "core",
@@ -26682,6 +27039,13 @@ struct retro_core_option_v2_definition option_defs_ja[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_JA}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_JA}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_JA}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_JA, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_JA,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_JA}, {"1gb", OPTION_VAL_1GB_JA}, {"5gb", OPTION_VAL_5GB_JA}, {"wipe", OPTION_VAL_WIPE_JA}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_JA, NULL,
@@ -26863,6 +27227,10 @@ struct retro_core_options_v2 options_ja = {
 #define OPTION_VAL_OPENGL_KO NULL
 #define OPTION_VAL_VULKAN_KO NULL
 #define OPTION_VAL_NULL_KO NULL
+#define RPCS3_ASPECT_RATIO_LABEL_KO "화면비"
+#define RPCS3_ASPECT_RATIO_INFO_0_KO NULL
+#define OPTION_VAL_16_9_KO NULL
+#define OPTION_VAL_4_3_KO NULL
 #define RPCS3_FRAME_LIMIT_LABEL_KO NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_KO NULL
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_KO "자동"
@@ -26937,7 +27305,6 @@ struct retro_core_options_v2 options_ja = {
 #define OPTION_VAL_16_10_KO NULL
 #define OPTION_VAL_21_9_KO NULL
 #define OPTION_VAL_32_9_KO NULL
-#define OPTION_VAL_4_3_KO NULL
 #define OPTION_VAL_5_4_KO NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_KO NULL
 #define RPCS3_MULTITHREADED_RSX_INFO_0_KO NULL
@@ -26979,6 +27346,7 @@ struct retro_core_options_v2 options_ja = {
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_KO NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_KO NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_KO NULL
+#define OPTION_VAL_LIST_KO NULL
 #define RPCS3_THREAD_SCHEDULER_LABEL_KO NULL
 #define RPCS3_THREAD_SCHEDULER_INFO_0_KO NULL
 #define OPTION_VAL_OS_KO NULL
@@ -27063,9 +27431,6 @@ struct retro_core_options_v2 options_ja = {
 #define RPCS3_FRAME_PACING_INFO_0_KO NULL
 #define OPTION_VAL_FRONTEND_KO NULL
 #define OPTION_VAL_EMULATOR_KO NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_KO NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_KO NULL
-#define OPTION_VAL_LIST_KO NULL
 #define RPCS3_MASTER_VOLUME_LABEL_KO "주 볼륨"
 #define RPCS3_MASTER_VOLUME_INFO_0_KO NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_KO NULL
@@ -27079,9 +27444,15 @@ struct retro_core_options_v2 options_ja = {
 #define OPTION_VAL_90_KO NULL
 #define RPCS3_AUDIO_FORMAT_LABEL_KO NULL
 #define RPCS3_AUDIO_FORMAT_INFO_0_KO NULL
-#define OPTION_VAL_STEREO_KO NULL
+#define OPTION_VAL_STEREO_KO "스테레오"
 #define OPTION_VAL_SURROUND_5_1_KO NULL
 #define OPTION_VAL_SURROUND_7_1_KO NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_KO NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_KO NULL
+#define OPTION_VAL_UNLIMITED_KO NULL
+#define OPTION_VAL_1GB_KO "1GB"
+#define OPTION_VAL_5GB_KO NULL
+#define OPTION_VAL_WIPE_KO NULL
 #define RPCS3_LANGUAGE_LABEL_KO NULL
 #define RPCS3_LANGUAGE_INFO_0_KO NULL
 #define OPTION_VAL_ENGLISH_KO "영어"
@@ -27266,6 +27637,13 @@ struct retro_core_option_v2_definition option_defs_ko[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_KO}, {"vulkan", OPTION_VAL_VULKAN_KO}, {"null", OPTION_VAL_NULL_KO}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_KO, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_KO,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_KO}, {"4:3", OPTION_VAL_4_3_KO}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_KO, NULL,
@@ -27453,7 +27831,7 @@ struct retro_core_option_v2_definition option_defs_ko[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_KO, NULL,
         RPCS3_VBLANK_RATE_INFO_0_KO,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_KO}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_KO}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_KO}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_KO}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_KO}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_KO}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_KO}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_KO}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_KO}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_KO}, {"list", OPTION_VAL_LIST_KO}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -27692,13 +28070,6 @@ struct retro_core_option_v2_definition option_defs_ko[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_KO, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_KO,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_KO}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_KO, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_KO,
         NULL, "core",
@@ -27711,6 +28082,13 @@ struct retro_core_option_v2_definition option_defs_ko[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_KO}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_KO}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_KO}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_KO, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_KO,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_KO}, {"1gb", OPTION_VAL_1GB_KO}, {"5gb", OPTION_VAL_5GB_KO}, {"wipe", OPTION_VAL_WIPE_KO}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_KO, NULL,
@@ -27892,6 +28270,10 @@ struct retro_core_options_v2 options_ko = {
 #define OPTION_VAL_OPENGL_NL NULL
 #define OPTION_VAL_VULKAN_NL NULL
 #define OPTION_VAL_NULL_NL NULL
+#define RPCS3_ASPECT_RATIO_LABEL_NL "Beeldverhouding"
+#define RPCS3_ASPECT_RATIO_INFO_0_NL NULL
+#define OPTION_VAL_16_9_NL NULL
+#define OPTION_VAL_4_3_NL NULL
 #define RPCS3_FRAME_LIMIT_LABEL_NL NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_NL NULL
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_NL "Automatisch"
@@ -27966,7 +28348,6 @@ struct retro_core_options_v2 options_ko = {
 #define OPTION_VAL_16_10_NL NULL
 #define OPTION_VAL_21_9_NL NULL
 #define OPTION_VAL_32_9_NL NULL
-#define OPTION_VAL_4_3_NL NULL
 #define OPTION_VAL_5_4_NL NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_NL NULL
 #define RPCS3_MULTITHREADED_RSX_INFO_0_NL NULL
@@ -28008,6 +28389,7 @@ struct retro_core_options_v2 options_ko = {
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_NL NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_NL NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_NL NULL
+#define OPTION_VAL_LIST_NL NULL
 #define RPCS3_THREAD_SCHEDULER_LABEL_NL NULL
 #define RPCS3_THREAD_SCHEDULER_INFO_0_NL NULL
 #define OPTION_VAL_OS_NL NULL
@@ -28092,9 +28474,6 @@ struct retro_core_options_v2 options_ko = {
 #define RPCS3_FRAME_PACING_INFO_0_NL NULL
 #define OPTION_VAL_FRONTEND_NL NULL
 #define OPTION_VAL_EMULATOR_NL NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_NL NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_NL NULL
-#define OPTION_VAL_LIST_NL NULL
 #define RPCS3_MASTER_VOLUME_LABEL_NL NULL
 #define RPCS3_MASTER_VOLUME_INFO_0_NL NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_NL NULL
@@ -28111,6 +28490,12 @@ struct retro_core_options_v2 options_ko = {
 #define OPTION_VAL_STEREO_NL NULL
 #define OPTION_VAL_SURROUND_5_1_NL NULL
 #define OPTION_VAL_SURROUND_7_1_NL NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_NL NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_NL NULL
+#define OPTION_VAL_UNLIMITED_NL NULL
+#define OPTION_VAL_1GB_NL NULL
+#define OPTION_VAL_5GB_NL NULL
+#define OPTION_VAL_WIPE_NL NULL
 #define RPCS3_LANGUAGE_LABEL_NL NULL
 #define RPCS3_LANGUAGE_INFO_0_NL NULL
 #define OPTION_VAL_ENGLISH_NL "Engels"
@@ -28295,6 +28680,13 @@ struct retro_core_option_v2_definition option_defs_nl[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_NL}, {"vulkan", OPTION_VAL_VULKAN_NL}, {"null", OPTION_VAL_NULL_NL}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_NL, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_NL,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_NL}, {"4:3", OPTION_VAL_4_3_NL}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_NL, NULL,
@@ -28482,7 +28874,7 @@ struct retro_core_option_v2_definition option_defs_nl[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_NL, NULL,
         RPCS3_VBLANK_RATE_INFO_0_NL,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_NL}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_NL}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_NL}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_NL}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_NL}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_NL}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_NL}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_NL}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_NL}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_NL}, {"list", OPTION_VAL_LIST_NL}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -28721,13 +29113,6 @@ struct retro_core_option_v2_definition option_defs_nl[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_NL, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_NL,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_NL}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_NL, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_NL,
         NULL, "core",
@@ -28740,6 +29125,13 @@ struct retro_core_option_v2_definition option_defs_nl[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_NL}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_NL}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_NL}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_NL, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_NL,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_NL}, {"1gb", OPTION_VAL_1GB_NL}, {"5gb", OPTION_VAL_5GB_NL}, {"wipe", OPTION_VAL_WIPE_NL}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_NL, NULL,
@@ -28921,6 +29313,10 @@ struct retro_core_options_v2 options_nl = {
 #define OPTION_VAL_OPENGL_NO NULL
 #define OPTION_VAL_VULKAN_NO NULL
 #define OPTION_VAL_NULL_NO NULL
+#define RPCS3_ASPECT_RATIO_LABEL_NO "Størrelsesforhold"
+#define RPCS3_ASPECT_RATIO_INFO_0_NO NULL
+#define OPTION_VAL_16_9_NO NULL
+#define OPTION_VAL_4_3_NO NULL
 #define RPCS3_FRAME_LIMIT_LABEL_NO NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_NO NULL
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_NO NULL
@@ -28995,7 +29391,6 @@ struct retro_core_options_v2 options_nl = {
 #define OPTION_VAL_16_10_NO NULL
 #define OPTION_VAL_21_9_NO NULL
 #define OPTION_VAL_32_9_NO NULL
-#define OPTION_VAL_4_3_NO NULL
 #define OPTION_VAL_5_4_NO NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_NO NULL
 #define RPCS3_MULTITHREADED_RSX_INFO_0_NO NULL
@@ -29037,6 +29432,7 @@ struct retro_core_options_v2 options_nl = {
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_NO NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_NO NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_NO NULL
+#define OPTION_VAL_LIST_NO NULL
 #define RPCS3_THREAD_SCHEDULER_LABEL_NO NULL
 #define RPCS3_THREAD_SCHEDULER_INFO_0_NO NULL
 #define OPTION_VAL_OS_NO NULL
@@ -29121,9 +29517,6 @@ struct retro_core_options_v2 options_nl = {
 #define RPCS3_FRAME_PACING_INFO_0_NO NULL
 #define OPTION_VAL_FRONTEND_NO NULL
 #define OPTION_VAL_EMULATOR_NO NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_NO NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_NO NULL
-#define OPTION_VAL_LIST_NO NULL
 #define RPCS3_MASTER_VOLUME_LABEL_NO NULL
 #define RPCS3_MASTER_VOLUME_INFO_0_NO NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_NO NULL
@@ -29140,6 +29533,12 @@ struct retro_core_options_v2 options_nl = {
 #define OPTION_VAL_STEREO_NO NULL
 #define OPTION_VAL_SURROUND_5_1_NO NULL
 #define OPTION_VAL_SURROUND_7_1_NO NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_NO NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_NO NULL
+#define OPTION_VAL_UNLIMITED_NO NULL
+#define OPTION_VAL_1GB_NO NULL
+#define OPTION_VAL_5GB_NO NULL
+#define OPTION_VAL_WIPE_NO NULL
 #define RPCS3_LANGUAGE_LABEL_NO NULL
 #define RPCS3_LANGUAGE_INFO_0_NO NULL
 #define OPTION_VAL_ENGLISH_NO NULL
@@ -29324,6 +29723,13 @@ struct retro_core_option_v2_definition option_defs_no[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_NO}, {"vulkan", OPTION_VAL_VULKAN_NO}, {"null", OPTION_VAL_NULL_NO}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_NO, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_NO,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_NO}, {"4:3", OPTION_VAL_4_3_NO}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_NO, NULL,
@@ -29511,7 +29917,7 @@ struct retro_core_option_v2_definition option_defs_no[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_NO, NULL,
         RPCS3_VBLANK_RATE_INFO_0_NO,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_NO}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_NO}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_NO}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_NO}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_NO}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_NO}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_NO}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_NO}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_NO}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_NO}, {"list", OPTION_VAL_LIST_NO}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -29750,13 +30156,6 @@ struct retro_core_option_v2_definition option_defs_no[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_NO, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_NO,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_NO}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_NO, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_NO,
         NULL, "core",
@@ -29769,6 +30168,13 @@ struct retro_core_option_v2_definition option_defs_no[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_NO}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_NO}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_NO}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_NO, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_NO,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_NO}, {"1gb", OPTION_VAL_1GB_NO}, {"5gb", OPTION_VAL_5GB_NO}, {"wipe", OPTION_VAL_WIPE_NO}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_NO, NULL,
@@ -29950,6 +30356,10 @@ struct retro_core_options_v2 options_no = {
 #define OPTION_VAL_OPENGL_OR NULL
 #define OPTION_VAL_VULKAN_OR NULL
 #define OPTION_VAL_NULL_OR NULL
+#define RPCS3_ASPECT_RATIO_LABEL_OR NULL
+#define RPCS3_ASPECT_RATIO_INFO_0_OR NULL
+#define OPTION_VAL_16_9_OR NULL
+#define OPTION_VAL_4_3_OR NULL
 #define RPCS3_FRAME_LIMIT_LABEL_OR NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_OR NULL
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_OR NULL
@@ -30024,7 +30434,6 @@ struct retro_core_options_v2 options_no = {
 #define OPTION_VAL_16_10_OR NULL
 #define OPTION_VAL_21_9_OR NULL
 #define OPTION_VAL_32_9_OR NULL
-#define OPTION_VAL_4_3_OR NULL
 #define OPTION_VAL_5_4_OR NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_OR NULL
 #define RPCS3_MULTITHREADED_RSX_INFO_0_OR NULL
@@ -30066,6 +30475,7 @@ struct retro_core_options_v2 options_no = {
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_OR NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_OR NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_OR NULL
+#define OPTION_VAL_LIST_OR NULL
 #define RPCS3_THREAD_SCHEDULER_LABEL_OR NULL
 #define RPCS3_THREAD_SCHEDULER_INFO_0_OR NULL
 #define OPTION_VAL_OS_OR NULL
@@ -30150,9 +30560,6 @@ struct retro_core_options_v2 options_no = {
 #define RPCS3_FRAME_PACING_INFO_0_OR NULL
 #define OPTION_VAL_FRONTEND_OR NULL
 #define OPTION_VAL_EMULATOR_OR NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_OR NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_OR NULL
-#define OPTION_VAL_LIST_OR NULL
 #define RPCS3_MASTER_VOLUME_LABEL_OR NULL
 #define RPCS3_MASTER_VOLUME_INFO_0_OR NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_OR NULL
@@ -30169,6 +30576,12 @@ struct retro_core_options_v2 options_no = {
 #define OPTION_VAL_STEREO_OR NULL
 #define OPTION_VAL_SURROUND_5_1_OR NULL
 #define OPTION_VAL_SURROUND_7_1_OR NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_OR NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_OR NULL
+#define OPTION_VAL_UNLIMITED_OR NULL
+#define OPTION_VAL_1GB_OR NULL
+#define OPTION_VAL_5GB_OR NULL
+#define OPTION_VAL_WIPE_OR NULL
 #define RPCS3_LANGUAGE_LABEL_OR NULL
 #define RPCS3_LANGUAGE_INFO_0_OR NULL
 #define OPTION_VAL_ENGLISH_OR NULL
@@ -30353,6 +30766,13 @@ struct retro_core_option_v2_definition option_defs_or[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_OR}, {"vulkan", OPTION_VAL_VULKAN_OR}, {"null", OPTION_VAL_NULL_OR}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_OR, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_OR,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_OR}, {"4:3", OPTION_VAL_4_3_OR}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_OR, NULL,
@@ -30540,7 +30960,7 @@ struct retro_core_option_v2_definition option_defs_or[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_OR, NULL,
         RPCS3_VBLANK_RATE_INFO_0_OR,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_OR}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_OR}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_OR}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_OR}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_OR}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_OR}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_OR}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_OR}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_OR}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_OR}, {"list", OPTION_VAL_LIST_OR}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -30779,13 +31199,6 @@ struct retro_core_option_v2_definition option_defs_or[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_OR, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_OR,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_OR}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_OR, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_OR,
         NULL, "core",
@@ -30798,6 +31211,13 @@ struct retro_core_option_v2_definition option_defs_or[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_OR}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_OR}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_OR}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_OR, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_OR,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_OR}, {"1gb", OPTION_VAL_1GB_OR}, {"5gb", OPTION_VAL_5GB_OR}, {"wipe", OPTION_VAL_WIPE_OR}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_OR, NULL,
@@ -30979,6 +31399,10 @@ struct retro_core_options_v2 options_or = {
 #define OPTION_VAL_OPENGL_PL NULL
 #define OPTION_VAL_VULKAN_PL NULL
 #define OPTION_VAL_NULL_PL NULL
+#define RPCS3_ASPECT_RATIO_LABEL_PL "Współczynnik proporcji"
+#define RPCS3_ASPECT_RATIO_INFO_0_PL NULL
+#define OPTION_VAL_16_9_PL NULL
+#define OPTION_VAL_4_3_PL NULL
 #define RPCS3_FRAME_LIMIT_LABEL_PL NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_PL NULL
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_PL "Automatyczny"
@@ -31053,7 +31477,6 @@ struct retro_core_options_v2 options_or = {
 #define OPTION_VAL_16_10_PL NULL
 #define OPTION_VAL_21_9_PL NULL
 #define OPTION_VAL_32_9_PL NULL
-#define OPTION_VAL_4_3_PL NULL
 #define OPTION_VAL_5_4_PL NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_PL NULL
 #define RPCS3_MULTITHREADED_RSX_INFO_0_PL NULL
@@ -31095,6 +31518,7 @@ struct retro_core_options_v2 options_or = {
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_PL NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_PL NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_PL NULL
+#define OPTION_VAL_LIST_PL NULL
 #define RPCS3_THREAD_SCHEDULER_LABEL_PL NULL
 #define RPCS3_THREAD_SCHEDULER_INFO_0_PL NULL
 #define OPTION_VAL_OS_PL NULL
@@ -31179,9 +31603,6 @@ struct retro_core_options_v2 options_or = {
 #define RPCS3_FRAME_PACING_INFO_0_PL NULL
 #define OPTION_VAL_FRONTEND_PL NULL
 #define OPTION_VAL_EMULATOR_PL NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_PL NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_PL NULL
-#define OPTION_VAL_LIST_PL NULL
 #define RPCS3_MASTER_VOLUME_LABEL_PL "Ogólna głośność"
 #define RPCS3_MASTER_VOLUME_INFO_0_PL NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_PL NULL
@@ -31198,6 +31619,12 @@ struct retro_core_options_v2 options_or = {
 #define OPTION_VAL_STEREO_PL NULL
 #define OPTION_VAL_SURROUND_5_1_PL NULL
 #define OPTION_VAL_SURROUND_7_1_PL NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_PL NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_PL NULL
+#define OPTION_VAL_UNLIMITED_PL NULL
+#define OPTION_VAL_1GB_PL NULL
+#define OPTION_VAL_5GB_PL NULL
+#define OPTION_VAL_WIPE_PL NULL
 #define RPCS3_LANGUAGE_LABEL_PL NULL
 #define RPCS3_LANGUAGE_INFO_0_PL NULL
 #define OPTION_VAL_ENGLISH_PL "angielski"
@@ -31382,6 +31809,13 @@ struct retro_core_option_v2_definition option_defs_pl[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_PL}, {"vulkan", OPTION_VAL_VULKAN_PL}, {"null", OPTION_VAL_NULL_PL}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_PL, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_PL,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_PL}, {"4:3", OPTION_VAL_4_3_PL}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_PL, NULL,
@@ -31569,7 +32003,7 @@ struct retro_core_option_v2_definition option_defs_pl[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_PL, NULL,
         RPCS3_VBLANK_RATE_INFO_0_PL,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_PL}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_PL}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_PL}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_PL}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_PL}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_PL}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_PL}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_PL}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_PL}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_PL}, {"list", OPTION_VAL_LIST_PL}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -31808,13 +32242,6 @@ struct retro_core_option_v2_definition option_defs_pl[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_PL, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_PL,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_PL}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_PL, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_PL,
         NULL, "core",
@@ -31827,6 +32254,13 @@ struct retro_core_option_v2_definition option_defs_pl[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_PL}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_PL}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_PL}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_PL, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_PL,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_PL}, {"1gb", OPTION_VAL_1GB_PL}, {"5gb", OPTION_VAL_5GB_PL}, {"wipe", OPTION_VAL_WIPE_PL}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_PL, NULL,
@@ -32008,6 +32442,10 @@ struct retro_core_options_v2 options_pl = {
 #define OPTION_VAL_OPENGL_PT_BR NULL
 #define OPTION_VAL_VULKAN_PT_BR NULL
 #define OPTION_VAL_NULL_PT_BR NULL
+#define RPCS3_ASPECT_RATIO_LABEL_PT_BR "Proporção de tela"
+#define RPCS3_ASPECT_RATIO_INFO_0_PT_BR NULL
+#define OPTION_VAL_16_9_PT_BR NULL
+#define OPTION_VAL_4_3_PT_BR NULL
 #define RPCS3_FRAME_LIMIT_LABEL_PT_BR NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_PT_BR NULL
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_PT_BR "Automático"
@@ -32082,7 +32520,6 @@ struct retro_core_options_v2 options_pl = {
 #define OPTION_VAL_16_10_PT_BR NULL
 #define OPTION_VAL_21_9_PT_BR NULL
 #define OPTION_VAL_32_9_PT_BR NULL
-#define OPTION_VAL_4_3_PT_BR NULL
 #define OPTION_VAL_5_4_PT_BR NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_PT_BR NULL
 #define RPCS3_MULTITHREADED_RSX_INFO_0_PT_BR NULL
@@ -32124,6 +32561,7 @@ struct retro_core_options_v2 options_pl = {
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_PT_BR NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_PT_BR NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_PT_BR NULL
+#define OPTION_VAL_LIST_PT_BR NULL
 #define RPCS3_THREAD_SCHEDULER_LABEL_PT_BR NULL
 #define RPCS3_THREAD_SCHEDULER_INFO_0_PT_BR NULL
 #define OPTION_VAL_OS_PT_BR NULL
@@ -32208,9 +32646,6 @@ struct retro_core_options_v2 options_pl = {
 #define RPCS3_FRAME_PACING_INFO_0_PT_BR NULL
 #define OPTION_VAL_FRONTEND_PT_BR NULL
 #define OPTION_VAL_EMULATOR_PT_BR NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_PT_BR NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_PT_BR NULL
-#define OPTION_VAL_LIST_PT_BR NULL
 #define RPCS3_MASTER_VOLUME_LABEL_PT_BR "Volume principal"
 #define RPCS3_MASTER_VOLUME_INFO_0_PT_BR NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_PT_BR NULL
@@ -32224,9 +32659,15 @@ struct retro_core_options_v2 options_pl = {
 #define OPTION_VAL_90_PT_BR NULL
 #define RPCS3_AUDIO_FORMAT_LABEL_PT_BR NULL
 #define RPCS3_AUDIO_FORMAT_INFO_0_PT_BR NULL
-#define OPTION_VAL_STEREO_PT_BR NULL
+#define OPTION_VAL_STEREO_PT_BR "Estéreo"
 #define OPTION_VAL_SURROUND_5_1_PT_BR NULL
 #define OPTION_VAL_SURROUND_7_1_PT_BR NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_PT_BR NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_PT_BR NULL
+#define OPTION_VAL_UNLIMITED_PT_BR NULL
+#define OPTION_VAL_1GB_PT_BR NULL
+#define OPTION_VAL_5GB_PT_BR NULL
+#define OPTION_VAL_WIPE_PT_BR NULL
 #define RPCS3_LANGUAGE_LABEL_PT_BR NULL
 #define RPCS3_LANGUAGE_INFO_0_PT_BR NULL
 #define OPTION_VAL_ENGLISH_PT_BR "Inglês"
@@ -32411,6 +32852,13 @@ struct retro_core_option_v2_definition option_defs_pt_br[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_PT_BR}, {"vulkan", OPTION_VAL_VULKAN_PT_BR}, {"null", OPTION_VAL_NULL_PT_BR}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_PT_BR, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_PT_BR,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_PT_BR}, {"4:3", OPTION_VAL_4_3_PT_BR}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_PT_BR, NULL,
@@ -32598,7 +33046,7 @@ struct retro_core_option_v2_definition option_defs_pt_br[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_PT_BR, NULL,
         RPCS3_VBLANK_RATE_INFO_0_PT_BR,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_PT_BR}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_PT_BR}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_PT_BR}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_PT_BR}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_PT_BR}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_PT_BR}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_PT_BR}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_PT_BR}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_PT_BR}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_PT_BR}, {"list", OPTION_VAL_LIST_PT_BR}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -32837,13 +33285,6 @@ struct retro_core_option_v2_definition option_defs_pt_br[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_PT_BR, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_PT_BR,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_PT_BR}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_PT_BR, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_PT_BR,
         NULL, "core",
@@ -32856,6 +33297,13 @@ struct retro_core_option_v2_definition option_defs_pt_br[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_PT_BR}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_PT_BR}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_PT_BR}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_PT_BR, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_PT_BR,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_PT_BR}, {"1gb", OPTION_VAL_1GB_PT_BR}, {"5gb", OPTION_VAL_5GB_PT_BR}, {"wipe", OPTION_VAL_WIPE_PT_BR}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_PT_BR, NULL,
@@ -33037,6 +33485,10 @@ struct retro_core_options_v2 options_pt_br = {
 #define OPTION_VAL_OPENGL_PT_PT NULL
 #define OPTION_VAL_VULKAN_PT_PT NULL
 #define OPTION_VAL_NULL_PT_PT NULL
+#define RPCS3_ASPECT_RATIO_LABEL_PT_PT "Proporção do ecrã"
+#define RPCS3_ASPECT_RATIO_INFO_0_PT_PT NULL
+#define OPTION_VAL_16_9_PT_PT NULL
+#define OPTION_VAL_4_3_PT_PT NULL
 #define RPCS3_FRAME_LIMIT_LABEL_PT_PT NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_PT_PT NULL
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_PT_PT "Automático"
@@ -33111,7 +33563,6 @@ struct retro_core_options_v2 options_pt_br = {
 #define OPTION_VAL_16_10_PT_PT NULL
 #define OPTION_VAL_21_9_PT_PT NULL
 #define OPTION_VAL_32_9_PT_PT NULL
-#define OPTION_VAL_4_3_PT_PT NULL
 #define OPTION_VAL_5_4_PT_PT NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_PT_PT NULL
 #define RPCS3_MULTITHREADED_RSX_INFO_0_PT_PT NULL
@@ -33153,6 +33604,7 @@ struct retro_core_options_v2 options_pt_br = {
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_PT_PT NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_PT_PT NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_PT_PT NULL
+#define OPTION_VAL_LIST_PT_PT NULL
 #define RPCS3_THREAD_SCHEDULER_LABEL_PT_PT NULL
 #define RPCS3_THREAD_SCHEDULER_INFO_0_PT_PT NULL
 #define OPTION_VAL_OS_PT_PT NULL
@@ -33237,9 +33689,6 @@ struct retro_core_options_v2 options_pt_br = {
 #define RPCS3_FRAME_PACING_INFO_0_PT_PT NULL
 #define OPTION_VAL_FRONTEND_PT_PT NULL
 #define OPTION_VAL_EMULATOR_PT_PT NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_PT_PT NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_PT_PT NULL
-#define OPTION_VAL_LIST_PT_PT NULL
 #define RPCS3_MASTER_VOLUME_LABEL_PT_PT NULL
 #define RPCS3_MASTER_VOLUME_INFO_0_PT_PT NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_PT_PT NULL
@@ -33256,6 +33705,12 @@ struct retro_core_options_v2 options_pt_br = {
 #define OPTION_VAL_STEREO_PT_PT NULL
 #define OPTION_VAL_SURROUND_5_1_PT_PT NULL
 #define OPTION_VAL_SURROUND_7_1_PT_PT NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_PT_PT NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_PT_PT NULL
+#define OPTION_VAL_UNLIMITED_PT_PT NULL
+#define OPTION_VAL_1GB_PT_PT NULL
+#define OPTION_VAL_5GB_PT_PT NULL
+#define OPTION_VAL_WIPE_PT_PT NULL
 #define RPCS3_LANGUAGE_LABEL_PT_PT NULL
 #define RPCS3_LANGUAGE_INFO_0_PT_PT NULL
 #define OPTION_VAL_ENGLISH_PT_PT "Inglês"
@@ -33440,6 +33895,13 @@ struct retro_core_option_v2_definition option_defs_pt_pt[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_PT_PT}, {"vulkan", OPTION_VAL_VULKAN_PT_PT}, {"null", OPTION_VAL_NULL_PT_PT}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_PT_PT, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_PT_PT,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_PT_PT}, {"4:3", OPTION_VAL_4_3_PT_PT}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_PT_PT, NULL,
@@ -33627,7 +34089,7 @@ struct retro_core_option_v2_definition option_defs_pt_pt[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_PT_PT, NULL,
         RPCS3_VBLANK_RATE_INFO_0_PT_PT,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_PT_PT}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_PT_PT}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_PT_PT}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_PT_PT}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_PT_PT}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_PT_PT}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_PT_PT}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_PT_PT}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_PT_PT}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_PT_PT}, {"list", OPTION_VAL_LIST_PT_PT}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -33866,13 +34328,6 @@ struct retro_core_option_v2_definition option_defs_pt_pt[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_PT_PT, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_PT_PT,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_PT_PT}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_PT_PT, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_PT_PT,
         NULL, "core",
@@ -33885,6 +34340,13 @@ struct retro_core_option_v2_definition option_defs_pt_pt[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_PT_PT}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_PT_PT}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_PT_PT}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_PT_PT, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_PT_PT,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_PT_PT}, {"1gb", OPTION_VAL_1GB_PT_PT}, {"5gb", OPTION_VAL_5GB_PT_PT}, {"wipe", OPTION_VAL_WIPE_PT_PT}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_PT_PT, NULL,
@@ -34066,6 +34528,10 @@ struct retro_core_options_v2 options_pt_pt = {
 #define OPTION_VAL_OPENGL_RU NULL
 #define OPTION_VAL_VULKAN_RU NULL
 #define OPTION_VAL_NULL_RU NULL
+#define RPCS3_ASPECT_RATIO_LABEL_RU "Соотношение сторон"
+#define RPCS3_ASPECT_RATIO_INFO_0_RU NULL
+#define OPTION_VAL_16_9_RU NULL
+#define OPTION_VAL_4_3_RU NULL
 #define RPCS3_FRAME_LIMIT_LABEL_RU NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_RU NULL
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_RU "Автоматически"
@@ -34140,7 +34606,6 @@ struct retro_core_options_v2 options_pt_pt = {
 #define OPTION_VAL_16_10_RU NULL
 #define OPTION_VAL_21_9_RU NULL
 #define OPTION_VAL_32_9_RU NULL
-#define OPTION_VAL_4_3_RU NULL
 #define OPTION_VAL_5_4_RU NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_RU NULL
 #define RPCS3_MULTITHREADED_RSX_INFO_0_RU NULL
@@ -34182,6 +34647,7 @@ struct retro_core_options_v2 options_pt_pt = {
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_RU NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_RU NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_RU NULL
+#define OPTION_VAL_LIST_RU NULL
 #define RPCS3_THREAD_SCHEDULER_LABEL_RU NULL
 #define RPCS3_THREAD_SCHEDULER_INFO_0_RU NULL
 #define OPTION_VAL_OS_RU NULL
@@ -34266,9 +34732,6 @@ struct retro_core_options_v2 options_pt_pt = {
 #define RPCS3_FRAME_PACING_INFO_0_RU NULL
 #define OPTION_VAL_FRONTEND_RU NULL
 #define OPTION_VAL_EMULATOR_RU NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_RU NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_RU NULL
-#define OPTION_VAL_LIST_RU NULL
 #define RPCS3_MASTER_VOLUME_LABEL_RU "Общая громкость"
 #define RPCS3_MASTER_VOLUME_INFO_0_RU NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_RU NULL
@@ -34282,9 +34745,15 @@ struct retro_core_options_v2 options_pt_pt = {
 #define OPTION_VAL_90_RU NULL
 #define RPCS3_AUDIO_FORMAT_LABEL_RU NULL
 #define RPCS3_AUDIO_FORMAT_INFO_0_RU NULL
-#define OPTION_VAL_STEREO_RU NULL
+#define OPTION_VAL_STEREO_RU "Стерео"
 #define OPTION_VAL_SURROUND_5_1_RU NULL
 #define OPTION_VAL_SURROUND_7_1_RU NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_RU NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_RU NULL
+#define OPTION_VAL_UNLIMITED_RU NULL
+#define OPTION_VAL_1GB_RU "1 ГБ"
+#define OPTION_VAL_5GB_RU NULL
+#define OPTION_VAL_WIPE_RU NULL
 #define RPCS3_LANGUAGE_LABEL_RU NULL
 #define RPCS3_LANGUAGE_INFO_0_RU NULL
 #define OPTION_VAL_ENGLISH_RU "Английский"
@@ -34469,6 +34938,13 @@ struct retro_core_option_v2_definition option_defs_ru[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_RU}, {"vulkan", OPTION_VAL_VULKAN_RU}, {"null", OPTION_VAL_NULL_RU}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_RU, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_RU,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_RU}, {"4:3", OPTION_VAL_4_3_RU}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_RU, NULL,
@@ -34656,7 +35132,7 @@ struct retro_core_option_v2_definition option_defs_ru[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_RU, NULL,
         RPCS3_VBLANK_RATE_INFO_0_RU,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_RU}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_RU}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_RU}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_RU}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_RU}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_RU}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_RU}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_RU}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_RU}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_RU}, {"list", OPTION_VAL_LIST_RU}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -34895,13 +35371,6 @@ struct retro_core_option_v2_definition option_defs_ru[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_RU, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_RU,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_RU}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_RU, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_RU,
         NULL, "core",
@@ -34914,6 +35383,13 @@ struct retro_core_option_v2_definition option_defs_ru[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_RU}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_RU}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_RU}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_RU, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_RU,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_RU}, {"1gb", OPTION_VAL_1GB_RU}, {"5gb", OPTION_VAL_5GB_RU}, {"wipe", OPTION_VAL_WIPE_RU}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_RU, NULL,
@@ -35095,6 +35571,10 @@ struct retro_core_options_v2 options_ru = {
 #define OPTION_VAL_OPENGL_SK NULL
 #define OPTION_VAL_VULKAN_SK NULL
 #define OPTION_VAL_NULL_SK "Nulový (bez videa)"
+#define RPCS3_ASPECT_RATIO_LABEL_SK "Pomer strán"
+#define RPCS3_ASPECT_RATIO_INFO_0_SK "Mení pomer strán výstupu. Natívny 4:3 podporujú len niektoré hry pre PS3. (Vyžaduje reštart)"
+#define OPTION_VAL_16_9_SK "16:9 (predvolené)"
+#define OPTION_VAL_4_3_SK NULL
 #define RPCS3_FRAME_LIMIT_LABEL_SK "Obmedzenie snímok"
 #define RPCS3_FRAME_LIMIT_INFO_0_SK "Najvyššia snímková frekvencia, na ktorej môže hra bežať. Automaticky je Frekvencia VBlank, ako v RPCS3; PS3 natívne časuje flipy tak, ako to robí PS3; Vypnuté nechá hry, ktoré samy nečakajú na obnovenie PS3, bežať príliš rýchlo."
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_SK NULL
@@ -35123,7 +35603,7 @@ struct retro_core_options_v2 options_ru = {
 #define OPTION_VAL_HIGH_SK "Vysoké"
 #define OPTION_VAL_ULTRA_SK NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_SK "Predvolené rozlíšenie"
-#define RPCS3_DEFAULT_RESOLUTION_INFO_0_SK "Výstupné rozlíšenie, ktoré emulovaná PS3 ponúkne hre, ako v RPCS3. Väčšina hier beží v 720p; niektoré vyzerajú lepšie v 1080p a niektoré potrebujú 480p alebo 576p, aby sa vyhli chybám. Prejaví sa pri načítaní obsahu."
+#define RPCS3_DEFAULT_RESOLUTION_INFO_0_SK "NEMEŇTE TÚTO VOĽBU NA ZVÝŠENIE ROZLÍŠENIA HRY. Použite namiesto toho Škálovanie rozlíšenia. 1080p použite, iba ak ho hra podporuje. Zriedka sa niektoré hry kvôli chybám emulácie vykreslia len v rozlíšeniach pod 720p."
 #define OPTION_VAL_720P_SK "720p (predvolené)"
 #define OPTION_VAL_1080P_SK NULL
 #define OPTION_VAL_480P_SK NULL
@@ -35169,7 +35649,6 @@ struct retro_core_options_v2 options_ru = {
 #define OPTION_VAL_16_10_SK NULL
 #define OPTION_VAL_21_9_SK NULL
 #define OPTION_VAL_32_9_SK NULL
-#define OPTION_VAL_4_3_SK NULL
 #define OPTION_VAL_5_4_SK NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_SK "Viacvláknové RSX"
 #define RPCS3_MULTITHREADED_RSX_INFO_0_SK "Presunie časť práce RSX do druhého vlákna. Predvolene vypnuté, ako v RPCS3; môže pomôcť na CPU s málo rýchlymi jadrami, aj na telefónoch."
@@ -35205,12 +35684,13 @@ struct retro_core_options_v2 options_ru = {
 #define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_SK "Oneskorenie prebudenia ovládača v mikrosekundách. Predvolene 0, ako v RPCS3; zvyšujte ho, len keď to hra potrebuje."
 #define OPTION_VAL_0_SK "0 (predvolené)"
 #define RPCS3_VBLANK_RATE_LABEL_SK "Frekvencia VBlank"
-#define RPCS3_VBLANK_RATE_INFO_0_SK "Obnovovacia frekvencia PS3 v Hz. Je to aj snímková frekvencia, ktorú jadro žiada od RetroArchu, a prejaví sa pri načítaní obsahu; hry, ktoré dokážu bežať nad 60 FPS, potrebujú displej s takou vysokou obnovovacou frekvenciou."
+#define RPCS3_VBLANK_RATE_INFO_0_SK "Obnovovacia frekvencia PS3 v Hz. Je to aj snímková frekvencia, o ktorú jadro žiada RetroArch, čo sa prejaví pri načítaní obsahu; hry, ktoré vedia bežať nad 60 FPS, potrebujú displej s takou obnovovacou frekvenciou. \"Zo zoznamu\" zdvojnásobí frekvenciu VBlank pre podporované hry uvedené vo vblank_unlock.txt v system/rpcs3. Možno bude treba použiť záplaty pre konkrétnu hru."
 #define OPTION_VAL_50_RPCS3_VBLANK_RATE_SK NULL
 #define OPTION_VAL_60_RPCS3_VBLANK_RATE_SK NULL
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_SK NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_SK NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_SK NULL
+#define OPTION_VAL_LIST_SK "Zo zoznamu"
 #define RPCS3_THREAD_SCHEDULER_LABEL_SK "Plánovač vlákien"
 #define RPCS3_THREAD_SCHEDULER_INFO_0_SK "Kto umiestňuje vlákna emulátora na jadrá CPU, ako v RPCS3. Operačný systém to nechá na systém; plánovače RPCS3 pripnú vlákna PPU, SPU a RSX na vlastné jadrá, rozložené pre niekoľko desktopových CPU. V Androide nemá žiadny účinok, jadro tam vlákna pripnúť nevie."
 #define OPTION_VAL_OS_SK "Operačný systém"
@@ -35291,13 +35771,10 @@ struct retro_core_options_v2 options_ru = {
 #define RPCS3_PERF_OVERLAY_INFO_0_SK "Vlastné prekrytie výkonu RPCS3 kreslené cez hru: snímková frekvencia hry, ako ju počíta RPCS3, a pri vyšších úrovniach podrobnosti aj časy snímok a zaťaženie CPU a GPU."
 #define OPTION_VAL_MINIMAL_SK "Iba snímková frekvencia"
 #define OPTION_VAL_MEDIUM_SK "Stredné"
-#define RPCS3_FRAME_PACING_LABEL_SK "Časovanie snímok"
-#define RPCS3_FRAME_PACING_INFO_0_SK "Podľa čoho sa časujú snímky hry. Hodiny emulátora sú vlastný časovač RPCS3, ako v samostatnom RPCS3. RetroArch dáva hre jedno obnovenie PS3 na každú snímku, ktorú RetroArch zobrazí, takže rýchly posun vpred hru zrýchli a hra beží na Frekvencii VBlank, keď RetroArch zobrazuje toľko snímok za sekundu; s rendererom Vulkan zatiaľ snímky vynecháva."
+#define RPCS3_FRAME_PACING_LABEL_SK "Načasovanie snímok"
+#define RPCS3_FRAME_PACING_INFO_0_SK "Podľa čoho sa časujú snímky hry. Hodiny emulátora sú vlastný časovač RPCS3, ako v samostatnom RPCS3. RetroArch dáva hre jedno obnovenie PS3 na každú snímku, ktorú RetroArch zobrazí, takže rýchly posun vpred hru zrýchli a hra beží na Frekvencii VBlank, keď RetroArch zobrazuje toľko snímok za sekundu."
 #define OPTION_VAL_FRONTEND_SK NULL
 #define OPTION_VAL_EMULATOR_SK "Hodiny emulátora"
-#define RPCS3_SAVEDATA_SLOT_LABEL_SK "Slot uložených dát"
-#define RPCS3_SAVEDATA_SLOT_INFO_0_SK "Hra pre PS3 zobrazí zoznam svojich uložených dát a nechá hráča vybrať. 'Vybrať zo zoznamu' zobrazí tento zoznam v obraze hry na ovládanie ovládačom. Číslo namiesto toho nechá vybrať jadro: uloženie prepíše položku na tejto pozícii v zozname hry alebo vytvorí nové uloženie, ak je zoznam kratší; načítanie vezme položku na tejto pozícii a nič nenájde, ak je zoznam kratší. 0 je prvá položka. Hry, ktoré si samy držia jediné uloženie, zoznam nezobrazujú, takže sa ich to netýka."
-#define OPTION_VAL_LIST_SK "Vybrať zo zoznamu"
 #define RPCS3_MASTER_VOLUME_LABEL_SK "Hlavná hlasitosť"
 #define RPCS3_MASTER_VOLUME_INFO_0_SK "Percento hlavnej hlasitosti zvuku."
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_SK NULL
@@ -35309,11 +35786,17 @@ struct retro_core_options_v2 options_ru = {
 #define OPTION_VAL_70_SK NULL
 #define OPTION_VAL_80_SK NULL
 #define OPTION_VAL_90_SK NULL
-#define RPCS3_AUDIO_FORMAT_LABEL_SK NULL
-#define RPCS3_AUDIO_FORMAT_INFO_0_SK NULL
+#define RPCS3_AUDIO_FORMAT_LABEL_SK "Formát zvuku"
+#define RPCS3_AUDIO_FORMAT_INFO_0_SK "Reproduktory, o ktorých PS3 hrám hovorí, že ich má. Nastavte podľa Rozloženia výstupu v RetroArchu: hra si z ponúknutého vyberie vlastný mix stereo, 5.1 alebo 7.1, a priestorový mix zmiešaný RetroArchom nemusí vždy znieť ako vlastný stereo mix hry. Vyžaduje RetroArch s viackanálovým zvukom; inak stereo. Prejaví sa pri spustení hry."
 #define OPTION_VAL_STEREO_SK NULL
 #define OPTION_VAL_SURROUND_5_1_SK NULL
 #define OPTION_VAL_SURROUND_7_1_SK NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_SK "Veľkosť diskovej vyrovnávacej pamäte"
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_SK "Obmedzí vyrovnávaciu pamäť, ktorú si hry ukladajú na dev_hdd1 a ktorá inak len rastie. Pri zvolenej veľkosti sa pri načítaní alebo zatvorení hry mažú vyrovnávacie pamäte hier, ktoré sa najdlhšie nepoužili, kým sa zvyšok nezmestí. Vymazať pri ukončení zmaže všetko pri zatvorení hry, tak ako PS3 pri vypnutí. Zmazanú vyrovnávaciu pamäť si hra vytvorí znova, čo môže jej ďalšie spustenie spomaliť."
+#define OPTION_VAL_UNLIMITED_SK "Neobmedzené"
+#define OPTION_VAL_1GB_SK NULL
+#define OPTION_VAL_5GB_SK NULL
+#define OPTION_VAL_WIPE_SK "Vymazať pri ukončení"
 #define RPCS3_LANGUAGE_LABEL_SK "Jazyk systému"
 #define RPCS3_LANGUAGE_INFO_0_SK "Systémový jazyk PS3."
 #define OPTION_VAL_ENGLISH_SK "Angličtina"
@@ -35498,6 +35981,13 @@ struct retro_core_option_v2_definition option_defs_sk[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_SK}, {"vulkan", OPTION_VAL_VULKAN_SK}, {"null", OPTION_VAL_NULL_SK}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_SK, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_SK,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_SK}, {"4:3", OPTION_VAL_4_3_SK}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_SK, NULL,
@@ -35685,7 +36175,7 @@ struct retro_core_option_v2_definition option_defs_sk[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_SK, NULL,
         RPCS3_VBLANK_RATE_INFO_0_SK,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_SK}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_SK}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_SK}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_SK}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_SK}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_SK}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_SK}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_SK}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_SK}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_SK}, {"list", OPTION_VAL_LIST_SK}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -35924,13 +36414,6 @@ struct retro_core_option_v2_definition option_defs_sk[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_SK, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_SK,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_SK}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_SK, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_SK,
         NULL, "core",
@@ -35943,6 +36426,13 @@ struct retro_core_option_v2_definition option_defs_sk[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_SK}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_SK}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_SK}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_SK, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_SK,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_SK}, {"1gb", OPTION_VAL_1GB_SK}, {"5gb", OPTION_VAL_5GB_SK}, {"wipe", OPTION_VAL_WIPE_SK}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_SK, NULL,
@@ -36124,6 +36614,10 @@ struct retro_core_options_v2 options_sk = {
 #define OPTION_VAL_OPENGL_SR NULL
 #define OPTION_VAL_VULKAN_SR NULL
 #define OPTION_VAL_NULL_SR NULL
+#define RPCS3_ASPECT_RATIO_LABEL_SR "Odnos ekrana"
+#define RPCS3_ASPECT_RATIO_INFO_0_SR NULL
+#define OPTION_VAL_16_9_SR NULL
+#define OPTION_VAL_4_3_SR NULL
 #define RPCS3_FRAME_LIMIT_LABEL_SR NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_SR NULL
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_SR NULL
@@ -36198,7 +36692,6 @@ struct retro_core_options_v2 options_sk = {
 #define OPTION_VAL_16_10_SR NULL
 #define OPTION_VAL_21_9_SR NULL
 #define OPTION_VAL_32_9_SR NULL
-#define OPTION_VAL_4_3_SR NULL
 #define OPTION_VAL_5_4_SR NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_SR NULL
 #define RPCS3_MULTITHREADED_RSX_INFO_0_SR NULL
@@ -36240,6 +36733,7 @@ struct retro_core_options_v2 options_sk = {
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_SR NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_SR NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_SR NULL
+#define OPTION_VAL_LIST_SR NULL
 #define RPCS3_THREAD_SCHEDULER_LABEL_SR NULL
 #define RPCS3_THREAD_SCHEDULER_INFO_0_SR NULL
 #define OPTION_VAL_OS_SR NULL
@@ -36324,9 +36818,6 @@ struct retro_core_options_v2 options_sk = {
 #define RPCS3_FRAME_PACING_INFO_0_SR NULL
 #define OPTION_VAL_FRONTEND_SR NULL
 #define OPTION_VAL_EMULATOR_SR NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_SR NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_SR NULL
-#define OPTION_VAL_LIST_SR NULL
 #define RPCS3_MASTER_VOLUME_LABEL_SR NULL
 #define RPCS3_MASTER_VOLUME_INFO_0_SR NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_SR NULL
@@ -36343,6 +36834,12 @@ struct retro_core_options_v2 options_sk = {
 #define OPTION_VAL_STEREO_SR NULL
 #define OPTION_VAL_SURROUND_5_1_SR NULL
 #define OPTION_VAL_SURROUND_7_1_SR NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_SR NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_SR NULL
+#define OPTION_VAL_UNLIMITED_SR NULL
+#define OPTION_VAL_1GB_SR NULL
+#define OPTION_VAL_5GB_SR NULL
+#define OPTION_VAL_WIPE_SR NULL
 #define RPCS3_LANGUAGE_LABEL_SR NULL
 #define RPCS3_LANGUAGE_INFO_0_SR NULL
 #define OPTION_VAL_ENGLISH_SR NULL
@@ -36527,6 +37024,13 @@ struct retro_core_option_v2_definition option_defs_sr[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_SR}, {"vulkan", OPTION_VAL_VULKAN_SR}, {"null", OPTION_VAL_NULL_SR}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_SR, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_SR,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_SR}, {"4:3", OPTION_VAL_4_3_SR}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_SR, NULL,
@@ -36714,7 +37218,7 @@ struct retro_core_option_v2_definition option_defs_sr[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_SR, NULL,
         RPCS3_VBLANK_RATE_INFO_0_SR,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_SR}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_SR}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_SR}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_SR}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_SR}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_SR}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_SR}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_SR}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_SR}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_SR}, {"list", OPTION_VAL_LIST_SR}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -36953,13 +37457,6 @@ struct retro_core_option_v2_definition option_defs_sr[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_SR, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_SR,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_SR}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_SR, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_SR,
         NULL, "core",
@@ -36972,6 +37469,13 @@ struct retro_core_option_v2_definition option_defs_sr[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_SR}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_SR}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_SR}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_SR, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_SR,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_SR}, {"1gb", OPTION_VAL_1GB_SR}, {"5gb", OPTION_VAL_5GB_SR}, {"wipe", OPTION_VAL_WIPE_SR}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_SR, NULL,
@@ -37128,8 +37632,8 @@ struct retro_core_options_v2 options_sr = {
 #define RPCS3_DISABLE_GETLLAR_SPIN_OPT_INFO_0_SV "Stänger av identifiering av SPU-upptagna vänte-loopar på GETLLAR. Ett fåtal spel behöver att den är avstängd."
 #define RPCS3_EMULATE_HDD_SPEED_LABEL_SV "Emulera hårddiskens läshastighet"
 #define RPCS3_EMULATE_HDD_SPEED_INFO_0_SV "Läser från den emulerade hårddisken med PS3:ans hastighet, för spel som inte fungerar när inläsningen går omedelbart."
-#define RPCS3_EMULATE_BDVD_SPEED_LABEL_SV NULL
-#define RPCS3_EMULATE_BDVD_SPEED_INFO_0_SV NULL
+#define RPCS3_EMULATE_BDVD_SPEED_LABEL_SV "Emulera BD-ROM-läshastighet"
+#define RPCS3_EMULATE_BDVD_SPEED_INFO_0_SV "Läser från skivan i PS3-enhetens 2x-hastighet (9 MB/s), för spel som strömmar filmer från skivan och visar skadad video när inläsningen sker direkt. Inläsningen tar längre tid."
 #define RPCS3_PPU_RESERVATION_PRIORITY_LABEL_SV "PPU-reserveringsprioritet"
 #define RPCS3_PPU_RESERVATION_PRIORITY_INFO_0_SV "Ger PPU-reserveringar företräde framför SPU:ernas, som i RPCS3. Kan hjälpa spel som stannar vid dem."
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_SV "Förkompilering av PPU/SPU med LLVM"
@@ -37153,6 +37657,10 @@ struct retro_core_options_v2 options_sr = {
 #define OPTION_VAL_OPENGL_SV NULL
 #define OPTION_VAL_VULKAN_SV NULL
 #define OPTION_VAL_NULL_SV "Null (ingen video)"
+#define RPCS3_ASPECT_RATIO_LABEL_SV "Bildformat"
+#define RPCS3_ASPECT_RATIO_INFO_0_SV "Ändrar utdataformatets bildförhållande. Endast vissa PS3-spel har inbyggt stöd för 4:3. (Omstart krävs)"
+#define OPTION_VAL_16_9_SV "16:9 (standard)"
+#define OPTION_VAL_4_3_SV NULL
 #define RPCS3_FRAME_LIMIT_LABEL_SV "Bildfrekvensgräns"
 #define RPCS3_FRAME_LIMIT_INFO_0_SV "Högsta bildfrekvens som spelet får köras med. Auto är VBlank-frekvensen, som i RPCS3; PS3 Native styr bildväxlingarna som PS3 gör; Av låter spel som inte väntar på PS3:s uppdatering köras för snabbt."
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_SV NULL
@@ -37181,7 +37689,7 @@ struct retro_core_options_v2 options_sr = {
 #define OPTION_VAL_HIGH_SV "Hög"
 #define OPTION_VAL_ULTRA_SV NULL
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_SV "Standardupplösning"
-#define RPCS3_DEFAULT_RESOLUTION_INFO_0_SV "Den utdataupplösning som den emulerade PS3:an erbjuder spelet, precis som i RPCS3. De flesta spel körs i 720p; en del ser bättre ut i 1080p och några behöver 480p eller 576p för att undvika fel. Träder i kraft när innehåll läses in."
+#define RPCS3_DEFAULT_RESOLUTION_INFO_0_SV "ÄNDRA INTE DET HÄR ALTERNATIVET FÖR ATT SKALA UPP SPELET. Använd bildskala i stället. Använd bara 1080p om spelet stöder det. På grund av emuleringsfel kan vissa spel i sällsynta fall bara renderas i upplösningar under 720p."
 #define OPTION_VAL_720P_SV "720p (standard)"
 #define OPTION_VAL_1080P_SV NULL
 #define OPTION_VAL_480P_SV NULL
@@ -37222,12 +37730,11 @@ struct retro_core_options_v2 options_sr = {
 #define RPCS3_STRICT_RENDERING_LABEL_SV "Strikt renderingsläge"
 #define RPCS3_STRICT_RENDERING_INFO_0_SV "Aktivera strikt rendering för noggrannhet."
 #define RPCS3_STRETCH_TO_DISPLAY_LABEL_SV "Sträck till visningsområdet"
-#define RPCS3_STRETCH_TO_DISPLAY_INFO_0_SV NULL
+#define RPCS3_STRETCH_TO_DISPLAY_INFO_0_SV "Sträck ut spelutdata så att den fyller skärmen och rapportera den till RetroArch med detta bildförhållande. Välj skärmens bildförhållande för spel som har patchats till ett bredare (21:9, 32:9). Kräver att RetroArchs bildförhållande är inställt på Tillhandahålls av kärnan."
 #define OPTION_VAL_ENABLED_SV NULL
 #define OPTION_VAL_16_10_SV NULL
 #define OPTION_VAL_21_9_SV NULL
 #define OPTION_VAL_32_9_SV NULL
-#define OPTION_VAL_4_3_SV NULL
 #define OPTION_VAL_5_4_SV NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_SV "Mät fördröjning"
 #define RPCS3_MULTITHREADED_RSX_INFO_0_SV "Flyttar en del av RSX-arbetet till en andra tråd. Avstängt som standard, precis som i RPCS3; det kan hjälpa processorer med få snabba kärnor, även i telefoner."
@@ -37263,12 +37770,13 @@ struct retro_core_options_v2 options_sr = {
 #define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_SV "Fördröjning för drivrutinens uppvakning i mikrosekunder. 0 som standard, precis som i RPCS3; höj den bara när ett spel behöver det."
 #define OPTION_VAL_0_SV "0 (Standard)"
 #define RPCS3_VBLANK_RATE_LABEL_SV "VBlank-frekvens"
-#define RPCS3_VBLANK_RATE_INFO_0_SV "PS3:ans uppdateringsfrekvens i Hz. Det är också den bildfrekvens som kärnan begär från RetroArch och som tillämpas när innehåll läses in; spel som kan köras över 60 FPS påverkas."
+#define RPCS3_VBLANK_RATE_INFO_0_SV "PS3:ans uppdateringsfrekvens i Hz. Det är också bildfrekvensen som kärnan begär av RetroArch och som används när innehåll läses in. Spel som kan köras över 60 FPS behöver en bildskärm med minst samma uppdateringsfrekvens. ”Från lista” fördubblar Vblankfrekvensen för spel som stöds och finns i vblank_unlock.txt i system/rpcs3. Du kan behöva använda korrigeringsfiler för enskilda spel."
 #define OPTION_VAL_50_RPCS3_VBLANK_RATE_SV NULL
 #define OPTION_VAL_60_RPCS3_VBLANK_RATE_SV NULL
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_SV NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_SV NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_SV NULL
+#define OPTION_VAL_LIST_SV "Från lista"
 #define RPCS3_THREAD_SCHEDULER_LABEL_SV "Trådschemaläggare"
 #define RPCS3_THREAD_SCHEDULER_INFO_0_SV "Vem som placerar emulatorns trådar på CPU:ns kärnor, som i RPCS3. Operativsystem överlåter det till systemet; RPCS3:s schemaläggare fäster PPU-, SPU- och RSX-trådar vid egna kärnor, ordnade för några vanliga stationära CPU:er. Har ingen effekt på Android, där kärnan inte kan fästa trådar."
 #define OPTION_VAL_OS_SV "Operativsystem"
@@ -37279,9 +37787,9 @@ struct retro_core_options_v2 options_sr = {
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_SV "Aktivera identifiering av SPU-loopar"
 #define RPCS3_SPU_LOOP_DETECTION_INFO_0_SV "Identifierar SPU-loopar som bara väntar och hoppar över dem. Snabbare, men vissa spel fungerar inte med det; avstängt som standard, precis som i RPCS3. Värt att slå på för snabbhet i telefoner."
 #define RPCS3_LLVM_THREADS_LABEL_SV "LLVM-kompilatortrådar för PPU/SPU"
-#define RPCS3_LLVM_THREADS_INFO_0_SV NULL
+#define RPCS3_LLVM_THREADS_INFO_0_SV "Hur många trådar som kompilerar PPU och SPU-kod med LLVM, som RPCS3:s Maximalt antal LLVM-kompileringstrådar. Automatisk använder varje kärna. Färre trådar håller en telefon svalare, använder mindre minne när ett spel kompileras och gör att det tar längre tid. På ARM-processorer med effektivitetskärnor (de flesta telefoner, vissa ARM-bärbara datorer) lämnar standardinställningen dem utanför."
 #define RPCS3_SHADER_COMPILER_THREADS_LABEL_SV "Trådar för shaderkompilering"
-#define RPCS3_SHADER_COMPILER_THREADS_INFO_0_SV NULL
+#define RPCS3_SHADER_COMPILER_THREADS_INFO_0_SV "Hur många trådar som kompilerar shaderprogram. Automatisk låter RPCS3 avgöra utifrån den processor den ser. På ARM-processorer med effektivitetskärnor (de flesta telefoner, vissa ARM-bärbara datorer) lämnar standardinställningen dem utanför."
 #define RPCS3_PPU_THREADS_LABEL_SV "Antal PPU-trådar"
 #define RPCS3_PPU_THREADS_INFO_0_SV "Hur många PPU-trådar som körs samtidigt, som i RPCS3. 2 är standard och vad nästan alla spel vill ha."
 #define OPTION_VAL_2_RPCS3_PPU_THREADS_SV "2 (Standard)"
@@ -37297,7 +37805,7 @@ struct retro_core_options_v2 options_sr = {
 #define OPTION_VAL_SIMULATED_SV "RPCN-värd"
 #define OPTION_VAL_RPCN_SV "RPCN-serverns värdnamn eller IP-adress."
 #define RPCS3_UPNP_LABEL_SV NULL
-#define RPCS3_UPNP_INFO_0_SV NULL
+#define RPCS3_UPNP_INFO_0_SV "Aktivera UPnP för automatisk vidarebefordran av portar."
 #define RPCS3_SHOW_RPCN_POPUPS_LABEL_SV "RPCN-kommunikations-id"
 #define RPCS3_SHOW_RPCN_POPUPS_INFO_0_SV "Kommunikations-id för RPCN."
 #define RPCS3_SHOW_TROPHY_POPUPS_LABEL_SV "Visa trofénotiser"
@@ -37343,19 +37851,16 @@ struct retro_core_options_v2 options_sr = {
 #define RPCS3_FB_ALIASING_BIAS_INFO_0_SV "Vilket håll RPCS3 väljer för en yta som används både som färg och djup. För felsökning."
 #define OPTION_VAL_COLOR_SV "Föredra färg"
 #define OPTION_VAL_DEPTH_SV "Föredra djup"
-#define RPCS3_DATABASE_OVERRIDE_LABEL_SV NULL
-#define RPCS3_DATABASE_OVERRIDE_INFO_0_SV NULL
+#define RPCS3_DATABASE_OVERRIDE_LABEL_SV "Åsidosätt databasinställningar"
+#define RPCS3_DATABASE_OVERRIDE_INFO_0_SV "Förbättrar kompatibiliteten genom att automatiskt använda spelspecifika rättningar: inställningarna som RPCS3:s databas har för spelet, på samma sätt som fristående RPCS3 använder dem, har företräde framför kärnalternativen, globalt eller per spel, för de inställningar som de anger. Alla andra inställningar behålls som du har valt dem. Av tillämpar inga av dem. Får effekt nästa gång ett spel startas."
 #define RPCS3_PERF_OVERLAY_LABEL_SV "Prestandaöverlägg"
 #define RPCS3_PERF_OVERLAY_INFO_0_SV "RPCS3:s egna prestandaöverlägg, som ritas över spelet: spelets bildfrekvens såsom RPCS3 räknar den, samt vid högre detaljnivåer bildrutetider och CPU- och GPU-belastning."
 #define OPTION_VAL_MINIMAL_SV "Endast bildfrekvens"
 #define OPTION_VAL_MEDIUM_SV NULL
-#define RPCS3_FRAME_PACING_LABEL_SV "Bildtaktning"
-#define RPCS3_FRAME_PACING_INFO_0_SV "Vad spelets bildrutor tidsstyrs av. Emulatorklockan är RPCS3:s egen timer, som i fristående RPCS3. RetroArch ger spelet en PS3-uppdatering per bildruta som RetroArch visar, så snabbspolning snabbar upp spelet och spelet körs med VBlank-frekvensen när RetroArch visar så många bildrutor per sekund; Vulkan-renderaren hoppar för närvarande över bildrutor."
+#define RPCS3_FRAME_PACING_LABEL_SV "Bildrutetaktning"
+#define RPCS3_FRAME_PACING_INFO_0_SV "Vad spelets bildrutor tidsstyrs av. Emulatorklockan är RPCS3:s egen timer, som i fristående RPCS3. RetroArch ger spelet en PS3-skärmuppdatering per bildruta som RetroArch visar, så snabbspolning gör spelet snabbare och spelet körs med VBlank-frekvensen när RetroArch visar så många bildrutor per sekund."
 #define OPTION_VAL_FRONTEND_SV NULL
-#define OPTION_VAL_EMULATOR_SV "Emulatorns klocka"
-#define RPCS3_SAVEDATA_SLOT_LABEL_SV "Plats för sparade data"
-#define RPCS3_SAVEDATA_SLOT_INFO_0_SV "Ett PS3-spel visar en lista över sina sparade data och låter spelaren välja. 'Välj från lista' visar listan i spelbilden för användning med handkontrollen."
-#define OPTION_VAL_LIST_SV "Välj från lista"
+#define OPTION_VAL_EMULATOR_SV "Emulatorklocka"
 #define RPCS3_MASTER_VOLUME_LABEL_SV "Huvudvolym"
 #define RPCS3_MASTER_VOLUME_INFO_0_SV "Huvudljudvolym i procent."
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_SV NULL
@@ -37367,11 +37872,17 @@ struct retro_core_options_v2 options_sr = {
 #define OPTION_VAL_70_SV NULL
 #define OPTION_VAL_80_SV NULL
 #define OPTION_VAL_90_SV NULL
-#define RPCS3_AUDIO_FORMAT_LABEL_SV NULL
-#define RPCS3_AUDIO_FORMAT_INFO_0_SV NULL
+#define RPCS3_AUDIO_FORMAT_LABEL_SV "Ljudformat"
+#define RPCS3_AUDIO_FORMAT_INFO_0_SV "De högtalare som PS3:an anger att spelen har. Ställ in detta efter RetroArchs utdatalayout: ett spel väljer stereo, 5.1 eller 7.1 utifrån vad som erbjuds och en surroundmix som RetroArch fäller ned låter inte alltid som spelets egen stereomix. Kräver RetroArch med flerkanalsljud, annars används stereo. Börjar gälla när spelet startas."
 #define OPTION_VAL_STEREO_SV NULL
 #define OPTION_VAL_SURROUND_5_1_SV NULL
 #define OPTION_VAL_SURROUND_7_1_SV NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_SV "Diskcachestorlek"
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_SV "Begränsar cachen som spelen behåller på dev_hdd1, som annars bara växer. Med en angiven storlek tas spelens äldsta cachar bort när ett spel laddas eller stängs, tills resten ryms. Rensa vid avslut tar bort hela cachen när ett spel stängs, precis som en PS3 gör när den stängs av. En borttagen cache byggs upp igen av spelet, vilket kan göra nästa start av spelet långsammare."
+#define OPTION_VAL_UNLIMITED_SV "Obegränsad"
+#define OPTION_VAL_1GB_SV NULL
+#define OPTION_VAL_5GB_SV NULL
+#define OPTION_VAL_WIPE_SV "Rensa vid avslut"
 #define RPCS3_LANGUAGE_LABEL_SV "SPU: noggrann kontroll av denormala tal"
 #define RPCS3_LANGUAGE_INFO_0_SV "Aktivera noggrann hantering av SPU:s denormala tal."
 #define OPTION_VAL_ENGLISH_SV "RSX: noggrann ZCULL"
@@ -37556,6 +38067,13 @@ struct retro_core_option_v2_definition option_defs_sv[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_SV}, {"vulkan", OPTION_VAL_VULKAN_SV}, {"null", OPTION_VAL_NULL_SV}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_SV, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_SV,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_SV}, {"4:3", OPTION_VAL_4_3_SV}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_SV, NULL,
@@ -37743,7 +38261,7 @@ struct retro_core_option_v2_definition option_defs_sv[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_SV, NULL,
         RPCS3_VBLANK_RATE_INFO_0_SV,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_SV}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_SV}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_SV}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_SV}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_SV}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_SV}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_SV}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_SV}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_SV}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_SV}, {"list", OPTION_VAL_LIST_SV}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -37982,13 +38500,6 @@ struct retro_core_option_v2_definition option_defs_sv[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_SV, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_SV,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_SV}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_SV, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_SV,
         NULL, "core",
@@ -38001,6 +38512,13 @@ struct retro_core_option_v2_definition option_defs_sv[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_SV}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_SV}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_SV}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_SV, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_SV,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_SV}, {"1gb", OPTION_VAL_1GB_SV}, {"5gb", OPTION_VAL_5GB_SV}, {"wipe", OPTION_VAL_WIPE_SV}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_SV, NULL,
@@ -38182,6 +38700,10 @@ struct retro_core_options_v2 options_sv = {
 #define OPTION_VAL_OPENGL_TH NULL
 #define OPTION_VAL_VULKAN_TH NULL
 #define OPTION_VAL_NULL_TH NULL
+#define RPCS3_ASPECT_RATIO_LABEL_TH "อัตราส่วนภาพ"
+#define RPCS3_ASPECT_RATIO_INFO_0_TH NULL
+#define OPTION_VAL_16_9_TH NULL
+#define OPTION_VAL_4_3_TH NULL
 #define RPCS3_FRAME_LIMIT_LABEL_TH NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_TH NULL
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_TH "อัตโนมัติ"
@@ -38256,7 +38778,6 @@ struct retro_core_options_v2 options_sv = {
 #define OPTION_VAL_16_10_TH NULL
 #define OPTION_VAL_21_9_TH NULL
 #define OPTION_VAL_32_9_TH NULL
-#define OPTION_VAL_4_3_TH NULL
 #define OPTION_VAL_5_4_TH NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_TH NULL
 #define RPCS3_MULTITHREADED_RSX_INFO_0_TH NULL
@@ -38298,6 +38819,7 @@ struct retro_core_options_v2 options_sv = {
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_TH NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_TH NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_TH NULL
+#define OPTION_VAL_LIST_TH NULL
 #define RPCS3_THREAD_SCHEDULER_LABEL_TH NULL
 #define RPCS3_THREAD_SCHEDULER_INFO_0_TH NULL
 #define OPTION_VAL_OS_TH NULL
@@ -38382,9 +38904,6 @@ struct retro_core_options_v2 options_sv = {
 #define RPCS3_FRAME_PACING_INFO_0_TH NULL
 #define OPTION_VAL_FRONTEND_TH NULL
 #define OPTION_VAL_EMULATOR_TH NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_TH NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_TH NULL
-#define OPTION_VAL_LIST_TH NULL
 #define RPCS3_MASTER_VOLUME_LABEL_TH "ระดับเสียงหลัก"
 #define RPCS3_MASTER_VOLUME_INFO_0_TH NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_TH NULL
@@ -38398,9 +38917,15 @@ struct retro_core_options_v2 options_sv = {
 #define OPTION_VAL_90_TH NULL
 #define RPCS3_AUDIO_FORMAT_LABEL_TH NULL
 #define RPCS3_AUDIO_FORMAT_INFO_0_TH NULL
-#define OPTION_VAL_STEREO_TH NULL
+#define OPTION_VAL_STEREO_TH "สเตอริโอ"
 #define OPTION_VAL_SURROUND_5_1_TH NULL
 #define OPTION_VAL_SURROUND_7_1_TH NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_TH NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_TH NULL
+#define OPTION_VAL_UNLIMITED_TH NULL
+#define OPTION_VAL_1GB_TH NULL
+#define OPTION_VAL_5GB_TH NULL
+#define OPTION_VAL_WIPE_TH NULL
 #define RPCS3_LANGUAGE_LABEL_TH NULL
 #define RPCS3_LANGUAGE_INFO_0_TH NULL
 #define OPTION_VAL_ENGLISH_TH "อังกฤษ"
@@ -38585,6 +39110,13 @@ struct retro_core_option_v2_definition option_defs_th[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_TH}, {"vulkan", OPTION_VAL_VULKAN_TH}, {"null", OPTION_VAL_NULL_TH}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_TH, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_TH,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_TH}, {"4:3", OPTION_VAL_4_3_TH}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_TH, NULL,
@@ -38772,7 +39304,7 @@ struct retro_core_option_v2_definition option_defs_th[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_TH, NULL,
         RPCS3_VBLANK_RATE_INFO_0_TH,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_TH}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_TH}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_TH}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_TH}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_TH}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_TH}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_TH}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_TH}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_TH}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_TH}, {"list", OPTION_VAL_LIST_TH}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -39011,13 +39543,6 @@ struct retro_core_option_v2_definition option_defs_th[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_TH, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_TH,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_TH}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_TH, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_TH,
         NULL, "core",
@@ -39030,6 +39555,13 @@ struct retro_core_option_v2_definition option_defs_th[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_TH}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_TH}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_TH}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_TH, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_TH,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_TH}, {"1gb", OPTION_VAL_1GB_TH}, {"5gb", OPTION_VAL_5GB_TH}, {"wipe", OPTION_VAL_WIPE_TH}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_TH, NULL,
@@ -39211,6 +39743,10 @@ struct retro_core_options_v2 options_th = {
 #define OPTION_VAL_OPENGL_TR NULL
 #define OPTION_VAL_VULKAN_TR NULL
 #define OPTION_VAL_NULL_TR NULL
+#define RPCS3_ASPECT_RATIO_LABEL_TR "En Boy Oranı"
+#define RPCS3_ASPECT_RATIO_INFO_0_TR NULL
+#define OPTION_VAL_16_9_TR NULL
+#define OPTION_VAL_4_3_TR NULL
 #define RPCS3_FRAME_LIMIT_LABEL_TR NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_TR NULL
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_TR "Otomatik"
@@ -39285,7 +39821,6 @@ struct retro_core_options_v2 options_th = {
 #define OPTION_VAL_16_10_TR NULL
 #define OPTION_VAL_21_9_TR NULL
 #define OPTION_VAL_32_9_TR NULL
-#define OPTION_VAL_4_3_TR NULL
 #define OPTION_VAL_5_4_TR NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_TR NULL
 #define RPCS3_MULTITHREADED_RSX_INFO_0_TR NULL
@@ -39327,6 +39862,7 @@ struct retro_core_options_v2 options_th = {
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_TR NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_TR NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_TR NULL
+#define OPTION_VAL_LIST_TR NULL
 #define RPCS3_THREAD_SCHEDULER_LABEL_TR NULL
 #define RPCS3_THREAD_SCHEDULER_INFO_0_TR NULL
 #define OPTION_VAL_OS_TR NULL
@@ -39411,9 +39947,6 @@ struct retro_core_options_v2 options_th = {
 #define RPCS3_FRAME_PACING_INFO_0_TR NULL
 #define OPTION_VAL_FRONTEND_TR NULL
 #define OPTION_VAL_EMULATOR_TR NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_TR NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_TR NULL
-#define OPTION_VAL_LIST_TR NULL
 #define RPCS3_MASTER_VOLUME_LABEL_TR "Ana Ses Seviyesi"
 #define RPCS3_MASTER_VOLUME_INFO_0_TR NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_TR NULL
@@ -39430,6 +39963,12 @@ struct retro_core_options_v2 options_th = {
 #define OPTION_VAL_STEREO_TR NULL
 #define OPTION_VAL_SURROUND_5_1_TR NULL
 #define OPTION_VAL_SURROUND_7_1_TR NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_TR NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_TR NULL
+#define OPTION_VAL_UNLIMITED_TR NULL
+#define OPTION_VAL_1GB_TR NULL
+#define OPTION_VAL_5GB_TR NULL
+#define OPTION_VAL_WIPE_TR NULL
 #define RPCS3_LANGUAGE_LABEL_TR NULL
 #define RPCS3_LANGUAGE_INFO_0_TR NULL
 #define OPTION_VAL_ENGLISH_TR "İngilizce"
@@ -39614,6 +40153,13 @@ struct retro_core_option_v2_definition option_defs_tr[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_TR}, {"vulkan", OPTION_VAL_VULKAN_TR}, {"null", OPTION_VAL_NULL_TR}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_TR, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_TR,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_TR}, {"4:3", OPTION_VAL_4_3_TR}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_TR, NULL,
@@ -39801,7 +40347,7 @@ struct retro_core_option_v2_definition option_defs_tr[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_TR, NULL,
         RPCS3_VBLANK_RATE_INFO_0_TR,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_TR}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_TR}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_TR}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_TR}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_TR}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_TR}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_TR}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_TR}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_TR}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_TR}, {"list", OPTION_VAL_LIST_TR}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -40040,13 +40586,6 @@ struct retro_core_option_v2_definition option_defs_tr[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_TR, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_TR,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_TR}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_TR, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_TR,
         NULL, "core",
@@ -40059,6 +40598,13 @@ struct retro_core_option_v2_definition option_defs_tr[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_TR}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_TR}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_TR}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_TR, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_TR,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_TR}, {"1gb", OPTION_VAL_1GB_TR}, {"5gb", OPTION_VAL_5GB_TR}, {"wipe", OPTION_VAL_WIPE_TR}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_TR, NULL,
@@ -40240,6 +40786,10 @@ struct retro_core_options_v2 options_tr = {
 #define OPTION_VAL_OPENGL_TT NULL
 #define OPTION_VAL_VULKAN_TT NULL
 #define OPTION_VAL_NULL_TT NULL
+#define RPCS3_ASPECT_RATIO_LABEL_TT NULL
+#define RPCS3_ASPECT_RATIO_INFO_0_TT NULL
+#define OPTION_VAL_16_9_TT NULL
+#define OPTION_VAL_4_3_TT NULL
 #define RPCS3_FRAME_LIMIT_LABEL_TT NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_TT NULL
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_TT NULL
@@ -40314,7 +40864,6 @@ struct retro_core_options_v2 options_tr = {
 #define OPTION_VAL_16_10_TT NULL
 #define OPTION_VAL_21_9_TT NULL
 #define OPTION_VAL_32_9_TT NULL
-#define OPTION_VAL_4_3_TT NULL
 #define OPTION_VAL_5_4_TT NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_TT NULL
 #define RPCS3_MULTITHREADED_RSX_INFO_0_TT NULL
@@ -40356,6 +40905,7 @@ struct retro_core_options_v2 options_tr = {
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_TT NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_TT NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_TT NULL
+#define OPTION_VAL_LIST_TT NULL
 #define RPCS3_THREAD_SCHEDULER_LABEL_TT NULL
 #define RPCS3_THREAD_SCHEDULER_INFO_0_TT NULL
 #define OPTION_VAL_OS_TT NULL
@@ -40440,9 +40990,6 @@ struct retro_core_options_v2 options_tr = {
 #define RPCS3_FRAME_PACING_INFO_0_TT NULL
 #define OPTION_VAL_FRONTEND_TT NULL
 #define OPTION_VAL_EMULATOR_TT NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_TT NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_TT NULL
-#define OPTION_VAL_LIST_TT NULL
 #define RPCS3_MASTER_VOLUME_LABEL_TT NULL
 #define RPCS3_MASTER_VOLUME_INFO_0_TT NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_TT NULL
@@ -40456,9 +41003,15 @@ struct retro_core_options_v2 options_tr = {
 #define OPTION_VAL_90_TT NULL
 #define RPCS3_AUDIO_FORMAT_LABEL_TT NULL
 #define RPCS3_AUDIO_FORMAT_INFO_0_TT NULL
-#define OPTION_VAL_STEREO_TT NULL
+#define OPTION_VAL_STEREO_TT "Стерео"
 #define OPTION_VAL_SURROUND_5_1_TT NULL
 #define OPTION_VAL_SURROUND_7_1_TT NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_TT NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_TT NULL
+#define OPTION_VAL_UNLIMITED_TT NULL
+#define OPTION_VAL_1GB_TT NULL
+#define OPTION_VAL_5GB_TT NULL
+#define OPTION_VAL_WIPE_TT NULL
 #define RPCS3_LANGUAGE_LABEL_TT NULL
 #define RPCS3_LANGUAGE_INFO_0_TT NULL
 #define OPTION_VAL_ENGLISH_TT "Инглизчә"
@@ -40643,6 +41196,13 @@ struct retro_core_option_v2_definition option_defs_tt[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_TT}, {"vulkan", OPTION_VAL_VULKAN_TT}, {"null", OPTION_VAL_NULL_TT}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_TT, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_TT,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_TT}, {"4:3", OPTION_VAL_4_3_TT}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_TT, NULL,
@@ -40830,7 +41390,7 @@ struct retro_core_option_v2_definition option_defs_tt[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_TT, NULL,
         RPCS3_VBLANK_RATE_INFO_0_TT,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_TT}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_TT}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_TT}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_TT}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_TT}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_TT}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_TT}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_TT}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_TT}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_TT}, {"list", OPTION_VAL_LIST_TT}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -41069,13 +41629,6 @@ struct retro_core_option_v2_definition option_defs_tt[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_TT, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_TT,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_TT}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_TT, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_TT,
         NULL, "core",
@@ -41088,6 +41641,13 @@ struct retro_core_option_v2_definition option_defs_tt[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_TT}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_TT}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_TT}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_TT, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_TT,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_TT}, {"1gb", OPTION_VAL_1GB_TT}, {"5gb", OPTION_VAL_5GB_TT}, {"wipe", OPTION_VAL_WIPE_TT}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_TT, NULL,
@@ -41269,6 +41829,10 @@ struct retro_core_options_v2 options_tt = {
 #define OPTION_VAL_OPENGL_UK NULL
 #define OPTION_VAL_VULKAN_UK NULL
 #define OPTION_VAL_NULL_UK NULL
+#define RPCS3_ASPECT_RATIO_LABEL_UK "Співвідношення сторін"
+#define RPCS3_ASPECT_RATIO_INFO_0_UK NULL
+#define OPTION_VAL_16_9_UK NULL
+#define OPTION_VAL_4_3_UK NULL
 #define RPCS3_FRAME_LIMIT_LABEL_UK NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_UK NULL
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_UK "Автоматично"
@@ -41343,7 +41907,6 @@ struct retro_core_options_v2 options_tt = {
 #define OPTION_VAL_16_10_UK NULL
 #define OPTION_VAL_21_9_UK NULL
 #define OPTION_VAL_32_9_UK NULL
-#define OPTION_VAL_4_3_UK NULL
 #define OPTION_VAL_5_4_UK NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_UK NULL
 #define RPCS3_MULTITHREADED_RSX_INFO_0_UK NULL
@@ -41385,6 +41948,7 @@ struct retro_core_options_v2 options_tt = {
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_UK NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_UK NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_UK NULL
+#define OPTION_VAL_LIST_UK NULL
 #define RPCS3_THREAD_SCHEDULER_LABEL_UK NULL
 #define RPCS3_THREAD_SCHEDULER_INFO_0_UK NULL
 #define OPTION_VAL_OS_UK NULL
@@ -41469,9 +42033,6 @@ struct retro_core_options_v2 options_tt = {
 #define RPCS3_FRAME_PACING_INFO_0_UK NULL
 #define OPTION_VAL_FRONTEND_UK NULL
 #define OPTION_VAL_EMULATOR_UK NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_UK NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_UK NULL
-#define OPTION_VAL_LIST_UK NULL
 #define RPCS3_MASTER_VOLUME_LABEL_UK "Загальний звук"
 #define RPCS3_MASTER_VOLUME_INFO_0_UK NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_UK NULL
@@ -41485,9 +42046,15 @@ struct retro_core_options_v2 options_tt = {
 #define OPTION_VAL_90_UK NULL
 #define RPCS3_AUDIO_FORMAT_LABEL_UK NULL
 #define RPCS3_AUDIO_FORMAT_INFO_0_UK NULL
-#define OPTION_VAL_STEREO_UK NULL
+#define OPTION_VAL_STEREO_UK "Cтерео"
 #define OPTION_VAL_SURROUND_5_1_UK NULL
 #define OPTION_VAL_SURROUND_7_1_UK NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_UK NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_UK NULL
+#define OPTION_VAL_UNLIMITED_UK NULL
+#define OPTION_VAL_1GB_UK "1 ГБ"
+#define OPTION_VAL_5GB_UK NULL
+#define OPTION_VAL_WIPE_UK NULL
 #define RPCS3_LANGUAGE_LABEL_UK NULL
 #define RPCS3_LANGUAGE_INFO_0_UK NULL
 #define OPTION_VAL_ENGLISH_UK "Англійська"
@@ -41672,6 +42239,13 @@ struct retro_core_option_v2_definition option_defs_uk[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_UK}, {"vulkan", OPTION_VAL_VULKAN_UK}, {"null", OPTION_VAL_NULL_UK}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_UK, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_UK,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_UK}, {"4:3", OPTION_VAL_4_3_UK}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_UK, NULL,
@@ -41859,7 +42433,7 @@ struct retro_core_option_v2_definition option_defs_uk[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_UK, NULL,
         RPCS3_VBLANK_RATE_INFO_0_UK,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_UK}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_UK}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_UK}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_UK}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_UK}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_UK}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_UK}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_UK}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_UK}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_UK}, {"list", OPTION_VAL_LIST_UK}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -42098,13 +42672,6 @@ struct retro_core_option_v2_definition option_defs_uk[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_UK, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_UK,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_UK}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_UK, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_UK,
         NULL, "core",
@@ -42117,6 +42684,13 @@ struct retro_core_option_v2_definition option_defs_uk[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_UK}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_UK}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_UK}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_UK, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_UK,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_UK}, {"1gb", OPTION_VAL_1GB_UK}, {"5gb", OPTION_VAL_5GB_UK}, {"wipe", OPTION_VAL_WIPE_UK}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_UK, NULL,
@@ -42298,6 +42872,10 @@ struct retro_core_options_v2 options_uk = {
 #define OPTION_VAL_OPENGL_VAL NULL
 #define OPTION_VAL_VULKAN_VAL NULL
 #define OPTION_VAL_NULL_VAL NULL
+#define RPCS3_ASPECT_RATIO_LABEL_VAL "Relació d'aspecte"
+#define RPCS3_ASPECT_RATIO_INFO_0_VAL NULL
+#define OPTION_VAL_16_9_VAL NULL
+#define OPTION_VAL_4_3_VAL NULL
 #define RPCS3_FRAME_LIMIT_LABEL_VAL NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_VAL NULL
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_VAL "Selecció automàtica"
@@ -42372,7 +42950,6 @@ struct retro_core_options_v2 options_uk = {
 #define OPTION_VAL_16_10_VAL NULL
 #define OPTION_VAL_21_9_VAL NULL
 #define OPTION_VAL_32_9_VAL NULL
-#define OPTION_VAL_4_3_VAL NULL
 #define OPTION_VAL_5_4_VAL NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_VAL NULL
 #define RPCS3_MULTITHREADED_RSX_INFO_0_VAL NULL
@@ -42414,6 +42991,7 @@ struct retro_core_options_v2 options_uk = {
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_VAL NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_VAL NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_VAL NULL
+#define OPTION_VAL_LIST_VAL NULL
 #define RPCS3_THREAD_SCHEDULER_LABEL_VAL NULL
 #define RPCS3_THREAD_SCHEDULER_INFO_0_VAL NULL
 #define OPTION_VAL_OS_VAL NULL
@@ -42498,9 +43076,6 @@ struct retro_core_options_v2 options_uk = {
 #define RPCS3_FRAME_PACING_INFO_0_VAL NULL
 #define OPTION_VAL_FRONTEND_VAL NULL
 #define OPTION_VAL_EMULATOR_VAL NULL
-#define RPCS3_SAVEDATA_SLOT_LABEL_VAL NULL
-#define RPCS3_SAVEDATA_SLOT_INFO_0_VAL NULL
-#define OPTION_VAL_LIST_VAL NULL
 #define RPCS3_MASTER_VOLUME_LABEL_VAL NULL
 #define RPCS3_MASTER_VOLUME_INFO_0_VAL NULL
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_VAL NULL
@@ -42517,6 +43092,12 @@ struct retro_core_options_v2 options_uk = {
 #define OPTION_VAL_STEREO_VAL NULL
 #define OPTION_VAL_SURROUND_5_1_VAL NULL
 #define OPTION_VAL_SURROUND_7_1_VAL NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_VAL NULL
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_VAL NULL
+#define OPTION_VAL_UNLIMITED_VAL NULL
+#define OPTION_VAL_1GB_VAL NULL
+#define OPTION_VAL_5GB_VAL NULL
+#define OPTION_VAL_WIPE_VAL NULL
 #define RPCS3_LANGUAGE_LABEL_VAL NULL
 #define RPCS3_LANGUAGE_INFO_0_VAL NULL
 #define OPTION_VAL_ENGLISH_VAL NULL
@@ -42701,6 +43282,13 @@ struct retro_core_option_v2_definition option_defs_val[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_VAL}, {"vulkan", OPTION_VAL_VULKAN_VAL}, {"null", OPTION_VAL_NULL_VAL}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_VAL, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_VAL,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_VAL}, {"4:3", OPTION_VAL_4_3_VAL}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_VAL, NULL,
@@ -42888,7 +43476,7 @@ struct retro_core_option_v2_definition option_defs_val[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_VAL, NULL,
         RPCS3_VBLANK_RATE_INFO_0_VAL,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_VAL}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_VAL}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_VAL}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_VAL}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_VAL}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_VAL}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_VAL}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_VAL}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_VAL}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_VAL}, {"list", OPTION_VAL_LIST_VAL}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -43127,13 +43715,6 @@ struct retro_core_option_v2_definition option_defs_val[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_VAL, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_VAL,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_VAL}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_VAL, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_VAL,
         NULL, "core",
@@ -43146,6 +43727,13 @@ struct retro_core_option_v2_definition option_defs_val[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_VAL}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_VAL}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_VAL}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_VAL, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_VAL,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_VAL}, {"1gb", OPTION_VAL_1GB_VAL}, {"5gb", OPTION_VAL_5GB_VAL}, {"wipe", OPTION_VAL_WIPE_VAL}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_VAL, NULL,
@@ -43258,15 +43846,15 @@ struct retro_core_options_v2 options_val = {
 /* RETRO_LANGUAGE_VN */
 
 #define CATEGORY_CPU_LABEL_VN NULL
-#define CATEGORY_CPU_INFO_0_VN "Các tùy chọn về bộ giải mã PPU và SPU, độ chính xác và mô phỏng CPU."
+#define CATEGORY_CPU_INFO_0_VN "Tùy chọn về bộ giải mã PPU và SPU, độ chính xác và mô phỏng CPU."
 #define CATEGORY_GPU_LABEL_VN NULL
-#define CATEGORY_GPU_INFO_0_VN "Các tùy chọn về bộ kết xuất, độ phân giải, bộ tạo hiệu ứng và độ chính xác đồ họa."
+#define CATEGORY_GPU_INFO_0_VN "Tùy chọn về bộ kết xuất, độ phân giải, bộ tạo hiệu ứng và độ chính xác đồ họa."
 #define CATEGORY_THREADS_LABEL_VN "Lập lịch"
 #define CATEGORY_THREADS_INFO_0_VN "Cách các luồng của trình giả lập được phân bổ thời gian xử lý, cũng như số luồng được chạy và biên dịch: những thiết lập có thể cần thay đổi trên CPU có ít lõi hoặc trên điện thoại."
 #define CATEGORY_NETWORK_LABEL_VN "Mạng"
-#define CATEGORY_NETWORK_INFO_0_VN "Các tùy chọn về mạng, PSN và RPCN."
+#define CATEGORY_NETWORK_INFO_0_VN "Tùy chọn về mạng, PSN và RPCN."
 #define CATEGORY_DEBUG_LABEL_VN "Gỡ lỗi"
-#define CATEGORY_DEBUG_INFO_0_VN "Các tùy chọn từ thẻ Gỡ lỗi của RPCS3: dùng để chẩn đoán sự cố, hiếm khi cần thiết khi chơi game."
+#define CATEGORY_DEBUG_INFO_0_VN "Tùy chọn từ thẻ Gỡ lỗi của RPCS3: dùng để chẩn đoán sự cố, hiếm khi cần thiết khi chơi game."
 #define CATEGORY_CORE_LABEL_VN "Danh mục trình giả lập"
 #define CATEGORY_CORE_INFO_0_VN "Ngôn ngữ, khu vực, lớp phủ, điều chỉnh thời gian khung hình, âm lượng và các tùy chọn khác của chính trình giả lập."
 #define RPCS3_PPU_DECODER_LABEL_VN "Bộ giải mã PPU"
@@ -43327,6 +43915,10 @@ struct retro_core_options_v2 options_val = {
 #define OPTION_VAL_OPENGL_VN NULL
 #define OPTION_VAL_VULKAN_VN NULL
 #define OPTION_VAL_NULL_VN "Không (Không xuất hình)"
+#define RPCS3_ASPECT_RATIO_LABEL_VN "Tỷ lệ khung hình"
+#define RPCS3_ASPECT_RATIO_INFO_0_VN "Thay đổi tỷ lệ khung hình đầu ra. Chỉ một số trò chơi PS3 hỗ trợ tỷ lệ 4:3 nguyên bản. (Cần khởi động lại)"
+#define OPTION_VAL_16_9_VN "16:9 (mặc định)"
+#define OPTION_VAL_4_3_VN NULL
 #define RPCS3_FRAME_LIMIT_LABEL_VN "Giới hạn khung hình"
 #define RPCS3_FRAME_LIMIT_INFO_0_VN "Tốc độ khung hình cao nhất mà trò chơi có thể chạy. Tự động sử dụng tần số VBlank, giống như trong RPCS3; Đồng Bộ Theo PS3 mô phỏng cách PS3 điều chỉnh việc hiển thị khung hình; Tắt cho phép các trò chơi không chờ tần số làm mới của PS3 tự chạy ở tốc độ quá nhanh."
 #define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_VN "Tự động"
@@ -43355,7 +43947,7 @@ struct retro_core_options_v2 options_val = {
 #define OPTION_VAL_HIGH_VN "Cao"
 #define OPTION_VAL_ULTRA_VN "Siêu cao"
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_VN "Độ phân giải mặc định"
-#define RPCS3_DEFAULT_RESOLUTION_INFO_0_VN "Độ phân giải đầu ra mà PS3 được mô phỏng cung cấp cho trò chơi, giống như trong RPCS3. Hầu hết trò chơi chạy ở 720p; một số trò chơi đẹp hơn ở 1080p, trong khi một số trò chơi cần 480p hoặc 576p để tránh lỗi. Có hiệu lực khi nội dung được tải."
+#define RPCS3_DEFAULT_RESOLUTION_INFO_0_VN "KHÔNG THAY ĐỔI TÙY CHỌN NÀY ĐỂ TĂNG ĐỘ PHÂN GIẢI HÌNH ẢNH CỦA TRÒ CHƠI. Hãy sử dụng Tỷ lệ độ phân giải thay thế. Chỉ sử dụng 1080p nếu trò chơi hỗ trợ. Trong một số trường hợp hiếm gặp do lỗi mô phỏng, một số trò chơi chỉ hiển thị hình ảnh ở độ phân giải thấp hơn 720p."
 #define OPTION_VAL_720P_VN "720p (Mặc định)"
 #define OPTION_VAL_1080P_VN NULL
 #define OPTION_VAL_480P_VN NULL
@@ -43401,7 +43993,6 @@ struct retro_core_options_v2 options_val = {
 #define OPTION_VAL_16_10_VN NULL
 #define OPTION_VAL_21_9_VN NULL
 #define OPTION_VAL_32_9_VN NULL
-#define OPTION_VAL_4_3_VN NULL
 #define OPTION_VAL_5_4_VN NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_VN "RSX đa luồng"
 #define RPCS3_MULTITHREADED_RSX_INFO_0_VN "Chuyển một phần tác vụ RSX sang luồng thứ hai. Mặc định tắt, giống như trong RPCS3; có thể cải thiện hiệu năng trên CPU có ít lõi nhưng tốc độ cao, bao gồm cả điện thoại."
@@ -43437,12 +44028,13 @@ struct retro_core_options_v2 options_val = {
 #define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_VN "Độ trễ đánh thức trình điều khiển tính bằng micro giây. Mặc định là 0, giống như trong RPCS3; chỉ tăng giá trị này khi trò chơi yêu cầu."
 #define OPTION_VAL_0_VN "0 (Mặc định)"
 #define RPCS3_VBLANK_RATE_LABEL_VN "Tần số VBlank"
-#define RPCS3_VBLANK_RATE_INFO_0_VN "Tần số quét của PS3 tính bằng Hz. Đây cũng là tốc độ khung hình mà lõi yêu cầu RetroArch, có hiệu lực khi nội dung được tải; các trò chơi có thể chạy trên 60 FPS cần màn hình có tần số quét tương ứng."
+#define RPCS3_VBLANK_RATE_INFO_0_VN "Tần số làm mới của PS3 tính bằng Hz. Đây cũng là tốc độ khung hình mà lõi yêu cầu RetroArch sử dụng, có hiệu lực khi nội dung được tải; những trò chơi có thể chạy trên 60 FPS cần màn hình có tần số làm mới tương ứng. \"Từ danh sách\" sẽ tăng gấp đôi tần số Vblank đối với các trò chơi được hỗ trợ và có tên trong tệp vblank_unlock.txt nằm trong system/rpcs3. Bạn có thể cần áp dụng các bản vá riêng cho từng trò chơi."
 #define OPTION_VAL_50_RPCS3_VBLANK_RATE_VN NULL
 #define OPTION_VAL_60_RPCS3_VBLANK_RATE_VN NULL
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_VN NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_VN NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_VN NULL
+#define OPTION_VAL_LIST_VN "Từ danh sách"
 #define RPCS3_THREAD_SCHEDULER_LABEL_VN "Bộ lập lịch luồng"
 #define RPCS3_THREAD_SCHEDULER_INFO_0_VN "Quyết định cách các luồng của trình giả lập được phân bổ vào các lõi CPU, tương tự như RPCS3. Hệ điều hành để hệ thống tự quyết định; bộ lập lịch của RPCS3 ghim các luồng PPU, SPU và RSX vào các lõi riêng, được bố trí phù hợp với một số CPU máy tính để bàn. Không có tác dụng trên Android, nơi lõi không thể ghim các luồng."
 #define OPTION_VAL_OS_VN "Hệ điều hành"
@@ -43523,13 +44115,10 @@ struct retro_core_options_v2 options_val = {
 #define RPCS3_PERF_OVERLAY_INFO_0_VN "Lớp phủ hiệu năng của RPCS3, được hiển thị trên hình ảnh trò chơi: tốc độ khung hình của trò chơi theo cách RPCS3 tính toán, và ở các mức chi tiết cao hơn sẽ hiển thị thời gian khung hình cùng mức tải CPU và GPU."
 #define OPTION_VAL_MINIMAL_VN "Chỉ tốc độ khung hình"
 #define OPTION_VAL_MEDIUM_VN "Trung bình"
-#define RPCS3_FRAME_PACING_LABEL_VN "Điều phối khung hình"
-#define RPCS3_FRAME_PACING_INFO_0_VN "Xác định thời gian chạy của trò chơi được tính dựa trên yếu tố nào. Đồng hồ giả lập là bộ đếm thời gian riêng của RPCS3, giống như khi chạy RPCS3 độc lập. RetroArch cung cấp cho trò chơi một lần làm mới PS3 cho mỗi khung hình mà RetroArch hiển thị, vì vậy tua nhanh sẽ làm trò chơi chạy nhanh hơn và trò chơi sẽ chạy ở tần số VBlank khi RetroArch hiển thị số khung hình tương ứng mỗi giây; với trình kết xuất Vulkan, hiện tại các khung hình sẽ bị bỏ qua."
+#define RPCS3_FRAME_PACING_LABEL_VN "Nhịp khung hình"
+#define RPCS3_FRAME_PACING_INFO_0_VN "Cách xác định thời điểm xử lý từng khung hình của trò chơi. Đồng hồ của trình giả lập là bộ đếm thời gian riêng của RPCS3, giống như khi chạy RPCS3 độc lập. RetroArch cung cấp cho trò chơi một nhịp làm mới của PS3 cho mỗi khung hình mà RetroArch hiển thị, vì vậy tua nhanh sẽ làm trò chơi chạy nhanh hơn và trò chơi sẽ chạy theo Tần số VBlank khi RetroArch hiển thị số khung hình mỗi giây tương ứng."
 #define OPTION_VAL_FRONTEND_VN NULL
-#define OPTION_VAL_EMULATOR_VN "Xung nhịp trình giả lập"
-#define RPCS3_SAVEDATA_SLOT_LABEL_VN "Vị trí dữ liệu lưu"
-#define RPCS3_SAVEDATA_SLOT_INFO_0_VN "Một trò chơi PS3 sẽ hiển thị danh sách dữ liệu lưu và cho phép người chơi chọn. 'Chọn từ danh sách' sẽ hiển thị danh sách đó trong giao diện trò chơi để sử dụng cùng tay cầm. Chọn một số thay vì vậy sẽ để lõi tự chọn vị trí cho bạn: khi lưu, dữ liệu sẽ ghi đè lên mục ở vị trí này trong danh sách của trò chơi hoặc tạo một bản lưu mới nếu danh sách ngắn hơn; khi tải, trò chơi sẽ lấy mục ở vị trí này và không tìm thấy gì nếu danh sách ngắn hơn. 0 là mục đầu tiên. Những trò chơi chỉ tự quản lý một bản lưu duy nhất sẽ không hiển thị danh sách, vì vậy thiết lập này không áp dụng cho chúng."
-#define OPTION_VAL_LIST_VN "Chọn từ danh sách"
+#define OPTION_VAL_EMULATOR_VN "Đồng hồ của trình giả lập"
 #define RPCS3_MASTER_VOLUME_LABEL_VN "Âm lượng Chính"
 #define RPCS3_MASTER_VOLUME_INFO_0_VN "Phần trăm âm lượng âm thanh chính."
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_VN NULL
@@ -43541,11 +44130,17 @@ struct retro_core_options_v2 options_val = {
 #define OPTION_VAL_70_VN NULL
 #define OPTION_VAL_80_VN NULL
 #define OPTION_VAL_90_VN NULL
-#define RPCS3_AUDIO_FORMAT_LABEL_VN NULL
-#define RPCS3_AUDIO_FORMAT_INFO_0_VN NULL
+#define RPCS3_AUDIO_FORMAT_LABEL_VN "Định dạng âm thanh"
+#define RPCS3_AUDIO_FORMAT_INFO_0_VN "Các loại loa mà PS3 thông báo với trò chơi là có sẵn. Hãy đặt theo Bố cục đầu ra của RetroArch: trò chơi sẽ chọn kiểu phối âm thanh nổi, 5.1 hoặc 7.1 riêng từ các tùy chọn được cung cấp, và âm thanh vòm được RetroArch chuyển xuống ít kênh hơn không phải lúc nào cũng giống với bản phối âm thanh nổi gốc của trò chơi. Yêu cầu phiên bản RetroArch hỗ trợ âm thanh đa kênh; nếu không, chỉ sử dụng âm thanh nổi. Có hiệu lực khi khởi chạy trò chơi."
 #define OPTION_VAL_STEREO_VN NULL
-#define OPTION_VAL_SURROUND_5_1_VN NULL
-#define OPTION_VAL_SURROUND_7_1_VN NULL
+#define OPTION_VAL_SURROUND_5_1_VN "Âm thanh vòm 5.1"
+#define OPTION_VAL_SURROUND_7_1_VN "Âm thanh vòm 7.1"
+#define RPCS3_DISK_CACHE_SIZE_LABEL_VN "Dung lượng bộ nhớ đệm đĩa"
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_VN "Giới hạn dung lượng bộ nhớ đệm mà các trò chơi lưu trên dev_hdd1, nếu không giới hạn thì dung lượng này sẽ tiếp tục tăng. Khi đặt giới hạn dung lượng, bộ nhớ đệm của những trò chơi lâu nhất chưa được sử dụng sẽ bị xóa khi trò chơi được khởi chạy hoặc đóng, cho đến khi dung lượng còn lại nằm trong giới hạn. Xóa khi thoát sẽ xóa toàn bộ bộ nhớ đệm khi trò chơi đóng, giống như cách máy PS3 thực hiện khi tắt nguồn. Bộ nhớ đệm đã xóa sẽ được trò chơi tạo lại, khiến lần khởi chạy tiếp theo của trò chơi đó có thể lâu hơn."
+#define OPTION_VAL_UNLIMITED_VN "Không giới hạn"
+#define OPTION_VAL_1GB_VN NULL
+#define OPTION_VAL_5GB_VN NULL
+#define OPTION_VAL_WIPE_VN "Xóa khi thoát"
 #define RPCS3_LANGUAGE_LABEL_VN "Ngôn ngữ hệ thống"
 #define RPCS3_LANGUAGE_INFO_0_VN "Ngôn ngữ hệ thống PS3."
 #define OPTION_VAL_ENGLISH_VN "Tiếng Anh"
@@ -43730,6 +44325,13 @@ struct retro_core_option_v2_definition option_defs_vn[] = {
         NULL, "gpu",
         { {"opengl", OPTION_VAL_OPENGL_VN}, {"vulkan", OPTION_VAL_VULKAN_VN}, {"null", OPTION_VAL_NULL_VN}, {NULL, NULL} },
         "vulkan"
+    },
+    {
+        "rpcs3_aspect_ratio", RPCS3_ASPECT_RATIO_LABEL_VN, NULL,
+        RPCS3_ASPECT_RATIO_INFO_0_VN,
+        NULL, "gpu",
+        { {"16:9", OPTION_VAL_16_9_VN}, {"4:3", OPTION_VAL_4_3_VN}, {NULL, NULL} },
+        "16:9"
     },
     {
         "rpcs3_frame_limit", RPCS3_FRAME_LIMIT_LABEL_VN, NULL,
@@ -43917,7 +44519,7 @@ struct retro_core_option_v2_definition option_defs_vn[] = {
         "rpcs3_vblank_rate", RPCS3_VBLANK_RATE_LABEL_VN, NULL,
         RPCS3_VBLANK_RATE_INFO_0_VN,
         NULL, "gpu",
-        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_VN}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_VN}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_VN}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_VN}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_VN}, {NULL, NULL} },
+        { {"50", OPTION_VAL_50_RPCS3_VBLANK_RATE_VN}, {"60", OPTION_VAL_60_RPCS3_VBLANK_RATE_VN}, {"120", OPTION_VAL_120_RPCS3_VBLANK_RATE_VN}, {"144", OPTION_VAL_144_RPCS3_VBLANK_RATE_VN}, {"240", OPTION_VAL_240_RPCS3_VBLANK_RATE_VN}, {"list", OPTION_VAL_LIST_VN}, {NULL, NULL} },
         "60"
     },
     // ==================== SCHEDULING ====================
@@ -44156,13 +44758,6 @@ struct retro_core_option_v2_definition option_defs_vn[] = {
         "emulator"
     },
     {
-        "rpcs3_savedata_slot", RPCS3_SAVEDATA_SLOT_LABEL_VN, NULL,
-        RPCS3_SAVEDATA_SLOT_INFO_0_VN,
-        NULL, "core",
-        { {"list", OPTION_VAL_LIST_VN}, {"0", NULL}, {"1", NULL}, {"2", NULL}, {"3", NULL}, {"4", NULL}, {"5", NULL}, {"6", NULL}, {"7", NULL}, {"8", NULL}, {"9", NULL}, {NULL, NULL} },
-        "list"
-    },
-    {
         "rpcs3_master_volume", RPCS3_MASTER_VOLUME_LABEL_VN, NULL,
         RPCS3_MASTER_VOLUME_INFO_0_VN,
         NULL, "core",
@@ -44175,6 +44770,13 @@ struct retro_core_option_v2_definition option_defs_vn[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_VN}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_VN}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_VN}, {NULL, NULL} },
         "stereo"
+    },
+    {
+        "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_VN, NULL,
+        RPCS3_DISK_CACHE_SIZE_INFO_0_VN,
+        NULL, "core",
+        { {"unlimited", OPTION_VAL_UNLIMITED_VN}, {"1gb", OPTION_VAL_1GB_VN}, {"5gb", OPTION_VAL_5GB_VN}, {"wipe", OPTION_VAL_WIPE_VN}, {NULL, NULL} },
+        "1gb"
     },
     {
         "rpcs3_language", RPCS3_LANGUAGE_LABEL_VN, NULL,
