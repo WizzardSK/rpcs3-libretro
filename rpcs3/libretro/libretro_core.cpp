@@ -186,6 +186,9 @@ static bool core_initialized = false;
 static bool game_loaded = false;
 static bool pending_game_boot = false;
 static std::string game_path;
+// The disc image a game was loaded from, empty for anything else: a reset
+// mounts it again, as the emulator's stop drops it (Emulator::Kill).
+static std::string s_iso_path;
 static std::string system_dir;
 static std::string save_dir;
 static std::string content_dir;  // RetroArch's content/games directory for PKG installation
@@ -2599,6 +2602,7 @@ bool retro_load_game(const struct retro_game_info* game)
     else if (is_iso_file(game_path))
     {
         load_iso(game_path);
+        s_iso_path = game_path;
 
         const std::string disc_root = iso_device::virtual_device_name + "/";
         const std::string eboot = disc_root + "PS3_GAME/USRDIR/EBOOT.BIN";
@@ -2612,6 +2616,7 @@ bool retro_load_game(const struct retro_game_info* game)
                     game_path.c_str());
             libretro_show_message("This disc image could not be opened - an encrypted one needs its redump key", 500);
             unload_iso();
+            s_iso_path.clear();
             return false;
         }
 
@@ -3010,6 +3015,7 @@ void retro_unload_game(void)
 
         // Drops the disc device, and with it the handle on the image.
         unload_iso();
+        s_iso_path.clear();
 
         // The game's cache on dev_hdd1 is closed now
         libretro_limit_disk_cache();
@@ -3216,12 +3222,21 @@ void retro_reset(void)
     wait_for_emulation_stop("restarting");
 
     // game_path is still what the load booted - for a disc image, its EBOOT
-    // inside the image, which stays mounted: only retro_unload_game drops it.
+    // inside the image. The stop has dropped the image (Emulator::Kill unloads
+    // it unless it switches executables), so it is mounted again the way
+    // retro_load_game mounted it; booting the EBOOT without it failed with
+    // "Failed to open executable" and the reset closed the content.
+    if (!s_iso_path.empty())
+        load_iso(s_iso_path);
+
     if (!do_boot_game())
     {
         if (log_cb)
             log_cb(RETRO_LOG_ERROR, "RPCS3: the game did not boot again after a reset\n");
         libretro_show_message("The game could not be restarted", 300);
+        // retro_unload_game does nothing once game_loaded is false
+        unload_iso();
+        s_iso_path.clear();
         game_loaded = false;
         environ_cb(RETRO_ENVIRONMENT_SHUTDOWN, nullptr);
     }
