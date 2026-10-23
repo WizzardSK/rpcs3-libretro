@@ -88,6 +88,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 #ifdef _WIN32
 #define WIN32_LEAN_AND_MEAN
@@ -96,6 +97,12 @@
 #endif
 #ifdef __linux__
 #include <sys/prctl.h>
+#endif
+#if defined(__linux__) || defined(__APPLE__)
+#include <sys/resource.h>
+#endif
+#ifdef __APPLE__
+#include <climits>
 #endif
 
 // The timer settings standalone RPCS3 makes at startup, in rpcs3.cpp - which
@@ -1822,6 +1829,33 @@ void retro_init(void)
     // Standalone's other startup setting: 1 us timer slack instead of the
     // default 50, for this thread and every thread it starts.
     prctl(PR_SET_TIMERSLACK, 1, 0, 0, 0);
+#endif
+#if defined(__linux__) || defined(__APPLE__)
+    // Standalone also raises the limit of open files at startup, to 4096 on
+    // Linux and OPEN_MAX on macOS. The core ran with the frontend's, often
+    // 1024, and the NVIDIA Vulkan driver, which takes a file descriptor for
+    // each fence, ran out of them as the first game started: vkCreateFence
+    // failed with VK_ERROR_OUT_OF_HOST_MEMORY, errno 24 (demifiend9, RTX 4050).
+    // Only the soft limit is raised, up to the hard one; the frontend's
+    // process is not given a lower limit than it had.
+    {
+#ifdef __APPLE__
+        const rlim_t wanted = OPEN_MAX;
+#else
+        const rlim_t wanted = 4096;
+#endif
+        struct rlimit limits;
+        if (getrlimit(RLIMIT_NOFILE, &limits) == 0 && limits.rlim_cur < wanted)
+        {
+            const rlim_t old_limit = limits.rlim_cur;
+            limits.rlim_cur = limits.rlim_max == RLIM_INFINITY ? wanted : std::min<rlim_t>(wanted, limits.rlim_max);
+            if (setrlimit(RLIMIT_NOFILE, &limits) != 0)
+                limits.rlim_cur = old_limit;
+            if (log_cb)
+                log_cb(RETRO_LOG_INFO, "Maximum open file descriptors: %llu (was %llu)\n",
+                    static_cast<unsigned long long>(limits.rlim_cur), static_cast<unsigned long long>(old_limit));
+        }
+    }
 #endif
 
     // Get system directory first
