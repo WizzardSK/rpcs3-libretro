@@ -4283,7 +4283,7 @@ struct retro_core_options_v2 options_bg = {
 #define OPTION_VAL_NULL_CA "Nul (sense vídeo)"
 #define RPCS3_ASPECT_RATIO_LABEL_CA "Relació d'aspecte"
 #define RPCS3_ASPECT_RATIO_INFO_0_CA NULL
-#define OPTION_VAL_16_9_CA NULL
+#define OPTION_VAL_16_9_CA "16:9 (Per defecte)"
 #define OPTION_VAL_4_3_CA NULL
 #define RPCS3_FRAME_LIMIT_LABEL_CA "Límit de fotogrames"
 #define RPCS3_FRAME_LIMIT_INFO_0_CA NULL
@@ -4343,7 +4343,7 @@ struct retro_core_options_v2 options_bg = {
 #define OPTION_VAL_640_CA NULL
 #define OPTION_VAL_1024_CA NULL
 #define RPCS3_SHADER_MODE_LABEL_CA "Mode de shaders"
-#define RPCS3_SHADER_MODE_INFO_0_CA NULL
+#define RPCS3_SHADER_MODE_INFO_0_CA "Com es compilen els shaders. L'async compila en segon pla, però el fotograma que primer necessita un pipeline l'espera, que és el que normalment és una congelació llarga en una escena nova. L'async amb l'intèrpret de shaders dibuixa aquest fotograma a través de l'intèrpret i intercanvia el shader compilat quan està a punt: sense congelació, velocitat més baixa mentre s'acosta."
 #define OPTION_VAL_ASYNC_CA "Asíncron (Recomanat)"
 #define OPTION_VAL_ASYNC_INTERPRETER_CA NULL
 #define OPTION_VAL_ASYNC_RECOMPILER_CA "Asíncron amb recompilador"
@@ -4394,7 +4394,7 @@ struct retro_core_options_v2 options_bg = {
 #define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_CA NULL
 #define OPTION_VAL_0_CA "0 (Per defecte)"
 #define RPCS3_VBLANK_RATE_LABEL_CA "Freqüència de VBLANK"
-#define RPCS3_VBLANK_RATE_INFO_0_CA NULL
+#define RPCS3_VBLANK_RATE_INFO_0_CA "La freqüència de refresc de la PS3, expressada en Hz. També és la taxa de fotogrames que el nucli sol·licita a RetroArch, la qual entra en vigor en carregar el contingut; els jocs que poden funcionar a més de 60 FPS requereixen una pantalla amb una freqüència de refresc prou elevada. L'opció «From List» duplica la taxa de Vblank per als jocs compatibles que figuren al fitxer `vblank_unlock.txt`, situat a `system/rpcs3`. És possible que hagis d'aplicar pedaços específics per a cada joc."
 #define OPTION_VAL_50_RPCS3_VBLANK_RATE_CA NULL
 #define OPTION_VAL_60_RPCS3_VBLANK_RATE_CA NULL
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_CA NULL
@@ -4425,7 +4425,7 @@ struct retro_core_options_v2 options_bg = {
 #define RPCS3_NETWORK_ENABLED_LABEL_CA "Xarxa activada"
 #define RPCS3_NETWORK_ENABLED_INFO_0_CA NULL
 #define RPCS3_PSN_STATUS_LABEL_CA "Estat de PSN"
-#define RPCS3_PSN_STATUS_INFO_0_CA NULL
+#define RPCS3_PSN_STATUS_INFO_0_CA "Com veuen els jocs la PlayStation Network. L'opció «Simulated» fa creure als jocs que han iniciat sessió —cosa necessària per poder superar els menús—; l'opció «RPCN» es connecta al servidor propi de l'RPCS3 i requereix que la xarxa estigui habilitada («Network Enabled») i disposar d'un compte RPCN. Com que el nucli no pot crear-ne cap, cal configurar-lo a l'RPCS3 independent (standalone) i copiar el fitxer `rpcn.yml` resultant a `system/rpcs3/` (o a `system/rpcs3/config/` en sistemes Windows). Els canvis s'apliquen en carregar el contingut."
 #define OPTION_VAL_SIMULATED_CA "Simulat"
 #define OPTION_VAL_RPCN_CA NULL
 #define RPCS3_UPNP_LABEL_CA NULL
@@ -4476,15 +4476,15 @@ struct retro_core_options_v2 options_bg = {
 #define OPTION_VAL_COLOR_CA "Color preferit"
 #define OPTION_VAL_DEPTH_CA "Profunditat preferida"
 #define RPCS3_DATABASE_OVERRIDE_LABEL_CA "Sobreescriu la configuració de la base de dades"
-#define RPCS3_DATABASE_OVERRIDE_INFO_0_CA NULL
+#define RPCS3_DATABASE_OVERRIDE_INFO_0_CA "Millora la compatibilitat aplicant automàticament correccions específiques del joc: els paràmetres que la base de dades de RPCS3 té per al joc (quan els aplica de forma independent l'RPCS3) tenen prioritat sobre les opcions principals, globals o per joc, per als paràmetres que anomenen; tots els altres paràmetres es mantenen tal com els definiu. Si està desactivat, no n'aplica cap. Té efecte la propera vegada que s'inicia una partida."
 #define RPCS3_PERF_OVERLAY_LABEL_CA "Superposició de rendiment"
 #define RPCS3_PERF_OVERLAY_INFO_0_CA NULL
 #define OPTION_VAL_MINIMAL_CA "Només la taxa de fotogrames"
 #define OPTION_VAL_MEDIUM_CA "Mig"
-#define RPCS3_FRAME_PACING_LABEL_CA NULL
+#define RPCS3_FRAME_PACING_LABEL_CA "Omissió de fotogrames"
 #define RPCS3_FRAME_PACING_INFO_0_CA NULL
 #define OPTION_VAL_FRONTEND_CA NULL
-#define OPTION_VAL_EMULATOR_CA NULL
+#define OPTION_VAL_EMULATOR_CA "Emulació del rellotge"
 #define RPCS3_MASTER_VOLUME_LABEL_CA "Volum principal"
 #define RPCS3_MASTER_VOLUME_INFO_0_CA "Percentatge de volum d'àudio principal."
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_CA NULL
@@ -4501,9 +4501,9 @@ struct retro_core_options_v2 options_bg = {
 #define OPTION_VAL_STEREO_CA "Estèreo"
 #define OPTION_VAL_SURROUND_5_1_CA NULL
 #define OPTION_VAL_SURROUND_7_1_CA NULL
-#define RPCS3_DISK_CACHE_SIZE_LABEL_CA NULL
-#define RPCS3_DISK_CACHE_SIZE_INFO_0_CA NULL
-#define OPTION_VAL_UNLIMITED_CA NULL
+#define RPCS3_DISK_CACHE_SIZE_LABEL_CA "Mida de la memòria cau al disc"
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_CA "Limita la memòria cau que els jocs emmagatzemen a `dev_hdd1`, la qual, en cas contrari, no pararia de créixer. En establir una mida límit, les memòries cau més antigues s'eliminen en carregar o tancar un joc, fins que la resta hi càpiga. L'opció «Esborrar en sortir» (*Wipe on Exit*) ho elimina tot en tancar un joc, tal com fa una PS3 quan s'apaga. Si s'elimina una memòria cau, el joc corresponent la tornarà a generar, fet que pot fer que la següent vegada que s'iniciï aquest joc vagi més lent."
+#define OPTION_VAL_UNLIMITED_CA "Sense límit"
 #define OPTION_VAL_1GB_CA NULL
 #define OPTION_VAL_5GB_CA NULL
 #define OPTION_VAL_WIPE_CA NULL
@@ -5325,8 +5325,8 @@ struct retro_core_options_v2 options_ca = {
 #define OPTION_VAL_VULKAN_CHS NULL
 #define OPTION_VAL_NULL_CHS "无视频输出 (Null)"
 #define RPCS3_ASPECT_RATIO_LABEL_CHS "宽高比"
-#define RPCS3_ASPECT_RATIO_INFO_0_CHS NULL
-#define OPTION_VAL_16_9_CHS NULL
+#define RPCS3_ASPECT_RATIO_INFO_0_CHS "更改输出画面的宽高比。仅部分 PS3 游戏原生支持 4:3。（需要重启）"
+#define OPTION_VAL_16_9_CHS "16:9 (默认)"
 #define OPTION_VAL_4_3_CHS NULL
 #define RPCS3_FRAME_LIMIT_LABEL_CHS "帧率限制"
 #define RPCS3_FRAME_LIMIT_INFO_0_CHS "游戏运行的最高帧率。自动 (Auto) 即场消隐频率（VBlank，同 RPCS3）；PS3 原生 (PS3 Native) 按照 PS3 原生的方式控制翻帧节奏；关闭 (Off) 会导致不等待 PS3 刷新率的游戏运行速度过快。"
@@ -5356,7 +5356,7 @@ struct retro_core_options_v2 options_ca = {
 #define OPTION_VAL_HIGH_CHS "高"
 #define OPTION_VAL_ULTRA_CHS "极致 (Ultra)"
 #define RPCS3_DEFAULT_RESOLUTION_LABEL_CHS "默认分辨率"
-#define RPCS3_DEFAULT_RESOLUTION_INFO_0_CHS NULL
+#define RPCS3_DEFAULT_RESOLUTION_INFO_0_CHS "请勿通过修改此选项来提升游戏画面分辨率。提升分辨率请改用“分辨率缩放 (Resolution Scale)”选项。仅在游戏本身原生支持时才选择 1080p。极少数情况下由于模拟 Bug，部分游戏仅能在低于 720p 的分辨率下渲染。"
 #define OPTION_VAL_720P_CHS "720p（默认）"
 #define OPTION_VAL_1080P_CHS NULL
 #define OPTION_VAL_480P_CHS NULL
@@ -5437,13 +5437,13 @@ struct retro_core_options_v2 options_ca = {
 #define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_CHS "驱动唤醒延迟时间（微秒）。默认为 0（遵循 RPCS3 逻辑）；仅在特定游戏需要时提高该值。"
 #define OPTION_VAL_0_CHS "0（默认）"
 #define RPCS3_VBLANK_RATE_LABEL_CHS "场消隐频率 (VBlank)"
-#define RPCS3_VBLANK_RATE_INFO_0_CHS NULL
+#define RPCS3_VBLANK_RATE_INFO_0_CHS "PS3 的刷新率（单位：Hz）。这也是核心向 RetroArch 请求的目标帧率，将在加载游戏内容时生效；能突破 60 FPS 运行的游戏需要高刷新率显示器的支持。“来自列表”选项会为 system/rpcs3/vblank_unlock.txt 文件中列出的支持游戏将场消隐 (VBlank) 频率翻倍。您可能还需要针对特定游戏打上帧率解锁补丁。"
 #define OPTION_VAL_50_RPCS3_VBLANK_RATE_CHS NULL
 #define OPTION_VAL_60_RPCS3_VBLANK_RATE_CHS NULL
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_CHS NULL
 #define OPTION_VAL_144_RPCS3_VBLANK_RATE_CHS NULL
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_CHS NULL
-#define OPTION_VAL_LIST_CHS NULL
+#define OPTION_VAL_LIST_CHS "自列表"
 #define RPCS3_THREAD_SCHEDULER_LABEL_CHS "线程调度器"
 #define RPCS3_THREAD_SCHEDULER_INFO_0_CHS "控制如何将模拟器的线程分配到 CPU 核心上（同 RPCS3）。“操作系统”交由系统自行调度；RPCS3 调度器则针对特定桌面 CPU 架构，将 PPU、SPU 及 RSX 线程绑定至固定核心。在 Android 系统上无效，因为核心无法绑定线程。"
 #define OPTION_VAL_OS_CHS "操作系统"
@@ -5524,10 +5524,10 @@ struct retro_core_options_v2 options_ca = {
 #define RPCS3_PERF_OVERLAY_INFO_0_CHS "RPCS3 自身的性能浮层，叠加在游戏画面上：显示 RPCS3 统计的游戏帧率；在更高详细级别下还会显示帧生成时间以及 CPU 和 GPU 负载。"
 #define OPTION_VAL_MINIMAL_CHS "仅显示帧率"
 #define OPTION_VAL_MEDIUM_CHS "中等"
-#define RPCS3_FRAME_PACING_LABEL_CHS NULL
-#define RPCS3_FRAME_PACING_INFO_0_CHS NULL
+#define RPCS3_FRAME_PACING_LABEL_CHS "帧节奏控制"
+#define RPCS3_FRAME_PACING_INFO_0_CHS "控制游戏画面的帧定时基准。“模拟器时钟”使用 RPCS3 自带的定时器（与独立版 RPCS3 一致）；“RetroArch”模式则使 RetroArch 每渲染一帧就向游戏发送一次 PS3 刷新信号，因此快进时游戏速度会随之加快，且当 RetroArch 每秒渲染对应帧数时，游戏将以设定的 VBlank 频率运行。"
 #define OPTION_VAL_FRONTEND_CHS "全能模拟器"
-#define OPTION_VAL_EMULATOR_CHS NULL
+#define OPTION_VAL_EMULATOR_CHS "模拟器时钟"
 #define RPCS3_MASTER_VOLUME_LABEL_CHS "主音量"
 #define RPCS3_MASTER_VOLUME_INFO_0_CHS "主音量百分比。"
 #define OPTION_VAL_0_RPCS3_MASTER_VOLUME_CHS NULL
@@ -5539,17 +5539,17 @@ struct retro_core_options_v2 options_ca = {
 #define OPTION_VAL_70_CHS NULL
 #define OPTION_VAL_80_CHS NULL
 #define OPTION_VAL_90_CHS NULL
-#define RPCS3_AUDIO_FORMAT_LABEL_CHS NULL
-#define RPCS3_AUDIO_FORMAT_INFO_0_CHS NULL
+#define RPCS3_AUDIO_FORMAT_LABEL_CHS "音频格式"
+#define RPCS3_AUDIO_FORMAT_INFO_0_CHS "设置 PS3 向游戏上报的扬声器配置。建议设为“RetroArch 的输出布局”：游戏会根据提供的选项自行选择立体声、5.1 或 7.1 混音，而由 RetroArch 强制向下混合的环绕声效果可能与游戏原生立体声有所差异。需要 RetroArch 支持多声道音频输出，否则将降级为立体声。启动游戏时生效。"
 #define OPTION_VAL_STEREO_CHS "立体声"
-#define OPTION_VAL_SURROUND_5_1_CHS NULL
-#define OPTION_VAL_SURROUND_7_1_CHS NULL
-#define RPCS3_DISK_CACHE_SIZE_LABEL_CHS NULL
-#define RPCS3_DISK_CACHE_SIZE_INFO_0_CHS NULL
-#define OPTION_VAL_UNLIMITED_CHS NULL
+#define OPTION_VAL_SURROUND_5_1_CHS "环绕声5.1"
+#define OPTION_VAL_SURROUND_7_1_CHS "7.1 环绕声"
+#define RPCS3_DISK_CACHE_SIZE_LABEL_CHS "磁盘缓存容量上限"
+#define RPCS3_DISK_CACHE_SIZE_INFO_0_CHS "限制游戏在 dev_hdd1 虚拟硬盘上保留的缓存大小（否则缓存会无限制增长）。设定限制后，在加载或关闭游戏时系统会自动删除最久未使用的缓存，直到占用空间符合设定值。“退出时清空”则会在游戏关闭时清除所有缓存（如同 PS3 关机时的行为）。被删除的缓存在游戏下次运行时会重新生成，这可能会导致该游戏下一次启动变慢。"
+#define OPTION_VAL_UNLIMITED_CHS "无限制"
 #define OPTION_VAL_1GB_CHS NULL
 #define OPTION_VAL_5GB_CHS NULL
-#define OPTION_VAL_WIPE_CHS NULL
+#define OPTION_VAL_WIPE_CHS "退出时清理"
 #define RPCS3_LANGUAGE_LABEL_CHS "系统语言"
 #define RPCS3_LANGUAGE_INFO_0_CHS "PS3 系统语言设定。"
 #define OPTION_VAL_ENGLISH_CHS "英语"
@@ -14727,10 +14727,10 @@ struct retro_core_options_v2 options_eo = {
 #define OPTION_VAL_240_ES NULL
 #define RPCS3_ANISOTROPIC_FILTER_LABEL_ES "Filtrado anisotrópico"
 #define RPCS3_ANISOTROPIC_FILTER_INFO_0_ES "La calidad del filtrado de texturas."
-#define OPTION_VAL_2_ES NULL
-#define OPTION_VAL_4_ES NULL
-#define OPTION_VAL_8_ES NULL
-#define OPTION_VAL_16_ES NULL
+#define OPTION_VAL_2_ES "× 2"
+#define OPTION_VAL_4_ES "× 4"
+#define OPTION_VAL_8_ES "× 8"
+#define OPTION_VAL_16_ES "× 16"
 #define RPCS3_MSAA_LABEL_ES "Antialiasing"
 #define RPCS3_MSAA_INFO_0_ES "Activa el suavizado de bordes multimuestra cuando lo solicite un juego, como haría RPCS3."
 #define RPCS3_ZCULL_ACCURACY_LABEL_ES "Precisión de ZCULL"
@@ -37643,17 +37643,17 @@ struct retro_core_options_v2 options_sr = {
 #define OPTION_VAL_AUTO_SV "Automatiskt"
 #define OPTION_VAL_AS_HOST_SV "Som värd"
 #define OPTION_VAL_USLEEP_SV "Endast usleep"
-#define OPTION_VAL_ALL_TIMERS_SV "Kompilerar shaders i bakgrunden för att minska hack."
+#define OPTION_VAL_ALL_TIMERS_SV "Alla tidtagare"
 #define RPCS3_CLOCKS_SCALE_LABEL_SV "Klockskalning"
-#define RPCS3_CLOCKS_SCALE_INFO_0_SV "Justerar den emulerade processorns klockfrekvens. 100 % är standard."
+#define RPCS3_CLOCKS_SCALE_INFO_0_SV "Skala PS3-klockfrekvensen i procent."
 #define OPTION_VAL_50_SV "50 %"
 #define OPTION_VAL_75_SV "75 %"
 #define OPTION_VAL_100_SV "100 % (standard)"
-#define OPTION_VAL_150_SV "125 %"
-#define OPTION_VAL_200_SV "150 %"
-#define OPTION_VAL_300_SV "200 %"
+#define OPTION_VAL_150_SV "150 %"
+#define OPTION_VAL_200_SV "200 %"
+#define OPTION_VAL_300_SV "300 %"
 #define RPCS3_RENDERER_LABEL_SV "Renderare"
-#define RPCS3_RENDERER_INFO_0_SV "Vulkan renderar på front-endens Vulkan-enhet och lämnar över varje färdig bildruta som en bild. När front-endet inte kör Vulkan-videodrivrutinen kopieras bildrutan i stället tillbaka via minnet. OpenGL ritar direkt i front-endets OpenGL-kontext. (Omstart krävs)"
+#define RPCS3_RENDERER_INFO_0_SV "Vulkan renderar på klientdelens Vulkan-enhet och lämnar över varje färdig bildruta som en bild. När klientdelen inte kör Vulkan-videodrivrutinen kopieras bildrutan i stället tillbaka via minnet. OpenGL ritar direkt i klientdelens OpenGL-kontext. (Omstart krävs)"
 #define OPTION_VAL_OPENGL_SV NULL
 #define OPTION_VAL_VULKAN_SV NULL
 #define OPTION_VAL_NULL_SV "Null (ingen video)"
@@ -37696,7 +37696,7 @@ struct retro_core_options_v2 options_sr = {
 #define OPTION_VAL_576P_SV NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_SV "Upplösningsskala"
 #define RPCS3_RESOLUTION_SCALE_INFO_0_SV "Intern renderingsupplösning som en procentandel av spelets egen. 200 % av ett spel i 720p är 2560×1440; för ett i 1080p är det 3840×2160."
-#define OPTION_VAL_25_SV NULL
+#define OPTION_VAL_25_SV "25 %"
 #define OPTION_VAL_66_SV "66 %"
 #define OPTION_VAL_100_RPCS3_RESOLUTION_SCALE_SV "100% (Inbyggd)"
 #define OPTION_VAL_250_SV NULL
@@ -37768,7 +37768,7 @@ struct retro_core_options_v2 options_sr = {
 #define OPTION_VAL_AS_PS3_SV NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_SV "Fördröjning för drivrutinens uppvaknande"
 #define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_SV "Fördröjning för drivrutinens uppvakning i mikrosekunder. 0 som standard, precis som i RPCS3; höj den bara när ett spel behöver det."
-#define OPTION_VAL_0_SV "0 (Standard)"
+#define OPTION_VAL_0_SV "0 (standard)"
 #define RPCS3_VBLANK_RATE_LABEL_SV "VBlank-frekvens"
 #define RPCS3_VBLANK_RATE_INFO_0_SV "PS3:ans uppdateringsfrekvens i Hz. Det är också bildfrekvensen som kärnan begär av RetroArch och som används när innehåll läses in. Spel som kan köras över 60 FPS behöver en bildskärm med minst samma uppdateringsfrekvens. ”Från lista” fördubblar Vblankfrekvensen för spel som stöds och finns i vblank_unlock.txt i system/rpcs3. Du kan behöva använda korrigeringsfiler för enskilda spel."
 #define OPTION_VAL_50_RPCS3_VBLANK_RATE_SV NULL
@@ -37792,7 +37792,7 @@ struct retro_core_options_v2 options_sr = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_SV "Hur många trådar som kompilerar shaderprogram. Automatisk låter RPCS3 avgöra utifrån den processor den ser. På ARM-processorer med effektivitetskärnor (de flesta telefoner, vissa ARM-bärbara datorer) lämnar standardinställningen dem utanför."
 #define RPCS3_PPU_THREADS_LABEL_SV "Antal PPU-trådar"
 #define RPCS3_PPU_THREADS_INFO_0_SV "Hur många PPU-trådar som körs samtidigt, som i RPCS3. 2 är standard och vad nästan alla spel vill ha."
-#define OPTION_VAL_2_RPCS3_PPU_THREADS_SV "2 (Standard)"
+#define OPTION_VAL_2_RPCS3_PPU_THREADS_SV "2 (standard)"
 #define RPCS3_MAX_SPURS_THREADS_LABEL_SV "Högsta antal SPURS-trådar"
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_SV "Maximalt antal SPURS-trådar. Lägre värde kan förbättra prestandan."
 #define RPCS3_MAX_PREEMPT_COUNT_LABEL_SV "Högsta antal CPU-avbrott för strömsparande"
@@ -37803,7 +37803,7 @@ struct retro_core_options_v2 options_sr = {
 #define RPCS3_PSN_STATUS_LABEL_SV "PSN-status"
 #define RPCS3_PSN_STATUS_INFO_0_SV "Vad spel ser av PlayStation Network. Simulerat får dem att tro att de är inloggade, vilket vissa behöver för att komma förbi sina menyer; RPCN ansluter till RPCS3:s egen server och kräver att Nätverk aktiverat är på samt ett RPCN-konto. Kärnan kan inte skapa ett konto, så konfigurera det i den fristående RPCS3 och kopiera dess rpcn.yml till system/rpcs3/ (system/rpcs3/config/ i Windows). Gäller när innehåll läses in."
 #define OPTION_VAL_SIMULATED_SV "RPCN-värd"
-#define OPTION_VAL_RPCN_SV "RPCN-serverns värdnamn eller IP-adress."
+#define OPTION_VAL_RPCN_SV NULL
 #define RPCS3_UPNP_LABEL_SV NULL
 #define RPCS3_UPNP_INFO_0_SV "Aktivera UPnP för automatisk vidarebefordran av portar."
 #define RPCS3_SHOW_RPCN_POPUPS_LABEL_SV "RPCN-kommunikations-id"
@@ -37863,8 +37863,8 @@ struct retro_core_options_v2 options_sr = {
 #define OPTION_VAL_EMULATOR_SV "Emulatorklocka"
 #define RPCS3_MASTER_VOLUME_LABEL_SV "Huvudvolym"
 #define RPCS3_MASTER_VOLUME_INFO_0_SV "Huvudljudvolym i procent."
-#define OPTION_VAL_0_RPCS3_MASTER_VOLUME_SV NULL
-#define OPTION_VAL_10_SV NULL
+#define OPTION_VAL_0_RPCS3_MASTER_VOLUME_SV "0 (standard)"
+#define OPTION_VAL_10_SV "10 %"
 #define OPTION_VAL_20_SV NULL
 #define OPTION_VAL_30_RPCS3_MASTER_VOLUME_SV "30 %"
 #define OPTION_VAL_40_SV NULL
@@ -37886,7 +37886,7 @@ struct retro_core_options_v2 options_sr = {
 #define RPCS3_LANGUAGE_LABEL_SV "SPU: noggrann kontroll av denormala tal"
 #define RPCS3_LANGUAGE_INFO_0_SV "Aktivera noggrann hantering av SPU:s denormala tal."
 #define OPTION_VAL_ENGLISH_SV "RSX: noggrann ZCULL"
-#define OPTION_VAL_JAPANESE_SV "Aktivera noggrann ZCULL-hantering."
+#define OPTION_VAL_JAPANESE_SV "Japanska"
 #define OPTION_VAL_FRENCH_SV "Franska"
 #define OPTION_VAL_SPANISH_SV "Spanska"
 #define OPTION_VAL_GERMAN_SV "Tyska"
