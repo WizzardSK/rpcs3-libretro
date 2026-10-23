@@ -13,7 +13,7 @@ The PS3 firmware (`PS3UPDAT.PUP`, from playstation.com) goes into RetroArch's sy
 ## Loading games
 
 - A game in folder form is loaded by its `PS3_DISC.SFB` (a dumped disc) or `PARAM.SFO` (an installed or PSN game). Loading its `EBOOT.BIN` works too, but every game's executable has that name, so RetroArch's per-game and per-folder options can't tell the games apart; per-game option overrides only work when the game is loaded by its `.SFB` or `.SFO`.
-- Loading a `.pkg` installs it and boots the game. A PSN game's `.rap` license next to the `.pkg` is installed with it.
+- Loading a `.pkg` installs it to `dev_hdd0` (one at a time); a game is then started from its `PARAM.SFO` in `dev_hdd0/game/<title ID>/`, and its installed updates and DLC are used by it, a disc game's too. The `.rap` licenses next to the `.pkg` are installed with it; RPCS3 finds them by name, so each has to be named after its content ID (`<content ID>.rap`), as PSN dumps come.
 - RPCS3's log is `system/rpcs3/rpcs3_detailed.log`; a crash report goes to RetroArch's save directory as `rpcs3_libretro_crash.log`.
 
 ## Tips
