@@ -4,6 +4,7 @@ What changed in the libretro core of this fork, newest first. Changes that come 
 
 ## Unreleased
 
+- A game whose boot fails part way, as when the GPU lacks a Vulkan feature RPCS3 asks for (VK_ERROR_FEATURE_NOT_PRESENT), no longer hangs RetroArch: the core stops the threads the boot had started and lets go of the disc image. RetroArch used to stay on "Unloading core..." until it was killed (sco8487, Mali).
 - Linux and macOS: the core raises the limit of open files as standalone RPCS3 does (4096 on Linux). With the frontend's, often 1024, the NVIDIA Vulkan driver ran out of file descriptors as the first game started, and the game froze at once with "Out of host memory (VK_ERROR_OUT_OF_HOST_MEMORY)" (demifiend9, RTX 4050). The log says the limit the core got.
 - Reset works for a game loaded from a disc image (`.iso`): it used to close the content with "The game could not be restarted", because stopping the emulator unmounts the image and the reset booted the game from it without mounting it again.
 - Android x86_64 (buildbot): ffmpeg is built with its x86 assembly, as the buildbot's Android image now has nasm; it decodes the games' videos faster there.

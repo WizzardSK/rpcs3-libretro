@@ -2056,6 +2056,24 @@ static void wait_for_emulation_stop(const char* what)
         log_cb(RETRO_LOG_INFO, "RPCS3: emulation stopped after %d ms\n", waited);
 }
 
+// A boot that fails part way - vkCreateDevice refusing a feature the GPU does
+// not have throws from inside BootGame (sco's Mali phone) - leaves the threads
+// it already started running, with game_loaded never set. Nothing stopped them:
+// retro_unload_game and retro_deinit only stop a loaded game, so CleanUp pulled
+// global state out from under live threads and the frontend hung on "Unloading
+// core..." until the app was killed. Stop whatever the boot got going, and let
+// go of the disc image it mounted.
+static void stop_failed_boot()
+{
+    if (!Emu.IsStopped(true))
+    {
+        Emu.GracefulShutdown(false, false);
+        wait_for_emulation_stop("giving up on the boot");
+    }
+    unload_iso();
+    s_iso_path.clear();
+}
+
 #ifdef _WIN32
 void thread_ctrl_uninstall_exception_handlers(); // Utilities/Thread.cpp
 #endif
@@ -2069,7 +2087,8 @@ void retro_deinit(void)
 
 
 
-    if (game_loaded)
+    // Also when no game loaded: a failed boot may have left threads running
+    if (game_loaded || !Emu.IsStopped(true))
     {
         Emu.GracefulShutdown(false, false);
         // Same order as retro_unload_game: CleanUp tears down global state the
@@ -2913,12 +2932,14 @@ static bool do_boot_game()
     {
         if (log_cb)
             log_cb(RETRO_LOG_ERROR, "RPCS3: booting %s threw: %s\n", game_path.c_str(), e.what());
+        stop_failed_boot();
         return false;
     }
     catch (...)
     {
         if (log_cb)
             log_cb(RETRO_LOG_ERROR, "RPCS3: booting %s threw an unknown exception\n", game_path.c_str());
+        stop_failed_boot();
         return false;
     }
 
@@ -2949,6 +2970,7 @@ static bool do_boot_game()
         // the reason is nowhere - rpcs3_detailed.log does not always have it.
         if (log_cb)
             log_cb(RETRO_LOG_ERROR, "RPCS3: booting %s failed: %s\n", game_path.c_str(), error_str);
+        stop_failed_boot();
         return false;
     }
 
