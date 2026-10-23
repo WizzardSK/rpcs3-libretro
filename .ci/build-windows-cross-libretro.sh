@@ -86,6 +86,21 @@ find . -name CMakeLists.txt -not -path './3rdparty/llvm/*' -not -path './3rdpart
     done
 ls "$CASE_LIB"
 
+# LLVM's Intel JIT events (on for Windows x86) clone ittapi from GitHub while
+# LLVM is configured, once, and stop the configure when GitHub turns the
+# runner's anonymous clone away ("could not read Username"), as it did on 22
+# and 23 Oct. It is cloned here instead, with retries, and LLVM is pointed at it
+# (ITTAPI_SOURCE_DIR); LLVM then only checks out its tag.
+if [ ! -d "$DEPS/src/ittapi" ]; then
+    mkdir -p "$DEPS/src"
+    for attempt in 1 2 3 4 5; do
+        GIT_TERMINAL_PROMPT=0 git clone --quiet https://github.com/intel/ittapi.git "$DEPS/src/ittapi" && break
+        rm -rf "$DEPS/src/ittapi"
+        [ "$attempt" -lt 5 ] || exit 1
+        sleep $((attempt * 30))
+    done
+fi
+
 # Vulkan headers and the vulkan-1 import library.
 if [ ! -f "$DEPS/lib/libvulkan-1.a" ]; then
     git clone --quiet --depth 1 -b v1.4.321 https://github.com/KhronosGroup/Vulkan-Headers.git "$DEPS/src/Vulkan-Headers"
@@ -139,6 +154,7 @@ cmake -S . -B build -G Ninja                           \
     -DOpenGL_GL_PREFERENCE=LEGACY                      \
     -DWITH_LLVM=ON                                     \
     -DBUILD_LLVM=ON                                    \
+    -DITTAPI_SOURCE_DIR="$DEPS/src"                    \
     -DGLEW_INCLUDE_DIR="$DEPS/include"                 \
     -DGLEW_STATIC_ARCHIVE="$DEPS/lib/libglew32.a"      \
     -DVulkan_INCLUDE_DIR="$DEPS/include"               \
