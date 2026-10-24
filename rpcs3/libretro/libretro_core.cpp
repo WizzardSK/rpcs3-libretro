@@ -89,6 +89,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <cctype>
 
 #ifdef _WIN32
 #define WIN32_LEAN_AND_MEAN
@@ -1433,13 +1434,21 @@ static std::string find_firmware_pup()
     if (system_dir.empty())
         return {};
 
-    const std::string cand1 = system_dir + "/rpcs3/PS3UPDAT.PUP";
-    const std::string cand2 = system_dir + "/PS3UPDAT.PUP";
-    const std::string cand3 = system_dir + "/rpcs3/firmware/PS3UPDAT.PUP";
-
-    if (fs::is_file(cand1)) return cand1;
-    if (fs::is_file(cand2)) return cand2;
-    if (fs::is_file(cand3)) return cand3;
+    // The name as Sony serves it is PS3UPDAT.PUP, but a copy can come in
+    // other case (PS3UPDAT.pup, demifiend9), and Linux and Android file
+    // systems tell them apart: any case will do
+    for (const std::string dir : { system_dir + "/rpcs3", system_dir, system_dir + "/rpcs3/firmware" })
+    {
+        for (auto&& entry : fs::dir(dir))
+        {
+            if (entry.is_directory)
+                continue;
+            std::string name = entry.name;
+            std::transform(name.begin(), name.end(), name.begin(), [](unsigned char c) { return static_cast<char>(std::tolower(c)); });
+            if (name == "ps3updat.pup")
+                return dir + "/" + entry.name;
+        }
+    }
 
     return {};
 }
