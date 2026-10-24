@@ -2065,11 +2065,16 @@ static void wait_for_emulation_stop(const char* what)
 // go of the disc image it mounted.
 static void stop_failed_boot()
 {
+    // Each step logged: the stop still hung on sco's Mali phone, and
+    // rpcs3_detailed.log is written in blocks, so it ends before the hang
+    log_cb(RETRO_LOG_INFO, "RPCS3: boot failed, emulator state %d; stopping it\n", static_cast<int>(Emu.GetStatus(false)));
     if (!Emu.IsStopped(true))
     {
         Emu.GracefulShutdown(false, false);
+        log_cb(RETRO_LOG_INFO, "RPCS3: stop requested\n");
         wait_for_emulation_stop("giving up on the boot");
     }
+    log_cb(RETRO_LOG_INFO, "RPCS3: releasing the disc image\n");
     unload_iso();
     s_iso_path.clear();
 }
