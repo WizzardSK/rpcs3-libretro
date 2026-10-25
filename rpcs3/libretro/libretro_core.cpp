@@ -89,6 +89,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <cctype>
 
 #ifdef _WIN32
 #define WIN32_LEAN_AND_MEAN
@@ -1433,13 +1434,21 @@ static std::string find_firmware_pup()
     if (system_dir.empty())
         return {};
 
-    const std::string cand1 = system_dir + "/rpcs3/PS3UPDAT.PUP";
-    const std::string cand2 = system_dir + "/PS3UPDAT.PUP";
-    const std::string cand3 = system_dir + "/rpcs3/firmware/PS3UPDAT.PUP";
-
-    if (fs::is_file(cand1)) return cand1;
-    if (fs::is_file(cand2)) return cand2;
-    if (fs::is_file(cand3)) return cand3;
+    // The name as Sony serves it is PS3UPDAT.PUP, but a copy can come in
+    // other case (PS3UPDAT.pup, demifiend9), and Linux and Android file
+    // systems tell them apart: any case will do
+    for (const std::string dir : { system_dir + "/rpcs3", system_dir, system_dir + "/rpcs3/firmware" })
+    {
+        for (auto&& entry : fs::dir(dir))
+        {
+            if (entry.is_directory)
+                continue;
+            std::string name = entry.name;
+            std::transform(name.begin(), name.end(), name.begin(), [](unsigned char c) { return static_cast<char>(std::tolower(c)); });
+            if (name == "ps3updat.pup")
+                return dir + "/" + entry.name;
+        }
+    }
 
     return {};
 }
@@ -2056,6 +2065,24 @@ static void wait_for_emulation_stop(const char* what)
         log_cb(RETRO_LOG_INFO, "RPCS3: emulation stopped after %d ms\n", waited);
 }
 
+// A boot that fails part way - vkCreateDevice refusing a feature the GPU does
+// not have throws from inside BootGame (sco's Mali phone) - leaves the threads
+// it already started running, with game_loaded never set. Nothing stopped them:
+// retro_unload_game and retro_deinit only stop a loaded game, so CleanUp pulled
+// global state out from under live threads and the frontend hung on "Unloading
+// core..." until the app was killed. Stop whatever the boot got going, and let
+// go of the disc image it mounted.
+static void stop_failed_boot()
+{
+    if (!Emu.IsStopped(true))
+    {
+        Emu.GracefulShutdown(false, false);
+        wait_for_emulation_stop("giving up on the boot");
+    }
+    unload_iso();
+    s_iso_path.clear();
+}
+
 #ifdef _WIN32
 void thread_ctrl_uninstall_exception_handlers(); // Utilities/Thread.cpp
 #endif
@@ -2069,7 +2096,8 @@ void retro_deinit(void)
 
 
 
-    if (game_loaded)
+    // Also when no game loaded: a failed boot may have left threads running
+    if (game_loaded || !Emu.IsStopped(true))
     {
         Emu.GracefulShutdown(false, false);
         // Same order as retro_unload_game: CleanUp tears down global state the
@@ -2235,6 +2263,63 @@ static const VkApplicationInfo* vk_get_application_info()
     info.pEngineName = "RPCS3";
     info.apiVersion = VK_API_VERSION_1_2;
     return &info;
+}
+
+// Whether RPCS3 can make its own Vulkan device - the renderer's, when it does
+// not draw on the frontend's context - tried here with the same
+// render_device::create before the boot. A GPU without a feature RPCS3
+// requires (shaderUniformBufferUnsizedArray on sco's Mali) failed it inside
+// BootGame, with the emulator's threads half started, and stopping those hung
+// RetroArch; refused here, the load just fails.
+static bool vk_own_device_possible(std::string& error)
+{
+    vk::instance inst;
+    if (!inst.create("RPCS3"))
+    {
+        error = "no Vulkan driver";
+        return false;
+    }
+    std::vector<vk::physical_device>& gpus = inst.enumerate_devices();
+    if (gpus.empty())
+    {
+        error = "no Vulkan GPU";
+        return false;
+    }
+    // The renderer's choice: the adapter the options name, else the first
+    vk::physical_device* chosen = &gpus[0];
+    const std::string adapter = g_cfg.video.vk.adapter;
+    for (auto& candidate : gpus)
+        if (!adapter.empty() && candidate.get_name() == adapter)
+            chosen = &candidate;
+
+    u32 graphics_family = umax;
+    u32 transfer_family = umax;
+    for (u32 i = 0, families = chosen->get_queue_count(); i < families; ++i)
+    {
+        const auto flags = chosen->get_queue_properties(i).queueFlags;
+        if (graphics_family == umax && (flags & (VK_QUEUE_GRAPHICS_BIT | VK_QUEUE_COMPUTE_BIT)) == (VK_QUEUE_GRAPHICS_BIT | VK_QUEUE_COMPUTE_BIT))
+            graphics_family = i;
+        else if (transfer_family == umax && (flags & (VK_QUEUE_COMPUTE_BIT | VK_QUEUE_TRANSFER_BIT)) == (VK_QUEUE_COMPUTE_BIT | VK_QUEUE_TRANSFER_BIT))
+            transfer_family = i;
+    }
+    if (graphics_family == umax)
+    {
+        error = chosen->get_name() + " has no graphics queue";
+        return false;
+    }
+
+    vk::render_device dev;
+    try
+    {
+        dev.create(*chosen, graphics_family, graphics_family, transfer_family);
+    }
+    catch (const std::exception& e)
+    {
+        error = e.what();
+        return false;
+    }
+    dev.destroy();
+    return true;
 }
 
 static bool vk_create_device(struct retro_vulkan_context* context, VkInstance instance, VkPhysicalDevice gpu,
@@ -2903,6 +2988,22 @@ static bool do_boot_game()
     // The patches turned on in the Patch Manager, for RPCS3 to read as it boots
     libretro_patches::write_config([](const char* key) { return get_option_value(key, "disabled"); });
 
+#ifdef HAVE_VULKAN
+    if (g_cfg.video.renderer == video_renderer::vulkan && !vk::libretro::hw_present())
+    {
+        std::string vk_error;
+        if (!vk_own_device_possible(vk_error))
+        {
+            if (log_cb)
+                log_cb(RETRO_LOG_ERROR, "RPCS3: the GPU cannot run RPCS3's Vulkan renderer: %s\n", vk_error.c_str());
+            libretro_show_message("RPCS3: this GPU lacks a Vulkan feature RPCS3 requires", 600);
+            unload_iso();
+            s_iso_path.clear();
+            return false;
+        }
+    }
+#endif
+
     game_boot_result result = game_boot_result::generic_error;
     try
     {
@@ -2913,12 +3014,14 @@ static bool do_boot_game()
     {
         if (log_cb)
             log_cb(RETRO_LOG_ERROR, "RPCS3: booting %s threw: %s\n", game_path.c_str(), e.what());
+        stop_failed_boot();
         return false;
     }
     catch (...)
     {
         if (log_cb)
             log_cb(RETRO_LOG_ERROR, "RPCS3: booting %s threw an unknown exception\n", game_path.c_str());
+        stop_failed_boot();
         return false;
     }
 
@@ -2949,6 +3052,7 @@ static bool do_boot_game()
         // the reason is nowhere - rpcs3_detailed.log does not always have it.
         if (log_cb)
             log_cb(RETRO_LOG_ERROR, "RPCS3: booting %s failed: %s\n", game_path.c_str(), error_str);
+        stop_failed_boot();
         return false;
     }
 
