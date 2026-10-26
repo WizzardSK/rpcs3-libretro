@@ -2568,7 +2568,35 @@ static struct exception_handler_remover
 
 #else
 
-static void signal_handler(int /*sig*/, siginfo_t* info, void* uct) noexcept
+#ifdef LIBRETRO_CORE
+// The handlers there were before ours (the frontend's, or the system's crash
+// reporter, Android's tombstone): ours go in when the library is loaded and
+// out when it is unloaded, and a fault ours does not handle goes to them, as
+// the frontend's process is not ours to end and its crash report should name
+// the fault itself (sco8487)
+static struct ::sigaction s_previous_sigsegv, s_previous_sigbus, s_previous_sigill, s_previous_sigpipe;
+static bool s_signal_handlers_installed = false;
+
+static struct ::sigaction* previous_action(int sig)
+{
+	switch (sig)
+	{
+	case SIGSEGV: return &s_previous_sigsegv;
+	case SIGBUS: return &s_previous_sigbus;
+	case SIGILL: return &s_previous_sigill;
+	default: return nullptr;
+	}
+}
+
+// The faulting instruction runs again, under the previous handler
+static void pass_to_previous(int sig)
+{
+	if (struct ::sigaction* previous = previous_action(sig))
+		::sigaction(sig, previous, nullptr);
+}
+#endif
+
+static void signal_handler([[maybe_unused]] int sig, siginfo_t* info, void* uct) noexcept
 {
 	ucontext_t* context = static_cast<ucontext_t*>(uct);
 
@@ -2697,6 +2725,10 @@ static void signal_handler(int /*sig*/, siginfo_t* info, void* uct) noexcept
 	sys_log.notice("\n%s", dump_useful_thread_info());
 	logs::listener::sync_all();
 
+#ifdef LIBRETRO_CORE
+	pass_to_previous(sig);
+	return;
+#else
 	if (IsDebuggerPresent())
 	{
 		// Convert to SIGTRAP
@@ -2705,9 +2737,10 @@ static void signal_handler(int /*sig*/, siginfo_t* info, void* uct) noexcept
 	}
 
 	thread_ctrl::emergency_exit(msg);
+#endif
 }
 
-static void sigill_handler(int /*sig*/, siginfo_t* info, void* /*uct*/) noexcept
+static void sigill_handler([[maybe_unused]] int sig, siginfo_t* info, void* /*uct*/) noexcept
 {
 	std::string msg = fmt::format("Illegal instruction at %p (%s).\n", info->si_addr, *reinterpret_cast<be_t<u128>*>(info->si_addr));
 
@@ -2717,6 +2750,10 @@ static void sigill_handler(int /*sig*/, siginfo_t* info, void* /*uct*/) noexcept
 	sys_log.notice("\n%s", dump_useful_thread_info());
 	logs::listener::sync_all();
 
+#ifdef LIBRETRO_CORE
+	pass_to_previous(sig);
+	return;
+#else
 	if (IsDebuggerPresent())
 	{
 		// Convert to SIGTRAP
@@ -2725,11 +2762,18 @@ static void sigill_handler(int /*sig*/, siginfo_t* info, void* /*uct*/) noexcept
 	}
 
 	thread_ctrl::emergency_exit(msg);
+#endif
 }
 
 void sigpipe_signaling_handler(int)
 {
 }
+
+#ifdef LIBRETRO_CORE
+#define LIBRETRO_PREVIOUS(previous) previous
+#else
+#define LIBRETRO_PREVIOUS(previous) NULL
+#endif
 
 const bool s_exception_handler_set = []() -> bool
 {
@@ -2738,14 +2782,14 @@ const bool s_exception_handler_set = []() -> bool
 	sigemptyset(&sa.sa_mask);
 	sa.sa_sigaction = signal_handler;
 
-	if (::sigaction(SIGSEGV, &sa, NULL) == -1)
+	if (::sigaction(SIGSEGV, &sa, LIBRETRO_PREVIOUS(&s_previous_sigsegv)) == -1)
 	{
 		std::fprintf(stderr, "sigaction(SIGSEGV) failed (%d).\n", errno);
 		std::abort();
 	}
 
 #ifdef __APPLE__
-	if (::sigaction(SIGBUS, &sa, NULL) == -1)
+	if (::sigaction(SIGBUS, &sa, LIBRETRO_PREVIOUS(&s_previous_sigbus)) == -1)
 	{
 		std::fprintf(stderr, "sigaction(SIGBUS) failed (%d).\n", errno);
 		std::abort();
@@ -2753,22 +2797,61 @@ const bool s_exception_handler_set = []() -> bool
 #endif
 
 	sa.sa_sigaction = sigill_handler;
-	if (::sigaction(SIGILL, &sa, NULL) == -1)
+	if (::sigaction(SIGILL, &sa, LIBRETRO_PREVIOUS(&s_previous_sigill)) == -1)
 	{
 		std::fprintf(stderr, "sigaction(SIGILL) failed (%d).\n", errno);
 		std::abort();
 	}
 
 	sa.sa_handler = sigpipe_signaling_handler;
-	if (::sigaction(SIGPIPE, &sa, NULL) == -1)
+	if (::sigaction(SIGPIPE, &sa, LIBRETRO_PREVIOUS(&s_previous_sigpipe)) == -1)
 	{
 		std::fprintf(stderr, "sigaction(SIGPIPE) failed (%d).\n", errno);
 		std::abort();
 	}
 
+#ifdef LIBRETRO_CORE
+	s_signal_handlers_installed = true;
+#endif
 	std::printf("Debugger: %d\n", +IsDebuggerPresent());
 	return true;
 }();
+
+#ifdef LIBRETRO_CORE
+// Ours out again when the library is unloaded (a static destructor runs at
+// dlclose): left in, the next fault anywhere in the frontend jumps into code
+// that is gone. One replaced since by someone else stays.
+static void restore_signal_handler(int sig, struct ::sigaction* previous)
+{
+	struct ::sigaction current;
+	if (::sigaction(sig, nullptr, &current) == 0 && (current.sa_flags & SA_SIGINFO) &&
+		(current.sa_sigaction == signal_handler || current.sa_sigaction == sigill_handler))
+		::sigaction(sig, previous, nullptr);
+	else if (sig == SIGPIPE && current.sa_handler == sigpipe_signaling_handler)
+		::sigaction(sig, previous, nullptr);
+}
+
+void thread_ctrl_uninstall_exception_handlers()
+{
+	if (!s_signal_handlers_installed)
+		return;
+	s_signal_handlers_installed = false;
+	restore_signal_handler(SIGSEGV, &s_previous_sigsegv);
+#ifdef __APPLE__
+	restore_signal_handler(SIGBUS, &s_previous_sigbus);
+#endif
+	restore_signal_handler(SIGILL, &s_previous_sigill);
+	restore_signal_handler(SIGPIPE, &s_previous_sigpipe);
+}
+
+static struct exception_handler_remover
+{
+	~exception_handler_remover()
+	{
+		thread_ctrl_uninstall_exception_handlers();
+	}
+} s_exception_handler_remover;
+#endif
 
 #endif
 

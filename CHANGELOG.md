@@ -4,6 +4,7 @@ What changed in the libretro core of this fork, newest first. Changes that come 
 
 ## Unreleased
 
+- Linux, Android and macOS: a crash is no longer the core's to end. RPCS3's fault handlers (segfault, illegal instruction, broken pipe) are taken out when the core is unloaded and the ones there were before put back, as on Windows already; left in, a later crash anywhere in RetroArch jumped into code that was gone. A fault the core does not handle goes to the previous handler instead of ending RetroArch from inside the core, so the system's crash report (Android's tombstone) is written and names the fault (sco8487).
 - The firmware is found whatever the case of its name: a `PS3UPDAT.pup` was not installed on Linux and Android, where only `PS3UPDAT.PUP` was looked for (demifiend9).
 - A GPU that lacks a Vulkan feature RPCS3 requires (shaderUniformBufferUnsizedArray, on Mali phones) no longer hangs RetroArch: the core tries RPCS3's Vulkan device before the boot, and refuses the content with a message when it cannot be made. A game whose boot still fails part way has the threads the boot started stopped and its disc image let go. RetroArch used to stay on "Unloading core..." until it was killed (sco8487).
 - Linux and macOS: the core raises the limit of open files as standalone RPCS3 does (4096 on Linux). With the frontend's, often 1024, the NVIDIA Vulkan driver ran out of file descriptors as the first game started, and the game froze at once with "Out of host memory (VK_ERROR_OUT_OF_HOST_MEMORY)" (demifiend9, RTX 4050). The log says the limit the core got.
