@@ -423,9 +423,13 @@ void logs::message::broadcast(const char* fmt, const fmt_type_info* sup, ...) co
 	// Notify start operation
 	g_tls_log_control(fmt, 0);
 
-	// Get text, extract va_args
-	thread_local std::string text;
-	thread_local std::vector<u64> args;
+	// Get text, extract va_args. Plain locals, not thread_local: a
+	// thread_local with a destructor ties the library to the thread until
+	// it ends, and the libretro frontend's main thread logs here too and
+	// never ends, so the core was never unloaded and the next content ran
+	// on its old state
+	std::string text;
+	std::vector<u64> args;
 
 	static constexpr fmt_type_info empty_sup{};
 
