@@ -107,9 +107,12 @@ libretro-build-windows-x64:
   extends:
     - .libretro-windows-cmake-x86_64
     - .core-defs
-  image: mstorsjo/llvm-mingw:latest
+  # The template's own image (MXE, gcc 16) carries llvm-mingw in /opt
+  # (20260826), the toolchain the script cross-builds with, so the job no
+  # longer pulls mstorsjo/llvm-mingw from Docker Hub
   before_script:
     - export NUMPROC=$(($(nproc)/5))
+    - export PATH=/opt/llvm-mingw/bin:$PATH
     - *submodule-urls
   script:
     - .ci/build-windows-cross-libretro.sh
