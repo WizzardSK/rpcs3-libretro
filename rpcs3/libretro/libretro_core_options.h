@@ -628,6 +628,22 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         { {"stereo", "Stereo"}, {"surround_5_1", "Surround 5.1"}, {"surround_7_1", "Surround 7.1"}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", "Stick Deadzone", NULL,
+        "How far a stick can be tilted before the game sees it move. Inside it the stick's output is scaled down to the Stick Anti-Deadzone rather than cut off, so a resting stick that drifts a little stays close to the centre. Applies to both sticks of every pad; RetroArch's own Analog Deadzone comes before it.",
+        NULL, "core",
+        { {"0", "0%"}, {"5", "5%"}, {"10", "10%"}, {"15", "15%"}, {"20", "20%"}, {"25", "25%"}, {"30", "30%"}, {"35", "35%"}, {"40", "40%"}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", "Stick Anti-Deadzone", NULL,
+        "Where the stick's output starts once it is tilted past the Stick Deadzone. Games for the DualShock 3 ignore a small tilt themselves, the deadzone of the pad they were made for; starting past it makes the slightest tilt count, for finer steering in racing games. 0% leaves the game's own deadzone in place. With a Stick Deadzone of 0% a stick that drifts makes the game move.",
+        NULL, "core",
+        { {"0", "0%"}, {"5", "5%"}, {"10", "10%"}, {"13", "13%"}, {"15", "15%"}, {"20", "20%"}, {"25", "25%"}, {"30", "30%"}, {NULL, NULL} },
+        "13"
+    },
     {
         "rpcs3_disk_cache_size", "Disk Cache Size", NULL,
         "Limits the cache games keep on dev_hdd1, which otherwise only grows. With a size, the games' caches used longest ago are deleted when a game is loaded or closed, until the rest fits. Wipe on Exit deletes all of it when a game is closed, as a PS3 does when it is switched off. A deleted cache is built again by its game, which can make that game's next start slower.",

@@ -5,6 +5,21 @@
 #include "Input/product_info.h"
 #include "Emu/Cell/timers.hpp"
 
+#include <algorithm>
+#include <atomic>
+#include <tuple>
+
+// Set from the core options, read on the pad thread
+static std::atomic<u32> s_stick_deadzone{0};
+static std::atomic<u32> s_stick_anti_deadzone{0};
+
+void libretro_pad_set_stick_deadzones(unsigned deadzone_percent, unsigned anti_deadzone_percent)
+{
+    // in the handler's thumb_max units (255), as NormalizeStickDeadzone takes them
+    s_stick_deadzone.store(std::min(deadzone_percent, 100u) * 255 / 100, std::memory_order_relaxed);
+    s_stick_anti_deadzone.store(std::min(anti_deadzone_percent, 100u) * 255 / 100, std::memory_order_relaxed);
+}
+
 LibretroPadHandler::LibretroPadHandler()
     : PadHandlerBase(pad_handler::keyboard)  // Use keyboard type as base since we're a custom handler
 {
@@ -394,6 +409,21 @@ void LibretroPadHandler::process()
         u16 ly = static_cast<u16>(128 + (lsy_pos / 2) - (lsy_neg / 2));
         u16 rx = static_cast<u16>(128 + (rsx_pos / 2) - (rsx_neg / 2));
         u16 ry = static_cast<u16>(128 + (rsy_pos / 2) - (rsy_neg / 2));
+
+        // Stick Deadzone and Anti-Deadzone, the way standalone RPCS3's pad
+        // handlers apply theirs (NormalizeStickDeadzone, before the
+        // squircle): a tilt inside the deadzone is scaled to below the
+        // anti-deadzone, and past it from the anti-deadzone to a full tilt.
+        // A DualShock 3 game ignores a small tilt itself, so an anti-deadzone
+        // lets the slightest tilt past it (SteveDoido, #3). With both at 0 the
+        // values stay as they were.
+        const u32 deadzone = s_stick_deadzone.load(std::memory_order_relaxed);
+        const u32 anti_deadzone = s_stick_anti_deadzone.load(std::memory_order_relaxed);
+        if (deadzone || anti_deadzone)
+        {
+            std::tie(lx, ly) = NormalizeStickDeadzone(lsx_pos - lsx_neg, lsy_pos - lsy_neg, deadzone, anti_deadzone);
+            std::tie(rx, ry) = NormalizeStickDeadzone(rsx_pos - rsx_neg, rsy_pos - rsy_neg, deadzone, anti_deadzone);
+        }
 
         // A stick reports a circle, which a DualShock 3 does not: pushed all
         // the way diagonally it gave about 70 % on each axis, and games that

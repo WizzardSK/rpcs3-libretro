@@ -1029,6 +1029,11 @@ static void libretro_apply_core_options()
     std::string volume = get_option_value("rpcs3_master_volume", "100");
     g_cfg.audio.volume.set(std::stoi(volume));
 
+    // Stick Deadzone and Anti-Deadzone, read by the pad handler on every
+    // poll, so a change applies at once (rpcs3-libretro#3)
+    libretro_pad_set_stick_deadzones(std::stoi(get_option_value("rpcs3_stick_deadzone", "25")),
+        std::stoi(get_option_value("rpcs3_stick_anti_deadzone", "13")));
+
     // ==================== NETWORK OPTIONS ====================
     // None of these were read before: the network stayed off whatever they
     // said. The connection is set up when a game boots, so only between games.
