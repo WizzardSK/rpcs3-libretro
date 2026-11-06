@@ -4506,7 +4506,7 @@ struct retro_core_options_v2 options_bg = {
 #define OPTION_VAL_UNLIMITED_CA "Sense límit"
 #define OPTION_VAL_1GB_CA NULL
 #define OPTION_VAL_5GB_CA NULL
-#define OPTION_VAL_WIPE_CA NULL
+#define OPTION_VAL_WIPE_CA "Esborrar en sortir"
 #define RPCS3_LANGUAGE_LABEL_CA "Idioma del sistema"
 #define RPCS3_LANGUAGE_INFO_0_CA "Idioma del sistema de PS3."
 #define OPTION_VAL_ENGLISH_CA "Anglès"
@@ -37600,7 +37600,7 @@ struct retro_core_options_v2 options_sr = {
 #define CATEGORY_CORE_LABEL_SV "Kärna"
 #define CATEGORY_CORE_INFO_0_SV "Språk, region, överlägg, bildrutetakt, volym och andra inställningar för själva kärnan."
 #define RPCS3_PPU_DECODER_LABEL_SV "PPU-avkodare"
-#define RPCS3_PPU_DECODER_INFO_0_SV "PPU-avkodare, huvudprocessorn. LLVM-omkompileraren är snabbast."
+#define RPCS3_PPU_DECODER_INFO_0_SV "PPU-avkodare (huvudprocessor). LLVM-omkompileraren är snabbast."
 #define OPTION_VAL_LLVM_SV "Omkompilerare (LLVM)"
 #define OPTION_VAL_INTERPRETER_SV "Tolk (statisk)"
 #define RPCS3_SPU_DECODER_LABEL_SV "SPU-avkodare"
@@ -37623,7 +37623,7 @@ struct retro_core_options_v2 options_sr = {
 #define RPCS3_SPU_ACCURATE_DMA_LABEL_SV "Noggrann SPU-DMA"
 #define RPCS3_SPU_ACCURATE_DMA_INFO_0_SV "Bearbetar SPU-DMA-operationer noggrant, som i RPCS3. Rättar några spel, men kostar mycket prestanda."
 #define RPCS3_SPU_ACCURATE_RESERVATIONS_LABEL_SV "Noggranna SPU-reserveringar"
-#define RPCS3_SPU_ACCURATE_RESERVATIONS_INFO_0_SV "Bearbetar SPU-reserveringar noggrant, som i RPCS3 där funktionen också är aktiverad som standard. Att stänga av den kan göra vissa spel snabbare och göra att andra inte fungerar."
+#define RPCS3_SPU_ACCURATE_RESERVATIONS_INFO_0_SV "Bearbetar SPU-reserveringar noggrant, som i RPCS3 (där funktionen också är aktiverad som standard). Att stänga av den kan göra vissa spel snabbare och göra att andra inte fungerar."
 #define RPCS3_DEBUG_CONSOLE_MODE_LABEL_SV "Felsökningskonsolläge"
 #define RPCS3_DEBUG_CONSOLE_MODE_INFO_0_SV "Emulerar en PS3-felsökningskonsol (med mer minne och fler felsökningsfunktioner) i stället för en vanlig konsol. Bara för program som behöver det; rekommenderas annars inte."
 #define RPCS3_MFC_DELAY_COMMAND_LABEL_SV "Fördröj vartannat MFC-kommando"
@@ -37633,7 +37633,7 @@ struct retro_core_options_v2 options_sr = {
 #define RPCS3_EMULATE_HDD_SPEED_LABEL_SV "Emulera hårddiskens läshastighet"
 #define RPCS3_EMULATE_HDD_SPEED_INFO_0_SV "Läser från den emulerade hårddisken med PS3:ans hastighet för spel som inte fungerar när inläsningen sker omedelbart."
 #define RPCS3_EMULATE_BDVD_SPEED_LABEL_SV "Emulera BD-ROM-läshastighet"
-#define RPCS3_EMULATE_BDVD_SPEED_INFO_0_SV "Läser från skivan i PS3-enhetens 2×-hastighet, 9 MB/s, för spel som strömmar filmer från skivan och visar skadad video när inläsningen sker direkt. Inläsningen tar längre tid."
+#define RPCS3_EMULATE_BDVD_SPEED_INFO_0_SV "Läser från skivan i PS3-enhetens 2×-hastighet (9 MB/s) för spel som strömmar filmer från skivan och visar skadad video när inläsningen sker direkt. Inläsningen tar längre tid."
 #define RPCS3_PPU_RESERVATION_PRIORITY_LABEL_SV "PPU-reserveringsprioritet"
 #define RPCS3_PPU_RESERVATION_PRIORITY_INFO_0_SV "Ger PPU-reserveringar företräde framför SPU:ernas, som i RPCS3. Kan hjälpa spel som stannar vid dem."
 #define RPCS3_LLVM_PRECOMPILATION_LABEL_SV "Förkompilering av PPU/SPU med LLVM"
@@ -37730,7 +37730,7 @@ struct retro_core_options_v2 options_sr = {
 #define RPCS3_STRICT_RENDERING_LABEL_SV "Strikt renderingsläge"
 #define RPCS3_STRICT_RENDERING_INFO_0_SV "Aktivera strikt rendering för korrekthet."
 #define RPCS3_STRETCH_TO_DISPLAY_LABEL_SV "Sträck till visningsområdet"
-#define RPCS3_STRETCH_TO_DISPLAY_INFO_0_SV "Sträck ut spelutdata så att den fyller skärmen och rapportera den till RetroArch med detta bildförhållande. Välj skärmens bildförhållande för spel som har patchats till ett bredare format, till exempel 21:9 eller 32:9. Kräver att RetroArchs bildförhållande är inställt på Tillhandahålls av kärnan."
+#define RPCS3_STRETCH_TO_DISPLAY_INFO_0_SV "Sträck ut spelutdata så att den fyller skärmen och rapportera den till RetroArch med detta bildförhållande: välj skärmens bildförhållande för spel som har patchats till ett bredare bildförhållande (21:9, 32:9). Kräver att RetroArchs bildförhållande är inställt på Tillhandahålls av kärnan."
 #define OPTION_VAL_ENABLED_SV NULL
 #define OPTION_VAL_16_10_SV NULL
 #define OPTION_VAL_21_9_SV NULL
@@ -37744,8 +37744,8 @@ struct retro_core_options_v2 options_sr = {
 #define RPCS3_HOST_GPU_LABELS_INFO_0_SV "Låter värddatorns GPU själv signalera RSX-etiketter i stället för att CPU:n väntar på dem. Snabbare i vissa spel, instabilt i andra."
 #define RPCS3_DISABLE_BLIT_UPSCALING_LABEL_SV "Inaktivera uppskalning i blitmotorn"
 #define RPCS3_DISABLE_BLIT_UPSCALING_INFO_0_SV "Precis som i RPCS3: kopior som skapas av RSX-blitmotorn lämnas i spelets egna upplösning i stället för upplösningsskalningen. Det åtgärdar effekter i vissa spel vid högre skalning, men ger en suddigare bild där de används."
-#define RPCS3_DISABLE_VERTEX_CACHE_LABEL_SV "Inaktivera vertexcache"
-#define RPCS3_DISABLE_VERTEX_CACHE_INFO_0_SV "Stänger av cachen för vertexdata, som i RPCS3. Långsammare och endast för spel som visar trasig eller inaktuell geometri med den aktiverad."
+#define RPCS3_DISABLE_VERTEX_CACHE_LABEL_SV "Inaktivera hörnpunktscache"
+#define RPCS3_DISABLE_VERTEX_CACHE_INFO_0_SV "Stänger av cachen för hörnpunktsdata, som i RPCS3. Långsammare och endast för spel som visar trasig eller inaktuell geometri med den aktiverad."
 #define RPCS3_EMULATE_DEPTH_COMPARE_LABEL_SV "Emulera särskild djupjämförelse"
 #define RPCS3_EMULATE_DEPTH_COMPARE_INFO_0_SV "Emulerar de djupjämförelselägen som PS3 har men värddatorns GPU saknar. Rättar vissa skuggor, men kostar prestanda."
 #define RPCS3_FORCE_HW_MSAA_RESOLVE_LABEL_SV "Tvinga fram maskinvaruupplösning av MSAA"
@@ -37757,7 +37757,7 @@ struct retro_core_options_v2 options_sr = {
 #define RPCS3_READ_COLOR_BUFFERS_LABEL_SV "Läs färgbuffertar"
 #define RPCS3_READ_COLOR_BUFFERS_INFO_0_SV "Läs färgbuffertar från huvudminnet."
 #define RPCS3_USE_REBAR_LABEL_SV "Använd ReBAR-minne för GPU-överföringar"
-#define RPCS3_USE_REBAR_INFO_0_SV "Överför till GPU:n genom Resizable BAR-minne där Vulkan-drivrutinen erbjuder det, som i RPCS3 (där också aktiverat som standard). Stäng av om det orsakar problem."
+#define RPCS3_USE_REBAR_INFO_0_SV "Överför till GPU:n genom Resizable BAR-minne där Vulkan-drivrutinen erbjuder det, som i RPCS3 (där den också är aktiverad som standard). Stäng av om det orsakar problem."
 #define RPCS3_WRITE_DEPTH_BUFFERS_LABEL_SV "Skriv djupbuffertar"
 #define RPCS3_WRITE_DEPTH_BUFFERS_INFO_0_SV "Skriv djupbuffertar till huvudminnet."
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_SV "RSX FIFO-noggrannhet"
@@ -37787,9 +37787,9 @@ struct retro_core_options_v2 options_sr = {
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_SV "Aktivera identifiering av SPU-loopar"
 #define RPCS3_SPU_LOOP_DETECTION_INFO_0_SV "Identifierar SPU-loopar som endast väntar och hoppar över dem. Snabbare, men vissa spel fungerar inte med det. Funktionen är avstängd som standard, precis som i RPCS3. Värt att prova för bättre hastighet på telefoner."
 #define RPCS3_LLVM_THREADS_LABEL_SV "LLVM-kompilatortrådar för PPU/SPU"
-#define RPCS3_LLVM_THREADS_INFO_0_SV "Hur många trådar som kompilerar PPU- och SPU-kod med LLVM, som RPCS3:s Maximalt antal LLVM-kompileringstrådar. Automatiskt använder varje kärna. Färre trådar håller en telefon svalare, använder mindre minne när ett spel kompileras och gör att det tar längre tid. På ARM-processorer med effektivitetskärnor, de flesta telefoner och vissa ARM-bärbara datorer, lämnar standardinställningen dem utanför."
+#define RPCS3_LLVM_THREADS_INFO_0_SV "Hur många trådar som kompilerar PPU- och SPU-kod med LLVM, på samma sätt som RPCS3:s Maximalt antal LLVM-kompileringstrådar. Automatiskt använder alla kärnor. Färre trådar håller en telefon svalare, använder mindre minne när ett spel kompileras och gör att det tar längre tid. På ARM-processorer med effektivitetskärnor (de flesta telefoner och vissa ARM-bärbara datorer) lämnar standardinställningen dem utanför."
 #define RPCS3_SHADER_COMPILER_THREADS_LABEL_SV "Trådar för shaderkompilering"
-#define RPCS3_SHADER_COMPILER_THREADS_INFO_0_SV "Hur många trådar som kompilerar shaderprogram. Automatiskt låter RPCS3 avgöra utifrån den processor den ser. På ARM-processorer med effektivitetskärnor, de flesta telefoner och vissa ARM-bärbara datorer, lämnar standardinställningen dem utanför."
+#define RPCS3_SHADER_COMPILER_THREADS_INFO_0_SV "Hur många trådar som kompilerar shaderprogram. Automatiskt låter RPCS3 avgöra utifrån processorn som den ser. På ARM-processorer med effektivitetskärnor (de flesta telefoner och vissa ARM-bärbara datorer) lämnar standardinställningen dem utanför."
 #define RPCS3_PPU_THREADS_LABEL_SV "Antal PPU-trådar"
 #define RPCS3_PPU_THREADS_INFO_0_SV "Hur många PPU-trådar som körs samtidigt, som i RPCS3. 2 är standard och vad nästan alla spel vill ha."
 #define OPTION_VAL_2_RPCS3_PPU_THREADS_SV "2 (standard)"
@@ -37801,7 +37801,7 @@ struct retro_core_options_v2 options_sr = {
 #define RPCS3_NETWORK_ENABLED_LABEL_SV "Aktivera nätverk"
 #define RPCS3_NETWORK_ENABLED_INFO_0_SV "Låter spel nå internet. Träder i kraft när innehåll läses in."
 #define RPCS3_PSN_STATUS_LABEL_SV "PSN-status"
-#define RPCS3_PSN_STATUS_INFO_0_SV "Vad spel ser av PlayStation Network. Simulerat får dem att tro att de är inloggade, vilket vissa behöver för att komma förbi sina menyer. RPCN ansluter till RPCS3:s egen server och kräver att Aktivera nätverk är På samt ett RPCN-konto. Kärnan kan inte skapa ett konto, så konfigurera det i fristående RPCS3 och kopiera dess rpcn.yml till system/rpcs3/, eller system/rpcs3/config/ i Windows. Träder i kraft när innehåll läses in."
+#define RPCS3_PSN_STATUS_INFO_0_SV "Vad spel ser av PlayStation Network. Simulerat får dem att tro att de är inloggade, vilket vissa behöver för att komma förbi sina menyer. RPCN ansluter till RPCS3:s egen server och kräver att Aktivera nätverk är På samt ett RPCN-konto. Kärnan kan inte skapa ett konto, så konfigurera det i fristående RPCS3 och kopiera dess rpcn.yml till system/rpcs3/ (system/rpcs3/config/ i Windows). Träder i kraft när innehåll läses in."
 #define OPTION_VAL_SIMULATED_SV "Simulerad"
 #define OPTION_VAL_RPCN_SV NULL
 #define RPCS3_UPNP_LABEL_SV NULL
@@ -37826,8 +37826,8 @@ struct retro_core_options_v2 options_sr = {
 #define RPCS3_CPU_BLIT_LABEL_SV "Tvinga fram emulering av CPU-blit"
 #define RPCS3_CPU_BLIT_INFO_0_SV "Tvinga emulering av CPU-blit för vissa effekter."
 #define RPCS3_GPU_TEXTURE_SCALING_LABEL_SV "Tvinga fram GPU-texturskalning"
-#define RPCS3_GPU_TEXTURE_SCALING_INFO_0_SV "Skalar texturer på GPU:n i stället för på CPU:n. För felsökning, kan göra att spel inte fungerar."
-#define RPCS3_SPU_EVENTS_BUSY_LOOP_LABEL_SV "Aktivera upptagen loop för SPU-händelser"
+#define RPCS3_GPU_TEXTURE_SCALING_INFO_0_SV "Skalar texturer på GPU:n i stället för på CPU:n. För felsökning. Kan göra att spel inte fungerar."
+#define RPCS3_SPU_EVENTS_BUSY_LOOP_LABEL_SV "Aktivera aktiv vänteloop för SPU-händelser"
 #define RPCS3_SPU_EVENTS_BUSY_LOOP_INFO_0_SV "Låter SPU-trådar snurra medan de väntar på händelser i stället för att vila. Kan hjälpa några få spel, men kostar CPU-tid."
 #define RPCS3_HOOK_STATIC_FUNCS_LABEL_SV "Koppla statiska funktioner"
 #define RPCS3_HOOK_STATIC_FUNCS_INFO_0_SV "Koppla statiska funktioner för HLE."
@@ -37852,7 +37852,7 @@ struct retro_core_options_v2 options_sr = {
 #define OPTION_VAL_COLOR_SV "Föredra färg"
 #define OPTION_VAL_DEPTH_SV "Föredra djup"
 #define RPCS3_DATABASE_OVERRIDE_LABEL_SV "Åsidosätt databasinställningar"
-#define RPCS3_DATABASE_OVERRIDE_INFO_0_SV "Förbättrar kompatibiliteten genom att automatiskt använda spelspecifika rättningar: inställningarna som RPCS3:s databas har för spelet, på samma sätt som fristående RPCS3 använder dem, har företräde framför kärnalternativen, globalt eller per spel, för de inställningar som de anger. Alla andra inställningar behålls som du har valt dem. Av tillämpar inga av dem. Får effekt nästa gång ett spel startas."
+#define RPCS3_DATABASE_OVERRIDE_INFO_0_SV "Förbättrar kompatibiliteten genom att automatiskt använda spelspecifika korrigeringar: inställningarna som RPCS3:s databas har för spelet (på samma sätt som fristående RPCS3 använder dem) har företräde framför kärnalternativen, globalt eller per spel, för de inställningar som de anger. Alla andra inställningar behålls som du har valt dem. Av tillämpar inga av dem. Får effekt nästa gång ett spel startas."
 #define RPCS3_PERF_OVERLAY_LABEL_SV "Prestandaöverlägg"
 #define RPCS3_PERF_OVERLAY_INFO_0_SV "RPCS3:s prestandaöverlägg ritas över spelet och visar spelets bildfrekvens enligt RPCS3. På högre detaljnivåer visas även bildrutetider samt CPU- och GPU-belastning."
 #define OPTION_VAL_MINIMAL_SV "Endast bildfrekvens"
@@ -37873,7 +37873,7 @@ struct retro_core_options_v2 options_sr = {
 #define OPTION_VAL_80_SV "80 %"
 #define OPTION_VAL_90_SV "90 %"
 #define RPCS3_AUDIO_FORMAT_LABEL_SV "Ljudformat"
-#define RPCS3_AUDIO_FORMAT_INFO_0_SV "De högtalare som PS3:an anger att spelen har. Ställ in detta efter RetroArchs utdatalayout: ett spel väljer stereo, 5.1 eller 7.1 utifrån vad som erbjuds. En surroundmix som RetroArch fäller ned låter inte alltid som spelets egen stereomix. Kräver RetroArch med flerkanalsljud, annars används stereo. Träder i kraft när spelet startas."
+#define RPCS3_AUDIO_FORMAT_INFO_0_SV "De högtalare som PS3:an uppger för spelen att den har. Ställ in detta efter RetroArchs utdatalayout: ett spel väljer sin egen stereo-, 5.1- eller 7.1-mix utifrån vad som erbjuds, och en surroundmix som RetroArch fäller ned låter inte alltid som spelets egen stereomix. Kräver RetroArch med flerkanalsljud, annars används stereo. Träder i kraft när ett spel startas."
 #define OPTION_VAL_STEREO_SV NULL
 #define OPTION_VAL_SURROUND_5_1_SV NULL
 #define OPTION_VAL_SURROUND_7_1_SV NULL
@@ -37918,7 +37918,7 @@ struct retro_core_options_v2 options_sr = {
 #define RPCS3_SPU_CACHE_LABEL_SV "SPU-cache"
 #define RPCS3_SPU_CACHE_INFO_0_SV "Aktivera SPU-cache för snabbare efterföljande inläsningar."
 #define RPCS3_ACCURATE_DFMA_LABEL_SV "Noggrann DFMA"
-#define RPCS3_ACCURATE_DFMA_INFO_0_SV "Den sammanslagna multiplikations- och additionsberäkningen med dubbel precision utförs exakt, precis som i RPCS3 där den också är aktiverad som standard. Den kostar lite på processorer med FMA. Att stänga av den kan hjälpa på en långsam telefon men gör att vissa spel inte fungerar."
+#define RPCS3_ACCURATE_DFMA_INFO_0_SV "Den sammanslagna multiplikations- och additionsberäkningen med dubbel precision utförs exakt, precis som i RPCS3 (där den också är aktiverad som standard). Den kostar lite på processorer med FMA. Att stänga av den kan hjälpa på en långsam telefon men gör att vissa spel inte fungerar."
 #define RPCS3_SPU_VERIFICATION_LABEL_SV "SPU-verifiering"
 #define RPCS3_SPU_VERIFICATION_INFO_0_SV "Verifieringsnivå för SPU-kod."
 #define RPCS3_DRIVER_RECOVERY_TIMEOUT_LABEL_SV "Tidsgräns för återställning av drivrutin"
