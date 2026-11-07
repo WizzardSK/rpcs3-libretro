@@ -6,6 +6,8 @@
 // Stick Deadzone and Stick Anti-Deadzone core options, in percent of a full
 // tilt; both 0 leaves the sticks as they come
 void libretro_pad_set_stick_deadzones(unsigned deadzone_percent, unsigned anti_deadzone_percent);
+// Trigger Threshold core option, in percent of a full press
+void libretro_pad_set_trigger_threshold(unsigned threshold_percent);
 
 // Libretro pad handler - connects libretro input to RPCS3's pad system
 class LibretroPadHandler final : public PadHandlerBase

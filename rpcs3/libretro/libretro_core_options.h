@@ -644,6 +644,14 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         { {"0", "0%"}, {"5", "5%"}, {"10", "10%"}, {"13", "13%"}, {"15", "15%"}, {"20", "20%"}, {"25", "25%"}, {"30", "30%"}, {NULL, NULL} },
         "13"
     },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", "Trigger Threshold", NULL,
+        "How far L2 and R2 must be pressed before the game sees them; past it the press is scaled up from nothing to full. With a pad and frontend that report how far a trigger is pressed (analog triggers) the game gets that as the button's pressure, otherwise L2 and R2 stay all or nothing. 0% gives the whole travel of the trigger.",
+        NULL, "core",
+        { {"0", "0%"}, {"5", "5%"}, {"10", "10%"}, {"12", "12%"}, {"15", "15%"}, {"20", "20%"}, {"25", "25%"}, {"30", "30%"}, {"40", "40%"}, {"50", "50%"}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", "Disk Cache Size", NULL,
         "Limits the cache games keep on dev_hdd1, which otherwise only grows. With a size, the games' caches used longest ago are deleted when a game is loaded or closed, until the rest fits. Wipe on Exit deletes all of it when a game is closed, as a PS3 does when it is switched off. A deleted cache is built again by its game, which can make that game's next start slower.",

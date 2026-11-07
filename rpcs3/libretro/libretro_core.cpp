@@ -1033,6 +1033,7 @@ static void libretro_apply_core_options()
     // poll, so a change applies at once (rpcs3-libretro#3)
     libretro_pad_set_stick_deadzones(std::stoi(get_option_value("rpcs3_stick_deadzone", "25")),
         std::stoi(get_option_value("rpcs3_stick_anti_deadzone", "13")));
+    libretro_pad_set_trigger_threshold(std::stoi(get_option_value("rpcs3_trigger_threshold", "12")));
 
     // ==================== NETWORK OPTIONS ====================
     // None of these were read before: the network stayed off whatever they

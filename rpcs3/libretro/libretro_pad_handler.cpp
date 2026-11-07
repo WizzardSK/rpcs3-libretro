@@ -12,6 +12,13 @@
 // Set from the core options, read on the pad thread
 static std::atomic<u32> s_stick_deadzone{0};
 static std::atomic<u32> s_stick_anti_deadzone{0};
+static std::atomic<u32> s_trigger_threshold{0};
+
+void libretro_pad_set_trigger_threshold(unsigned threshold_percent)
+{
+    // in the handler's trigger_max units (255), as NormalizeTriggerInput takes them
+    s_trigger_threshold.store(std::min(threshold_percent, 100u) * 255 / 100, std::memory_order_relaxed);
+}
 
 void libretro_pad_set_stick_deadzones(unsigned deadzone_percent, unsigned anti_deadzone_percent)
 {
@@ -250,8 +257,19 @@ std::unordered_map<u32, u16> LibretroPadHandler::get_button_values(const std::sh
     values[static_cast<u64>(LibretroButton::X)]      = state.buttons[RETRO_DEVICE_ID_JOYPAD_X] ? 255 : 0;
     values[static_cast<u64>(LibretroButton::L1)]     = state.buttons[RETRO_DEVICE_ID_JOYPAD_L] ? 255 : 0;
     values[static_cast<u64>(LibretroButton::R1)]     = state.buttons[RETRO_DEVICE_ID_JOYPAD_R] ? 255 : 0;
-    values[static_cast<u64>(LibretroButton::L2)]     = state.buttons[RETRO_DEVICE_ID_JOYPAD_L2] ? 255 : 0;
-    values[static_cast<u64>(LibretroButton::R2)]     = state.buttons[RETRO_DEVICE_ID_JOYPAD_R2] ? 255 : 0;
+    // L2 / R2: how far an analog trigger is pressed, which a DualShock 3 reports
+    // as pressure; a frontend or pad without analog triggers gives 0 there, and
+    // then the button is all or nothing as before. Below the Trigger Threshold
+    // the game sees nothing, past it the travel is scaled up from 0 (standalone
+    // RPCS3's NormalizeTriggerInput, SteveDoido, #3).
+    const auto trigger = [&](unsigned id, int16_t travel) -> u16 {
+        if (travel > 0)
+            return NormalizeTriggerInput(static_cast<u16>(std::min<s32>(travel, 32767) * 255 / 32767),
+                s_trigger_threshold.load(std::memory_order_relaxed));
+        return state.buttons[id] ? 255 : 0;
+    };
+    values[static_cast<u64>(LibretroButton::L2)]     = trigger(RETRO_DEVICE_ID_JOYPAD_L2, state.triggers[0]);
+    values[static_cast<u64>(LibretroButton::R2)]     = trigger(RETRO_DEVICE_ID_JOYPAD_R2, state.triggers[1]);
     values[static_cast<u64>(LibretroButton::L3)]     = state.buttons[RETRO_DEVICE_ID_JOYPAD_L3] ? 255 : 0;
     values[static_cast<u64>(LibretroButton::R3)]     = state.buttons[RETRO_DEVICE_ID_JOYPAD_R3] ? 255 : 0;
 

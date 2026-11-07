@@ -17,6 +17,7 @@ struct LibretroInputState
 {
     std::array<int16_t, 16> buttons{};  // RETRO_DEVICE_ID_JOYPAD_*
     std::array<int16_t, 4> analog{};    // Left X, Left Y, Right X, Right Y
+    std::array<int16_t, 2> triggers{};  // L2, R2 travel, 0 to 32767 (0 from a frontend or pad without analog triggers)
     bool connected = false;
 };
 
