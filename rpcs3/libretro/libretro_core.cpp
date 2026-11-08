@@ -30,7 +30,6 @@
 #include "Emu/Io/Null/null_camera_handler.h"
 #include "Emu/Io/Null/null_music_handler.h"
 #include "Emu/Io/Null/NullKeyboardHandler.h"
-#include "Emu/Io/Null/NullMouseHandler.h"
 #include "Emu/Io/KeyboardHandler.h"
 #include "Emu/Io/MouseHandler.h"
 // The OpenGL renderer, where there is one to have. On Android there is no
@@ -71,6 +70,7 @@
 #include "libretro_video.h"
 #include "libretro_firmware.h"
 #include "libretro_pad_handler.h"
+#include "libretro_mouse_handler.h"
 #include "libretro_vfs.h"
 #include "libretro_ui_icons.h"
 #include "Loader/ISO.h"
@@ -1064,6 +1064,16 @@ static void libretro_apply_core_options()
     // Enter Button Assignment
     std::string enter_btn = get_option_value("rpcs3_enter_button", "cross");
     g_cfg.sys.enter_button_assignment.set(enter_btn == "circle" ? enter_button_assign::circle : enter_button_assign::cross);
+
+    // USIO Mode: what the System 357/369 arcade board reports its buttons as,
+    // read on every poll of the board. Shooter games also have the ports
+    // trade places (libretro_input_set_usio_shooter).
+    const bool usio_shooter = get_option_value("rpcs3_usio_mode", "fighting") == "shooter";
+    g_cfg.io.usio_mode.set(usio_shooter ? usio_handler_mode::shooter_games : usio_handler_mode::fighting_games);
+    libretro_input_set_usio_shooter(usio_shooter);
+    // A mouse per player, as LibretroMouseHandler has: with the default
+    // (basic, one mouse) the USIO board reads every player's gun from mouse 1
+    g_cfg.io.mouse.set(mouse_handler::raw);
 
     // Avoid additional CPU-throttling heuristics
     g_cfg.core.max_cpu_preempt_count_per_frame.set(0);
@@ -3229,6 +3239,7 @@ void retro_run(void)
     input_poll_cb();
     libretro_input_poll(input_state_cb);
     libretro_input_poll_sensors();  // Poll gyro/accelerometer data
+    libretro_mouse_update();  // Light guns to the PS3 mice
 
     // Process pad handler to update RPCS3's pad states from libretro input
     if (g_libretro_pad_handler)
@@ -3566,7 +3577,7 @@ static void init_emu_callbacks()
 
     callbacks.init_mouse_handler = []()
     {
-        g_fxo->init<MouseHandlerBase, NullMouseHandler>(Emu.DeserialManager());
+        g_fxo->init<MouseHandlerBase, LibretroMouseHandler>(Emu.DeserialManager());
     };
 
     callbacks.init_pad_handler = [](std::string_view)

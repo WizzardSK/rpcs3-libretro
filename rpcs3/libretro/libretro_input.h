@@ -36,6 +36,23 @@ struct LibretroMouseState
     int8_t wheel_h = 0;      // Horizontal wheel
 };
 
+// A port's light gun, as RetroArch reports it (RETRO_DEVICE_LIGHTGUN); the
+// mouse handler hands it to the game as that player's PS3 mouse
+struct LibretroGunState
+{
+    int16_t x = 0;           // -0x7fff (left edge) .. 0x7fff (right edge)
+    int16_t y = 0;           // -0x7fff (top edge) .. 0x7fff (bottom edge)
+    bool offscreen = true;   // Aimed off the screen, or no gun
+    bool trigger = false;
+    bool aux_a = false;
+    bool aux_b = false;
+    bool start = false;
+    int8_t wheel = 0;        // The port's mouse wheel, +1 up, -1 down
+};
+
+// Ports whose light gun is read; the USIO arcade board has four players
+constexpr unsigned LIBRETRO_MAX_GUNS = 4;
+
 // Libretro keyboard state
 struct LibretroKeyboardState
 {
@@ -68,6 +85,19 @@ const LibretroInputState& libretro_input_get_state(unsigned port);
 
 // Get mouse state
 const LibretroMouseState& libretro_input_get_mouse();
+
+// Get a port's light gun
+const LibretroGunState& libretro_input_get_gun(unsigned port);
+
+// System 357 shooter games (USIO Mode "Shooter Games") read the arcade
+// board's players 3 and 4 as their P1 and P2. When on, RetroArch's ports 1-2
+// and 3-4 trade places for pads and guns alike, and a gun's trigger, second
+// trigger and start also press D-Pad Left, D-Pad Right and Square, the pad
+// buttons the board reads as those in that mode.
+void libretro_input_set_usio_shooter(bool enabled);
+
+// The RetroArch port that drives RPCS3's pad and mouse slot `player`
+unsigned libretro_input_port_for_player(unsigned player);
 
 // Get keyboard state
 const LibretroKeyboardState& libretro_input_get_keyboard();

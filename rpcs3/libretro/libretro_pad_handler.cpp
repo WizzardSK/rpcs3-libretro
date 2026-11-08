@@ -215,8 +215,9 @@ std::unordered_map<u32, u16> LibretroPadHandler::get_button_values(const std::sh
     if (!device)
         return values;
 
-    // Get the port from player_id
-    unsigned port = device->player_id;
+    // The RetroArch port that drives this player (ports trade places in the
+    // arcade shooter mode, see libretro_input_port_for_player)
+    unsigned port = libretro_input_port_for_player(device->player_id);
     if (port >= LIBRETRO_MAX_PADS)
         port = 0;
 
@@ -330,7 +331,7 @@ void LibretroPadHandler::process()
             continue;
         }
 
-        apply_rumble(*binding.pad, static_cast<unsigned>(i));
+        apply_rumble(*binding.pad, libretro_input_port_for_player(static_cast<unsigned>(i)));
 
         // Get button values from libretro input
         auto button_values = get_button_values(binding.device);

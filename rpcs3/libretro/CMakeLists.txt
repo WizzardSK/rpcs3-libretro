@@ -30,6 +30,7 @@ add_library(rpcs3_libretro SHARED
     libretro_audio.cpp
     libretro_input.cpp
     libretro_pad_handler.cpp
+    libretro_mouse_handler.cpp
     libretro_frontend.cpp
     libretro_firmware.cpp
     libretro_patch_manager.cpp

@@ -15,6 +15,8 @@ static std::array<LibretroInputState, LIBRETRO_MAX_PADS> s_input_states;
 static std::array<unsigned, LIBRETRO_MAX_PADS> s_device_types;
 static LibretroMouseState s_mouse_state;
 static LibretroKeyboardState s_keyboard_state;
+static std::array<LibretroGunState, LIBRETRO_MAX_GUNS> s_gun_states;
+static bool s_usio_shooter = false;
 static bool s_initialized = false;
 static bool s_bitmask_supported = false;
 
@@ -40,6 +42,7 @@ void libretro_input_init()
 
     s_mouse_state = LibretroMouseState{};
     s_keyboard_state = LibretroKeyboardState{};
+    s_gun_states = {};
     s_initialized = true;
 }
 
@@ -94,6 +97,40 @@ void libretro_input_poll(retro_input_state_t input_state_cb)
         state.analog[1] = input_state_cb(port, RETRO_DEVICE_ANALOG, RETRO_DEVICE_INDEX_ANALOG_LEFT, RETRO_DEVICE_ID_ANALOG_Y);
         state.analog[2] = input_state_cb(port, RETRO_DEVICE_ANALOG, RETRO_DEVICE_INDEX_ANALOG_RIGHT, RETRO_DEVICE_ID_ANALOG_X);
         state.analog[3] = input_state_cb(port, RETRO_DEVICE_ANALOG, RETRO_DEVICE_INDEX_ANALOG_RIGHT, RETRO_DEVICE_ID_ANALOG_Y);
+    }
+
+    // Poll light guns. RetroArch answers these for every port, from a real
+    // gun or from the mouse it binds as one, whatever device the port is set to.
+    for (unsigned port = 0; port < LIBRETRO_MAX_GUNS; port++)
+    {
+        auto& gun = s_gun_states[port];
+        gun.offscreen = input_state_cb(port, RETRO_DEVICE_LIGHTGUN, 0, RETRO_DEVICE_ID_LIGHTGUN_IS_OFFSCREEN) != 0;
+        if (!gun.offscreen)
+        {
+            gun.x = input_state_cb(port, RETRO_DEVICE_LIGHTGUN, 0, RETRO_DEVICE_ID_LIGHTGUN_SCREEN_X);
+            gun.y = input_state_cb(port, RETRO_DEVICE_LIGHTGUN, 0, RETRO_DEVICE_ID_LIGHTGUN_SCREEN_Y);
+        }
+        gun.trigger = input_state_cb(port, RETRO_DEVICE_LIGHTGUN, 0, RETRO_DEVICE_ID_LIGHTGUN_TRIGGER) != 0;
+        gun.aux_a = input_state_cb(port, RETRO_DEVICE_LIGHTGUN, 0, RETRO_DEVICE_ID_LIGHTGUN_AUX_A) != 0;
+        gun.aux_b = input_state_cb(port, RETRO_DEVICE_LIGHTGUN, 0, RETRO_DEVICE_ID_LIGHTGUN_AUX_B) != 0;
+        gun.start = input_state_cb(port, RETRO_DEVICE_LIGHTGUN, 0, RETRO_DEVICE_ID_LIGHTGUN_START) != 0;
+        gun.wheel = static_cast<int8_t>(
+            (input_state_cb(port, RETRO_DEVICE_MOUSE, 0, RETRO_DEVICE_ID_MOUSE_WHEELUP) ? 1 : 0) -
+            (input_state_cb(port, RETRO_DEVICE_MOUSE, 0, RETRO_DEVICE_ID_MOUSE_WHEELDOWN) ? 1 : 0));
+
+        // The arcade board reads, in shooter mode, D-Pad Left and Right as the
+        // gun's triggers and Square as its start (usio.cpp, the original
+        // mouse mapping of RPCS3 PR #19673)
+        if (s_usio_shooter && s_device_types[port] != RETRO_DEVICE_NONE)
+        {
+            auto& state = s_input_states[port];
+            if (gun.trigger)
+                state.buttons[RETRO_DEVICE_ID_JOYPAD_LEFT] = 1;
+            if (gun.aux_a)
+                state.buttons[RETRO_DEVICE_ID_JOYPAD_RIGHT] = 1;
+            if (gun.start)
+                state.buttons[RETRO_DEVICE_ID_JOYPAD_Y] = 1;
+        }
     }
 
     // Poll mouse (port 0)
@@ -181,6 +218,29 @@ const LibretroMouseState& libretro_input_get_mouse()
     return s_mouse_state;
 }
 
+const LibretroGunState& libretro_input_get_gun(unsigned port)
+{
+    static LibretroGunState dummy{};
+    if (port >= LIBRETRO_MAX_GUNS)
+        return dummy;
+
+    return s_gun_states[port];
+}
+
+void libretro_input_set_usio_shooter(bool enabled)
+{
+    s_usio_shooter = enabled;
+}
+
+unsigned libretro_input_port_for_player(unsigned player)
+{
+    // Ports 1-2 and 3-4 trade places: player 3 (index 2) is RetroArch's port 1
+    if (s_usio_shooter && player < 4)
+        return player ^ 2;
+
+    return player;
+}
+
 const LibretroKeyboardState& libretro_input_get_keyboard()
 {
     return s_keyboard_state;
@@ -194,14 +254,15 @@ bool libretro_input_key_pressed(unsigned keycode)
 }
 
 // Input descriptors define the default button mappings shown in RetroArch
-// These map RetroPad buttons to PS3 DualShock 3 buttons
+// These map RetroPad buttons to PS3 DualShock 3 buttons, and name what the
+// System 357/369 arcade board reads some of them as (usio_config.h defaults)
 void libretro_input_set_descriptors(retro_environment_t environ_cb)
 {
     static const struct retro_input_descriptor desc[] = {
         // Port 1 - Player 1
         { 0, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_B,      "Cross" },
         { 0, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_Y,      "Square" },
-        { 0, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_SELECT, "Select" },
+        { 0, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_SELECT, "Select / Arcade Test" },
         { 0, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_START,  "Start" },
         { 0, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_UP,     "D-Pad Up" },
         { 0, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_DOWN,   "D-Pad Down" },
@@ -209,10 +270,10 @@ void libretro_input_set_descriptors(retro_environment_t environ_cb)
         { 0, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_RIGHT,  "D-Pad Right" },
         { 0, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_A,      "Circle" },
         { 0, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_X,      "Triangle" },
-        { 0, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_L,      "L1" },
+        { 0, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_L,      "L1 / Arcade Card" },
         { 0, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_R,      "R1" },
-        { 0, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_L2,     "L2" },
-        { 0, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_R2,     "R2" },
+        { 0, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_L2,     "L2 / Arcade Coin" },
+        { 0, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_R2,     "R2 / Arcade Service" },
         { 0, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_L3,     "L3" },
         { 0, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_R3,     "R3" },
         { 0, RETRO_DEVICE_ANALOG, RETRO_DEVICE_INDEX_ANALOG_LEFT,  RETRO_DEVICE_ID_ANALOG_X, "Left Analog X" },
@@ -223,7 +284,7 @@ void libretro_input_set_descriptors(retro_environment_t environ_cb)
         // Port 2 - Player 2
         { 1, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_B,      "Cross" },
         { 1, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_Y,      "Square" },
-        { 1, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_SELECT, "Select" },
+        { 1, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_SELECT, "Select / Arcade Test" },
         { 1, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_START,  "Start" },
         { 1, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_UP,     "D-Pad Up" },
         { 1, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_DOWN,   "D-Pad Down" },
@@ -231,10 +292,10 @@ void libretro_input_set_descriptors(retro_environment_t environ_cb)
         { 1, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_RIGHT,  "D-Pad Right" },
         { 1, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_A,      "Circle" },
         { 1, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_X,      "Triangle" },
-        { 1, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_L,      "L1" },
+        { 1, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_L,      "L1 / Arcade Card" },
         { 1, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_R,      "R1" },
-        { 1, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_L2,     "L2" },
-        { 1, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_R2,     "R2" },
+        { 1, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_L2,     "L2 / Arcade Coin" },
+        { 1, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_R2,     "R2 / Arcade Service" },
         { 1, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_L3,     "L3" },
         { 1, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_R3,     "R3" },
         { 1, RETRO_DEVICE_ANALOG, RETRO_DEVICE_INDEX_ANALOG_LEFT,  RETRO_DEVICE_ID_ANALOG_X, "Left Analog X" },

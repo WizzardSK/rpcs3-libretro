@@ -656,6 +656,14 @@ struct retro_core_option_v2_definition option_defs_us[] = {
         { {"cross", "Cross (Western)"}, {"circle", "Circle (Japanese)"}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", "Arcade USIO Mode", NULL,
+        "For the Namco System 357/369 arcade games: how the arcade board's buttons are read, which the two kinds of game do differently. Fighting Games for Tekken, Dragon Ball Zenkai Battle and the like; Shooter Games for Deadstorm Pirates, Dark Escape and the like, aimed with a light gun or the mouse. Shooter games take RetroArch's ports 3 and 4 as players 1 and 2, so in that mode ports 1-2 and 3-4 trade places. Taiko no Tatsujin works in either. Changing it applies at once.",
+        NULL, "core",
+        { {"fighting", "Fighting Games"}, {"shooter", "Shooter Games"}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", "Show PPU Compilation Hint", NULL,
         "Show hint when PPU modules are being compiled.",
