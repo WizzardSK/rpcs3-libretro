@@ -193,7 +193,10 @@ namespace vk
 				found_surface_ext = true;
 			}
 #endif
-			if (!found_surface_ext)
+			// Drawing offscreen for a libretro frontend that gave no hardware context makes
+			// no surface (create_swapchain), so a system without X11 or Wayland, as with GBM,
+			// can still run the renderer
+			if (!found_surface_ext && !g_libretro_software_present)
 			{
 				rsx_log.error("Could not find a supported Vulkan surface extension");
 				return 0;
