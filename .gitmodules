@@ -2,80 +2,100 @@
 	path = 3rdparty/ffmpeg
 	url = ../../RPCS3/ffmpeg-core.git
 	ignore = dirty
+	shallow = true
 [submodule "asmjit"]
 	path = 3rdparty/asmjit/asmjit
 	url = ../../asmjit/asmjit.git
 	branch = master
 	ignore = dirty
+	shallow = true
 [submodule "3rdparty/llvm/llvm"]
 	path = 3rdparty/llvm/llvm
 	url = ../../llvm/llvm-project.git
 	ignore = dirty
+	shallow = true
 [submodule "3rdparty/glslang"]
 	path = 3rdparty/glslang/glslang
 	url = ../../KhronosGroup/glslang.git
 	ignore = dirty
+	shallow = true
 [submodule "3rdparty/zlib"]
 	path = 3rdparty/zlib/zlib
 	url = ../../madler/zlib
 	ignore = dirty
+	shallow = true
 [submodule "3rdparty/pugixml"]
 	path = 3rdparty/pugixml
 	url = ../../zeux/pugixml.git
 	ignore = dirty
+	shallow = true
 [submodule "3rdparty/yaml-cpp"]
 	path = 3rdparty/yaml-cpp/yaml-cpp
 	url = ../../RPCS3/yaml-cpp.git
 	ignore = dirty
+	shallow = true
 [submodule "3rdparty/libpng"]
 	path = 3rdparty/libpng/libpng
 	url = ../../glennrp/libpng.git
 	ignore = dirty
+	shallow = true
 [submodule "3rdparty/libusb"]
 	path = 3rdparty/libusb/libusb
 	url = ../../libusb/libusb.git
 	ignore = dirty
+	shallow = true
 [submodule "3rdparty/curl"]
 	path = 3rdparty/curl/curl
 	url = ../../curl/curl.git
 	ignore = dirty
+	shallow = true
 [submodule "3rdparty/wolfssl"]
 	path = 3rdparty/wolfssl/wolfssl
 	url = ../../wolfSSL/wolfssl.git
 	ignore = dirty
+	shallow = true
 [submodule "3rdparty/SoundTouch/soundtouch"]
 	path = 3rdparty/SoundTouch/soundtouch
 	url = ../../RPCS3/soundtouch.git
 	ignore = dirty
+	shallow = true
 [submodule "3rdparty/miniupnp/miniupnp"]
 	path = 3rdparty/miniupnp/miniupnp
 	url = ../../miniupnp/miniupnp.git
 	ignore = dirty
+	shallow = true
 [submodule "3rdparty/rtmidi/rtmidi"]
 	path = 3rdparty/rtmidi/rtmidi
 	url = ../../thestk/rtmidi
 	ignore = dirty
+	shallow = true
 [submodule "3rdparty/zstd/zstd"]
 	path = 3rdparty/zstd/zstd
 	url = ../../facebook/zstd
 	ignore = dirty
+	shallow = true
 [submodule "3rdparty/stblib/stb"]
 	path = 3rdparty/stblib/stb
 	url = ../../nothings/stb.git
 	ignore = dirty
+	shallow = true
 [submodule "3rdparty/opencv/opencv"]
 	path = 3rdparty/opencv/opencv
 	url = ../../Megamouse/opencv_minimal.git
 	ignore = dirty
+	shallow = true
 [submodule "3rdparty/fusion/fusion"]
 	path = 3rdparty/fusion/fusion
 	url = ../../xioTechnologies/Fusion.git
 	ignore = dirty
+	shallow = true
 [submodule "3rdparty/GPUOpen/VulkanMemoryAllocator"]
 	path = 3rdparty/GPUOpen/VulkanMemoryAllocator
 	url = ../../GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator.git
 	ignore = dirty
+	shallow = true
 [submodule "3rdparty/protobuf/protobuf"]
 	path = 3rdparty/protobuf/protobuf
 	url = ../../protocolbuffers/protobuf.git
 	ignore = dirty
+	shallow = true
