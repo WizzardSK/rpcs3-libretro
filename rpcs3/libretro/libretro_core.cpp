@@ -14,6 +14,8 @@
 #include <cstdlib>
 
 #include "Emu/System.h"
+#include "Emu/Memory/vm.h"
+#include "util/vm.hpp"
 #include "Emu/system_config.h"
 #include "Emu/Cell/Modules/cellMsgDialog.h"
 #include "Emu/Cell/Modules/cellSysutil.h"
@@ -2075,6 +2077,21 @@ static void wait_for_emulation_stop(const char* what)
         log_cb(RETRO_LOG_INFO, "RPCS3: emulation stopped after %d ms\n", waited);
 }
 
+// Outside Windows, RPCS3 takes memory from the guest by protecting it
+// (shm::unmap_critical) and never unmaps the unprotected mirror, so a game's
+// memory stays mapped, and allocated, until another boot maps over it.
+// Standalone boots again at the same address; a frontend that unloads the core
+// never does, and each session left its guest memory behind (~360 MB for
+// Mortal Kombat vs. DC Universe). Once the emulator has fully stopped, replace
+// both views with bare reserved memory.
+static void release_guest_memory()
+{
+#ifndef _WIN32
+    if (Emu.IsStopped(true))
+        utils::memory_decommit(vm::g_base_addr, 0x200000000);
+#endif
+}
+
 // A boot that fails part way - vkCreateDevice refusing a feature the GPU does
 // not have throws from inside BootGame (sco's Mali phone) - leaves the threads
 // it already started running, with game_loaded never set. Nothing stopped them:
@@ -2089,6 +2106,7 @@ static void stop_failed_boot()
         Emu.GracefulShutdown(false, false);
         wait_for_emulation_stop("giving up on the boot");
     }
+    release_guest_memory();
     unload_iso();
     s_iso_path.clear();
 }
@@ -2114,6 +2132,7 @@ void retro_deinit(void)
         // stopping threads are still standing on.
         wait_for_emulation_stop("cleaning up");
     }
+    release_guest_memory();
 
     Emulator::CleanUp();
     core_initialized = false;
@@ -3160,6 +3179,7 @@ void retro_unload_game(void)
         // the frontend on unload is worse than one that lets go early, and the
         // timeout is worth saying out loud if it is ever hit.
         wait_for_emulation_stop("unloading the disc");
+        release_guest_memory();
 
         // Drops the disc device, and with it the handle on the image.
         unload_iso();
