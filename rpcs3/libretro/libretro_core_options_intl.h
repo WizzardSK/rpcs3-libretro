@@ -361,6 +361,10 @@ extern "C" {
 #define RPCS3_ENTER_BUTTON_INFO_0_AR NULL
 #define OPTION_VAL_CROSS_AR NULL
 #define OPTION_VAL_CIRCLE_AR NULL
+#define RPCS3_USIO_MODE_LABEL_AR NULL
+#define RPCS3_USIO_MODE_INFO_0_AR NULL
+#define OPTION_VAL_FIGHTING_AR NULL
+#define OPTION_VAL_SHOOTER_AR NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_AR NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_AR NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_AR NULL
@@ -993,6 +997,14 @@ struct retro_core_option_v2_definition option_defs_ar[] = {
         { {"cross", OPTION_VAL_CROSS_AR}, {"circle", OPTION_VAL_CIRCLE_AR}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_AR, NULL,
+        RPCS3_USIO_MODE_INFO_0_AR,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_AR}, {"shooter", OPTION_VAL_SHOOTER_AR}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_AR, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_AR,
@@ -1404,6 +1416,10 @@ struct retro_core_options_v2 options_ar = {
 #define RPCS3_ENTER_BUTTON_INFO_0_AST NULL
 #define OPTION_VAL_CROSS_AST NULL
 #define OPTION_VAL_CIRCLE_AST NULL
+#define RPCS3_USIO_MODE_LABEL_AST NULL
+#define RPCS3_USIO_MODE_INFO_0_AST NULL
+#define OPTION_VAL_FIGHTING_AST NULL
+#define OPTION_VAL_SHOOTER_AST NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_AST NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_AST NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_AST NULL
@@ -2036,6 +2052,14 @@ struct retro_core_option_v2_definition option_defs_ast[] = {
         { {"cross", OPTION_VAL_CROSS_AST}, {"circle", OPTION_VAL_CIRCLE_AST}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_AST, NULL,
+        RPCS3_USIO_MODE_INFO_0_AST,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_AST}, {"shooter", OPTION_VAL_SHOOTER_AST}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_AST, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_AST,
@@ -2447,6 +2471,10 @@ struct retro_core_options_v2 options_ast = {
 #define RPCS3_ENTER_BUTTON_INFO_0_BE NULL
 #define OPTION_VAL_CROSS_BE NULL
 #define OPTION_VAL_CIRCLE_BE NULL
+#define RPCS3_USIO_MODE_LABEL_BE NULL
+#define RPCS3_USIO_MODE_INFO_0_BE NULL
+#define OPTION_VAL_FIGHTING_BE NULL
+#define OPTION_VAL_SHOOTER_BE NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_BE NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_BE NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_BE NULL
@@ -3079,6 +3107,14 @@ struct retro_core_option_v2_definition option_defs_be[] = {
         { {"cross", OPTION_VAL_CROSS_BE}, {"circle", OPTION_VAL_CIRCLE_BE}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_BE, NULL,
+        RPCS3_USIO_MODE_INFO_0_BE,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_BE}, {"shooter", OPTION_VAL_SHOOTER_BE}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_BE, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_BE,
@@ -3490,6 +3526,10 @@ struct retro_core_options_v2 options_be = {
 #define RPCS3_ENTER_BUTTON_INFO_0_BG NULL
 #define OPTION_VAL_CROSS_BG NULL
 #define OPTION_VAL_CIRCLE_BG NULL
+#define RPCS3_USIO_MODE_LABEL_BG NULL
+#define RPCS3_USIO_MODE_INFO_0_BG NULL
+#define OPTION_VAL_FIGHTING_BG NULL
+#define OPTION_VAL_SHOOTER_BG NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_BG NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_BG NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_BG NULL
@@ -4122,6 +4162,14 @@ struct retro_core_option_v2_definition option_defs_bg[] = {
         { {"cross", OPTION_VAL_CROSS_BG}, {"circle", OPTION_VAL_CIRCLE_BG}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_BG, NULL,
+        RPCS3_USIO_MODE_INFO_0_BG,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_BG}, {"shooter", OPTION_VAL_SHOOTER_BG}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_BG, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_BG,
@@ -4533,6 +4581,10 @@ struct retro_core_options_v2 options_bg = {
 #define RPCS3_ENTER_BUTTON_INFO_0_CA "El botó que es fa servir per confirmar accions."
 #define OPTION_VAL_CROSS_CA "Cross (Oest)"
 #define OPTION_VAL_CIRCLE_CA "Cercle (Japonès)"
+#define RPCS3_USIO_MODE_LABEL_CA NULL
+#define RPCS3_USIO_MODE_INFO_0_CA NULL
+#define OPTION_VAL_FIGHTING_CA NULL
+#define OPTION_VAL_SHOOTER_CA NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_CA "Mostra missatges de compilació de la PPU"
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_CA NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_CA "Mostra missatges de compilació de shaders"
@@ -5165,6 +5217,14 @@ struct retro_core_option_v2_definition option_defs_ca[] = {
         { {"cross", OPTION_VAL_CROSS_CA}, {"circle", OPTION_VAL_CIRCLE_CA}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_CA, NULL,
+        RPCS3_USIO_MODE_INFO_0_CA,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_CA}, {"shooter", OPTION_VAL_SHOOTER_CA}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_CA, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_CA,
@@ -5576,6 +5636,10 @@ struct retro_core_options_v2 options_ca = {
 #define RPCS3_ENTER_BUTTON_INFO_0_CHS "用于执行“确认”操作的按键。"
 #define OPTION_VAL_CROSS_CHS "叉号按键 (交叉键/美规)"
 #define OPTION_VAL_CIRCLE_CHS "圆圈按键 (圆圈键/日规)"
+#define RPCS3_USIO_MODE_LABEL_CHS NULL
+#define RPCS3_USIO_MODE_INFO_0_CHS NULL
+#define OPTION_VAL_FIGHTING_CHS NULL
+#define OPTION_VAL_SHOOTER_CHS NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_CHS "显示 PPU 编译提示"
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_CHS "在编译 PPU 模块时显示提示信息。"
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_CHS "显示着色器编译提示"
@@ -6208,6 +6272,14 @@ struct retro_core_option_v2_definition option_defs_chs[] = {
         { {"cross", OPTION_VAL_CROSS_CHS}, {"circle", OPTION_VAL_CIRCLE_CHS}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_CHS, NULL,
+        RPCS3_USIO_MODE_INFO_0_CHS,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_CHS}, {"shooter", OPTION_VAL_SHOOTER_CHS}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_CHS, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_CHS,
@@ -6619,6 +6691,10 @@ struct retro_core_options_v2 options_chs = {
 #define RPCS3_ENTER_BUTTON_INFO_0_CHT NULL
 #define OPTION_VAL_CROSS_CHT NULL
 #define OPTION_VAL_CIRCLE_CHT NULL
+#define RPCS3_USIO_MODE_LABEL_CHT NULL
+#define RPCS3_USIO_MODE_INFO_0_CHT NULL
+#define OPTION_VAL_FIGHTING_CHT NULL
+#define OPTION_VAL_SHOOTER_CHT NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_CHT NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_CHT NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_CHT NULL
@@ -7251,6 +7327,14 @@ struct retro_core_option_v2_definition option_defs_cht[] = {
         { {"cross", OPTION_VAL_CROSS_CHT}, {"circle", OPTION_VAL_CIRCLE_CHT}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_CHT, NULL,
+        RPCS3_USIO_MODE_INFO_0_CHT,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_CHT}, {"shooter", OPTION_VAL_SHOOTER_CHT}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_CHT, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_CHT,
@@ -7662,6 +7746,10 @@ struct retro_core_options_v2 options_cht = {
 #define RPCS3_ENTER_BUTTON_INFO_0_CS NULL
 #define OPTION_VAL_CROSS_CS NULL
 #define OPTION_VAL_CIRCLE_CS NULL
+#define RPCS3_USIO_MODE_LABEL_CS NULL
+#define RPCS3_USIO_MODE_INFO_0_CS NULL
+#define OPTION_VAL_FIGHTING_CS NULL
+#define OPTION_VAL_SHOOTER_CS NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_CS NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_CS NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_CS NULL
@@ -8294,6 +8382,14 @@ struct retro_core_option_v2_definition option_defs_cs[] = {
         { {"cross", OPTION_VAL_CROSS_CS}, {"circle", OPTION_VAL_CIRCLE_CS}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_CS, NULL,
+        RPCS3_USIO_MODE_INFO_0_CS,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_CS}, {"shooter", OPTION_VAL_SHOOTER_CS}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_CS, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_CS,
@@ -8705,6 +8801,10 @@ struct retro_core_options_v2 options_cs = {
 #define RPCS3_ENTER_BUTTON_INFO_0_CY NULL
 #define OPTION_VAL_CROSS_CY NULL
 #define OPTION_VAL_CIRCLE_CY NULL
+#define RPCS3_USIO_MODE_LABEL_CY NULL
+#define RPCS3_USIO_MODE_INFO_0_CY NULL
+#define OPTION_VAL_FIGHTING_CY NULL
+#define OPTION_VAL_SHOOTER_CY NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_CY NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_CY NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_CY NULL
@@ -9337,6 +9437,14 @@ struct retro_core_option_v2_definition option_defs_cy[] = {
         { {"cross", OPTION_VAL_CROSS_CY}, {"circle", OPTION_VAL_CIRCLE_CY}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_CY, NULL,
+        RPCS3_USIO_MODE_INFO_0_CY,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_CY}, {"shooter", OPTION_VAL_SHOOTER_CY}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_CY, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_CY,
@@ -9748,6 +9856,10 @@ struct retro_core_options_v2 options_cy = {
 #define RPCS3_ENTER_BUTTON_INFO_0_DA NULL
 #define OPTION_VAL_CROSS_DA NULL
 #define OPTION_VAL_CIRCLE_DA NULL
+#define RPCS3_USIO_MODE_LABEL_DA NULL
+#define RPCS3_USIO_MODE_INFO_0_DA NULL
+#define OPTION_VAL_FIGHTING_DA NULL
+#define OPTION_VAL_SHOOTER_DA NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_DA NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_DA NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_DA NULL
@@ -10380,6 +10492,14 @@ struct retro_core_option_v2_definition option_defs_da[] = {
         { {"cross", OPTION_VAL_CROSS_DA}, {"circle", OPTION_VAL_CIRCLE_DA}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_DA, NULL,
+        RPCS3_USIO_MODE_INFO_0_DA,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_DA}, {"shooter", OPTION_VAL_SHOOTER_DA}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_DA, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_DA,
@@ -10791,6 +10911,10 @@ struct retro_core_options_v2 options_da = {
 #define RPCS3_ENTER_BUTTON_INFO_0_DE "Taste, mit der Aktionen bestätigt werden."
 #define OPTION_VAL_CROSS_DE "Kreuz (westlich)"
 #define OPTION_VAL_CIRCLE_DE "Kreis (japanisch)"
+#define RPCS3_USIO_MODE_LABEL_DE NULL
+#define RPCS3_USIO_MODE_INFO_0_DE NULL
+#define OPTION_VAL_FIGHTING_DE NULL
+#define OPTION_VAL_SHOOTER_DE NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_DE "PPU-Kompilierungshinweis anzeigen"
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_DE "Zeigt einen Hinweis an, wenn PPU-Module kompiliert werden."
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_DE "Hinweis zur Shaderkompilierung anzeigen"
@@ -11423,6 +11547,14 @@ struct retro_core_option_v2_definition option_defs_de[] = {
         { {"cross", OPTION_VAL_CROSS_DE}, {"circle", OPTION_VAL_CIRCLE_DE}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_DE, NULL,
+        RPCS3_USIO_MODE_INFO_0_DE,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_DE}, {"shooter", OPTION_VAL_SHOOTER_DE}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_DE, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_DE,
@@ -11834,6 +11966,10 @@ struct retro_core_options_v2 options_de = {
 #define RPCS3_ENTER_BUTTON_INFO_0_EL NULL
 #define OPTION_VAL_CROSS_EL NULL
 #define OPTION_VAL_CIRCLE_EL NULL
+#define RPCS3_USIO_MODE_LABEL_EL NULL
+#define RPCS3_USIO_MODE_INFO_0_EL NULL
+#define OPTION_VAL_FIGHTING_EL NULL
+#define OPTION_VAL_SHOOTER_EL NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_EL NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_EL NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_EL NULL
@@ -12466,6 +12602,14 @@ struct retro_core_option_v2_definition option_defs_el[] = {
         { {"cross", OPTION_VAL_CROSS_EL}, {"circle", OPTION_VAL_CIRCLE_EL}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_EL, NULL,
+        RPCS3_USIO_MODE_INFO_0_EL,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_EL}, {"shooter", OPTION_VAL_SHOOTER_EL}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_EL, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_EL,
@@ -12877,6 +13021,10 @@ struct retro_core_options_v2 options_el = {
 #define RPCS3_ENTER_BUTTON_INFO_0_EN NULL
 #define OPTION_VAL_CROSS_EN NULL
 #define OPTION_VAL_CIRCLE_EN NULL
+#define RPCS3_USIO_MODE_LABEL_EN NULL
+#define RPCS3_USIO_MODE_INFO_0_EN NULL
+#define OPTION_VAL_FIGHTING_EN NULL
+#define OPTION_VAL_SHOOTER_EN NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_EN NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_EN NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_EN NULL
@@ -13509,6 +13657,14 @@ struct retro_core_option_v2_definition option_defs_en[] = {
         { {"cross", OPTION_VAL_CROSS_EN}, {"circle", OPTION_VAL_CIRCLE_EN}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_EN, NULL,
+        RPCS3_USIO_MODE_INFO_0_EN,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_EN}, {"shooter", OPTION_VAL_SHOOTER_EN}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_EN, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_EN,
@@ -13920,6 +14076,10 @@ struct retro_core_options_v2 options_en = {
 #define RPCS3_ENTER_BUTTON_INFO_0_EO NULL
 #define OPTION_VAL_CROSS_EO NULL
 #define OPTION_VAL_CIRCLE_EO NULL
+#define RPCS3_USIO_MODE_LABEL_EO NULL
+#define RPCS3_USIO_MODE_INFO_0_EO NULL
+#define OPTION_VAL_FIGHTING_EO NULL
+#define OPTION_VAL_SHOOTER_EO NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_EO NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_EO NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_EO NULL
@@ -14552,6 +14712,14 @@ struct retro_core_option_v2_definition option_defs_eo[] = {
         { {"cross", OPTION_VAL_CROSS_EO}, {"circle", OPTION_VAL_CIRCLE_EO}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_EO, NULL,
+        RPCS3_USIO_MODE_INFO_0_EO,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_EO}, {"shooter", OPTION_VAL_SHOOTER_EO}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_EO, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_EO,
@@ -14963,6 +15131,10 @@ struct retro_core_options_v2 options_eo = {
 #define RPCS3_ENTER_BUTTON_INFO_0_ES "El botón que se usará para confirmar acciones."
 #define OPTION_VAL_CROSS_ES "Cruz/X (occidental)"
 #define OPTION_VAL_CIRCLE_ES "Círculo (japonés)"
+#define RPCS3_USIO_MODE_LABEL_ES "Modo USIO para arcade"
+#define RPCS3_USIO_MODE_INFO_0_ES "Para los juegos de la placa arcade Namco System 357/369: establece la forma de leer los botones de la placa, que cambia según el juego. Juegos de lucha para Tekken, Dragon Ball Zenkai Battle y similares, Juegos de disparos para Deadstorm Pirates, Dark Escape y similares, para apuntar con lightgun o un ratón. Los juegos de disparos reconocerán los puertos 3 y 4 de RetroArch como los jugadores 1 y 2, así que con este modo, los puertos 1-2 y 3-4 se intercambian. Taiko no Tatsujin funciona con ambos modos. Los cambios se aplicarán inmediatamente."
+#define OPTION_VAL_FIGHTING_ES "Juegos de lucha"
+#define OPTION_VAL_SHOOTER_ES "Juegos de disparos"
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_ES "Mostrar mensajes de compilación de la PPU"
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_ES "Muestra una notificación cuando se estén compilando módulos de la PPU."
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_ES "Mostrar mensajes de compilación de shaders"
@@ -15595,6 +15767,14 @@ struct retro_core_option_v2_definition option_defs_es[] = {
         { {"cross", OPTION_VAL_CROSS_ES}, {"circle", OPTION_VAL_CIRCLE_ES}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_ES, NULL,
+        RPCS3_USIO_MODE_INFO_0_ES,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_ES}, {"shooter", OPTION_VAL_SHOOTER_ES}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_ES, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_ES,
@@ -16006,6 +16186,10 @@ struct retro_core_options_v2 options_es = {
 #define RPCS3_ENTER_BUTTON_INFO_0_FA NULL
 #define OPTION_VAL_CROSS_FA NULL
 #define OPTION_VAL_CIRCLE_FA NULL
+#define RPCS3_USIO_MODE_LABEL_FA NULL
+#define RPCS3_USIO_MODE_INFO_0_FA NULL
+#define OPTION_VAL_FIGHTING_FA NULL
+#define OPTION_VAL_SHOOTER_FA NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_FA NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_FA NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_FA NULL
@@ -16638,6 +16822,14 @@ struct retro_core_option_v2_definition option_defs_fa[] = {
         { {"cross", OPTION_VAL_CROSS_FA}, {"circle", OPTION_VAL_CIRCLE_FA}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_FA, NULL,
+        RPCS3_USIO_MODE_INFO_0_FA,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_FA}, {"shooter", OPTION_VAL_SHOOTER_FA}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_FA, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_FA,
@@ -17049,6 +17241,10 @@ struct retro_core_options_v2 options_fa = {
 #define RPCS3_ENTER_BUTTON_INFO_0_FI NULL
 #define OPTION_VAL_CROSS_FI NULL
 #define OPTION_VAL_CIRCLE_FI NULL
+#define RPCS3_USIO_MODE_LABEL_FI NULL
+#define RPCS3_USIO_MODE_INFO_0_FI NULL
+#define OPTION_VAL_FIGHTING_FI NULL
+#define OPTION_VAL_SHOOTER_FI NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_FI NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_FI NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_FI NULL
@@ -17681,6 +17877,14 @@ struct retro_core_option_v2_definition option_defs_fi[] = {
         { {"cross", OPTION_VAL_CROSS_FI}, {"circle", OPTION_VAL_CIRCLE_FI}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_FI, NULL,
+        RPCS3_USIO_MODE_INFO_0_FI,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_FI}, {"shooter", OPTION_VAL_SHOOTER_FI}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_FI, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_FI,
@@ -17879,7 +18083,7 @@ struct retro_core_options_v2 options_fi = {
 #define OPTION_VAL_576P_FR NULL
 #define RPCS3_RESOLUTION_SCALE_LABEL_FR "Échelle de résolution"
 #define RPCS3_RESOLUTION_SCALE_INFO_0_FR "Résolution de rendu interne exprimée en pourcentage de la résolution native du jeu. 200 % d'un jeu en 720p correspondent à du 2560 x 1440, et 200 % d'un jeu en 1080p à du 3840 x 2160."
-#define OPTION_VAL_25_FR "25 %"
+#define OPTION_VAL_25_FR NULL
 #define OPTION_VAL_66_FR "66 %"
 #define OPTION_VAL_100_RPCS3_RESOLUTION_SCALE_FR "100 % (native)"
 #define OPTION_VAL_250_FR "250 %"
@@ -17951,7 +18155,7 @@ struct retro_core_options_v2 options_fi = {
 #define OPTION_VAL_AS_PS3_FR NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_FR "Délai de réveil du pilote"
 #define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_FR "Délai de réveil du pilote en microsecondes. 0 par défaut, comme dans RPCS3 ; ne l'augmentez que si un jeu le nécessite."
-#define OPTION_VAL_0_FR "0 (par défaut)"
+#define OPTION_VAL_0_FR NULL
 #define RPCS3_VBLANK_RATE_LABEL_FR "Fréquence de rafraîchissement vertical"
 #define RPCS3_VBLANK_RATE_INFO_0_FR "Taux de rafraîchissement de la PS3 en Hz. C'est également la fréquence d'images que le cœur demande à RetroArch ; ce paramètre s'applique au chargement du contenu. Les jeux capables de tourner à plus de 60 FPS nécessitent un écran offrant un taux de rafraîchissement équivalent. Depuis la liste double la fréquence de rafraîchissement vertical pour les jeux pris en charge et répertoriés dans le fichier vblank_unlock.txt situé dans system/rpcs3. Il peut être nécessaire d'appliquer des correctifs spécifiques à chaque jeu."
 #define OPTION_VAL_50_RPCS3_VBLANK_RATE_FR NULL
@@ -17975,7 +18179,7 @@ struct retro_core_options_v2 options_fi = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_FR "Combien de fils d'exécution sont utilisés pour compiler les shaders. Auto laisse RPCS3 décider en fonction du processeur détecté. Sur les processeurs ARM dotés de cœurs basse consommation (la plupart des téléphones et certains ordinateurs portables ARM), le réglage par défaut exclut ces cœurs."
 #define RPCS3_PPU_THREADS_LABEL_FR "Nombre de fils d'exécution du PPU"
 #define RPCS3_PPU_THREADS_INFO_0_FR "Combien de fils d'exécution du PPU s'exécutent simultanément, comme dans RPCS3. La valeur par défaut est 2, ce qui correspond aux besoins de la quasi-totalité des jeux."
-#define OPTION_VAL_2_RPCS3_PPU_THREADS_FR "2 (par défaut)"
+#define OPTION_VAL_2_RPCS3_PPU_THREADS_FR NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_FR "Nombre maximal de fils d'exécution du SPURS"
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_FR "Nombre maximal de fils d'exécution SPURS. Une valeur inférieure peut améliorer les performances."
 #define RPCS3_MAX_PREEMPT_COUNT_LABEL_FR "Préemptions processeur pour une économie d'énergie maximale"
@@ -18046,8 +18250,8 @@ struct retro_core_options_v2 options_fi = {
 #define OPTION_VAL_EMULATOR_FR "Horloge de l'émulateur"
 #define RPCS3_MASTER_VOLUME_LABEL_FR "Volume principal"
 #define RPCS3_MASTER_VOLUME_INFO_0_FR "Pourcentage du volume audio général."
-#define OPTION_VAL_0_RPCS3_MASTER_VOLUME_FR "0 %"
-#define OPTION_VAL_10_FR "10 %"
+#define OPTION_VAL_0_RPCS3_MASTER_VOLUME_FR NULL
+#define OPTION_VAL_10_FR NULL
 #define OPTION_VAL_20_FR "20 %"
 #define OPTION_VAL_30_RPCS3_MASTER_VOLUME_FR "30 %"
 #define OPTION_VAL_40_FR "40 %"
@@ -18092,6 +18296,10 @@ struct retro_core_options_v2 options_fi = {
 #define RPCS3_ENTER_BUTTON_INFO_0_FR "Touche utilisée pour confirmer des actions."
 #define OPTION_VAL_CROSS_FR "Croix (occidental)"
 #define OPTION_VAL_CIRCLE_FR "Rond (japonais)"
+#define RPCS3_USIO_MODE_LABEL_FR NULL
+#define RPCS3_USIO_MODE_INFO_0_FR NULL
+#define OPTION_VAL_FIGHTING_FR NULL
+#define OPTION_VAL_SHOOTER_FR NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_FR "Afficher l'indication de compilation PPU"
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_FR "Afficher une indication lors de la compilation des modules PPU."
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_FR "Afficher l'indication de compilation des shaders"
@@ -18724,6 +18932,14 @@ struct retro_core_option_v2_definition option_defs_fr[] = {
         { {"cross", OPTION_VAL_CROSS_FR}, {"circle", OPTION_VAL_CIRCLE_FR}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_FR, NULL,
+        RPCS3_USIO_MODE_INFO_0_FR,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_FR}, {"shooter", OPTION_VAL_SHOOTER_FR}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_FR, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_FR,
@@ -19135,6 +19351,10 @@ struct retro_core_options_v2 options_fr = {
 #define RPCS3_ENTER_BUTTON_INFO_0_GA "Cnaipe a úsáidtear chun gníomhartha a dhearbhú."
 #define OPTION_VAL_CROSS_GA "Cros (Iartharach)"
 #define OPTION_VAL_CIRCLE_GA "Ciorcal (Seapáinis)"
+#define RPCS3_USIO_MODE_LABEL_GA "Mód USIO an Arcade"
+#define RPCS3_USIO_MODE_INFO_0_GA "Maidir le cluichí stuara Namco System 357/369: baineann an difríocht leis an gcaoi a léitear cnaipí an bhoird stuara, rud a dhéantar ar bhealaí éagsúla ag brath ar an gcineál cluiche. Cluichí Troda do Tekken, Dragon Ball Zenkai Battle agus a leithéidí; Cluichí Lámhachóirí do Deadstorm Pirates, Dark Escape agus a leithéidí, dírithe le gunna solais nó an luch. I gcás na gcluichí lámhaigh, úsáidtear poirt 3 agus 4 de chuid RetroArch mar imreoirí 1 agus 2; mar sin, sa mhód sin, malartaíonn poirt 1-2 agus 3-4 áiteanna. Oibríonn Taiko no Tatsujin sa dá chás. Tagann an t-athrú i bhfeidhm láithreach."
+#define OPTION_VAL_FIGHTING_GA "Cluichí Troda"
+#define OPTION_VAL_SHOOTER_GA "Cluichí Lámhaigh"
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_GA "Taispeáin Leid Tiomsaithe PPU"
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_GA "Taispeáin leid nuair atá modúil PPU á gcur le chéile."
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_GA "Taispeáin Leid maidir le Tiomsú Scáthóra"
@@ -19767,6 +19987,14 @@ struct retro_core_option_v2_definition option_defs_ga[] = {
         { {"cross", OPTION_VAL_CROSS_GA}, {"circle", OPTION_VAL_CIRCLE_GA}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_GA, NULL,
+        RPCS3_USIO_MODE_INFO_0_GA,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_GA}, {"shooter", OPTION_VAL_SHOOTER_GA}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_GA, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_GA,
@@ -20178,6 +20406,10 @@ struct retro_core_options_v2 options_ga = {
 #define RPCS3_ENTER_BUTTON_INFO_0_GL NULL
 #define OPTION_VAL_CROSS_GL NULL
 #define OPTION_VAL_CIRCLE_GL NULL
+#define RPCS3_USIO_MODE_LABEL_GL NULL
+#define RPCS3_USIO_MODE_INFO_0_GL NULL
+#define OPTION_VAL_FIGHTING_GL NULL
+#define OPTION_VAL_SHOOTER_GL NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_GL NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_GL NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_GL NULL
@@ -20810,6 +21042,14 @@ struct retro_core_option_v2_definition option_defs_gl[] = {
         { {"cross", OPTION_VAL_CROSS_GL}, {"circle", OPTION_VAL_CIRCLE_GL}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_GL, NULL,
+        RPCS3_USIO_MODE_INFO_0_GL,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_GL}, {"shooter", OPTION_VAL_SHOOTER_GL}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_GL, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_GL,
@@ -21221,6 +21461,10 @@ struct retro_core_options_v2 options_gl = {
 #define RPCS3_ENTER_BUTTON_INFO_0_HE NULL
 #define OPTION_VAL_CROSS_HE NULL
 #define OPTION_VAL_CIRCLE_HE NULL
+#define RPCS3_USIO_MODE_LABEL_HE NULL
+#define RPCS3_USIO_MODE_INFO_0_HE NULL
+#define OPTION_VAL_FIGHTING_HE NULL
+#define OPTION_VAL_SHOOTER_HE NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_HE NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_HE NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_HE NULL
@@ -21853,6 +22097,14 @@ struct retro_core_option_v2_definition option_defs_he[] = {
         { {"cross", OPTION_VAL_CROSS_HE}, {"circle", OPTION_VAL_CIRCLE_HE}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_HE, NULL,
+        RPCS3_USIO_MODE_INFO_0_HE,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_HE}, {"shooter", OPTION_VAL_SHOOTER_HE}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_HE, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_HE,
@@ -22264,6 +22516,10 @@ struct retro_core_options_v2 options_he = {
 #define RPCS3_ENTER_BUTTON_INFO_0_HR NULL
 #define OPTION_VAL_CROSS_HR NULL
 #define OPTION_VAL_CIRCLE_HR NULL
+#define RPCS3_USIO_MODE_LABEL_HR NULL
+#define RPCS3_USIO_MODE_INFO_0_HR NULL
+#define OPTION_VAL_FIGHTING_HR NULL
+#define OPTION_VAL_SHOOTER_HR NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_HR NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_HR NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_HR NULL
@@ -22896,6 +23152,14 @@ struct retro_core_option_v2_definition option_defs_hr[] = {
         { {"cross", OPTION_VAL_CROSS_HR}, {"circle", OPTION_VAL_CIRCLE_HR}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_HR, NULL,
+        RPCS3_USIO_MODE_INFO_0_HR,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_HR}, {"shooter", OPTION_VAL_SHOOTER_HR}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_HR, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_HR,
@@ -23307,6 +23571,10 @@ struct retro_core_options_v2 options_hr = {
 #define RPCS3_ENTER_BUTTON_INFO_0_HU NULL
 #define OPTION_VAL_CROSS_HU NULL
 #define OPTION_VAL_CIRCLE_HU NULL
+#define RPCS3_USIO_MODE_LABEL_HU NULL
+#define RPCS3_USIO_MODE_INFO_0_HU NULL
+#define OPTION_VAL_FIGHTING_HU NULL
+#define OPTION_VAL_SHOOTER_HU NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_HU NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_HU NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_HU NULL
@@ -23939,6 +24207,14 @@ struct retro_core_option_v2_definition option_defs_hu[] = {
         { {"cross", OPTION_VAL_CROSS_HU}, {"circle", OPTION_VAL_CIRCLE_HU}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_HU, NULL,
+        RPCS3_USIO_MODE_INFO_0_HU,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_HU}, {"shooter", OPTION_VAL_SHOOTER_HU}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_HU, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_HU,
@@ -24350,6 +24626,10 @@ struct retro_core_options_v2 options_hu = {
 #define RPCS3_ENTER_BUTTON_INFO_0_ID NULL
 #define OPTION_VAL_CROSS_ID NULL
 #define OPTION_VAL_CIRCLE_ID NULL
+#define RPCS3_USIO_MODE_LABEL_ID NULL
+#define RPCS3_USIO_MODE_INFO_0_ID NULL
+#define OPTION_VAL_FIGHTING_ID NULL
+#define OPTION_VAL_SHOOTER_ID NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_ID NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_ID NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_ID NULL
@@ -24982,6 +25262,14 @@ struct retro_core_option_v2_definition option_defs_id[] = {
         { {"cross", OPTION_VAL_CROSS_ID}, {"circle", OPTION_VAL_CIRCLE_ID}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_ID, NULL,
+        RPCS3_USIO_MODE_INFO_0_ID,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_ID}, {"shooter", OPTION_VAL_SHOOTER_ID}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_ID, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_ID,
@@ -25393,6 +25681,10 @@ struct retro_core_options_v2 options_id = {
 #define RPCS3_ENTER_BUTTON_INFO_0_IT NULL
 #define OPTION_VAL_CROSS_IT NULL
 #define OPTION_VAL_CIRCLE_IT NULL
+#define RPCS3_USIO_MODE_LABEL_IT NULL
+#define RPCS3_USIO_MODE_INFO_0_IT NULL
+#define OPTION_VAL_FIGHTING_IT NULL
+#define OPTION_VAL_SHOOTER_IT NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_IT NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_IT NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_IT NULL
@@ -26025,6 +26317,14 @@ struct retro_core_option_v2_definition option_defs_it[] = {
         { {"cross", OPTION_VAL_CROSS_IT}, {"circle", OPTION_VAL_CIRCLE_IT}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_IT, NULL,
+        RPCS3_USIO_MODE_INFO_0_IT,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_IT}, {"shooter", OPTION_VAL_SHOOTER_IT}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_IT, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_IT,
@@ -26436,6 +26736,10 @@ struct retro_core_options_v2 options_it = {
 #define RPCS3_ENTER_BUTTON_INFO_0_JA NULL
 #define OPTION_VAL_CROSS_JA NULL
 #define OPTION_VAL_CIRCLE_JA NULL
+#define RPCS3_USIO_MODE_LABEL_JA NULL
+#define RPCS3_USIO_MODE_INFO_0_JA NULL
+#define OPTION_VAL_FIGHTING_JA NULL
+#define OPTION_VAL_SHOOTER_JA NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_JA NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_JA NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_JA NULL
@@ -27068,6 +27372,14 @@ struct retro_core_option_v2_definition option_defs_ja[] = {
         { {"cross", OPTION_VAL_CROSS_JA}, {"circle", OPTION_VAL_CIRCLE_JA}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_JA, NULL,
+        RPCS3_USIO_MODE_INFO_0_JA,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_JA}, {"shooter", OPTION_VAL_SHOOTER_JA}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_JA, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_JA,
@@ -27479,6 +27791,10 @@ struct retro_core_options_v2 options_ja = {
 #define RPCS3_ENTER_BUTTON_INFO_0_KO NULL
 #define OPTION_VAL_CROSS_KO NULL
 #define OPTION_VAL_CIRCLE_KO NULL
+#define RPCS3_USIO_MODE_LABEL_KO NULL
+#define RPCS3_USIO_MODE_INFO_0_KO NULL
+#define OPTION_VAL_FIGHTING_KO NULL
+#define OPTION_VAL_SHOOTER_KO NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_KO NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_KO NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_KO NULL
@@ -28111,6 +28427,14 @@ struct retro_core_option_v2_definition option_defs_ko[] = {
         { {"cross", OPTION_VAL_CROSS_KO}, {"circle", OPTION_VAL_CIRCLE_KO}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_KO, NULL,
+        RPCS3_USIO_MODE_INFO_0_KO,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_KO}, {"shooter", OPTION_VAL_SHOOTER_KO}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_KO, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_KO,
@@ -28522,6 +28846,10 @@ struct retro_core_options_v2 options_ko = {
 #define RPCS3_ENTER_BUTTON_INFO_0_NL NULL
 #define OPTION_VAL_CROSS_NL NULL
 #define OPTION_VAL_CIRCLE_NL NULL
+#define RPCS3_USIO_MODE_LABEL_NL NULL
+#define RPCS3_USIO_MODE_INFO_0_NL NULL
+#define OPTION_VAL_FIGHTING_NL NULL
+#define OPTION_VAL_SHOOTER_NL NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_NL NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_NL NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_NL NULL
@@ -29154,6 +29482,14 @@ struct retro_core_option_v2_definition option_defs_nl[] = {
         { {"cross", OPTION_VAL_CROSS_NL}, {"circle", OPTION_VAL_CIRCLE_NL}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_NL, NULL,
+        RPCS3_USIO_MODE_INFO_0_NL,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_NL}, {"shooter", OPTION_VAL_SHOOTER_NL}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_NL, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_NL,
@@ -29565,6 +29901,10 @@ struct retro_core_options_v2 options_nl = {
 #define RPCS3_ENTER_BUTTON_INFO_0_NO NULL
 #define OPTION_VAL_CROSS_NO NULL
 #define OPTION_VAL_CIRCLE_NO NULL
+#define RPCS3_USIO_MODE_LABEL_NO NULL
+#define RPCS3_USIO_MODE_INFO_0_NO NULL
+#define OPTION_VAL_FIGHTING_NO NULL
+#define OPTION_VAL_SHOOTER_NO NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_NO NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_NO NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_NO NULL
@@ -30197,6 +30537,14 @@ struct retro_core_option_v2_definition option_defs_no[] = {
         { {"cross", OPTION_VAL_CROSS_NO}, {"circle", OPTION_VAL_CIRCLE_NO}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_NO, NULL,
+        RPCS3_USIO_MODE_INFO_0_NO,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_NO}, {"shooter", OPTION_VAL_SHOOTER_NO}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_NO, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_NO,
@@ -30608,6 +30956,10 @@ struct retro_core_options_v2 options_no = {
 #define RPCS3_ENTER_BUTTON_INFO_0_OR NULL
 #define OPTION_VAL_CROSS_OR NULL
 #define OPTION_VAL_CIRCLE_OR NULL
+#define RPCS3_USIO_MODE_LABEL_OR NULL
+#define RPCS3_USIO_MODE_INFO_0_OR NULL
+#define OPTION_VAL_FIGHTING_OR NULL
+#define OPTION_VAL_SHOOTER_OR NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_OR NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_OR NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_OR NULL
@@ -31240,6 +31592,14 @@ struct retro_core_option_v2_definition option_defs_or[] = {
         { {"cross", OPTION_VAL_CROSS_OR}, {"circle", OPTION_VAL_CIRCLE_OR}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_OR, NULL,
+        RPCS3_USIO_MODE_INFO_0_OR,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_OR}, {"shooter", OPTION_VAL_SHOOTER_OR}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_OR, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_OR,
@@ -31510,7 +31870,7 @@ struct retro_core_options_v2 options_or = {
 #define OPTION_VAL_AS_PS3_PL NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_LABEL_PL NULL
 #define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_PL NULL
-#define OPTION_VAL_0_PL "0 (domyślnie)"
+#define OPTION_VAL_0_PL NULL
 #define RPCS3_VBLANK_RATE_LABEL_PL NULL
 #define RPCS3_VBLANK_RATE_INFO_0_PL NULL
 #define OPTION_VAL_50_RPCS3_VBLANK_RATE_PL NULL
@@ -31534,7 +31894,7 @@ struct retro_core_options_v2 options_or = {
 #define RPCS3_SHADER_COMPILER_THREADS_INFO_0_PL NULL
 #define RPCS3_PPU_THREADS_LABEL_PL NULL
 #define RPCS3_PPU_THREADS_INFO_0_PL NULL
-#define OPTION_VAL_2_RPCS3_PPU_THREADS_PL "2 (domyślnie)"
+#define OPTION_VAL_2_RPCS3_PPU_THREADS_PL NULL
 #define RPCS3_MAX_SPURS_THREADS_LABEL_PL NULL
 #define RPCS3_MAX_SPURS_THREADS_INFO_0_PL NULL
 #define RPCS3_MAX_PREEMPT_COUNT_LABEL_PL NULL
@@ -31651,6 +32011,10 @@ struct retro_core_options_v2 options_or = {
 #define RPCS3_ENTER_BUTTON_INFO_0_PL NULL
 #define OPTION_VAL_CROSS_PL NULL
 #define OPTION_VAL_CIRCLE_PL NULL
+#define RPCS3_USIO_MODE_LABEL_PL NULL
+#define RPCS3_USIO_MODE_INFO_0_PL NULL
+#define OPTION_VAL_FIGHTING_PL NULL
+#define OPTION_VAL_SHOOTER_PL NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_PL NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_PL NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_PL NULL
@@ -32283,6 +32647,14 @@ struct retro_core_option_v2_definition option_defs_pl[] = {
         { {"cross", OPTION_VAL_CROSS_PL}, {"circle", OPTION_VAL_CIRCLE_PL}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_PL, NULL,
+        RPCS3_USIO_MODE_INFO_0_PL,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_PL}, {"shooter", OPTION_VAL_SHOOTER_PL}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_PL, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_PL,
@@ -32444,7 +32816,7 @@ struct retro_core_options_v2 options_pl = {
 #define OPTION_VAL_NULL_PT_BR NULL
 #define RPCS3_ASPECT_RATIO_LABEL_PT_BR "Proporção de tela"
 #define RPCS3_ASPECT_RATIO_INFO_0_PT_BR NULL
-#define OPTION_VAL_16_9_PT_BR NULL
+#define OPTION_VAL_16_9_PT_BR "16:9 (padrão)"
 #define OPTION_VAL_4_3_PT_BR NULL
 #define RPCS3_FRAME_LIMIT_LABEL_PT_BR NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_PT_BR NULL
@@ -32694,6 +33066,10 @@ struct retro_core_options_v2 options_pl = {
 #define RPCS3_ENTER_BUTTON_INFO_0_PT_BR NULL
 #define OPTION_VAL_CROSS_PT_BR NULL
 #define OPTION_VAL_CIRCLE_PT_BR NULL
+#define RPCS3_USIO_MODE_LABEL_PT_BR NULL
+#define RPCS3_USIO_MODE_INFO_0_PT_BR NULL
+#define OPTION_VAL_FIGHTING_PT_BR NULL
+#define OPTION_VAL_SHOOTER_PT_BR NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_PT_BR NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_PT_BR NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_PT_BR NULL
@@ -33326,6 +33702,14 @@ struct retro_core_option_v2_definition option_defs_pt_br[] = {
         { {"cross", OPTION_VAL_CROSS_PT_BR}, {"circle", OPTION_VAL_CIRCLE_PT_BR}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_PT_BR, NULL,
+        RPCS3_USIO_MODE_INFO_0_PT_BR,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_PT_BR}, {"shooter", OPTION_VAL_SHOOTER_PT_BR}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_PT_BR, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_PT_BR,
@@ -33737,6 +34121,10 @@ struct retro_core_options_v2 options_pt_br = {
 #define RPCS3_ENTER_BUTTON_INFO_0_PT_PT NULL
 #define OPTION_VAL_CROSS_PT_PT NULL
 #define OPTION_VAL_CIRCLE_PT_PT NULL
+#define RPCS3_USIO_MODE_LABEL_PT_PT NULL
+#define RPCS3_USIO_MODE_INFO_0_PT_PT NULL
+#define OPTION_VAL_FIGHTING_PT_PT NULL
+#define OPTION_VAL_SHOOTER_PT_PT NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_PT_PT NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_PT_PT NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_PT_PT NULL
@@ -34369,6 +34757,14 @@ struct retro_core_option_v2_definition option_defs_pt_pt[] = {
         { {"cross", OPTION_VAL_CROSS_PT_PT}, {"circle", OPTION_VAL_CIRCLE_PT_PT}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_PT_PT, NULL,
+        RPCS3_USIO_MODE_INFO_0_PT_PT,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_PT_PT}, {"shooter", OPTION_VAL_SHOOTER_PT_PT}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_PT_PT, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_PT_PT,
@@ -34780,6 +35176,10 @@ struct retro_core_options_v2 options_pt_pt = {
 #define RPCS3_ENTER_BUTTON_INFO_0_RU NULL
 #define OPTION_VAL_CROSS_RU NULL
 #define OPTION_VAL_CIRCLE_RU NULL
+#define RPCS3_USIO_MODE_LABEL_RU NULL
+#define RPCS3_USIO_MODE_INFO_0_RU NULL
+#define OPTION_VAL_FIGHTING_RU NULL
+#define OPTION_VAL_SHOOTER_RU NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_RU NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_RU NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_RU NULL
@@ -35412,6 +35812,14 @@ struct retro_core_option_v2_definition option_defs_ru[] = {
         { {"cross", OPTION_VAL_CROSS_RU}, {"circle", OPTION_VAL_CIRCLE_RU}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_RU, NULL,
+        RPCS3_USIO_MODE_INFO_0_RU,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_RU}, {"shooter", OPTION_VAL_SHOOTER_RU}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_RU, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_RU,
@@ -35823,6 +36231,10 @@ struct retro_core_options_v2 options_ru = {
 #define RPCS3_ENTER_BUTTON_INFO_0_SK "Tlačidlo používané na potvrdenie."
 #define OPTION_VAL_CROSS_SK "Krížik (západné)"
 #define OPTION_VAL_CIRCLE_SK "Krúžok (japonské)"
+#define RPCS3_USIO_MODE_LABEL_SK "Arkádový režim USIO"
+#define RPCS3_USIO_MODE_INFO_0_SK "Pre arkádové hry Namco System 357/369: ako sa čítajú tlačidlá arkádovej dosky, čo tieto dva druhy hier robia odlišne. Bojové hry pre Tekken, Dragon Ball Zenkai Battle a podobné; strieľačky pre Deadstorm Pirates, Dark Escape a podobné, s mierením svetelnou pištoľou alebo myšou. Strieľačky berú porty 3 a 4 RetroArchu ako hráčov 1 a 2, takže v tom režime si porty 1-2 a 3-4 vymenia miesta. Taiko no Tatsujin funguje v oboch. Zmena sa prejaví okamžite."
+#define OPTION_VAL_FIGHTING_SK "Bojové hry"
+#define OPTION_VAL_SHOOTER_SK "Strieľačky"
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_SK "Zobrazovať upozornenie na kompiláciu PPU"
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_SK "Zobrazí upozornenie, keď sa kompilujú moduly PPU."
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_SK "Zobrazovať upozornenie na kompiláciu shaderov"
@@ -36455,6 +36867,14 @@ struct retro_core_option_v2_definition option_defs_sk[] = {
         { {"cross", OPTION_VAL_CROSS_SK}, {"circle", OPTION_VAL_CIRCLE_SK}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_SK, NULL,
+        RPCS3_USIO_MODE_INFO_0_SK,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_SK}, {"shooter", OPTION_VAL_SHOOTER_SK}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_SK, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_SK,
@@ -36866,6 +37286,10 @@ struct retro_core_options_v2 options_sk = {
 #define RPCS3_ENTER_BUTTON_INFO_0_SR NULL
 #define OPTION_VAL_CROSS_SR NULL
 #define OPTION_VAL_CIRCLE_SR NULL
+#define RPCS3_USIO_MODE_LABEL_SR NULL
+#define RPCS3_USIO_MODE_INFO_0_SR NULL
+#define OPTION_VAL_FIGHTING_SR NULL
+#define OPTION_VAL_SHOOTER_SR NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_SR NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_SR NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_SR NULL
@@ -37498,6 +37922,14 @@ struct retro_core_option_v2_definition option_defs_sr[] = {
         { {"cross", OPTION_VAL_CROSS_SR}, {"circle", OPTION_VAL_CIRCLE_SR}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_SR, NULL,
+        RPCS3_USIO_MODE_INFO_0_SR,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_SR}, {"shooter", OPTION_VAL_SHOOTER_SR}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_SR, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_SR,
@@ -37909,6 +38341,10 @@ struct retro_core_options_v2 options_sr = {
 #define RPCS3_ENTER_BUTTON_INFO_0_SV "Knapp som används för att bekräfta åtgärder."
 #define OPTION_VAL_CROSS_SV "Kryss (västerländsk)"
 #define OPTION_VAL_CIRCLE_SV "Cirkel (japansk)"
+#define RPCS3_USIO_MODE_LABEL_SV "USIO-läge för arkadspel"
+#define RPCS3_USIO_MODE_INFO_0_SV "För Namco System 357/369-arkadspelen: hur arkadkortets knappar läses av, vilket de två speltyperna gör på olika sätt. Fightingspel för Tekken, Dragon Ball Zenkai Battle och liknande, skjutspel för Deadstorm Pirates, Dark Escape och liknande, som siktas med en ljuspistol eller musen. Skjutspel använder RetroArchs portar 3 och 4 som spelare 1 och 2, så i det läget byter port 1 och 2 plats med port 3 och 4. Taiko no Tatsujin fungerar i båda. Ändringen träder i kraft direkt."
+#define OPTION_VAL_FIGHTING_SV "Fightingspel"
+#define OPTION_VAL_SHOOTER_SV "Skjutspel"
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_SV "Visa meddelande om PPU-kompilering"
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_SV "Visa ett meddelande när PPU-moduler kompileras."
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_SV "Visa meddelande om shaderkompilering"
@@ -38541,6 +38977,14 @@ struct retro_core_option_v2_definition option_defs_sv[] = {
         { {"cross", OPTION_VAL_CROSS_SV}, {"circle", OPTION_VAL_CIRCLE_SV}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_SV, NULL,
+        RPCS3_USIO_MODE_INFO_0_SV,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_SV}, {"shooter", OPTION_VAL_SHOOTER_SV}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_SV, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_SV,
@@ -38952,6 +39396,10 @@ struct retro_core_options_v2 options_sv = {
 #define RPCS3_ENTER_BUTTON_INFO_0_TH NULL
 #define OPTION_VAL_CROSS_TH NULL
 #define OPTION_VAL_CIRCLE_TH NULL
+#define RPCS3_USIO_MODE_LABEL_TH NULL
+#define RPCS3_USIO_MODE_INFO_0_TH NULL
+#define OPTION_VAL_FIGHTING_TH NULL
+#define OPTION_VAL_SHOOTER_TH NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_TH NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_TH NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_TH NULL
@@ -39584,6 +40032,14 @@ struct retro_core_option_v2_definition option_defs_th[] = {
         { {"cross", OPTION_VAL_CROSS_TH}, {"circle", OPTION_VAL_CIRCLE_TH}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_TH, NULL,
+        RPCS3_USIO_MODE_INFO_0_TH,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_TH}, {"shooter", OPTION_VAL_SHOOTER_TH}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_TH, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_TH,
@@ -39995,6 +40451,10 @@ struct retro_core_options_v2 options_th = {
 #define RPCS3_ENTER_BUTTON_INFO_0_TR NULL
 #define OPTION_VAL_CROSS_TR NULL
 #define OPTION_VAL_CIRCLE_TR NULL
+#define RPCS3_USIO_MODE_LABEL_TR NULL
+#define RPCS3_USIO_MODE_INFO_0_TR NULL
+#define OPTION_VAL_FIGHTING_TR NULL
+#define OPTION_VAL_SHOOTER_TR NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_TR NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_TR NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_TR NULL
@@ -40627,6 +41087,14 @@ struct retro_core_option_v2_definition option_defs_tr[] = {
         { {"cross", OPTION_VAL_CROSS_TR}, {"circle", OPTION_VAL_CIRCLE_TR}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_TR, NULL,
+        RPCS3_USIO_MODE_INFO_0_TR,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_TR}, {"shooter", OPTION_VAL_SHOOTER_TR}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_TR, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_TR,
@@ -41038,6 +41506,10 @@ struct retro_core_options_v2 options_tr = {
 #define RPCS3_ENTER_BUTTON_INFO_0_TT NULL
 #define OPTION_VAL_CROSS_TT NULL
 #define OPTION_VAL_CIRCLE_TT NULL
+#define RPCS3_USIO_MODE_LABEL_TT NULL
+#define RPCS3_USIO_MODE_INFO_0_TT NULL
+#define OPTION_VAL_FIGHTING_TT NULL
+#define OPTION_VAL_SHOOTER_TT NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_TT NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_TT NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_TT NULL
@@ -41670,6 +42142,14 @@ struct retro_core_option_v2_definition option_defs_tt[] = {
         { {"cross", OPTION_VAL_CROSS_TT}, {"circle", OPTION_VAL_CIRCLE_TT}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_TT, NULL,
+        RPCS3_USIO_MODE_INFO_0_TT,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_TT}, {"shooter", OPTION_VAL_SHOOTER_TT}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_TT, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_TT,
@@ -42081,6 +42561,10 @@ struct retro_core_options_v2 options_tt = {
 #define RPCS3_ENTER_BUTTON_INFO_0_UK NULL
 #define OPTION_VAL_CROSS_UK NULL
 #define OPTION_VAL_CIRCLE_UK NULL
+#define RPCS3_USIO_MODE_LABEL_UK NULL
+#define RPCS3_USIO_MODE_INFO_0_UK NULL
+#define OPTION_VAL_FIGHTING_UK NULL
+#define OPTION_VAL_SHOOTER_UK NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_UK NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_UK NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_UK NULL
@@ -42713,6 +43197,14 @@ struct retro_core_option_v2_definition option_defs_uk[] = {
         { {"cross", OPTION_VAL_CROSS_UK}, {"circle", OPTION_VAL_CIRCLE_UK}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_UK, NULL,
+        RPCS3_USIO_MODE_INFO_0_UK,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_UK}, {"shooter", OPTION_VAL_SHOOTER_UK}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_UK, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_UK,
@@ -43124,6 +43616,10 @@ struct retro_core_options_v2 options_uk = {
 #define RPCS3_ENTER_BUTTON_INFO_0_VAL NULL
 #define OPTION_VAL_CROSS_VAL NULL
 #define OPTION_VAL_CIRCLE_VAL NULL
+#define RPCS3_USIO_MODE_LABEL_VAL NULL
+#define RPCS3_USIO_MODE_INFO_0_VAL NULL
+#define OPTION_VAL_FIGHTING_VAL NULL
+#define OPTION_VAL_SHOOTER_VAL NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_VAL NULL
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_VAL NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_VAL NULL
@@ -43756,6 +44252,14 @@ struct retro_core_option_v2_definition option_defs_val[] = {
         { {"cross", OPTION_VAL_CROSS_VAL}, {"circle", OPTION_VAL_CIRCLE_VAL}, {NULL, NULL} },
         "cross"
     },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_VAL, NULL,
+        RPCS3_USIO_MODE_INFO_0_VAL,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_VAL}, {"shooter", OPTION_VAL_SHOOTER_VAL}, {NULL, NULL} },
+        "fighting"
+    },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_VAL, NULL,
         RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_VAL,
@@ -44167,6 +44671,10 @@ struct retro_core_options_v2 options_val = {
 #define RPCS3_ENTER_BUTTON_INFO_0_VN "Nút dùng để xác nhận thao tác."
 #define OPTION_VAL_CROSS_VN "Nút X (Phương Tây)"
 #define OPTION_VAL_CIRCLE_VN "Nút O (Nhật Bản)"
+#define RPCS3_USIO_MODE_LABEL_VN "Chế độ USIO máy thùng"
+#define RPCS3_USIO_MODE_INFO_0_VN "Dành cho các trò chơi máy thùng Namco System 357/369: cách đọc tín hiệu nút bấm của bo mạch máy thùng, vốn khác nhau giữa hai thể loại trò chơi. Chế độ trò chơi đối kháng dành cho Tekken, Dragon Ball Zenkai Battle và các trò chơi tương tự; chế độ trò chơi bắn súng dành cho Deadstorm Pirates, Dark Escape và các trò chơi tương tự, sử dụng súng quang hoặc chuột để ngắm bắn. Trò chơi bắn súng sử dụng cổng tay cầm 3 và 4 của RetroArch làm người chơi 1 và 2, vì vậy trong chế độ này, cổng 1-2 và 3-4 sẽ hoán đổi vị trí cho nhau. Taiko no Tatsujin hoạt động ở cả hai chế độ. Thay đổi thiết lập này có hiệu lực ngay lập tức."
+#define OPTION_VAL_FIGHTING_VN "Trò chơi đối kháng"
+#define OPTION_VAL_SHOOTER_VN "Trò chơi bắn súng"
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_VN "Hiển thị gợi ý biên dịch PPU"
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_VN "Hiển thị gợi ý khi các mô-đun PPU đang được biên dịch."
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_VN "Hiển thị gợi ý biên dịch bộ đổ bóng"
@@ -44798,6 +45306,14 @@ struct retro_core_option_v2_definition option_defs_vn[] = {
         NULL, "core",
         { {"cross", OPTION_VAL_CROSS_VN}, {"circle", OPTION_VAL_CIRCLE_VN}, {NULL, NULL} },
         "cross"
+    },
+    /* Default as standalone RPCS3: Fighting Games */
+    {
+        "rpcs3_usio_mode", RPCS3_USIO_MODE_LABEL_VN, NULL,
+        RPCS3_USIO_MODE_INFO_0_VN,
+        NULL, "core",
+        { {"fighting", OPTION_VAL_FIGHTING_VN}, {"shooter", OPTION_VAL_SHOOTER_VN}, {NULL, NULL} },
+        "fighting"
     },
     {
         "rpcs3_show_ppu_compilation_hint", RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_VN, NULL,
