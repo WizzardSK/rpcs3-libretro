@@ -2,9 +2,12 @@
 
 What changed in the libretro core of this fork, newest first. Changes that come with a merge of upstream RPCS3 are in upstream's own history; a merge is noted here with the upstream build it brought in.
 
-## Unreleased
+## November 2026
 
 - Namco System 357/369 arcade games: new option Core > Arcade USIO Mode, Fighting Games (default, as standalone) or Shooter Games, which the arcade board reads its buttons by. RetroArch's light guns, or the mouse RetroArch makes one of, are the PS3's mice now, one per port, which the shooters (Deadstorm Pirates, Dark Escape) aim with; the core used to have no mouse at all. In Shooter Games ports 1-2 and 3-4 trade places, as those games take the board's players 3 and 4 as their players 1 and 2, and the gun's trigger, second trigger and start reach the board as it expects. The controls list names what Select, L1, L2 and R2 are on the arcade board: Test, Card, Coin and Service. Not tried with an arcade game yet.
+
+## October 2026
+
 - Linux: content loaded again in the same RetroArch, after closing it, starts from scratch: the core was never really unloaded, so the second start ran on the first one's state and, with OpenGL, drew a flipped and broken picture. RPCS3's logging kept two buffers per thread whose destructors tied the core to the thread that used them until it ended, and RetroArch's main thread logs too and never ends; they are plain buffers now.
 - Linux, Android and macOS: a crash is no longer the core's to end. RPCS3's fault handlers (segfault, illegal instruction, broken pipe) are taken out when the core is unloaded and the ones there were before put back, as on Windows already; left in, a later crash anywhere in RetroArch jumped into code that was gone. A fault the core does not handle goes to the previous handler instead of ending RetroArch from inside the core, so the system's crash report (Android's tombstone) is written and names the fault (sco8487).
 - The firmware is found whatever the case of its name: a `PS3UPDAT.pup` was not installed on Linux and Android, where only `PS3UPDAT.PUP` was looked for (demifiend9).
@@ -25,9 +28,6 @@ What changed in the libretro core of this fork, newest first. Changes that come 
 - Frame Pacing is removed, option and code: the game's frames are timed by RPCS3's own clock, as in standalone. The other choice, one VBlank per frame RetroArch shows, added input lag and was better in no case tested.
 - Save Data Slot is removed: the game's save list is always shown in the picture. The core picks the first entry itself only when the list cannot be shown.
 - Default Resolution's tooltip warns against using it to upscale; Resolution Scale is for that.
-
-## October 2026
-
 ### Upstream
 
 - Merged up to upstream RPCS3 build 20243 (v0.0.43), after builds 20147 and 20149. The core reports upstream's version and build number, with this repository's commit after it, and logs both at start.
