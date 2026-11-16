@@ -2,7 +2,11 @@
 
 What changed in the libretro core of this fork, newest first. Changes that come with a merge of upstream RPCS3 are in upstream's own history; a merge is noted here with the upstream build it brought in.
 
-## Unreleased
+## November 2026
+
+- Namco System 357/369 arcade games: new option Core > Arcade USIO Mode, Fighting Games (default, as standalone) or Shooter Games, which the arcade board reads its buttons by. RetroArch's light guns, or the mouse RetroArch makes one of, are the PS3's mice now, one per port, which the shooters (Deadstorm Pirates, Dark Escape) aim with; the core used to have no mouse at all. In Shooter Games ports 1-2 and 3-4 trade places, as those games take the board's players 3 and 4 as their players 1 and 2, and the gun's trigger, second trigger and start reach the board as it expects. The controls list names what Select, L1, L2 and R2 are on the arcade board: Test, Card, Coin and Service. Not tried with an arcade game yet.
+
+## October 2026
 
 - L2 and R2 are analog where the pad and the frontend report how far a trigger is pressed: the game gets that as the buttons' pressure, as from a DualShock 3, where before they were all or nothing. A new option, Trigger Threshold (12% by default, standalone RPCS3's default for XInput pads), sets how far they must be pressed before the game sees them; past it the press is scaled up from nothing to full (SteveDoido, #3).
 - New options Stick Deadzone (25% by default) and Stick Anti-Deadzone (13%), with standalone RPCS3's defaults for SDL and XInput pads and applied as its pad handlers apply theirs: past the deadzone the stick's output starts at the anti-deadzone, so the slightest tilt gets past the deadzone a DualShock 3 game has itself, for finer steering in racing games; inside the deadzone the output is scaled down to below the anti-deadzone. The sticks went to the game as they came before; both at 0% keeps that. They apply to both sticks of every pad and take effect at once (SteveDoido, #3).
@@ -26,9 +30,6 @@ What changed in the libretro core of this fork, newest first. Changes that come 
 - Frame Pacing is removed, option and code: the game's frames are timed by RPCS3's own clock, as in standalone. The other choice, one VBlank per frame RetroArch shows, added input lag and was better in no case tested.
 - Save Data Slot is removed: the game's save list is always shown in the picture. The core picks the first entry itself only when the list cannot be shown.
 - Default Resolution's tooltip warns against using it to upscale; Resolution Scale is for that.
-
-## October 2026
-
 ### Upstream
 
 - Merged up to upstream RPCS3 build 20243 (v0.0.43), after builds 20147 and 20149. The core reports upstream's version and build number, with this repository's commit after it, and logs both at start.
