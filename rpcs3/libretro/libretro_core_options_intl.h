@@ -329,6 +329,17 @@ extern "C" {
 #define OPTION_VAL_STEREO_AR NULL
 #define OPTION_VAL_SURROUND_5_1_AR NULL
 #define OPTION_VAL_SURROUND_7_1_AR NULL
+#define RPCS3_STICK_DEADZONE_LABEL_AR NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_AR NULL
+#define OPTION_VAL_5_AR NULL
+#define OPTION_VAL_15_AR NULL
+#define OPTION_VAL_35_AR NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_AR NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_AR NULL
+#define OPTION_VAL_13_AR NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_AR NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_AR NULL
+#define OPTION_VAL_12_AR NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_AR NULL
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_AR NULL
 #define OPTION_VAL_UNLIMITED_AR NULL
@@ -969,6 +980,30 @@ struct retro_core_option_v2_definition option_defs_ar[] = {
         { {"stereo", OPTION_VAL_STEREO_AR}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_AR}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_AR}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_AR, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_AR,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_AR}, {"5", OPTION_VAL_5_AR}, {"10", OPTION_VAL_10_AR}, {"15", OPTION_VAL_15_AR}, {"20", OPTION_VAL_20_AR}, {"25", OPTION_VAL_25_AR}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_AR}, {"35", OPTION_VAL_35_AR}, {"40", OPTION_VAL_40_AR}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_AR, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_AR,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_AR}, {"5", OPTION_VAL_5_AR}, {"10", OPTION_VAL_10_AR}, {"13", OPTION_VAL_13_AR}, {"15", OPTION_VAL_15_AR}, {"20", OPTION_VAL_20_AR}, {"25", OPTION_VAL_25_AR}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_AR}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_AR, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_AR,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_AR}, {"5", OPTION_VAL_5_AR}, {"10", OPTION_VAL_10_AR}, {"12", OPTION_VAL_12_AR}, {"15", OPTION_VAL_15_AR}, {"20", OPTION_VAL_20_AR}, {"25", OPTION_VAL_25_AR}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_AR}, {"40", OPTION_VAL_40_AR}, {"50", OPTION_VAL_50_AR}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_AR, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_AR,
@@ -1164,7 +1199,7 @@ struct retro_core_options_v2 options_ar = {
 #define OPTION_VAL_OPENGL_AST NULL
 #define OPTION_VAL_VULKAN_AST NULL
 #define OPTION_VAL_NULL_AST NULL
-#define RPCS3_ASPECT_RATIO_LABEL_AST "Proporción del aspeutu"
+#define RPCS3_ASPECT_RATIO_LABEL_AST "Proporción d'aspeutu"
 #define RPCS3_ASPECT_RATIO_INFO_0_AST NULL
 #define OPTION_VAL_16_9_AST NULL
 #define OPTION_VAL_4_3_AST NULL
@@ -1384,13 +1419,24 @@ struct retro_core_options_v2 options_ar = {
 #define OPTION_VAL_STEREO_AST "Estéreu"
 #define OPTION_VAL_SURROUND_5_1_AST NULL
 #define OPTION_VAL_SURROUND_7_1_AST NULL
+#define RPCS3_STICK_DEADZONE_LABEL_AST NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_AST NULL
+#define OPTION_VAL_5_AST NULL
+#define OPTION_VAL_15_AST NULL
+#define OPTION_VAL_35_AST NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_AST NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_AST NULL
+#define OPTION_VAL_13_AST NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_AST NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_AST NULL
+#define OPTION_VAL_12_AST NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_AST NULL
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_AST NULL
 #define OPTION_VAL_UNLIMITED_AST NULL
 #define OPTION_VAL_1GB_AST NULL
 #define OPTION_VAL_5GB_AST NULL
 #define OPTION_VAL_WIPE_AST NULL
-#define RPCS3_LANGUAGE_LABEL_AST NULL
+#define RPCS3_LANGUAGE_LABEL_AST "Llingua del sistema"
 #define RPCS3_LANGUAGE_INFO_0_AST NULL
 #define OPTION_VAL_ENGLISH_AST "Inglés"
 #define OPTION_VAL_JAPANESE_AST "Xaponés"
@@ -1398,12 +1444,12 @@ struct retro_core_options_v2 options_ar = {
 #define OPTION_VAL_SPANISH_AST "Castellán"
 #define OPTION_VAL_GERMAN_AST "Alemán"
 #define OPTION_VAL_ITALIAN_AST "Italianu"
-#define OPTION_VAL_DUTCH_AST NULL
-#define OPTION_VAL_PORTUGUESE_AST NULL
-#define OPTION_VAL_RUSSIAN_AST NULL
-#define OPTION_VAL_KOREAN_AST NULL
-#define OPTION_VAL_CHINESE_TRAD_AST NULL
-#define OPTION_VAL_CHINESE_SIMP_AST NULL
+#define OPTION_VAL_DUTCH_AST "Neerlandés"
+#define OPTION_VAL_PORTUGUESE_AST "Portugués"
+#define OPTION_VAL_RUSSIAN_AST "Rusu"
+#define OPTION_VAL_KOREAN_AST "Coreanu"
+#define OPTION_VAL_CHINESE_TRAD_AST "Chinu tradicional"
+#define OPTION_VAL_CHINESE_SIMP_AST "Chinu simplificáu"
 #define RPCS3_LICENSE_AREA_LABEL_AST NULL
 #define RPCS3_LICENSE_AREA_INFO_0_AST NULL
 #define OPTION_VAL_USA_AST NULL
@@ -2024,6 +2070,30 @@ struct retro_core_option_v2_definition option_defs_ast[] = {
         { {"stereo", OPTION_VAL_STEREO_AST}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_AST}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_AST}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_AST, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_AST,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_AST}, {"5", OPTION_VAL_5_AST}, {"10", OPTION_VAL_10_AST}, {"15", OPTION_VAL_15_AST}, {"20", OPTION_VAL_20_AST}, {"25", OPTION_VAL_25_AST}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_AST}, {"35", OPTION_VAL_35_AST}, {"40", OPTION_VAL_40_AST}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_AST, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_AST,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_AST}, {"5", OPTION_VAL_5_AST}, {"10", OPTION_VAL_10_AST}, {"13", OPTION_VAL_13_AST}, {"15", OPTION_VAL_15_AST}, {"20", OPTION_VAL_20_AST}, {"25", OPTION_VAL_25_AST}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_AST}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_AST, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_AST,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_AST}, {"5", OPTION_VAL_5_AST}, {"10", OPTION_VAL_10_AST}, {"12", OPTION_VAL_12_AST}, {"15", OPTION_VAL_15_AST}, {"20", OPTION_VAL_20_AST}, {"25", OPTION_VAL_25_AST}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_AST}, {"40", OPTION_VAL_40_AST}, {"50", OPTION_VAL_50_AST}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_AST, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_AST,
@@ -2439,6 +2509,17 @@ struct retro_core_options_v2 options_ast = {
 #define OPTION_VAL_STEREO_BE "Стэрэа"
 #define OPTION_VAL_SURROUND_5_1_BE NULL
 #define OPTION_VAL_SURROUND_7_1_BE NULL
+#define RPCS3_STICK_DEADZONE_LABEL_BE NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_BE NULL
+#define OPTION_VAL_5_BE NULL
+#define OPTION_VAL_15_BE "15 %"
+#define OPTION_VAL_35_BE "35 %"
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_BE NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_BE NULL
+#define OPTION_VAL_13_BE NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_BE NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_BE NULL
+#define OPTION_VAL_12_BE NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_BE NULL
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_BE NULL
 #define OPTION_VAL_UNLIMITED_BE NULL
@@ -3079,6 +3160,30 @@ struct retro_core_option_v2_definition option_defs_be[] = {
         { {"stereo", OPTION_VAL_STEREO_BE}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_BE}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_BE}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_BE, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_BE,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_BE}, {"5", OPTION_VAL_5_BE}, {"10", OPTION_VAL_10_BE}, {"15", OPTION_VAL_15_BE}, {"20", OPTION_VAL_20_BE}, {"25", OPTION_VAL_25_BE}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_BE}, {"35", OPTION_VAL_35_BE}, {"40", OPTION_VAL_40_BE}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_BE, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_BE,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_BE}, {"5", OPTION_VAL_5_BE}, {"10", OPTION_VAL_10_BE}, {"13", OPTION_VAL_13_BE}, {"15", OPTION_VAL_15_BE}, {"20", OPTION_VAL_20_BE}, {"25", OPTION_VAL_25_BE}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_BE}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_BE, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_BE,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_BE}, {"5", OPTION_VAL_5_BE}, {"10", OPTION_VAL_10_BE}, {"12", OPTION_VAL_12_BE}, {"15", OPTION_VAL_15_BE}, {"20", OPTION_VAL_20_BE}, {"25", OPTION_VAL_25_BE}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_BE}, {"40", OPTION_VAL_40_BE}, {"50", OPTION_VAL_50_BE}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_BE, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_BE,
@@ -3494,6 +3599,17 @@ struct retro_core_options_v2 options_be = {
 #define OPTION_VAL_STEREO_BG NULL
 #define OPTION_VAL_SURROUND_5_1_BG NULL
 #define OPTION_VAL_SURROUND_7_1_BG NULL
+#define RPCS3_STICK_DEADZONE_LABEL_BG NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_BG NULL
+#define OPTION_VAL_5_BG NULL
+#define OPTION_VAL_15_BG NULL
+#define OPTION_VAL_35_BG NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_BG NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_BG NULL
+#define OPTION_VAL_13_BG NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_BG NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_BG NULL
+#define OPTION_VAL_12_BG NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_BG NULL
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_BG NULL
 #define OPTION_VAL_UNLIMITED_BG NULL
@@ -4134,6 +4250,30 @@ struct retro_core_option_v2_definition option_defs_bg[] = {
         { {"stereo", OPTION_VAL_STEREO_BG}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_BG}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_BG}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_BG, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_BG,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_BG}, {"5", OPTION_VAL_5_BG}, {"10", OPTION_VAL_10_BG}, {"15", OPTION_VAL_15_BG}, {"20", OPTION_VAL_20_BG}, {"25", OPTION_VAL_25_BG}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_BG}, {"35", OPTION_VAL_35_BG}, {"40", OPTION_VAL_40_BG}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_BG, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_BG,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_BG}, {"5", OPTION_VAL_5_BG}, {"10", OPTION_VAL_10_BG}, {"13", OPTION_VAL_13_BG}, {"15", OPTION_VAL_15_BG}, {"20", OPTION_VAL_20_BG}, {"25", OPTION_VAL_25_BG}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_BG}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_BG, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_BG,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_BG}, {"5", OPTION_VAL_5_BG}, {"10", OPTION_VAL_10_BG}, {"12", OPTION_VAL_12_BG}, {"15", OPTION_VAL_15_BG}, {"20", OPTION_VAL_20_BG}, {"25", OPTION_VAL_25_BG}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_BG}, {"40", OPTION_VAL_40_BG}, {"50", OPTION_VAL_50_BG}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_BG, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_BG,
@@ -4549,6 +4689,17 @@ struct retro_core_options_v2 options_bg = {
 #define OPTION_VAL_STEREO_CA "Estèreo"
 #define OPTION_VAL_SURROUND_5_1_CA NULL
 #define OPTION_VAL_SURROUND_7_1_CA NULL
+#define RPCS3_STICK_DEADZONE_LABEL_CA NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_CA NULL
+#define OPTION_VAL_5_CA NULL
+#define OPTION_VAL_15_CA NULL
+#define OPTION_VAL_35_CA NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_CA NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_CA NULL
+#define OPTION_VAL_13_CA NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_CA NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_CA NULL
+#define OPTION_VAL_12_CA NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_CA "Mida de la memòria cau al disc"
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_CA "Limita la memòria cau que els jocs emmagatzemen a `dev_hdd1`, la qual, en cas contrari, no pararia de créixer. En establir una mida límit, les memòries cau més antigues s'eliminen en carregar o tancar un joc, fins que la resta hi càpiga. L'opció «Esborrar en sortir» (*Wipe on Exit*) ho elimina tot en tancar un joc, tal com fa una PS3 quan s'apaga. Si s'elimina una memòria cau, el joc corresponent la tornarà a generar, fet que pot fer que la següent vegada que s'iniciï aquest joc vagi més lent."
 #define OPTION_VAL_UNLIMITED_CA "Sense límit"
@@ -5189,6 +5340,30 @@ struct retro_core_option_v2_definition option_defs_ca[] = {
         { {"stereo", OPTION_VAL_STEREO_CA}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_CA}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_CA}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_CA, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_CA,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_CA}, {"5", OPTION_VAL_5_CA}, {"10", OPTION_VAL_10_CA}, {"15", OPTION_VAL_15_CA}, {"20", OPTION_VAL_20_CA}, {"25", OPTION_VAL_25_CA}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_CA}, {"35", OPTION_VAL_35_CA}, {"40", OPTION_VAL_40_CA}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_CA, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_CA,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_CA}, {"5", OPTION_VAL_5_CA}, {"10", OPTION_VAL_10_CA}, {"13", OPTION_VAL_13_CA}, {"15", OPTION_VAL_15_CA}, {"20", OPTION_VAL_20_CA}, {"25", OPTION_VAL_25_CA}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_CA}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_CA, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_CA,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_CA}, {"5", OPTION_VAL_5_CA}, {"10", OPTION_VAL_10_CA}, {"12", OPTION_VAL_12_CA}, {"15", OPTION_VAL_15_CA}, {"20", OPTION_VAL_20_CA}, {"25", OPTION_VAL_25_CA}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_CA}, {"40", OPTION_VAL_40_CA}, {"50", OPTION_VAL_50_CA}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_CA, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_CA,
@@ -5604,6 +5779,17 @@ struct retro_core_options_v2 options_ca = {
 #define OPTION_VAL_STEREO_CHS "立体声"
 #define OPTION_VAL_SURROUND_5_1_CHS "环绕声5.1"
 #define OPTION_VAL_SURROUND_7_1_CHS "7.1 环绕声"
+#define RPCS3_STICK_DEADZONE_LABEL_CHS NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_CHS NULL
+#define OPTION_VAL_5_CHS NULL
+#define OPTION_VAL_15_CHS NULL
+#define OPTION_VAL_35_CHS NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_CHS NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_CHS NULL
+#define OPTION_VAL_13_CHS NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_CHS NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_CHS NULL
+#define OPTION_VAL_12_CHS NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_CHS "磁盘缓存容量上限"
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_CHS "限制游戏在 dev_hdd1 虚拟硬盘上保留的缓存大小（否则缓存会无限制增长）。设定限制后，在加载或关闭游戏时系统会自动删除最久未使用的缓存，直到占用空间符合设定值。“退出时清空”则会在游戏关闭时清除所有缓存（如同 PS3 关机时的行为）。被删除的缓存在游戏下次运行时会重新生成，这可能会导致该游戏下一次启动变慢。"
 #define OPTION_VAL_UNLIMITED_CHS "无限制"
@@ -6244,6 +6430,30 @@ struct retro_core_option_v2_definition option_defs_chs[] = {
         { {"stereo", OPTION_VAL_STEREO_CHS}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_CHS}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_CHS}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_CHS, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_CHS,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_CHS}, {"5", OPTION_VAL_5_CHS}, {"10", OPTION_VAL_10_CHS}, {"15", OPTION_VAL_15_CHS}, {"20", OPTION_VAL_20_CHS}, {"25", OPTION_VAL_25_CHS}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_CHS}, {"35", OPTION_VAL_35_CHS}, {"40", OPTION_VAL_40_CHS}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_CHS, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_CHS,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_CHS}, {"5", OPTION_VAL_5_CHS}, {"10", OPTION_VAL_10_CHS}, {"13", OPTION_VAL_13_CHS}, {"15", OPTION_VAL_15_CHS}, {"20", OPTION_VAL_20_CHS}, {"25", OPTION_VAL_25_CHS}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_CHS}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_CHS, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_CHS,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_CHS}, {"5", OPTION_VAL_5_CHS}, {"10", OPTION_VAL_10_CHS}, {"12", OPTION_VAL_12_CHS}, {"15", OPTION_VAL_15_CHS}, {"20", OPTION_VAL_20_CHS}, {"25", OPTION_VAL_25_CHS}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_CHS}, {"40", OPTION_VAL_40_CHS}, {"50", OPTION_VAL_50_CHS}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_CHS, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_CHS,
@@ -6659,6 +6869,17 @@ struct retro_core_options_v2 options_chs = {
 #define OPTION_VAL_STEREO_CHT "立體聲"
 #define OPTION_VAL_SURROUND_5_1_CHT NULL
 #define OPTION_VAL_SURROUND_7_1_CHT NULL
+#define RPCS3_STICK_DEADZONE_LABEL_CHT NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_CHT NULL
+#define OPTION_VAL_5_CHT NULL
+#define OPTION_VAL_15_CHT NULL
+#define OPTION_VAL_35_CHT NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_CHT NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_CHT NULL
+#define OPTION_VAL_13_CHT NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_CHT NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_CHT NULL
+#define OPTION_VAL_12_CHT NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_CHT NULL
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_CHT NULL
 #define OPTION_VAL_UNLIMITED_CHT NULL
@@ -7299,6 +7520,30 @@ struct retro_core_option_v2_definition option_defs_cht[] = {
         { {"stereo", OPTION_VAL_STEREO_CHT}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_CHT}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_CHT}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_CHT, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_CHT,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_CHT}, {"5", OPTION_VAL_5_CHT}, {"10", OPTION_VAL_10_CHT}, {"15", OPTION_VAL_15_CHT}, {"20", OPTION_VAL_20_CHT}, {"25", OPTION_VAL_25_CHT}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_CHT}, {"35", OPTION_VAL_35_CHT}, {"40", OPTION_VAL_40_CHT}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_CHT, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_CHT,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_CHT}, {"5", OPTION_VAL_5_CHT}, {"10", OPTION_VAL_10_CHT}, {"13", OPTION_VAL_13_CHT}, {"15", OPTION_VAL_15_CHT}, {"20", OPTION_VAL_20_CHT}, {"25", OPTION_VAL_25_CHT}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_CHT}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_CHT, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_CHT,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_CHT}, {"5", OPTION_VAL_5_CHT}, {"10", OPTION_VAL_10_CHT}, {"12", OPTION_VAL_12_CHT}, {"15", OPTION_VAL_15_CHT}, {"20", OPTION_VAL_20_CHT}, {"25", OPTION_VAL_25_CHT}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_CHT}, {"40", OPTION_VAL_40_CHT}, {"50", OPTION_VAL_50_CHT}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_CHT, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_CHT,
@@ -7714,6 +7959,17 @@ struct retro_core_options_v2 options_cht = {
 #define OPTION_VAL_STEREO_CS NULL
 #define OPTION_VAL_SURROUND_5_1_CS NULL
 #define OPTION_VAL_SURROUND_7_1_CS NULL
+#define RPCS3_STICK_DEADZONE_LABEL_CS NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_CS NULL
+#define OPTION_VAL_5_CS NULL
+#define OPTION_VAL_15_CS NULL
+#define OPTION_VAL_35_CS NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_CS NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_CS NULL
+#define OPTION_VAL_13_CS NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_CS NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_CS NULL
+#define OPTION_VAL_12_CS NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_CS NULL
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_CS NULL
 #define OPTION_VAL_UNLIMITED_CS NULL
@@ -8354,6 +8610,30 @@ struct retro_core_option_v2_definition option_defs_cs[] = {
         { {"stereo", OPTION_VAL_STEREO_CS}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_CS}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_CS}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_CS, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_CS,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_CS}, {"5", OPTION_VAL_5_CS}, {"10", OPTION_VAL_10_CS}, {"15", OPTION_VAL_15_CS}, {"20", OPTION_VAL_20_CS}, {"25", OPTION_VAL_25_CS}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_CS}, {"35", OPTION_VAL_35_CS}, {"40", OPTION_VAL_40_CS}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_CS, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_CS,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_CS}, {"5", OPTION_VAL_5_CS}, {"10", OPTION_VAL_10_CS}, {"13", OPTION_VAL_13_CS}, {"15", OPTION_VAL_15_CS}, {"20", OPTION_VAL_20_CS}, {"25", OPTION_VAL_25_CS}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_CS}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_CS, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_CS,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_CS}, {"5", OPTION_VAL_5_CS}, {"10", OPTION_VAL_10_CS}, {"12", OPTION_VAL_12_CS}, {"15", OPTION_VAL_15_CS}, {"20", OPTION_VAL_20_CS}, {"25", OPTION_VAL_25_CS}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_CS}, {"40", OPTION_VAL_40_CS}, {"50", OPTION_VAL_50_CS}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_CS, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_CS,
@@ -8769,6 +9049,17 @@ struct retro_core_options_v2 options_cs = {
 #define OPTION_VAL_STEREO_CY NULL
 #define OPTION_VAL_SURROUND_5_1_CY NULL
 #define OPTION_VAL_SURROUND_7_1_CY NULL
+#define RPCS3_STICK_DEADZONE_LABEL_CY NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_CY NULL
+#define OPTION_VAL_5_CY NULL
+#define OPTION_VAL_15_CY NULL
+#define OPTION_VAL_35_CY NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_CY NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_CY NULL
+#define OPTION_VAL_13_CY NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_CY NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_CY NULL
+#define OPTION_VAL_12_CY NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_CY NULL
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_CY NULL
 #define OPTION_VAL_UNLIMITED_CY NULL
@@ -9409,6 +9700,30 @@ struct retro_core_option_v2_definition option_defs_cy[] = {
         { {"stereo", OPTION_VAL_STEREO_CY}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_CY}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_CY}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_CY, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_CY,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_CY}, {"5", OPTION_VAL_5_CY}, {"10", OPTION_VAL_10_CY}, {"15", OPTION_VAL_15_CY}, {"20", OPTION_VAL_20_CY}, {"25", OPTION_VAL_25_CY}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_CY}, {"35", OPTION_VAL_35_CY}, {"40", OPTION_VAL_40_CY}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_CY, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_CY,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_CY}, {"5", OPTION_VAL_5_CY}, {"10", OPTION_VAL_10_CY}, {"13", OPTION_VAL_13_CY}, {"15", OPTION_VAL_15_CY}, {"20", OPTION_VAL_20_CY}, {"25", OPTION_VAL_25_CY}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_CY}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_CY, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_CY,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_CY}, {"5", OPTION_VAL_5_CY}, {"10", OPTION_VAL_10_CY}, {"12", OPTION_VAL_12_CY}, {"15", OPTION_VAL_15_CY}, {"20", OPTION_VAL_20_CY}, {"25", OPTION_VAL_25_CY}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_CY}, {"40", OPTION_VAL_40_CY}, {"50", OPTION_VAL_50_CY}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_CY, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_CY,
@@ -9824,6 +10139,17 @@ struct retro_core_options_v2 options_cy = {
 #define OPTION_VAL_STEREO_DA NULL
 #define OPTION_VAL_SURROUND_5_1_DA NULL
 #define OPTION_VAL_SURROUND_7_1_DA NULL
+#define RPCS3_STICK_DEADZONE_LABEL_DA NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_DA NULL
+#define OPTION_VAL_5_DA NULL
+#define OPTION_VAL_15_DA NULL
+#define OPTION_VAL_35_DA NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_DA NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_DA NULL
+#define OPTION_VAL_13_DA NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_DA NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_DA NULL
+#define OPTION_VAL_12_DA NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_DA NULL
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_DA NULL
 #define OPTION_VAL_UNLIMITED_DA NULL
@@ -10464,6 +10790,30 @@ struct retro_core_option_v2_definition option_defs_da[] = {
         { {"stereo", OPTION_VAL_STEREO_DA}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_DA}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_DA}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_DA, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_DA,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_DA}, {"5", OPTION_VAL_5_DA}, {"10", OPTION_VAL_10_DA}, {"15", OPTION_VAL_15_DA}, {"20", OPTION_VAL_20_DA}, {"25", OPTION_VAL_25_DA}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_DA}, {"35", OPTION_VAL_35_DA}, {"40", OPTION_VAL_40_DA}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_DA, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_DA,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_DA}, {"5", OPTION_VAL_5_DA}, {"10", OPTION_VAL_10_DA}, {"13", OPTION_VAL_13_DA}, {"15", OPTION_VAL_15_DA}, {"20", OPTION_VAL_20_DA}, {"25", OPTION_VAL_25_DA}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_DA}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_DA, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_DA,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_DA}, {"5", OPTION_VAL_5_DA}, {"10", OPTION_VAL_10_DA}, {"12", OPTION_VAL_12_DA}, {"15", OPTION_VAL_15_DA}, {"20", OPTION_VAL_20_DA}, {"25", OPTION_VAL_25_DA}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_DA}, {"40", OPTION_VAL_40_DA}, {"50", OPTION_VAL_50_DA}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_DA, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_DA,
@@ -10879,6 +11229,17 @@ struct retro_core_options_v2 options_da = {
 #define OPTION_VAL_STEREO_DE NULL
 #define OPTION_VAL_SURROUND_5_1_DE NULL
 #define OPTION_VAL_SURROUND_7_1_DE NULL
+#define RPCS3_STICK_DEADZONE_LABEL_DE NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_DE NULL
+#define OPTION_VAL_5_DE "5 %"
+#define OPTION_VAL_15_DE "15 %"
+#define OPTION_VAL_35_DE "35 %"
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_DE NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_DE NULL
+#define OPTION_VAL_13_DE "13 %"
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_DE NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_DE NULL
+#define OPTION_VAL_12_DE "12 %"
 #define RPCS3_DISK_CACHE_SIZE_LABEL_DE "Größe des Festplattencaches"
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_DE "Begrenzt den Cache, den Spiele auf dev_hdd1 speichern und der sonst unbegrenzt wächst. Bei festgelegter Größe werden beim Laden oder Schließen eines Spiels die am längsten nicht verwendeten Spiel-Caches gelöscht, bis der verbleibende Cache in die Größenbegrenzung passt. Beim Beenden löschen entfernt den gesamten Cache, wenn ein Spiel geschlossen wird – wie bei einer PS3, wenn sie ausgeschaltet wird. Ein gelöschter Cache wird vom jeweiligen Spiel neu erstellt, wodurch der nächste Start dieses Spiels länger dauern kann."
 #define OPTION_VAL_UNLIMITED_DE "Unbegrenzt"
@@ -11519,6 +11880,30 @@ struct retro_core_option_v2_definition option_defs_de[] = {
         { {"stereo", OPTION_VAL_STEREO_DE}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_DE}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_DE}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_DE, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_DE,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_DE}, {"5", OPTION_VAL_5_DE}, {"10", OPTION_VAL_10_DE}, {"15", OPTION_VAL_15_DE}, {"20", OPTION_VAL_20_DE}, {"25", OPTION_VAL_25_DE}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_DE}, {"35", OPTION_VAL_35_DE}, {"40", OPTION_VAL_40_DE}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_DE, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_DE,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_DE}, {"5", OPTION_VAL_5_DE}, {"10", OPTION_VAL_10_DE}, {"13", OPTION_VAL_13_DE}, {"15", OPTION_VAL_15_DE}, {"20", OPTION_VAL_20_DE}, {"25", OPTION_VAL_25_DE}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_DE}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_DE, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_DE,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_DE}, {"5", OPTION_VAL_5_DE}, {"10", OPTION_VAL_10_DE}, {"12", OPTION_VAL_12_DE}, {"15", OPTION_VAL_15_DE}, {"20", OPTION_VAL_20_DE}, {"25", OPTION_VAL_25_DE}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_DE}, {"40", OPTION_VAL_40_DE}, {"50", OPTION_VAL_50_DE}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_DE, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_DE,
@@ -11934,6 +12319,17 @@ struct retro_core_options_v2 options_de = {
 #define OPTION_VAL_STEREO_EL NULL
 #define OPTION_VAL_SURROUND_5_1_EL NULL
 #define OPTION_VAL_SURROUND_7_1_EL NULL
+#define RPCS3_STICK_DEADZONE_LABEL_EL NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_EL NULL
+#define OPTION_VAL_5_EL NULL
+#define OPTION_VAL_15_EL NULL
+#define OPTION_VAL_35_EL NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_EL NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_EL NULL
+#define OPTION_VAL_13_EL NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_EL NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_EL NULL
+#define OPTION_VAL_12_EL NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_EL NULL
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_EL NULL
 #define OPTION_VAL_UNLIMITED_EL NULL
@@ -12574,6 +12970,30 @@ struct retro_core_option_v2_definition option_defs_el[] = {
         { {"stereo", OPTION_VAL_STEREO_EL}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_EL}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_EL}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_EL, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_EL,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_EL}, {"5", OPTION_VAL_5_EL}, {"10", OPTION_VAL_10_EL}, {"15", OPTION_VAL_15_EL}, {"20", OPTION_VAL_20_EL}, {"25", OPTION_VAL_25_EL}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_EL}, {"35", OPTION_VAL_35_EL}, {"40", OPTION_VAL_40_EL}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_EL, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_EL,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_EL}, {"5", OPTION_VAL_5_EL}, {"10", OPTION_VAL_10_EL}, {"13", OPTION_VAL_13_EL}, {"15", OPTION_VAL_15_EL}, {"20", OPTION_VAL_20_EL}, {"25", OPTION_VAL_25_EL}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_EL}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_EL, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_EL,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_EL}, {"5", OPTION_VAL_5_EL}, {"10", OPTION_VAL_10_EL}, {"12", OPTION_VAL_12_EL}, {"15", OPTION_VAL_15_EL}, {"20", OPTION_VAL_20_EL}, {"25", OPTION_VAL_25_EL}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_EL}, {"40", OPTION_VAL_40_EL}, {"50", OPTION_VAL_50_EL}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_EL, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_EL,
@@ -12989,6 +13409,17 @@ struct retro_core_options_v2 options_el = {
 #define OPTION_VAL_STEREO_EN NULL
 #define OPTION_VAL_SURROUND_5_1_EN NULL
 #define OPTION_VAL_SURROUND_7_1_EN NULL
+#define RPCS3_STICK_DEADZONE_LABEL_EN NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_EN NULL
+#define OPTION_VAL_5_EN NULL
+#define OPTION_VAL_15_EN NULL
+#define OPTION_VAL_35_EN NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_EN NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_EN NULL
+#define OPTION_VAL_13_EN NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_EN NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_EN NULL
+#define OPTION_VAL_12_EN NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_EN NULL
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_EN NULL
 #define OPTION_VAL_UNLIMITED_EN NULL
@@ -13629,6 +14060,30 @@ struct retro_core_option_v2_definition option_defs_en[] = {
         { {"stereo", OPTION_VAL_STEREO_EN}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_EN}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_EN}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_EN, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_EN,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_EN}, {"5", OPTION_VAL_5_EN}, {"10", OPTION_VAL_10_EN}, {"15", OPTION_VAL_15_EN}, {"20", OPTION_VAL_20_EN}, {"25", OPTION_VAL_25_EN}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_EN}, {"35", OPTION_VAL_35_EN}, {"40", OPTION_VAL_40_EN}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_EN, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_EN,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_EN}, {"5", OPTION_VAL_5_EN}, {"10", OPTION_VAL_10_EN}, {"13", OPTION_VAL_13_EN}, {"15", OPTION_VAL_15_EN}, {"20", OPTION_VAL_20_EN}, {"25", OPTION_VAL_25_EN}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_EN}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_EN, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_EN,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_EN}, {"5", OPTION_VAL_5_EN}, {"10", OPTION_VAL_10_EN}, {"12", OPTION_VAL_12_EN}, {"15", OPTION_VAL_15_EN}, {"20", OPTION_VAL_20_EN}, {"25", OPTION_VAL_25_EN}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_EN}, {"40", OPTION_VAL_40_EN}, {"50", OPTION_VAL_50_EN}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_EN, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_EN,
@@ -14044,6 +14499,17 @@ struct retro_core_options_v2 options_en = {
 #define OPTION_VAL_STEREO_EO "Dukanala"
 #define OPTION_VAL_SURROUND_5_1_EO NULL
 #define OPTION_VAL_SURROUND_7_1_EO NULL
+#define RPCS3_STICK_DEADZONE_LABEL_EO NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_EO NULL
+#define OPTION_VAL_5_EO NULL
+#define OPTION_VAL_15_EO NULL
+#define OPTION_VAL_35_EO NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_EO NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_EO NULL
+#define OPTION_VAL_13_EO NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_EO NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_EO NULL
+#define OPTION_VAL_12_EO NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_EO NULL
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_EO NULL
 #define OPTION_VAL_UNLIMITED_EO NULL
@@ -14684,6 +15150,30 @@ struct retro_core_option_v2_definition option_defs_eo[] = {
         { {"stereo", OPTION_VAL_STEREO_EO}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_EO}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_EO}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_EO, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_EO,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_EO}, {"5", OPTION_VAL_5_EO}, {"10", OPTION_VAL_10_EO}, {"15", OPTION_VAL_15_EO}, {"20", OPTION_VAL_20_EO}, {"25", OPTION_VAL_25_EO}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_EO}, {"35", OPTION_VAL_35_EO}, {"40", OPTION_VAL_40_EO}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_EO, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_EO,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_EO}, {"5", OPTION_VAL_5_EO}, {"10", OPTION_VAL_10_EO}, {"13", OPTION_VAL_13_EO}, {"15", OPTION_VAL_15_EO}, {"20", OPTION_VAL_20_EO}, {"25", OPTION_VAL_25_EO}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_EO}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_EO, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_EO,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_EO}, {"5", OPTION_VAL_5_EO}, {"10", OPTION_VAL_10_EO}, {"12", OPTION_VAL_12_EO}, {"15", OPTION_VAL_15_EO}, {"20", OPTION_VAL_20_EO}, {"25", OPTION_VAL_25_EO}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_EO}, {"40", OPTION_VAL_40_EO}, {"50", OPTION_VAL_50_EO}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_EO, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_EO,
@@ -15099,6 +15589,17 @@ struct retro_core_options_v2 options_eo = {
 #define OPTION_VAL_STEREO_ES "Estéreo"
 #define OPTION_VAL_SURROUND_5_1_ES "5.1 Surround"
 #define OPTION_VAL_SURROUND_7_1_ES "7.1 Surround"
+#define RPCS3_STICK_DEADZONE_LABEL_ES "Zona muerta de sticks"
+#define RPCS3_STICK_DEADZONE_INFO_0_ES "Indica la distancia que puede recorrer un stick antes de que el juego reconozca su movimiento. Una vez dentro, la señal del stick se escalará hacia la antizona muerta del stick en vez de omitirla, de esta forma, si un stick tiene algo de \"drifting\" (se mueve solo) y no lo mueves, se mantendrá en el centro. Esta opción se aplica a ambos sticks de todos los mandos, la zona muerta analógica de RetroArch se aplicará antes de que esta opción."
+#define OPTION_VAL_5_ES "5 %"
+#define OPTION_VAL_15_ES "15 %"
+#define OPTION_VAL_35_ES "35 %"
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_ES "Antizona muerta de sticks"
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_ES "Indica dónde comenzará la posición del stick una vez se haya movido más allá de su zona muerta. Los juegos pensados para DualShock 3 ignoran los movimientos leves, tienen una zona muerta para el mando para el que están diseñados, al empezar más allá de la zona hará que el más mínimo movimiento empiece a contar, ideal para una mayor precisión en los juegos de conducción. 0 % conservará la zona muerta del propio juego. Si la zona muerta de un stick es del 0 %, un stick que tenga \"drifting\" moverá el juego sin que lo toques."
+#define OPTION_VAL_13_ES "13 %"
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_ES "Umbral de gatillos"
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_ES "Indica hasta qué punto hay que presionar los gatillos L2 y R2 para que los reconozca el juego, a partir de ese punto, la pulsación se escalará del 0 al 100 %. Con un mando y un front-end que declaren la distancia que haya recorrido un gatillo (con gatillos analógicos), el juego recibirá ese valor como la presión del botón, en caso contrario, L2 y R2 recibirán toda la presión o ninguna. Selecciona 0 % para transmitir el recorrido completo de los gatillos."
+#define OPTION_VAL_12_ES "12 %"
 #define RPCS3_DISK_CACHE_SIZE_LABEL_ES "Tamaño de caché en disco"
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_ES "Limita la caché que almacenan los juegos en dev_hdd1 para evitar que no pare de crecer. Si estableces un tamaño, se eliminarán las cachés más antiguas al cargar o cerrar un juego hasta que ocupen menos del límite. Borrar al salir eliminará toda la caché al cerrar un juego, como haría un sistema PS3 al apagarse. Los juegos volverán a generar sus cachés borradas, cosa que podría ralentizar su siguiente arranque."
 #define OPTION_VAL_UNLIMITED_ES "Ilimitado"
@@ -15739,6 +16240,30 @@ struct retro_core_option_v2_definition option_defs_es[] = {
         { {"stereo", OPTION_VAL_STEREO_ES}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_ES}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_ES}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_ES, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_ES,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_ES}, {"5", OPTION_VAL_5_ES}, {"10", OPTION_VAL_10_ES}, {"15", OPTION_VAL_15_ES}, {"20", OPTION_VAL_20_ES}, {"25", OPTION_VAL_25_ES}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_ES}, {"35", OPTION_VAL_35_ES}, {"40", OPTION_VAL_40_ES}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_ES, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_ES,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_ES}, {"5", OPTION_VAL_5_ES}, {"10", OPTION_VAL_10_ES}, {"13", OPTION_VAL_13_ES}, {"15", OPTION_VAL_15_ES}, {"20", OPTION_VAL_20_ES}, {"25", OPTION_VAL_25_ES}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_ES}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_ES, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_ES,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_ES}, {"5", OPTION_VAL_5_ES}, {"10", OPTION_VAL_10_ES}, {"12", OPTION_VAL_12_ES}, {"15", OPTION_VAL_15_ES}, {"20", OPTION_VAL_20_ES}, {"25", OPTION_VAL_25_ES}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_ES}, {"40", OPTION_VAL_40_ES}, {"50", OPTION_VAL_50_ES}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_ES, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_ES,
@@ -16154,6 +16679,17 @@ struct retro_core_options_v2 options_es = {
 #define OPTION_VAL_STEREO_FA NULL
 #define OPTION_VAL_SURROUND_5_1_FA NULL
 #define OPTION_VAL_SURROUND_7_1_FA NULL
+#define RPCS3_STICK_DEADZONE_LABEL_FA NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_FA NULL
+#define OPTION_VAL_5_FA NULL
+#define OPTION_VAL_15_FA NULL
+#define OPTION_VAL_35_FA NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_FA NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_FA NULL
+#define OPTION_VAL_13_FA NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_FA NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_FA NULL
+#define OPTION_VAL_12_FA NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_FA NULL
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_FA NULL
 #define OPTION_VAL_UNLIMITED_FA NULL
@@ -16794,6 +17330,30 @@ struct retro_core_option_v2_definition option_defs_fa[] = {
         { {"stereo", OPTION_VAL_STEREO_FA}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_FA}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_FA}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_FA, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_FA,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_FA}, {"5", OPTION_VAL_5_FA}, {"10", OPTION_VAL_10_FA}, {"15", OPTION_VAL_15_FA}, {"20", OPTION_VAL_20_FA}, {"25", OPTION_VAL_25_FA}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_FA}, {"35", OPTION_VAL_35_FA}, {"40", OPTION_VAL_40_FA}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_FA, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_FA,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_FA}, {"5", OPTION_VAL_5_FA}, {"10", OPTION_VAL_10_FA}, {"13", OPTION_VAL_13_FA}, {"15", OPTION_VAL_15_FA}, {"20", OPTION_VAL_20_FA}, {"25", OPTION_VAL_25_FA}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_FA}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_FA, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_FA,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_FA}, {"5", OPTION_VAL_5_FA}, {"10", OPTION_VAL_10_FA}, {"12", OPTION_VAL_12_FA}, {"15", OPTION_VAL_15_FA}, {"20", OPTION_VAL_20_FA}, {"25", OPTION_VAL_25_FA}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_FA}, {"40", OPTION_VAL_40_FA}, {"50", OPTION_VAL_50_FA}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_FA, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_FA,
@@ -17209,6 +17769,17 @@ struct retro_core_options_v2 options_fa = {
 #define OPTION_VAL_STEREO_FI NULL
 #define OPTION_VAL_SURROUND_5_1_FI NULL
 #define OPTION_VAL_SURROUND_7_1_FI NULL
+#define RPCS3_STICK_DEADZONE_LABEL_FI NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_FI NULL
+#define OPTION_VAL_5_FI NULL
+#define OPTION_VAL_15_FI "15 %"
+#define OPTION_VAL_35_FI "35 %"
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_FI NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_FI NULL
+#define OPTION_VAL_13_FI NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_FI NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_FI NULL
+#define OPTION_VAL_12_FI NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_FI NULL
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_FI NULL
 #define OPTION_VAL_UNLIMITED_FI NULL
@@ -17849,6 +18420,30 @@ struct retro_core_option_v2_definition option_defs_fi[] = {
         { {"stereo", OPTION_VAL_STEREO_FI}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_FI}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_FI}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_FI, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_FI,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_FI}, {"5", OPTION_VAL_5_FI}, {"10", OPTION_VAL_10_FI}, {"15", OPTION_VAL_15_FI}, {"20", OPTION_VAL_20_FI}, {"25", OPTION_VAL_25_FI}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_FI}, {"35", OPTION_VAL_35_FI}, {"40", OPTION_VAL_40_FI}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_FI, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_FI,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_FI}, {"5", OPTION_VAL_5_FI}, {"10", OPTION_VAL_10_FI}, {"13", OPTION_VAL_13_FI}, {"15", OPTION_VAL_15_FI}, {"20", OPTION_VAL_20_FI}, {"25", OPTION_VAL_25_FI}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_FI}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_FI, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_FI,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_FI}, {"5", OPTION_VAL_5_FI}, {"10", OPTION_VAL_10_FI}, {"12", OPTION_VAL_12_FI}, {"15", OPTION_VAL_15_FI}, {"20", OPTION_VAL_20_FI}, {"25", OPTION_VAL_25_FI}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_FI}, {"40", OPTION_VAL_40_FI}, {"50", OPTION_VAL_50_FI}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_FI, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_FI,
@@ -18264,6 +18859,17 @@ struct retro_core_options_v2 options_fi = {
 #define OPTION_VAL_STEREO_FR "Stéréo"
 #define OPTION_VAL_SURROUND_5_1_FR NULL
 #define OPTION_VAL_SURROUND_7_1_FR NULL
+#define RPCS3_STICK_DEADZONE_LABEL_FR NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_FR NULL
+#define OPTION_VAL_5_FR NULL
+#define OPTION_VAL_15_FR "15 %"
+#define OPTION_VAL_35_FR "35 %"
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_FR NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_FR NULL
+#define OPTION_VAL_13_FR NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_FR NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_FR NULL
+#define OPTION_VAL_12_FR NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_FR NULL
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_FR NULL
 #define OPTION_VAL_UNLIMITED_FR NULL
@@ -18904,6 +19510,30 @@ struct retro_core_option_v2_definition option_defs_fr[] = {
         { {"stereo", OPTION_VAL_STEREO_FR}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_FR}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_FR}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_FR, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_FR,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_FR}, {"5", OPTION_VAL_5_FR}, {"10", OPTION_VAL_10_FR}, {"15", OPTION_VAL_15_FR}, {"20", OPTION_VAL_20_FR}, {"25", OPTION_VAL_25_FR}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_FR}, {"35", OPTION_VAL_35_FR}, {"40", OPTION_VAL_40_FR}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_FR, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_FR,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_FR}, {"5", OPTION_VAL_5_FR}, {"10", OPTION_VAL_10_FR}, {"13", OPTION_VAL_13_FR}, {"15", OPTION_VAL_15_FR}, {"20", OPTION_VAL_20_FR}, {"25", OPTION_VAL_25_FR}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_FR}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_FR, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_FR,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_FR}, {"5", OPTION_VAL_5_FR}, {"10", OPTION_VAL_10_FR}, {"12", OPTION_VAL_12_FR}, {"15", OPTION_VAL_15_FR}, {"20", OPTION_VAL_20_FR}, {"25", OPTION_VAL_25_FR}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_FR}, {"40", OPTION_VAL_40_FR}, {"50", OPTION_VAL_50_FR}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_FR, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_FR,
@@ -19319,6 +19949,17 @@ struct retro_core_options_v2 options_fr = {
 #define OPTION_VAL_STEREO_GA "Steiréó"
 #define OPTION_VAL_SURROUND_5_1_GA "Fuaim thimpeallach 5.1"
 #define OPTION_VAL_SURROUND_7_1_GA "Fuaim Thimpeallach 7.1"
+#define RPCS3_STICK_DEADZONE_LABEL_GA "Crios Marbh an Luamháin"
+#define RPCS3_STICK_DEADZONE_INFO_0_GA "An méid is féidir slat a chlaonadh sula mbraithfidh an cluiche go bhfuil sí ag gluaiseacht. Laistigh den teorainn seo, déantar aschur na slaite a laghdú de réir an 'Stick Anti-Deadzone' seachas é a ghearradh amach go hiomlán; mar sin, má bhíonn slat ina suí ach go mbíonn sí ag luascadh beagán, fanfaidh sí gar don lár. Baineann sé seo leis an dá shlat ar gach rialtóir; tagann an 'Analog Deadzone' atá ionsuite i RetroArch roimh an socrú seo."
+#define OPTION_VAL_5_GA NULL
+#define OPTION_VAL_15_GA NULL
+#define OPTION_VAL_35_GA NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_GA "Frith-Chrios Marbh an Luamháin"
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_GA "An áit a dtosaíonn aschur an mhaide a luaithe a chlaontar thar an gCrios Marbh Maide é. I gcás cluichí atá deartha don DualShock 3, déantar neamhaird de chlaonadh beag — is é sin an limistéar neamhghníomhach a bhaineann leis an rialtóir sin féin. Má shocraítear an luach thar an bpointe sin, beidh tionchar ag fiú an claonadh is lú, rud a cheadaíonn stiúradh níos cruinne i gcluichí rásaíochta. Má roghnaítear 0%, fágtar an limistéar neamhghníomhach dúchasach mar atá sé. Le Crios Marbh Maide de 0%, is maide a ghluaiseann a chuireann an cluiche ag bogadh."
+#define OPTION_VAL_13_GA NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_GA "Tairseach Truiceair"
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_GA "Cé chomh fada is gá L2 agus R2 a bhrú sula n-aithníonn an cluiche iad; thar an bpointe sin, méadaíonn an brú ó nialas go dtí an t-uasmhéid. Má úsáidtear rialtóir agus comhéadan a dhéanann monatóireacht ar an bhfad a bhíonn truicear brúite (truiceair analógacha), úsáideann an cluiche an faisnéis sin mar leibhéal brú an chnaipe; murach sin, ní bhíonn ach dhá staid ag L2 agus R2: brúite nó gan a bheith brúite. Ciallaíonn 0% go n-úsáidtear raon iomlán gluaiseachta an truiceair."
+#define OPTION_VAL_12_GA NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_GA "Méid na Taisce Diosca"
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_GA "Cuirtear teorainn leis an taisce a choinníonn cluichí ar dev_hdd1; murach sin, ní dhéanfadh sé ach fás. Nuair a shocraítear méid áirithe, scriostar na taiscí is sine nuair a luchtófar nó a dhúnfar cluiche, go dtí go n-oireann an chuid eile. Scriosann an rogha \"Wipe on Exit\" an taisce ar fad nuair a dhúntar cluiche, díreach mar a dhéanann PS3 nuair a mhúchtar é. Athchruthaíonn an cluiche féin an taisce a scriosadh, rud a d’fhéadfadh moill a chur ar an gcéad uair eile a sheoltar an cluiche sin."
 #define OPTION_VAL_UNLIMITED_GA "Gan teorainn"
@@ -19959,6 +20600,30 @@ struct retro_core_option_v2_definition option_defs_ga[] = {
         { {"stereo", OPTION_VAL_STEREO_GA}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_GA}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_GA}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_GA, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_GA,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_GA}, {"5", OPTION_VAL_5_GA}, {"10", OPTION_VAL_10_GA}, {"15", OPTION_VAL_15_GA}, {"20", OPTION_VAL_20_GA}, {"25", OPTION_VAL_25_GA}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_GA}, {"35", OPTION_VAL_35_GA}, {"40", OPTION_VAL_40_GA}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_GA, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_GA,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_GA}, {"5", OPTION_VAL_5_GA}, {"10", OPTION_VAL_10_GA}, {"13", OPTION_VAL_13_GA}, {"15", OPTION_VAL_15_GA}, {"20", OPTION_VAL_20_GA}, {"25", OPTION_VAL_25_GA}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_GA}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_GA, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_GA,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_GA}, {"5", OPTION_VAL_5_GA}, {"10", OPTION_VAL_10_GA}, {"12", OPTION_VAL_12_GA}, {"15", OPTION_VAL_15_GA}, {"20", OPTION_VAL_20_GA}, {"25", OPTION_VAL_25_GA}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_GA}, {"40", OPTION_VAL_40_GA}, {"50", OPTION_VAL_50_GA}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_GA, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_GA,
@@ -20374,6 +21039,17 @@ struct retro_core_options_v2 options_ga = {
 #define OPTION_VAL_STEREO_GL "Estéreo"
 #define OPTION_VAL_SURROUND_5_1_GL NULL
 #define OPTION_VAL_SURROUND_7_1_GL NULL
+#define RPCS3_STICK_DEADZONE_LABEL_GL NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_GL NULL
+#define OPTION_VAL_5_GL NULL
+#define OPTION_VAL_15_GL NULL
+#define OPTION_VAL_35_GL NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_GL NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_GL NULL
+#define OPTION_VAL_13_GL NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_GL NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_GL NULL
+#define OPTION_VAL_12_GL NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_GL NULL
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_GL NULL
 #define OPTION_VAL_UNLIMITED_GL NULL
@@ -21014,6 +21690,30 @@ struct retro_core_option_v2_definition option_defs_gl[] = {
         { {"stereo", OPTION_VAL_STEREO_GL}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_GL}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_GL}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_GL, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_GL,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_GL}, {"5", OPTION_VAL_5_GL}, {"10", OPTION_VAL_10_GL}, {"15", OPTION_VAL_15_GL}, {"20", OPTION_VAL_20_GL}, {"25", OPTION_VAL_25_GL}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_GL}, {"35", OPTION_VAL_35_GL}, {"40", OPTION_VAL_40_GL}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_GL, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_GL,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_GL}, {"5", OPTION_VAL_5_GL}, {"10", OPTION_VAL_10_GL}, {"13", OPTION_VAL_13_GL}, {"15", OPTION_VAL_15_GL}, {"20", OPTION_VAL_20_GL}, {"25", OPTION_VAL_25_GL}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_GL}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_GL, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_GL,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_GL}, {"5", OPTION_VAL_5_GL}, {"10", OPTION_VAL_10_GL}, {"12", OPTION_VAL_12_GL}, {"15", OPTION_VAL_15_GL}, {"20", OPTION_VAL_20_GL}, {"25", OPTION_VAL_25_GL}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_GL}, {"40", OPTION_VAL_40_GL}, {"50", OPTION_VAL_50_GL}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_GL, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_GL,
@@ -21163,7 +21863,7 @@ struct retro_core_options_v2 options_gl = {
 #define RPCS3_SPU_XFLOAT_ACCURACY_INFO_0_HE NULL
 #define OPTION_VAL_ACCURATE_HE NULL
 #define OPTION_VAL_APPROXIMATE_HE NULL
-#define OPTION_VAL_RELAXED_HE NULL
+#define OPTION_VAL_RELAXED_HE "גמיש"
 #define OPTION_VAL_INACCURATE_HE NULL
 #define RPCS3_SPU_BLOCK_SIZE_LABEL_HE NULL
 #define RPCS3_SPU_BLOCK_SIZE_INFO_0_HE NULL
@@ -21192,7 +21892,7 @@ struct retro_core_options_v2 options_gl = {
 #define RPCS3_LLVM_PRECOMPILATION_INFO_0_HE NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_LABEL_HE NULL
 #define RPCS3_SLEEP_TIMERS_ACCURACY_INFO_0_HE NULL
-#define OPTION_VAL_AUTO_HE NULL
+#define OPTION_VAL_AUTO_HE "אוטומטי"
 #define OPTION_VAL_AS_HOST_HE NULL
 #define OPTION_VAL_USLEEP_HE NULL
 #define OPTION_VAL_ALL_TIMERS_HE NULL
@@ -21215,7 +21915,7 @@ struct retro_core_options_v2 options_gl = {
 #define OPTION_VAL_4_3_HE NULL
 #define RPCS3_FRAME_LIMIT_LABEL_HE NULL
 #define RPCS3_FRAME_LIMIT_INFO_0_HE NULL
-#define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_HE NULL
+#define OPTION_VAL_AUTO_RPCS3_FRAME_LIMIT_HE "אוטומטי"
 #define OPTION_VAL_PS3_HE NULL
 #define OPTION_VAL_30_HE NULL
 #define OPTION_VAL_50_RPCS3_FRAME_LIMIT_HE NULL
@@ -21314,7 +22014,7 @@ struct retro_core_options_v2 options_gl = {
 #define RPCS3_WRITE_DEPTH_BUFFERS_INFO_0_HE NULL
 #define RPCS3_RSX_FIFO_ACCURACY_LABEL_HE NULL
 #define RPCS3_RSX_FIFO_ACCURACY_INFO_0_HE NULL
-#define OPTION_VAL_FAST_HE NULL
+#define OPTION_VAL_FAST_HE "מהיר"
 #define OPTION_VAL_ATOMIC_HE NULL
 #define OPTION_VAL_ATOMIC_ORDERED_HE NULL
 #define OPTION_VAL_AS_PS3_HE NULL
@@ -21398,7 +22098,7 @@ struct retro_core_options_v2 options_gl = {
 #define RPCS3_ACCURATE_PPU_128_LABEL_HE NULL
 #define RPCS3_ACCURATE_PPU_128_INFO_0_HE NULL
 #define OPTION_VAL_0_RPCS3_ACCURATE_PPU_128_HE NULL
-#define OPTION_VAL_1_RPCS3_ACCURATE_PPU_128_HE NULL
+#define OPTION_VAL_1_RPCS3_ACCURATE_PPU_128_HE "תמיד"
 #define RPCS3_FB_ALIASING_BIAS_LABEL_HE NULL
 #define RPCS3_FB_ALIASING_BIAS_INFO_0_HE NULL
 #define OPTION_VAL_COLOR_HE NULL
@@ -21429,6 +22129,17 @@ struct retro_core_options_v2 options_gl = {
 #define OPTION_VAL_STEREO_HE NULL
 #define OPTION_VAL_SURROUND_5_1_HE NULL
 #define OPTION_VAL_SURROUND_7_1_HE NULL
+#define RPCS3_STICK_DEADZONE_LABEL_HE NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_HE NULL
+#define OPTION_VAL_5_HE NULL
+#define OPTION_VAL_15_HE NULL
+#define OPTION_VAL_35_HE NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_HE NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_HE NULL
+#define OPTION_VAL_13_HE NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_HE NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_HE NULL
+#define OPTION_VAL_12_HE NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_HE NULL
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_HE NULL
 #define OPTION_VAL_UNLIMITED_HE NULL
@@ -22069,6 +22780,30 @@ struct retro_core_option_v2_definition option_defs_he[] = {
         { {"stereo", OPTION_VAL_STEREO_HE}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_HE}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_HE}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_HE, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_HE,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_HE}, {"5", OPTION_VAL_5_HE}, {"10", OPTION_VAL_10_HE}, {"15", OPTION_VAL_15_HE}, {"20", OPTION_VAL_20_HE}, {"25", OPTION_VAL_25_HE}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_HE}, {"35", OPTION_VAL_35_HE}, {"40", OPTION_VAL_40_HE}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_HE, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_HE,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_HE}, {"5", OPTION_VAL_5_HE}, {"10", OPTION_VAL_10_HE}, {"13", OPTION_VAL_13_HE}, {"15", OPTION_VAL_15_HE}, {"20", OPTION_VAL_20_HE}, {"25", OPTION_VAL_25_HE}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_HE}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_HE, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_HE,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_HE}, {"5", OPTION_VAL_5_HE}, {"10", OPTION_VAL_10_HE}, {"12", OPTION_VAL_12_HE}, {"15", OPTION_VAL_15_HE}, {"20", OPTION_VAL_20_HE}, {"25", OPTION_VAL_25_HE}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_HE}, {"40", OPTION_VAL_40_HE}, {"50", OPTION_VAL_50_HE}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_HE, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_HE,
@@ -22484,6 +23219,17 @@ struct retro_core_options_v2 options_he = {
 #define OPTION_VAL_STEREO_HR NULL
 #define OPTION_VAL_SURROUND_5_1_HR NULL
 #define OPTION_VAL_SURROUND_7_1_HR NULL
+#define RPCS3_STICK_DEADZONE_LABEL_HR NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_HR NULL
+#define OPTION_VAL_5_HR NULL
+#define OPTION_VAL_15_HR NULL
+#define OPTION_VAL_35_HR NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_HR NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_HR NULL
+#define OPTION_VAL_13_HR NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_HR NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_HR NULL
+#define OPTION_VAL_12_HR NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_HR NULL
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_HR NULL
 #define OPTION_VAL_UNLIMITED_HR NULL
@@ -23124,6 +23870,30 @@ struct retro_core_option_v2_definition option_defs_hr[] = {
         { {"stereo", OPTION_VAL_STEREO_HR}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_HR}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_HR}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_HR, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_HR,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_HR}, {"5", OPTION_VAL_5_HR}, {"10", OPTION_VAL_10_HR}, {"15", OPTION_VAL_15_HR}, {"20", OPTION_VAL_20_HR}, {"25", OPTION_VAL_25_HR}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_HR}, {"35", OPTION_VAL_35_HR}, {"40", OPTION_VAL_40_HR}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_HR, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_HR,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_HR}, {"5", OPTION_VAL_5_HR}, {"10", OPTION_VAL_10_HR}, {"13", OPTION_VAL_13_HR}, {"15", OPTION_VAL_15_HR}, {"20", OPTION_VAL_20_HR}, {"25", OPTION_VAL_25_HR}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_HR}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_HR, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_HR,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_HR}, {"5", OPTION_VAL_5_HR}, {"10", OPTION_VAL_10_HR}, {"12", OPTION_VAL_12_HR}, {"15", OPTION_VAL_15_HR}, {"20", OPTION_VAL_20_HR}, {"25", OPTION_VAL_25_HR}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_HR}, {"40", OPTION_VAL_40_HR}, {"50", OPTION_VAL_50_HR}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_HR, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_HR,
@@ -23539,6 +24309,17 @@ struct retro_core_options_v2 options_hr = {
 #define OPTION_VAL_STEREO_HU "Sztereó"
 #define OPTION_VAL_SURROUND_5_1_HU NULL
 #define OPTION_VAL_SURROUND_7_1_HU NULL
+#define RPCS3_STICK_DEADZONE_LABEL_HU NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_HU NULL
+#define OPTION_VAL_5_HU NULL
+#define OPTION_VAL_15_HU NULL
+#define OPTION_VAL_35_HU NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_HU NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_HU NULL
+#define OPTION_VAL_13_HU NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_HU NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_HU NULL
+#define OPTION_VAL_12_HU NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_HU NULL
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_HU NULL
 #define OPTION_VAL_UNLIMITED_HU NULL
@@ -24179,6 +24960,30 @@ struct retro_core_option_v2_definition option_defs_hu[] = {
         { {"stereo", OPTION_VAL_STEREO_HU}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_HU}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_HU}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_HU, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_HU,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_HU}, {"5", OPTION_VAL_5_HU}, {"10", OPTION_VAL_10_HU}, {"15", OPTION_VAL_15_HU}, {"20", OPTION_VAL_20_HU}, {"25", OPTION_VAL_25_HU}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_HU}, {"35", OPTION_VAL_35_HU}, {"40", OPTION_VAL_40_HU}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_HU, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_HU,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_HU}, {"5", OPTION_VAL_5_HU}, {"10", OPTION_VAL_10_HU}, {"13", OPTION_VAL_13_HU}, {"15", OPTION_VAL_15_HU}, {"20", OPTION_VAL_20_HU}, {"25", OPTION_VAL_25_HU}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_HU}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_HU, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_HU,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_HU}, {"5", OPTION_VAL_5_HU}, {"10", OPTION_VAL_10_HU}, {"12", OPTION_VAL_12_HU}, {"15", OPTION_VAL_15_HU}, {"20", OPTION_VAL_20_HU}, {"25", OPTION_VAL_25_HU}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_HU}, {"40", OPTION_VAL_40_HU}, {"50", OPTION_VAL_50_HU}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_HU, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_HU,
@@ -24594,6 +25399,17 @@ struct retro_core_options_v2 options_hu = {
 #define OPTION_VAL_STEREO_ID NULL
 #define OPTION_VAL_SURROUND_5_1_ID NULL
 #define OPTION_VAL_SURROUND_7_1_ID NULL
+#define RPCS3_STICK_DEADZONE_LABEL_ID NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_ID NULL
+#define OPTION_VAL_5_ID NULL
+#define OPTION_VAL_15_ID NULL
+#define OPTION_VAL_35_ID NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_ID NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_ID NULL
+#define OPTION_VAL_13_ID NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_ID NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_ID NULL
+#define OPTION_VAL_12_ID NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_ID NULL
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_ID NULL
 #define OPTION_VAL_UNLIMITED_ID NULL
@@ -25234,6 +26050,30 @@ struct retro_core_option_v2_definition option_defs_id[] = {
         { {"stereo", OPTION_VAL_STEREO_ID}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_ID}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_ID}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_ID, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_ID,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_ID}, {"5", OPTION_VAL_5_ID}, {"10", OPTION_VAL_10_ID}, {"15", OPTION_VAL_15_ID}, {"20", OPTION_VAL_20_ID}, {"25", OPTION_VAL_25_ID}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_ID}, {"35", OPTION_VAL_35_ID}, {"40", OPTION_VAL_40_ID}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_ID, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_ID,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_ID}, {"5", OPTION_VAL_5_ID}, {"10", OPTION_VAL_10_ID}, {"13", OPTION_VAL_13_ID}, {"15", OPTION_VAL_15_ID}, {"20", OPTION_VAL_20_ID}, {"25", OPTION_VAL_25_ID}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_ID}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_ID, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_ID,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_ID}, {"5", OPTION_VAL_5_ID}, {"10", OPTION_VAL_10_ID}, {"12", OPTION_VAL_12_ID}, {"15", OPTION_VAL_15_ID}, {"20", OPTION_VAL_20_ID}, {"25", OPTION_VAL_25_ID}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_ID}, {"40", OPTION_VAL_40_ID}, {"50", OPTION_VAL_50_ID}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_ID, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_ID,
@@ -25649,6 +26489,17 @@ struct retro_core_options_v2 options_id = {
 #define OPTION_VAL_STEREO_IT NULL
 #define OPTION_VAL_SURROUND_5_1_IT NULL
 #define OPTION_VAL_SURROUND_7_1_IT NULL
+#define RPCS3_STICK_DEADZONE_LABEL_IT NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_IT NULL
+#define OPTION_VAL_5_IT NULL
+#define OPTION_VAL_15_IT NULL
+#define OPTION_VAL_35_IT NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_IT NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_IT NULL
+#define OPTION_VAL_13_IT NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_IT NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_IT NULL
+#define OPTION_VAL_12_IT NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_IT NULL
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_IT NULL
 #define OPTION_VAL_UNLIMITED_IT NULL
@@ -26289,6 +27140,30 @@ struct retro_core_option_v2_definition option_defs_it[] = {
         { {"stereo", OPTION_VAL_STEREO_IT}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_IT}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_IT}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_IT, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_IT,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_IT}, {"5", OPTION_VAL_5_IT}, {"10", OPTION_VAL_10_IT}, {"15", OPTION_VAL_15_IT}, {"20", OPTION_VAL_20_IT}, {"25", OPTION_VAL_25_IT}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_IT}, {"35", OPTION_VAL_35_IT}, {"40", OPTION_VAL_40_IT}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_IT, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_IT,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_IT}, {"5", OPTION_VAL_5_IT}, {"10", OPTION_VAL_10_IT}, {"13", OPTION_VAL_13_IT}, {"15", OPTION_VAL_15_IT}, {"20", OPTION_VAL_20_IT}, {"25", OPTION_VAL_25_IT}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_IT}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_IT, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_IT,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_IT}, {"5", OPTION_VAL_5_IT}, {"10", OPTION_VAL_10_IT}, {"12", OPTION_VAL_12_IT}, {"15", OPTION_VAL_15_IT}, {"20", OPTION_VAL_20_IT}, {"25", OPTION_VAL_25_IT}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_IT}, {"40", OPTION_VAL_40_IT}, {"50", OPTION_VAL_50_IT}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_IT, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_IT,
@@ -26704,6 +27579,17 @@ struct retro_core_options_v2 options_it = {
 #define OPTION_VAL_STEREO_JA "ステレオ"
 #define OPTION_VAL_SURROUND_5_1_JA NULL
 #define OPTION_VAL_SURROUND_7_1_JA NULL
+#define RPCS3_STICK_DEADZONE_LABEL_JA NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_JA NULL
+#define OPTION_VAL_5_JA NULL
+#define OPTION_VAL_15_JA NULL
+#define OPTION_VAL_35_JA NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_JA NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_JA NULL
+#define OPTION_VAL_13_JA NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_JA NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_JA NULL
+#define OPTION_VAL_12_JA NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_JA NULL
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_JA NULL
 #define OPTION_VAL_UNLIMITED_JA NULL
@@ -27344,6 +28230,30 @@ struct retro_core_option_v2_definition option_defs_ja[] = {
         { {"stereo", OPTION_VAL_STEREO_JA}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_JA}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_JA}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_JA, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_JA,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_JA}, {"5", OPTION_VAL_5_JA}, {"10", OPTION_VAL_10_JA}, {"15", OPTION_VAL_15_JA}, {"20", OPTION_VAL_20_JA}, {"25", OPTION_VAL_25_JA}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_JA}, {"35", OPTION_VAL_35_JA}, {"40", OPTION_VAL_40_JA}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_JA, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_JA,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_JA}, {"5", OPTION_VAL_5_JA}, {"10", OPTION_VAL_10_JA}, {"13", OPTION_VAL_13_JA}, {"15", OPTION_VAL_15_JA}, {"20", OPTION_VAL_20_JA}, {"25", OPTION_VAL_25_JA}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_JA}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_JA, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_JA,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_JA}, {"5", OPTION_VAL_5_JA}, {"10", OPTION_VAL_10_JA}, {"12", OPTION_VAL_12_JA}, {"15", OPTION_VAL_15_JA}, {"20", OPTION_VAL_20_JA}, {"25", OPTION_VAL_25_JA}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_JA}, {"40", OPTION_VAL_40_JA}, {"50", OPTION_VAL_50_JA}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_JA, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_JA,
@@ -27759,6 +28669,17 @@ struct retro_core_options_v2 options_ja = {
 #define OPTION_VAL_STEREO_KO "스테레오"
 #define OPTION_VAL_SURROUND_5_1_KO NULL
 #define OPTION_VAL_SURROUND_7_1_KO NULL
+#define RPCS3_STICK_DEADZONE_LABEL_KO NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_KO NULL
+#define OPTION_VAL_5_KO NULL
+#define OPTION_VAL_15_KO NULL
+#define OPTION_VAL_35_KO NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_KO NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_KO NULL
+#define OPTION_VAL_13_KO NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_KO NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_KO NULL
+#define OPTION_VAL_12_KO NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_KO NULL
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_KO NULL
 #define OPTION_VAL_UNLIMITED_KO NULL
@@ -28399,6 +29320,30 @@ struct retro_core_option_v2_definition option_defs_ko[] = {
         { {"stereo", OPTION_VAL_STEREO_KO}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_KO}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_KO}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_KO, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_KO,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_KO}, {"5", OPTION_VAL_5_KO}, {"10", OPTION_VAL_10_KO}, {"15", OPTION_VAL_15_KO}, {"20", OPTION_VAL_20_KO}, {"25", OPTION_VAL_25_KO}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_KO}, {"35", OPTION_VAL_35_KO}, {"40", OPTION_VAL_40_KO}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_KO, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_KO,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_KO}, {"5", OPTION_VAL_5_KO}, {"10", OPTION_VAL_10_KO}, {"13", OPTION_VAL_13_KO}, {"15", OPTION_VAL_15_KO}, {"20", OPTION_VAL_20_KO}, {"25", OPTION_VAL_25_KO}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_KO}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_KO, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_KO,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_KO}, {"5", OPTION_VAL_5_KO}, {"10", OPTION_VAL_10_KO}, {"12", OPTION_VAL_12_KO}, {"15", OPTION_VAL_15_KO}, {"20", OPTION_VAL_20_KO}, {"25", OPTION_VAL_25_KO}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_KO}, {"40", OPTION_VAL_40_KO}, {"50", OPTION_VAL_50_KO}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_KO, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_KO,
@@ -28814,6 +29759,17 @@ struct retro_core_options_v2 options_ko = {
 #define OPTION_VAL_STEREO_NL NULL
 #define OPTION_VAL_SURROUND_5_1_NL NULL
 #define OPTION_VAL_SURROUND_7_1_NL NULL
+#define RPCS3_STICK_DEADZONE_LABEL_NL NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_NL NULL
+#define OPTION_VAL_5_NL NULL
+#define OPTION_VAL_15_NL NULL
+#define OPTION_VAL_35_NL NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_NL NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_NL NULL
+#define OPTION_VAL_13_NL NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_NL NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_NL NULL
+#define OPTION_VAL_12_NL NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_NL NULL
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_NL NULL
 #define OPTION_VAL_UNLIMITED_NL NULL
@@ -29454,6 +30410,30 @@ struct retro_core_option_v2_definition option_defs_nl[] = {
         { {"stereo", OPTION_VAL_STEREO_NL}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_NL}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_NL}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_NL, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_NL,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_NL}, {"5", OPTION_VAL_5_NL}, {"10", OPTION_VAL_10_NL}, {"15", OPTION_VAL_15_NL}, {"20", OPTION_VAL_20_NL}, {"25", OPTION_VAL_25_NL}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_NL}, {"35", OPTION_VAL_35_NL}, {"40", OPTION_VAL_40_NL}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_NL, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_NL,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_NL}, {"5", OPTION_VAL_5_NL}, {"10", OPTION_VAL_10_NL}, {"13", OPTION_VAL_13_NL}, {"15", OPTION_VAL_15_NL}, {"20", OPTION_VAL_20_NL}, {"25", OPTION_VAL_25_NL}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_NL}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_NL, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_NL,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_NL}, {"5", OPTION_VAL_5_NL}, {"10", OPTION_VAL_10_NL}, {"12", OPTION_VAL_12_NL}, {"15", OPTION_VAL_15_NL}, {"20", OPTION_VAL_20_NL}, {"25", OPTION_VAL_25_NL}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_NL}, {"40", OPTION_VAL_40_NL}, {"50", OPTION_VAL_50_NL}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_NL, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_NL,
@@ -29869,6 +30849,17 @@ struct retro_core_options_v2 options_nl = {
 #define OPTION_VAL_STEREO_NO NULL
 #define OPTION_VAL_SURROUND_5_1_NO NULL
 #define OPTION_VAL_SURROUND_7_1_NO NULL
+#define RPCS3_STICK_DEADZONE_LABEL_NO NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_NO NULL
+#define OPTION_VAL_5_NO NULL
+#define OPTION_VAL_15_NO NULL
+#define OPTION_VAL_35_NO NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_NO NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_NO NULL
+#define OPTION_VAL_13_NO NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_NO NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_NO NULL
+#define OPTION_VAL_12_NO NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_NO NULL
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_NO NULL
 #define OPTION_VAL_UNLIMITED_NO NULL
@@ -30509,6 +31500,30 @@ struct retro_core_option_v2_definition option_defs_no[] = {
         { {"stereo", OPTION_VAL_STEREO_NO}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_NO}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_NO}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_NO, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_NO,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_NO}, {"5", OPTION_VAL_5_NO}, {"10", OPTION_VAL_10_NO}, {"15", OPTION_VAL_15_NO}, {"20", OPTION_VAL_20_NO}, {"25", OPTION_VAL_25_NO}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_NO}, {"35", OPTION_VAL_35_NO}, {"40", OPTION_VAL_40_NO}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_NO, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_NO,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_NO}, {"5", OPTION_VAL_5_NO}, {"10", OPTION_VAL_10_NO}, {"13", OPTION_VAL_13_NO}, {"15", OPTION_VAL_15_NO}, {"20", OPTION_VAL_20_NO}, {"25", OPTION_VAL_25_NO}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_NO}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_NO, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_NO,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_NO}, {"5", OPTION_VAL_5_NO}, {"10", OPTION_VAL_10_NO}, {"12", OPTION_VAL_12_NO}, {"15", OPTION_VAL_15_NO}, {"20", OPTION_VAL_20_NO}, {"25", OPTION_VAL_25_NO}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_NO}, {"40", OPTION_VAL_40_NO}, {"50", OPTION_VAL_50_NO}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_NO, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_NO,
@@ -30924,6 +31939,17 @@ struct retro_core_options_v2 options_no = {
 #define OPTION_VAL_STEREO_OR NULL
 #define OPTION_VAL_SURROUND_5_1_OR NULL
 #define OPTION_VAL_SURROUND_7_1_OR NULL
+#define RPCS3_STICK_DEADZONE_LABEL_OR NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_OR NULL
+#define OPTION_VAL_5_OR NULL
+#define OPTION_VAL_15_OR NULL
+#define OPTION_VAL_35_OR NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_OR NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_OR NULL
+#define OPTION_VAL_13_OR NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_OR NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_OR NULL
+#define OPTION_VAL_12_OR NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_OR NULL
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_OR NULL
 #define OPTION_VAL_UNLIMITED_OR NULL
@@ -31564,6 +32590,30 @@ struct retro_core_option_v2_definition option_defs_or[] = {
         { {"stereo", OPTION_VAL_STEREO_OR}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_OR}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_OR}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_OR, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_OR,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_OR}, {"5", OPTION_VAL_5_OR}, {"10", OPTION_VAL_10_OR}, {"15", OPTION_VAL_15_OR}, {"20", OPTION_VAL_20_OR}, {"25", OPTION_VAL_25_OR}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_OR}, {"35", OPTION_VAL_35_OR}, {"40", OPTION_VAL_40_OR}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_OR, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_OR,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_OR}, {"5", OPTION_VAL_5_OR}, {"10", OPTION_VAL_10_OR}, {"13", OPTION_VAL_13_OR}, {"15", OPTION_VAL_15_OR}, {"20", OPTION_VAL_20_OR}, {"25", OPTION_VAL_25_OR}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_OR}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_OR, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_OR,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_OR}, {"5", OPTION_VAL_5_OR}, {"10", OPTION_VAL_10_OR}, {"12", OPTION_VAL_12_OR}, {"15", OPTION_VAL_15_OR}, {"20", OPTION_VAL_20_OR}, {"25", OPTION_VAL_25_OR}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_OR}, {"40", OPTION_VAL_40_OR}, {"50", OPTION_VAL_50_OR}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_OR, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_OR,
@@ -31979,6 +33029,17 @@ struct retro_core_options_v2 options_or = {
 #define OPTION_VAL_STEREO_PL NULL
 #define OPTION_VAL_SURROUND_5_1_PL NULL
 #define OPTION_VAL_SURROUND_7_1_PL NULL
+#define RPCS3_STICK_DEADZONE_LABEL_PL NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_PL NULL
+#define OPTION_VAL_5_PL NULL
+#define OPTION_VAL_15_PL NULL
+#define OPTION_VAL_35_PL NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_PL NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_PL NULL
+#define OPTION_VAL_13_PL NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_PL NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_PL NULL
+#define OPTION_VAL_12_PL NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_PL NULL
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_PL NULL
 #define OPTION_VAL_UNLIMITED_PL NULL
@@ -32619,6 +33680,30 @@ struct retro_core_option_v2_definition option_defs_pl[] = {
         { {"stereo", OPTION_VAL_STEREO_PL}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_PL}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_PL}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_PL, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_PL,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_PL}, {"5", OPTION_VAL_5_PL}, {"10", OPTION_VAL_10_PL}, {"15", OPTION_VAL_15_PL}, {"20", OPTION_VAL_20_PL}, {"25", OPTION_VAL_25_PL}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_PL}, {"35", OPTION_VAL_35_PL}, {"40", OPTION_VAL_40_PL}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_PL, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_PL,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_PL}, {"5", OPTION_VAL_5_PL}, {"10", OPTION_VAL_10_PL}, {"13", OPTION_VAL_13_PL}, {"15", OPTION_VAL_15_PL}, {"20", OPTION_VAL_20_PL}, {"25", OPTION_VAL_25_PL}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_PL}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_PL, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_PL,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_PL}, {"5", OPTION_VAL_5_PL}, {"10", OPTION_VAL_10_PL}, {"12", OPTION_VAL_12_PL}, {"15", OPTION_VAL_15_PL}, {"20", OPTION_VAL_20_PL}, {"25", OPTION_VAL_25_PL}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_PL}, {"40", OPTION_VAL_40_PL}, {"50", OPTION_VAL_50_PL}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_PL, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_PL,
@@ -33034,6 +34119,17 @@ struct retro_core_options_v2 options_pl = {
 #define OPTION_VAL_STEREO_PT_BR "Estéreo"
 #define OPTION_VAL_SURROUND_5_1_PT_BR NULL
 #define OPTION_VAL_SURROUND_7_1_PT_BR NULL
+#define RPCS3_STICK_DEADZONE_LABEL_PT_BR NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_PT_BR NULL
+#define OPTION_VAL_5_PT_BR NULL
+#define OPTION_VAL_15_PT_BR NULL
+#define OPTION_VAL_35_PT_BR NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_PT_BR NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_PT_BR NULL
+#define OPTION_VAL_13_PT_BR NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_PT_BR NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_PT_BR NULL
+#define OPTION_VAL_12_PT_BR NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_PT_BR NULL
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_PT_BR NULL
 #define OPTION_VAL_UNLIMITED_PT_BR NULL
@@ -33674,6 +34770,30 @@ struct retro_core_option_v2_definition option_defs_pt_br[] = {
         { {"stereo", OPTION_VAL_STEREO_PT_BR}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_PT_BR}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_PT_BR}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_PT_BR, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_PT_BR,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_PT_BR}, {"5", OPTION_VAL_5_PT_BR}, {"10", OPTION_VAL_10_PT_BR}, {"15", OPTION_VAL_15_PT_BR}, {"20", OPTION_VAL_20_PT_BR}, {"25", OPTION_VAL_25_PT_BR}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_PT_BR}, {"35", OPTION_VAL_35_PT_BR}, {"40", OPTION_VAL_40_PT_BR}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_PT_BR, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_PT_BR,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_PT_BR}, {"5", OPTION_VAL_5_PT_BR}, {"10", OPTION_VAL_10_PT_BR}, {"13", OPTION_VAL_13_PT_BR}, {"15", OPTION_VAL_15_PT_BR}, {"20", OPTION_VAL_20_PT_BR}, {"25", OPTION_VAL_25_PT_BR}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_PT_BR}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_PT_BR, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_PT_BR,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_PT_BR}, {"5", OPTION_VAL_5_PT_BR}, {"10", OPTION_VAL_10_PT_BR}, {"12", OPTION_VAL_12_PT_BR}, {"15", OPTION_VAL_15_PT_BR}, {"20", OPTION_VAL_20_PT_BR}, {"25", OPTION_VAL_25_PT_BR}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_PT_BR}, {"40", OPTION_VAL_40_PT_BR}, {"50", OPTION_VAL_50_PT_BR}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_PT_BR, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_PT_BR,
@@ -34089,6 +35209,17 @@ struct retro_core_options_v2 options_pt_br = {
 #define OPTION_VAL_STEREO_PT_PT NULL
 #define OPTION_VAL_SURROUND_5_1_PT_PT NULL
 #define OPTION_VAL_SURROUND_7_1_PT_PT NULL
+#define RPCS3_STICK_DEADZONE_LABEL_PT_PT NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_PT_PT NULL
+#define OPTION_VAL_5_PT_PT NULL
+#define OPTION_VAL_15_PT_PT NULL
+#define OPTION_VAL_35_PT_PT NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_PT_PT NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_PT_PT NULL
+#define OPTION_VAL_13_PT_PT NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_PT_PT NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_PT_PT NULL
+#define OPTION_VAL_12_PT_PT NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_PT_PT NULL
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_PT_PT NULL
 #define OPTION_VAL_UNLIMITED_PT_PT NULL
@@ -34729,6 +35860,30 @@ struct retro_core_option_v2_definition option_defs_pt_pt[] = {
         { {"stereo", OPTION_VAL_STEREO_PT_PT}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_PT_PT}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_PT_PT}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_PT_PT, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_PT_PT,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_PT_PT}, {"5", OPTION_VAL_5_PT_PT}, {"10", OPTION_VAL_10_PT_PT}, {"15", OPTION_VAL_15_PT_PT}, {"20", OPTION_VAL_20_PT_PT}, {"25", OPTION_VAL_25_PT_PT}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_PT_PT}, {"35", OPTION_VAL_35_PT_PT}, {"40", OPTION_VAL_40_PT_PT}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_PT_PT, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_PT_PT,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_PT_PT}, {"5", OPTION_VAL_5_PT_PT}, {"10", OPTION_VAL_10_PT_PT}, {"13", OPTION_VAL_13_PT_PT}, {"15", OPTION_VAL_15_PT_PT}, {"20", OPTION_VAL_20_PT_PT}, {"25", OPTION_VAL_25_PT_PT}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_PT_PT}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_PT_PT, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_PT_PT,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_PT_PT}, {"5", OPTION_VAL_5_PT_PT}, {"10", OPTION_VAL_10_PT_PT}, {"12", OPTION_VAL_12_PT_PT}, {"15", OPTION_VAL_15_PT_PT}, {"20", OPTION_VAL_20_PT_PT}, {"25", OPTION_VAL_25_PT_PT}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_PT_PT}, {"40", OPTION_VAL_40_PT_PT}, {"50", OPTION_VAL_50_PT_PT}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_PT_PT, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_PT_PT,
@@ -35144,6 +36299,17 @@ struct retro_core_options_v2 options_pt_pt = {
 #define OPTION_VAL_STEREO_RU "Стерео"
 #define OPTION_VAL_SURROUND_5_1_RU NULL
 #define OPTION_VAL_SURROUND_7_1_RU NULL
+#define RPCS3_STICK_DEADZONE_LABEL_RU NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_RU NULL
+#define OPTION_VAL_5_RU NULL
+#define OPTION_VAL_15_RU NULL
+#define OPTION_VAL_35_RU NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_RU NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_RU NULL
+#define OPTION_VAL_13_RU NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_RU NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_RU NULL
+#define OPTION_VAL_12_RU NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_RU NULL
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_RU NULL
 #define OPTION_VAL_UNLIMITED_RU NULL
@@ -35784,6 +36950,30 @@ struct retro_core_option_v2_definition option_defs_ru[] = {
         { {"stereo", OPTION_VAL_STEREO_RU}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_RU}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_RU}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_RU, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_RU,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_RU}, {"5", OPTION_VAL_5_RU}, {"10", OPTION_VAL_10_RU}, {"15", OPTION_VAL_15_RU}, {"20", OPTION_VAL_20_RU}, {"25", OPTION_VAL_25_RU}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_RU}, {"35", OPTION_VAL_35_RU}, {"40", OPTION_VAL_40_RU}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_RU, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_RU,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_RU}, {"5", OPTION_VAL_5_RU}, {"10", OPTION_VAL_10_RU}, {"13", OPTION_VAL_13_RU}, {"15", OPTION_VAL_15_RU}, {"20", OPTION_VAL_20_RU}, {"25", OPTION_VAL_25_RU}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_RU}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_RU, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_RU,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_RU}, {"5", OPTION_VAL_5_RU}, {"10", OPTION_VAL_10_RU}, {"12", OPTION_VAL_12_RU}, {"15", OPTION_VAL_15_RU}, {"20", OPTION_VAL_20_RU}, {"25", OPTION_VAL_25_RU}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_RU}, {"40", OPTION_VAL_40_RU}, {"50", OPTION_VAL_50_RU}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_RU, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_RU,
@@ -36199,6 +37389,17 @@ struct retro_core_options_v2 options_ru = {
 #define OPTION_VAL_STEREO_SK NULL
 #define OPTION_VAL_SURROUND_5_1_SK NULL
 #define OPTION_VAL_SURROUND_7_1_SK NULL
+#define RPCS3_STICK_DEADZONE_LABEL_SK NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_SK NULL
+#define OPTION_VAL_5_SK NULL
+#define OPTION_VAL_15_SK NULL
+#define OPTION_VAL_35_SK NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_SK NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_SK NULL
+#define OPTION_VAL_13_SK NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_SK NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_SK NULL
+#define OPTION_VAL_12_SK NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_SK "Veľkosť diskovej vyrovnávacej pamäte"
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_SK "Obmedzí vyrovnávaciu pamäť, ktorú si hry ukladajú na dev_hdd1 a ktorá inak len rastie. Pri zvolenej veľkosti sa pri načítaní alebo zatvorení hry mažú vyrovnávacie pamäte hier, ktoré sa najdlhšie nepoužili, kým sa zvyšok nezmestí. Vymazať pri ukončení zmaže všetko pri zatvorení hry, tak ako PS3 pri vypnutí. Zmazanú vyrovnávaciu pamäť si hra vytvorí znova, čo môže jej ďalšie spustenie spomaliť."
 #define OPTION_VAL_UNLIMITED_SK "Neobmedzené"
@@ -36839,6 +38040,30 @@ struct retro_core_option_v2_definition option_defs_sk[] = {
         { {"stereo", OPTION_VAL_STEREO_SK}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_SK}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_SK}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_SK, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_SK,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_SK}, {"5", OPTION_VAL_5_SK}, {"10", OPTION_VAL_10_SK}, {"15", OPTION_VAL_15_SK}, {"20", OPTION_VAL_20_SK}, {"25", OPTION_VAL_25_SK}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_SK}, {"35", OPTION_VAL_35_SK}, {"40", OPTION_VAL_40_SK}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_SK, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_SK,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_SK}, {"5", OPTION_VAL_5_SK}, {"10", OPTION_VAL_10_SK}, {"13", OPTION_VAL_13_SK}, {"15", OPTION_VAL_15_SK}, {"20", OPTION_VAL_20_SK}, {"25", OPTION_VAL_25_SK}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_SK}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_SK, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_SK,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_SK}, {"5", OPTION_VAL_5_SK}, {"10", OPTION_VAL_10_SK}, {"12", OPTION_VAL_12_SK}, {"15", OPTION_VAL_15_SK}, {"20", OPTION_VAL_20_SK}, {"25", OPTION_VAL_25_SK}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_SK}, {"40", OPTION_VAL_40_SK}, {"50", OPTION_VAL_50_SK}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_SK, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_SK,
@@ -37254,6 +38479,17 @@ struct retro_core_options_v2 options_sk = {
 #define OPTION_VAL_STEREO_SR NULL
 #define OPTION_VAL_SURROUND_5_1_SR NULL
 #define OPTION_VAL_SURROUND_7_1_SR NULL
+#define RPCS3_STICK_DEADZONE_LABEL_SR NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_SR NULL
+#define OPTION_VAL_5_SR NULL
+#define OPTION_VAL_15_SR NULL
+#define OPTION_VAL_35_SR NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_SR NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_SR NULL
+#define OPTION_VAL_13_SR NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_SR NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_SR NULL
+#define OPTION_VAL_12_SR NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_SR NULL
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_SR NULL
 #define OPTION_VAL_UNLIMITED_SR NULL
@@ -37894,6 +39130,30 @@ struct retro_core_option_v2_definition option_defs_sr[] = {
         { {"stereo", OPTION_VAL_STEREO_SR}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_SR}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_SR}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_SR, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_SR,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_SR}, {"5", OPTION_VAL_5_SR}, {"10", OPTION_VAL_10_SR}, {"15", OPTION_VAL_15_SR}, {"20", OPTION_VAL_20_SR}, {"25", OPTION_VAL_25_SR}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_SR}, {"35", OPTION_VAL_35_SR}, {"40", OPTION_VAL_40_SR}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_SR, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_SR,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_SR}, {"5", OPTION_VAL_5_SR}, {"10", OPTION_VAL_10_SR}, {"13", OPTION_VAL_13_SR}, {"15", OPTION_VAL_15_SR}, {"20", OPTION_VAL_20_SR}, {"25", OPTION_VAL_25_SR}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_SR}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_SR, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_SR,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_SR}, {"5", OPTION_VAL_5_SR}, {"10", OPTION_VAL_10_SR}, {"12", OPTION_VAL_12_SR}, {"15", OPTION_VAL_15_SR}, {"20", OPTION_VAL_20_SR}, {"25", OPTION_VAL_25_SR}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_SR}, {"40", OPTION_VAL_40_SR}, {"50", OPTION_VAL_50_SR}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_SR, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_SR,
@@ -38309,6 +39569,17 @@ struct retro_core_options_v2 options_sr = {
 #define OPTION_VAL_STEREO_SV NULL
 #define OPTION_VAL_SURROUND_5_1_SV NULL
 #define OPTION_VAL_SURROUND_7_1_SV NULL
+#define RPCS3_STICK_DEADZONE_LABEL_SV "Spakens dödzon"
+#define RPCS3_STICK_DEADZONE_INFO_0_SV "Så långt en spak måste lutas innan spelet uppfattar rörelse. Inom den skalas spakens utsignal ned till spakens antidödzon i stället för att klippas bort, så att en vilande spak med liten avdrift hålls nära mitten. Gäller båda spakarna på alla handkontroller; RetroArchs egen analoga dödzon tillämpas före den."
+#define OPTION_VAL_5_SV "5 %"
+#define OPTION_VAL_15_SV NULL
+#define OPTION_VAL_35_SV NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_SV "Spakens antidödzon"
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_SV "Där spakens utsignal börjar när den lutas förbi spakens dödzon. Spel för DualShock 3 ignorerar själva en liten lutning, dödzonen på handkontrollen de gjordes för; att starta efter den gör att minsta lutning räknas, för finare styrning i racingspel. 0 % lämnar spelets egen dödzon kvar. Med en spakdödzon på 0 % gör en spak med avdrift att spelet rör sig."
+#define OPTION_VAL_13_SV "13 %"
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_SV "Tröskelvärde för avtryckare"
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_SV "Så långt L2 och R2 måste tryckas in innan spelet registrerar dem; därefter skalas trycket från inget till fullt. Med en handkontroll och ett gränssnitt som rapporterar hur långt en avtryckare är intryckt (analoga avtryckare) får spelet detta som knappens tryckstyrka, annars förblir L2 och R2 helt av eller på. 0 % använder avtryckarens hela rörelseomfång."
+#define OPTION_VAL_12_SV "12 %"
 #define RPCS3_DISK_CACHE_SIZE_LABEL_SV "Diskcachestorlek"
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_SV "Begränsar cachen som spelen behåller på dev_hdd1, som annars bara växer. Med en angiven storlek tas spelens äldsta cachar bort när ett spel laddas eller stängs, tills resten ryms. Rensa vid avslut tar bort hela cachen när ett spel stängs, precis som en PS3 gör när den stängs av. En borttagen cache byggs upp igen av spelet, vilket kan göra nästa start av spelet långsammare."
 #define OPTION_VAL_UNLIMITED_SV "Obegränsad"
@@ -38949,6 +40220,30 @@ struct retro_core_option_v2_definition option_defs_sv[] = {
         { {"stereo", OPTION_VAL_STEREO_SV}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_SV}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_SV}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_SV, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_SV,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_SV}, {"5", OPTION_VAL_5_SV}, {"10", OPTION_VAL_10_SV}, {"15", OPTION_VAL_15_SV}, {"20", OPTION_VAL_20_SV}, {"25", OPTION_VAL_25_SV}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_SV}, {"35", OPTION_VAL_35_SV}, {"40", OPTION_VAL_40_SV}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_SV, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_SV,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_SV}, {"5", OPTION_VAL_5_SV}, {"10", OPTION_VAL_10_SV}, {"13", OPTION_VAL_13_SV}, {"15", OPTION_VAL_15_SV}, {"20", OPTION_VAL_20_SV}, {"25", OPTION_VAL_25_SV}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_SV}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_SV, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_SV,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_SV}, {"5", OPTION_VAL_5_SV}, {"10", OPTION_VAL_10_SV}, {"12", OPTION_VAL_12_SV}, {"15", OPTION_VAL_15_SV}, {"20", OPTION_VAL_20_SV}, {"25", OPTION_VAL_25_SV}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_SV}, {"40", OPTION_VAL_40_SV}, {"50", OPTION_VAL_50_SV}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_SV, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_SV,
@@ -39364,6 +40659,17 @@ struct retro_core_options_v2 options_sv = {
 #define OPTION_VAL_STEREO_TH "สเตอริโอ"
 #define OPTION_VAL_SURROUND_5_1_TH NULL
 #define OPTION_VAL_SURROUND_7_1_TH NULL
+#define RPCS3_STICK_DEADZONE_LABEL_TH NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_TH NULL
+#define OPTION_VAL_5_TH NULL
+#define OPTION_VAL_15_TH NULL
+#define OPTION_VAL_35_TH NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_TH NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_TH NULL
+#define OPTION_VAL_13_TH NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_TH NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_TH NULL
+#define OPTION_VAL_12_TH NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_TH NULL
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_TH NULL
 #define OPTION_VAL_UNLIMITED_TH NULL
@@ -40004,6 +41310,30 @@ struct retro_core_option_v2_definition option_defs_th[] = {
         { {"stereo", OPTION_VAL_STEREO_TH}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_TH}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_TH}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_TH, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_TH,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_TH}, {"5", OPTION_VAL_5_TH}, {"10", OPTION_VAL_10_TH}, {"15", OPTION_VAL_15_TH}, {"20", OPTION_VAL_20_TH}, {"25", OPTION_VAL_25_TH}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_TH}, {"35", OPTION_VAL_35_TH}, {"40", OPTION_VAL_40_TH}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_TH, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_TH,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_TH}, {"5", OPTION_VAL_5_TH}, {"10", OPTION_VAL_10_TH}, {"13", OPTION_VAL_13_TH}, {"15", OPTION_VAL_15_TH}, {"20", OPTION_VAL_20_TH}, {"25", OPTION_VAL_25_TH}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_TH}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_TH, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_TH,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_TH}, {"5", OPTION_VAL_5_TH}, {"10", OPTION_VAL_10_TH}, {"12", OPTION_VAL_12_TH}, {"15", OPTION_VAL_15_TH}, {"20", OPTION_VAL_20_TH}, {"25", OPTION_VAL_25_TH}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_TH}, {"40", OPTION_VAL_40_TH}, {"50", OPTION_VAL_50_TH}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_TH, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_TH,
@@ -40419,6 +41749,17 @@ struct retro_core_options_v2 options_th = {
 #define OPTION_VAL_STEREO_TR NULL
 #define OPTION_VAL_SURROUND_5_1_TR NULL
 #define OPTION_VAL_SURROUND_7_1_TR NULL
+#define RPCS3_STICK_DEADZONE_LABEL_TR NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_TR NULL
+#define OPTION_VAL_5_TR NULL
+#define OPTION_VAL_15_TR "%15"
+#define OPTION_VAL_35_TR "%35"
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_TR NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_TR NULL
+#define OPTION_VAL_13_TR NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_TR NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_TR NULL
+#define OPTION_VAL_12_TR NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_TR NULL
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_TR NULL
 #define OPTION_VAL_UNLIMITED_TR NULL
@@ -41059,6 +42400,30 @@ struct retro_core_option_v2_definition option_defs_tr[] = {
         { {"stereo", OPTION_VAL_STEREO_TR}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_TR}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_TR}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_TR, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_TR,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_TR}, {"5", OPTION_VAL_5_TR}, {"10", OPTION_VAL_10_TR}, {"15", OPTION_VAL_15_TR}, {"20", OPTION_VAL_20_TR}, {"25", OPTION_VAL_25_TR}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_TR}, {"35", OPTION_VAL_35_TR}, {"40", OPTION_VAL_40_TR}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_TR, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_TR,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_TR}, {"5", OPTION_VAL_5_TR}, {"10", OPTION_VAL_10_TR}, {"13", OPTION_VAL_13_TR}, {"15", OPTION_VAL_15_TR}, {"20", OPTION_VAL_20_TR}, {"25", OPTION_VAL_25_TR}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_TR}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_TR, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_TR,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_TR}, {"5", OPTION_VAL_5_TR}, {"10", OPTION_VAL_10_TR}, {"12", OPTION_VAL_12_TR}, {"15", OPTION_VAL_15_TR}, {"20", OPTION_VAL_20_TR}, {"25", OPTION_VAL_25_TR}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_TR}, {"40", OPTION_VAL_40_TR}, {"50", OPTION_VAL_50_TR}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_TR, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_TR,
@@ -41474,6 +42839,17 @@ struct retro_core_options_v2 options_tr = {
 #define OPTION_VAL_STEREO_TT "Стерео"
 #define OPTION_VAL_SURROUND_5_1_TT NULL
 #define OPTION_VAL_SURROUND_7_1_TT NULL
+#define RPCS3_STICK_DEADZONE_LABEL_TT NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_TT NULL
+#define OPTION_VAL_5_TT NULL
+#define OPTION_VAL_15_TT NULL
+#define OPTION_VAL_35_TT NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_TT NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_TT NULL
+#define OPTION_VAL_13_TT NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_TT NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_TT NULL
+#define OPTION_VAL_12_TT NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_TT NULL
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_TT NULL
 #define OPTION_VAL_UNLIMITED_TT NULL
@@ -42114,6 +43490,30 @@ struct retro_core_option_v2_definition option_defs_tt[] = {
         { {"stereo", OPTION_VAL_STEREO_TT}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_TT}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_TT}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_TT, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_TT,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_TT}, {"5", OPTION_VAL_5_TT}, {"10", OPTION_VAL_10_TT}, {"15", OPTION_VAL_15_TT}, {"20", OPTION_VAL_20_TT}, {"25", OPTION_VAL_25_TT}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_TT}, {"35", OPTION_VAL_35_TT}, {"40", OPTION_VAL_40_TT}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_TT, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_TT,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_TT}, {"5", OPTION_VAL_5_TT}, {"10", OPTION_VAL_10_TT}, {"13", OPTION_VAL_13_TT}, {"15", OPTION_VAL_15_TT}, {"20", OPTION_VAL_20_TT}, {"25", OPTION_VAL_25_TT}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_TT}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_TT, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_TT,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_TT}, {"5", OPTION_VAL_5_TT}, {"10", OPTION_VAL_10_TT}, {"12", OPTION_VAL_12_TT}, {"15", OPTION_VAL_15_TT}, {"20", OPTION_VAL_20_TT}, {"25", OPTION_VAL_25_TT}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_TT}, {"40", OPTION_VAL_40_TT}, {"50", OPTION_VAL_50_TT}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_TT, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_TT,
@@ -42529,6 +43929,17 @@ struct retro_core_options_v2 options_tt = {
 #define OPTION_VAL_STEREO_UK "Cтерео"
 #define OPTION_VAL_SURROUND_5_1_UK NULL
 #define OPTION_VAL_SURROUND_7_1_UK NULL
+#define RPCS3_STICK_DEADZONE_LABEL_UK NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_UK NULL
+#define OPTION_VAL_5_UK NULL
+#define OPTION_VAL_15_UK NULL
+#define OPTION_VAL_35_UK NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_UK NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_UK NULL
+#define OPTION_VAL_13_UK NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_UK NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_UK NULL
+#define OPTION_VAL_12_UK NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_UK NULL
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_UK NULL
 #define OPTION_VAL_UNLIMITED_UK NULL
@@ -43169,6 +44580,30 @@ struct retro_core_option_v2_definition option_defs_uk[] = {
         { {"stereo", OPTION_VAL_STEREO_UK}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_UK}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_UK}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_UK, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_UK,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_UK}, {"5", OPTION_VAL_5_UK}, {"10", OPTION_VAL_10_UK}, {"15", OPTION_VAL_15_UK}, {"20", OPTION_VAL_20_UK}, {"25", OPTION_VAL_25_UK}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_UK}, {"35", OPTION_VAL_35_UK}, {"40", OPTION_VAL_40_UK}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_UK, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_UK,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_UK}, {"5", OPTION_VAL_5_UK}, {"10", OPTION_VAL_10_UK}, {"13", OPTION_VAL_13_UK}, {"15", OPTION_VAL_15_UK}, {"20", OPTION_VAL_20_UK}, {"25", OPTION_VAL_25_UK}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_UK}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_UK, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_UK,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_UK}, {"5", OPTION_VAL_5_UK}, {"10", OPTION_VAL_10_UK}, {"12", OPTION_VAL_12_UK}, {"15", OPTION_VAL_15_UK}, {"20", OPTION_VAL_20_UK}, {"25", OPTION_VAL_25_UK}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_UK}, {"40", OPTION_VAL_40_UK}, {"50", OPTION_VAL_50_UK}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_UK, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_UK,
@@ -43584,6 +45019,17 @@ struct retro_core_options_v2 options_uk = {
 #define OPTION_VAL_STEREO_VAL NULL
 #define OPTION_VAL_SURROUND_5_1_VAL NULL
 #define OPTION_VAL_SURROUND_7_1_VAL NULL
+#define RPCS3_STICK_DEADZONE_LABEL_VAL NULL
+#define RPCS3_STICK_DEADZONE_INFO_0_VAL NULL
+#define OPTION_VAL_5_VAL NULL
+#define OPTION_VAL_15_VAL NULL
+#define OPTION_VAL_35_VAL NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_VAL NULL
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_VAL NULL
+#define OPTION_VAL_13_VAL NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_VAL NULL
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_VAL NULL
+#define OPTION_VAL_12_VAL NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_VAL NULL
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_VAL NULL
 #define OPTION_VAL_UNLIMITED_VAL NULL
@@ -44224,6 +45670,30 @@ struct retro_core_option_v2_definition option_defs_val[] = {
         { {"stereo", OPTION_VAL_STEREO_VAL}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_VAL}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_VAL}, {NULL, NULL} },
         "stereo"
     },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_VAL, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_VAL,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_VAL}, {"5", OPTION_VAL_5_VAL}, {"10", OPTION_VAL_10_VAL}, {"15", OPTION_VAL_15_VAL}, {"20", OPTION_VAL_20_VAL}, {"25", OPTION_VAL_25_VAL}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_VAL}, {"35", OPTION_VAL_35_VAL}, {"40", OPTION_VAL_40_VAL}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_VAL, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_VAL,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_VAL}, {"5", OPTION_VAL_5_VAL}, {"10", OPTION_VAL_10_VAL}, {"13", OPTION_VAL_13_VAL}, {"15", OPTION_VAL_15_VAL}, {"20", OPTION_VAL_20_VAL}, {"25", OPTION_VAL_25_VAL}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_VAL}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_VAL, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_VAL,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_VAL}, {"5", OPTION_VAL_5_VAL}, {"10", OPTION_VAL_10_VAL}, {"12", OPTION_VAL_12_VAL}, {"15", OPTION_VAL_15_VAL}, {"20", OPTION_VAL_20_VAL}, {"25", OPTION_VAL_25_VAL}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_VAL}, {"40", OPTION_VAL_40_VAL}, {"50", OPTION_VAL_50_VAL}, {NULL, NULL} },
+        "12"
+    },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_VAL, NULL,
         RPCS3_DISK_CACHE_SIZE_INFO_0_VAL,
@@ -44563,7 +46033,7 @@ struct retro_core_options_v2 options_val = {
 #define RPCS3_NETWORK_ENABLED_LABEL_VN "Bật mạng"
 #define RPCS3_NETWORK_ENABLED_INFO_0_VN "Cho phép trò chơi kết nối Internet. Có hiệu lực khi nội dung được tải."
 #define RPCS3_PSN_STATUS_LABEL_VN "Trạng thái PSN"
-#define RPCS3_PSN_STATUS_INFO_0_VN "Chế độ mạng mà game nhìn thấy khi sử dụng PlayStation Network. Mô phỏng khiến game tin rằng bạn đã đăng nhập, một số game cần điều này để vượt qua màn hình menu; RPCN kết nối với máy chủ riêng của RPCS3 và yêu cầu bật Mạng cùng với tài khoản RPCN: lõi giả lập không thể tạo tài khoản, vì vậy hãy thiết lập trong RPCS3 độc lập rồi sao chép tệp rpcn.yml vào system/rpcs3/ (system/rpcs3/config/ trên Windows). Có hiệu lực khi nội dung được tải."
+#define RPCS3_PSN_STATUS_INFO_0_VN "Chế độ mạng mà game nhìn thấy khi sử dụng PlayStation Network. Mô phỏng khiến game tin rằng bạn đã đăng nhập, một số game cần điều này để vượt qua màn hình menu; RPCN kết nối với máy chủ riêng của RPCS3 và yêu cầu bật Mạng cùng với tài khoản RPCN: trình giả lập không thể tạo tài khoản, vì vậy hãy thiết lập trong RPCS3 độc lập rồi sao chép tệp rpcn.yml vào system/rpcs3/ (system/rpcs3/config/ trên Windows). Có hiệu lực khi nội dung được tải."
 #define OPTION_VAL_SIMULATED_VN "Mô phỏng"
 #define OPTION_VAL_RPCN_VN NULL
 #define RPCS3_UPNP_LABEL_VN NULL
@@ -44639,6 +46109,17 @@ struct retro_core_options_v2 options_val = {
 #define OPTION_VAL_STEREO_VN NULL
 #define OPTION_VAL_SURROUND_5_1_VN "Âm thanh vòm 5.1"
 #define OPTION_VAL_SURROUND_7_1_VN "Âm thanh vòm 7.1"
+#define RPCS3_STICK_DEADZONE_LABEL_VN "Vùng chết cần điều khiển"
+#define RPCS3_STICK_DEADZONE_INFO_0_VN "Độ nghiêng tối thiểu của cần điều khiển trước khi trò chơi nhận biết chuyển động. Trong phạm vi này, tín hiệu đầu ra của cần điều khiển được giảm xuống mức Vùng chống chết cần điều khiển thay vì bị cắt bỏ hoàn toàn, nhờ đó cần điều khiển hơi bị lệch khi ở trạng thái nghỉ vẫn giữ tín hiệu gần vị trí trung tâm. Áp dụng cho cả hai cần điều khiển của mọi tay cầm; Vùng chết cần analog của RetroArch được áp dụng trước thiết lập này."
+#define OPTION_VAL_5_VN NULL
+#define OPTION_VAL_15_VN NULL
+#define OPTION_VAL_35_VN NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_VN "Vùng chống chết cần điều khiển"
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_VN "Mức tín hiệu đầu ra ban đầu của cần điều khiển sau khi độ nghiêng vượt qua Vùng chết cần điều khiển. Các trò chơi dành cho DualShock 3 tự bỏ qua một mức nghiêng nhỏ, tương ứng với vùng chết của tay cầm mà chúng được thiết kế để sử dụng; thiết lập mức ban đầu vượt qua ngưỡng này giúp ngay cả độ nghiêng nhỏ nhất cũng được ghi nhận, cho phép điều khiển chính xác hơn trong các trò chơi đua xe. Mức 0% giữ nguyên vùng chết của trò chơi. Khi Vùng chết cần điều khiển ở mức 0%, cần điều khiển bị lệch sẽ khiến nhân vật hoặc phương tiện trong trò chơi tự di chuyển."
+#define OPTION_VAL_13_VN NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_VN "Ngưỡng nhận tín hiệu cò"
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_VN "Mức độ nhấn tối thiểu của L2 và R2 trước khi trò chơi nhận biết thao tác; khi vượt ngưỡng này, tín hiệu nhấn sẽ tăng dần từ không đến tối đa. Với tay cầm và giao diện điều khiển có khả năng báo mức độ nhấn của cò (cò analog), trò chơi sẽ nhận được mức lực nhấn đó dưới dạng áp lực của nút; nếu không, L2 và R2 chỉ có hai trạng thái nhấn hoặc không nhấn. Mức 0% cho phép sử dụng toàn bộ hành trình nhấn của cò."
+#define OPTION_VAL_12_VN NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_VN "Dung lượng bộ nhớ đệm đĩa"
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_VN "Giới hạn dung lượng bộ nhớ đệm mà các trò chơi lưu trên dev_hdd1, nếu không giới hạn thì dung lượng này sẽ tiếp tục tăng. Khi đặt giới hạn dung lượng, bộ nhớ đệm của những trò chơi lâu nhất chưa được sử dụng sẽ bị xóa khi trò chơi được khởi chạy hoặc đóng, cho đến khi dung lượng còn lại nằm trong giới hạn. Xóa khi thoát sẽ xóa toàn bộ bộ nhớ đệm khi trò chơi đóng, giống như cách máy PS3 thực hiện khi tắt nguồn. Bộ nhớ đệm đã xóa sẽ được trò chơi tạo lại, khiến lần khởi chạy tiếp theo của trò chơi đó có thể lâu hơn."
 #define OPTION_VAL_UNLIMITED_VN "Không giới hạn"
@@ -45278,6 +46759,30 @@ struct retro_core_option_v2_definition option_defs_vn[] = {
         NULL, "core",
         { {"stereo", OPTION_VAL_STEREO_VN}, {"surround_5_1", OPTION_VAL_SURROUND_5_1_VN}, {"surround_7_1", OPTION_VAL_SURROUND_7_1_VN}, {NULL, NULL} },
         "stereo"
+    },
+    /* Defaults as standalone RPCS3's SDL and XInput pad handlers: a deadzone
+     * of 8000 of 32767 (about 25%) and an anti-deadzone of 13% */
+    {
+        "rpcs3_stick_deadzone", RPCS3_STICK_DEADZONE_LABEL_VN, NULL,
+        RPCS3_STICK_DEADZONE_INFO_0_VN,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_VN}, {"5", OPTION_VAL_5_VN}, {"10", OPTION_VAL_10_VN}, {"15", OPTION_VAL_15_VN}, {"20", OPTION_VAL_20_VN}, {"25", OPTION_VAL_25_VN}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_VN}, {"35", OPTION_VAL_35_VN}, {"40", OPTION_VAL_40_VN}, {NULL, NULL} },
+        "25"
+    },
+    {
+        "rpcs3_stick_anti_deadzone", RPCS3_STICK_ANTI_DEADZONE_LABEL_VN, NULL,
+        RPCS3_STICK_ANTI_DEADZONE_INFO_0_VN,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_VN}, {"5", OPTION_VAL_5_VN}, {"10", OPTION_VAL_10_VN}, {"13", OPTION_VAL_13_VN}, {"15", OPTION_VAL_15_VN}, {"20", OPTION_VAL_20_VN}, {"25", OPTION_VAL_25_VN}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_VN}, {NULL, NULL} },
+        "13"
+    },
+    /* Default as standalone RPCS3's XInput pad handler: 30 of 255 */
+    {
+        "rpcs3_trigger_threshold", RPCS3_TRIGGER_THRESHOLD_LABEL_VN, NULL,
+        RPCS3_TRIGGER_THRESHOLD_INFO_0_VN,
+        NULL, "core",
+        { {"0", OPTION_VAL_0_RPCS3_MASTER_VOLUME_VN}, {"5", OPTION_VAL_5_VN}, {"10", OPTION_VAL_10_VN}, {"12", OPTION_VAL_12_VN}, {"15", OPTION_VAL_15_VN}, {"20", OPTION_VAL_20_VN}, {"25", OPTION_VAL_25_VN}, {"30", OPTION_VAL_30_RPCS3_MASTER_VOLUME_VN}, {"40", OPTION_VAL_40_VN}, {"50", OPTION_VAL_50_VN}, {NULL, NULL} },
+        "12"
     },
     {
         "rpcs3_disk_cache_size", RPCS3_DISK_CACHE_SIZE_LABEL_VN, NULL,
