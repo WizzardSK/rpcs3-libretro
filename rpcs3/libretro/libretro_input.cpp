@@ -410,29 +410,25 @@ void libretro_input_stop_rumble()
 
 bool libretro_input_init_sensors(retro_environment_t environ_cb)
 {
-    if (!environ_cb)
-        return false;
-
-    // Get sensor interface from frontend
-    struct retro_sensor_interface sensor_interface;
-    if (environ_cb(RETRO_ENVIRONMENT_GET_SENSOR_INTERFACE, &sensor_interface))
+    // As with rumble, a refusal keeps what an earlier call got. What enabling
+    // answers decides nothing: a frontend may only say a port has a sensor
+    // once its controller has sent a reading, so every port is read each frame.
+    retro_sensor_interface sensor_interface{};
+    if (environ_cb && environ_cb(RETRO_ENVIRONMENT_GET_SENSOR_INTERFACE, &sensor_interface) &&
+        sensor_interface.set_sensor_state && sensor_interface.get_sensor_input)
     {
         s_sensor_set_state_cb = sensor_interface.set_sensor_state;
         s_sensor_get_input_cb = sensor_interface.get_sensor_input;
 
-        if (s_sensor_set_state_cb && s_sensor_get_input_cb)
+        for (unsigned port = 0; port < LIBRETRO_MAX_PADS; port++)
         {
-            // Try to enable gyro and accelerometer for port 0
-            bool gyro_enabled = s_sensor_set_state_cb(0, RETRO_SENSOR_GYROSCOPE_ENABLE, 1);
-            bool accel_enabled = s_sensor_set_state_cb(0, RETRO_SENSOR_ACCELEROMETER_ENABLE, 1);
-
-            s_sensors_available = gyro_enabled || accel_enabled;
-            return s_sensors_available;
+            s_sensor_set_state_cb(port, RETRO_SENSOR_ACCELEROMETER_ENABLE, 60);
+            s_sensor_set_state_cb(port, RETRO_SENSOR_GYROSCOPE_ENABLE, 60);
         }
     }
 
-    s_sensors_available = false;
-    return false;
+    s_sensors_available = s_sensor_get_input_cb != nullptr;
+    return s_sensors_available;
 }
 
 void libretro_input_poll_sensors()
@@ -440,13 +436,15 @@ void libretro_input_poll_sensors()
     if (!s_sensors_available || !s_sensor_get_input_cb)
         return;
 
-    // Poll sensor data for port 0 (primary controller)
-    s_sensor_data[0].gyro_x = s_sensor_get_input_cb(0, RETRO_SENSOR_GYROSCOPE_X);
-    s_sensor_data[0].gyro_y = s_sensor_get_input_cb(0, RETRO_SENSOR_GYROSCOPE_Y);
-    s_sensor_data[0].gyro_z = s_sensor_get_input_cb(0, RETRO_SENSOR_GYROSCOPE_Z);
-    s_sensor_data[0].accel_x = s_sensor_get_input_cb(0, RETRO_SENSOR_ACCELEROMETER_X);
-    s_sensor_data[0].accel_y = s_sensor_get_input_cb(0, RETRO_SENSOR_ACCELEROMETER_Y);
-    s_sensor_data[0].accel_z = s_sensor_get_input_cb(0, RETRO_SENSOR_ACCELEROMETER_Z);
+    for (unsigned port = 0; port < LIBRETRO_MAX_PADS; port++)
+    {
+        s_sensor_data[port].gyro_x = s_sensor_get_input_cb(port, RETRO_SENSOR_GYROSCOPE_X);
+        s_sensor_data[port].gyro_y = s_sensor_get_input_cb(port, RETRO_SENSOR_GYROSCOPE_Y);
+        s_sensor_data[port].gyro_z = s_sensor_get_input_cb(port, RETRO_SENSOR_GYROSCOPE_Z);
+        s_sensor_data[port].accel_x = s_sensor_get_input_cb(port, RETRO_SENSOR_ACCELEROMETER_X);
+        s_sensor_data[port].accel_y = s_sensor_get_input_cb(port, RETRO_SENSOR_ACCELEROMETER_Y);
+        s_sensor_data[port].accel_z = s_sensor_get_input_cb(port, RETRO_SENSOR_ACCELEROMETER_Z);
+    }
 }
 
 void libretro_input_get_gyro(unsigned port, float& x, float& y, float& z)
