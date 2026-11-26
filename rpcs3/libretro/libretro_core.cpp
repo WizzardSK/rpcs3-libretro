@@ -17,6 +17,7 @@
 #include "Emu/Memory/vm.h"
 #include "util/vm.hpp"
 #include "Emu/system_config.h"
+#include "Emu/system_utils.hpp"
 #include "Emu/Cell/Modules/cellMsgDialog.h"
 #include "Emu/Cell/Modules/cellSysutil.h"
 #include "Emu/NP/rpcn_config.h"
@@ -464,9 +465,19 @@ static bool install_pkg_file(const std::string& pkg_path, std::string& eboot_pat
         return false;
     }
 
-    // Get PKG info
+    // The folder the package goes in: its install folder when it names one,
+    // otherwise the title ID inside its content ID (UP9000-NPUA80001_00-...),
+    // as the reader takes it
     const auto& header = readers.front().get_header();
-    std::string title_id(header.title_id, strnlen(header.title_id, sizeof(header.title_id)));
+    const std::string content_id(header.title_id, strnlen(header.title_id, sizeof(header.title_id)));
+    std::string title_id = readers.front().get_metadata().install_dir;
+    if (title_id.empty() && content_id.size() >= 16 && content_id[6] == '-')
+        title_id = content_id.substr(7, 9);
+
+    // Where the reader installs a game, whatever install_base says: the
+    // frontend's answer for the old "content directory" is its core assets
+    // folder (Kodi's is the system folder)
+    const std::string game_base = rpcs3::utils::get_hdd0_dir() + "game/";
 
 
     std::deque<std::string> bootable_paths;
@@ -510,18 +521,23 @@ static bool install_pkg_file(const std::string& pkg_path, std::string& eboot_pat
         return false;
     }
 
-    // Find the bootable EBOOT.BIN
+    // Find the bootable EBOOT.BIN; the reader can report a bootable package
+    // with an empty path
     eboot_path.clear();
-    if (!bootable_paths.empty())
+    for (const std::string& path : bootable_paths)
     {
-        eboot_path = bootable_paths.front();
+        if (!path.empty())
+        {
+            eboot_path = path;
+            break;
+        }
     }
-    else
+    if (eboot_path.empty())
     {
         // Try to find EBOOT.BIN in common locations
         std::vector<std::string> search_paths = {
-            install_base + title_id + "/USRDIR/EBOOT.BIN",
-            install_base + title_id + "/PS3_GAME/USRDIR/EBOOT.BIN",
+            game_base + title_id + "/USRDIR/EBOOT.BIN",
+            game_base + title_id + "/PS3_GAME/USRDIR/EBOOT.BIN",
         };
 
         for (const auto& path : search_paths)
