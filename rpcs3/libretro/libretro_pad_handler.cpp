@@ -198,6 +198,12 @@ bool LibretroPadHandler::bindPadToDevice(std::shared_ptr<Pad> pad)
     pad->m_sticks[2].m_offset = CELL_PAD_BTN_OFFSET_ANALOG_RIGHT_X;
     pad->m_sticks[3].m_offset = CELL_PAD_BTN_OFFSET_ANALOG_RIGHT_Y;
 
+    // The Sixaxis, at rest until the controller's motion sensor reports
+    pad->m_sensors[0] = AnalogSensor(CELL_PAD_BTN_OFFSET_SENSOR_X, 0, 0, 0, DEFAULT_MOTION_X);
+    pad->m_sensors[1] = AnalogSensor(CELL_PAD_BTN_OFFSET_SENSOR_Y, 0, 0, 0, DEFAULT_MOTION_Y);
+    pad->m_sensors[2] = AnalogSensor(CELL_PAD_BTN_OFFSET_SENSOR_Z, 0, 0, 0, DEFAULT_MOTION_Z);
+    pad->m_sensors[3] = AnalogSensor(CELL_PAD_BTN_OFFSET_SENSOR_G, 0, 0, 0, DEFAULT_MOTION_G);
+
     // Set pad as connected
     pad->m_port_status |= CELL_PAD_STATUS_CONNECTED;
     return true;
@@ -467,6 +473,25 @@ void LibretroPadHandler::process()
             case CELL_PAD_BTN_OFFSET_ANALOG_RIGHT_Y: stick.m_value = analog_right_y; break;
             default: break;
             }
+        }
+
+        // The Sixaxis, from a controller's libretro sensors. libretro's axes are a
+        // device's at rest on a table in front of you (Y away from you, Z up),
+        // which are a DualSense's with Y and Z swapped and Z the other way round;
+        // from there standalone's DualSense handler makes a DualShock 3's values.
+        // All zero means the controller has no motion sensor.
+        const unsigned port = libretro_input_port_for_player(static_cast<unsigned>(i));
+        f32 accel_x, accel_y, accel_z, gyro_x, gyro_y, gyro_z;
+        libretro_input_get_accel(port, accel_x, accel_y, accel_z);
+        libretro_input_get_gyro(port, gyro_x, gyro_y, gyro_z);
+        if (accel_x != 0.0f || accel_y != 0.0f || accel_z != 0.0f)
+        {
+            constexpr f32 degrees_per_radian = 57.2957795f;
+            binding.pad->m_sensors[0].m_value = Clamp0To1023(-accel_x * MOTION_ONE_G + 512);
+            binding.pad->m_sensors[1].m_value = Clamp0To1023(-accel_z * MOTION_ONE_G + 512);
+            binding.pad->m_sensors[2].m_value = Clamp0To1023(accel_y * MOTION_ONE_G + 512);
+            // The yaw, the only rotation a Sixaxis reports
+            binding.pad->m_sensors[3].m_value = Clamp0To1023(-gyro_z * degrees_per_radian * (123.f / 90.f) + 512);
         }
     }
 }
