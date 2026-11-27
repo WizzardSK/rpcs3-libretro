@@ -180,10 +180,11 @@ static retro_hw_render_callback hw_render;
 // for this port to ask for, so there it is the only way to draw anything at
 // all; everywhere else the hardware path is better and this stays off.
 #ifdef ANDROID
-bool g_libretro_software_present = true;
+static constexpr bool software_present_default = true;
 #else
-bool g_libretro_software_present = false;
+static constexpr bool software_present_default = false;
 #endif
+bool g_libretro_software_present = software_present_default;
 bool g_libretro_deferred_readback = false;
 
 // Vulkan with the frontend's hardware context: the device is made on the
@@ -2021,55 +2022,6 @@ void retro_init(void)
     // Set up callbacks
     init_emu_callbacks();
 
-    // Set up hardware rendering (OpenGL context). Skipped without one: there is
-    // no context to reset, so the boot below must not wait for one either.
-    //
-    // The renderer option decides whether one is asked for. OpenGL draws into
-    // the frontend's context; Vulkan has none to draw into here, so it finishes
-    // each frame into memory and retro_run hands the pixels over - the same
-    // path Android and the Apple embedded systems already take.
-#ifdef HAVE_VULKAN
-    if (get_option_value("rpcs3_renderer", "vulkan") == "vulkan")
-    {
-        // The frontend's hardware context first: no copy through the CPU.
-        // RPCS3_VK_READBACK=1 keeps the copy, for comparing the two.
-        const char* readback = std::getenv("RPCS3_VK_READBACK");
-        if (!(readback && *readback == '1') && setup_vulkan_hw_render())
-            g_libretro_vulkan_hw = true;
-        else
-        {
-            if (log_cb)
-                log_cb(RETRO_LOG_INFO, "RPCS3: Vulkan without a hardware context - frames are copied back through memory\n");
-            g_libretro_software_present = true;
-        }
-    }
-#else
-    if (get_option_value("rpcs3_renderer", "vulkan") == "vulkan" && log_cb)
-        log_cb(RETRO_LOG_WARN, "RPCS3: this core was built without Vulkan - using OpenGL\n");
-#endif
-
-    if (!g_libretro_software_present && !g_libretro_vulkan_hw && !setup_hw_render())
-    {
-        // Every context this asked for was refused. Carrying on as if one had
-        // been given is how a frontend with no OpenGL ends up with a core that
-        // waits forever for a reset that never comes; take the path that needs
-        // no context instead.
-        if (log_cb)
-            log_cb(RETRO_LOG_WARN, "RPCS3: the frontend gave no OpenGL context - drawing through memory instead\n");
-
-        g_libretro_software_present = true;
-    }
-
-    // Only the software path cares: with a hardware context the frontend takes
-    // the image from the GPU and this is ignored. XRGB8888 is B,G,R,X in
-    // memory, which is the VK_FORMAT_B8G8R8A8_UNORM the renderer hands over.
-    if (g_libretro_software_present)
-    {
-        enum retro_pixel_format fmt = RETRO_PIXEL_FORMAT_XRGB8888;
-        if (!environ_cb(RETRO_ENVIRONMENT_SET_PIXEL_FORMAT, &fmt) && log_cb)
-            log_cb(RETRO_LOG_ERROR, "RPCS3: frontend refused XRGB8888, there is nothing else to draw with\n");
-    }
-
     core_initialized = true;
 
 
@@ -2702,6 +2654,63 @@ bool retro_load_game(const struct retro_game_info* game)
     {
 
         return false;
+    }
+
+    // Set up hardware rendering here at load, where libretro.h asks for it: a
+    // frontend may refuse a context asked for in retro_init(). Skipped without
+    // one: there is no context to reset, so the boot below must not wait for one
+    // either.
+    //
+    // The renderer option decides whether one is asked for. OpenGL draws into
+    // the frontend's context; Vulkan has none to draw into here, so it finishes
+    // each frame into memory and retro_run hands the pixels over - the same
+    // path Android and the Apple embedded systems already take.
+    //
+    // A frontend may load another game without retro_deinit(), so each load
+    // chooses again.
+    g_libretro_vulkan_hw = false;
+    g_libretro_software_present = software_present_default;
+
+#ifdef HAVE_VULKAN
+    if (get_option_value("rpcs3_renderer", "vulkan") == "vulkan")
+    {
+        // The frontend's hardware context first: no copy through the CPU.
+        // RPCS3_VK_READBACK=1 keeps the copy, for comparing the two.
+        const char* readback = std::getenv("RPCS3_VK_READBACK");
+        if (!(readback && *readback == '1') && setup_vulkan_hw_render())
+            g_libretro_vulkan_hw = true;
+        else
+        {
+            if (log_cb)
+                log_cb(RETRO_LOG_INFO, "RPCS3: Vulkan without a hardware context - frames are copied back through memory\n");
+            g_libretro_software_present = true;
+        }
+    }
+#else
+    if (get_option_value("rpcs3_renderer", "vulkan") == "vulkan" && log_cb)
+        log_cb(RETRO_LOG_WARN, "RPCS3: this core was built without Vulkan - using OpenGL\n");
+#endif
+
+    if (!g_libretro_software_present && !g_libretro_vulkan_hw && !setup_hw_render())
+    {
+        // Every context this asked for was refused. Carrying on as if one had
+        // been given is how a frontend with no OpenGL ends up with a core that
+        // waits forever for a reset that never comes; take the path that needs
+        // no context instead.
+        if (log_cb)
+            log_cb(RETRO_LOG_WARN, "RPCS3: the frontend gave no OpenGL context - drawing through memory instead\n");
+
+        g_libretro_software_present = true;
+    }
+
+    // Only the software path cares: with a hardware context the frontend takes
+    // the image from the GPU and this is ignored. XRGB8888 is B,G,R,X in
+    // memory, which is the VK_FORMAT_B8G8R8A8_UNORM the renderer hands over.
+    if (g_libretro_software_present)
+    {
+        enum retro_pixel_format fmt = RETRO_PIXEL_FORMAT_XRGB8888;
+        if (!environ_cb(RETRO_ENVIRONMENT_SET_PIXEL_FORMAT, &fmt) && log_cb)
+            log_cb(RETRO_LOG_ERROR, "RPCS3: frontend refused XRGB8888, there is nothing else to draw with\n");
     }
 
     // Surround needs the frontend's multi-channel output, negotiated now, at
