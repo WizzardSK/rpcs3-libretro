@@ -4689,15 +4689,15 @@ struct retro_core_options_v2 options_bg = {
 #define OPTION_VAL_STEREO_CA "Estèreo"
 #define OPTION_VAL_SURROUND_5_1_CA NULL
 #define OPTION_VAL_SURROUND_7_1_CA NULL
-#define RPCS3_STICK_DEADZONE_LABEL_CA NULL
+#define RPCS3_STICK_DEADZONE_LABEL_CA "Zona morta de la palanca"
 #define RPCS3_STICK_DEADZONE_INFO_0_CA NULL
 #define OPTION_VAL_5_CA NULL
 #define OPTION_VAL_15_CA NULL
 #define OPTION_VAL_35_CA NULL
-#define RPCS3_STICK_ANTI_DEADZONE_LABEL_CA NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_CA "Zona morta de la palanca"
 #define RPCS3_STICK_ANTI_DEADZONE_INFO_0_CA NULL
 #define OPTION_VAL_13_CA NULL
-#define RPCS3_TRIGGER_THRESHOLD_LABEL_CA NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_CA "Llindars dels gatells"
 #define RPCS3_TRIGGER_THRESHOLD_INFO_0_CA NULL
 #define OPTION_VAL_12_CA NULL
 #define RPCS3_DISK_CACHE_SIZE_LABEL_CA "Mida de la memòria cau al disc"
@@ -4732,10 +4732,10 @@ struct retro_core_options_v2 options_bg = {
 #define RPCS3_ENTER_BUTTON_INFO_0_CA "El botó que es fa servir per confirmar accions."
 #define OPTION_VAL_CROSS_CA "Cross (Oest)"
 #define OPTION_VAL_CIRCLE_CA "Cercle (Japonès)"
-#define RPCS3_USIO_MODE_LABEL_CA NULL
+#define RPCS3_USIO_MODE_LABEL_CA "Mode Arcade USIO"
 #define RPCS3_USIO_MODE_INFO_0_CA NULL
-#define OPTION_VAL_FIGHTING_CA NULL
-#define OPTION_VAL_SHOOTER_CA NULL
+#define OPTION_VAL_FIGHTING_CA "Jocs de lluita"
+#define OPTION_VAL_SHOOTER_CA "Jocs de trets"
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_CA "Mostra missatges de compilació de la PPU"
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_CA NULL
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_CA "Mostra missatges de compilació de shaders"
@@ -11229,16 +11229,16 @@ struct retro_core_options_v2 options_da = {
 #define OPTION_VAL_STEREO_DE NULL
 #define OPTION_VAL_SURROUND_5_1_DE NULL
 #define OPTION_VAL_SURROUND_7_1_DE NULL
-#define RPCS3_STICK_DEADZONE_LABEL_DE NULL
-#define RPCS3_STICK_DEADZONE_INFO_0_DE NULL
+#define RPCS3_STICK_DEADZONE_LABEL_DE "Stick-Deadzone"
+#define RPCS3_STICK_DEADZONE_INFO_0_DE "Wie weit ein Stick geneigt werden kann, bevor das Spiel eine Bewegung erkennt. Innerhalb dieser Zone wird die Stick-Ausgabe auf die Stick-Anti-Deadzone herunterskaliert, statt vollständig unterdrückt zu werden. Dadurch bleibt ein Stick, der in Ruhestellung leicht driftet, nahe der Mitte. Gilt für beide Sticks aller Gamepads; die RetroArch-eigene Analog-Deadzone wird zuvor angewendet."
 #define OPTION_VAL_5_DE "5 %"
 #define OPTION_VAL_15_DE "15 %"
 #define OPTION_VAL_35_DE "35 %"
-#define RPCS3_STICK_ANTI_DEADZONE_LABEL_DE NULL
-#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_DE NULL
+#define RPCS3_STICK_ANTI_DEADZONE_LABEL_DE "Stick-Anti-Deadzone"
+#define RPCS3_STICK_ANTI_DEADZONE_INFO_0_DE "Legt fest, bei welchem Wert die Stick-Ausgabe beginnt, sobald der Stick über die Stick-Deadzone hinaus geneigt wird. Spiele für den DualShock 3 ignorieren selbst eine geringe Neigung – die Deadzone des Gamepads, für das sie entwickelt wurden. Ein Startwert oberhalb dieser Deadzone sorgt dafür, dass bereits die geringste Neigung erkannt wird, was eine feinere Steuerung in Rennspielen ermöglicht. Bei 0 % bleibt die spielinterne Deadzone erhalten. Bei einer Stick-Deadzone von 0 % führt ein driftender Stick zu einer Bewegung im Spiel."
 #define OPTION_VAL_13_DE "13 %"
-#define RPCS3_TRIGGER_THRESHOLD_LABEL_DE NULL
-#define RPCS3_TRIGGER_THRESHOLD_INFO_0_DE NULL
+#define RPCS3_TRIGGER_THRESHOLD_LABEL_DE "Triggerschwellenwert"
+#define RPCS3_TRIGGER_THRESHOLD_INFO_0_DE "Wie weit L2 und R2 gedrückt werden müssen, bevor das Spiel eine Betätigung erkennt. Oberhalb dieses Schwellenwerts wird die Betätigung von null bis zum vollen Wert skaliert. Bei einem Gamepad und Frontend, die melden, wie weit ein Trigger gedrückt wird (Analogtrigger), erhält das Spiel diesen Wert als Tastendruckstärke. Andernfalls funktionieren L2 und R2 weiterhin nur als Ein-/Aus-Tasten. Bei 0 % steht der gesamte Druckweg des Triggers zur Verfügung."
 #define OPTION_VAL_12_DE "12 %"
 #define RPCS3_DISK_CACHE_SIZE_LABEL_DE "Größe des Festplattencaches"
 #define RPCS3_DISK_CACHE_SIZE_INFO_0_DE "Begrenzt den Cache, den Spiele auf dev_hdd1 speichern und der sonst unbegrenzt wächst. Bei festgelegter Größe werden beim Laden oder Schließen eines Spiels die am längsten nicht verwendeten Spiel-Caches gelöscht, bis der verbleibende Cache in die Größenbegrenzung passt. Beim Beenden löschen entfernt den gesamten Cache, wenn ein Spiel geschlossen wird – wie bei einer PS3, wenn sie ausgeschaltet wird. Ein gelöschter Cache wird vom jeweiligen Spiel neu erstellt, wodurch der nächste Start dieses Spiels länger dauern kann."
@@ -11272,10 +11272,10 @@ struct retro_core_options_v2 options_da = {
 #define RPCS3_ENTER_BUTTON_INFO_0_DE "Taste, mit der Aktionen bestätigt werden."
 #define OPTION_VAL_CROSS_DE "Kreuz (westlich)"
 #define OPTION_VAL_CIRCLE_DE "Kreis (japanisch)"
-#define RPCS3_USIO_MODE_LABEL_DE NULL
-#define RPCS3_USIO_MODE_INFO_0_DE NULL
-#define OPTION_VAL_FIGHTING_DE NULL
-#define OPTION_VAL_SHOOTER_DE NULL
+#define RPCS3_USIO_MODE_LABEL_DE "Arcade-USIO-Modus"
+#define RPCS3_USIO_MODE_INFO_0_DE "Für Arcade-Spiele auf dem Namco System 357/369: Legt fest, wie die Tasten der Arcade-Platine ausgelesen werden. Die beiden Spieltypen handhaben dies unterschiedlich. „Kampfspiele“ für Tekken, Dragon Ball Zenkai Battle und ähnliche Spiele; „Shooter“ für Deadstorm Pirates, Dark Escape und ähnliche Spiele, bei denen mit einer Lightgun oder der Maus gezielt wird. Shooter verwenden die RetroArch-Ports 3 und 4 als Spieler 1 und 2. In diesem Modus tauschen daher die Ports 1–2 und 3–4 ihre Plätze. Taiko no Tatsujin funktioniert in beiden Modi. Änderungen werden sofort übernommen."
+#define OPTION_VAL_FIGHTING_DE "Kampfspiele"
+#define OPTION_VAL_SHOOTER_DE "Shooter"
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_LABEL_DE "PPU-Kompilierungshinweis anzeigen"
 #define RPCS3_SHOW_PPU_COMPILATION_HINT_INFO_0_DE "Zeigt einen Hinweis an, wenn PPU-Module kompiliert werden."
 #define RPCS3_SHOW_SHADER_COMPILATION_HINT_LABEL_DE "Hinweis zur Shaderkompilierung anzeigen"
@@ -26514,10 +26514,10 @@ struct retro_core_options_v2 options_id = {
 #define OPTION_VAL_SPANISH_IT "Spagnolo"
 #define OPTION_VAL_GERMAN_IT "Tedesco"
 #define OPTION_VAL_ITALIAN_IT "Italiano"
-#define OPTION_VAL_DUTCH_IT NULL
-#define OPTION_VAL_PORTUGUESE_IT NULL
-#define OPTION_VAL_RUSSIAN_IT NULL
-#define OPTION_VAL_KOREAN_IT NULL
+#define OPTION_VAL_DUTCH_IT "Olandese"
+#define OPTION_VAL_PORTUGUESE_IT "Portoghese"
+#define OPTION_VAL_RUSSIAN_IT "Russo"
+#define OPTION_VAL_KOREAN_IT "Coreano"
 #define OPTION_VAL_CHINESE_TRAD_IT NULL
 #define OPTION_VAL_CHINESE_SIMP_IT NULL
 #define RPCS3_LICENSE_AREA_LABEL_IT NULL
@@ -45824,7 +45824,7 @@ struct retro_core_options_v2 options_val = {
 #define CATEGORY_GPU_LABEL_VN NULL
 #define CATEGORY_GPU_INFO_0_VN "Tùy chọn về bộ Dựng hình, độ phân giải, bộ tạo hiệu ứng và độ chính xác đồ họa."
 #define CATEGORY_THREADS_LABEL_VN "Lập lịch"
-#define CATEGORY_THREADS_INFO_0_VN "Cách các luồng của trình giả lập được phân bổ thời gian xử lý, cũng như số luồng được chạy và biên dịch: những thiết lập có thể cần thay đổi trên CPU có ít lõi hoặc trên điện thoại."
+#define CATEGORY_THREADS_INFO_0_VN "Cách các luồng của trình giả lập được phân bổ thời gian xử lý, cũng như số luồng được chạy và biên dịch: những thiết lập có thể cần thay đổi trên CPU có ít trình giả lập hoặc trên điện thoại."
 #define CATEGORY_NETWORK_LABEL_VN "Mạng"
 #define CATEGORY_NETWORK_INFO_0_VN "Tùy chọn về mạng, PSN và RPCN."
 #define CATEGORY_DEBUG_LABEL_VN "Gỡ lỗi"
@@ -45962,14 +45962,14 @@ struct retro_core_options_v2 options_val = {
 #define RPCS3_STRICT_RENDERING_LABEL_VN "Chế độ Dựng hình nghiêm ngặt"
 #define RPCS3_STRICT_RENDERING_INFO_0_VN "Bật chế độ Dựng hình nghiêm ngặt để tăng độ chính xác."
 #define RPCS3_STRETCH_TO_DISPLAY_LABEL_VN "Kéo giãn theo vùng hiển thị"
-#define RPCS3_STRETCH_TO_DISPLAY_INFO_0_VN "Kéo giãn hình ảnh trò chơi để lấp đầy màn hình, báo cho RetroArch theo tỷ lệ khung hình này: chọn tỷ lệ của màn hình đối với các trò chơi đã được chỉnh sửa để hiển thị rộng hơn (21:9, 32:9). Cần đặt tỷ lệ khung hình của RetroArch thành Do lõi cung cấp."
+#define RPCS3_STRETCH_TO_DISPLAY_INFO_0_VN "Kéo giãn hình ảnh trò chơi để lấp đầy màn hình, báo cho RetroArch theo tỷ lệ khung hình này: chọn tỷ lệ của màn hình đối với các trò chơi đã được chỉnh sửa để hiển thị rộng hơn (21:9, 32:9). Cần đặt tỷ lệ khung hình của RetroArch thành Do trình giả lập cung cấp."
 #define OPTION_VAL_ENABLED_VN NULL
 #define OPTION_VAL_16_10_VN NULL
 #define OPTION_VAL_21_9_VN NULL
 #define OPTION_VAL_32_9_VN NULL
 #define OPTION_VAL_5_4_VN NULL
 #define RPCS3_MULTITHREADED_RSX_LABEL_VN "RSX đa luồng"
-#define RPCS3_MULTITHREADED_RSX_INFO_0_VN "Chuyển một phần tác vụ RSX sang luồng thứ hai. Mặc định tắt, giống như trong RPCS3; có thể cải thiện hiệu năng trên CPU có ít lõi nhưng tốc độ cao, bao gồm cả điện thoại."
+#define RPCS3_MULTITHREADED_RSX_INFO_0_VN "Chuyển một phần tác vụ RSX sang luồng thứ hai. Mặc định tắt, giống như trong RPCS3; có thể cải thiện hiệu năng trên CPU có ít trình giả lập nhưng tốc độ cao, bao gồm cả điện thoại."
 #define RPCS3_ASYNC_TEXTURE_STREAMING_LABEL_VN "Truyền tải kết cấu không đồng bộ"
 #define RPCS3_ASYNC_TEXTURE_STREAMING_INFO_0_VN "Bật truyền kết cấu bất đồng bộ."
 #define RPCS3_HOST_GPU_LABELS_LABEL_VN "Cho phép GPU máy chủ gắn nhãn"
@@ -46002,7 +46002,7 @@ struct retro_core_options_v2 options_val = {
 #define RPCS3_DRIVER_WAKEUP_DELAY_INFO_0_VN "Độ trễ đánh thức trình điều khiển tính bằng micro giây. Mặc định là 0, giống như trong RPCS3; chỉ tăng giá trị này khi trò chơi yêu cầu."
 #define OPTION_VAL_0_VN "0 (Mặc định)"
 #define RPCS3_VBLANK_RATE_LABEL_VN "Tần số VBlank"
-#define RPCS3_VBLANK_RATE_INFO_0_VN "Tần số làm mới của PS3 tính bằng Hz. Đây cũng là tốc độ khung hình mà lõi yêu cầu RetroArch sử dụng, có hiệu lực khi nội dung được tải; những trò chơi có thể chạy trên 60 FPS cần màn hình có tần số làm mới tương ứng. \"Từ danh sách\" sẽ tăng gấp đôi tần số Vblank đối với các trò chơi được hỗ trợ và có tên trong tệp vblank_unlock.txt nằm trong system/rpcs3. Bạn có thể cần áp dụng các bản vá riêng cho từng trò chơi."
+#define RPCS3_VBLANK_RATE_INFO_0_VN "Tần số làm mới của PS3 tính bằng Hz. Đây cũng là tốc độ khung hình mà trình giả lập yêu cầu RetroArch sử dụng, có hiệu lực khi nội dung được tải; những trò chơi có thể chạy trên 60 FPS cần màn hình có tần số làm mới tương ứng. \"Từ danh sách\" sẽ tăng gấp đôi tần số Vblank đối với các trò chơi được hỗ trợ và có tên trong tệp vblank_unlock.txt nằm trong system/rpcs3. Bạn có thể cần áp dụng các bản vá riêng cho từng trò chơi."
 #define OPTION_VAL_50_RPCS3_VBLANK_RATE_VN NULL
 #define OPTION_VAL_60_RPCS3_VBLANK_RATE_VN NULL
 #define OPTION_VAL_120_RPCS3_VBLANK_RATE_VN NULL
@@ -46010,7 +46010,7 @@ struct retro_core_options_v2 options_val = {
 #define OPTION_VAL_240_RPCS3_VBLANK_RATE_VN NULL
 #define OPTION_VAL_LIST_VN "Từ danh sách"
 #define RPCS3_THREAD_SCHEDULER_LABEL_VN "Bộ lập lịch luồng"
-#define RPCS3_THREAD_SCHEDULER_INFO_0_VN "Quyết định cách các luồng của trình giả lập được phân bổ vào các lõi CPU, tương tự như RPCS3. Hệ điều hành để hệ thống tự quyết định; bộ lập lịch của RPCS3 ghim các luồng PPU, SPU và RSX vào các lõi riêng, được bố trí phù hợp với một số CPU máy tính để bàn. Không có tác dụng trên Android, nơi lõi không thể ghim các luồng."
+#define RPCS3_THREAD_SCHEDULER_INFO_0_VN "Quyết định cách các luồng của trình giả lập được phân bổ vào các trình giả lập CPU, tương tự như RPCS3. Hệ điều hành để hệ thống tự quyết định; bộ lập lịch của RPCS3 ghim các luồng PPU, SPU và RSX vào các trình giả lập riêng, được bố trí phù hợp với một số CPU máy tính để bàn. Không có tác dụng trên Android, nơi trình giả lập không thể ghim các luồng."
 #define OPTION_VAL_OS_VN "Hệ điều hành"
 #define OPTION_VAL_OLD_VN "Bộ lập lịch RPCS3"
 #define OPTION_VAL_ALT_VN "Bộ lập lịch thay thế của RPCS3"
@@ -46019,9 +46019,9 @@ struct retro_core_options_v2 options_val = {
 #define RPCS3_SPU_LOOP_DETECTION_LABEL_VN "Bật phát hiện vòng lặp SPU"
 #define RPCS3_SPU_LOOP_DETECTION_INFO_0_VN "Phát hiện các vòng lặp SPU chỉ chờ đợi và bỏ qua chúng. Nhanh hơn, nhưng một số trò chơi sẽ bị lỗi khi bật; mặc định tắt, giống như trong RPCS3. Nên bật để tăng tốc trên điện thoại."
 #define RPCS3_LLVM_THREADS_LABEL_VN "Số luồng biên dịch PPU/SPU bằng LLVM"
-#define RPCS3_LLVM_THREADS_INFO_0_VN "Số luồng biên dịch mã PPU và SPU bằng LLVM, tương ứng với Số luồng biên dịch LLVM tối đa của RPCS3. Tự động sử dụng mọi lõi; giảm số luồng giúp điện thoại mát hơn và dùng ít bộ nhớ hơn trong khi biên dịch trò chơi, nhưng sẽ mất nhiều thời gian hơn. Trên CPU ARM có các lõi tiết kiệm điện (hầu hết điện thoại, một số máy tính xách tay ARM), mặc định sẽ không sử dụng các lõi này."
+#define RPCS3_LLVM_THREADS_INFO_0_VN "Số luồng biên dịch mã PPU và SPU bằng LLVM, tương ứng với Số luồng biên dịch LLVM tối đa của RPCS3. Tự động sử dụng mọi trình giả lập; giảm số luồng giúp điện thoại mát hơn và dùng ít bộ nhớ hơn trong khi biên dịch trò chơi, nhưng sẽ mất nhiều thời gian hơn. Trên CPU ARM có các trình giả lập tiết kiệm điện (hầu hết điện thoại, một số máy tính xách tay ARM), mặc định sẽ không sử dụng các trình giả lập này."
 #define RPCS3_SHADER_COMPILER_THREADS_LABEL_VN "Số luồng biên dịch đổ bóng"
-#define RPCS3_SHADER_COMPILER_THREADS_INFO_0_VN "Số luồng biên dịch bộ đổ bóng. Tự động cho phép RPCS3 tự quyết định dựa trên CPU được phát hiện. Trên CPU ARM có các lõi tiết kiệm điện (hầu hết điện thoại, một số máy tính xách tay ARM), mặc định sẽ không sử dụng các lõi này."
+#define RPCS3_SHADER_COMPILER_THREADS_INFO_0_VN "Số luồng biên dịch bộ đổ bóng. Tự động cho phép RPCS3 tự quyết định dựa trên CPU được phát hiện. Trên CPU ARM có các trình giả lập tiết kiệm điện (hầu hết điện thoại, một số máy tính xách tay ARM), mặc định sẽ không sử dụng các trình giả lập này."
 #define RPCS3_PPU_THREADS_LABEL_VN "Số luồng PPU"
 #define RPCS3_PPU_THREADS_INFO_0_VN "Số lượng luồng PPU chạy cùng lúc, tương tự như RPCS3. 2 là mặc định và là mức mà gần như mọi game đều cần."
 #define OPTION_VAL_2_RPCS3_PPU_THREADS_VN "2 (Mặc định)"
@@ -46084,7 +46084,7 @@ struct retro_core_options_v2 options_val = {
 #define OPTION_VAL_COLOR_VN "Ưu tiên màu"
 #define OPTION_VAL_DEPTH_VN "Ưu tiên độ sâu"
 #define RPCS3_DATABASE_OVERRIDE_LABEL_VN "Ghi đè thiết lập từ cơ sở dữ liệu"
-#define RPCS3_DATABASE_OVERRIDE_INFO_0_VN "Cải thiện khả năng tương thích bằng cách tự động áp dụng các bản sửa lỗi dành riêng cho từng game: các thiết lập mà cơ sở dữ liệu của RPCS3 có cho game (được RPCS3 độc lập áp dụng) sẽ được ưu tiên hơn các tùy chọn của lõi, dù là thiết lập chung hay riêng cho từng game, đối với những thiết lập được cơ sở dữ liệu chỉ định; mọi thiết lập khác vẫn giữ nguyên như bạn đã đặt. Tắt sẽ không áp dụng bất kỳ thiết lập nào trong số đó. Có hiệu lực vào lần khởi động game tiếp theo."
+#define RPCS3_DATABASE_OVERRIDE_INFO_0_VN "Cải thiện khả năng tương thích bằng cách tự động áp dụng các bản sửa lỗi dành riêng cho từng game: các thiết lập mà cơ sở dữ liệu của RPCS3 có cho game (được RPCS3 độc lập áp dụng) sẽ được ưu tiên hơn các tùy chọn của trình giả lập, dù là thiết lập chung hay riêng cho từng game, đối với những thiết lập được cơ sở dữ liệu chỉ định; mọi thiết lập khác vẫn giữ nguyên như bạn đã đặt. Tắt sẽ không áp dụng bất kỳ thiết lập nào trong số đó. Có hiệu lực vào lần khởi động game tiếp theo."
 #define RPCS3_PERF_OVERLAY_LABEL_VN "Lớp phủ hiệu năng"
 #define RPCS3_PERF_OVERLAY_INFO_0_VN "Lớp phủ hiệu năng của RPCS3, được hiển thị trên hình ảnh trò chơi: tốc độ khung hình của trò chơi theo cách RPCS3 tính toán, và ở các mức chi tiết cao hơn sẽ hiển thị thời gian khung hình cùng mức tải CPU và GPU."
 #define OPTION_VAL_MINIMAL_VN "Chỉ tốc độ khung hình"
